@@ -3,6 +3,12 @@ import Link from "next/link";
 // Owned by the DESIGNER 2 chat. Index of Designer 2's directions.
 const designs = [
   {
+    href: "/designer2/v4/about",
+    name: "v4 — About IO, Hut 8 × Anthem (current)",
+    note: "Observed and adapted from hut8.com and anthem.co.za: corner-cutting photo panels, colour fact tiles, white isometric 3D site in layers, dot-terrain 'Why Here?', giant scrolling list, moving highlight bar, morphing process frame, striped-mark footer.",
+    pages: [{ href: "/designer2/v4/about", label: "About IO" }],
+  },
+  {
     href: "/designer2/v3/about",
     name: "v3 — About IO, one living world (current)",
     note: "Built from scratch after Inkwell: one WebGL world behind the page (sky gradient + 6k particles that morph from helix to desert to the IO O to a globe), new pathfinder nav, circle menu, loader, cursor, footer.",

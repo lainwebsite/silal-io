@@ -1,0 +1,474 @@
+/* Designer 2 · v4 — shell: tokens, nav, menu, footer.
+   Base: brand Light grey paper (Anthem's cream, made IO), Charcoal panels (Hut 8's black, made IO),
+   IO Blue as the one action/highlight colour (Hut 8's lime / Anthem's blue). Brand: docs/brand.md. */
+
+.root {
+  --io: #3ca7d2;
+  --io-ink: #1c7299;
+  --io-mist: #b8e0f0;
+  --charcoal: #595453;
+  --ink: #3d3938; /* deeper charcoal for small text on paper (brand charcoal family) */
+  --grey: #7f8284;
+  --paper: #f1f1f1;
+  --white: #ffffff;
+  --green: #00a16b;
+  --green-dark: #015825;
+  --lime: #70b62b;
+  --orange: #f08104;
+  --line: rgb(89 84 83 / 0.16);
+
+  --f: var(--font-d4), "29LT Bukra", Arial, sans-serif;
+  --gx: clamp(18px, 2.4vw, 44px);
+  --max: 1720px;
+  --expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --io-cut: clamp(14px, 1.6vw, 30px);
+
+  position: relative;
+  font-family: var(--f);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--charcoal);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+.root :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+.root :where(img) {
+  display: block;
+  max-width: 100%;
+}
+.root :where(ul, ol) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.root :where(h1, h2, h3, h4, p, blockquote, figure, address) {
+  margin: 0;
+}
+.root :where(button) {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.root :focus-visible {
+  outline: 2px solid var(--io);
+  outline-offset: 3px;
+}
+.root ::selection {
+  background: var(--io);
+  color: #fff;
+}
+.skip {
+  position: fixed;
+  z-index: 200;
+  top: -80px;
+  left: 16px;
+  padding: 10px 16px;
+  background: var(--charcoal);
+  color: #fff;
+}
+.skip:focus {
+  top: 16px;
+}
+
+/* ---------- Nav ---------- */
+
+.nav {
+  position: fixed;
+  z-index: 70;
+  inset-inline: 0;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px var(--gx);
+  pointer-events: none;
+}
+.nav > * {
+  pointer-events: auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.word {
+  position: relative;
+  height: 44px;
+  aspect-ratio: 326 / 148;
+}
+.word img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.4s;
+}
+.word img[data-v="dark"],
+.nav:is([data-tone="dark"], [data-tone="blue"]) .word img[data-v="light"] {
+  opacity: 0;
+}
+.nav:is([data-tone="dark"], [data-tone="blue"]) .word img[data-v="dark"] {
+  opacity: 1;
+}
+/* On IO Blue the blue "io" would vanish: single-colour white version (allowed, docs/brand.md) */
+.nav[data-tone="blue"] .brand img {
+  filter: brightness(0) invert(1);
+}
+.mark {
+  height: 32px;
+  width: auto;
+}
+.navEnd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navContact {
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  background: rgb(255 255 255 / 0.9);
+  color: var(--charcoal);
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: background-color 0.3s, color 0.3s;
+}
+.navContact:hover {
+  background: var(--charcoal);
+  color: #fff;
+}
+.pill {
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding-inline: 16px 14px;
+  background: var(--io);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: background-color 0.3s;
+}
+.pill:hover {
+  background: var(--io-ink);
+}
+.pillWord {
+  min-width: 38px;
+  text-align: start;
+}
+.pillIcon {
+  position: relative;
+  width: 16px;
+  height: 8px;
+}
+.pillIcon i {
+  position: absolute;
+  inset-inline: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.5s var(--expo), top 0.5s var(--expo);
+}
+.pillIcon i:first-child {
+  top: 0;
+}
+.pillIcon i:last-child {
+  top: 6.5px;
+}
+.pill[aria-expanded="true"] .pillIcon i:first-child {
+  top: 3.25px;
+  transform: rotate(45deg);
+}
+.pill[aria-expanded="true"] .pillIcon i:last-child {
+  top: 3.25px;
+  transform: rotate(-45deg);
+}
+
+/* ---------- Menu sheet ---------- */
+
+.menu {
+  position: fixed;
+  z-index: 60;
+  inset: 0 0 auto;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 110px var(--gx) 28px;
+  background: var(--charcoal);
+  color: #fff;
+  clip-path: inset(0% 0% 100% 0%);
+  overflow-y: auto;
+}
+.menu[hidden] {
+  display: none;
+}
+.menuGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 48px;
+}
+.menuList li {
+  border-top: 1px solid rgb(255 255 255 / 0.14);
+}
+.mask {
+  display: block;
+  overflow: hidden;
+}
+.mask > span {
+  display: block;
+}
+.menuList a {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding-block: clamp(8px, 1.4vh, 16px);
+  font-weight: 300;
+  font-size: clamp(28px, min(4vw, 6vh), 66px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  transition: opacity 0.4s, transform 0.6s var(--expo);
+}
+.menuList small {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--io-mist);
+  transform: translateY(-1.4em);
+}
+.menuList:hover a {
+  opacity: 0.4;
+}
+.menuList li[data-on] a {
+  opacity: 1;
+  transform: translateX(12px);
+}
+.menuSide {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.menuImg {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  clip-path: polygon(var(--io-cut) 0, 100% 0, 100% calc(100% - var(--io-cut)), calc(100% - var(--io-cut)) 100%, 0 100%, 0 var(--io-cut));
+  background: #4d4847;
+}
+.menuImg > div {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.menuImg > div[data-on] {
+  opacity: 1;
+}
+.menuImg img {
+  object-fit: cover;
+}
+.menuHead {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--io-mist);
+}
+.menuSubs a {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 8px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  font-size: 15px;
+  color: rgb(255 255 255 / 0.88);
+}
+.menuSubs a span {
+  color: var(--io);
+}
+.menuSubs a:hover {
+  color: #fff;
+}
+.menuFoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(255 255 255 / 0.14);
+  font-size: 13px;
+  color: rgb(255 255 255 / 0.8);
+}
+
+/* ---------- Footer: IO Blue + striped mark ---------- */
+
+.footer {
+  position: relative;
+  background: var(--io);
+  color: #fff;
+  overflow: hidden;
+  padding: clamp(80px, 12vh, 140px) var(--gx) 0;
+}
+.footTop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  max-width: var(--max);
+  margin-inline: auto;
+}
+.footTag {
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  max-width: 11ch;
+}
+.footAr {
+  margin-top: 20px;
+  font-size: clamp(18px, 1.6vw, 28px);
+  font-weight: 300;
+  color: rgb(255 255 255 / 0.9);
+  text-align: start;
+}
+.footCol > p:first-child {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  color: rgb(255 255 255 / 0.85);
+}
+.footCol li + li {
+  margin-top: 6px;
+}
+.footCol a {
+  font-size: 15px;
+  background: linear-gradient(#fff, #fff) no-repeat 0 100% / 0 1px;
+  transition: background-size 0.5s var(--expo);
+}
+.footCol a:hover {
+  background-size: 100% 1px;
+}
+.footCol address {
+  font-style: normal;
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+.footCol address span {
+  display: block;
+  margin-top: 6px;
+}
+.footBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  max-width: var(--max);
+  margin: clamp(56px, 8vh, 100px) auto 0;
+  padding-block: 18px;
+  border-top: 1px solid rgb(255 255 255 / 0.35);
+  font-size: 12px;
+}
+.footLockup img {
+  height: 46px;
+  width: auto;
+  filter: brightness(0) invert(1); /* single-colour white on IO Blue */
+}
+.footClock {
+  display: flex;
+  gap: 6px;
+}
+.footBar ul {
+  display: flex;
+  gap: 18px;
+}
+.footUp {
+  margin-inline-start: auto;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.footUp span {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-inline-start: 8px;
+  border: 1px solid rgb(255 255 255 / 0.5);
+  transition: transform 0.5s var(--expo);
+}
+.footUp:hover span {
+  transform: translateY(-3px);
+}
+/* the striped signature: full-bleed band of hairline stripes, the mark built from slices */
+.stripes {
+  position: relative;
+  height: clamp(200px, 30vw, 560px);
+  margin-inline: calc(-1 * var(--gx));
+  background: repeating-linear-gradient(to bottom, transparent 0 calc(100% / 18 - 2px), rgb(255 255 255 / 0.16) calc(100% / 18 - 2px) calc(100% / 18));
+  overflow: hidden;
+}
+.stripeMark {
+  position: absolute;
+  inset-inline-end: var(--gx);
+  bottom: -4%;
+  height: 104%;
+  aspect-ratio: 255 / 188;
+  filter: brightness(0) invert(1); /* single-colour white version on IO Blue (allowed) */
+}
+.band {
+  position: absolute;
+  inset-inline: 0;
+  overflow: hidden;
+}
+.band img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  max-width: none;
+}
+
+@media (max-width: 900px) {
+  .menuGrid {
+    grid-template-columns: 1fr;
+  }
+  .menuSide {
+    display: none;
+  }
+  .footTop {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footLead {
+    grid-column: 1 / -1;
+  }
+  .navContact {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .word {
+    height: 36px;
+  }
+  .mark {
+    height: 26px;
+  }
+  .footTop {
+    grid-template-columns: 1fr;
+  }
+  .footUp {
+    margin-inline-start: 0;
+  }
+}

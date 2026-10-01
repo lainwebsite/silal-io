@@ -127,5 +127,35 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 
 **Open:** team roles/bios; Virtual Tour + LinkedIn URLs; real Bukra webfont; sub-pages (links 404 for now).
 
+### v4 — About IO, "Hut 8 × Anthem" (2026-10-01)
+- Live: `/designer2/v4/about` (`/designer2/v4` redirects). Current Designer 2 About.
+- Brief: combine the two reference sites from the client's screen recordings (hut8.com, anthem.co.za; studied frame by frame), imitate and adapt their layouts and animations for IO, self-review as an Awwwards judge before presenting.
+- Code: `app/designer2/v4/` — `layout.tsx`, `shell.module.css`, `_c/` (Nav, Footer, SmoothScroll, Clock), `about/page.tsx`, `about/about.module.css`, `about/_c/` (Motion = all GSAP, Site3D = three.js isometric world, Terrain = three.js dot terrain).
+
+**Mechanic → source → IO adaptation**
+| Section (client copy) | Borrowed from | IO version |
+|---|---|---|
+| Hero | Anthem: full-bleed photo; panel cuts its bottom corners into a card as you leave | aerial / greenhouses / canopy crossfade; "The future of food security is being built in the desert." |
+| About | Anthem: label left, statement right, cut-corner photos drifting at different speeds | belief statement + aerial + canopy |
+| Statement | Anthem: words brighten as read | "If solutions can succeed here…" |
+| Facts | Anthem: colour stat tiles alternating with photos on a sideways track | 34 ha (IO Blue), 2020 (Charcoal), 2024 (dark green), 2030 (lime) — facts from the copy only |
+| Our Story | Hut 8: photo holds while a dark panel slides up over it; notched rules | full story copy on Charcoal; three "existed / faced" cards |
+| The site | Hut 8: white matte isometric world, "Layer 1.0" chapters, icon pins, lime service line | illustrative white campus, IO-Blue service lines/pins; 4 layers = the 4 "A place where…" lines (Test / Collaborate / Scale / Prove); camera on a spline |
+| Today | Hut 8 "Our Businesses": Charcoal index with notched rule and numbered rows | "Today, IO serves as Silal's R&D and venture engine…" + the 5 sitemap platforms |
+| People | Anthem: cut-corner portrait + text; sideways track | CEO + quote; team of 8 on a pinned track |
+| Why here | Hut 8 "Our Impact": giant title slides over a dot terrain; labelled spikes; ruler + counter | "The Arid Advantage" over desert dots; 5 spikes = the 5 pressures; counter 00 → 05 |
+| Different | Hut 8 "Powering the Future": giant list runs past a guide rule, one line lit | the 8 "We bring together" items |
+| Mission | Anthem panel | deep-green leaf panel, corners cut on exit |
+| Principles | Anthem "What we do": highlight bar moves through the list with a big number | IO-Blue bar |
+| Journey | Anthem "The Anthem Model": sticky steps, arrow index, "02 / 04", the frame folds and reopens per step | 8 milestones 2021 → 2030 |
+| Looking ahead | Anthem "Watch" strip | aerial strip with "Virtual Tour ↗" button (URL TBC) |
+| Footer | Anthem: full brand-colour footer; Hut 8: striped giant signature | IO Blue; official mark (single-colour white) cut into 18 bands that slide together |
+
+**Brand.** Paper `#F1F1F1` (brand light grey) replaces Anthem's cream; Charcoal replaces Hut 8's black; IO Blue replaces Hut 8's lime / Anthem's blue as the one highlight. Small charcoal text uses `#3D3938` (darker charcoal) for contrast. Cut corners only top-left + bottom-right. On IO Blue the logo is the single-colour white version (the blue "io" would vanish). Hut 8's striped wordmark distorts their logo; ours only slices the untouched mark file.
+
+**Self-review (Awwwards-judge pass) and fixes made before presenting:** reversed logo on IO Blue (fixed: white), nav reading its own tone so the logo stayed reversed on light sections (fixed), 3D camera too close / world too sparse vs Hut 8 (raised to isometric, added fields, equipment, palms, solar rows, buildings), terrain too flat + spike tips stretched (taller dunes, tip no longer scaled), spike easing frame-rate dependent (fixed), principles squeezed on phones (fixed), tracks hiding items under reduced motion (wrap). Checked desktop 1440×900, mobile 390×844, reduced motion.
+
+**Open:** 3D layout is illustrative (masterplan requested by Designer 1 would make it real); team roles; Virtual Tour + LinkedIn URLs; Bukra webfont; real-device frame-rate test of the two WebGL scenes.
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.
