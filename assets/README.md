@@ -96,16 +96,19 @@ Suggested pages: Venture Programme detail, News / Media detail, Agricultural Cha
 
 ## iO Team Headshot & Bios
 
-107 headshots, kept in the client's per-person folders: `iO Team Headshot & Bios/<Name>/<original filename>`. Shot in the IO atrium (white columns, planters, wood benches). Originals 2000×3000 portrait (12 are 2000×1333 landscape wides).
+192 headshots, kept in the client's per-person folders: `iO Team Headshot & Bios/<Name>/<original filename>`. Shot in the IO atrium (white columns, planters, wood benches). Originals 2000×3000 portrait, plus some 2000×1333 landscape wides.
 
 | Folder | Files | Notes |
 |---|---|---|
+| `Ahmed/` | 6 | |
+| `Ali/` | 20 | `Ali-bw-1/2/4/5/7` are black & white; other `-bw` files are colour. |
+| `Caitlin/` | 22 | `Cait-bw-8/9` are black & white; other `Cait-bw-*` are colour. |
 | `Francisco/` | 15 | Also contains `Jude-5.jpg`, which appears to show the same person as the rest of this folder. |
 | `Jude/` | 6 | Also contains `Mohsin-8.jpg`, `Mohsin-9.jpg`, which appear to show the same person as the rest of this folder. |
 | `Mohsin/` | 16 | |
 | `Nadia/` | 36 | `Obaid-*.jpg` appear to show the same person as the `Nadia-*` files. `Obaid-4/5` are black & white. |
-| `Sagar/` | 34 | `Shamal-*.jpg` and `IMG_713x.JPG` appear to show the same person as the `Sagar-*` files. `IMG_7134/7135/7137`, `Shamal-19` are black & white. |
+| `Sagar/` | 34 | `Shamal-1…7/18/19` and `IMG_713x.JPG` appear to show the same person as the `Sagar-*` files (a different person from the `Shamal/` folder). `IMG_7134/7135/7137`, `Shamal-19` are black & white. |
+| `Shamal/` | 25 | CEO folder. Also contains `Talabi-14/15/16.jpg`, which appear to show the same person as the rest of this folder. ⚠ `Shamal-1…7/18/19` here have the **same filenames as different files in `Sagar/`**, so always use the full path. |
+| `Talabi/` | 12 | Not in the About page's team list; client to confirm. |
 
-**The photographer's filename prefixes don't reliably match the person; the folder name looks like the reliable label. Client to confirm identities before publishing.** Note `-bw` in a filename does *not* mean black & white; those files are in colour.
-
-Missing so far: Ahmed, Ali, Caitlin, and a confirmed CEO portrait (Dr. Shamal Mohammed). No bios received yet.
+**Rule: the folder name is the person label; the photographer's filename prefixes are unreliable.** `-bw` in a filename does *not* mean black & white. Client to confirm identities before publishing. No bios received yet.
