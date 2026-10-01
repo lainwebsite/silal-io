@@ -17,6 +17,8 @@ Team to show (from `content/about.md`): CEO **Dr. Shamal Mohammed** + **Ahmed, A
 | Mohsin | `Mohsin/` | ✅ 16 | ❌ | ? | `Mohsin/Mohsin-4.jpg` |
 | Talabi | `Talabi/` | ✅ 12 | ❌ | ? | `Talabi/Talabi-2.jpg`. ⚠ **Not in the About page's list; don't show until the client confirms.** |
 
+| ❓ Unknown | `Unknown Name/` | ✅ 4 | ❌ | ? | ⚠ **Identity unknown; don't use.** Files named `Sagar-4…7` but this is not the person in `Sagar/`. |
+
 Rules for designers:
 - Use the **folder** as the person label, never the filename prefix (prefixes are mixed up across folders).
 - **Always use the full path.** `Shamal-1…7/18/19.jpg` exist in both `Sagar/` and `Shamal/` and are different people.

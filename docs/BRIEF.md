@@ -63,7 +63,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 21. 404
 
 ## Assets
-- Photos: `assets/photos/` (169 originals + 192 team headshots). Manifest with suggested page usage: `assets/README.md`. Visual index: `assets/contact-sheets/`.
+- Photos: `assets/photos/` (169 originals + 196 team headshots). Manifest with suggested page usage: `assets/README.md`. Visual index: `assets/contact-sheets/`.
 - Logo: `public/brand/` (vector SVG extracted from the guidelines PDF, see `docs/brand.md`).
 - Sitemap image: `docs/sitemap.png`.
 
@@ -73,7 +73,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - [x] About IO copy: `content/about.md`
 - [ ] Official logo master files (SVG/AI). Current SVGs are extracted from the guidelines PDF; fine for design, confirm before launch.
 - [ ] **29LT Bukra webfont files (WOFF2) + web licence.** Until then use the stand-in described in `docs/brand.md`.
-- [~] Team headshots: **all 9 received** (CEO Shamal + Ahmed, Ali, Nadia, Sagar, Caitlin, Francisco, Jude, Mohsin), plus Talabi (not in About list: confirm whether to show). See `content/team.md`. **Still missing: all bios + role titles.** Filename prefixes don't match people; folder = person.
+- [~] Team headshots: **all 9 received** (CEO Shamal + Ahmed, Ali, Nadia, Sagar, Caitlin, Francisco, Jude, Mohsin), plus Talabi (not in About list: confirm whether to show) and an `Unknown Name/` folder (4 photos, unidentified man, files misnamed `Sagar-4…7`: client to identify). See `content/team.md`. **Still missing: all bios + role titles.** Filename prefixes don't match people; folder = person.
 - [ ] Copy for all other pages (Home, category hubs, details…). Until supplied, use placeholder copy that follows the About page's tone.
 - [ ] Partners: how to display partners & manage partnership enquiries (open question on sitemap).
 - [ ] Confirm contact details (phone in stationery template may be placeholder).

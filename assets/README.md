@@ -96,7 +96,7 @@ Suggested pages: Venture Programme detail, News / Media detail, Agricultural Cha
 
 ## iO Team Headshot & Bios
 
-192 headshots, kept in the client's per-person folders: `iO Team Headshot & Bios/<Name>/<original filename>`. Shot in the IO atrium (white columns, planters, wood benches). Originals 2000×3000 portrait, plus some 2000×1333 landscape wides.
+196 headshots, kept in the client's per-person folders: `iO Team Headshot & Bios/<Name>/<original filename>`. Shot in the IO atrium (white columns, planters, wood benches). Originals 2000×3000 portrait, plus some 2000×1333 landscape wides.
 
 | Folder | Files | Notes |
 |---|---|---|
@@ -110,5 +110,6 @@ Suggested pages: Venture Programme detail, News / Media detail, Agricultural Cha
 | `Sagar/` | 34 | `Shamal-1…7/18/19` and `IMG_713x.JPG` appear to show the same person as the `Sagar-*` files (a different person from the `Shamal/` folder). `IMG_7134/7135/7137`, `Shamal-19` are black & white. |
 | `Shamal/` | 25 | CEO folder. Also contains `Talabi-14/15/16.jpg`, which appear to show the same person as the rest of this folder. ⚠ `Shamal-1…7/18/19` here have the **same filenames as different files in `Sagar/`**, so always use the full path. |
 | `Talabi/` | 12 | Not in the About page's team list; client to confirm. |
+| `Unknown Name/` | 4 | Client folder name. Files are named `Sagar-4/5/6/7.jpg` but appear to show a different person from the `Sagar/` folder (man in white kandura, glasses). Identity unknown: client to confirm. 3 of 4 are landscape wides. |
 
 **Rule: the folder name is the person label; the photographer's filename prefixes are unreliable.** `-bw` in a filename does *not* mean black & white. Client to confirm identities before publishing. No bios received yet.
