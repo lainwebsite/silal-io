@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import s from "../v1.module.css";
-import { IoMark, IoWord } from "../_components/Brand";
+import { IoWord } from "../_components/Brand";
 import { Reveal } from "../_components/Motion";
 import { Timeline } from "../_components/Interactive";
 import { AridChapter, Ecosystem, Kicker, MissionBand, SectionHead } from "../_components/Sections";
@@ -90,8 +90,7 @@ export default function About() {
           <div className={s.leader}>
             <Reveal className={s.leaderCard}>
               <div className={s.leaderPortrait}>
-                <IoMark height={90} alt="" />
-                <span>Portrait to come</span>
+                <Image src={leadership.photo} alt="Dr. Shamal Mohammed, CEO" fill sizes="(max-width: 900px) 100vw, 340px" />
               </div>
               <div>
                 <b>Dr. Shamal Mohammed</b>

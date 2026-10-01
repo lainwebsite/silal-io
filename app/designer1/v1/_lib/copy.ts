@@ -32,6 +32,8 @@ export const story = {
 };
 
 export const leadership = {
+  // CEO = Shamal/ folder (NOT the Shamal-* files inside Sagar/). See content/team.md.
+  photo: teamPhoto("Shamal", "Shamal-2.jpg"),
   title: "Leadership",
   text: "Innovation Oasis is led by Dr. Shamal Mohammed, CEO. Dr. Mohammed joined Silal in 2021 to build its innovation and R&D function from the ground up, bringing more than two decades of experience running agricultural research facilities in the UK. It was the months he spent meeting farmers, universities, government entities and technology companies across the UAE — described above — that surfaced the gap Innovation Oasis was built to close, and led him to the overlooked plot of land beside Al Foah Farm where it now stands.",
   quote: "If it works here, it can work anywhere.",
@@ -45,11 +47,11 @@ export const team = {
   text: "Coming from different disciplines and different corners of the world, the team shares one mandate: build for the real world, learn by doing, and prove that solutions tested here can succeed almost anywhere.",
   // Order from content/about.md. Photos per content/team.md: labelled by FOLDER name; missing people get initials.
   members: [
-    { name: "Ahmed" },
-    { name: "Ali" },
+    { name: "Ahmed", photo: teamPhoto("Ahmed", "Ahmed-1.jpg") },
+    { name: "Ali", photo: teamPhoto("Ali", "Ali-4.jpg") },
     { name: "Nadia", photo: teamPhoto("Nadia", "Nadia-10.jpg") },
     { name: "Sagar", photo: teamPhoto("Sagar", "Sagar-2.jpg") },
-    { name: "Caitlin" },
+    { name: "Caitlin", photo: teamPhoto("Caitlin", "Caitlin-4-2.jpg") },
     { name: "Francisco", photo: teamPhoto("Francisco", "Francisco-7.jpg") },
     { name: "Jude", photo: teamPhoto("Jude", "Jude-1.jpg") },
     { name: "Mohsin", photo: teamPhoto("Mohsin", "Mohsin-4.jpg") },
