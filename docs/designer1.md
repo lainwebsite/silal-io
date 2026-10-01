@@ -38,6 +38,8 @@ Owned by the DESIGNER 1 chat. Record design directions, tokens (colours, type, s
 - Motion: reveal-on-scroll, cycling hero word, scroll-lit belief statement, counters, pillar list with crossfading photo, timeline scroller. All off under `prefers-reduced-motion`.
 - Nav: six sitemap labels exactly, each with a dropdown of its sitemap sub-pages; mobile = full-screen charcoal menu with accordions.
 
+**About page vs client PDF** (`docs/source/Innovation_Oasis_About_Page_Content_v2.docx.pdf`, checked 2026-10-01): section order matches the PDF (Hero → Our Story → Our People → Why Here? → What Makes IO Different → Our Mission → Principles → Our Journey → Looking Ahead); Arid Advantage closes with the "If it works here…" quote as in the PDF; no invented headlines on About. Open: PDF says journey "in a format similar to the Juntos timeline" — reference link needed. Team photos are in the client Google Drive (not in repo).
+
 **Copy:** `content/about.md` verbatim (Home hero, belief, story, arid advantage, ecosystem, quote, mission; full About page). Names from `docs/sitemap.md`.
 **Still placeholder:** category blurbs, centre one-liners, Agricultural Challenges paragraph, resource items, LinkedIn URL, team photos/roles, CEO portrait. Sub-page links 404 until built.
 

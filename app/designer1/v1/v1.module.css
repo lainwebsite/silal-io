@@ -1268,6 +1268,15 @@ li[data-active="true"] .pillarArrow {
   font-weight: 300;
 }
 
+.chapterQuote {
+  margin-top: clamp(40px, 5vw, 72px);
+  font-size: clamp(2rem, 4.6vw, 4.25rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--io);
+}
+
 @media (max-width: 900px) {
   .chapterGrid {
     grid-template-columns: 1fr;

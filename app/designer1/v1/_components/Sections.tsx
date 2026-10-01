@@ -40,7 +40,7 @@ export function SectionHead({
 }
 
 // Deep-green macro-leaf "chapter" page, as in the guidelines.
-export function AridChapter() {
+export function AridChapter({ withQuote = false }: { withQuote?: boolean }) {
   return (
     <section className={s.chapter}>
       <div className={s.chapterMedia}>
@@ -77,6 +77,11 @@ export function AridChapter() {
         <Reveal>
           <p className={s.benchmark}>{arid.benchmark}</p>
         </Reveal>
+        {withQuote ? (
+          <Reveal>
+            <p className={s.chapterQuote}>“{leadership.quote}”</p>
+          </Reveal>
+        ) : null}
       </div>
     </section>
   );
@@ -152,9 +157,9 @@ export function QuoteBand() {
   );
 }
 
-export function MissionBand() {
+export function MissionBand({ padTop = false }: { padTop?: boolean }) {
   return (
-    <section className={s.section} style={{ paddingTop: 0 }}>
+    <section className={s.section} style={padTop ? undefined : { paddingTop: 0 }}>
       <div className={s.wrap}>
         <div className={s.mission}>
           <img src="/brand/io-mark.svg" alt="" className={s.missionMark} />

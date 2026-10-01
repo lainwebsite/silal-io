@@ -133,14 +133,16 @@ export default function About() {
         </div>
       </section>
 
-      <AridChapter />
+      <AridChapter withQuote />
 
       <Ecosystem />
+
+      <MissionBand padTop />
 
       {/* PRINCIPLES */}
       <section className={s.section}>
         <div className={s.wrap}>
-          <SectionHead kicker="Our Values" title="The Principles That Guide Us" />
+          <SectionHead kicker="Innovation Oasis" title="The Principles That Guide Us" />
           <ol className={s.principles}>
             {principles.map((p, i) => (
               <Reveal as="li" key={p.title} delay={i}>
@@ -156,15 +158,7 @@ export default function About() {
       {/* JOURNEY */}
       <section className={`${s.section} ${s.sectionInk}`}>
         <div className={s.wrap}>
-          <SectionHead
-            light
-            kicker="Our Journey"
-            title={
-              <>
-                From an overlooked plot to a <span className={s.accent}>global testbed.</span>
-              </>
-            }
-          />
+          <SectionHead light kicker="2021 — 2030 Vision" title="Our Journey" />
           <Timeline items={journey} />
         </div>
       </section>
@@ -189,8 +183,6 @@ export default function About() {
           </Reveal>
         </div>
       </section>
-
-      <MissionBand />
     </>
   );
 }
