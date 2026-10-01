@@ -1,32 +1,33 @@
 import Image from "next/image";
 import s from "../v1.module.css";
-import { Arrow, IoMark, Waves } from "../_components/Brand";
+import { Arrow, IoLockup, IoMark } from "../_components/Brand";
 import { P } from "../_lib/photo";
 
 export const metadata = { title: "Design system — Designer 1 · v1" };
 
 const colours = [
-  { name: "Ink", token: "--ink", hex: "#0B1F2E" },
-  { name: "Ink 2", token: "--ink-2", hex: "#3A4D5C" },
-  { name: "Ink 3", token: "--ink-3", hex: "#6B7C89" },
-  { name: "IO Blue", token: "--io", hex: "#1689CF" },
-  { name: "IO Deep", token: "--io-deep", hex: "#0A5A92" },
-  { name: "IO Sky", token: "--io-sky", hex: "#E7F3FB" },
-  { name: "Sand", token: "--sand", hex: "#F3EDE3" },
-  { name: "Sand Deep", token: "--sand-deep", hex: "#D9C9AE" },
-  { name: "Leaf", token: "--leaf", hex: "#3F8F4E" },
-  { name: "Mist", token: "--mist", hex: "#F4F7F9" },
-  { name: "Paper", token: "--paper", hex: "#FFFFFF" },
+  { name: "IO Blue", token: "--io", hex: "#3CA7D2", note: "Core" },
+  { name: "IO Blue ink", token: "--io-ink", hex: "#1A6F96", note: "Tint for small text/links" },
+  { name: "Charcoal", token: "--charcoal", hex: "#595453", note: "Core" },
+  { name: "Grey", token: "--grey", hex: "#7F8284", note: "Core" },
+  { name: "Light grey", token: "--light", hex: "#F1F1F1", note: "Core" },
+  { name: "White", token: "--paper", hex: "#FFFFFF", note: "Core" },
+  { name: "Green", token: "--green", hex: "#00A16B", note: "Accent" },
+  { name: "Dark green", token: "--green-dark", hex: "#015825", note: "Accent" },
+  { name: "Lime", token: "--lime", hex: "#70B62B", note: "Accent" },
+  { name: "Orange", token: "--orange", hex: "#F08104", note: "Accent" },
+  { name: "Pink", token: "--pink", hex: "#E94492", note: "Accent" },
 ];
 
 const type = [
-  { cls: s.hero1, token: "Hero · Sora 500", sample: "Growing the future" },
-  { cls: s.h1, token: "H1 · Sora 500", sample: "The problems we exist to solve" },
-  { cls: s.h2, token: "H2 · Sora 500", sample: "Five ways to work with IO" },
-  { cls: s.h3, token: "H3 · Sora 500", sample: "Phenotyping chambers" },
-  { cls: s.lead, token: "Lead · Inter 400", sample: "A research and innovation campus for arid-climate agri-food." },
-  { cls: "", token: "Body · Inter 400 / 16", sample: "Lab testing, field trials and advisory for growers and partners." },
-  { cls: s.label, token: "Label · JetBrains Mono", sample: "Agricultural challenges" },
+  { cls: s.hero1, token: "Hero · Light 300", sample: "exploration" },
+  { cls: s.h1, token: "H1 · Light 300", sample: "The future of food security" },
+  { cls: s.h2, token: "H2 · Light 300", sample: "An Oasis Built for What's Next" },
+  { cls: s.h3, token: "H3 · Medium 500", sample: "Centres of Excellence" },
+  { cls: s.lead, token: "Lead · Regular 400", sample: "If solutions can succeed here, they can succeed almost anywhere." },
+  { cls: "", token: "Body · Regular 400 / 16", sample: "Innovation only matters when it can survive outside the lab." },
+  { cls: s.label, token: "Kicker · Medium 500 caps", sample: "Advancing Agri-food Systems" },
+  { cls: "", token: "Arabic", sample: "نحو أنظمة زراعة وغذاء متطورة" },
 ];
 
 const space = [4, 8, 12, 16, 24, 32, 48, 64, 96, 144];
@@ -38,15 +39,16 @@ export default function System() {
         <span className={s.label}>Designer 1 · v1</span>
         <h1 className={s.h1}>“Clear Field” design system</h1>
         <p className={s.lead}>
-          Bright, clinical whites from the labs, IO blue from the logo and wall graphics, sand from the land around the
-          campus. Big confident type, generous space, photography doing the talking.
+          Aligned to the Innovation Oasis brand guidelines (docs/brand.md): IO Blue, Charcoal, Grey and Light grey
+          dominate; greens, orange and pink are accents only. Light-weight display type, thin IO-blue rules, lots of
+          white space, photography doing the talking.
         </p>
       </div>
 
       <section className={s.dsBlock}>
         <header>
           <h2 className={s.h3}>Colour</h2>
-          <p>IO Blue is the only saturated colour. Sand and Leaf are supporting accents.</p>
+          <p>Core colours dominate. Secondary colours are accents only (tags, charts, colour-coding). IO Blue on white is 2.7:1, so small text uses the IO Blue ink tint.</p>
         </header>
         <div className={s.swatches}>
           {colours.map((c) => (
@@ -57,6 +59,7 @@ export default function System() {
                 <code>
                   {c.token} · {c.hex}
                 </code>
+                <code>{c.note}</code>
               </figcaption>
             </figure>
           ))}
@@ -66,7 +69,7 @@ export default function System() {
       <section className={s.dsBlock}>
         <header>
           <h2 className={s.h3}>Typography</h2>
-          <p>Sora for display, Inter for reading, JetBrains Mono for labels and data. Fluid sizes via clamp().</p>
+          <p>Brand font is 29LT Bukra (licence pending). Stand-in: Readex Pro, one CSS variable (--f-brand). Fluid sizes via clamp().</p>
         </header>
         <div>
           {type.map((t) => (
@@ -120,8 +123,8 @@ export default function System() {
           </div>
           <div className={s.row}>
             <span className={s.tag}>Tag</span>
-            <span className={`${s.tag} ${s.tagSand}`}>Sand tag</span>
-            <span className={`${s.tag} ${s.tagLeaf}`}>Leaf tag</span>
+            <span className={`${s.tag} ${s.tagGreen}`}>Green tag</span>
+            <span className={`${s.tag} ${s.tagOrange}`}>Orange tag</span>
           </div>
         </div>
       </section>
@@ -129,23 +132,22 @@ export default function System() {
       <section className={s.dsBlock}>
         <header>
           <h2 className={s.h3}>Brand elements</h2>
-          <p>Placeholder io mark until the SVG arrives. Wave lines echo the lab wall graphics.</p>
+          <p>Brand files from /public/brand. Lock-up (with “Part of Silal”) in the footer of every page; mark alone in the header; mark as cropped supergraphic.</p>
         </header>
         <div className={s.row} style={{ gap: 32 }}>
-          <IoMark size={56} />
-          <div style={{ background: "var(--ink)", padding: 20, borderRadius: 10 }}>
-            <IoMark size={56} color="#fff" />
+          <IoLockup width={150} />
+          <div style={{ background: "var(--charcoal)", padding: 20, borderRadius: 10 }}>
+            <IoLockup width={150} reversed />
           </div>
-          <div style={{ background: "var(--io)", borderRadius: 10, padding: 20, width: 280 }}>
-            <Waves />
-          </div>
+          <IoMark height={64} />
+          <div style={{ width: 280, height: 2, background: "var(--io)" }} title="Thin IO-blue rule" />
         </div>
       </section>
 
       <section className={s.dsBlock}>
         <header>
           <h2 className={s.h3}>Cards & imagery</h2>
-          <p>20px radius, photography full-bleed inside cards, mono captions on frosted pills.</p>
+          <p>20px radius, photography full-bleed inside cards, captions on frosted pills.</p>
         </header>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>
           <div className={s.hubCard} style={{ minHeight: 360 }}>
@@ -156,7 +158,10 @@ export default function System() {
             </span>
             <div className={s.hubBody}>
               <h3 className={s.h3}>Hub card</h3>
-              <p>Section hub entry with hover tint.</p>
+              <div className={s.hubLinks}>
+                <span>Sub-page</span>
+                <span>Sub-page</span>
+              </div>
             </div>
           </div>
           <div className={s.newsCard}>
@@ -166,7 +171,7 @@ export default function System() {
             </div>
             <div className={s.newsMeta}>
               <span className={s.tag}>News</span>
-              <span>Sep 2026</span>
+              <span>2026</span>
             </div>
             <h3 className={s.h3}>News card title</h3>
           </div>

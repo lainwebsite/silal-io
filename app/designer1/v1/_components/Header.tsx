@@ -17,12 +17,8 @@ export function Header() {
   return (
     <header className={`${s.header} ${overlay ? "" : s.headerSolid}`}>
       <div className={`${s.wrap} ${s.headerInner}`}>
-        <Link href={BASE} className={s.logo} aria-label="Silal Innovation Oasis — home">
-          <IoMark size={34} color={overlay ? "#ffffff" : "#1689cf"} />
-          <span className={s.logoText}>
-            <b>Innovation Oasis</b>
-            <span>by Silal</span>
-          </span>
+        <Link href={BASE} className={s.logo} aria-label="Innovation Oasis — home">
+          <IoMark height={40} />
         </Link>
 
         <nav className={s.nav} aria-label="Main">
@@ -34,7 +30,7 @@ export function Header() {
         </nav>
 
         <div className={s.headerActions}>
-          <span className={s.lang}>EN / عربي</span>
+          <span className={s.lang} lang="ar">عربي</span>
           <Link href={`${BASE}/enquire`} className={`${s.btn} ${overlay ? s.btnLight : s.btnPrimary}`}>
             Enquire <Arrow />
           </Link>
@@ -48,7 +44,7 @@ export function Header() {
 
       <div className={s.mobileNav} data-open={open}>
         <div className={s.mobileNavTop}>
-          <IoMark size={30} color="#ffffff" />
+          <IoMark height={34} />
           <button className={s.menuToggle} aria-label="Close menu" onClick={() => setOpen(false)}>
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
               <path d="M7 7l14 14M21 7 7 21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />

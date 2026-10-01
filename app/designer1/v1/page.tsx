@@ -1,98 +1,69 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 import s from "./v1.module.css";
-import { Arrow, Waves } from "./_components/Brand";
+import { Arrow } from "./_components/Brand";
 import { BASE } from "./_components/nav";
 import { P } from "./_lib/photo";
 
-// Placeholder copy and figures until BRAIN supplies content (see docs/designer1.md).
-const stats = [
-  { value: "5", label: "Innovation pillars" },
-  { value: "12+", label: "Research labs & chambers" },
-  { value: "40+", label: "Start-ups in programmes" },
-  { value: "1", label: "Campus for arid agri-food" },
+// Copy sources: content/about.md (client copy, verbatim), docs/sitemap.md (names), docs/brand.md (tagline).
+// Anything not from those files is marked PLACEHOLDER below.
+
+const facts = [
+  { value: "34 ha", label: "Site beside Al Foah Farm" },
+  { value: "2024", label: "Official inauguration" },
+  { value: "3", label: "Centres of Excellence" },
+  { value: "6", label: "Technology & services" },
 ];
 
 const hubs = [
   {
     href: `${BASE}/research`,
-    title: "Research",
-    text: "Plant science, seed development and controlled-environment trials for crops that thrive in heat and scarce water.",
+    title: "Research & Science",
+    links: ["Precision Breeding & Plant Health", "Crop Diversification", "Soil & Water", "Food Technology", "R&D Trialing"],
     img: P.microscope,
   },
   {
     href: `${BASE}/ventures`,
-    title: "Ventures",
-    text: "Programmes that take agri-food start-ups from pilot to scale, with access to land, labs and Silal's supply chain.",
+    title: "Innovation & Venture Platforms",
+    links: ["Farm Innovation Fund", "Incubation", "Accelerator", "Agricultural Challenges"],
     img: P.awardsStage,
   },
   {
     href: `${BASE}/centres`,
     title: "Centres of Excellence",
-    text: "Specialist hubs for seed, protected cultivation and digital agriculture.",
+    links: ["Agri Robotics & AI", "ARC-GEN", "Advanced CEA"],
     img: P.phenotyping,
   },
   {
     href: `${BASE}/services`,
-    title: "Services",
-    text: "Lab testing, field trials and advisory for growers and partners.",
+    title: "Technology & Services",
+    links: ["iO Sense", "Solar Desalination", "Analytical Services", "Paid Trials", "Facilities as a Service"],
     img: P.labWorking,
   },
   {
     href: `${BASE}/training`,
-    title: "Training",
-    text: "The Advanced Agritech Academy builds the next generation of UAE agri-talent.",
+    title: "Talent & Training",
+    links: ["Advanced Agritech Academy", "Student Sponsorship", "Mustadeem / School Programs"],
     img: P.academy,
   },
 ];
 
-const challenges = [
-  { title: "Water scarcity", text: "Growing more with less: irrigation, sensing and drought-tolerant crops." },
-  { title: "Extreme heat", text: "Protected cultivation and cooling for year-round production." },
-  { title: "Soil health", text: "Restoring and monitoring sandy, low-nutrient soils." },
-  { title: "Food import dependence", text: "Local seed and supply chains that strengthen national food security." },
+// "Why Here? The Arid Advantage" — content/about.md
+const pressures = ["Heat", "Water scarcity", "Salinity", "Resource constraints", "Operational complexity"];
+
+// PLACEHOLDER one-liners for the three centres (names from sitemap).
+const centres = [
+  { title: "Agri Robotics & AI", text: "Drones, sensing and autonomy for open-field and protected farming.", img: P.droneTop },
+  { title: "ARC-GEN", text: "Abiotic Resilience & Crop Genomics: crops bred for heat, drought and salinity.", img: P.labSeed },
+  { title: "Advanced CEA", text: "Advanced Controlled Environment Agriculture: greenhouses and growth chambers.", img: P.growthChamber },
 ];
 
-const tech = [
-  {
-    tag: "Field robotics",
-    title: "Drones & precision spraying",
-    text: "Mapping, monitoring and targeted inputs across open-field trial plots.",
-    img: P.droneTop,
-  },
-  {
-    tag: "Sensing",
-    title: "Soil & plant sensors",
-    text: "Live data on moisture, nutrients and plant stress, from root zone to canopy.",
-    img: P.soilProbe,
-  },
-  {
-    tag: "Controlled environment",
-    title: "Phenotyping chambers",
-    text: "Precisely controlled climate to test varieties before they reach the field.",
-    img: P.growthChamber,
-  },
-];
-
+// PLACEHOLDER news items (inauguration year from content/about.md).
 const news = [
-  {
-    type: "Event",
-    date: "Sep 2026",
-    title: "FoodTech Challenge finalists pitch to the IO jury",
-    img: P.pitchRoom,
-  },
-  {
-    type: "News",
-    date: "Jun 2026",
-    title: "Innovation Oasis officially inaugurated",
-    img: P.inauguration,
-  },
-  {
-    type: "Research",
-    date: "Apr 2026",
-    title: "Greenhouse trials: blueberries in a desert climate",
-    img: P.blueberry,
-  },
+  { type: "Event", date: "2026", title: "Agricultural Challenge finalists pitch to the IO jury", img: P.pitchRoom },
+  { type: "News", date: "2024", title: "Innovation Oasis officially inaugurated", img: P.inauguration },
+  { type: "Project", date: "2026", title: "Greenhouse trials: blueberries in an arid climate", img: P.blueberry },
 ];
 
 export default function Home() {
@@ -107,19 +78,20 @@ export default function Home() {
         <div className={`${s.wrap} ${s.heroContent}`}>
           <div className={s.heroGrid}>
             <div>
-              <span className={s.label}>Innovation Oasis · by Silal</span>
+              <span className={s.label}>Advancing Agri-food Systems</span>
               <h1 className={s.hero1}>
-                Growing the future of food, <span style={{ color: "#7cc4f0" }}>in the desert.</span>
+                The future of food security is being built <span style={{ color: "var(--io)" }}>in the desert.</span>
               </h1>
             </div>
             <div className={s.heroSide}>
               <p className={s.lead}>
-                A research and innovation campus where scientists, start-ups and growers solve agriculture&apos;s
-                hardest problems for arid climates.
+                In one of the planet&apos;s most demanding growing environments, we bring together researchers,
+                farmers, startups, industry leaders, investors, and policymakers to develop, validate, and scale the
+                technologies needed for a more resilient food system.
               </p>
               <div className={s.heroCtas}>
-                <Link href={`${BASE}/about`} className={`${s.btn} ${s.btnLight}`}>
-                  Discover IO <Arrow />
+                <Link href={`${BASE}/about`} className={`${s.btn} ${s.btnPrimary}`}>
+                  About IO <Arrow />
                 </Link>
                 <Link href={`${BASE}/enquire`} className={`${s.btn} ${s.btnGhostLight}`}>
                   Partner with us
@@ -128,7 +100,7 @@ export default function Home() {
             </div>
           </div>
           <div className={s.heroMeta}>
-            {stats.map((st) => (
+            {facts.map((st) => (
               <div key={st.label} className={s.stat}>
                 <b>{st.value}</b>
                 <span>{st.label}</span>
@@ -138,35 +110,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INTRO */}
+      {/* STORY */}
       <section className={s.section}>
         <div className={`${s.wrap} ${s.split}`}>
           <div className={s.splitText}>
-            <span className={s.label}>About IO</span>
+            <span className={s.label}>Our Story</span>
             <h2 className={s.h1}>
-              Research, development and growth, <span className={s.accent}>under one roof.</span>
+              An Oasis Built for <span className={s.accent}>What&apos;s Next</span>
             </h2>
             <p className={s.lead}>
-              IO brings together laboratories, greenhouses and open-field trial plots so ideas can move from the bench to
-              the farm in one place, and from the farm to the UAE&apos;s food supply.
+              Today, Innovation Oasis serves as Silal&apos;s R&amp;D and venture engine, helping bridge the gap between
+              breakthrough ideas and meaningful impact across agriculture and food systems.
+            </p>
+            <p className={s.lead} style={{ fontSize: "1rem" }}>
+              A place where startups can test technologies in real-world conditions. Where researchers and farmers
+              collaborate side-by-side. Where commercial partners help scale solutions.
             </p>
             <Link href={`${BASE}/about`} className={s.textLink}>
               About Innovation Oasis <Arrow />
             </Link>
-            <div className={s.pillars3}>
-              <div>
-                <b>Research</b>
-                <span>Lab & field science</span>
-              </div>
-              <div>
-                <b>Development</b>
-                <span>Pilots & ventures</span>
-              </div>
-              <div>
-                <b>Growth</b>
-                <span>Scale & skills</span>
-              </div>
-            </div>
           </div>
           <div className={`${s.figure} ${s.figureTall}`}>
             <Image src={P.atrium} alt="IO atrium: Research, Development, Growth" fill sizes="(max-width: 900px) 100vw, 50vw" />
@@ -176,16 +138,19 @@ export default function Home() {
       </section>
 
       {/* HUBS */}
-      <section className={`${s.section} ${s.sectionMist}`}>
+      <section className={`${s.section} ${s.sectionLight}`}>
         <div className={s.wrap}>
           <div className={s.sectionHead}>
             <div>
-              <span className={s.label}>What we do</span>
-              <h2 className={s.h2}>Five ways to work with IO</h2>
+              <span className={s.label}>Explore IO</span>
+              <h2 className={s.h2}>
+                More than a research center. <span className={s.accent}>More than an accelerator.</span>
+              </h2>
             </div>
             <div className={s.sectionHeadAside}>
               <p className={s.lead}>
-                From fundamental research to market-ready ventures, every part of the campus is open to partners.
+                Most innovation ecosystems focus on one part of the journey. Innovation Oasis was designed to connect
+                them all.
               </p>
             </div>
           </div>
@@ -199,7 +164,11 @@ export default function Home() {
                 </span>
                 <div className={s.hubBody}>
                   <h3 className={s.h3}>{h.title}</h3>
-                  <p>{h.text}</p>
+                  <div className={s.hubLinks}>
+                    {h.links.map((l) => (
+                      <span key={l}>{l}</span>
+                    ))}
+                  </div>
                 </div>
               </Link>
             ))}
@@ -207,96 +176,96 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CHALLENGES */}
+      {/* WHY HERE */}
       <section className={`${s.section} ${s.sectionInk}`}>
         <div className={s.wrap}>
           <div className={s.sectionHead}>
             <div>
-              <span className={s.label}>Agricultural challenges</span>
-              <h2 className={s.h1}>The problems we exist to solve.</h2>
+              <span className={s.label}>Why Here? The Arid Advantage</span>
+              <h2 className={s.h2}>
+                Many see the desert as a constraint.{" "}
+                <span className={s.accent}>We see it as the world&apos;s most important testbed.</span>
+              </h2>
             </div>
             <div className={s.sectionHeadAside}>
               <p className={s.lead}>
-                Open challenges invite researchers and start-ups worldwide to bring solutions to test on our land.
+                Innovation Oasis exists to help innovators validate solutions under the pressures that define
+                tomorrow&apos;s food system today.
               </p>
-              <Link href={`${BASE}/challenges`} className={s.textLink}>
-                View all challenges <Arrow />
-              </Link>
             </div>
           </div>
-          <ul className={s.challengeList}>
-            {challenges.map((c, i) => (
-              <li key={c.title}>
-                <Link href={`${BASE}/challenges`} className={s.challengeItem}>
-                  <span className={s.challengeNum}>{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className={s.h3}>{c.title}</h3>
-                  <p>{c.text}</p>
-                  <Arrow size={20} />
-                </Link>
+          <ul className={s.pressures}>
+            {pressures.map((c, i) => (
+              <li key={c}>
+                <span className={s.challengeNum}>{String(i + 1).padStart(2, "0")}</span>
+                {c.toLowerCase()}
               </li>
             ))}
           </ul>
+          <p className={s.lead} style={{ marginTop: 32 }}>
+            These are not barriers to innovation. They are the benchmark.
+          </p>
         </div>
       </section>
 
-      {/* TECH */}
+      {/* QUOTE */}
       <section className={s.section}>
+        <div className={s.wrap}>
+          <figure className={s.quote}>
+            <blockquote>&ldquo;If it works here, it can work anywhere.&rdquo;</blockquote>
+            <figcaption>Dr. Shamal Mohammed, CEO, Innovation Oasis</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      {/* CENTRES */}
+      <section className={s.section} style={{ paddingTop: 0 }}>
         <div className={s.wrap}>
           <div className={s.sectionHead}>
             <div>
-              <span className={s.label}>Inside the oasis</span>
-              <h2 className={s.h2}>Tools built for heat, sand and scarce water</h2>
+              <span className={s.label}>Centres of Excellence</span>
+              <h2 className={s.h2}>Where the hardest problems get specialist attention</h2>
             </div>
             <div className={s.sectionHeadAside}>
-              <p className={s.lead}>
-                Our teams pair field robotics, sensing and controlled-environment science to shorten the path from
-                trial to harvest.
-              </p>
+              <Link href={`${BASE}/centres`} className={s.textLink}>
+                All centres <Arrow />
+              </Link>
             </div>
           </div>
           <div className={`${s.figure} ${s.figureBanner}`}>
             <Image src={P.fieldSpecialist} alt="Field specialist among crop rows" fill sizes="100vw" />
-            <span className={s.figureCaption}>Open-field trials</span>
+            <span className={s.figureCaption}>Field trials</span>
           </div>
           <div className={s.techGrid}>
-            {tech.map((t) => (
-              <article key={t.title} className={s.techCard}>
+            {centres.map((t) => (
+              <Link key={t.title} href={`${BASE}/centres`} className={s.techCard}>
                 <div className={s.figure}>
                   <Image src={t.img} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
                 </div>
-                <span className={s.tag}>{t.tag}</span>
+                <span className={s.tag}>Centre of Excellence</span>
                 <h3 className={s.h3}>{t.title}</h3>
                 <p>{t.text}</p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* VENTURE FEATURE */}
+      {/* AGRICULTURAL CHALLENGES FEATURE */}
       <section className={s.section} style={{ paddingTop: 0 }}>
         <div className={s.wrap}>
           <div className={s.feature}>
             <Image src={P.pitchWinners} alt="FoodTech Challenge winners on stage" fill sizes="100vw" />
             <div className={s.featureBody}>
-              <span className={s.label}>Venture programme</span>
-              <h2 className={s.h1}>FoodTech Challenge</h2>
+              <span className={s.label}>Innovation &amp; Venture Platforms</span>
+              <h2 className={s.h1}>Agricultural Challenges</h2>
+              {/* PLACEHOLDER copy */}
               <p className={s.lead}>
-                Start-ups from around the world pitch solutions to the UAE&apos;s food challenges. Winners pilot their
-                technology at IO with Silal as their first customer.
+                Open calls for startups and researchers to solve real problems facing UAE agriculture, then validate
+                their solutions on IO land, labs and greenhouses.
               </p>
-              <div className={s.featureStats}>
-                <div className={s.stat}>
-                  <b>Pilot</b>
-                  <span>on IO land & labs</span>
-                </div>
-                <div className={s.stat}>
-                  <b>Scale</b>
-                  <span>through Silal</span>
-                </div>
-              </div>
               <Link href={`${BASE}/ventures`} className={`${s.btn} ${s.btnLight}`}>
-                Explore ventures <Arrow />
+                Explore venture platforms <Arrow />
               </Link>
             </div>
           </div>
@@ -304,16 +273,16 @@ export default function Home() {
       </section>
 
       {/* CAMPUS STRIP */}
-      <section className={`${s.section} ${s.sectionSand}`}>
+      <section className={`${s.section} ${s.sectionLight}`}>
         <div className={s.wrap}>
           <div className={s.sectionHead}>
             <div>
-              <span className={s.label}>The campus</span>
-              <h2 className={s.h2}>Labs, greenhouses and open fields</h2>
+              <span className={s.label}>Under one ecosystem</span>
+              <h2 className={s.h2}>Laboratories, greenhouses, field-testing areas and collaboration spaces</h2>
             </div>
             <div className={s.sectionHeadAside}>
-              <Link href={`${BASE}/centres`} className={s.textLink}>
-                Our centres of excellence <Arrow />
+              <Link href={`${BASE}/services`} className={s.textLink}>
+                Facilities as a Service <Arrow />
               </Link>
             </div>
           </div>
@@ -338,8 +307,8 @@ export default function Home() {
         <div className={s.wrap}>
           <div className={s.sectionHead}>
             <div>
-              <span className={s.label}>Latest</span>
-              <h2 className={s.h2}>News, events & research</h2>
+              <span className={s.label}>Resources</span>
+              <h2 className={s.h2}>News, publications &amp; projects</h2>
             </div>
             <div className={s.sectionHeadAside}>
               <Link href={`${BASE}/resources`} className={s.textLink}>
@@ -364,28 +333,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* MISSION / CTA */}
       <section className={s.section} style={{ paddingTop: 0 }}>
         <div className={s.wrap}>
           <div className={s.cta}>
-            <Waves className={s.ctaWaves} />
-            <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 20 }}>
-              <span className={s.label} style={{ color: "#fff" }}>
-                Work with IO
+            <img src="/brand/io-mark.svg" alt="" className={s.ctaMark} />
+            <div className={s.ctaBody}>
+              <span className={s.label} style={{ color: "var(--io)" }}>
+                Our Mission
               </span>
-              <h2 className={s.h1}>Have an idea that could feed a nation?</h2>
-              <p className={s.lead}>
-                Researchers, start-ups, growers and investors: tell us what you&apos;re working on and we&apos;ll find
-                the right team, lab or programme.
-              </p>
-            </div>
-            <div className={s.ctaActions}>
-              <Link href={`${BASE}/enquire`} className={`${s.btn} ${s.btnLight}`}>
-                Send an enquiry <Arrow />
-              </Link>
-              <Link href={`${BASE}/contact`} className={`${s.btn} ${s.btnGhostLight}`}>
-                Contact
-              </Link>
+              <h2 className={s.h2}>
+                To fast-track the future of food security by turning the UAE&apos;s agricultural challenges into
+                global opportunities for innovation, resilience, and growth.
+              </h2>
+              <div className={s.heroCtas} style={{ marginTop: 12 }}>
+                <Link href={`${BASE}/enquire`} className={`${s.btn} ${s.btnPrimary}`}>
+                  Send an enquiry <Arrow />
+                </Link>
+                <Link href={`${BASE}/contact`} className={`${s.btn} ${s.btnGhostLight}`}>
+                  Contact
+                </Link>
+              </div>
             </div>
           </div>
         </div>

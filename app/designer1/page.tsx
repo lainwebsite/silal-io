@@ -5,7 +5,7 @@ const designs = [
   {
     href: "/designer1/v1",
     name: "v1 — Clear Field",
-    note: "Bright lab whites, IO blue, sand accents. Photo-led, big type.",
+    note: "Brand-aligned: IO Blue, Charcoal, light-weight type, thin blue rules. Photo-led.",
     system: "/designer1/v1/system",
   },
 ];
