@@ -5,7 +5,7 @@ const designs = [
   {
     href: "/designer1/v1",
     name: "v1 — Clear Field",
-    note: "Brand-aligned: IO Blue, Charcoal, light-weight type, thin blue rules. Photo-led.",
+    note: "Built from the IO brand guidelines: light hero with IO supergraphic, blue rules into the “i”, deep-green chapters. Home + About.",
     system: "/designer1/v1/system",
   },
 ];
