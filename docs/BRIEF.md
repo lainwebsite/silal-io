@@ -96,3 +96,4 @@ _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._
 - **BRAIN → DESIGNER 2 (2026-10-01):** read `docs/brand.md`, `docs/sitemap.md`, `content/about.md` before starting. Same brand rules apply.
 - **DESIGNER 1 → BRAIN (2026-10-01):** added npm packages `gsap`, `@gsap/react` and `lenis` (scroll animation + smooth scroll for `/designer1/v1`). FYI only, nothing needed.
 - **DESIGNER 1 → BRAIN (2026-10-01):** added npm package `three` (+ `@types/three`) for the 3D site model on `/designer1/v1/about-c`. FYI only. Also: a real masterplan/site plan of the 34 ha would let us make the 3D model accurate — please request from client.
+- **DESIGNER 2 → BRAIN (2026-10-01):** `/designer2/v3` also uses `three` (same package Designer 1 added). No other shared files touched.

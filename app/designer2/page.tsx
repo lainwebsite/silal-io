@@ -3,6 +3,12 @@ import Link from "next/link";
 // Owned by the DESIGNER 2 chat. Index of Designer 2's directions.
 const designs = [
   {
+    href: "/designer2/v3/about",
+    name: "v3 — About IO, one living world (current)",
+    note: "Built from scratch after Inkwell: one WebGL world behind the page (sky gradient + 6k particles that morph from helix to desert to the IO O to a globe), new pathfinder nav, circle menu, loader, cursor, footer.",
+    pages: [{ href: "/designer2/v3/about", label: "About IO" }],
+  },
+  {
     href: "/designer2/v1",
     name: "v1 — Proving Ground",
     note: "Cinematic, charcoal-led. The desert as the world's testbed: big Light type, IO mark supergraphic, scroll-driven “here → anywhere”.",

@@ -1,0 +1,1582 @@
+/* Designer 2 · v3 — About Innovation Oasis.
+   No section has a background: the World (sky + particles) is the background, so the story never cuts.
+   Geometry that must line up with particles is noted inline (see _world/scenes.ts, Story.tsx). */
+
+.story {
+  --lens-r: min(18vw, 32vh);
+  --lens-x: 70%;
+  --lens-y: 50%;
+  --ring-r: min(16vw, 26vh);
+  --isl-d: min(17vw, 30vh);
+  --isl-y: 46%;
+  --eco-x: 66%;
+  --eco-y: 52%;
+  --eco-r: min(16vw, 30vh);
+  --dial-d: min(40vw, 72vh);
+  --dial-x: 70%;
+  --dial-y: 54%;
+  --j-r: min(15vw, 25vh);
+  --j-x: 70%;
+  --j-y: 42%;
+  position: relative;
+}
+
+/* ---------- Type ---------- */
+
+.wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+.kicker b {
+  font-weight: 500;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.kicker span {
+  inline-size: 4px;
+  block-size: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.story em {
+  font-style: normal;
+  color: var(--accent);
+}
+.body {
+  font-size: clamp(16px, 1.15vw, 19px);
+  line-height: 1.65;
+  color: var(--fg-soft);
+  max-width: 44ch;
+}
+.h2 {
+  font-weight: 300;
+  font-size: clamp(40px, 5.4vw, 104px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+.statement,
+.beliefText,
+.landText,
+.todayText,
+.aheadLead,
+.whyB {
+  font-weight: 300;
+  font-size: clamp(30px, 4.1vw, 76px);
+  line-height: 1.07;
+  letter-spacing: -0.035em;
+  max-width: 21ch;
+}
+.cap {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin-block-start: 14px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--fg-soft);
+}
+.cap span {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+.cap span::before {
+  content: "Fig. ";
+}
+.story :global(.ln-mask) {
+  padding-block-end: 0.12em;
+  margin-block-end: -0.12em;
+}
+.story :global(.c-mask) {
+  padding-block-end: 0.12em;
+  margin-block-end: -0.12em;
+}
+
+/* Photo cards: square corners, curtain reveal, drift inside */
+.cardImg {
+  position: relative;
+  overflow: hidden;
+  background: rgb(var(--w-fg-rgb, 89 84 83) / 0.06);
+}
+.cardImg > div {
+  position: absolute;
+  inset: -8% 0;
+}
+.cardImg img,
+.islandLens img,
+.surveyImg img,
+.oImg img,
+.memberImg img,
+.jImg img,
+.prThumb img,
+.prLensImg img {
+  object-fit: cover;
+}
+
+/* ---------- Tracks (sticky stages) ---------- */
+
+.track {
+  position: relative;
+}
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+.marker {
+  position: absolute;
+  inset-inline-start: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 28px;
+  padding-inline: var(--gutter);
+}
+.stageKick {
+  position: absolute;
+  top: calc(96px + 4vh);
+  inset-inline-start: var(--gutter);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 620px;
+}
+/* The O dial: centred on the particle helix (layout.heroDial) */
+.heroDial {
+  position: absolute;
+  left: var(--dial-x);
+  top: var(--dial-y);
+  width: var(--dial-d);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+}
+.dialTicks {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, var(--fg) 0deg 0.35deg, transparent 0.35deg 3deg);
+  mask: radial-gradient(circle, transparent 0 calc(50% - 12px), #000 calc(50% - 11px) calc(50% - 1px), transparent 50%);
+  opacity: 0.55;
+}
+.dialTicks::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, var(--accent) 0deg 0.6deg, transparent 0.6deg 30deg);
+}
+.dialCircle {
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--fg-line);
+}
+.dialWords {
+  position: absolute;
+  inset: 0;
+}
+.dialWords b {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  transform: translate(-50%, -50%) rotate(var(--a)) translateY(calc(var(--dial-d) / -2 - 22px)) rotate(calc(-1 * var(--a)));
+}
+.heroText {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  top: calc(100px + 9vh);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vh, 40px);
+  max-width: 56vw;
+}
+.heroTitle {
+  font-weight: 300;
+  font-size: clamp(48px, min(6.6vw, 12vh), 128px);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+.heroFoot {
+  position: absolute;
+  inset-inline: var(--gutter);
+  bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.scrollCue {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.scrollLine {
+  position: relative;
+  width: 1px;
+  height: 46px;
+  background: var(--fg-line);
+  overflow: hidden;
+}
+.scrollLine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  animation: cue 2.4s var(--curtain) infinite;
+}
+@keyframes cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+.heroMeta {
+  display: flex;
+  gap: 24px;
+  color: var(--fg-soft);
+}
+
+/* ---------- Belief ---------- */
+
+.belief {
+  position: relative;
+  padding-block: 30vh 22vh;
+}
+.beliefRow {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: 48px clamp(32px, 5vw, 96px);
+  align-items: end;
+  margin-block: clamp(80px, 14vh, 180px) 0;
+}
+.beliefFig .cardImg {
+  aspect-ratio: 16 / 9;
+}
+.punch {
+  margin-block-start: clamp(100px, 18vh, 220px);
+  margin-inline-start: auto;
+  font-weight: 300;
+  font-size: clamp(30px, 3.6vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+  text-align: end;
+}
+
+/* ---------- Question ---------- */
+
+.qOne {
+  font-weight: 300;
+  font-size: clamp(30px, 3.6vw, 66px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 22ch;
+}
+.qTwo {
+  font-weight: 300;
+  font-size: clamp(44px, 7vw, 132px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+.qDot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.qDot::before,
+.qDot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: ping 2.6s var(--expo) infinite;
+}
+.qDot::after {
+  animation-delay: 1.3s;
+}
+@keyframes ping {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
+
+/* ---------- Origin ---------- */
+
+.origin {
+  position: relative;
+  padding-block: 18vh 26vh;
+}
+.originGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px clamp(40px, 8vw, 160px);
+  align-items: end;
+}
+.originGrid + .originGrid {
+  margin-block-start: clamp(100px, 18vh, 220px);
+  align-items: center;
+}
+.originYear {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  margin-block-end: 24px;
+}
+.bigYear {
+  font-weight: 300;
+  font-size: clamp(80px, 12vw, 230px);
+  line-height: 0.78;
+  letter-spacing: -0.065em;
+  font-variant-numeric: tabular-nums;
+}
+.yearLabel {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  max-width: 16ch;
+  padding-block-end: 0.6em;
+}
+.originFig .cardImg {
+  aspect-ratio: 4 / 5;
+}
+
+/* ---------- Pattern (islands) ---------- */
+
+.island {
+  position: absolute;
+  left: var(--x);
+  top: var(--isl-y);
+  width: var(--isl-d);
+  translate: -50% calc(var(--isl-d) / -2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.islandLens {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgb(var(--w-fg-rgb, 89 84 83) / 0.06);
+}
+.islandLabel {
+  margin-block: 28px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+}
+.islandLabel span {
+  color: var(--accent);
+}
+.islandLine {
+  font-weight: 300;
+  font-size: clamp(20px, 1.8vw, 30px);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  max-width: 13ch;
+}
+.gap {
+  position: absolute;
+  left: var(--x);
+  top: var(--isl-y);
+  width: calc(30vw - var(--isl-d) - 3vw);
+  translate: -50% -50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gap i {
+  display: block;
+  width: 38%;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 6px, transparent 6px 10px);
+}
+.gap b {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--accent);
+}
+.patternClose {
+  position: absolute;
+  inset-inline: var(--gutter);
+  bottom: 9vh;
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(26px, 3vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+/* ---------- Lack (the line sits at 50%) ---------- */
+
+.lackA,
+.lackB {
+  position: absolute;
+  inset-inline: var(--gutter);
+  font-weight: 300;
+  font-size: clamp(36px, 6vw, 116px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+.lackA {
+  bottom: calc(50% + 4vh);
+}
+.lackB {
+  top: calc(50% + 4vh);
+  text-align: end;
+}
+.lackB em {
+  color: inherit;
+}
+.story :global(.w-mask) {
+  padding-block-end: 0.12em;
+  margin-block-end: -0.12em;
+}
+
+/* ---------- Land / survey ---------- */
+
+.land {
+  position: relative;
+  padding-block: 26vh 20vh;
+}
+.survey {
+  position: relative;
+  height: min(86vh, 900px);
+  margin-block: clamp(80px, 12vh, 160px);
+  color: #fff;
+}
+.surveyImg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--charcoal);
+}
+.surveyImg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(1 88 37 / 0.55), transparent 50%);
+}
+.surveyGrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.12) 1px, transparent 1px);
+  background-size: calc(100% / 12) calc(100% / 6);
+}
+.surveyBox {
+  position: absolute;
+  inset: 20% 30% 34% 24%;
+}
+.surveyBox i {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 0 solid #fff;
+}
+.surveyBox i:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.surveyBox i:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0;
+}
+.surveyBox i:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px;
+}
+.surveyBox i:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+.surveyStat {
+  position: absolute;
+  inset-inline-start: clamp(20px, 3vw, 48px);
+  bottom: clamp(20px, 3vw, 48px);
+}
+.surveyNum {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 300;
+  font-size: clamp(96px, 15vw, 280px);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+}
+.surveyNum small {
+  font-size: 0.16em;
+  letter-spacing: 0;
+}
+.surveyNote,
+.surveyCap {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-block-start: 16px;
+}
+.surveyCap {
+  position: absolute;
+  top: clamp(16px, 2vw, 28px);
+  inset-inline-end: clamp(16px, 2vw, 28px);
+  margin: 0;
+}
+.surveyCap span::before {
+  content: "Fig. ";
+}
+.landAfter {
+  margin-inline-start: auto;
+  font-weight: 300;
+  font-size: clamp(24px, 2.4vw, 42px);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  max-width: 24ch;
+}
+
+/* ---------- The creation / the O / a place where ---------- */
+
+.cNot {
+  position: absolute;
+  inset-inline: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(32px, 4.6vw, 86px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  max-width: 18ch;
+  margin-inline: auto;
+}
+/* Mark placed so its O sits exactly on the particle ring (circle centre in the SVG: 63.48% / 50.04%, r = 35.26% of width) */
+.cMark {
+  position: absolute;
+  --w: calc(var(--ring-r) / 0.3526);
+  width: var(--w);
+  height: auto;
+  left: calc(50% - var(--w) * 0.6348);
+  top: calc(50% - var(--w) * 0.7373 * 0.5004);
+  filter: brightness(0) invert(1); /* single-colour white version on IO Blue (allowed, docs/brand.md) */
+  clip-path: inset(0 74% 0 0); /* the "i" only: the particles draw the O around the photo */
+  transform-origin: 63.48% 50.04%;
+  pointer-events: none;
+}
+/* Finale: the official mark, full colour, on the light dawn sky (ring = 0.62 × creation ring) */
+.fMark {
+  position: absolute;
+  --w: calc(var(--ring-r) * 0.62 / 0.3526);
+  width: var(--w);
+  height: auto;
+  left: calc(50% - var(--w) * 0.6348);
+  top: calc(50% - var(--w) * 0.7373 * 0.5004);
+  transform-origin: 63.48% 50.04%;
+  pointer-events: none;
+}
+.cIs {
+  position: absolute;
+  inset-inline: var(--gutter);
+  top: calc(50% + var(--ring-r) + 5vh);
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(24px, 2.8vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.cIs strong {
+  font-weight: 400;
+}
+.oPhoto {
+  position: absolute;
+  inset: 0;
+  clip-path: circle(0px at 50% 50%);
+  background: var(--charcoal);
+}
+.oImg {
+  position: absolute;
+  inset: 0;
+}
+/* Place photos fill the lens itself (centred crop), not a slice of a full-screen image */
+.oImg:not([data-o-img="0"]) {
+  inset: auto;
+  left: calc(var(--lens-x) - var(--lens-r));
+  top: calc(var(--lens-y) - var(--lens-r));
+  width: calc(var(--lens-r) * 2);
+  height: calc(var(--lens-r) * 2);
+}
+.oRing {
+  position: absolute;
+  left: var(--lens-x);
+  top: var(--lens-y);
+  width: calc(var(--lens-r) * 2 + 48px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.oRingLabel {
+  position: absolute;
+  left: 50%;
+  top: -26px;
+  translate: -50% 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.oCap {
+  position: absolute;
+  inset-inline-end: var(--gutter);
+  bottom: 28px;
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--fg-soft);
+}
+.oCap b {
+  font-weight: 400;
+}
+.oCap span {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+.oCap span::before {
+  content: "Fig. ";
+}
+.placeList li {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  width: min(44vw, 680px);
+  font-weight: 300;
+  font-size: clamp(30px, 3.6vw, 66px);
+  line-height: 1.07;
+  letter-spacing: -0.035em;
+  opacity: 0;
+}
+.placeNum {
+  display: block;
+  margin-block-end: 24px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+
+/* ---------- Today ---------- */
+
+.today {
+  position: relative;
+  padding-block: 28vh 20vh;
+}
+.todayFig {
+  margin-block-start: clamp(80px, 14vh, 180px);
+}
+.todayFig .cardImg {
+  aspect-ratio: 21 / 9;
+}
+
+/* ---------- People ---------- */
+
+.leader {
+  position: relative;
+  padding-block: 22vh 10vh;
+}
+.leaderGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 48px clamp(40px, 7vw, 140px);
+  align-items: end;
+  margin-block-start: 48px;
+}
+.leaderFig .cardImg {
+  aspect-ratio: 4 / 5;
+}
+.leaderFig img {
+  object-position: 50% 30%;
+}
+.leaderCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-block-end: 48px;
+}
+.leaderLead {
+  font-weight: 300;
+  font-size: clamp(30px, 3.4vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+.quote {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-inline: var(--gutter);
+  gap: 32px;
+}
+.quote p {
+  font-weight: 300;
+  font-size: clamp(38px, 5.6vw, 108px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  max-width: 13ch;
+}
+.quote footer {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.team {
+  position: relative;
+  padding-block: 14vh 28vh;
+}
+.teamHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px clamp(40px, 6vw, 120px);
+  align-items: end;
+  margin-block-end: clamp(80px, 12vh, 140px);
+}
+.teamIntro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 64px) clamp(12px, 1.6vw, 28px);
+}
+.memberImg {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: rgb(var(--w-fg-rgb, 89 84 83) / 0.06);
+}
+.memberImg img {
+  object-position: 50% 22%;
+  filter: grayscale(0.35);
+  transition: filter 0.8s, transform 1.4s var(--expo);
+}
+.member:hover .memberImg img {
+  filter: none;
+  transform: scale(1.05);
+}
+.memberName {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-block-start: 14px;
+  padding-block-start: 12px;
+  border-block-start: 1px solid var(--fg-line);
+  font-size: 18px;
+  transition: border-color 0.4s;
+}
+.memberName small {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--fg-soft);
+}
+.member:hover .memberName {
+  border-color: var(--accent);
+}
+
+/* ---------- Why here ---------- */
+
+.why {
+  position: relative;
+  padding-block: 34vh 18vh;
+}
+.whyA {
+  margin-block-start: 48px;
+  font-weight: 300;
+  font-size: clamp(30px, 4.1vw, 76px);
+  line-height: 1.07;
+  letter-spacing: -0.035em;
+  color: var(--fg-faint);
+}
+.whyB {
+  margin-block-start: 0.2em;
+}
+.whyCols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 44ch));
+  gap: 40px clamp(32px, 5vw, 96px);
+  margin-block-start: clamp(80px, 12vh, 160px);
+  margin-inline-start: auto;
+  width: fit-content;
+}
+.bench {
+  position: absolute;
+  inset-inline: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  display: flex;
+  flex-direction: column;
+}
+.bench li {
+  font-weight: 300;
+  font-size: clamp(40px, min(7vw, 12vh), 132px);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  color: var(--fg-faint);
+  transform-origin: left center;
+  transition: color 0.6s, transform 0.9s var(--expo), letter-spacing 0.9s var(--expo);
+  opacity: 0.35;
+}
+.bench li[data-past] {
+  opacity: 0.22;
+}
+.bench li[data-on] {
+  color: var(--fg);
+  transform: translateX(2vw);
+  opacity: 1;
+}
+.benchEnd {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 40px;
+  padding-inline: var(--gutter);
+}
+.benchLine {
+  font-weight: 300;
+  font-size: clamp(32px, 4.6vw, 86px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  max-width: 18ch;
+}
+.benchQuote {
+  font-size: clamp(16px, 1.4vw, 22px);
+  font-weight: 300;
+  color: var(--fg-soft);
+}
+
+/* ---------- What makes IO different ---------- */
+
+.ecoText {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  top: calc(96px + 6vh);
+  width: min(32vw, 520px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.ecoTitle {
+  font-weight: 300;
+  font-size: clamp(32px, 3.6vw, 66px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+.ecoSwap {
+  display: grid;
+}
+.ecoSwap > * {
+  grid-area: 1 / 1;
+}
+.ecoP2 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.ecoSilos {
+  font-weight: 300;
+  font-size: clamp(22px, 1.9vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+/* Labels sit on the particle nodes (layout.constellation), pushed out to 1.28 R */
+.ecoLabels li {
+  position: absolute;
+  left: var(--eco-x);
+  top: var(--eco-y);
+  width: 0;
+  height: 0;
+  transform: rotate(var(--ang)) translateX(calc(var(--eco-r) * 1.28)) rotate(calc(-1 * var(--ang)));
+}
+.ecoLabels span {
+  position: absolute;
+  top: 0;
+  translate: 0 -50%;
+  width: max-content;
+  max-width: 15ch;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--fg);
+}
+.ecoLabels li[data-side="r"] span {
+  left: 0;
+}
+.ecoLabels li[data-side="l"] span {
+  right: 0;
+  text-align: end;
+}
+.ecoLabels li[data-side="c"] span {
+  left: 0;
+  translate: -50% -50%;
+  text-align: center;
+}
+.ecoLabels b {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+.ecoCore {
+  position: absolute;
+  left: var(--eco-x);
+  top: calc(var(--eco-y) + 46px);
+  translate: -50% 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ---------- Mission ---------- */
+
+.missionBox {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  max-width: min(60vw, 1100px);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.missionText {
+  font-weight: 300;
+  font-size: clamp(32px, 4.6vw, 88px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+/* ---------- Principles ---------- */
+
+.principles {
+  position: relative;
+  padding-block: 26vh 22vh;
+}
+.principles .h2 {
+  margin-block: 32px clamp(64px, 10vh, 120px);
+}
+.pr {
+  position: relative;
+}
+.prRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 7fr) minmax(0, 4fr);
+  gap: 16px 32px;
+  align-items: baseline;
+  padding-block: clamp(26px, 3.6vh, 44px);
+  border-block-start: 1px solid var(--fg-line);
+}
+.prRow:last-child {
+  border-block-end: 1px solid var(--fg-line);
+}
+.prRow::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  inset-inline: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s var(--expo);
+}
+.prRow:hover::before {
+  transform: scaleX(1);
+}
+.prNum {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+.prTitle {
+  font-weight: 300;
+  font-size: clamp(28px, 3.6vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+.prTitle span {
+  display: inline-block;
+  transition: transform 0.9s var(--expo);
+}
+.prRow:hover .prTitle span {
+  transform: translateX(1.4vw);
+}
+.prText {
+  color: var(--fg-soft);
+  max-width: 34ch;
+}
+.prThumb {
+  display: none;
+}
+.prLens {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: clamp(200px, 17vw, 300px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+}
+.prLensImg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.prLens[data-i="0"] [data-k="0"],
+.prLens[data-i="1"] [data-k="1"],
+.prLens[data-i="2"] [data-k="2"],
+.prLens[data-i="3"] [data-k="3"],
+.prLens[data-i="4"] [data-k="4"] {
+  opacity: 1;
+}
+@media (hover: none), (pointer: coarse) {
+  .prThumb {
+    display: block;
+    position: relative;
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .prLens {
+    display: none;
+  }
+}
+
+/* ---------- Journey ---------- */
+
+.jYear {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  top: calc(96px + 10vh);
+  display: flex;
+  font-weight: 300;
+  font-size: clamp(96px, 15vw, 280px);
+  line-height: 1;
+  letter-spacing: -0.07em;
+  font-variant-numeric: tabular-nums;
+}
+.jDigit {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  color: var(--accent);
+}
+.jDigit > span {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1.2s var(--expo);
+}
+.jDigit i {
+  display: block;
+  height: 1em;
+  font-style: normal;
+}
+.jItems {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  top: calc(96px + 10vh + min(15vw, 280px) * 1.02);
+  width: min(40vw, 620px);
+}
+.jItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(30px);
+  clip-path: inset(0 0 100% 0);
+  transition: opacity 0.5s, transform 0.9s var(--expo), clip-path 0.9s var(--expo);
+}
+.jItem[data-on] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 -20% 0);
+  transition-delay: 0.15s;
+}
+.jWhen {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.jTitle {
+  font-weight: 300;
+  font-size: clamp(28px, 2.8vw, 50px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+.jText {
+  color: var(--fg-soft);
+  font-size: clamp(15px, 1.05vw, 17px);
+  max-width: 46ch;
+}
+.jLens {
+  position: absolute;
+  left: var(--j-x);
+  top: var(--j-y);
+  width: calc(var(--j-r) * 2);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+}
+.jImg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  clip-path: circle(0% at 50% 100%);
+  transition: clip-path 1.2s var(--curtain);
+}
+.jImg[data-on],
+.jImg[data-past] {
+  clip-path: circle(75% at 50% 50%);
+}
+.jImg[data-on] {
+  z-index: 2;
+}
+.jImg img {
+  transform: scale(1.15);
+  transition: transform 2s var(--expo);
+}
+.jImg[data-on] img {
+  transform: scale(1);
+}
+.jRing {
+  position: absolute;
+  inset: -26px;
+  pointer-events: none;
+}
+.jTicks {
+  position: absolute;
+  inset-inline: var(--gutter);
+  bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+}
+.jTicks li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--fg-soft);
+}
+.jTicks i {
+  display: block;
+  height: 2px;
+  background: var(--fg-line);
+  position: relative;
+  overflow: hidden;
+}
+.jTicks i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s var(--expo);
+}
+.jTicks li[data-on] i::after {
+  transform: scaleX(1);
+}
+.jTicks li[data-on] span {
+  color: var(--fg);
+}
+
+/* ---------- Looking ahead ---------- */
+
+.ahead {
+  position: relative;
+  padding-block: 30vh 20vh;
+}
+.ahead .wrap > * {
+  max-width: 54vw;
+}
+.aheadLead {
+  margin-block: 40px 56px;
+}
+.aheadWhere {
+  margin-block-start: clamp(64px, 10vh, 120px);
+}
+.aheadWhere li {
+  padding-block: 18px;
+  border-block-start: 1px solid var(--fg-line);
+  font-weight: 300;
+  font-size: clamp(22px, 2.2vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.aheadWhere li:last-child {
+  border-block-end: 1px solid var(--fg-line);
+}
+
+/* ---------- Finale ---------- */
+
+.fLine {
+  position: absolute;
+  inset-inline: var(--gutter);
+  top: 50%;
+  translate: 0 -50%;
+  margin-inline: auto;
+  max-width: 20ch;
+  text-align: center;
+  font-weight: 300;
+  font-size: clamp(32px, 4.8vw, 92px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+.fLast em {
+  color: var(--io);
+}
+.next {
+  position: absolute;
+  inset-inline: var(--gutter);
+  bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.next a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-block-start: 16px;
+  border-block-start: 1px solid var(--fg-line);
+  font-weight: 300;
+  font-size: clamp(20px, 1.8vw, 30px);
+  letter-spacing: -0.02em;
+  transition: border-color 0.4s;
+}
+.next a:hover {
+  border-color: var(--accent);
+}
+.next small {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .heroText {
+    max-width: 70vw;
+  }
+  .ecoText {
+    width: min(40vw, 460px);
+  }
+}
+
+@media (max-width: 760px) {
+  .story {
+    --lens-r: 36vw;
+    --lens-x: 50%;
+    --lens-y: 36%;
+    --ring-r: min(25.6vw, 41.6vh);
+    --isl-d: 24vw;
+    --isl-y: 50%;
+    --eco-x: 50%;
+    --eco-y: 60%;
+    --eco-r: 34vw;
+    --dial-d: 80vw;
+    --dial-x: 50%;
+    --dial-y: 66%;
+    --j-r: 30vw;
+    --j-x: 50%;
+    --j-y: 34%;
+  }
+  .heroText {
+    max-width: none;
+    inset-inline-end: var(--gutter);
+    top: calc(84px + 3vh);
+  }
+  .heroTitle {
+    font-size: clamp(40px, 11vw, 60px);
+  }
+  .heroMeta span:first-child {
+    display: none;
+  }
+  .beliefRow,
+  .originGrid,
+  .leaderGrid,
+  .teamHead,
+  .teamIntro,
+  .whyCols {
+    grid-template-columns: 1fr;
+  }
+  .originGrid[data-flip] > :first-child {
+    order: 2;
+  }
+  .islandLine {
+    font-size: 15px;
+  }
+  .islandLabel {
+    margin-block-start: 16px;
+    font-size: 9px;
+  }
+  .gap {
+    width: 4vw;
+  }
+  .gap i {
+    display: none;
+  }
+  .lackB {
+    text-align: start;
+  }
+  .placeList li {
+    top: auto;
+    bottom: 10vh;
+    translate: none;
+    width: auto;
+    inset-inline-end: var(--gutter);
+    font-size: clamp(24px, 7vw, 34px);
+  }
+  .oCap {
+    display: none;
+  }
+  .teamGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bench li {
+    font-size: clamp(34px, 11vw, 60px);
+  }
+  .ecoText {
+    width: auto;
+    inset-inline-end: var(--gutter);
+    top: calc(84px + 2vh);
+    gap: 16px;
+  }
+  .ecoTitle {
+    font-size: 28px;
+  }
+  .ecoSwap .body {
+    font-size: 14px;
+  }
+  .ecoLabels span {
+    font-size: 0;
+  }
+  .ecoLabels b {
+    font-size: 10px;
+  }
+  .missionBox {
+    max-width: none;
+    inset-inline-end: var(--gutter);
+  }
+  .jYear {
+    top: auto;
+    bottom: 47vh;
+    font-size: 26vw;
+    display: none;
+  }
+  .jItems {
+    top: auto;
+    bottom: 16vh;
+    width: auto;
+    inset-inline-end: var(--gutter);
+    height: 34vh;
+  }
+  .jTicks span {
+    display: none;
+  }
+  .ahead .wrap > * {
+    max-width: none;
+  }
+  .next {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .prRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Reduced motion: every track becomes plain, readable content ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    height: auto !important;
+  }
+  .stage {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: 18vh var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .stage > *,
+  .center,
+  .island,
+  .gap,
+  .patternClose,
+  .lackA,
+  .lackB,
+  .cNot,
+  .cIs,
+  .oRing,
+  .oCap,
+  .placeList li,
+  .quote,
+  .bench,
+  .benchEnd,
+  .ecoText,
+  .ecoLabels li,
+  .ecoCore,
+  .missionBox,
+  .jYear,
+  .jItems,
+  .jItem,
+  .jLens,
+  .jTicks,
+  .fLine,
+  .next,
+  .stageKick {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    translate: none;
+    transform: none;
+    opacity: 1;
+    clip-path: none;
+    width: auto;
+    max-width: none;
+  }
+  .cMark,
+  .fMark,
+  .gap,
+  .oRing,
+  .ecoCore,
+  .jYear,
+  .jTicks,
+  .scrollLine {
+    display: none;
+  }
+  .oPhoto {
+    position: relative;
+    clip-path: none;
+    aspect-ratio: 16 / 9;
+  }
+  .oImg + .oImg {
+    display: none;
+  }
+  .islandLens {
+    width: min(40vw, 320px);
+  }
+  .jLens {
+    display: none;
+  }
+  .jImg {
+    clip-path: none;
+  }
+  .ecoLabels span {
+    position: static;
+    translate: none;
+    font-size: 16px;
+  }
+  .bench li {
+    opacity: 1;
+    color: var(--fg);
+  }
+}

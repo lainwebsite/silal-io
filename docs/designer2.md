@@ -84,5 +84,48 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 
 **Open:** team roles/bios (names only for now), Talabi not shown, Virtual Tour link, "Juntos timeline" reference for Our Journey (client PDF) not seen yet. Sub-page links 404 until built.
 
+### v3 — About IO, "one living world" (2026-10-01, rebuilt from scratch)
+- Live: `/designer2/v3/about` (`/designer2/v3` redirects). Replaces v2 as Designer 2's current About.
+- Brief: start over; main reference Inkwell (scroll-driven narrative, atmospheric gradients, a central motif, WebGL behind the DOM, a pathfinder instead of a classic nav), also Joby, Lightship, Terminal Industries, Breakthrough Energy. Seamless transitions, Awwwards polish, story first.
+- Code: `app/designer2/v3/`
+  - `_world/` — `World.tsx` (three.js: fixed canvas, sky-gradient shader + particle shader), `formations.ts` (helix, dunes, trial plots, islands, line, the mark's O, orbit, lattice, constellation, globe…), `scenes.ts` (palette + formation per scene; layout constants shared with CSS), `store.ts`.
+  - `_components/` — `Nav` (pathfinder), `Menu` (circle reveal), `Loader`, `Cursor`, `Footer`, `SmoothScroll` (Lenis on GSAP's ticker), `Clock`.
+  - `about/page.tsx` (markup + `data-*` hooks, client copy verbatim), `about/_components/Story.tsx` (all GSAP), `Principles.tsx`, `about.module.css`.
+
+**How it stays seamless.** No section has a background. A fixed WebGL canvas behind the page draws (1) a sky gradient (noise-flowed, grained) and (2) 6,200 particles (2,600 on phones). Any element with `data-scene="…"` is a scene; as the next one's top travels from 100% → 50% of the viewport, the sky colours, text colour (`--w-fg-rgb`, `--w-accent` on `<html>`) and the particle formation blend into it, with per-particle stagger and an arc so shapes flow, not snap. Long sticky "tracks" carry invisible scene markers so the sky can change mid-sequence.
+
+**The story (scene → formation → what happens)**
+| Copy | World | Motion |
+|---|---|---|
+| Loader | scatter → the O + inner rungs | particles gather into the brandmark's O while assets load (real progress), then hand over to the hero |
+| Hero "built in the desert." | sky; double helix inside an O dial (Research · Development · Growth) | masked lines rise; dial turns with scroll; live Al Ain time |
+| Belief / "If solutions can succeed here…" | haze; dune field to the horizon | words brighten as read; aerial card curtain + drift |
+| "did not begin with a building / began with a question." | mist; dust | words un-blur; "question." rises letter by letter; a pulsing dot |
+| 2020 / 2021 | mist | big years, greenhouse-tour card |
+| "A pattern quickly emerged" | three particle islands around three O lenses (microscope, drone, greenhouse) | lenses open one by one; links draw from both sides and stop at an ×; "no ecosystem connecting them" |
+| "innovation / implementation" | the islands collapse into one line | "innovation" fades, "implementation" turns IO blue |
+| 34-hectare parcel | field (green tint); trial plots in perspective | survey photo opens, corner brackets, 0 → 34 ha |
+| "not another research center… the creation of Innovation Oasis." | **IO Blue sky; particles form the mark's O + rungs; the official "i" (white) lands beside it** | the O opens into the building photo, full-bleed… |
+| "A place where…" (4 lines) | light; particles orbit an O lens | …then closes into a lens on the right; photo swaps per sentence; tick ring turns |
+| Today / atrium | light | words + wide card |
+| Leadership, quote, team | light → haze (a large particle O around the quote) → light | portrait card; quote words un-blur; team columns drift at different speeds |
+| Why here + five pressures | **dusk: charcoal with an orange-red heat glow; particles shimmer** | each pressure takes the light in turn |
+| "They are the benchmark." | charcoal; particles snap into an exact lattice | |
+| What makes IO different | clear; 8 nodes wired to one centre (labels sit on the nodes) | labels arrive one by one, "Under one ecosystem." |
+| Mission | **deep green; a tall helix growing** | words brighten |
+| Principles | sprout | an O lens with the row's photo trails the cursor |
+| Journey 2021 → 2030 | horizontal helix along the bottom | year odometer, O lens photo wipe, progress ticks |
+| Looking ahead | night (charcoal + IO blue glow); a turning globe | |
+| Finale | **dawn (light); particles form the O; the official full-colour mark lands on it** | three closing lines, one at a time; links |
+| Footer | charcoal | tagline as headline (EN + AR), reversed lock-up, rising mark, live clock, back to the beginning |
+
+**Brand.** Colours are the brand hex values (three.js colour management is off so shaders output exact hex; v3's first build rendered them too dark). Tints: `--io-ink #1C7299` (small blue on light), `--io-mist #B8E0F0` (small blue on charcoal). Greens only for the land and mission chapters; orange-red only as the heat glow. Logo: official SVGs; nav = format three (wordmark crop + mark); creation shows the white single-colour "i" (the O is drawn by particles around the photo); finale uses the full-colour mark unchanged. Type: Readex Pro (Bukra stand-in, `--font-d3`).
+
+**Nav, menu, details.** Pathfinder: one segment per chapter, each fills as you read it, the current chapter name rolls in, segments jump (Lenis). Menu: opens as a circle from the button; 6 sitemap categories large, hover shows sub-pages and the category photo in an O lens with a turning tick ring. Cursor: dot + lagging ring (difference blend), opens on links. Header text roll on hover. Nav veil (soft blur) so text never collides with the bar. Particles drift away from the mouse and stretch with scroll velocity. Captions "Fig. NN".
+
+**Robustness.** Staggered `fromTo` inside scrubbed timelines only pre-render the first target, so every staggered start state is primed with `gsap.set`. Sticky tracks start their timelines at `top 65%` so stages never arrive empty. Reduced motion: no Lenis, no loader, static particles, and every track collapses to plain readable content (CSS). WebGL failure: CSS gradient fallback. Checked: desktop 1440×900 and mobile 390×844 (scroll frames through the whole page), reduced motion, menu, no console errors.
+
+**Open:** team roles/bios; Virtual Tour + LinkedIn URLs; real Bukra webfont; sub-pages (links 404 for now).
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.
