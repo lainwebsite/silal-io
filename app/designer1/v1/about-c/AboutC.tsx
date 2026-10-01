@@ -165,18 +165,28 @@ export function AboutC() {
         gsap.fromTo(q(`.${c.storyBar}`), { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: q(`.${c.story}`)[0], start: "top 30%", end: "bottom 70%", scrub: true } });
       });
 
-      /* ---------- pinned journey: smooth horizontal travel ---------- */
+      /* ---------- journey: curtain sticky + horizontal travel (desktop) ---------- */
       mm.add("(prefers-reduced-motion: no-preference) and (min-width: 1000px) and (min-height: 700px)", () => {
         const track = q(`.${c.jTrack}`)[0] as HTMLElement;
-        const sec = q(`.${c.journey}`)[0];
+        const sec = q(`.${c.journey}`)[0] as HTMLElement;
+        const wrap = sec.parentElement as HTMLElement;
         const dist = () => track.scrollWidth - track.parentElement!.clientWidth;
-        const tw = gsap.to(track, {
-          x: () => -dist(),
-          ease: "none",
-          scrollTrigger: { trigger: sec, start: "top top", end: () => `+=${dist()}`, pin: true, anticipatePin: 1, scrub: 0.8, invalidateOnRefresh: true },
-        });
-        gsap.fromTo(q(`.${c.jBar}`), { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: sec, start: "top top", end: () => `+=${dist()}`, scrub: 0.8 } });
-        return () => tw.kill();
+        const setLen = () => wrap.style.setProperty("--len", `${dist()}px`);
+        wrap.dataset.on = "true";
+        setLen();
+        ScrollTrigger.addEventListener("refreshInit", setLen);
+        const sh = () => sec.offsetHeight;
+        const range = { trigger: wrap, start: () => `top+=${sh()} top`, end: () => `bottom-=${2 * sh()} top`, scrub: 0.6, invalidateOnRefresh: true };
+        const tw = gsap.to(track, { x: () => -dist(), ease: "none", scrollTrigger: range });
+        const bar = gsap.fromTo(q(`.${c.jBar}`), { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { ...range } });
+        ScrollTrigger.refresh();
+        return () => {
+          ScrollTrigger.removeEventListener("refreshInit", setLen);
+          tw.kill();
+          bar.kill();
+          wrap.dataset.on = "false";
+          wrap.style.removeProperty("--len");
+        };
       });
 
       return () => window.clearInterval(timer);
@@ -463,8 +473,9 @@ export function AboutC() {
         </div>
       </section>
 
-      {/* ================= JOURNEY (pinned, horizontal) ================= */}
-      <section className={c.journey}>
+      {/* ================= JOURNEY (curtain sticky, horizontal) ================= */}
+      <div className={c.curtain} data-on="false">
+      <section className={`${c.journey} ${c.curtainStick}`}>
         <div className={`${s.wrap} ${c.jHead}`}>
           <Eyebrow n="07">Our Journey</Eyebrow>
           <span className={c.jRail}>
@@ -486,6 +497,7 @@ export function AboutC() {
           </ol>
         </div>
       </section>
+      </div>
 
       {/* ================= LOOKING AHEAD ================= */}
       <section className={`${c.section} ${c.white} ${c.aheadSec}`}>

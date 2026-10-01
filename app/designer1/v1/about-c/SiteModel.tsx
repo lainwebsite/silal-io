@@ -54,6 +54,7 @@ function canvasTex(w: number, h: number, draw: (g: CanvasRenderingContext2D) => 
 
 export default function SiteModel() {
   const sectionRef = useRef<HTMLElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const jumpRef = useRef<(i: number) => void>(() => {});
   const [active, setActive] = useState(0);
@@ -62,6 +63,7 @@ export default function SiteModel() {
 
   useEffect(() => {
     const section = sectionRef.current!;
+    const wrap = wrapRef.current!;
     const stage = stageRef.current!;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const small = window.innerWidth < 900;
@@ -572,12 +574,13 @@ export default function SiteModel() {
     };
     setProgress(0);
 
+    // Curtain sticky: the model is already fixed underneath. The tour runs between the moment the
+    // section above has fully lifted off and the moment the section below starts to cover it.
+    const sh = () => section.offsetHeight;
     const st = ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      end: () => `+=${(n - 1) * window.innerHeight * 0.95}`,
-      pin: true,
-      anticipatePin: 1,
+      trigger: wrap,
+      start: () => `top+=${sh()} top`,
+      end: () => `bottom-=${2 * sh()} top`,
       scrub: true,
       onUpdate: (self) => setProgress(self.progress),
     });
@@ -594,8 +597,8 @@ export default function SiteModel() {
     // intro: model rises, boundary draws itself
     rise.forEach((g) => (g.scale.y = reduce ? 1 : 0.001));
     const intro = ScrollTrigger.create({
-      trigger: section,
-      start: "top 70%",
+      trigger: wrap,
+      start: () => `top+=${sh() * 0.25} top`,
       once: true,
       onEnter: () => {
         if (reduce) return;
@@ -671,7 +674,8 @@ export default function SiteModel() {
   const stop = tour[active];
 
   return (
-    <section ref={sectionRef} className={c.map} aria-label="Innovation Oasis site model">
+    <div ref={wrapRef} className={c.curtain} data-on="true" style={{ ["--len" as string]: `${(n - 1) * 95}vh` }}>
+    <section ref={sectionRef} className={`${c.map} ${c.curtainStick}`} aria-label="Innovation Oasis site model">
       <div ref={stageRef} className={c.mapStage} aria-hidden="true" />
       {failed ? <div className={c.mapFallback} /> : null}
 
@@ -735,5 +739,6 @@ export default function SiteModel() {
 
       <span className={c.mapNote}>Illustrative site model · not to scale</span>
     </section>
+    </div>
   );
 }
