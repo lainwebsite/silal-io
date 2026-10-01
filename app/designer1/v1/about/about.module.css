@@ -1,0 +1,1135 @@
+/* Designer 1 · v1 · About — immersive layout. Tokens come from .root (v1.module.css). */
+
+.page {
+  background: var(--light);
+  --pad: clamp(112px, 13vw, 208px);
+  --shade-rgb: 24, 24, 23;
+}
+
+.section {
+  padding: var(--pad) 0;
+}
+
+.sectionWhite {
+  background: #fff;
+}
+
+/* ---------- type ---------- */
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--io-ink);
+}
+
+.labelNum {
+  color: var(--io);
+  letter-spacing: 0.06em;
+}
+
+.labelRule {
+  width: 40px;
+  height: 1px;
+  background: var(--io);
+}
+
+.labelLight {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.labelLight .labelRule {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: clamp(56px, 7vw, 112px);
+  max-width: 1100px;
+}
+
+.h2 {
+  font-size: clamp(2.5rem, 5.4vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--charcoal);
+}
+
+.h3 {
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.body {
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.75;
+  color: var(--charcoal);
+  max-width: 34em;
+}
+
+.lead {
+  font-size: clamp(1.1875rem, 1.6vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--charcoal);
+  max-width: 30em;
+}
+
+.miniLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--io-ink);
+  margin-bottom: 14px;
+}
+
+/* frames */
+.frame,
+.frameTall,
+.frameWide {
+  position: relative;
+  overflow: hidden;
+  background: #e4e4e4;
+}
+
+.frame {
+  aspect-ratio: 4 / 5;
+}
+
+.frameTall {
+  aspect-ratio: 3 / 4;
+}
+
+.frameWide {
+  aspect-ratio: 3 / 2;
+}
+
+.frame img,
+.frameTall img,
+.frameWide img {
+  object-fit: cover;
+}
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 640px;
+  margin-top: calc(var(--hdr, 114px) * -1);
+  overflow: hidden;
+  color: #fff;
+  background: #2b2a28;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.heroBg img {
+  object-fit: cover;
+}
+
+.heroShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(var(--shade-rgb), 0.5) 0%, rgba(var(--shade-rgb), 0) 26%),
+    linear-gradient(0deg, rgba(var(--shade-rgb), 0.72) 0%, rgba(var(--shade-rgb), 0.18) 52%, rgba(var(--shade-rgb), 0) 75%);
+}
+
+.heroInner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: clamp(36px, 6vh, 72px);
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 8.3vw, 9.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  max-width: 11.5em;
+}
+
+.heroMeta {
+  margin-top: clamp(28px, 4vh, 48px);
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.heroSub {
+  font-size: clamp(1.125rem, 1.7vw, 1.625rem);
+  font-weight: 300;
+  line-height: 1.35;
+  max-width: 22em;
+}
+
+.scrollCue {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.scrollCue i {
+  position: relative;
+  width: 1px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.scrollCue i::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 1px;
+  height: 40%;
+  background: #fff;
+  animation: cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes cue {
+  to {
+    top: 100%;
+  }
+}
+
+/* ---------- intro ---------- */
+.statement {
+  font-size: clamp(1.875rem, 3.9vw, 4rem);
+  font-weight: 300;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  color: var(--charcoal);
+  max-width: 21em;
+}
+
+.introGrid {
+  margin-top: clamp(80px, 10vw, 160px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+}
+
+.introImgA {
+  grid-column: 1 / span 5;
+}
+
+.introText {
+  grid-column: 7 / span 6;
+  padding-top: clamp(40px, 12vw, 200px);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.punch {
+  font-size: clamp(1.625rem, 2.6vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--io-ink);
+  max-width: 16em;
+}
+
+.introImgB {
+  width: 70%;
+  margin-left: auto;
+  margin-top: 24px;
+}
+
+/* ---------- story ---------- */
+.bigPair {
+  font-size: clamp(2.25rem, 5.2vw, 5.25rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  color: var(--charcoal);
+  max-width: 14em;
+}
+
+.storyGrid {
+  margin-top: clamp(72px, 9vw, 144px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  align-items: start;
+}
+
+.storySticky {
+  grid-column: 1 / span 5;
+  position: sticky;
+  top: 120px;
+}
+
+.storyText {
+  grid-column: 7 / span 6;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: clamp(0px, 8vw, 120px);
+}
+
+.storyText .body:first-child::first-letter {
+  float: left;
+  font-size: 4.6em;
+  line-height: 0.8;
+  font-weight: 300;
+  color: var(--io);
+  margin: 0.06em 0.08em 0 0;
+}
+
+/* pinned turn */
+.turn {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  color: #fff;
+  background: #2b2a28;
+}
+
+.turnBg {
+  position: absolute;
+  inset: 0;
+}
+
+.turnBg img {
+  object-fit: cover;
+}
+
+.turnShade {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--shade-rgb), 0.55);
+}
+
+.turnInner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  text-align: center;
+  padding: 0 var(--gutter);
+}
+
+/* both lines share one spot only while the section is pinned (see AboutClient) */
+@media (prefers-reduced-motion: no-preference) and (min-width: 1000px) and (min-height: 700px) {
+  .turnInner {
+    display: grid;
+    place-items: center;
+  }
+  .turnA,
+  .turnB {
+    grid-area: 1 / 1;
+  }
+}
+
+.turnA,
+.turnB {
+  font-size: clamp(2.5rem, 6.6vw, 7.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  max-width: 12em;
+}
+
+.turnB :global(span) {
+  color: inherit;
+}
+
+.turnB span span {
+  color: var(--io);
+}
+
+/* land */
+.land {
+  position: relative;
+  min-height: 115svh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.landBg,
+.missionBg,
+.finaleBg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.landImg {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.landImg img {
+  object-fit: cover;
+}
+
+.landInner {
+  position: relative;
+  padding-bottom: clamp(40px, 7vw, 104px);
+}
+
+.landCard {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  padding: clamp(28px, 4vw, 56px);
+  max-width: 560px;
+  border-top: 3px solid var(--io);
+}
+
+.landNum {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: clamp(4.5rem, 9vw, 9rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+}
+
+.landNum small {
+  font-size: 0.9375rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--io-ink);
+}
+
+/* created */
+.created {
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.createdA {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 300;
+  color: var(--grey);
+  margin-bottom: 20px;
+}
+
+.createdB {
+  font-size: clamp(2.5rem, 6.4vw, 6.75rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--charcoal);
+}
+
+.closeGrid {
+  margin-top: clamp(96px, 11vw, 176px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  align-items: end;
+}
+
+.closeImg {
+  grid-column: 1 / span 6;
+}
+
+.closeText {
+  grid-column: 8 / span 5;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 8px;
+}
+
+/* ---------- people ---------- */
+.leader {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  align-items: center;
+}
+
+.leaderImg {
+  grid-column: 1 / span 5;
+}
+
+.leaderImg img {
+  object-position: 50% 28%;
+}
+
+.leaderText {
+  grid-column: 7 / span 6;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.quote {
+  margin: 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--io);
+}
+
+.quote p {
+  font-size: clamp(2rem, 3.8vw, 3.75rem);
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  color: var(--charcoal);
+}
+
+.quote cite {
+  display: block;
+  margin-top: 20px;
+  font-style: normal;
+  font-size: 0.875rem;
+  color: var(--grey);
+}
+
+.teamHead {
+  margin-top: clamp(112px, 13vw, 200px);
+  margin-bottom: clamp(48px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  align-items: end;
+}
+
+.teamHead > div:first-child {
+  grid-column: 1 / span 6;
+}
+
+.teamHead > div:last-child {
+  grid-column: 8 / span 5;
+}
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(32px, 3vw, 48px) clamp(12px, 1.5vw, 24px);
+}
+
+.team li {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.teamImg {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #e4e4e4;
+}
+
+.teamImg img {
+  object-fit: cover;
+  object-position: 50% 22%;
+  transform: scale(1.06);
+  filter: saturate(0.92);
+  transition: transform 1.2s var(--ease), filter 0.8s ease;
+}
+
+.team li:hover .teamImg img {
+  transform: scale(1.12);
+  filter: saturate(1.05);
+}
+
+.teamName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+
+.teamName::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 0;
+  height: 1px;
+  background: var(--io);
+  transition: width 0.7s var(--ease);
+}
+
+.team li:hover .teamName::before {
+  width: 100%;
+}
+
+/* ---------- why here (pinned) ---------- */
+.why {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  color: #fff;
+  background: #2b2a28;
+}
+
+.whyBg {
+  position: absolute;
+  inset: 0;
+}
+
+.whyBg img {
+  object-fit: cover;
+}
+
+.whyShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(var(--shade-rgb), 0.78) 0%, rgba(var(--shade-rgb), 0.55) 50%, rgba(var(--shade-rgb), 0.35) 100%);
+}
+
+.whyInner {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  align-items: center;
+  padding-top: 96px;
+  padding-bottom: 72px;
+}
+
+.whyLeft {
+  grid-column: 1 / span 6;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.whySub {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.whyLines {
+  font-size: clamp(2rem, 3.6vw, 3.75rem);
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+
+.whyLight {
+  color: #8fd1ec;
+}
+
+.whyBody {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 34em;
+}
+
+.whyRight {
+  grid-column: 8 / span 5;
+  display: flex;
+  gap: 32px;
+}
+
+.whyTrack {
+  position: relative;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.whyBar {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform-origin: top;
+  transform: scaleY(1);
+}
+
+.whyRight ol {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vh, 24px);
+}
+
+.pressure {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.pressure span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #8fd1ec;
+}
+
+/* initial state for the pinned animation only on large screens with motion */
+@media (prefers-reduced-motion: no-preference) and (min-width: 1000px) and (min-height: 700px) {
+  .pressure {
+    opacity: 0.32;
+    transform: translateX(-12px);
+  }
+  .whyBar {
+    transform: scaleY(0);
+  }
+}
+
+/* bench + quote */
+.bench {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 6vw, 96px);
+}
+
+.benchLine {
+  font-size: clamp(1.75rem, 3.2vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--charcoal);
+  max-width: 20em;
+}
+
+.benchQuote {
+  font-size: clamp(2.75rem, 7vw, 8rem);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  color: var(--io);
+  align-self: flex-end;
+  text-align: right;
+  max-width: 11em;
+}
+
+.ecoOutro {
+  margin: clamp(72px, 9vw, 136px) auto 0;
+  max-width: 24em;
+  text-align: center;
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+}
+
+/* ---------- mission ---------- */
+.mission,
+.finale {
+  position: relative;
+  min-height: 110svh;
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  background: #2b2a28;
+}
+
+.missionShade,
+.finaleShade {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--shade-rgb), 0.5);
+}
+
+.missionInner,
+.finaleInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: var(--pad);
+  padding-bottom: var(--pad);
+}
+
+.missionText {
+  font-size: clamp(2.125rem, 4.6vw, 5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  max-width: 15em;
+}
+
+/* ---------- principles (horizontal) ---------- */
+.principles {
+  overflow: hidden;
+  background: var(--light);
+}
+
+.pTrack {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(16px, 2vw, 32px);
+  padding: clamp(96px, 12vh, 140px) var(--gutter);
+  width: max-content;
+  will-change: transform;
+}
+
+.pIntro {
+  width: clamp(300px, 34vw, 520px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  padding-right: 40px;
+}
+
+.pIntro .h2 {
+  font-size: clamp(2.25rem, 3.8vw, 4rem);
+}
+
+.pHint {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.pHint i {
+  width: 64px;
+  height: 1px;
+  background: var(--io);
+}
+
+.pCard {
+  width: clamp(280px, 26vw, 400px);
+  background: #fff;
+  border-top: 3px solid var(--io);
+  padding: 20px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pImg {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.pImg img {
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+
+.pCard:hover .pImg img {
+  transform: scale(1.06);
+}
+
+.pNum {
+  font-size: 2.75rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--io);
+}
+
+.pCard h3 {
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.pCard p {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--grey);
+}
+
+/* ---------- journey ---------- */
+.journey {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  align-items: start;
+}
+
+.jSticky {
+  grid-column: 1 / span 5;
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.jYear {
+  display: grid;
+  height: 1em;
+  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--io);
+  overflow: hidden;
+}
+
+.jYear span {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.8s var(--ease), opacity 0.5s ease;
+}
+
+.jYear span[data-active="true"] {
+  transform: none;
+  opacity: 1;
+}
+
+.jFrame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e4e4e4;
+}
+
+.jImg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.9s ease, transform 1.4s var(--ease);
+}
+
+.jImg[data-active="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.jImg img {
+  object-fit: cover;
+}
+
+.jList {
+  grid-column: 7 / span 6;
+  position: relative;
+  padding-left: 40px;
+}
+
+.jLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.jProgress {
+  position: absolute;
+  inset: 0;
+  background: var(--io);
+  transform-origin: top;
+}
+
+.jItem {
+  position: relative;
+  padding: clamp(40px, 8vh, 88px) 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0.35;
+  transition: opacity 0.6s ease;
+}
+
+.jItem::before {
+  content: "";
+  position: absolute;
+  left: -45px;
+  top: calc(clamp(40px, 8vh, 88px) + 8px);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--io);
+  transition: background 0.4s;
+}
+
+.jItem[data-active="true"] {
+  opacity: 1;
+}
+
+.jItem[data-active="true"]::before {
+  background: var(--io);
+}
+
+.jWhen {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--io-ink);
+}
+
+.jItem h3 {
+  font-size: clamp(1.5rem, 2.2vw, 2.125rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.jItem p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  max-width: 32em;
+}
+
+/* ---------- looking ahead ---------- */
+.aheadGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  align-items: end;
+}
+
+.aheadLead {
+  grid-column: 1 / span 7;
+  font-size: clamp(2.25rem, 4.6vw, 4.75rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  color: var(--charcoal);
+}
+
+.aheadText {
+  grid-column: 9 / span 4;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.finaleText {
+  font-size: clamp(2.75rem, 7.4vw, 8.5rem);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  max-width: 10em;
+}
+
+.finaleBlue {
+  color: #8fd1ec;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1000px) {
+  .introImgA,
+  .introText,
+  .storySticky,
+  .storyText,
+  .closeImg,
+  .closeText,
+  .leaderImg,
+  .leaderText,
+  .teamHead > div:first-child,
+  .teamHead > div:last-child,
+  .whyLeft,
+  .whyRight,
+  .jSticky,
+  .jList,
+  .aheadLead,
+  .aheadText {
+    grid-column: 1 / -1;
+  }
+  .storySticky,
+  .jSticky {
+    position: static;
+  }
+  .introText,
+  .storyText {
+    padding-top: 48px;
+  }
+  .closeText,
+  .leaderText,
+  .aheadText {
+    margin-top: 48px;
+  }
+  .teamHead > div:last-child {
+    margin-top: 32px;
+  }
+  .team {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .whyRight {
+    margin-top: 48px;
+  }
+  .jFrame {
+    display: none;
+  }
+  .jYear {
+    display: none;
+  }
+  .jItem {
+    opacity: 1;
+  }
+  .pTrack {
+    width: auto;
+    flex-direction: column;
+    padding: var(--pad) var(--gutter);
+  }
+  .pIntro,
+  .pCard {
+    width: auto;
+  }
+  .benchQuote {
+    align-self: flex-start;
+    text-align: left;
+  }
+  .heroMeta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    --hdr: 77px;
+  }
+  .introImgB {
+    width: 100%;
+  }
+}

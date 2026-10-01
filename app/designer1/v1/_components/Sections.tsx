@@ -164,13 +164,13 @@ export function MissionBand({ padTop = false }: { padTop?: boolean }) {
         <div className={s.mission}>
           <img src="/brand/io-mark.svg" alt="" className={s.missionMark} />
           <Reveal className={s.missionBody}>
-            <Kicker light>Our Mission</Kicker>
+            <Kicker>Our Mission</Kicker>
             <p className={s.missionText}>{mission}</p>
             <div className={s.ctaRow}>
               <Link href={`${BASE}/enquire`} className={`${s.btn} ${s.btnPrimary}`}>
                 Partner with IO <Arrow />
               </Link>
-              <Link href={`${BASE}/contact`} className={`${s.btn} ${s.btnGhostLight}`}>
+              <Link href={`${BASE}/contact`} className={`${s.btn} ${s.btnGhost}`}>
                 Contact us
               </Link>
             </div>

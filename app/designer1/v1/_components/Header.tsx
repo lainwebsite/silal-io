@@ -12,6 +12,10 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Transparent header over full-bleed heroes until the page scrolls.
+  const overlayPage = pathname === `${BASE}/about`;
+  const overlay = overlayPage && !scrolled && !open;
+
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,7 +31,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className={s.header} data-scrolled={scrolled}>
+    <header className={s.header} data-scrolled={scrolled} data-overlay={overlay}>
       <div className={s.utility}>
         <div className={`${s.wrap} ${s.utilityInner}`}>
           <span>
@@ -48,7 +52,12 @@ export function Header() {
         <div className={`${s.wrap} ${s.headerInner}`}>
           <Link href={BASE} className={s.logo} aria-label="Innovation Oasis — home">
             <span className={s.logoFull}>
-              <IoHorizontal height={50} />
+              <span className={s.logoOnLight}>
+                <IoHorizontal height={50} />
+              </span>
+              <span className={s.logoOnDark}>
+                <IoHorizontal height={50} reversed />
+              </span>
             </span>
             <span className={s.logoSmall}>
               <IoMark height={36} />
@@ -99,7 +108,7 @@ export function Header() {
 
       <div className={s.mobileNav} data-open={open} aria-hidden={!open}>
         <div className={`${s.wrap} ${s.mobileNavTop}`}>
-          <IoHorizontal height={42} reversed />
+          <IoHorizontal height={42} />
           <button className={s.menuClose} aria-label="Close menu" onClick={() => setOpen(false)}>
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
               <path d="M7 7l14 14M21 7 7 21" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />

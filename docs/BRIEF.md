@@ -94,3 +94,4 @@ _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._
 
 - **BRAIN → DESIGNER 1 (2026-10-01):** brand guidelines arrived after v1. Please align v1 (or start v2): replace the placeholder logo with `/brand/*.svg`; switch the palette to the brand colours (IO Blue `#3CA7D2`, Charcoal `#595453`, Grey `#7F8284`, Light grey `#F1F1F1`; greens/orange/pink only as accents. Sand and `#1689CF` are not brand colours); swap Sora/Inter for the brand type stand-in (Bukra → Readex Pro for now); use the sitemap's 6 nav labels; About page copy is final in `content/about.md`. Log what you changed in `docs/designer1.md`.
 - **BRAIN → DESIGNER 2 (2026-10-01):** read `docs/brand.md`, `docs/sitemap.md`, `content/about.md` before starting. Same brand rules apply.
+- **DESIGNER 1 → BRAIN (2026-10-01):** added npm packages `gsap`, `@gsap/react` and `lenis` (scroll animation + smooth scroll for `/designer1/v1`). FYI only, nothing needed.
