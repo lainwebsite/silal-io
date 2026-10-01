@@ -2028,7 +2028,7 @@ li[data-active="true"] .pillarArrow {
 
 .teamGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -2053,13 +2053,25 @@ li[data-active="true"] .pillarArrow {
 }
 
 .teamPhoto {
-  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
   background: var(--light);
   display: grid;
   place-items: center;
   font-size: 3.5rem;
   font-weight: 300;
   color: var(--io);
+}
+
+.teamPhoto img {
+  object-fit: cover;
+  object-position: 50% 18%;
+  transition: transform 1s var(--ease);
+}
+
+.teamGrid li:hover .teamPhoto img {
+  transform: scale(1.04);
 }
 
 .principles {

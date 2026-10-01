@@ -1,4 +1,6 @@
 // Verbatim client copy from content/about.md. Do not rewrite.
+const teamPhoto = (folder: string, file: string) =>
+  `/photos/${encodeURIComponent("iO Team Headshot & Bios")}/${encodeURIComponent(folder)}/${encodeURIComponent(file)}`;
 
 export const hero = {
   kicker: "Accelerating the Future of Food Security",
@@ -41,7 +43,17 @@ export const team = {
   intro:
     "Behind every laboratory, trial and partnership at Innovation Oasis is a small, hands-on team that has grown alongside the ecosystem itself",
   text: "Coming from different disciplines and different corners of the world, the team shares one mandate: build for the real world, learn by doing, and prove that solutions tested here can succeed almost anywhere.",
-  names: ["Ahmed", "Ali", "Nadia", "Sagar", "Caitlin", "Francisco", "Jude", "Mohsin"],
+  // Order from content/about.md. Photos per content/team.md: labelled by FOLDER name; missing people get initials.
+  members: [
+    { name: "Ahmed" },
+    { name: "Ali" },
+    { name: "Nadia", photo: teamPhoto("Nadia", "Nadia-10.jpg") },
+    { name: "Sagar", photo: teamPhoto("Sagar", "Sagar-2.jpg") },
+    { name: "Caitlin" },
+    { name: "Francisco", photo: teamPhoto("Francisco", "Francisco-7.jpg") },
+    { name: "Jude", photo: teamPhoto("Jude", "Jude-1.jpg") },
+    { name: "Mohsin", photo: teamPhoto("Mohsin", "Mohsin-4.jpg") },
+  ] as { name: string; photo?: string }[],
 };
 
 export const arid = {

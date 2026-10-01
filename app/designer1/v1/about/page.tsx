@@ -120,13 +120,14 @@ export default function About() {
             </Reveal>
           </div>
           <ul className={s.teamGrid}>
-            {team.names.map((n, i) => (
-              <Reveal as="li" key={n} delay={i % 4}>
-                <span className={s.teamPhoto} aria-hidden="true">
-                  {n[0]}
+            {team.members.map((m, i) => (
+              <Reveal as="li" key={m.name} delay={i % 4}>
+                <span className={s.teamPhoto} aria-hidden={!m.photo}>
+                  {m.photo ? <Image src={m.photo} alt={m.name} fill sizes="(max-width: 900px) 50vw, 16vw" /> : m.name[0]}
                 </span>
-                <b>{n}</b>
-                <span>Photo &amp; role to come</span>
+                <b>{m.name}</b>
+                {/* PLACEHOLDER role until bios arrive (content/team.md) */}
+                <span>{m.photo ? "Role title" : "Photo & role to come"}</span>
               </Reveal>
             ))}
           </ul>
