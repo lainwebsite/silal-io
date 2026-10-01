@@ -93,3 +93,19 @@ Source folders: `New Folder With Items` 1–4 (merged).
 | Networking / arrival | `FRH_1586`, `FRH_1589` |
 
 Suggested pages: Venture Programme detail, News / Media detail, Agricultural Challenges, Resources hub.
+
+## iO Team Headshot & Bios
+
+107 headshots, kept in the client's per-person folders: `iO Team Headshot & Bios/<Name>/<original filename>`. Shot in the IO atrium (white columns, planters, wood benches). Originals 2000×3000 portrait (12 are 2000×1333 landscape wides).
+
+| Folder | Files | Notes |
+|---|---|---|
+| `Francisco/` | 15 | Also contains `Jude-5.jpg`, which appears to show the same person as the rest of this folder. |
+| `Jude/` | 6 | Also contains `Mohsin-8.jpg`, `Mohsin-9.jpg`, which appear to show the same person as the rest of this folder. |
+| `Mohsin/` | 16 | |
+| `Nadia/` | 36 | `Obaid-*.jpg` appear to show the same person as the `Nadia-*` files. `Obaid-4/5` are black & white. |
+| `Sagar/` | 34 | `Shamal-*.jpg` and `IMG_713x.JPG` appear to show the same person as the `Sagar-*` files. `IMG_7134/7135/7137`, `Shamal-19` are black & white. |
+
+**The photographer's filename prefixes don't reliably match the person; the folder name looks like the reliable label. Client to confirm identities before publishing.** Note `-bw` in a filename does *not* mean black & white; those files are in colour.
+
+Missing so far: Ahmed, Ali, Caitlin, and a confirmed CEO portrait (Dr. Shamal Mohammed). No bios received yet.

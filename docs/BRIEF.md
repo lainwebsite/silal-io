@@ -8,6 +8,7 @@ Single source of truth for every Claude chat working on this repo. Update this f
 | `docs/brand.md` | **Brand rules**: logo files + usage, colours (hex), typography (29LT Bukra), tagline, visual language. Not optional. |
 | `docs/sitemap.md` | **Navigation + page names**, mapped to our 21 templates. Use the 6 menu labels exactly. |
 | `content/about.md` | **Final About IO copy** (client-supplied, use verbatim). |
+| `content/team.md` | **Team status**: who has photos, which files to use, what's missing. |
 | `public/brand/*.svg` | Real logo: `io-lockup.svg`, `io-lockup-reversed.svg`, `io-mark.svg`. Replace any placeholder logo. |
 | `docs/source/` | Original client PDFs (guidelines, About copy, sitemap). |
 
@@ -62,7 +63,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 21. 404
 
 ## Assets
-- Photos: `assets/photos/` (169 originals). Manifest with suggested page usage: `assets/README.md`. Visual index: `assets/contact-sheets/`.
+- Photos: `assets/photos/` (169 originals + 107 team headshots). Manifest with suggested page usage: `assets/README.md`. Visual index: `assets/contact-sheets/`.
 - Logo: `public/brand/` (vector SVG extracted from the guidelines PDF, see `docs/brand.md`).
 - Sitemap image: `docs/sitemap.png`.
 
@@ -72,7 +73,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - [x] About IO copy: `content/about.md`
 - [ ] Official logo master files (SVG/AI). Current SVGs are extracted from the guidelines PDF; fine for design, confirm before launch.
 - [ ] **29LT Bukra webfont files (WOFF2) + web licence.** Until then use the stand-in described in `docs/brand.md`.
-- [ ] Team photos + bios (Ahmed, Ali, Nadia, Sagar, Caitlin, Francisco, Jude, Mohsin) + CEO portrait. Client link: https://drive.google.com/drive/folders/1vzV96lJG8mMZGHyro9EbOUfwKGqRlL5S (blocked from these sessions; client must upload in chat).
+- [~] Team headshots: received Francisco, Jude, Mohsin, Nadia, Sagar (`assets/photos/iO Team Headshot & Bios/`, see `content/team.md`). **Still missing: Ahmed, Ali, Caitlin, confirmed CEO portrait, all bios + role titles.** Filename prefixes in the photo folders don't match people (e.g. `Shamal-*` in Sagar's folder): client to confirm.
 - [ ] Copy for all other pages (Home, category hubs, details…). Until supplied, use placeholder copy that follows the About page's tone.
 - [ ] Partners: how to display partners & manage partnership enquiries (open question on sitemap).
 - [ ] Confirm contact details (phone in stationery template may be placeholder).
