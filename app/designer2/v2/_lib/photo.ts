@@ -18,6 +18,8 @@ export const P = {
   greenhouseRoofs: photo(ARCHIVE, "Screenshot 2026-09-24 163812.jpg"),
   fieldSpecialist: photo(ARCHIVE, "Screenshot 2026-09-24 163612.jpg"),
   droneTop: photo(ARCHIVE, "Screenshot 2026-09-24 163836.jpg"),
+  droneSky: photo(ARCHIVE, "Screenshot 2026-09-24 163857.jpg"),
+  aerialWideAlt: photo(ARCHIVE, "Screenshot 2026-09-24 163957.jpg"), // video player bar at the bottom: crop it out
   soilProbe: photo(ARCHIVE, "Screenshot 2026-09-24 163925.jpg"),
   academy: photo(ARCHIVE, "Screenshot 2026-09-24 164221.jpg"),
 
@@ -25,6 +27,7 @@ export const P = {
   atrium: photo(FACILITY, "PA__1211-Edit-Edit.jpg"),
   labPots: photo(FACILITY, "PA__1272.jpg"),
   labWorking: photo(FACILITY, "PA__1405.jpg"),
+  labWide: photo(FACILITY, "PA__1281.jpg"),
   microscope: photo(FACILITY, "PA__1421.jpg"),
   phenotyping: photo(FACILITY, "PA__1464.jpg"),
   hydroTomato: photo(FACILITY, "PA__1483.jpg"),
@@ -34,6 +37,9 @@ export const P = {
   flask: photo(MARCOM, "PA_L0008-Edit (1).jpg"),
   soilSample: photo(MARCOM, "PA__1420.jpg"),
   tomatoAisle: photo(MARCOM, "SAM_9200.jpg"),
+  greenhouseWide: photo(MARCOM, "SMJ_2763.jpg"),
+  growthChamber: photo(MARCOM, "PA__1576.jpg"),
+  inaugurationCeremony: photo(MARCOM, "edited-121 (1).jpg"),
   blueberry: photo(MARCOM, "Screenshot 2026-02-20 at 10.58.36\u202FAM copy.jpg"),
   tour: photo(MARCOM, "Screenshot 2026-02-20 at 11.01.41\u202FAM copy.jpg"),
   inauguration: photo(MARCOM, "edited-131 (1).jpg"),
@@ -41,6 +47,8 @@ export const P = {
   awardsStage: photo("Awards", "FAH_4508.JPG"),
   awardsWinners: photo("Awards", "FAH_4533.JPG"),
   pitchRoom: photo("Final Pitches", "FRH_1604.JPG"),
+  pitchArrival: photo("Final Pitches", "FRH_1586.JPG"),
+  pitchGlobal: photo("Final Pitches", "FRH_1631.JPG"),
   pitchWinners: photo("Final Pitches", "FRH_1703.JPG"),
 
   // Always the full path: Shamal-*.jpg also exists in Sagar/ (different person). See content/team.md.

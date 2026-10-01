@@ -48,5 +48,41 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 
 **Placeholder (to replace when client copy arrives):** platform blurbs (`_lib/site.ts`), the three "Latest" cards, CTA sub-line "Bring a technology, a trial or a partnership…", LinkedIn URL, Virtual Tour link. Sub-page links 404 until built. "Test it here." is a design line, not client copy: confirm.
 
+### v2 — About IO, storytelling (2026-10-01)
+- Live: `/designer2/v2/about` (`/designer2/v2` redirects there for now).
+- Code: `app/designer2/v2/`: `layout.tsx` (font, motion flag, Lenis), `chrome.module.css` (tokens, header, footer, lifted from v1), `_components/` (Header: hides on scroll down, reading-progress hairline; Footer; SmoothScroll), `about/page.tsx` (server markup + data-* motion hooks), `about/about.module.css`, `about/_components/` (AboutMotion, Journey, Principles, ChapterIndex, LocalTime).
+- Brief: Awwwards-level About page that puts information first, tells a story with slow, quiet motion, uses existing photos matched to the copy, and keeps Silal/IO branding obvious.
+- Copy: `content/about.md` verbatim, in the client PDF's order (Hero → Story → People → Why Here → Different → Mission → Principles → Journey → Looking Ahead). The only non-client words are labels: "Fig. NN" captions, "Benchmark", "Survey · 34 ha", chapter numbers.
+
+**The story, beat by beat (photo → copy)**
+| Beat | Photo | Motion |
+|---|---|---|
+| Hero "built in the desert." | `Archive/…164012` aerial | lines rise from masks; photo wipes up, then widens to full bleed on scroll; live Al Ain time (GST) in the photo |
+| "did not begin with a building / began with a question" | — | words brighten as you read (scrubbed) |
+| 2020 Silal · 2021 Dr. Shamal meets farmers, universities… | MarCom greenhouse tour | curtain reveal + drift inside frame |
+| "Research existed. Technologies existed. Farmers faced urgent challenges." | microscope · drone · greenhouse rows | three photos rise; the links between them **draw but never meet** (×) |
+| "The world had innovation. What it lacked was implementation." | — | "innovation" fades to grey as "implementation" turns IO blue |
+| 34-hectare parcel beside Al Foah | `Archive/…163545` aerial plots | aerial opens, survey box draws, hectares count 0 → 34 |
+| "not another research center… the creation of Innovation Oasis." | facility canopy `PA__1065` | name lands; building widens to full bleed |
+| "A place where startups test / researchers & farmers / partners scale / toughest conditions" | soil probe · growth chamber · final pitches · greenhouses on the desert edge | sticky photo swaps (wipe up) with the sentence you are reading |
+| Today: R&D and venture engine | atrium "Research · Development · Growth" | curtain reveal |
+| Leadership + quote, Team | `Shamal/Shamal-2`, team picks from `content/team.md` | portrait reveal; team rises in sequence |
+| Why Here (charcoal): five conditions | — | benchmark rules fill like gauges |
+| What makes IO different: 8 parts | — | ring: orbit draws, 8 nodes connect to one centre, the answer to the broken links earlier |
+| Mission (deep-green leaf) | blueberry macro | leaf drifts, words brighten |
+| Principles | soil probe · arrival/networking · lab · "12 projects across the globe" slide · hydroponic tomato | photo trails the cursor on desktop; inline photos on touch |
+| Journey 2021 → 2030 | field specialist · desert aerial · lab · drone · greenhouse aisle · inauguration · FoodTech winners · campus overlay | sticky **year odometer** (digits roll), photo stack, progress ticks, line fills |
+| Looking ahead finale | greenhouse `SMJ_2763` | pinned: three closing lines arrive one by one, IO mark lands |
+
+**Small details:** crop marks inside every photo, "Fig. NN" captions, chapter rows "01 · Our Story · / 08" with rules that draw, fixed chapter index (bottom-start) with section progress and jump list, header progress hairline, live campus clock, tabular numerals, masked line reveals with room for descenders.
+
+**Motion rules:** GSAP 3.15 (ScrollTrigger, SplitText) + Lenis, both already in `package.json`. Expo/power3 easings, 1.2–2.2s durations, nothing loops or bounces. The layout flags `html[data-d2m]` before paint so hooked elements don't flash; 4s failsafe un-hides everything. `prefers-reduced-motion`: no Lenis, no tweens, everything visible.
+
+**Tokens:** same as v1 (`--io`, `--io-ink`, `--io-mist`, `--charcoal`, `--grey-ink`, `--light`, `--green-dark`). Type Readex Pro (Bukra stand-in). Square corners.
+
+**Fix (v1 + v2):** `photo()` now encodes each path segment; team photos (`<Name>/<file>`) were 400ing in `next/image`.
+
+**Open:** team roles/bios (names only for now), Talabi not shown, Virtual Tour link, "Juntos timeline" reference for Our Journey (client PDF) not seen yet. Sub-page links 404 until built.
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.

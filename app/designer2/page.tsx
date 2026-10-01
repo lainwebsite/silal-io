@@ -11,6 +11,12 @@ const designs = [
       { href: "/designer2/v1/system", label: "Design system" },
     ],
   },
+  {
+    href: "/designer2/v2/about",
+    name: "v2 — About IO (storytelling)",
+    note: "Light, information-first About page told as a story: client copy verbatim, a photo matched to every beat, slow GSAP + Lenis motion.",
+    pages: [{ href: "/designer2/v2/about", label: "About IO" }],
+  },
 ];
 
 export default function Designer2Index() {
