@@ -372,15 +372,15 @@
   filter: brightness(0) invert(1);
 }
 
-.root[data-wide="true"] .header[data-overlay="true"] .logoOnDark {
+.root[data-blue="true"] .header[data-overlay="true"] .logoOnDark {
   display: none;
 }
 
-.root[data-wide="true"] .header[data-overlay="true"] .logoOnBlue {
+.root[data-blue="true"] .header[data-overlay="true"] .logoOnBlue {
   display: inline-flex;
 }
 
-.root[data-wide="true"] .header[data-overlay="true"] .logoSmall img {
+.root[data-blue="true"] .header[data-overlay="true"] .logoSmall img {
   content: url("/designer1/brand/io-mark-white-on-blue.svg");
 }
 

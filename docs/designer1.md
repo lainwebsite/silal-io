@@ -38,6 +38,14 @@ Owned by the DESIGNER 1 chat. Record design directions, tokens (colours, type, s
 - Motion: reveal-on-scroll, cycling hero word, scroll-lit belief statement, counters, pillar list with crossfading photo, timeline scroller. All off under `prefers-reduced-motion`.
 - Nav: six sitemap labels exactly, each with a dropdown of its sitemap sub-pages; mobile = full-screen charcoal menu with accordions.
 
+**About variation C — "corporate premium"** (`/designer1/v1/about-c`, 2026-10-01) — answer to feedback "logo-only hero is bad, headings too big, make it Awwwards / akercompanies.com level".
+- Hero = full-bleed photo slideshow (4 HQ shots, crossfade + slow push-in, progress bars per slide). No logo-as-hero; the logo stays in the header only.
+- **Type scale fixed** (why B looked unprofessional: display at ~10.5rem/0.93 line-height with tight tracking reads as a poster, not a corporate site). C caps display at 4.5rem, section heads 2.9rem, statements 2.1rem, weight 400/300, line-height 1.04–1.3, tracking −0.015 to −0.028em. Hierarchy now comes from grid, whitespace and photography.
+- **3D site model** (`about-c/SiteModel.tsx`, three.js): illustrative 34-ha parcel with IO-blue boundary, laboratories + canopies, controlled-environment facilities, greenhouse tunnels, trial plots, collaboration pavilion, Al Foah Farm palm grid across the road. Pinned section; scroll flies the camera through 7 stops whose captions are verbatim PDF phrases (Late 2021 + 2022 journey entries; facility names from "Building the Blueprint"). Buildings rise on entry, mouse parallax, labels via CSS2DRenderer. Marked "Illustrative site model · not to scale" — needs client masterplan to make it accurate. Falls back to the aerial photo if WebGL fails. Renders only while visible.
+- Smooth stickies: story uses **CSS sticky** (no JS pin jitter) with a scroll-progress rule; Why Here = sticky photo half + scrolling text; journey = GSAP pin with scrub 0.8 + anticipatePin; 3D model re-sorts/refreshes ScrollTrigger after it mounts so pins below stay aligned.
+- Bento photo gallery (7 HQ shots), 12-column grid throughout, 1728px container, stats row (2020 / 34 / 2024 / 2030, labels verbatim from PDF).
+- New npm dep: `three` (+ `@types/three`).
+
 **About variation B — "branded"** (`/designer1/v1/about-b`, `about-b/AboutB.tsx` + `about-b.module.css`, 2026-10-01)
 - Same verbatim PDF copy and order as About A (shared `_lib/copy.ts`).
 - Brand-forward: IO Blue fields (hero, "34 hectares" panel, Why Here split, finale) with the **single-colour white mark** (`public/designer1/brand/io-mark-white-on-blue.svg` = `/brand/io-mark.svg` with fills swapped: shapes white, helix shows the IO Blue ground — guidelines p.7). Letterhead rules (label → line → small mark) open every section and draw in on scroll; the hero rule ends exactly at the "i" stem. Principles as wayfinding signs (blue top bar, turn IO Blue on hover). Team hover = IO Blue veil with the white mark.

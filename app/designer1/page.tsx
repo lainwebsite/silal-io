@@ -9,6 +9,7 @@ const designs = [
       { href: "/designer1/v1", label: "Home" },
       { href: "/designer1/v1/about", label: "About (A — immersive)" },
       { href: "/designer1/v1/about-b", label: "About (B — branded)" },
+      { href: "/designer1/v1/about-c", label: "About (C — corporate premium, 3D site model) ★ latest" },
       { href: "/designer1/v1/system", label: "Design system" },
     ],
   },
