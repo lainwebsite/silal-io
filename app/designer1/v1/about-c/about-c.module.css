@@ -118,9 +118,23 @@
 
 .headRow {
   grid-column: 1 / -1;
+  position: relative;
   padding-bottom: 20px;
   margin-bottom: clamp(40px, 4vw, 72px);
   border-bottom: 1px solid var(--line);
+  --rule: 1;
+}
+
+.headRow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--io);
+  transform: scaleX(var(--rule));
+  transform-origin: left;
 }
 
 /* photo with inner parallax */
@@ -365,10 +379,33 @@
 }
 
 .pull {
+  position: relative;
   margin: 32px 0;
-  padding: 32px 0;
+  padding: 40px 0;
   border-top: 1px solid var(--io);
   border-bottom: 1px solid var(--line);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* brand device: a single lowercase light word with "io" in IO Blue (guidelines "explorat-io-n") */
+.bigWord {
+  position: absolute;
+  z-index: -1;
+  left: -4%;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: clamp(5rem, 11vw, 12rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #ececea;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.bigWord span span {
+  color: rgba(60, 167, 210, 0.35);
 }
 
 .pull p {
@@ -397,8 +434,8 @@
 .map {
   position: relative;
   height: 100svh;
-  min-height: 640px;
-  background: #f3f1ec;
+  min-height: 680px;
+  background: #efe7dc;
   overflow: hidden;
 }
 
@@ -420,20 +457,28 @@
 }
 
 .mapLabel {
+  pointer-events: auto;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px 6px 6px;
-  background: rgba(255, 255, 255, 0.92);
+  padding: 5px 12px 5px 5px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(6px);
   border-radius: 999px;
   font-family: var(--f-brand);
   font-size: 0.75rem;
   color: var(--charcoal);
   white-space: nowrap;
-  box-shadow: 0 6px 24px -10px rgba(30, 30, 30, 0.35);
-  transform: translateY(-14px);
-  opacity: 0.55;
+  box-shadow: 0 8px 24px -12px rgba(30, 30, 30, 0.4);
+  transform: translateY(-16px);
+  opacity: 0.7;
   transition: opacity 0.4s ease, background 0.4s ease, color 0.4s ease;
+}
+
+.mapLabel:hover {
+  opacity: 1;
 }
 
 .mapLabel span {
@@ -458,75 +503,237 @@
   color: var(--io-ink);
 }
 
-.mapPanel {
+.mapHead {
   position: absolute;
-  left: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
-  bottom: clamp(32px, 6vh, 72px);
-  width: min(420px, calc(100vw - 2 * var(--gutter)));
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(10px);
-  border-top: 3px solid var(--io);
-  padding: 24px 28px 28px;
-  display: grid;
   z-index: 2;
-}
-
-.mapPanel > .eyebrow {
-  grid-area: 1 / 1;
-  margin-bottom: 16px;
-}
-
-.mapCard {
-  grid-area: 2 / 1;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease, transform 0.6s var(--ease);
+  top: calc(var(--hdr) - 24px);
+  left: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  right: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(89, 84, 83, 0.14);
   pointer-events: none;
 }
 
-.mapCard[data-active="true"] {
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
+.mapHint {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--grey);
 }
 
-.mapCard h3 {
+/* info card */
+.mapCard {
+  position: absolute;
+  z-index: 2;
+  left: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  bottom: clamp(28px, 5vh, 56px);
+  width: min(400px, calc(100vw - 2 * var(--gutter)));
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 30px 60px -30px rgba(40, 36, 35, 0.35);
+}
+
+.mapImg {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #e6e2da;
+}
+
+.mapImg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.7s ease, transform 1.4s var(--ease);
+}
+
+.mapImg img[data-on="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.mapCount {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+}
+
+.mapCount i {
+  font-style: normal;
+  opacity: 0.7;
+}
+
+.mapBody {
+  padding: 20px 24px 24px;
+  border-top: 3px solid var(--io);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: cardIn 0.6s var(--ease) both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.mapBody h3 {
   font-size: var(--fs-h3);
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.015em;
-  margin-bottom: 10px;
 }
 
-.mapCard p {
+.mapBody p {
   font-size: 0.9375rem;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--charcoal);
 }
 
-.mapProgress {
-  grid-area: 3 / 1;
+.mapFacts {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
-  margin-top: 20px;
 }
 
-.mapProgress i {
-  flex: 1;
-  height: 2px;
-  background: var(--line);
-  transition: background 0.4s ease;
+.mapFacts li {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(60, 167, 210, 0.12);
+  color: var(--io-ink);
 }
 
-.mapProgress i[data-on="true"] {
-  background: var(--io);
+.mapRelated {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.mapRelated > span {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.mapRelated a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 0.875rem;
+  color: var(--io-ink);
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.3s var(--ease);
+}
+
+.mapRelated li:last-child a {
+  border-bottom: 0;
+}
+
+.mapRelated a:hover {
+  padding-left: 6px;
+}
+
+.mapCta {
+  align-self: flex-start;
+  margin-top: 4px;
+  display: inline-flex;
+  height: 40px;
+  align-items: center;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--io-ink);
+  color: #fff !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* place index: compact bar, bottom right */
+.mapIndex {
+  position: absolute;
+  z-index: 2;
+  right: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  bottom: clamp(28px, 5vh, 56px);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  box-shadow: 0 20px 50px -30px rgba(40, 36, 35, 0.4);
+}
+
+.mapIndex button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  font-family: var(--f-brand);
+  font-size: 0.75rem;
+  color: var(--charcoal);
+  white-space: nowrap;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+.mapIndex button:hover {
+  background: rgba(60, 167, 210, 0.1);
+}
+
+.mapIndex button span {
+  font-weight: 500;
+}
+
+.mapIndex button b {
+  font-weight: 400;
+  max-width: 0;
+  overflow: hidden;
+  transition: max-width 0.6s var(--ease);
+}
+
+.mapIndex button[data-on="true"] {
+  background: var(--io-ink);
+  color: #fff;
+}
+
+.mapIndex button[data-on="true"] b {
+  max-width: 260px;
 }
 
 .mapNote {
   position: absolute;
+  z-index: 2;
   right: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
-  bottom: 24px;
-  font-size: 0.75rem;
+  bottom: 10px;
+  font-size: 0.6875rem;
   color: var(--grey);
 }
 
@@ -761,6 +968,49 @@
   color: var(--io-ink);
 }
 
+/* deep-green chapter (brand: macro leaf photography for chapter moments) */
+.chapter {
+  background: #0d3b26;
+  color: #fff;
+}
+
+.chapter .whySticky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(13, 59, 38, 0) 60%, rgba(13, 59, 38, 0.6) 100%);
+}
+
+.chapter .h2,
+.chapter .statement,
+.chapter .body,
+.chapter .lead,
+.chapter .pressures li {
+  color: #fff;
+}
+
+.chapter .body {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.chapter .blue,
+.chapter .quoteBlue {
+  color: #8fd1ec;
+}
+
+.chapter .pressures,
+.chapter .pressures li {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.chapter .pressures span {
+  color: #8fd1ec;
+}
+
+.chapter .pressures li:hover {
+  color: #8fd1ec;
+}
+
 /* ---------- different ---------- */
 .diffTitle {
   grid-column: 1 / span 6;
@@ -987,6 +1237,27 @@
   gap: 24px;
 }
 
+.aheadSec {
+  position: relative;
+  overflow: hidden;
+}
+
+.closeMark {
+  position: absolute;
+  right: calc(clamp(160px, 22vw, 380px) * -0.42);
+  bottom: clamp(48px, 6vw, 112px);
+  height: clamp(160px, 22vw, 380px);
+  width: auto;
+  pointer-events: none;
+}
+
+.hero .heroAr,
+.heroAr {
+  font-size: 0.9375rem;
+  opacity: 0.85;
+  text-align: left;
+}
+
 .closing {
   grid-column: 1 / span 9;
   margin-top: clamp(80px, 9vw, 160px);
@@ -1077,10 +1348,32 @@
   .jRail {
     display: none;
   }
-  .mapPanel {
+  .mapCard {
     left: var(--gutter);
     right: var(--gutter);
     width: auto;
+    bottom: 16px;
+  }
+  .mapImg {
+    aspect-ratio: 16 / 6;
+  }
+  .mapBody {
+    padding: 14px 16px 16px;
+    gap: 8px;
+  }
+  .mapBody p {
+    font-size: 0.875rem;
+  }
+  .mapRelated {
+    display: none;
+  }
+  .mapIndex,
+  .mapHint,
+  .mapNote {
+    display: none;
+  }
+  .closeMark {
+    opacity: 0.25 !important;
   }
   .mapLabel:not(.mapLabelOn) {
     opacity: 0;

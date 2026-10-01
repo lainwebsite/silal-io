@@ -12,7 +12,7 @@ import c from "./about-c.module.css";
 import { IoWord } from "../_components/Brand";
 import { ahead, arid, different, hero, journey, leadership, mission, principles, story, team } from "../_lib/copy";
 import { HQ, P } from "../_lib/photo";
-import type { Stop } from "./SiteModel";
+/* eslint-disable @next/next/no-img-element */
 
 const SiteModel = dynamic(() => import("./SiteModel"), { ssr: false, loading: () => <section className={c.map} /> });
 
@@ -35,16 +35,6 @@ const stats = [
   { n: 2030, label: "Vision" },
 ];
 
-// 3D tour stops. Titles/texts are verbatim from the PDF (Our Journey: Late 2021 + 2022).
-const stops: Stop[] = [
-  { key: "overview", label: "", title: journey[1].title, text: journey[1].text },
-  { key: "labs", label: "Laboratories", title: "Laboratories" },
-  { key: "cea", label: "Controlled-environment facilities", title: "Controlled-environment facilities" },
-  { key: "greenhouses", label: "Greenhouses", title: "Greenhouses" },
-  { key: "fields", label: "Field-testing areas", title: "Field-testing areas" },
-  { key: "collab", label: "Collaboration spaces", title: "Collaboration spaces" },
-  { key: "farm", label: "Al Foah Farm", title: journey[2].title, text: journey[2].text },
-];
 
 const bento = [
   { src: HQ.atrium, cap: "Atrium", span: "a" },
@@ -159,6 +149,18 @@ export function AboutC() {
             },
           });
         });
+        // brand rules: the IO-blue hairline under each section label draws in
+        q(`.${c.headRow}`).forEach((el: Element) =>
+          gsap.fromTo(el, { "--rule": 0 }, { "--rule": 1, duration: 1.6, ease: "expo.inOut", scrollTrigger: { trigger: el, start: "top 88%" } }),
+        );
+        // lowercase brand word drifts behind the pull quote
+        q("[data-drift]").forEach((el: Element) =>
+          gsap.fromTo(el, { xPercent: 8 }, { xPercent: -14, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: true } }),
+        );
+        // cropped mark slides in at the close
+        q("[data-mark]").forEach((el: Element) =>
+          gsap.fromTo(el, { xPercent: 20, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top 85%", end: "center center", scrub: true } }),
+        );
         // the story's sticky column shows reading progress
         gsap.fromTo(q(`.${c.storyBar}`), { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: q(`.${c.story}`)[0], start: "top 30%", end: "bottom 70%", scrub: true } });
       });
@@ -199,6 +201,9 @@ export function AboutC() {
             <Eyebrow light>About Innovation Oasis</Eyebrow>
             <h1 className={c.heroTitle}>{hero.statement}</h1>
             <p className={c.heroSub}>{hero.title}</p>
+            <p className={c.heroAr} lang="ar" dir="rtl">
+              نحو أنظمة زراعة وغذاء متطورة
+            </p>
           </div>
           <div className={c.heroAside}>
             <div className={c.slideNav}>
@@ -262,6 +267,9 @@ export function AboutC() {
             ))}
             <Photo src={HQ.atrium} alt="The IO atrium" ratio="16 / 10" sizes="(max-width: 1000px) 100vw, 55vw" />
             <blockquote className={c.pull}>
+              <span className={c.bigWord} aria-hidden="true" data-drift>
+                <IoWord word="implementation" />
+              </span>
               <p data-split>{story.turn[0]}</p>
               <p data-split>
                 What it lacked was <IoWord word="implementation." />
@@ -291,7 +299,7 @@ export function AboutC() {
       </section>
 
       {/* ================= 3D SITE MODEL ================= */}
-      <SiteModel stops={stops} />
+      <SiteModel />
 
       {/* ================= GALLERY (bento) ================= */}
       <section className={`${c.section} ${c.white}`}>
@@ -357,14 +365,16 @@ export function AboutC() {
       </section>
 
       {/* ================= WHY HERE (sticky photo split) ================= */}
-      <section className={`${c.why} ${c.white}`}>
+      <section className={`${c.why} ${c.chapter}`}>
         <div className={c.whyMedia}>
           <div className={c.whySticky}>
-            <Image src={HQ.canopy2} alt="The IO entrance canopy under a desert sky" fill sizes="50vw" />
+            <Image src={HQ.blueberry} alt="Blueberry crop trial at Innovation Oasis" fill sizes="50vw" />
           </div>
         </div>
         <div className={c.whyText}>
-          <Eyebrow n="03">Why Here?</Eyebrow>
+          <Eyebrow n="03" light>
+            Why Here?
+          </Eyebrow>
           <h2 className={c.h2} data-split>
             {arid.title}
           </h2>
@@ -478,7 +488,8 @@ export function AboutC() {
       </section>
 
       {/* ================= LOOKING AHEAD ================= */}
-      <section className={`${c.section} ${c.white}`}>
+      <section className={`${c.section} ${c.white} ${c.aheadSec}`}>
+        <img src="/brand/io-mark.svg" alt="" className={c.closeMark} data-mark />
         <div className={`${s.wrap} ${c.grid}`}>
           <div className={c.headRow}>
             <Eyebrow n="08">{ahead.title}</Eyebrow>
