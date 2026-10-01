@@ -38,6 +38,12 @@ Owned by the DESIGNER 1 chat. Record design directions, tokens (colours, type, s
 - Motion: reveal-on-scroll, cycling hero word, scroll-lit belief statement, counters, pillar list with crossfading photo, timeline scroller. All off under `prefers-reduced-motion`.
 - Nav: six sitemap labels exactly, each with a dropdown of its sitemap sub-pages; mobile = full-screen charcoal menu with accordions.
 
+**About variation D** (`/designer1/v1/about-d`, 2026-10-01) — copy of C (C kept for comparison) with the **3D model matched to the aerial photography** (`assets/photos/Archive` 163505 / 163545 / 163812 / 164012):
+- Entrance: low white main building (taller central atrium block = "Collaboration spaces", two lab wings = "Laboratories"), entrance canopy + blue IO sign panel, forecourt with umbrella canopies (perforated), palm-lined drive, gatehouse, totem, roundabout with green island, palm avenue along the main road.
+- Fields: teal windbreak-fenced plot blocks (row crops), white shade-net frame grid, IO Blue irrigation. Greenhouse: ridged multi-span block (10 spans) with crops inside. Service area: two white domes, a glass geodesic dome, round tanks, long service building. Al Foah Farm palm grid across the east road.
+- Tour order follows a walk through the site (`about-d/tour-d.ts`): parcel → collaboration spaces → laboratories → controlled-environment facilities → field-testing areas → greenhouses → masterplan.
+- Honest caveat on the page: "Based on aerial photography · layout indicative". Forms follow the photos; positions are a best guess until the masterplan arrives. Open question for client: whether the large greenhouse blocks in the wide aerial (164012) belong to IO or to Al Foah Farm.
+
 **About variation C — "corporate premium"** (`/designer1/v1/about-c`, 2026-10-01) — answer to feedback "logo-only hero is bad, headings too big, make it Awwwards / akercompanies.com level".
 - Hero = full-bleed photo slideshow (4 HQ shots, crossfade + slow push-in, progress bars per slide). No logo-as-hero; the logo stays in the header only.
 - **Type scale fixed** (why B looked unprofessional: display at ~10.5rem/0.93 line-height with tight tracking reads as a poster, not a corporate site). C caps display at 4.5rem, section heads 2.9rem, statements 2.1rem, weight 400/300, line-height 1.04–1.3, tracking −0.015 to −0.028em. Hierarchy now comes from grid, whitespace and photography.

@@ -14,7 +14,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   // Transparent header over full-bleed heroes until the page scrolls.
-  const overlayPage = [`${BASE}/about`, `${BASE}/about-b`, `${BASE}/about-c`].includes(pathname);
+  const overlayPage = [`${BASE}/about`, `${BASE}/about-b`, `${BASE}/about-c`, `${BASE}/about-d`].includes(pathname);
   const overlay = overlayPage && !scrolled && !open;
 
   useEffect(() => setOpen(false), [pathname]);
