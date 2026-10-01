@@ -38,6 +38,14 @@ Owned by the DESIGNER 1 chat. Record design directions, tokens (colours, type, s
 - Motion: reveal-on-scroll, cycling hero word, scroll-lit belief statement, counters, pillar list with crossfading photo, timeline scroller. All off under `prefers-reduced-motion`.
 - Nav: six sitemap labels exactly, each with a dropdown of its sitemap sub-pages; mobile = full-screen charcoal menu with accordions.
 
+**About variation B — "branded"** (`/designer1/v1/about-b`, `about-b/AboutB.tsx` + `about-b.module.css`, 2026-10-01)
+- Same verbatim PDF copy and order as About A (shared `_lib/copy.ts`).
+- Brand-forward: IO Blue fields (hero, "34 hectares" panel, Why Here split, finale) with the **single-colour white mark** (`public/designer1/brand/io-mark-white-on-blue.svg` = `/brand/io-mark.svg` with fills swapped: shapes white, helix shows the IO Blue ground — guidelines p.7). Letterhead rules (label → line → small mark) open every section and draw in on scroll; the hero rule ends exactly at the "i" stem. Principles as wayfinding signs (blue top bar, turn IO Blue on hover). Team hover = IO Blue veil with the white mark.
+- Layout: **1728px container** for this page incl. nav + footer (`_components/Shell.tsx` sets `data-wide` → `--max: 1728px`); several sections full-bleed (expanding canopy photo, tomato band, gallery, mission, Why Here split, finale).
+- Photography: new **image showcase** (3 rows drifting in opposite directions with scroll), parallax inside every framed photo, canopy photo expands from a framed window to full-bleed (pinned).
+- Images: hero-grade shots use **3200px copies** in `public/designer1/hq/<original folder>/<original filename>` made from the `assets/photos` originals (sharp, q84 mozjpeg). Originals untouched. The Archive aerials are 1919×1079 video stills, so they're only used at smaller sizes.
+- Header over the blue hero uses the white wordmark + white-on-blue mark.
+
 **About page (rebuilt 2026-10-01, "immersive" pass)** — `about/AboutClient.tsx` + `about/about.module.css`.
 - Copy: every string checked programmatically against `docs/source/Innovation_Oasis_About_Page_Content_v2.docx.pdf` (all match, typographic apostrophes as in PDF). Hero statement = "Accelerating the Future of Food Security" (H1), "The future of food security is being built in the desert." as sub, paragraphs follow. Section order = PDF. No invented headlines; no role titles (not in PDF).
 - Motion: Lenis smooth scroll (`_components/SmoothScroll.tsx`, all v1 routes) + GSAP ScrollTrigger/SplitText. Line-mask headline reveals, curtain image reveals, scroll-lit statements, parallax/zoom full-bleed images, pinned "innovation → implementation" moment, pinned "Why Here?" with pressures lighting up, principles as horizontal scroll, journey with sticky year + image, counters. Pins only on ≥1000px wide and ≥700px tall; everything off under reduced motion.

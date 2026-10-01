@@ -1,12 +1,16 @@
 import Link from "next/link";
 
-// Owned by the DESIGNER 1 chat. Lists Designer 1's design directions.
+// Owned by the DESIGNER 1 chat. Lists Designer 1's design directions and page variations.
 const designs = [
   {
-    href: "/designer1/v1",
     name: "v1 — Clear Field",
-    note: "Built from the IO brand guidelines: light hero with IO supergraphic, blue rules into the “i”, deep-green chapters. Home + About.",
-    system: "/designer1/v1/system",
+    note: "Built from the IO brand guidelines. Home + About + design system.",
+    links: [
+      { href: "/designer1/v1", label: "Home" },
+      { href: "/designer1/v1/about", label: "About (A — immersive)" },
+      { href: "/designer1/v1/about-b", label: "About (B — branded)" },
+      { href: "/designer1/v1/system", label: "Design system" },
+    ],
   },
 ];
 
@@ -14,15 +18,19 @@ export default function Designer1Index() {
   return (
     <main style={{ fontFamily: "system-ui, sans-serif", padding: "48px 24px", maxWidth: 640, margin: "0 auto" }}>
       <h1>Designer 1</h1>
-      <ul style={{ paddingLeft: 18 }}>
-        {designs.map((d) => (
-          <li key={d.href} style={{ marginBottom: 12 }}>
-            <Link href={d.href}>{d.name}</Link> · <Link href={d.system}>design system</Link>
-            <br />
-            <small>{d.note}</small>
-          </li>
-        ))}
-      </ul>
+      {designs.map((d) => (
+        <section key={d.name} style={{ marginBottom: 24 }}>
+          <h2 style={{ fontSize: 18, marginBottom: 4 }}>{d.name}</h2>
+          <p style={{ margin: "0 0 8px", color: "#666" }}>{d.note}</p>
+          <ul style={{ paddingLeft: 18, margin: 0 }}>
+            {d.links.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href}>{l.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </main>
   );
 }

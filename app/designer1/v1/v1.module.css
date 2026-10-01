@@ -44,6 +44,10 @@
   overflow-x: clip;
 }
 
+.root[data-wide="true"] {
+  --max: 1728px;
+}
+
 .root *,
 .root *::before,
 .root *::after {
@@ -355,6 +359,29 @@
 
 .header[data-overlay="true"] .logoOnDark {
   display: inline-flex;
+}
+
+/* on IO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
+.logoOnBlue {
+  display: none;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.wordmarkWhite {
+  filter: brightness(0) invert(1);
+}
+
+.root[data-wide="true"] .header[data-overlay="true"] .logoOnDark {
+  display: none;
+}
+
+.root[data-wide="true"] .header[data-overlay="true"] .logoOnBlue {
+  display: inline-flex;
+}
+
+.root[data-wide="true"] .header[data-overlay="true"] .logoSmall img {
+  content: url("/designer1/brand/io-mark-white-on-blue.svg");
 }
 
 .header[data-overlay="true"] .navItem > a[data-active="true"] {

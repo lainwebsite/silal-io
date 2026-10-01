@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   // Transparent header over full-bleed heroes until the page scrolls.
-  const overlayPage = pathname === `${BASE}/about`;
+  const overlayPage = pathname === `${BASE}/about` || pathname === `${BASE}/about-b`;
   const overlay = overlayPage && !scrolled && !open;
 
   useEffect(() => setOpen(false), [pathname]);
@@ -57,6 +58,16 @@ export function Header() {
               </span>
               <span className={s.logoOnDark}>
                 <IoHorizontal height={50} reversed />
+              </span>
+              <span className={s.logoOnBlue}>
+                <img
+                  src="/designer1/brand/io-wordmark-endorsed-reversed.svg"
+                  alt="Innovation Oasis — Part of Silal"
+                  width={110}
+                  height={50}
+                  className={s.wordmarkWhite}
+                />
+                <img src="/designer1/brand/io-mark-white-on-blue.svg" alt="" width={53} height={39} />
               </span>
             </span>
             <span className={s.logoSmall}>
