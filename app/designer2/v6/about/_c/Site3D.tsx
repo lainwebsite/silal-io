@@ -261,12 +261,16 @@ export function Site3D() {
       setFailed(true);
       return;
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.5 : 1.75));
+    // adaptive resolution: start sharp, step down if frames run slow (see tick)
+    const maxDpr = Math.min(window.devicePixelRatio, small ? 1.5 : 1.5);
+    let dpr = maxDpr;
+    renderer.setPixelRatio(dpr);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.NeutralToneMapping;
     renderer.toneMappingExposure = 0.96;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap; // Vogel-disk PCF: soft with shadow.radius
+    renderer.shadowMap.autoUpdate = false; // the scene is static: the shadow map is drawn once
     renderer.domElement.setAttribute("aria-hidden", "true");
     host.appendChild(renderer.domElement);
 
@@ -408,7 +412,7 @@ export function Site3D() {
     const rnd = seeded(7);
 
     // ── ground: desert with dunes beyond, irrigated farm soil ──
-    const dg = geo(new THREE.PlaneGeometry(1400, 1400, 220, 220));
+    const dg = geo(new THREE.PlaneGeometry(1400, 1400, 150, 150));
     const pos = dg.attributes.position as THREE.BufferAttribute;
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i);
@@ -598,7 +602,9 @@ export function Site3D() {
       r.position.set(k % 2 ? 0.7 : -0.7, 0.14, k < 2 ? 0.7 : -0.7);
       drone.add(r);
     }
-    keep(drone);
+    keep(drone, false);
+    drone.position.set(-30, 7, -22);
+    drone.rotation.y = 0.6;
 
     // ── multi-span greenhouses: translucent film over crops, ribbed arches, glazed walls ──
     const spanGeo = (len: number) => {
@@ -667,11 +673,23 @@ export function Site3D() {
           groves.push({ p: [x0 + i * step + (rnd() - 0.5) * 0.6, 1.5 * s, z0 + j * step + (rnd() - 0.5) * 0.6], s: [s, s, s], r: rnd() * 6, c: greens[Math.floor(rnd() * greens.length)] });
         }
     };
-    const st8 = small ? 6.4 : 3.4;
+    const st8 = small ? 6.4 : 3.6;
     grove(-140, 72, Math.round(280 / st8), Math.round(52 / st8), st8);
     grove(110, -110, Math.round(80 / st8), Math.round(180 / st8), st8);
     grove(-120, -150, Math.round(200 / st8), Math.round(26 / st8), st8);
-    inst(crownGeo(1.3, small ? 10 : 14), M.crown, groves, !small);
+    // split into 48-unit tiles so tiles off screen are culled; crowns don't need to receive shadows
+    const crownG = crownGeo(1.3, small ? 9 : 11);
+    const tiles = new Map<string, Item[]>();
+    groves.forEach((g) => {
+      const key = `${Math.floor(g.p[0] / 48)}:${Math.floor(g.p[2] / 48)}`;
+      if (!tiles.has(key)) tiles.set(key, []);
+      tiles.get(key)!.push(g);
+    });
+    tiles.forEach((items) => {
+      const im = inst(crownG, M.crown, items, true);
+      im.receiveShadow = false;
+      im.computeBoundingSphere();
+    });
 
     // ── post: MSAA composer + soft contact shading (desktop) ──
     let composer: EffectComposer | null = null;
@@ -680,8 +698,12 @@ export function Site3D() {
       composer = new EffectComposer(renderer, rt);
       composer.addPass(new RenderPass(scene, camera));
       const ao = new GTAOPass(scene, camera, 1, 1);
-      ao.updateGtaoMaterial({ radius: 3.2, distanceExponent: 1.8, thickness: 2, scale: 1.15, samples: 16 });
+      ao.updateGtaoMaterial({ radius: 3.2, distanceExponent: 1.8, thickness: 2, scale: 1.15, samples: 8 });
+      ao.updatePdMaterial({ samples: 8, radius: 6 });
       ao.blendIntensity = 0.8;
+      // occlusion at half resolution: it is soft anyway, and costs a quarter
+      const aoSize = ao.setSize.bind(ao);
+      ao.setSize = (w: number, h: number) => aoSize(Math.ceil(w / 2), Math.ceil(h / 2));
       composer.addPass(ao);
       composer.addPass(new OutputPass());
     }
@@ -706,7 +728,9 @@ export function Site3D() {
       camera.aspect = W / H;
       camera.fov = W / H < 1 ? 46 : 30;
       camera.updateProjectionMatrix();
+      dirty = true;
     };
+    let dirty = true;
     resize();
     const ro = new ResizeObserver(resize);
     ro.observe(host);
@@ -733,25 +757,55 @@ export function Site3D() {
     });
 
     let visible = false;
-    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { rootMargin: "200px" });
+    const io = new IntersectionObserver(
+      ([e]) => {
+        visible = e.isIntersecting;
+        dirty = true;
+      },
+      { rootMargin: "200px" },
+    );
     io.observe(host);
 
     const v = new THREE.Vector3();
     const side: number[] = stops.map(() => 1);
     const cardOp = stops.map(() => 0);
-    const tick = (time: number, dt: number) => {
+    const lastPos = new THREE.Vector3(1e9, 0, 0);
+    const lastLook = new THREE.Vector3();
+    let shadowsDone = false;
+    let slow = 0;
+    const tick = (_time: number, dt: number) => {
       if (!visible) return;
       const k = reduce ? 1 : 1 - Math.pow(0.004, Math.min(dt, 50) / 1000);
       camPos.lerp(goal.pos, k);
       camLook.lerp(goal.look, k);
       camera.position.copy(camPos);
       camera.lookAt(camLook);
-      if (!reduce) {
-        drone.position.set(-34 + Math.sin(time * 0.35) * 12, 7 + Math.sin(time * 1.4) * 0.25, -24 + Math.cos(time * 0.35) * 8);
-        drone.rotation.y = -time * 0.35;
+      // render on demand: only while the camera is still travelling (the scene itself never moves)
+      const moving = camPos.distanceToSquared(lastPos) > 1e-6 || camLook.distanceToSquared(lastLook) > 1e-6;
+      if (moving || dirty) {
+        lastPos.copy(camPos);
+        lastLook.copy(camLook);
+        dirty = false;
+        if (!shadowsDone) {
+          renderer.shadowMap.needsUpdate = true;
+          shadowsDone = true;
+        }
+        if (composer) composer.render();
+        else renderer.render(scene, camera);
+        // adaptive quality: measure the frame interval while rendering, step resolution down if slow
+        if (dt > 0 && dt < 200) {
+          slow = slow * 0.9 + (dt > 26 ? 1 : 0) * 0.1;
+          if (slow > 0.6 && dpr > 1) {
+            dpr = Math.max(1, dpr - 0.25);
+            renderer.setPixelRatio(dpr);
+            resize();
+            slow = 0;
+          } else if (slow > 0.6 && composer && dpr <= 1) {
+            composer.passes[1].enabled = false; // last resort on weak GPUs: drop the occlusion pass
+            slow = 0;
+          }
+        }
       }
-      if (composer) composer.render();
-      else renderer.render(scene, camera);
 
       // cards + dots follow their points on screen
       const i = Math.floor(raw);
