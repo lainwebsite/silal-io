@@ -157,5 +157,24 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 
 **Open:** 3D layout is illustrative (masterplan requested by Designer 1 would make it real); team roles; Virtual Tour + LinkedIn URLs; Bukra webfont; real-device frame-rate test of the two WebGL scenes.
 
+### v5 — About IO in the IO guideline language (2026-10-02)
+- Live: `/designer2/v5/about`. Current Designer 2 About.
+- Client feedback on v4: more professional and polished, keep the scroll-driven sections, **but it is not Silal** — e.g. the chamfered buttons/rectangles (Anthem's shapes), Hut 8's pill, lime/colour tiles, the sliced logo. Brief: re-read everything, info first, clear sections, scroll-driven, polished 3D; check as Silal, then as an Awwwards judge.
+- Re-read the guidelines PDF page by page (pp. 4, 13, 21–31 rendered). The IO language used everywhere now:
+  - **Light, bright, uncluttered** ("website homepage layout that feels light, bright and cutting-edge", p.27). White pages; light grey panels.
+  - **Square corners.** No chamfers, no pills. The only round form is the **O of the mark** — used for link buttons (text + blue O), pins, step dots, the Virtual Tour button.
+  - **Thin IO-Blue hairlines**: under the header, under every chapter header, above the footer; in the hero the line **drops from the stem of the "i" and runs back under the title** (website mock p.27).
+  - **"io" in IO Blue inside words** ("explorat-io-n"): implementation, Innovation (component `Io`, kept unbreakable so line animations can't split the word).
+  - **Guideline page header** on every chapter: mark + bold charcoal title + IO-Blue subtitle + number right + hairline (`Head`).
+  - **Square charcoal / IO-Blue cards** with a photo on top overlapping the hero photo (p.27), reused for the facts.
+  - **Wayfinding panel** (p.26): white with an IO-Blue top rule — the 3D tour card, terrain copy, pins.
+  - **Charcoal pages** (story, the list), **deep-green leaf chapter cover** (mission), **back cover** footer (mark + hairline dropping from the "i" + wordmark + address).
+  - Core colours dominate; green only for the mission chapter; no lime/orange/pink.
+  - Header after the mock: "Part of Silal · جزء من سلال" in clear space at the top (always visible), wordmark only (cropped view `public/designer2/brand/io-wordmark.svg`, official paths), six sitemap labels in IO Blue, "contact" small above, hairline below; hover = white dropdown with the category's pages + photo; small mark joins the bar after the hero.
+- Information first (checked "as Silal"): hero cards answer *where / what / whose* (34 ha beside Al Foah Farm, Al Ain · Silal's R&D and venture engine · inaugurated 2024); facts track (2020, 2021, 34 ha, 2024, 2030 — all from the copy); every paragraph of `content/about.md` present, verbatim, in order; the five platforms list their **real sitemap pages** (v4's invented one-line blurbs removed); 3D labels use the copy's own words (field-testing areas, laboratories and greenhouses, collaboration spaces, "the proving ground"; pins incl. the sitemap's Solar Desalination).
+- Kept from v4 (scroll-driven): hero photo growing to full bleed, words that brighten, pinned facts and team tracks, photo-hold under the charcoal story page, white 3D site tour (now with GTAO contact shading on desktop), dot terrain with the five pressure spikes, the list running past the hairline, IO-Blue bar through the principles, sticky journey (square frame wipes; year in an IO-Blue card).
+- Self-review fixes before presenting: "Innovat|ion" split by the line animation (fixed), hero cards below the fold at 900px (photo shortened), list scrolling under the chapter header (fade), hero photo trigger starting mid-way (re-anchored), duplicate "Part of Silal" (wordmark-only crop), mobile hero title squeezed by the mark / photo overlapping the title (re-laid), 3D header crowding on phones.
+- Open: Virtual Tour URL (button is `#`), team roles/bios, Bukra webfont, masterplan for an accurate 3D site, real-device frame-rate test.
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.

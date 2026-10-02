@@ -1,0 +1,649 @@
+/* Designer 2 · v5 — shell in the IO guideline language (docs/source/Innovation_Oasis_Guidelines.pdf):
+   light and bright white pages, thin IO-Blue hairlines, square corners, the O of the mark as the only
+   round form, "io" set in IO Blue inside words, charcoal + IO-Blue panels, deep-green leaf chapters. */
+
+.root {
+  --io: #3ca7d2;
+  --io-ink: #1c7299; /* IO-Blue tint for small text on white (5.4:1) */
+  --io-mist: #b8e0f0; /* IO-Blue tint for small text on charcoal */
+  --charcoal: #595453;
+  --ink: #3f3b3a; /* deep charcoal for long body text */
+  --grey: #7f8284;
+  --grey-ink: #6e7173;
+  --light: #f1f1f1;
+  --white: #ffffff;
+  --green-dark: #015825;
+  --hair: 1px solid var(--io);
+  --line: rgb(89 84 83 / 0.14);
+
+  --f: var(--font-d5), "29LT Bukra", Arial, sans-serif;
+  --gx: clamp(20px, 4.4vw, 84px);
+  --max: 1600px;
+  --nav-h: 104px;
+  --expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  font-family: var(--f);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--charcoal);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+.root :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+.root :where(img) {
+  display: block;
+  max-width: 100%;
+}
+.root :where(ul, ol) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.root :where(h1, h2, h3, h4, p, blockquote, figure, address) {
+  margin: 0;
+}
+.root :where(button) {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.root :focus-visible {
+  outline: 2px solid var(--io);
+  outline-offset: 3px;
+}
+.root ::selection {
+  background: var(--io);
+  color: #fff;
+}
+.skip {
+  position: fixed;
+  z-index: 200;
+  top: -80px;
+  left: 16px;
+  padding: 10px 16px;
+  background: var(--charcoal);
+  color: #fff;
+}
+.skip:focus {
+  top: 16px;
+}
+
+/* ---------- brand primitives ---------- */
+
+.io {
+  color: var(--io);
+}
+.ioWord {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* guideline page header */
+.head {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 16px;
+  padding-bottom: 18px;
+}
+.headDot {
+  width: 30px;
+  height: 22px;
+  background: url("/brand/io-mark.svg") center / contain no-repeat;
+}
+.headTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 1.3;
+}
+.headTitle b {
+  font-weight: 600;
+  color: var(--charcoal);
+}
+.headTitle span {
+  color: var(--io-ink);
+}
+.headNum {
+  font-size: 13px;
+  color: var(--io-ink);
+  font-variant-numeric: tabular-nums;
+}
+.headRule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--io);
+  transform-origin: left center;
+}
+.head[data-tone-h="dark"] .headTitle b {
+  color: #fff;
+}
+.head[data-tone-h="dark"] .headTitle span,
+.head[data-tone-h="dark"] .headNum {
+  color: var(--io-mist);
+}
+
+/* text link that ends in the O */
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+.goText {
+  background: linear-gradient(var(--io), var(--io)) no-repeat 0 100% / 100% 1px;
+  padding-bottom: 3px;
+  transition: background-size 0.6s var(--expo);
+}
+.goO {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--io);
+  color: #fff;
+  transition: transform 0.6s var(--expo), background-color 0.3s;
+}
+.goO svg {
+  width: 16px;
+  height: 16px;
+}
+.go:hover .goText {
+  background-size: 0 1px;
+  background-position: 100% 100%;
+}
+.go:hover .goO {
+  transform: translateX(4px);
+  background: var(--io-ink);
+}
+.go[data-light] {
+  color: #fff;
+}
+
+/* ---------- header (guideline website mock p.27) ---------- */
+
+.nav {
+  position: fixed;
+  z-index: 70;
+  inset-inline: 0;
+  top: 0;
+  background: rgb(255 255 255 / 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.endorse {
+  padding: 8px var(--gx) 0;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--io-ink);
+  height: 24px;
+  transition: height 0.5s var(--expo), opacity 0.4s, padding 0.5s var(--expo);
+  overflow: hidden;
+}
+.navRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  padding: 6px var(--gx) 14px;
+}
+.brand {
+  flex: none;
+}
+.word {
+  height: 34px;
+  width: auto;
+  transition: height 0.5s var(--expo);
+}
+.links {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.contact {
+  font-size: 12px;
+  color: var(--grey-ink);
+}
+.contact:hover {
+  color: var(--io-ink);
+}
+.links ul {
+  display: flex;
+  gap: clamp(14px, 1.6vw, 28px);
+}
+.links ul a {
+  position: relative;
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--io-ink);
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+.links ul a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -15px;
+  height: 2px;
+  background: var(--io);
+  transform: scaleX(0);
+  transition: transform 0.5s var(--expo);
+}
+.links ul a[data-on]::after,
+.links ul a:hover::after {
+  transform: scaleX(1);
+}
+.navMark {
+  flex: none;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: width 0.6s var(--expo), opacity 0.4s;
+}
+.navMark img {
+  height: 40px;
+  width: auto;
+}
+.nav[data-scrolled] .navMark {
+  width: 56px;
+  opacity: 1;
+}
+.nav[data-scrolled] .word {
+  height: 30px;
+}
+.navRule {
+  display: block;
+  height: 1px;
+  margin-inline: var(--gx);
+  background: var(--io);
+}
+.menuBtn {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+.menuLines {
+  position: relative;
+  width: 14px;
+  height: 1.5px;
+  background: currentColor;
+  transition: background-color 0.3s;
+}
+.menuLines::before,
+.menuLines::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.4s var(--expo);
+}
+.menuLines::before {
+  top: -4.5px;
+}
+.menuLines::after {
+  top: 4.5px;
+}
+.menuLines[data-x] {
+  background: transparent;
+}
+.menuLines[data-x]::before {
+  transform: translateY(4.5px) rotate(45deg);
+}
+.menuLines[data-x]::after {
+  transform: translateY(-4.5px) rotate(-45deg);
+}
+
+/* dropdown */
+.drop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: #fff;
+  border-bottom: var(--hair);
+  box-shadow: 0 30px 50px -40px rgb(89 84 83 / 0.5);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.55s var(--expo);
+}
+.drop[data-open] {
+  clip-path: inset(0 0 0 0);
+}
+.dropInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 48px;
+  padding: 36px var(--gx) 40px;
+  max-width: var(--max);
+  margin-inline: auto;
+  animation: fadeUp 0.5s var(--expo);
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.dropKick {
+  font-size: 12px;
+  color: var(--io-ink);
+}
+.dropTitle {
+  margin: 10px 0 18px;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.dropAll {
+  font-size: 14px;
+  color: var(--io-ink);
+}
+.dropList {
+  columns: 2;
+  column-gap: 32px;
+}
+.dropList a {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  break-inside: avoid;
+  transition: color 0.3s, border-color 0.3s;
+}
+.dropList a span {
+  color: var(--io);
+}
+.dropList a:hover {
+  color: var(--io-ink);
+  border-color: var(--io);
+}
+.dropImg {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--light);
+}
+.dropImg img {
+  object-fit: cover;
+}
+
+/* small-screen sheet */
+.sheet {
+  position: fixed;
+  z-index: 65;
+  inset: 0;
+  padding: 120px var(--gx) 32px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+.sheet[hidden] {
+  display: none;
+}
+.sheet li {
+  border-bottom: 1px solid var(--line);
+}
+.mask {
+  display: block;
+  overflow: hidden;
+}
+.mask > span {
+  display: block;
+}
+.sheet a {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 14px 0;
+  font-weight: 500;
+  font-size: clamp(24px, 6vw, 40px);
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+}
+.sheet a small {
+  font-size: 11px;
+  color: var(--io-ink);
+}
+.sheetFoot {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 18px;
+  border-top: var(--hair);
+  font-size: 14px;
+  color: var(--io-ink);
+}
+
+/* ---------- footer (guideline back cover) ---------- */
+
+.footer {
+  position: relative;
+  background: #fff;
+  padding: 0 var(--gx);
+  overflow: hidden;
+}
+.footRule {
+  display: block;
+  height: 1px;
+  background: var(--io);
+}
+.footTop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-top: clamp(64px, 10vh, 120px);
+}
+.footKick {
+  font-size: 12px;
+  color: var(--io-ink);
+  margin-bottom: 14px;
+}
+.footTag {
+  font-weight: 400;
+  font-size: clamp(30px, 3vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--io);
+  max-width: 12ch;
+}
+.footAr {
+  margin-top: 14px;
+  font-size: clamp(18px, 1.6vw, 26px);
+  color: var(--io);
+  text-align: start;
+}
+.footCol > p:first-child {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--charcoal);
+}
+.footCol li + li {
+  margin-top: 6px;
+}
+.footCol a {
+  font-size: 15px;
+  color: var(--ink);
+  transition: color 0.3s;
+}
+.footCol a:hover {
+  color: var(--io-ink);
+}
+.footTime {
+  display: flex;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--grey-ink);
+}
+.sign {
+  position: relative;
+  max-width: var(--max);
+  margin: clamp(64px, 10vh, 120px) auto 0;
+  height: clamp(320px, 46vh, 520px);
+}
+.signMark {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: clamp(180px, 22vw, 360px);
+}
+.signMark img {
+  width: 100%;
+  height: auto;
+}
+/* the hairline drops from the stem of the "i" (left edge of the mark) to the page foot */
+.signLine {
+  position: absolute;
+  left: 1.2%;
+  top: 99%;
+  width: 1px;
+  height: 100vh;
+  background: var(--io);
+}
+.signText {
+  position: absolute;
+  right: calc(clamp(180px, 22vw, 360px) * 0.988 + 24px);
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  text-align: right;
+}
+.signWord {
+  height: 72px;
+  width: auto;
+}
+.signText address {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-style: normal;
+  font-size: 12px;
+  color: var(--grey-ink);
+}
+.footBase {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 18px 0 24px;
+  border-top: var(--hair);
+  font-size: 12px;
+  color: var(--grey-ink);
+  background: #fff;
+}
+.footBase ul {
+  display: flex;
+  gap: 18px;
+}
+.footBase a:hover {
+  color: var(--io-ink);
+}
+.footUp {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--charcoal);
+}
+.footUp span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 8px;
+  border-radius: 50%;
+  background: var(--io);
+  color: #fff;
+  transition: transform 0.5s var(--expo);
+}
+.footUp:hover span {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1180px) {
+  .links {
+    display: none;
+  }
+  .menuBtn {
+    display: inline-flex;
+  }
+  .drop {
+    display: none;
+  }
+  .navMark {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .root {
+    --nav-h: 92px;
+  }
+  .footTop {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footLead {
+    grid-column: 1 / -1;
+  }
+  .signText {
+    right: auto;
+    left: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+@media (max-width: 560px) {
+  .word {
+    height: 28px;
+  }
+  .footTop {
+    grid-template-columns: 1fr;
+  }
+  .signMark {
+    width: 140px;
+  }
+  .signWord {
+    height: 56px;
+  }
+  .footUp {
+    margin-left: 0;
+  }
+}

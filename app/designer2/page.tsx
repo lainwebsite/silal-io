@@ -3,8 +3,14 @@ import Link from "next/link";
 // Owned by the DESIGNER 2 chat. Index of Designer 2's directions.
 const designs = [
   {
+    href: "/designer2/v5/about",
+    name: "v5 — About IO in the Silal / IO guideline language (current)",
+    note: "v4's scroll-driven chapters rebuilt in the brand book's own language: the website mock-up hero, guideline page headers, IO-Blue hairlines, square charcoal / IO-Blue cards, 'io' in blue inside words, the back-cover footer, a polished white 3D site.",
+    pages: [{ href: "/designer2/v5/about", label: "About IO" }],
+  },
+  {
     href: "/designer2/v4/about",
-    name: "v4 — About IO, Hut 8 × Anthem (current)",
+    name: "v4 — About IO, Hut 8 × Anthem",
     note: "Observed and adapted from hut8.com and anthem.co.za: corner-cutting photo panels, colour fact tiles, white isometric 3D site in layers, dot-terrain 'Why Here?', giant scrolling list, moving highlight bar, morphing process frame, striped-mark footer.",
     pages: [{ href: "/designer2/v4/about", label: "About IO" }],
   },
