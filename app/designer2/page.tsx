@@ -3,8 +3,14 @@ import Link from "next/link";
 // Owned by the DESIGNER 2 chat. Index of Designer 2's directions.
 const designs = [
   {
+    href: "/designer2/v6/about",
+    name: "v6 — About IO, compact and clean (current)",
+    note: "One type/grid/motion system. Hero photo closes into a card and the 'at a glance' collage builds around it; one Our Story section; a detailed 3D model of the real site with cards beside each point; hover photos on the platforms; leadership in one screen; sticky team; Why Here as constraint → testbed and a dotted world map; a clear 'different' grid with flow line.",
+    pages: [{ href: "/designer2/v6/about", label: "About IO" }],
+  },
+  {
     href: "/designer2/v5/about",
-    name: "v5 — About IO in the Silal / IO guideline language (current)",
+    name: "v5 — About IO in the Silal / IO guideline language",
     note: "v4's scroll-driven chapters rebuilt in the brand book's own language: the website mock-up hero, guideline page headers, IO-Blue hairlines, square charcoal / IO-Blue cards, 'io' in blue inside words, the back-cover footer, a polished white 3D site.",
     pages: [{ href: "/designer2/v5/about", label: "About IO" }],
   },
