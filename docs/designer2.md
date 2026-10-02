@@ -209,5 +209,11 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Same type system and label/content grid as v7. Phones: tracks stack vertically, no sideways scroll. Reduced motion: each section keeps its own static colour, nothing pinned.
 - Checked 1440×900, 390×844, reduced motion.
 
+### v9 — v2 About, polished (2026-10-02)
+- Live: `/designer2/v9/about`. Client: take v2, make the fonts more consistent (too big in some sections), tidier and more polished — as a new variation, v2 untouched.
+- Copied v2 to `v9/` (own keys: `__d9lenis`, `data-d9m`, `--font-d9-brand`, `/designer2/v9`). Layout, photos, copy and motion unchanged.
+- **One type scale** (`v9/chrome.module.css`): `--t-display` 40–68px · `--t-h1` 32–50 · `--t-h2` 25–36 · `--t-h3` 19–24 · `--t-lead` 17–20 · `--t-body` 16 · `--t-small` 14 · `--t-label` 12. Every font-size in the page and chrome now uses one of them (v2 had ~40 ad-hoc sizes, up to 220px). Mapped by original size: ≥120 → display (hero title, 34-ha figure, CEO quote), 64–119 → h1 (chapter titles, big statements), 40–63 → h2, 26–39 → h3, 19–25 → lead, 16–18 → body, 14–15 → small, ≤13 → label.
+- Per level: letter-spacing (display −0.03em … lead −0.005em) and minimum line-height normalised; weights reduced to Light 300 / Regular 400 (500/600 removed). Heading measures (`max-width` in ch) widened to suit the smaller sizes.
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.
