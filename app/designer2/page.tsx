@@ -3,8 +3,14 @@ import Link from "next/link";
 // Owned by the DESIGNER 2 chat. Index of Designer 2's directions.
 const designs = [
   {
+    href: "/designer2/v7/about",
+    name: "v7 — About IO, simple and professional (current)",
+    note: "No 3D. One layout rule for every section (small label left, content right), light headings, one dark band, IO-Blue accents only. Split text/photo story, platform accordion, CEO quote card, team cards, pressure cards, journey slider, photo CTA. Subtle motion: line reveals, fade-ups, image parallax.",
+    pages: [{ href: "/designer2/v7/about", label: "About IO" }],
+  },
+  {
     href: "/designer2/v6/about",
-    name: "v6 — About IO, compact and clean (current)",
+    name: "v6 — About IO, compact and clean",
     note: "One type/grid/motion system. Hero photo closes into a card and the 'at a glance' collage builds around it; one Our Story section; a detailed 3D model of the real site with cards beside each point; hover photos on the platforms; leadership in one screen; sticky team; Why Here as constraint → testbed and a dotted world map; a clear 'different' grid with flow line.",
     pages: [{ href: "/designer2/v6/about", label: "About IO" }],
   },
