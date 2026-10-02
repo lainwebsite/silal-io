@@ -202,5 +202,12 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - **Motion**: headings rise by line, items fade up (batched), image frames open once + parallax drift, photo bands drift, flow line draws, accordion via CSS grid rows. No pinning, no WebGL. Reduced motion: static.
 - Checked 1440×900 and 390×844.
 
+### v8 — About IO, one continuous page (2026-10-02)
+- Live: `/designer2/v8/about`. Current Designer 2 About. Client on v7: "nice, clean"; v8 = new build, still clean and professional with consistent text, but GSAP / between-section motion pushed so sections don't read as separate blocks.
+- **Seamless chapters**: sections carry `data-theme` (light / paper / dark / green) instead of backgrounds. Motion mixes the page colour vars (`--bg --fg --soft --line --card --accent`, all rgba) from one theme to the next over a short scroll window, header included (it takes the page colour; the logo swaps to the official reversed wordmark in dark chapters). A fixed chapter thread (bottom left: number, progress hairline, name) runs through the whole page and steps aside for the footer.
+- **Moments**: hero photo opens from a card to the full screen, the at-a-glance facts rise on it, then it dims to the exact dark of the introduction (the colour hand-over happens while it still fills the screen) · introduction words brighten · Our Story: one sticky photo wiped by each beat, scrubbed both ways, year tags · "The world had innovation. What it lacked was implementation." fills as you read · "A place where…" and Our Journey: horizontal tracks driven by vertical scroll (CSS sticky, section height = track length; no pin-spacers) with image parallax, progress hairline, journey year that turns · platforms list with a sticky photo that follows the row at the centre · CEO photo opens · team columns drift at different speeds · Why Here: constraint (grey) → testbed wipe with the headline swap, pressures light in turn · Different: icons draw, flow line runs · mission and closing photo cards open to the full width · principles: the row at the centre is lit.
+- Same type system and label/content grid as v7. Phones: tracks stack vertically, no sideways scroll. Reduced motion: each section keeps its own static colour, nothing pinned.
+- Checked 1440×900, 390×844, reduced motion.
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.
