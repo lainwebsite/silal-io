@@ -8,6 +8,8 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { GTAOPass } from "three/examples/jsm/postprocessing/GTAOPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import a from "../about.module.css";
@@ -21,6 +23,9 @@ gsap.registerPlugin(ScrollTrigger);
  * building with its perforated canopy "trees", the roundabout, gatehouse and shaded car parks; fenced
  * trial plots, rows of shade cages, multi-span greenhouses, the blue dome and water tanks; the date
  * palms of Al Foah Farm across the road; desert beyond. Illustrative, not to scale.
+ * Look: architectural-visualisation finish, not low poly — rounded edges, smooth crowns, folded palm
+ * fronds, translucent ribbed greenhouse film, perforated canopies that throw dappled shade; lit by a
+ * low warm sun (soft PCF shadows) + image-based fill, with MSAA and ambient occlusion (desktop).
  * The camera holds at each stop (long enough to read), then eases to the next. At each stop a card
  * (photo + copy) sits beside the point it describes and follows it on screen.
  */
@@ -70,47 +75,167 @@ const stops: { name: string; text: string; src: string; at: V3; cam: V3; look: V
 ];
 const N = stops.length;
 
-// ── materials / helpers ──────────────────────────────────────────────────────────────────────────
-function stripes(n: number, bg: string, fg: string, w = 0.42) {
+// ── generated textures + geometry helpers ─────────────────────────────────────────────────────
+// canvas textures (generated, no assets)
+function canvasTex(w: number, h: number, draw: (g: CanvasRenderingContext2D) => void, repeat?: [number, number], srgb = true) {
   const c = document.createElement("canvas");
-  c.width = c.height = 256;
-  const g = c.getContext("2d")!;
-  g.fillStyle = bg;
-  g.fillRect(0, 0, 256, 256);
-  g.fillStyle = fg;
-  const s = 256 / n;
-  for (let i = 0; i < n; i++) g.fillRect(i * s + s * (1 - w) * 0.5, 0, s * w, 256);
+  c.width = w;
+  c.height = h;
+  draw(c.getContext("2d")!);
   const t = new THREE.CanvasTexture(c);
-  t.colorSpace = THREE.SRGBColorSpace;
+  if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  if (repeat) t.repeat.set(...repeat);
   t.anisotropy = 8;
   return t;
 }
-function grain() {
-  // fine sand grain + wind ripples, multiplied over the sand colour
-  const c = document.createElement("canvas");
-  c.width = c.height = 512;
-  const g = c.getContext("2d")!;
-  g.fillStyle = "#ffffff";
-  g.fillRect(0, 0, 512, 512);
-  let s = 3;
-  const r = () => ((s = (s * 16807) % 2147483647) / 2147483647);
-  for (let i = 0; i < 9000; i++) {
-    const v = 236 + Math.floor(r() * 16);
-    g.fillStyle = `rgb(${v},${v - 4},${v - 10})`;
-    g.fillRect(r() * 512, r() * 512, 1 + r() * 2, 1 + r() * 2);
+const seeded = (s: number) => () => ((s = (s * 16807) % 2147483647) / 2147483647);
+
+// crop rows: light/dark bands, used as colour map and as bump
+const rows = (n: number, w = 0.45) =>
+  canvasTex(256, 256, (g) => {
+    g.fillStyle = "#fff";
+    g.fillRect(0, 0, 256, 256);
+    const r = seeded(11);
+    const s = 256 / n;
+    for (let i = 0; i < n; i++) {
+      g.fillStyle = `rgb(${150 + r() * 30},${165 + r() * 25},${140 + r() * 20})`;
+      g.fillRect(i * s + s * (1 - w) * 0.5, 0, s * w, 256);
+    }
+    for (let i = 0; i < 1400; i++) {
+      g.fillStyle = `rgba(255,255,255,${r() * 0.25})`;
+      g.fillRect(r() * 256, r() * 256, 2, 2);
+    }
+  });
+
+// sand: fine grain + wind ripples (colour and bump)
+const sandGrain = () =>
+  canvasTex(
+    512,
+    512,
+    (g) => {
+      g.fillStyle = "#fff";
+      g.fillRect(0, 0, 512, 512);
+      const r = seeded(3);
+      for (let i = 0; i < 12000; i++) {
+        const v = 232 + Math.floor(r() * 20);
+        g.fillStyle = `rgb(${v},${v - 5},${v - 12})`;
+        g.fillRect(r() * 512, r() * 512, 1 + r() * 2, 1 + r() * 2);
+      }
+      g.strokeStyle = "rgba(190,170,140,0.16)";
+      g.lineWidth = 2;
+      for (let y = 0; y < 512; y += 11) {
+        g.beginPath();
+        for (let x = 0; x <= 512; x += 8) g.lineTo(x, y + Math.sin(x * 0.025 + y * 0.7) * 4);
+        g.stroke();
+      }
+    },
+    [60, 60],
+  );
+
+// perforation for the canopy "trees": holes get larger towards the rim (alpha: black = hole)
+const perforation = () =>
+  canvasTex(
+    256,
+    256,
+    (g) => {
+      g.fillStyle = "#fff";
+      g.fillRect(0, 0, 256, 256);
+      g.fillStyle = "#000";
+      const r = seeded(5);
+      for (let i = 0; i < 700; i++) {
+        const y = r() * 256;
+        const rad = 1 + (y / 256) * 5.5 * r();
+        g.beginPath();
+        g.arc(r() * 256, y, rad, 0, Math.PI * 2);
+        g.fill();
+      }
+    },
+    [6, 1],
+    false,
+  );
+
+// greenhouse film: arched ribs along the length and a faint gutter line
+const film = () =>
+  canvasTex(64, 256, (g) => {
+    g.fillStyle = "#fff";
+    g.fillRect(0, 0, 64, 256);
+    g.fillStyle = "rgba(170,178,170,0.55)";
+    for (let y = 0; y < 256; y += 32) g.fillRect(0, y, 64, 2);
+    g.fillStyle = "rgba(200,206,198,0.5)";
+    g.fillRect(31, 0, 2, 256);
+  });
+
+// glazing: mullions on glass
+const glazing = (bg: string, line: string, n: number) =>
+  canvasTex(256, 64, (g) => {
+    g.fillStyle = bg;
+    g.fillRect(0, 0, 256, 64);
+    g.fillStyle = line;
+    for (let i = 0; i <= n; i++) g.fillRect((i * 256) / n - 1, 0, 3, 64);
+    g.fillRect(0, 0, 256, 3);
+    g.fillRect(0, 61, 256, 3);
+  });
+
+// road: asphalt with dashed centre line and edge lines
+const roadTex = () =>
+  canvasTex(512, 64, (g) => {
+    g.fillStyle = "#a5a29c";
+    g.fillRect(0, 0, 512, 64);
+    const r = seeded(9);
+    for (let i = 0; i < 1500; i++) {
+      g.fillStyle = `rgba(${r() > 0.5 ? "255,255,255" : "60,60,60"},0.07)`;
+      g.fillRect(r() * 512, r() * 64, 2, 2);
+    }
+    g.fillStyle = "rgba(255,255,255,0.85)";
+    for (let x = 0; x < 512; x += 64) g.fillRect(x, 31, 34, 2);
+    g.fillRect(0, 4, 512, 2);
+    g.fillRect(0, 58, 512, 2);
+  });
+
+// a soft lumpy sphere for tree crowns (smooth, not faceted)
+function crownGeo(rad: number, seg: number) {
+  const g = new THREE.SphereGeometry(rad, seg, Math.round(seg * 0.7));
+  const p = g.attributes.position as THREE.BufferAttribute;
+  const v = new THREE.Vector3();
+  for (let i = 0; i < p.count; i++) {
+    v.fromBufferAttribute(p, i);
+    const n = 1 + 0.09 * Math.sin(v.x * 3.1 + 1.3) * Math.sin(v.y * 2.7) * Math.sin(v.z * 3.3 + 0.4) + 0.05 * Math.sin(v.x * 7 + v.z * 5);
+    v.multiplyScalar(n);
+    v.y *= v.y < 0 ? 0.55 : 0.88;
+    p.setXYZ(i, v.x, v.y, v.z);
   }
-  g.strokeStyle = "rgba(200,180,150,0.18)";
-  for (let y = 0; y < 512; y += 9) {
-    g.beginPath();
-    for (let x = 0; x <= 512; x += 16) g.lineTo(x, y + Math.sin(x * 0.03 + y) * 3);
-    g.stroke();
+  g.computeVertexNormals();
+  return g;
+}
+
+// one palm frond: tapered, folded along its rib, arching up then drooping
+function frondGeo() {
+  const segs = 10;
+  const len = 2.5;
+  const pos: number[] = [];
+  const uv: number[] = [];
+  const idx: number[] = [];
+  for (let i = 0; i <= segs; i++) {
+    const t = i / segs;
+    const w = 0.42 * Math.sin(Math.PI * Math.min(1, t * 1.15)) * (1 - t * 0.35);
+    const y = 0.7 * t - 1.35 * t * t;
+    for (const s of [-1, 0, 1]) {
+      pos.push(t * len, y + (s === 0 ? 0.06 : -0.04 * Math.abs(s)), s * w);
+      uv.push(t, (s + 1) / 2);
+    }
   }
-  const t = new THREE.CanvasTexture(c);
-  t.colorSpace = THREE.SRGBColorSpace;
-  t.wrapS = t.wrapT = THREE.RepeatWrapping;
-  t.repeat.set(70, 70);
-  t.anisotropy = 8;
-  return t;
+  for (let i = 0; i < segs; i++)
+    for (let k = 0; k < 2; k++) {
+      const a = i * 3 + k;
+      idx.push(a, a + 3, a + 1, a + 1, a + 3, a + 4);
+    }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
 }
 const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -139,68 +264,104 @@ export function Site3D() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.5 : 1.75));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.NeutralToneMapping;
-    renderer.toneMappingExposure = 1.02;
-    renderer.shadowMap.enabled = !small;
-    renderer.shadowMap.type = THREE.PCFShadowMap;
+    renderer.toneMappingExposure = 0.96;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap; // Vogel-disk PCF: soft with shadow.radius
     renderer.domElement.setAttribute("aria-hidden", "true");
     host.appendChild(renderer.domElement);
 
+    const bin: { dispose: () => void }[] = [];
     const scene = new THREE.Scene();
-    const haze = new THREE.Color("#efece6");
+    const haze = new THREE.Color("#eee8de");
     scene.background = haze;
-    scene.fog = new THREE.Fog(haze, 220, 520);
+    scene.fog = new THREE.Fog(haze, 380, 820);
     const camera = new THREE.PerspectiveCamera(30, 1, 1, 900);
 
-    scene.add(new THREE.HemisphereLight("#f4f8fb", "#d8c5a4", 1.35));
-    const sun = new THREE.DirectionalLight("#fff6ea", 2.5);
-    sun.position.set(-70, 110, 60);
-    sun.castShadow = !small;
-    sun.shadow.mapSize.set(4096, 4096);
+    // light: soft image-based fill (studio room) + a low warm sun for long, soft shadows
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const room = new RoomEnvironment();
+    const env = pmrem.fromScene(room, 0.04).texture;
+    room.dispose();
+    pmrem.dispose();
+    bin.push(env);
+    scene.environment = env;
+    scene.environmentIntensity = 0.12;
+    scene.add(new THREE.HemisphereLight("#d6e3f0", "#c8b08a", 0.8));
+    const sun = new THREE.DirectionalLight("#ffeacb", 4.1);
+    sun.position.set(80, 72, -106); // behind-right of the camera path: shadows fall towards the viewer
+    sun.target.position.set(0, 0, -18);
+    scene.add(sun.target);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(small ? 2048 : 4096, small ? 2048 : 4096);
     const sc = sun.shadow.camera as THREE.OrthographicCamera;
-    sc.left = sc.bottom = -130;
-    sc.right = sc.top = 130;
+    sc.left = sc.bottom = -125;
+    sc.right = sc.top = 125;
     sc.near = 10;
-    sc.far = 360;
-    sun.shadow.bias = -0.0005;
-    sun.shadow.normalBias = 0.04;
+    sc.far = 380;
+    sun.shadow.bias = -0.0004;
+    sun.shadow.normalBias = 0.05;
+    sun.shadow.radius = small ? 1.6 : 2.2;
     scene.add(sun);
 
-    const bin: { dispose: () => void }[] = [];
+    const tex = <T extends THREE.Texture>(t: T) => {
+      bin.push(t);
+      return t;
+    };
     const mat = (o: THREE.MeshStandardMaterialParameters) => {
-      const m = new THREE.MeshStandardMaterial({ roughness: 0.9, ...o });
+      const m = new THREE.MeshStandardMaterial({ roughness: 0.85, ...o });
       bin.push(m);
       return m;
     };
-    const sandTex = grain();
-    bin.push(sandTex);
-    const M = {
-      sand: mat({ color: "#dfcca9", map: sandTex, roughness: 1 }),
-      farmSoil: mat({ color: "#cdb48c", roughness: 1 }),
-      asphalt: mat({ color: "#a9a6a0", roughness: 0.95 }),
-      concrete: mat({ color: "#e2dbcf", roughness: 0.95 }),
-      paving: mat({ color: "#ece8e1", roughness: 0.9 }),
-      white: mat({ color: "#fbfbfa", roughness: 0.75 }),
-      offwhite: mat({ color: "#eeeeec", roughness: 0.85 }),
-      glass: mat({ color: "#3a4a55", roughness: 0.25, metalness: 0.2 }),
-      blue: mat({ color: "#3ca7d2", roughness: 0.55 }),
-      grass: mat({ color: "#6f9a46", roughness: 1 }),
-      palmLeaf: mat({ color: "#5b7d3c", roughness: 0.9 }),
-      trunk: mat({ color: "#9a8466", roughness: 1 }),
-      datePalm: mat({ color: "#4a6537", roughness: 1, flatShading: true }),
-      fence: mat({ color: "#2f9a78", roughness: 0.8, transparent: true, opacity: 0.78 }),
-      roof: mat({ color: "#ffffff", roughness: 0.6, side: THREE.DoubleSide }),
-      ghWall: mat({ color: "#e6eae3", roughness: 0.7 }),
-      dome: mat({ color: "#3f8fcf", roughness: 0.35, metalness: 0.25, flatShading: true }),
-      solar: mat({ color: "#2d3a4a", roughness: 0.35, metalness: 0.3 }),
-      car: mat({ color: "#ffffff", roughness: 0.5 }),
-      dark: mat({ color: "#59616a", roughness: 0.7 }),
-    };
+    const sandTex = tex(sandGrain());
+    const roadT = tex(roadTex());
+    roadT.repeat.set(36, 1);
+    const filmT = tex(film());
+    const holes = tex(perforation());
+    const facade = tex(glazing("#55626b", "#e9ecec", 14));
+    facade.repeat.set(2, 1);
+    const ghSide = tex(glazing("#dfe6dd", "#f6f7f5", 10));
+    ghSide.repeat.set(4, 1);
+    const cropT = tex(rows(18));
+    const bareT = tex(rows(14, 0.28));
 
-    const keep = <T extends THREE.Object3D>(o: T, shadow = true) => {
+    const M = {
+      sand: mat({ color: "#dcc6a2", map: sandTex, bumpMap: sandTex, bumpScale: 0.6, roughness: 1 }),
+      farmSoil: mat({ color: "#ccb48d", map: sandTex, roughness: 1 }),
+      asphalt: mat({ color: "#a7a49e", roughness: 0.92 }),
+      road: mat({ map: roadT, roughness: 0.9 }),
+      concrete: mat({ color: "#e6e0d5", roughness: 0.9 }),
+      paving: mat({ color: "#efebe4", roughness: 0.85 }),
+      curb: mat({ color: "#f4f2ee", roughness: 0.8 }),
+      white: mat({ color: "#fbfbf9", roughness: 0.6 }),
+      offwhite: mat({ color: "#efefec", roughness: 0.7 }),
+      facade: mat({ map: facade, roughness: 0.15, metalness: 0.4 }),
+      blue: mat({ color: "#3ca7d2", roughness: 0.45 }),
+      grass: mat({ color: "#6d9a43", roughness: 1 }),
+      shrub: mat({ color: "#7d9a55", roughness: 1 }),
+      leaf: mat({ color: "#5e8540", roughness: 0.75, side: THREE.DoubleSide }),
+      trunk: mat({ color: "#a08a6a", roughness: 1 }),
+      crown: mat({ color: "#ffffff", roughness: 0.95 }), // tinted per instance
+      fence: mat({ color: "#2e8f6f", roughness: 0.8, transparent: true, opacity: 0.72 }),
+      mesh: mat({ color: "#cfd3cf", roughness: 0.8, transparent: true, opacity: 0.32, side: THREE.DoubleSide, depthWrite: false }),
+      roof: mat({ color: "#ffffff", map: filmT, roughness: 0.32, transparent: true, opacity: 0.86, side: THREE.DoubleSide }),
+      ghWall: mat({ map: ghSide, roughness: 0.2, transparent: true, opacity: 0.85 }),
+      cage: mat({ color: "#f6f6f4", roughness: 0.6, transparent: true, opacity: 0.9 }),
+      dome: mat({ color: "#2f7fc4", roughness: 0.12, metalness: 0.35, flatShading: true }),
+      solar: mat({ color: "#26344a", roughness: 0.18, metalness: 0.55 }),
+      car: mat({ color: "#ffffff", roughness: 0.3, metalness: 0.3 }),
+      dark: mat({ color: "#4f5861", roughness: 0.5 }),
+      canopy: mat({ color: "#ffffff", roughness: 0.5, side: THREE.DoubleSide, alphaMap: holes, alphaTest: 0.5 }),
+    };
+    const cropMats = ["#4a7a2b", "#5c8a33", "#73a03c", "#3e6a28", "#86ad47", "#66923a"].map((c) =>
+      mat({ color: c, map: cropT, bumpMap: cropT, bumpScale: 3, roughness: 1 }),
+    );
+    const bareMat = mat({ color: "#e8d9bd", map: bareT, bumpMap: bareT, bumpScale: 2, roughness: 1 });
+
+    const keep = <T extends THREE.Object3D>(o: T, cast = true) => {
       o.traverse((c) => {
         const m = c as THREE.Mesh;
         if (m.isMesh) {
-          m.castShadow = shadow;
+          m.castShadow = cast;
           m.receiveShadow = true;
         }
       });
@@ -211,265 +372,316 @@ export function Site3D() {
       bin.push(g);
       return g;
     };
-    const box = (w: number, h: number, d: number, x: number, y: number, z: number, m: THREE.Material, ry = 0) => {
-      const o = new THREE.Mesh(geo(new THREE.BoxGeometry(w, h, d)), m);
+    // softened edges everywhere: the bevel catches the sun (no hard low-poly boxes)
+    const rbox = (w: number, h: number, d: number, r = 0.12) => new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2.2, h / 2.2, d / 2.2));
+    const box = (w: number, h: number, d: number, x: number, y: number, z: number, m: THREE.Material, r = 0.14) => {
+      const o = new THREE.Mesh(geo(rbox(w, h, d, r)), m);
       o.position.set(x, y + h / 2, z);
-      o.rotation.y = ry;
       return keep(o);
     };
-    const flat = (w: number, d: number, x: number, z: number, m: THREE.Material, y = 0.02) => {
+    const flat = (w: number, d: number, x: number, z: number, m: THREE.Material, y = 0.02, ry = 0) => {
       const o = new THREE.Mesh(geo(new THREE.PlaneGeometry(w, d)), m);
-      o.rotation.x = -Math.PI / 2;
+      o.rotation.set(-Math.PI / 2, 0, ry);
       o.position.set(x, y, z);
       o.receiveShadow = true;
       scene.add(o);
       return o;
     };
     const o3 = new THREE.Object3D();
-    const inst = (g: THREE.BufferGeometry, m: THREE.Material, items: { p: V3; s?: V3; r?: number; c?: string }[], shadow = true) => {
+    type Item = { p: V3; s?: V3; r?: number; rx?: number; c?: string };
+    const inst = (g: THREE.BufferGeometry, m: THREE.Material, items: Item[], cast = true) => {
       const im = new THREE.InstancedMesh(geo(g), m, items.length);
       const col = new THREE.Color();
       items.forEach((it, i) => {
         o3.position.set(...it.p);
-        o3.rotation.set(0, it.r ?? 0, 0);
+        o3.rotation.set(it.rx ?? 0, it.r ?? 0, 0);
         o3.scale.set(...(it.s ?? [1, 1, 1]));
         o3.updateMatrix();
         im.setMatrixAt(i, o3.matrix);
         if (it.c) im.setColorAt(i, col.set(it.c));
       });
-      im.castShadow = shadow;
+      im.castShadow = cast;
       im.receiveShadow = true;
       scene.add(im);
       return im;
     };
-    const rnd = (() => {
-      let s = 7;
-      return () => ((s = (s * 16807) % 2147483647) / 2147483647);
-    })();
+    const rnd = seeded(7);
 
-    // ── ground: desert, irrigated farm soil, dunes ──
-    const dg = geo(new THREE.PlaneGeometry(1400, 1400, 180, 180));
+    // ── ground: desert with dunes beyond, irrigated farm soil ──
+    const dg = geo(new THREE.PlaneGeometry(1400, 1400, 220, 220));
     const pos = dg.attributes.position as THREE.BufferAttribute;
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i);
       const y = pos.getY(i);
       const r = Math.hypot(x, y * 1.2);
-      const fall = THREE.MathUtils.smoothstep(r, 190, 320);
-      pos.setZ(i, fall * (Math.sin(x * 0.03 + y * 0.01) * 5 + Math.sin(y * 0.045 - x * 0.012) * 4 + 5));
+      const fall = THREE.MathUtils.smoothstep(r, 185, 330);
+      const dune = Math.sin(x * 0.03 + y * 0.01) * 5 + Math.sin(y * 0.045 - x * 0.012) * 4 + Math.sin(x * 0.11 + y * 0.07) * 0.8 + 5;
+      pos.setZ(i, fall * dune + Math.sin(x * 0.2) * Math.sin(y * 0.17) * 0.05);
     }
     dg.computeVertexNormals();
     const ground = new THREE.Mesh(dg, M.sand);
     ground.rotation.x = -Math.PI / 2;
     ground.receiveShadow = true;
     scene.add(ground);
-    flat(300, 70, 0, 96, M.farmSoil, 0.01); // Al Foah Farm, across the road
+    flat(300, 70, 0, 96, M.farmSoil, 0.01);
     flat(90, 210, 150, -20, M.farmSoil, 0.01);
     flat(260, 50, -10, -130, M.farmSoil, 0.01);
 
-    // ── roads ──
-    flat(420, 6, 0, 58, M.asphalt, 0.04); // public road
-    flat(6, 26, 0, 45, M.asphalt, 0.05); // entrance
-    flat(80, 4, 0, 32, M.asphalt, 0.05); // front road
-    const ring = new THREE.Mesh(geo(new THREE.CircleGeometry(7.5, 48)), M.asphalt);
+    // ── roads, curbs ──
+    flat(420, 7, 0, 58, M.road, 0.04);
+    const entrance = flat(26, 6, 0, 45, M.road, 0.05, Math.PI / 2);
+    entrance.material = M.asphalt;
+    flat(80, 4.2, 0, 32, M.asphalt, 0.05);
+    const ring = new THREE.Mesh(geo(new THREE.RingGeometry(3.9, 7.6, 64)), M.asphalt);
     ring.rotation.x = -Math.PI / 2;
     ring.position.set(0, 0.06, 32);
     ring.receiveShadow = true;
     scene.add(ring);
-    keep(new THREE.Mesh(geo(new THREE.CylinderGeometry(3.6, 3.6, 0.3, 40)), M.white)).position.set(0, 0.15, 32);
-    keep(new THREE.Mesh(geo(new THREE.CylinderGeometry(3.3, 3.3, 0.36, 40)), M.grass)).position.set(0, 0.18, 32);
-    flat(130, 3.2, -2, -4, M.concrete, 0.04); // service spine behind the building
-    flat(3.2, 80, -8, -42, M.concrete, 0.04);
-    flat(3.2, 70, 22, -40, M.concrete, 0.04);
-    flat(110, 3.2, -4, -48, M.concrete, 0.04);
-
-    // perimeter
-    const per: { p: V3; s: V3; r?: number }[] = [
-      { p: [0, 0, 28], s: [128, 0.7, 0.25] },
-      { p: [0, 0, -84], s: [128, 0.7, 0.25] },
-      { p: [-64, 0, -28], s: [0.25, 0.7, 112] },
-      { p: [64, 0, -28], s: [0.25, 0.7, 112] },
+    keep(new THREE.Mesh(geo(new THREE.CylinderGeometry(3.9, 3.95, 0.3, 64)), M.curb)).position.set(0, 0.15, 32);
+    keep(new THREE.Mesh(geo(new THREE.CylinderGeometry(3.6, 3.6, 0.34, 64)), M.grass), false).position.set(0, 0.17, 32);
+    const curbs: Item[] = [
+      { p: [-23, 0, 29.7], s: [36, 0.22, 0.35] },
+      { p: [23, 0, 29.7], s: [36, 0.22, 0.35] },
+      { p: [-3.2, 0, 45], s: [0.35, 0.22, 22] },
+      { p: [3.2, 0, 45], s: [0.35, 0.22, 22] },
     ];
-    inst(geo(new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0)), M.offwhite, per);
+    inst(rbox(1, 1, 1, 0.08).translate(0, 0.5, 0), M.curb, curbs, false);
+    flat(130, 3.4, -2, -4, M.concrete, 0.04);
+    flat(3.4, 80, -8, -42, M.concrete, 0.04);
+    flat(3.4, 70, 22, -40, M.concrete, 0.04);
+    flat(110, 3.4, -4, -48, M.concrete, 0.04);
+
+    // perimeter: posts + see-through mesh
+    const posts: Item[] = [];
+    const run = (x0: number, z0: number, x1: number, z1: number) => {
+      const len = Math.hypot(x1 - x0, z1 - z0);
+      const n = Math.round(len / 4);
+      for (let i = 0; i <= n; i++) posts.push({ p: [x0 + ((x1 - x0) * i) / n, 0, z0 + ((z1 - z0) * i) / n] });
+      const m = new THREE.Mesh(geo(new THREE.PlaneGeometry(len, 1.8)), M.mesh);
+      m.position.set((x0 + x1) / 2, 0.9, (z0 + z1) / 2);
+      m.rotation.y = -Math.atan2(z1 - z0, x1 - x0);
+      scene.add(m);
+    };
+    run(-64, 27, -10, 27);
+    run(10, 27, 64, 27);
+    run(64, 27, 64, -84);
+    run(64, -84, -64, -84);
+    run(-64, -84, -64, 27);
+    inst(new THREE.CylinderGeometry(0.06, 0.06, 1.9, 6).translate(0, 0.95, 0), M.offwhite, posts);
 
     // ── main building (labs + collaboration spaces) ──
-    box(40, 4.4, 12, 0, 0, 14, M.white);
-    box(15, 2.2, 10, 0, 4.4, 13, M.white);
-    box(42, 0.35, 13.4, 0, 4.4, 14, M.white); // fascia
-    box(6.5, 3, 0.25, 0, 0, 20.1, M.glass); // entrance
-    box(8, 0.3, 3, 0, 3.6, 21.4, M.white); // entrance canopy
-    [-15, 15].forEach((x) => box(2.2, 4.2, 0.2, x, 0, 20.12, M.blue)); // the blue façade panels
-    [-10, -6, 6, 10].forEach((x) => box(2.6, 2.4, 0.15, x, 0.6, 20.1, M.glass));
-    for (let i = 0; i < 6; i++) box(2.6, 1.2, 2.4, -16 + i * 6.4, 4.75, 11, M.offwhite); // roof plant
-    flat(48, 8, 0, 24.5, M.paving, 0.05); // plaza
-    // the perforated canopy "trees": dish on a stem that branches into the rim
-    const dish = new THREE.LatheGeometry(
-      [new THREE.Vector2(0.15, 0), new THREE.Vector2(0.9, 0.15), new THREE.Vector2(1.9, 0.42), new THREE.Vector2(2.7, 0.62), new THREE.Vector2(2.75, 0.7)],
-      40,
-    ).translate(0, 4.5, 0);
-    const parts: THREE.BufferGeometry[] = [dish, new THREE.CylinderGeometry(0.11, 0.13, 3.4, 10).translate(0, 1.7, 0)];
-    for (let k = 0; k < 6; k++) {
-      const t = (k / 6) * Math.PI * 2;
+    box(40, 4.6, 12, 0, 0, 14, M.white, 0.3);
+    box(16, 2.1, 10, 0, 4.6, 13, M.white, 0.25);
+    box(41, 0.4, 13, 0, 4.4, 14.1, M.white, 0.18); // fascia
+    for (let k = 0; k < 3; k++) box(0.7, 0.5, 6, -1.4 + k * 1.4, 6.7, 13, M.offwhite, 0.2); // skylights
+    for (let i = 0; i < 5; i++) box(2.6, 1.1, 2.3, -17 + i * 8.5, 4.8, 10.4, M.offwhite, 0.2); // roof plant
+    const glass = new THREE.Mesh(geo(new THREE.PlaneGeometry(34, 3.2)), M.facade);
+    glass.position.set(0, 1.9, 20.04);
+    scene.add(glass);
+    [-18.4, 18.4].forEach((x) => box(2.4, 4.4, 0.3, x, 0, 20.05, M.blue, 0.06)); // blue façade panels
+    for (let i = 0; i < 8; i++) box(0.5, 4.4, 0.6, -17.5 + i * 5, 0, 20.2, M.white, 0.1); // fins
+    flat(50, 9, 0, 24.6, M.paving, 0.05); // plaza
+    const beds: Item[] = [];
+    for (let i = 0; i < 7; i++) beds.push({ p: [-18 + i * 6, 0, 26.5 + (i % 2) * 1.2], s: [3.2, 0.5, 1.6] });
+    inst(new THREE.SphereGeometry(0.5, 16, 10).scale(1, 0.6, 1), M.shrub, beds);
+
+    // the perforated canopy "trees": a flared dish on a stem that branches into the rim.
+    // The holes are real (alpha-tested), so the sun throws dappled shade through them.
+    const prof: THREE.Vector2[] = [];
+    for (let i = 0; i <= 14; i++) {
+      const t = i / 14;
+      prof.push(new THREE.Vector2(0.12 + t * 2.75, Math.pow(t, 1.7) * 0.85));
+    }
+    const dish = new THREE.LatheGeometry(prof, 64).translate(0, 4.45, 0);
+    const parts: THREE.BufferGeometry[] = [dish, new THREE.CylinderGeometry(0.1, 0.14, 3.6, 12).translate(0, 1.8, 0)];
+    for (let k = 0; k < 8; k++) {
+      const t = (k / 8) * Math.PI * 2;
       const curve = new THREE.CubicBezierCurve3(
         new THREE.Vector3(0, 3.3, 0),
-        new THREE.Vector3(Math.cos(t) * 0.4, 4.0, Math.sin(t) * 0.4),
-        new THREE.Vector3(Math.cos(t) * 1.4, 4.5, Math.sin(t) * 1.4),
-        new THREE.Vector3(Math.cos(t) * 2.5, 5.08, Math.sin(t) * 2.5),
+        new THREE.Vector3(Math.cos(t) * 0.3, 4.1, Math.sin(t) * 0.3),
+        new THREE.Vector3(Math.cos(t) * 1.5, 4.6, Math.sin(t) * 1.5),
+        new THREE.Vector3(Math.cos(t) * 2.6, 5.25, Math.sin(t) * 2.6),
       );
-      parts.push(new THREE.TubeGeometry(curve, 14, 0.06, 6));
+      parts.push(new THREE.TubeGeometry(curve, 20, 0.05, 6));
     }
     const canopyGeo = mergeGeometries(parts.map((g) => g.toNonIndexed()));
     parts.forEach((g) => g.dispose());
-    const canopyMat = mat({ color: "#ffffff", roughness: 0.6, side: THREE.DoubleSide });
-    inst(
+    const canopies = inst(
       canopyGeo,
-      canopyMat,
-      [-15, -9, -3, 3, 9, 15].map((x, i) => ({ p: [x, 0, 24 + (i % 2) * 1.6] as V3, s: [1, 1, 1] as V3, r: i })),
+      M.canopy,
+      [-16, -9.6, -3.2, 3.2, 9.6, 16].map((x, i) => ({ p: [x, 0, 24.2 + (i % 2) * 1.6] as V3, r: i * 0.7 })),
     );
-    // palms
-    const crown = mergeGeometries(
-      Array.from({ length: 9 }, (_, k) =>
-        new THREE.BoxGeometry(0.28, 0.05, 2.1)
-          .translate(0, 0, 1.05)
-          .rotateX(0.42 + (k % 2) * 0.2)
-          .rotateY((k / 9) * Math.PI * 2)
-          .translate(0, 3.7, 0)
-          .toNonIndexed(),
-      ),
-    );
-    const palms: { p: V3; r: number; s: V3 }[] = [];
-    const palm = (x: number, z: number) => palms.push({ p: [x, 0, z], r: rnd() * 6, s: [1, 0.85 + rnd() * 0.3, 1] });
-    for (let i = 0; i < 12; i++) palm(-34 + i * 6.2, 29.4);
-    for (let i = 0; i < 5; i++) palm(-22 + i * 2.6, 22), palm(12 + i * 2.6, 22);
-    for (let i = 0; i < 6; i++) palm(-5, 38 + i * 3), palm(5, 38 + i * 3);
-    inst(new THREE.CylinderGeometry(0.1, 0.17, 3.7, 6).translate(0, 1.85, 0), M.trunk, palms);
-    inst(crown, M.palmLeaf, palms);
+    const holeDepth = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, alphaMap: holes, alphaTest: 0.5, side: THREE.DoubleSide });
+    bin.push(holeDepth);
+    canopies.customDepthMaterial = holeDepth;
+
+    // palms: curved trunk + twelve folded fronds
+    const fr = frondGeo();
+    const fronds: THREE.BufferGeometry[] = [];
+    for (let k = 0; k < 13; k++) {
+      const g = fr.clone();
+      g.rotateZ(0.15 - (k % 3) * 0.12);
+      g.rotateY((k / 13) * Math.PI * 2 + (k % 2) * 0.2);
+      g.translate(0, 4.05, 0);
+      fronds.push(g);
+    }
+    fr.dispose();
+    const crown = geo(mergeGeometries(fronds));
+    fronds.forEach((g) => g.dispose());
+    const trunkG = new THREE.CylinderGeometry(0.11, 0.19, 4.1, 10, 8).translate(0, 2.05, 0);
+    const tp = trunkG.attributes.position as THREE.BufferAttribute;
+    for (let i = 0; i < tp.count; i++) tp.setX(i, tp.getX(i) + Math.pow(tp.getY(i) / 4.1, 2) * 0.25);
+    trunkG.computeVertexNormals();
+    const palms: Item[] = [];
+    const palm = (x: number, z: number) => {
+      const s = 0.85 + rnd() * 0.35;
+      palms.push({ p: [x, 0, z], r: rnd() * 6.3, s: [s, s, s] });
+    };
+    for (let i = 0; i < 12; i++) palm(-34 + i * 6.2, 29.2);
+    for (let i = 0; i < 5; i++) palm(-24 + i * 2.6, 22.2), palm(13.6 + i * 2.6, 22.2);
+    for (let i = 0; i < 6; i++) palm(-5, 37.5 + i * 3), palm(5, 37.5 + i * 3);
+    for (let i = 0; i < 8; i++) palm(-60 + i * 3.4, -2.4);
+    inst(trunkG, M.trunk, palms);
+    inst(crown.clone(), M.leaf, palms);
 
     // car parks with shade sails, cars, gatehouse, the IO totem
-    const shades: { p: V3; s: V3 }[] = [];
-    const cars: { p: V3; c: string; r: number }[] = [];
-    const carCols = ["#ffffff", "#f2f2f2", "#c9cdd1", "#8e959c", "#3b4148", "#ffffff", "#d8d2c8"];
+    const shades: Item[] = [];
+    const cars: Item[] = [];
+    const carCols = ["#ffffff", "#f3f3f3", "#c9cdd1", "#8e959c", "#30363d", "#ffffff", "#ddd6ca"];
     [-1, 1].forEach((side) => {
-      flat(30, 9, side * 24, 38, M.asphalt, 0.045);
+      flat(32, 10, side * 25, 38.5, M.asphalt, 0.045);
       for (let i = 0; i < 6; i++) {
-        shades.push({ p: [side * (12 + i * 4.8), 2.3, 39], s: [4.5, 0.12, 4.6] });
-        if (rnd() > 0.25) cars.push({ p: [side * (12 + i * 4.8) - 1, 0, 39 + (rnd() - 0.5)], c: carCols[Math.floor(rnd() * carCols.length)], r: 0 });
-        if (rnd() > 0.35) cars.push({ p: [side * (12 + i * 4.8) + 1.1, 0, 39 + (rnd() - 0.5)], c: carCols[Math.floor(rnd() * carCols.length)], r: 0 });
+        const x = side * (12.5 + i * 4.9);
+        shades.push({ p: [x, 2.4, 39.2], s: [4.6, 0.12, 5], rx: -0.08 });
+        for (const dx of [-1.05, 1.05])
+          if (rnd() > 0.3) cars.push({ p: [x + dx, 0, 39.4 + (rnd() - 0.5) * 0.4], c: carCols[Math.floor(rnd() * carCols.length)] });
       }
     });
-    inst(new THREE.BoxGeometry(1, 1, 1), M.white, shades);
-    inst(new THREE.CylinderGeometry(0.06, 0.06, 2.3, 5).translate(0, 1.15, 0), M.offwhite, shades.map((s) => ({ p: [s.p[0], 0, s.p[2] - 2.2] as V3 })));
-    inst(new THREE.BoxGeometry(1.05, 0.75, 2.1).translate(0, 0.45, 0), M.car, cars);
-    box(3.2, 2.6, 3.2, 0, 0, 47, M.white);
-    box(4.4, 0.3, 4.4, 0, 2.6, 47, M.white);
-    box(1.1, 5.2, 0.5, -8, 0, 46, M.white);
-    box(0.75, 0.75, 0.05, -8, 3.9, 46.27, M.blue);
+    inst(rbox(1, 1, 1, 0.3), M.white, shades);
+    inst(new THREE.CylinderGeometry(0.07, 0.07, 2.4, 8).translate(0, 1.2, 0), M.offwhite, shades.map((s) => ({ p: [s.p[0], 0, s.p[2] - 2.3] as V3 })));
+    inst(rbox(1.0, 0.7, 2.1, 0.28).translate(0, 0.4, 0), M.car, cars);
+    inst(rbox(0.8, 0.4, 1.1, 0.16).translate(0, 0.9, -0.1), M.dark, cars.map((c) => ({ p: c.p })));
+    box(3.2, 2.6, 3.4, 0, 0, 47.5, M.white, 0.2);
+    box(4.6, 0.3, 4.8, 0, 2.6, 47.5, M.white, 0.12);
+    box(1.1, 5.4, 0.55, -8, 0, 46, M.white, 0.12);
+    box(0.75, 0.75, 0.06, -8, 4.1, 46.28, M.blue, 0.02);
 
     // ── field-testing areas: fenced plots of crops, sandy trial beds ──
-    const crop = stripes(16, "#ffffff", "#c9d2bd", 0.38);
-    const bare = stripes(14, "#efe5d4", "#d8c8ac", 0.3);
-    bin.push(crop, bare);
-    const greens = ["#4f7d2e", "#5f8b34", "#78a03f", "#3f6b2a", "#8cb04c", "#6b9338"];
-    const cropMats = greens.map((g) => mat({ color: g, map: crop, roughness: 1 }));
-    const bareMat = mat({ map: bare, roughness: 1 });
-    const fences: { p: V3; s: V3 }[] = [];
+    const fences: Item[] = [];
     const fenceRect = (x: number, z: number, w: number, d: number) => {
-      fences.push({ p: [x, 0, z - d / 2], s: [w, 0.8, 0.06] }, { p: [x, 0, z + d / 2], s: [w, 0.8, 0.06] });
-      fences.push({ p: [x - w / 2, 0, z], s: [0.06, 0.8, d] }, { p: [x + w / 2, 0, z], s: [0.06, 0.8, d] });
+      fences.push({ p: [x, 0, z - d / 2], s: [w, 0.9, 0.06] }, { p: [x, 0, z + d / 2], s: [w, 0.9, 0.06] });
+      fences.push({ p: [x - w / 2, 0, z], s: [0.06, 0.9, d] }, { p: [x + w / 2, 0, z], s: [0.06, 0.9, d] });
     };
     for (let i = 0; i < 4; i++)
       for (let j = 0; j < 3; j++) {
         const x = -56 + i * 11.4;
         const z = -12 - j * 11;
         const green = (i + j) % 4 !== 3;
-        const plot = new THREE.Mesh(geo(new THREE.BoxGeometry(9.6, green ? 0.32 : 0.06, 9.2)), green ? cropMats[(i * 3 + j) % cropMats.length] : bareMat);
-        plot.position.set(x, green ? 0.16 : 0.04, z);
+        const plot = new THREE.Mesh(geo(rbox(9.6, green ? 0.38 : 0.08, 9.2, 0.03)), green ? cropMats[(i * 3 + j) % cropMats.length] : bareMat);
+        plot.position.set(x, green ? 0.19 : 0.04, z);
         if ((i + j) % 2) plot.rotation.y = Math.PI / 2;
-        keep(plot, false);
+        keep(plot, green);
         if (green) fenceRect(x, z, 10.4, 10);
       }
-    inst(geo(new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0)), M.fence, fences);
-    // shade cages (rows of white mesh cages)
-    const cages: { p: V3 }[] = [];
-    for (let i = 0; i < 14; i++) for (let j = 0; j < 9; j++) cages.push({ p: [-3 + i * 1.55, 0, -14 - j * 2.2] });
-    inst(new THREE.BoxGeometry(1.05, 0.9, 1.6).translate(0, 0.45, 0), M.offwhite, cages);
-    // a few sensor masts + a drone over the plots
-    const masts = Array.from({ length: 8 }, (_, i) => ({ p: [-58 + i * 6.6, 0, -2.5] as V3 }));
-    inst(new THREE.CylinderGeometry(0.06, 0.06, 2.6, 5).translate(0, 1.3, 0), M.offwhite, masts);
+    inst(new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0), M.fence, fences);
+    // shade cages: translucent white mesh boxes, a plant inside each
+    const cages: Item[] = [];
+    for (let i = 0; i < 14; i++) for (let j = 0; j < 9; j++) cages.push({ p: [-3 + i * 1.6, 0, -14 - j * 2.25] });
+    inst(new THREE.SphereGeometry(0.32, 10, 8).scale(1, 0.8, 1).translate(0, 0.3, 0), M.shrub, cages, false);
+    inst(rbox(1.1, 0.95, 1.65, 0.08).translate(0, 0.48, 0), M.cage, cages);
+    // sensor masts + a drone over the plots
+    inst(new THREE.CylinderGeometry(0.05, 0.05, 2.6, 8).translate(0, 1.3, 0), M.offwhite, Array.from({ length: 8 }, (_, i) => ({ p: [-58 + i * 6.6, 0, -6] as V3 })));
     const drone = new THREE.Group();
-    drone.add(new THREE.Mesh(geo(new THREE.BoxGeometry(0.7, 0.25, 0.7)), M.dark));
+    drone.add(new THREE.Mesh(geo(rbox(0.7, 0.25, 0.7, 0.1)), M.dark));
     for (let k = 0; k < 4; k++) {
-      const r = new THREE.Mesh(geo(new THREE.CylinderGeometry(0.42, 0.42, 0.03, 18)), M.offwhite);
+      const r = new THREE.Mesh(geo(new THREE.CylinderGeometry(0.42, 0.42, 0.02, 24)), M.mesh);
       r.position.set(k % 2 ? 0.7 : -0.7, 0.14, k < 2 ? 0.7 : -0.7);
       drone.add(r);
     }
     keep(drone);
 
-    // ── multi-span greenhouses (pale green / white film roofs) ──
-    const span = new THREE.Shape();
-    span.moveTo(-1.6, 0);
-    span.absellipse(0, 0, 1.6, 1.15, Math.PI, 0, true);
-    span.lineTo(-1.6, 0);
-    const greenhouse = (x0: number, z0: number, spans: number, len: number, tints: string[]) => {
-      const g = new THREE.ExtrudeGeometry(span, { depth: len, bevelEnabled: false, curveSegments: 18 }).translate(0, 2.4, -len / 2);
-      inst(
-        g,
-        M.roof,
-        Array.from({ length: spans }, (_, i) => ({ p: [x0 + i * 3.2, 0, z0] as V3, c: tints[i % tints.length] })),
-      );
-      box(spans * 3.2, 2.4, len, x0 + (spans - 1) * 1.6, 0, z0, M.ghWall);
+    // ── multi-span greenhouses: translucent film over crops, ribbed arches, glazed walls ──
+    const spanGeo = (len: number) => {
+      const roof = new THREE.CylinderGeometry(1.6, 1.6, len, 32, 1, true, -Math.PI / 2, Math.PI).rotateX(-Math.PI / 2);
+      const uvs = roof.attributes.uv as THREE.BufferAttribute;
+      for (let i = 0; i < uvs.count; i++) uvs.setY(i, uvs.getY(i) * (len / 6));
+      const capA = new THREE.CircleGeometry(1.6, 32, 0, Math.PI).translate(0, 0, len / 2);
+      const capB = new THREE.CircleGeometry(1.6, 32, 0, Math.PI).rotateY(Math.PI).translate(0, 0, -len / 2);
+      const g = mergeGeometries([roof, capA, capB]);
+      [roof, capA, capB].forEach((x) => x.dispose());
+      return g.scale(1, 0.72, 1).translate(0, 2.4, 0);
     };
-    const pale = ["#e3edc5", "#dfeabd", "#e6efcc", "#dbe7b8"];
+    const greenhouse = (x0: number, z0: number, spans: number, len: number, tints: string[]) => {
+      inst(spanGeo(len), M.roof, Array.from({ length: spans }, (_, i) => ({ p: [x0 + i * 3.2, 0, z0] as V3, c: tints[i % tints.length] })));
+      const W = spans * 3.2;
+      const cx = x0 + (spans - 1) * 1.6;
+      const floor = new THREE.Mesh(geo(new THREE.PlaneGeometry(W - 0.4, len - 0.4)), cropMats[2]);
+      floor.rotation.set(-Math.PI / 2, 0, Math.PI / 2);
+      floor.position.set(cx, 0.35, z0);
+      floor.receiveShadow = true;
+      scene.add(floor);
+      const walls = new THREE.Mesh(geo(new THREE.BoxGeometry(W, 2.4, len).translate(0, 1.2, 0)), M.ghWall);
+      walls.position.set(cx, 0, z0);
+      keep(walls);
+      box(1.6, 2.6, 2.4, x0 - 2.4, 0, z0 + len / 2 - 2, M.offwhite, 0.12); // plant room
+    };
+    const pale = ["#eef5d8", "#e7f0cc", "#f1f6e2", "#e3edc4"];
     greenhouse(-58, -64, 14, 20, pale);
-    greenhouse(-58, -88, 14, 16, ["#e8eae8", "#e2e5e3", "#e3edc5", "#e8eae8"]);
+    greenhouse(-58, -88, 14, 16, ["#f3f4f3", "#eceeed", "#eef5d8", "#f3f4f3"]);
     greenhouse(28, -64, 10, 18, pale);
-    // solar array
-    const solar = [] as { p: V3; s: V3 }[];
-    for (let i = 0; i < 7; i++) for (let j = 0; j < 3; j++) solar.push({ p: [28 + i * 3.6, 1, -78 - j * 3.2], s: [3.2, 0.1, 2] });
-    const sm = inst(new THREE.BoxGeometry(1, 1, 1), M.solar, solar);
-    sm.rotation.x = 0;
+    // solar array, tilted to the sun
+    const solar: Item[] = [];
+    for (let i = 0; i < 7; i++) for (let j = 0; j < 3; j++) solar.push({ p: [28 + i * 3.6, 1.1, -78 - j * 3.3], s: [3.3, 0.08, 2.1], rx: -0.4 });
+    inst(rbox(1, 1, 1, 0.02), M.solar, solar);
 
     // ── dome, water tanks, sheds ──
-    const domeGeo = geo(new THREE.IcosahedronGeometry(5.6, 2));
+    const domeGeo = geo(new THREE.IcosahedronGeometry(5.6, 3));
     const dome = keep(new THREE.Mesh(domeGeo, M.dome));
     dome.position.set(36, -0.6, -24);
-    const edges = new THREE.LineSegments(geo(new THREE.EdgesGeometry(domeGeo, 1)), new THREE.LineBasicMaterial({ color: "#ffffff", transparent: true, opacity: 0.55 }));
+    const edges = new THREE.LineSegments(geo(new THREE.EdgesGeometry(domeGeo, 1)), new THREE.LineBasicMaterial({ color: "#ffffff", transparent: true, opacity: 0.7 }));
     edges.position.copy(dome.position);
+    edges.scale.setScalar(1.002);
     scene.add(edges);
     flat(16, 16, 36, -24, M.concrete, 0.03);
+    keep(new THREE.Mesh(geo(new THREE.TorusGeometry(5.5, 0.18, 10, 64).rotateX(Math.PI / 2)), M.curb)).position.set(36, 0.1, -24);
     [-17, -31].forEach((z) => {
-      keep(new THREE.Mesh(geo(new THREE.CylinderGeometry(4.2, 4.2, 2.8, 48)), M.white)).position.set(50, 1.4, z);
-      const cap = keep(new THREE.Mesh(geo(new THREE.SphereGeometry(4.25, 48, 12, 0, Math.PI * 2, 0, Math.PI / 2)), M.white));
+      keep(new THREE.Mesh(geo(new THREE.CylinderGeometry(4.2, 4.2, 2.8, 64)), M.white)).position.set(50, 1.4, z);
+      const cap = keep(new THREE.Mesh(geo(new THREE.SphereGeometry(4.22, 64, 16, 0, Math.PI * 2, 0, Math.PI / 2)), M.white));
       cap.position.set(50, 2.8, z);
-      cap.scale.y = 0.26;
+      cap.scale.y = 0.24;
+      keep(new THREE.Mesh(geo(new THREE.TorusGeometry(4.22, 0.08, 8, 64).rotateX(Math.PI / 2)), M.offwhite)).position.set(50, 2.8, z);
     });
-    box(16, 3, 5.5, 36, 0, -38, M.white); // controlled-environment hall
-    for (let i = 0; i < 5; i++) box(2.6, 0.5, 4.6, 30 + i * 3, 3, -38, M.offwhite);
-    box(9, 2.6, 6, 30, 0, -8, M.white);
-    box(4, 2, 3, 44, 0, -6, M.white);
+    box(16, 3, 5.5, 36, 0, -38, M.white, 0.2); // controlled-environment hall
+    for (let i = 0; i < 5; i++) box(2.6, 0.45, 4.4, 30 + i * 3, 3, -38, M.offwhite, 0.12);
+    box(9, 2.6, 6, 30, 0, -8, M.white, 0.2);
+    box(4, 2, 3, 44, 0, -6, M.white, 0.16);
 
-    // ── Al Foah Farm: date palm plantations ──
-    const groves: { p: V3; s: V3; r: number }[] = [];
-    const grove = (x0: number, z0: number, nx: number, nz: number, step = 3.2) => {
+    // ── Al Foah Farm: date palm groves (soft round crowns, varied greens) ──
+    const greens = ["#4d6b38", "#56763e", "#476432", "#5d7b44", "#3f5a2e"];
+    const groves: Item[] = [];
+    const grove = (x0: number, z0: number, nx: number, nz: number, step: number) => {
       for (let i = 0; i < nx; i++)
         for (let j = 0; j < nz; j++) {
-          if (rnd() < 0.06) continue;
-          const s = 0.8 + rnd() * 0.45;
-          groves.push({ p: [x0 + i * step + (rnd() - 0.5) * 0.5, 1.2 * s, z0 + j * step + (rnd() - 0.5) * 0.5], s: [s, s * 0.75, s], r: rnd() * 6 });
+          if (rnd() < 0.05) continue;
+          const s = 0.85 + rnd() * 0.4;
+          groves.push({ p: [x0 + i * step + (rnd() - 0.5) * 0.6, 1.5 * s, z0 + j * step + (rnd() - 0.5) * 0.6], s: [s, s, s], r: rnd() * 6, c: greens[Math.floor(rnd() * greens.length)] });
         }
     };
-    grove(-140, 72, small ? 44 : 88, small ? 8 : 16, small ? 6.4 : 3.2);
-    grove(110, -110, small ? 12 : 24, small ? 30 : 56, small ? 6.4 : 3.2);
-    grove(-120, -150, small ? 30 : 60, small ? 4 : 8, small ? 6.4 : 3.2);
-    inst(new THREE.IcosahedronGeometry(1.3, 0), M.datePalm, groves, !small);
+    const st8 = small ? 6.4 : 3.4;
+    grove(-140, 72, Math.round(280 / st8), Math.round(52 / st8), st8);
+    grove(110, -110, Math.round(80 / st8), Math.round(180 / st8), st8);
+    grove(-120, -150, Math.round(200 / st8), Math.round(26 / st8), st8);
+    inst(crownGeo(1.3, small ? 10 : 14), M.crown, groves, !small);
 
-    // ── post: soft contact shading (desktop) ──
+    // ── post: MSAA composer + soft contact shading (desktop) ──
     let composer: EffectComposer | null = null;
     if (!small) {
-      composer = new EffectComposer(renderer);
+      const rt = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 });
+      composer = new EffectComposer(renderer, rt);
       composer.addPass(new RenderPass(scene, camera));
       const ao = new GTAOPass(scene, camera, 1, 1);
-      ao.updateGtaoMaterial({ radius: 2.6, distanceExponent: 1.6, thickness: 1.6, scale: 1.1, samples: 12 });
-      ao.blendIntensity = 0.75;
+      ao.updateGtaoMaterial({ radius: 3.2, distanceExponent: 1.8, thickness: 2, scale: 1.15, samples: 16 });
+      ao.blendIntensity = 0.8;
       composer.addPass(ao);
       composer.addPass(new OutputPass());
     }
@@ -602,7 +814,6 @@ export function Site3D() {
       ro.disconnect();
       bin.forEach((d) => d.dispose());
       canopyGeo.dispose();
-      crown.dispose();
       composer?.dispose();
       renderer.dispose();
       renderer.domElement.remove();
