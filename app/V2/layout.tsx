@@ -4,14 +4,23 @@ import s from "./chrome.module.css";
 import { Header } from "./_components/Header";
 import { Footer } from "./_components/Footer";
 import { SmoothScroll } from "./_components/SmoothScroll";
+import { LinkGuard } from "./_components/LinkGuard";
 
 // Stand-in for 29LT Bukra until the licensed webfont arrives (docs/brand.md). Swap here only.
 const brand = Readex_Pro({ subsets: ["latin", "arabic"], variable: "--font-d2-brand", display: "swap" });
 
+const title = "About Innovation Oasis";
+const description =
+  "The future of food security is being built in the desert. Innovation Oasis, part of Silal: Advancing Agri-food Systems.";
+
 export const metadata: Metadata = {
-  title: "Innovation Oasis — Designer 2 · v2",
-  description: "Designer 2, direction v2. Advancing Agri-food Systems.",
-  icons: { icon: "/brand/io-mark.svg" },
+  metadataBase: new URL("https://silal-io.vercel.app"),
+  title,
+  description,
+  icons: { icon: [{ url: "/brand/io-mark.svg", type: "image/svg+xml" }, { url: "/brand/io-icon-32.png", sizes: "32x32" }], apple: "/brand/io-icon-180.png" },
+  robots: { index: false, follow: false },
+  openGraph: { type: "website", siteName: "Innovation Oasis", title, description, url: "/V2", images: [{ url: "/V2/og.jpg", width: 1200, height: 630, alt: "Innovation Oasis" }] },
+  twitter: { card: "summary_large_image", title, description, images: ["/V2/og.jpg"] },
 };
 
 // Flags motion before first paint so animated elements start hidden (no flash), with a failsafe
@@ -29,6 +38,7 @@ export default function V2Layout({ children }: { children: React.ReactNode }) {
       <main id="d2-main">{children}</main>
       <Footer />
       <SmoothScroll />
+      <LinkGuard />
     </div>
   );
 }

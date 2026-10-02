@@ -70,7 +70,7 @@ export function Nav() {
     <>
       <header className={s.nav} data-hide={hide && !open ? "" : undefined}>
         <div className={s.cap}>
-          <button type="button" className={s.burger} aria-expanded={open} aria-controls="d6-menu" onClick={() => setOpen((o) => !o)}>
+          <button type="button" className={s.burger} aria-expanded={open} aria-controls="d6-menu" aria-label={open ? "Close menu" : "Menu"} onClick={() => setOpen((o) => !o)}>
             <i data-x={open ? "" : undefined} />
             <span>{open ? "Close" : "Menu"}</span>
           </button>

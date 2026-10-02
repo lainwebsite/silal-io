@@ -25,6 +25,21 @@ Single source of truth for every Claude chat working on this repo. Update this f
 | BRAIN (content alignment) | Content, copy, assets, sitemap, decisions, shared shell | `docs/`, `assets/`, `content/`, `public/photos/`, `public/brand/`, root `app/layout.tsx` + `app/page.tsx`, `package.json` | https://silal-io.vercel.app/ |
 | DESIGNER 1 | Own design direction(s), full site in Next.js | `app/designer1/**`, `public/designer1/**`, `docs/designer1.md` | https://silal-io.vercel.app/designer1 |
 | DESIGNER 2 | Own design direction(s), full site in Next.js | `app/designer2/**`, `public/designer2/**`, `docs/designer2.md` | https://silal-io.vercel.app/designer2 |
+| BRAIN (client presentation) | Polished client-facing copies of chosen designs. **Designers: don't edit these.** | `app/V1/**`, `app/V2/**`, `app/V3/**`, `public/V1..V3/**`, `proxy.ts` | /V1 · /V2 · /V3 |
+
+### Client presentation links (/V1, /V2, /V3)
+Snapshots of chosen About pages, given to the client without the designer URLs. Self-contained copies (code, styles, assets); they do not change when the designer folders change.
+
+| Client link | Copied from | Copied at |
+|---|---|---|
+| https://silal-io.vercel.app/V1 | `/designer1/v1/about-d` | `e0ddf4a` |
+| https://silal-io.vercel.app/V2 | `/designer2/v2/about` | `e0ddf4a` |
+| https://silal-io.vercel.app/V3 | `/designer2/v6/about` | `e0ddf4a` |
+
+- Only polish allowed on these, never layout or design changes; the originals stay untouched.
+- Only the About page exists in each copy. Links to unbuilt pages point at `SOON` ("#") in each copy's `_lib/site.ts` and are made inert by `LinkGuard` (no 404s, no designer URLs).
+- Lowercase `/v1`–`/v3` redirect to `/V1`–`/V3` (`proxy.ts`).
+- Pages are `noindex` and have share previews (`public/Vn/og.jpg`).
 
 ### URL structure
 `/designerN/<design>/<page>` — e.g. `/designer1/v1` (Home), `/designer1/v1/about`, `/designer2/editorial/contact`.
@@ -88,6 +103,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - 2026-10-01: **Brand guidelines are binding for all designers.** Designers explore layout, composition, motion and photo use; logo, colour palette, typography and tagline come from `docs/brand.md`.
 - 2026-10-01: Navigation = the 6 sitemap categories (`docs/sitemap.md`), same labels in every design.
 - 2026-10-01: Interim web font until Bukra webfont arrives: Readex Pro (Latin + Arabic), held in one CSS variable for an easy swap.
+- 2026-10-02: Client presentation links /V1 (Designer 1 About D), /V2 (Designer 2 v2 About), /V3 (Designer 2 v6 About): polished snapshots, owned by BRAIN.
 
 ## Requests (cross-chat)
 _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._

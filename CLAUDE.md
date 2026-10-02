@@ -4,6 +4,8 @@
 
 Next.js app. Designer routes: `/designer1/...`, `/designer2/...`. Only write in the folders your chat owns.
 
+Client presentation links `/V1`, `/V2`, `/V3` (`app/V1..V3`, `public/V1..V3`) are frozen, polished copies owned by BRAIN. Designers never edit them; see "Client presentation links" in `docs/BRIEF.md`.
+
 Live: https://silal-io.vercel.app/ (Vercel, auto-deploys from GitHub).
 
 ## Workflow

@@ -38,7 +38,7 @@ export function AboutMotion() {
         /* ── Hero: lines rise, photo opens from a slit, then widens to full bleed on scroll ── */
         const heroTitle = document.querySelector<HTMLElement>("[data-hero-title]");
         if (heroTitle) {
-          const st = SplitText.create(heroTitle, { type: "lines", mask: "lines", linesClass: "ln" });
+          const st = SplitText.create(heroTitle, { type: "lines", mask: "lines", linesClass: "ln", aria: "none" }); // aria "none": text stays readable by screen readers
           splits.push(st);
           const tl = gsap.timeline({ delay: 0.15 });
           tl.from(st.lines, { yPercent: 110, duration: 1.6, ease: EASE, stagger: 0.11 })
@@ -65,6 +65,7 @@ export function AboutMotion() {
         gsap.utils.toArray<HTMLElement>("[data-split]").forEach((el) => {
           const st = SplitText.create(el, {
             type: "lines",
+            aria: "none",
             mask: "lines",
             linesClass: "ln",
             autoSplit: true,
@@ -83,7 +84,7 @@ export function AboutMotion() {
 
         /* ── Words that brighten as you read (scrubbed) ── */
         gsap.utils.toArray<HTMLElement>("[data-scrub-words]").forEach((el) => {
-          const st = SplitText.create(el, { type: "words", wordsClass: "wd" });
+          const st = SplitText.create(el, { type: "words", wordsClass: "wd", aria: "none" });
           splits.push(st);
           gsap.fromTo(
             st.words,

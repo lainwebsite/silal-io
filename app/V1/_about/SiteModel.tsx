@@ -53,6 +53,10 @@ function canvasTex(w: number, h: number, draw: (g: CanvasRenderingContext2D) => 
   return t;
 }
 
+// The card shows these photos at ~430px: serve a 1080px variant from the Next image optimizer
+// instead of the 1920–3200px masters (same picture, a fraction of the download).
+const card = (src: string) => `/_next/image?url=${encodeURIComponent(src)}&w=1080&q=75`;
+
 export default function SiteModel() {
   const sectionRef = useRef<HTMLElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -78,7 +82,7 @@ export default function SiteModel() {
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.5 : 1.75));
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap; // PCFSoft was removed in three r186 and fell back to PCF anyway
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.0;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -594,6 +598,7 @@ export default function SiteModel() {
       if (!v?.label) return;
       const el = document.createElement("button");
       el.type = "button";
+      el.tabIndex = -1; // mouse shortcut only: the stage is aria-hidden and the place index below has the same buttons
       el.className = c.mapLabel;
       el.innerHTML = `<span>${String(i + 1).padStart(2, "0")}</span>${st.title}`;
       el.addEventListener("click", () => jumpRef.current(i));
@@ -718,13 +723,14 @@ export default function SiteModel() {
     const io = new IntersectionObserver(([en]) => (visible = en.isIntersecting), { rootMargin: "200px" });
     io.observe(stage);
 
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
     let raf = 0;
     const tick = () => {
       raf = requestAnimationFrame(tick);
-      const dt = Math.min(clock.getDelta(), 0.05);
+      timer.update();
+      const dt = Math.min(timer.getDelta(), 0.05);
       if (!visible) return;
-      const time = clock.elapsedTime;
+      const time = timer.getElapsed();
       const kk = reduce ? 1 : 1 - Math.pow(0.0015, dt);
       camPos.lerp(goal.pos, kk);
       camLook.lerp(goal.look, kk);
@@ -786,7 +792,7 @@ export default function SiteModel() {
       <aside className={c.mapCard} aria-live="polite">
         <div className={c.mapImg}>
           {tour.map((t, i) => (
-            <img key={t.key} src={t.img} alt="" data-on={i === active} loading={i === 0 ? "eager" : "lazy"} />
+            <img key={t.key} src={card(t.img)} alt="" data-on={i === active} loading={i === 0 ? "eager" : "lazy"} />
           ))}
           <span className={c.mapCount}>
             {String(active + 1).padStart(2, "0")} <i>/ {String(n).padStart(2, "0")}</i>

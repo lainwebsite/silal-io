@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import s from "../v1.module.css";
 import { Arrow, IoHorizontal, IoMark } from "./Brand";
-import { BASE, nav } from "../_lib/site";
+import { BASE, SOON, nav } from "../_lib/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -40,8 +40,8 @@ export function Header() {
             <span lang="ar">نحو أنظمة زراعة وغذاء متطورة</span>
           </span>
           <span className={s.utilityLinks}>
-            <Link href={`${BASE}/resources`}>Resources</Link>
-            <Link href={`${BASE}/contact`}>Contact</Link>
+            <Link href={SOON}>Resources</Link>
+            <Link href={SOON}>Contact</Link>
             <span lang="ar" title="Arabic version coming">
               عربي
             </span>
@@ -106,7 +106,7 @@ export function Header() {
           </nav>
 
           <div className={s.headerActions}>
-            <Link href={`${BASE}/enquire`} className={`${s.btn} ${s.btnPrimary} ${s.btnSm}`}>
+            <Link href={SOON} className={`${s.btn} ${s.btnPrimary} ${s.btnSm}`}>
               Enquire <Arrow />
             </Link>
             <button className={s.menuToggle} aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(true)}>
@@ -117,7 +117,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className={s.mobileNav} data-open={open} aria-hidden={!open}>
+      <div className={s.mobileNav} data-open={open} aria-hidden={!open} inert={!open}>
         <div className={`${s.wrap} ${s.mobileNavTop}`}>
           <IoHorizontal height={42} />
           <button className={s.menuClose} aria-label="Close menu" onClick={() => setOpen(false)}>
@@ -146,10 +146,10 @@ export function Header() {
             </details>
           ))}
           <div className={s.mobileFoot}>
-            <Link href={`${BASE}/enquire`} className={`${s.btn} ${s.btnPrimary}`}>
+            <Link href={SOON} className={`${s.btn} ${s.btnPrimary}`}>
               Enquire <Arrow />
             </Link>
-            <Link href={`${BASE}/contact`} className={`${s.btn} ${s.btnGhostLight}`}>
+            <Link href={SOON} className={`${s.btn} ${s.btnGhostLight}`}>
               Contact
             </Link>
           </div>

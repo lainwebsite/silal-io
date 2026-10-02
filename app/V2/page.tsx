@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import a from "./_about/about.module.css";
@@ -9,12 +8,7 @@ import { Journey } from "./_about/_components/Journey";
 import { LocalTime } from "./_about/_components/LocalTime";
 import { Principles } from "./_about/_components/Principles";
 import { P, photo } from "./_lib/photo";
-import { BASE, footerLinks } from "./_lib/site";
-
-export const metadata: Metadata = {
-  title: "About Innovation Oasis — Designer 2 · v2",
-  description: "The future of food security is being built in the desert.",
-};
+import { SOON } from "./_lib/site";
 
 // Copy: content/about.md, client-supplied, verbatim. Section order follows the client PDF.
 
@@ -461,7 +455,7 @@ export default function About() {
             {team.map((t, i) => (
               <li key={t.name} className={a.member}>
                 <div className={a.memberImg}>
-                  <Image src={t.src} alt={t.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 22vw" />
+                  <Image src={t.src} alt="" fill sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 22vw" />
                 </div>
                 <p className={a.memberName}>
                   <span>{t.name}</span>
@@ -470,7 +464,7 @@ export default function About() {
               </li>
             ))}
           </ul>
-          <Link href={`${BASE}/about/team`} className={a.arrowLink}>
+          <Link href={SOON} className={a.arrowLink}>
             Team &amp; CEO Message
           </Link>
         </div>
@@ -673,15 +667,15 @@ export default function About() {
         </div>
         <div className={a.wrap}>
           <nav className={a.next} aria-label="Continue">
-            <Link href={`${BASE}/about/team`} data-fade>
+            <Link href={SOON} data-fade>
               <span>Next</span>
               Team &amp; CEO Message
             </Link>
-            <Link href={`${BASE}/research`} data-fade>
+            <Link href={SOON} data-fade>
               <span>Explore</span>
               Research &amp; Science
             </Link>
-            <Link href={footerLinks.contact} data-fade>
+            <Link href={SOON} data-fade>
               <span>Talk to us</span>
               Contact
             </Link>

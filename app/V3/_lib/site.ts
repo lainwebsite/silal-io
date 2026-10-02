@@ -2,12 +2,9 @@ import { P } from "./photo";
 
 export const BASE = "/V3";
 
-const slug = (s: string) =>
-  s
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+// Client preview: only this About page exists. Links to pages that aren't built yet point at SOON
+// and are made inert by LinkGuard (no 404s, no jump to top, no internal URLs).
+export const SOON = "#";
 
 export type Sub = { label: string; href: string; external?: boolean };
 export type Category = {
@@ -21,7 +18,7 @@ export type Category = {
   subs: Sub[];
 };
 
-const subs = (base: string, labels: string[]): Sub[] => labels.map((label) => ({ label, href: `${base}/${slug(label)}` }));
+const subs = (labels: string[]): Sub[] => labels.map((label) => ({ label, href: SOON }));
 
 // Labels + structure: docs/sitemap.md (use exactly).
 export const nav: Category[] = [
@@ -34,18 +31,18 @@ export const nav: Category[] = [
     blurb: "Silal's R&D and venture engine, on 34 hectares beside Al Foah Farm.",
     subs: [
       { label: "Our Story", href: BASE },
-      { label: "Team & CEO Message", href: `${BASE}/about/team` },
-      { label: "Virtual Tour", href: "#", external: true },
+      { label: "Team & CEO Message", href: SOON },
+      { label: "Virtual Tour", href: SOON, external: true },
     ],
   },
   {
     key: "research",
     n: "01",
     label: "Research & Science",
-    href: `${BASE}/research`,
+    href: SOON,
     img: P.microscope,
     blurb: "Breeding, soil, water and food science, proven under arid pressure.",
-    subs: subs(`${BASE}/research`, [
+    subs: subs([
       "Precision Breeding & Plant Health",
       "Crop Diversification Research",
       "Soil & Water Research",
@@ -57,19 +54,19 @@ export const nav: Category[] = [
     key: "ventures",
     n: "02",
     label: "Innovation & Venture Platforms",
-    href: `${BASE}/ventures`,
+    href: SOON,
     img: P.pitchRoom,
     blurb: "Funding, incubation and acceleration for agri-food founders.",
-    subs: subs(`${BASE}/ventures`, ["Farm Innovation Fund", "Incubation", "Accelerator", "Agricultural Challenges"]),
+    subs: subs(["Farm Innovation Fund", "Incubation", "Accelerator", "Agricultural Challenges"]),
   },
   {
     key: "centres",
     n: "03",
     label: "Centres of Excellence",
-    href: `${BASE}/centres`,
+    href: SOON,
     img: P.phenotyping,
     blurb: "Specialist hubs for robotics, crop genomics and controlled environments.",
-    subs: subs(`${BASE}/centres`, [
+    subs: subs([
       "Agri Robotics & AI",
       "Abiotic Resilience & Crop Genomics (ARC-GEN)",
       "Advanced Controlled Environment Ag (CEA)",
@@ -79,10 +76,10 @@ export const nav: Category[] = [
     key: "services",
     n: "04",
     label: "Technology & Services",
-    href: `${BASE}/services`,
+    href: SOON,
     img: P.soilProbe,
     blurb: "Sensing, desalination, analytics, trials and facilities, on demand.",
-    subs: subs(`${BASE}/services`, [
+    subs: subs([
       "iO Sense",
       "Solar Desalination",
       "Analytical Services",
@@ -95,17 +92,17 @@ export const nav: Category[] = [
     key: "training",
     n: "05",
     label: "Talent & Training",
-    href: `${BASE}/training`,
+    href: SOON,
     img: P.academy,
     blurb: "Growing the next generation of agri-food talent in the UAE.",
     subs: [
-      ...subs(`${BASE}/training`, [
+      ...subs([
         "Advanced Agritech Academy",
         "Student Sponsorship",
         "Mustadeem / School Programs",
         "IO Academy Training",
       ]),
-      { label: "Silal Careers Centre", href: "#", external: true },
+      { label: "Silal Careers Centre", href: SOON, external: true },
     ],
   },
 ];
@@ -114,16 +111,16 @@ export const platforms = nav.filter((c) => c.key !== "about");
 
 export const footerLinks = {
   resources: [
-    { label: "Resources", href: `${BASE}/resources` },
-    { label: "News & Media", href: `${BASE}/resources/news` },
-    { label: "Publications", href: `${BASE}/resources/publications` },
-    { label: "Projects & Case Studies", href: `${BASE}/resources/projects` },
-    { label: "FAQs", href: `${BASE}/faqs` },
+    { label: "Resources", href: SOON },
+    { label: "News & Media", href: SOON },
+    { label: "Publications", href: SOON },
+    { label: "Projects & Case Studies", href: SOON },
+    { label: "FAQs", href: SOON },
   ],
   legal: [
-    { label: "Terms of Use", href: `${BASE}/legal/terms` },
-    { label: "Privacy", href: `${BASE}/legal/privacy` },
+    { label: "Terms of Use", href: SOON },
+    { label: "Privacy", href: SOON },
   ],
-  contact: `${BASE}/contact`,
-  linkedin: "#", // PLACEHOLDER: client LinkedIn URL
+  contact: SOON,
+  linkedin: SOON, // PLACEHOLDER: client LinkedIn URL
 };

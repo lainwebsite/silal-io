@@ -1,7 +1,8 @@
 import Link from "next/link";
 import s from "../v1.module.css";
-import { Arrow, IoMark } from "./Brand";
-import { BASE, footerLinks, nav } from "../_lib/site";
+import { IoMark } from "./Brand";
+import { Newsletter } from "./Newsletter";
+import { SOON, footerLinks, nav } from "../_lib/site";
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -15,12 +16,7 @@ export function Footer() {
           <div className={s.footerNews}>
             <h4>Stay close to the work</h4>
             <p>Research, programmes and calls for innovators, a few times a year.</p>
-            <form className={s.newsletter} action="#" aria-label="Newsletter">
-              <input type="email" placeholder="Email address" aria-label="Email address" />
-              <button type="button" className={`${s.btn} ${s.btnPrimary} ${s.btnSm}`} aria-label="Subscribe">
-                <Arrow />
-              </button>
-            </form>
+            <Newsletter />
           </div>
           <div>
             <h4>Explore</h4>
@@ -71,9 +67,8 @@ export function Footer() {
       <div className={`${s.wrap} ${s.footerBottom}`}>
         <span>© {new Date().getFullYear()} Silal. All rights reserved.</span>
         <nav aria-label="Legal">
-          <Link href={`${BASE}/legal`}>Terms of Use</Link>
-          <Link href={`${BASE}/legal`}>Privacy</Link>
-          <Link href={`${BASE}/system`}>Design system</Link>
+          <Link href={SOON}>Terms of Use</Link>
+          <Link href={SOON}>Privacy</Link>
         </nav>
       </div>
     </footer>

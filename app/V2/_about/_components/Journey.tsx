@@ -168,7 +168,7 @@ export function Journey() {
               ))}
               <span className={a.corners} aria-hidden />
             </div>
-            <ol className={a.jourTicks} aria-hidden>
+            <ol className={a.jourTicks} aria-hidden data-index-avoid>
               {steps.map((s, i) => (
                 <li key={s.title} data-on={i <= active ? "" : undefined}>
                   <span>{s.when.replace(" Vision", "")}</span>

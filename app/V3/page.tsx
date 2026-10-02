@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import a from "./_about/about.module.css";
 import { Motion } from "./_about/_c/Motion";
@@ -8,12 +7,7 @@ import { Platforms } from "./_about/_c/Platforms";
 import { WhyHere } from "./_about/_c/WhyHere";
 import { Go, Label } from "./_c/Brand";
 import { P, photo } from "./_lib/photo";
-import { BASE } from "./_lib/site";
-
-export const metadata: Metadata = {
-  title: "About Innovation Oasis",
-  description: "The future of food security is being built in the desert.",
-};
+import { SOON } from "./_lib/site";
 
 /*
  * About Innovation Oasis — v6.
@@ -238,7 +232,7 @@ export default function About() {
             <ul className={a.team}>
               {team.map((t, i) => (
                 <li key={t.name} className={a.member} data-up>
-                  <Img src={t.src} alt={t.name} sizes="(max-width: 900px) 50vw, 26vw" className={a.memberImg} />
+                  <Img src={t.src} alt="" sizes="(max-width: 900px) 50vw, 26vw" className={a.memberImg} />
                   <p className={a.memberName}>
                     <span>{t.name}</span>
                     <small>{String(i + 1).padStart(2, "0")}</small>
@@ -401,7 +395,7 @@ export default function About() {
               </ul>
             </div>
           </div>
-          <a href="#" className={a.tour} aria-label="Virtual Tour (link to be confirmed)">
+          <a href={SOON} className={a.tour} aria-label="Virtual Tour">
             <div className={a.imgIn} data-px>
               <Image src={P.aerialCampus} alt="The Innovation Oasis campus from the air" fill sizes="100vw" />
             </div>
@@ -413,9 +407,9 @@ export default function About() {
               is growing here.
             </p>
             <div className={a.closeLinks}>
-              <Go href={`${BASE}/about/team`}>Team &amp; CEO Message</Go>
-              <Go href={`${BASE}/research`}>Research &amp; Science</Go>
-              <Go href={`${BASE}/contact`}>Contact us</Go>
+              <Go href={SOON}>Team &amp; CEO Message</Go>
+              <Go href={SOON}>Research &amp; Science</Go>
+              <Go href={SOON}>Contact us</Go>
             </div>
           </div>
         </div>

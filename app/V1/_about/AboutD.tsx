@@ -98,6 +98,7 @@ export function AboutD() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         SplitText.create(q(`.${c.heroTitle}`), {
           type: "lines",
+          aria: "none", // keep the text readable by screen readers (default puts aria-label on a <p>, which is ignored)
           mask: "lines",
           autoSplit: true,
           onSplit: (self) => gsap.from(self.lines, { yPercent: 105, duration: 1.4, ease: "expo.out", stagger: 0.09, delay: 0.3 }),
@@ -109,6 +110,7 @@ export function AboutD() {
         q("[data-split]").forEach((el: Element) => {
           SplitText.create(el, {
             type: "lines",
+            aria: "none",
             mask: "lines",
             autoSplit: true,
             onSplit: (self) =>
@@ -131,6 +133,7 @@ export function AboutD() {
         q("[data-lit]").forEach((el: Element) => {
           SplitText.create(el, {
             type: "words",
+            aria: "none",
             autoSplit: true,
             onSplit: (self) =>
               gsap.fromTo(self.words, { opacity: 0.18 }, { opacity: 1, ease: "none", stagger: 0.1, scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 50%", scrub: true } }),
@@ -366,7 +369,7 @@ export function AboutD() {
           <ul className={c.team} data-stagger>
             {team.members.map((m) => (
               <li key={m.name}>
-                <span className={c.teamImg}>{m.photo ? <Image src={m.photo} alt={m.name} fill sizes="(max-width: 700px) 50vw, 22vw" /> : null}</span>
+                <span className={c.teamImg}>{m.photo ? <Image src={m.photo} alt="" fill sizes="(max-width: 700px) 50vw, 22vw" /> : null}</span>
                 <span className={c.teamName}>{m.name}</span>
               </li>
             ))}

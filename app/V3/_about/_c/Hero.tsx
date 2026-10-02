@@ -48,7 +48,7 @@ export function Hero() {
           const halves = [...L, ...R];
           const lines = (els: HTMLElement[]) =>
             els.flatMap((h) => {
-              const s = SplitText.create(h, { type: "lines", mask: "lines", linesClass: "ln" });
+              const s = SplitText.create(h, { type: "lines", mask: "lines", linesClass: "ln", aria: "none" }); // aria "none": text stays readable by screen readers
               splits.push(s);
               return s.lines;
             });

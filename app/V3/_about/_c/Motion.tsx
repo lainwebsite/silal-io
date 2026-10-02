@@ -40,6 +40,7 @@ export function Motion() {
           splits.push(
             SplitText.create(el, {
               type: "lines",
+              aria: "none", // keep the text readable by screen readers
               mask: "lines",
               linesClass: "ln",
               autoSplit: true,
@@ -48,7 +49,7 @@ export function Motion() {
           );
         });
         q("main [data-words]").forEach((el) => {
-          const st = SplitText.create(el, { type: "words", wordsClass: "w" });
+          const st = SplitText.create(el, { type: "words", wordsClass: "w", aria: "none" });
           splits.push(st);
           gsap.fromTo(st.words, { opacity: 0.18 }, { opacity: 1, ease: "none", stagger: 0.1, scrollTrigger: { trigger: el, start: "top 82%", end: "bottom 50%", scrub: 0.6 } });
         });
