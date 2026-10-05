@@ -542,8 +542,8 @@
   position: absolute;
   z-index: 2;
   top: calc(var(--hdr) - 24px);
-  left: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
-  right: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  left: max(var(--gutter), calc((100vw - var(--max)) / 2));
+  right: max(var(--gutter), calc((100vw - var(--max)) / 2));
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -562,7 +562,7 @@
 .mapCard {
   position: absolute;
   z-index: 2;
-  left: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  left: max(var(--gutter), calc((100vw - var(--max)) / 2));
   bottom: clamp(28px, 5vh, 56px);
   width: min(400px, calc(100vw - 2 * var(--gutter)));
   background: rgba(255, 255, 255, 0.96);
@@ -710,7 +710,7 @@
 .mapIndex {
   position: absolute;
   z-index: 2;
-  right: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  right: max(var(--gutter), calc((100vw - var(--max)) / 2));
   bottom: clamp(28px, 5vh, 56px);
   display: flex;
   align-items: center;
@@ -766,7 +766,7 @@
 .mapNote {
   position: absolute;
   z-index: 2;
-  right: max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  right: max(var(--gutter), calc((100vw - var(--max)) / 2));
   bottom: 10px;
   font-size: 0.6875rem;
   color: var(--grey);
@@ -959,7 +959,7 @@
 }
 
 .whyText {
-  padding: var(--pad) max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter))) var(--pad) clamp(40px, 6vw, 120px);
+  padding: var(--pad) max(var(--gutter), calc((100vw - var(--max)) / 2)) var(--pad) clamp(40px, 6vw, 120px);
   display: flex;
   flex-direction: column;
   gap: 28px;

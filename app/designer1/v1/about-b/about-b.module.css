@@ -1,5 +1,5 @@
 /* Designer 1 · About — variation B "branded". IO Blue fields, single-colour white mark (allowed by the
-   guidelines, p.7), letterhead rules into the "i", 1728px container, full-bleed photography. */
+   guidelines, p.7), letterhead rules into the "i", 1920px content container, full-bleed photography. */
 
 .page {
   background: var(--light);
@@ -177,7 +177,7 @@
   background: #fff;
   margin: clamp(28px, 5vh, 56px) 0 24px;
   /* ends exactly at the left edge of the white "i" stem (52vw + 1.6% of the 57vw mark) */
-  width: calc(52.9vw - max(var(--gutter), (100vw - 1728px) / 2 + var(--gutter)));
+  width: calc(52.9vw - max(var(--gutter), (100vw - var(--max)) / 2));
 }
 
 .heroFoot {
@@ -185,7 +185,7 @@
   justify-content: space-between;
   align-items: flex-end;
   gap: 32px;
-  width: calc(52vw - max(var(--gutter), (100vw - 1728px) / 2 + var(--gutter)) - 32px);
+  width: calc(52vw - max(var(--gutter), (100vw - var(--max)) / 2) - 32px);
 }
 
 .heroFoot p {
@@ -649,7 +649,7 @@
 .whyBlueInner {
   position: relative;
   width: 100%;
-  padding: var(--pad) clamp(24px, 4vw, 80px) clamp(48px, 6vw, 96px) max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter)));
+  padding: var(--pad) clamp(24px, 4vw, 80px) clamp(48px, 6vw, 96px) max(var(--gutter), calc((100vw - var(--max)) / 2));
 }
 
 .whyTitle {
@@ -667,7 +667,7 @@
 
 .whyWhite {
   background: #fff;
-  padding: var(--pad) max(var(--gutter), calc((100vw - 1728px) / 2 + var(--gutter))) clamp(48px, 6vw, 96px) clamp(32px, 5vw, 112px);
+  padding: var(--pad) max(var(--gutter), calc((100vw - var(--max)) / 2)) clamp(48px, 6vw, 96px) clamp(32px, 5vw, 112px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -836,7 +836,7 @@
 }
 
 .jViewport {
-  max-width: var(--max);
+  max-width: calc(var(--max) + 2 * var(--gutter));
   margin: 0 auto;
   padding: 0 var(--gutter);
 }

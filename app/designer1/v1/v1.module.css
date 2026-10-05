@@ -44,8 +44,13 @@
   overflow-x: clip;
 }
 
+/* wide pages: 1920px of CONTENT; the side padding (--gutter) sits outside it */
 .root[data-wide="true"] {
-  --max: 1728px;
+  --max: 1920px;
+}
+
+.root[data-wide="true"] .wrap {
+  max-width: calc(var(--max) + 2 * var(--gutter));
 }
 
 .root *,
