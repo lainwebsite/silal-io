@@ -1,21 +1,13 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 
-const designers = [
-  { href: "/designer1", name: "Designer 1" },
-  { href: "/designer2", name: "Designer 2" },
-];
+// Neutral root. Design routes (/D1, /D2) are not linked from here on purpose: the client only gets /V1–/V3.
+export const metadata: Metadata = { title: "Innovation Oasis", robots: { index: false, follow: false } };
 
 export default function Home() {
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif", padding: "48px 24px", maxWidth: 640, margin: "0 auto" }}>
-      <h1>Silal IO — design explorations</h1>
-      <ul>
-        {designers.map((d) => (
-          <li key={d.href}>
-            <Link href={d.href}>{d.name}</Link>
-          </li>
-        ))}
-      </ul>
+    <main style={{ minHeight: "100vh", display: "grid", placeItems: "center", background: "#fff" }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/brand/io-mark.svg" alt="Innovation Oasis" width={96} height={96} />
     </main>
   );
 }

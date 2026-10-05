@@ -5,8 +5,8 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 ## Designs
 
 ### v1 — "Proving Ground" (2026-10-01)
-- Live: `/designer2/v1` (Home), `/designer2/v1/system` (design system). Index: `/designer2`.
-- Code: `app/designer2/v1/`: `layout.tsx`, `v1.module.css` (all tokens + components, scoped under `.root`), `_components/` (Brand, Header, Footer, HereAnywhere, Reveal), `_lib/` (`site.ts` = sitemap nav, `photo.ts` = shared web-copy paths).
+- Live: `/D2/v1` (Home), `/D2/v1/system` (design system). Index: `/D2`.
+- Code: `app/D2/v1/`: `layout.tsx`, `v1.module.css` (all tokens + components, scoped under `.root`), `_components/` (Brand, Header, Footer, HereAnywhere, Reveal), `_lib/` (`site.ts` = sitemap nav, `photo.ts` = shared web-copy paths).
 - Sources: `docs/brand.md`, `docs/sitemap.md`, `content/about.md`, `content/team.md`, guidelines PDF (all 35 pages viewed).
 
 **Idea.** The desert is the world's testbed. Where Designer 1 is light and close to the brand-book homepage mock, v1 here is cinematic and charcoal-led: full-bleed aerial of the trial fields, big Light lowercase type, and one story told down the page: *conditions → belief → "if it works here, it can work anywhere" → five platforms → one ecosystem → mission → test it here.*
@@ -25,7 +25,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 
 **Header.** Logo format three (p.9): wordmark + "Part of Silal" left, mark right. Transparent + reversed over dark heroes (pages flag `data-hero="dark"`), white with IO-blue hairline once scrolled. Six sitemap labels exactly; each opens a mega panel (intro + sub-pages + photo). ≤1280px: full-screen charcoal menu with accordions.
 
-**Logo files.** `/brand/*.svg` used unchanged. `public/designer2/brand/io-wordmark-endorsed(-reversed).svg` = **cropped views** of `/brand/io-lockup*.svg` (identical paths, only viewBox changed to `434 364 326 148`). Replace with client master files when they arrive.
+**Logo files.** `/brand/*.svg` used unchanged. `public/D2/brand/io-wordmark-endorsed(-reversed).svg` = **cropped views** of `/brand/io-lockup*.svg` (identical paths, only viewBox changed to `434 364 326 148`). Replace with client master files when they arrive.
 
 **Tokens**
 | Token | Value | Use |
@@ -49,8 +49,8 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 **Placeholder (to replace when client copy arrives):** platform blurbs (`_lib/site.ts`), the three "Latest" cards, CTA sub-line "Bring a technology, a trial or a partnership…", LinkedIn URL, Virtual Tour link. Sub-page links 404 until built. "Test it here." is a design line, not client copy: confirm.
 
 ### v2 — About IO, storytelling (2026-10-01)
-- Live: `/designer2/v2/about` (`/designer2/v2` redirects there for now).
-- Code: `app/designer2/v2/`: `layout.tsx` (font, motion flag, Lenis), `chrome.module.css` (tokens, header, footer, lifted from v1), `_components/` (Header: hides on scroll down, reading-progress hairline; Footer; SmoothScroll), `about/page.tsx` (server markup + data-* motion hooks), `about/about.module.css`, `about/_components/` (AboutMotion, Journey, Principles, ChapterIndex, LocalTime).
+- Live: `/D2/v2/about` (`/D2/v2` redirects there for now).
+- Code: `app/D2/v2/`: `layout.tsx` (font, motion flag, Lenis), `chrome.module.css` (tokens, header, footer, lifted from v1), `_components/` (Header: hides on scroll down, reading-progress hairline; Footer; SmoothScroll), `about/page.tsx` (server markup + data-* motion hooks), `about/about.module.css`, `about/_components/` (AboutMotion, Journey, Principles, ChapterIndex, LocalTime).
 - Brief: Awwwards-level About page that puts information first, tells a story with slow, quiet motion, uses existing photos matched to the copy, and keeps Silal/IO branding obvious.
 - Copy: `content/about.md` verbatim, in the client PDF's order (Hero → Story → People → Why Here → Different → Mission → Principles → Journey → Looking Ahead). The only non-client words are labels: "Fig. NN" captions, "Benchmark", "Survey · 34 ha", chapter numbers.
 
@@ -85,9 +85,9 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 **Open:** team roles/bios (names only for now), Talabi not shown, Virtual Tour link, "Juntos timeline" reference for Our Journey (client PDF) not seen yet. Sub-page links 404 until built.
 
 ### v3 — About IO, "one living world" (2026-10-01, rebuilt from scratch)
-- Live: `/designer2/v3/about` (`/designer2/v3` redirects). Replaces v2 as Designer 2's current About.
+- Live: `/D2/v3/about` (`/D2/v3` redirects). Replaces v2 as Designer 2's current About.
 - Brief: start over; main reference Inkwell (scroll-driven narrative, atmospheric gradients, a central motif, WebGL behind the DOM, a pathfinder instead of a classic nav), also Joby, Lightship, Terminal Industries, Breakthrough Energy. Seamless transitions, Awwwards polish, story first.
-- Code: `app/designer2/v3/`
+- Code: `app/D2/v3/`
   - `_world/` — `World.tsx` (three.js: fixed canvas, sky-gradient shader + particle shader), `formations.ts` (helix, dunes, trial plots, islands, line, the mark's O, orbit, lattice, constellation, globe…), `scenes.ts` (palette + formation per scene; layout constants shared with CSS), `store.ts`.
   - `_components/` — `Nav` (pathfinder), `Menu` (circle reveal), `Loader`, `Cursor`, `Footer`, `SmoothScroll` (Lenis on GSAP's ticker), `Clock`.
   - `about/page.tsx` (markup + `data-*` hooks, client copy verbatim), `about/_components/Story.tsx` (all GSAP), `Principles.tsx`, `about.module.css`.
@@ -128,9 +128,9 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 **Open:** team roles/bios; Virtual Tour + LinkedIn URLs; real Bukra webfont; sub-pages (links 404 for now).
 
 ### v4 — About IO, "Hut 8 × Anthem" (2026-10-01)
-- Live: `/designer2/v4/about` (`/designer2/v4` redirects). Current Designer 2 About.
+- Live: `/D2/v4/about` (`/D2/v4` redirects). Current Designer 2 About.
 - Brief: combine the two reference sites from the client's screen recordings (hut8.com, anthem.co.za; studied frame by frame), imitate and adapt their layouts and animations for IO, self-review as an Awwwards judge before presenting.
-- Code: `app/designer2/v4/` — `layout.tsx`, `shell.module.css`, `_c/` (Nav, Footer, SmoothScroll, Clock), `about/page.tsx`, `about/about.module.css`, `about/_c/` (Motion = all GSAP, Site3D = three.js isometric world, Terrain = three.js dot terrain).
+- Code: `app/D2/v4/` — `layout.tsx`, `shell.module.css`, `_c/` (Nav, Footer, SmoothScroll, Clock), `about/page.tsx`, `about/about.module.css`, `about/_c/` (Motion = all GSAP, Site3D = three.js isometric world, Terrain = three.js dot terrain).
 
 **Mechanic → source → IO adaptation**
 | Section (client copy) | Borrowed from | IO version |
@@ -158,7 +158,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 **Open:** 3D layout is illustrative (masterplan requested by Designer 1 would make it real); team roles; Virtual Tour + LinkedIn URLs; Bukra webfont; real-device frame-rate test of the two WebGL scenes.
 
 ### v5 — About IO in the IO guideline language (2026-10-02)
-- Live: `/designer2/v5/about`. Current Designer 2 About.
+- Live: `/D2/v5/about`. Current Designer 2 About.
 - Client feedback on v4: more professional and polished, keep the scroll-driven sections, **but it is not Silal** — e.g. the chamfered buttons/rectangles (Anthem's shapes), Hut 8's pill, lime/colour tiles, the sliced logo. Brief: re-read everything, info first, clear sections, scroll-driven, polished 3D; check as Silal, then as an Awwwards judge.
 - Re-read the guidelines PDF page by page (pp. 4, 13, 21–31 rendered). The IO language used everywhere now:
   - **Light, bright, uncluttered** ("website homepage layout that feels light, bright and cutting-edge", p.27). White pages; light grey panels.
@@ -170,14 +170,14 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
   - **Wayfinding panel** (p.26): white with an IO-Blue top rule — the 3D tour card, terrain copy, pins.
   - **Charcoal pages** (story, the list), **deep-green leaf chapter cover** (mission), **back cover** footer (mark + hairline dropping from the "i" + wordmark + address).
   - Core colours dominate; green only for the mission chapter; no lime/orange/pink.
-  - Header after the mock: "Part of Silal · جزء من سلال" in clear space at the top (always visible), wordmark only (cropped view `public/designer2/brand/io-wordmark.svg`, official paths), six sitemap labels in IO Blue, "contact" small above, hairline below; hover = white dropdown with the category's pages + photo; small mark joins the bar after the hero.
+  - Header after the mock: "Part of Silal · جزء من سلال" in clear space at the top (always visible), wordmark only (cropped view `public/D2/brand/io-wordmark.svg`, official paths), six sitemap labels in IO Blue, "contact" small above, hairline below; hover = white dropdown with the category's pages + photo; small mark joins the bar after the hero.
 - Information first (checked "as Silal"): hero cards answer *where / what / whose* (34 ha beside Al Foah Farm, Al Ain · Silal's R&D and venture engine · inaugurated 2024); facts track (2020, 2021, 34 ha, 2024, 2030 — all from the copy); every paragraph of `content/about.md` present, verbatim, in order; the five platforms list their **real sitemap pages** (v4's invented one-line blurbs removed); 3D labels use the copy's own words (field-testing areas, laboratories and greenhouses, collaboration spaces, "the proving ground"; pins incl. the sitemap's Solar Desalination).
 - Kept from v4 (scroll-driven): hero photo growing to full bleed, words that brighten, pinned facts and team tracks, photo-hold under the charcoal story page, white 3D site tour (now with GTAO contact shading on desktop), dot terrain with the five pressure spikes, the list running past the hairline, IO-Blue bar through the principles, sticky journey (square frame wipes; year in an IO-Blue card).
 - Self-review fixes before presenting: "Innovat|ion" split by the line animation (fixed), hero cards below the fold at 900px (photo shortened), list scrolling under the chapter header (fade), hero photo trigger starting mid-way (re-anchored), duplicate "Part of Silal" (wordmark-only crop), mobile hero title squeezed by the mark / photo overlapping the title (re-laid), 3D header crowding on phones.
 - Open: Virtual Tour URL (button is `#`), team roles/bios, Bukra webfont, masterplan for an accurate 3D site, real-device frame-rate test.
 
 ### v6 — About IO, compact and clean (2026-10-02)
-- Live: `/designer2/v6/about`. Current Designer 2 About. Client scored v5 5/10; v6 implements the full feedback list.
+- Live: `/D2/v6/about`. Current Designer 2 About. Client scored v5 5/10; v6 implements the full feedback list.
 - **One system** (`v6/shell.module.css`): two weights only (Light 300 display / Regular 400 text), seven type sizes (display max 72px, h2 max 46px), 12-column grid, one section rhythm, 6px soft corners on images and capsules, one easing, three reveals (lines rise · image cards wipe + parallax · items fade up). Every image card has parallax.
 - **Mark only in the header** (client decision): header = three floating capsules (menu + page · logo format three · Contact/Enquire), after the Lightship-style inspo. No logo in labels, no big mark in hero or footer, no "io" highlights in words.
 - **Hero → At a glance, one scene** (client picked idea 5, after the Lightship video, not copied 1:1): full-bleed aerial, headline split left/right; on scroll the photo closes into a centre card (the 34-ha parcel) between the halves (headline exists twice — charcoal on the page, white inside the photo, clipped with it — so it reads across the closing edge), then the headline lifts and five fact cards rise at different depths into the collage. Facts only from the copy (2020, 2021, 34 ha, 2024, 2030 Vision, R&D and venture engine). Mobile / reduced motion: photo, then a fact grid.
@@ -194,7 +194,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Open: Virtual Tour + LinkedIn URLs, team roles, Bukra webfont, masterplan for an exact 3D layout, real-device frame-rate test.
 
 ### v7 — About IO, simple and professional (2026-10-02)
-- Live: `/designer2/v7/about`. Current Designer 2 About. Client: "lupakan versi 3d" — a simpler variation, clean / professional / minimal, text not large or heavy, consistent sections; subtle motion only (parallax, scroll-driven, GSAP), nothing heavy (no 3D, no overkill).
+- Live: `/D2/v7/about`. Current Designer 2 About. Client: "lupakan versi 3d" — a simpler variation, clean / professional / minimal, text not large or heavy, consistent sections; subtle motion only (parallax, scroll-driven, GSAP), nothing heavy (no 3D, no overkill).
 - References (patterns, not copied): a solar template (stats row, split text/photo rows, process columns, photo CTA), AUAR (photo hero, icon facts, dark band with image cards), a legal testimonial block (photo + colour quote panel, portrait cards with name bars), terra-tory (horizontal cards on dark, accent card), Veritas (label column left / content right, dark intro with highlighted phrase, numbered rows, card row with one accent).
 - **System** (`v7/shell.module.css`): every section = small label (IO-Blue square + uppercase name) in cols 1–3, content in cols 4–12. Light 300 headings (h1 max 60px, h2 max 40px), Regular 400 text. White / paper panels, one deep-charcoal band (intro) + the journey, IO Blue / IO ink as the only accent, green only in the mission band. 4px corners, 1px hairlines.
 - **Sections**: hero (label · kicker · h1 · two buttons, wide aerial with parallax, at-a-glance row 2020 / 2021 / 34 ha / 2024) → dark intro (belief statement with the key phrase in IO mist, words brighten on scroll) → Our Story (split rows alternating text/photo with year tags, "The world had innovation. What it lacked was implementation." pull line, the four "A place where…" lines as stepped columns) → Today (statement + platform accordion with real sitemap pages) → Our People (bio, CEO photo + IO-ink quote card, team cards with name bars) → Why Here (two-tone headline, split, 5 pressure cards + accent "benchmark" card, quote) → Different (4×2 icon grid, flow line) → Mission (green photo band) → Principles (numbered rows) → Journey (dark, native horizontal slider with arrows, drag, snap, progress hairline) → Looking Ahead (split) + photo CTA (closing lines, Virtual Tour + Contact).
@@ -203,31 +203,31 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Checked 1440×900 and 390×844.
 
 ### v8 — About IO, one continuous page (2026-10-02)
-- Live: `/designer2/v8/about`. Current Designer 2 About. Client on v7: "nice, clean"; v8 = new build, still clean and professional with consistent text, but GSAP / between-section motion pushed so sections don't read as separate blocks.
+- Live: `/D2/v8/about`. Current Designer 2 About. Client on v7: "nice, clean"; v8 = new build, still clean and professional with consistent text, but GSAP / between-section motion pushed so sections don't read as separate blocks.
 - **Seamless chapters**: sections carry `data-theme` (light / paper / dark / green) instead of backgrounds. Motion mixes the page colour vars (`--bg --fg --soft --line --card --accent`, all rgba) from one theme to the next over a short scroll window, header included (it takes the page colour; the logo swaps to the official reversed wordmark in dark chapters). A fixed chapter thread (bottom left: number, progress hairline, name) runs through the whole page and steps aside for the footer.
 - **Moments**: hero photo opens from a card to the full screen, the at-a-glance facts rise on it, then it dims to the exact dark of the introduction (the colour hand-over happens while it still fills the screen) · introduction words brighten · Our Story: one sticky photo wiped by each beat, scrubbed both ways, year tags · "The world had innovation. What it lacked was implementation." fills as you read · "A place where…" and Our Journey: horizontal tracks driven by vertical scroll (CSS sticky, section height = track length; no pin-spacers) with image parallax, progress hairline, journey year that turns · platforms list with a sticky photo that follows the row at the centre · CEO photo opens · team columns drift at different speeds · Why Here: constraint (grey) → testbed wipe with the headline swap, pressures light in turn · Different: icons draw, flow line runs · mission and closing photo cards open to the full width · principles: the row at the centre is lit.
 - Same type system and label/content grid as v7. Phones: tracks stack vertically, no sideways scroll. Reduced motion: each section keeps its own static colour, nothing pinned.
 - Checked 1440×900, 390×844, reduced motion.
 
 ### v9 — v2 About, polished (2026-10-02)
-- Live: `/designer2/v9/about`. Client: take v2, make the fonts more consistent (too big in some sections), tidier and more polished — as a new variation, v2 untouched.
-- Copied v2 to `v9/` (own keys: `__d9lenis`, `data-d9m`, `--font-d9-brand`, `/designer2/v9`). Layout, photos, copy and motion unchanged.
+- Live: `/D2/v9/about`. Client: take v2, make the fonts more consistent (too big in some sections), tidier and more polished — as a new variation, v2 untouched.
+- Copied v2 to `v9/` (own keys: `__d9lenis`, `data-d9m`, `--font-d9-brand`, `/D2/v9`). Layout, photos, copy and motion unchanged.
 - **One type scale** (`v9/chrome.module.css`): `--t-display` 40–68px · `--t-h1` 32–50 · `--t-h2` 25–36 · `--t-h3` 19–24 · `--t-lead` 17–20 · `--t-body` 16 · `--t-small` 14 · `--t-label` 12. Every font-size in the page and chrome now uses one of them (v2 had ~40 ad-hoc sizes, up to 220px). Mapped by original size: ≥120 → display (hero title, 34-ha figure, CEO quote), 64–119 → h1 (chapter titles, big statements), 40–63 → h2, 26–39 → h3, 19–25 → lead, 16–18 → body, 14–15 → small, ≤13 → label.
 - Per level: letter-spacing (display −0.03em … lead −0.005em) and minimum line-height normalised; weights reduced to Light 300 / Regular 400 (500/600 removed). Heading measures (`max-width` in ch) widened to suit the smaller sizes.
 
 ### v2 · News & Media — press releases (2026-10-05)
-- New pages in the v2 variation (the source of the client link /V2): `/designer2/v2/resources/news` (list) and `/designer2/v2/resources/news/[slug]` (detail = sitemap template 15). v2's footer already linked "News & Media" here. /V2 itself is BRAIN's snapshot and was not touched (request logged in BRIEF).
+- New pages in the v2 variation (the source of the client link /V2): `/D2/v2/resources/news` (list) and `/D2/v2/resources/news/[slug]` (detail = sitemap template 15). v2's footer already linked "News & Media" here. /V2 itself is BRAIN's snapshot and was not touched (request logged in BRIEF).
 - Structure after silal.ae/media-center/press-releases: breadcrumb, title + intro, section tabs (Press Releases · Publications · Projects & Case Studies · FAQs), latest release, filterable archive (category chips with counts, year, search, "Load more"), media enquiries. Detail: kicker with date, title, lead, framed photo, sticky side column (date, category, location, share: LinkedIn / X / email), body, the client's "About Innovation Oasis" boilerplate (verbatim from content/about.md), media enquiries, previous/next, related releases.
 - Same feel as v2 About: kicker with blue rule + dot, hairline chapter rows that draw, Light headings, photos framed with crop marks and "Fig." captions, arrow links, charcoal band, same GSAP motion (lines rise, fades, curtain-up photos with drift) and pre-paint contract (`data-d2m` / `__d2ready`).
 - **Releases are SAMPLES** (`v2/_lib/news.ts`): 9 entries written in the page's voice around real IO subjects and client photos (inauguration, FoodTech Challenge, Advanced Agritech Academy, growth chambers, soil sensing, drones, hydroponics, site tour); dates are placeholders. Marked in the UI ("Sample entries shown for layout…"). Need real releases from the client.
 
 ### v6 · News & Media — press releases (2026-10-05)
-- New pages in v6 (the source of the client link /V3): `/designer2/v6/resources/news` (list) and `/designer2/v6/resources/news/[slug]` (detail, sitemap template 15). Same structure as the v2 version (after silal.ae press releases), told in v6's language: numbered labels with IO-Blue hairlines, Light type from the v6 tokens, latest release as a large soft-cornered image card with text on the photo, capsule tabs / filter chips / search, cards with category tag on the photo and the round blue arrow, paper band for media enquiries; detail with sticky meta card + share capsules, client boilerplate with an IO-Blue rule, prev/next cards, related. Motion: v6 reveals (lines rise, fade-up, image wipe + drift, hairlines draw).
+- New pages in v6 (the source of the client link /V3): `/D2/v6/resources/news` (list) and `/D2/v6/resources/news/[slug]` (detail, sitemap template 15). Same structure as the v2 version (after silal.ae press releases), told in v6's language: numbered labels with IO-Blue hairlines, Light type from the v6 tokens, latest release as a large soft-cornered image card with text on the photo, capsule tabs / filter chips / search, cards with category tag on the photo and the round blue arrow, paper band for media enquiries; detail with sticky meta card + share capsules, client boilerplate with an IO-Blue rule, prev/next cards, related. Motion: v6 reveals (lines rise, fade-up, image wipe + drift, hairlines draw).
 - Header capsule now shows the current section ("News & Media" on these pages, "About IO" elsewhere).
 - Releases share `v6/_lib/news.ts` (copy of the v2 sample data): **samples**, flagged in the UI. /V3 not touched (request in BRIEF).
 
 ### v6 · News & Media feed, after Hut 8 (2026-10-05)
-- New page `/designer2/v6/resources/newsroom` (the /V3 look). Client sent a screen recording of Hut 8's "News & Insights" page and asked for a page like it.
+- New page `/D2/v6/resources/newsroom` (the /V3 look). Client sent a screen recording of Hut 8's "News & Insights" page and asked for a page like it.
 - From the recording: full-screen featured carousel (title, meta, progress line that fills, 1/3 counter, arrows, "Scroll for feed") → feed panel slides up over the sticky hero → sticky left sidebar (section groups that open/close, a live figure at the bottom), type / topic / search filters, rows in a repeating 2 · 3 · 1-large rhythm (large = image with its text beside it, "Explore"), photo cards plus logo cards on striped fields, the small arrow that fills into a coloured circle on hover, the feed keeps loading as you scroll.
 - In Silal / V3 terms: v6 tokens and Label; IO Blue replaces lime; soft 6px corners replace Hut 8's notched corners; the official IO mark (single-colour white on IO ink / charcoal) replaces their sunburst; typographic cards for named programmes (Farm Innovation Fund, Agricultural Challenges, iO Sense); campus clock (Al Ain, GST) + media enquiries in place of their share price; topics = the sitemap's five areas. Motion: hero lines rise, photo wipes from the right per slide, title masks, the hero dims and drifts as the feed covers it; cards open (image wipe, text follows) as they enter, photos drift inside frames.
 - Data: `v6/_lib/news.ts` now has 19 sample releases (10 new), `topic` and optional `card` face; all link to the existing detail pages. Samples, flagged in the UI. /V3 not touched (BRIEF request).
@@ -236,10 +236,10 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Follow-up ("not all implemented yet"; the previous deploy was confirmed live): the feed sidebar's "News & Media" and "Resources" group headings also removed; the sidebar is now one plain list (Overview, Press releases, Publications, Projects & Case Studies, FAQs) + "Media enquiries".
 
 ### v6 header tweaks (2026-10-05)
-- Client, on `/designer2/v6/resources/news`: (1) no hover on "News & Media" in the header; (2) one button instead of "Contact" + "Enquire". Done in the shared v6 header (`v6/_c/Nav.tsx`, `v6/shell.module.css`), so all v6 pages match: the current-page label in the left capsule has no hover and a default cursor; the right capsule holds a single "Contact us" button (contact page). /V3 (BRAIN's frozen copy) not touched.
+- Client, on `/D2/v6/resources/news`: (1) no hover on "News & Media" in the header; (2) one button instead of "Contact" + "Enquire". Done in the shared v6 header (`v6/_c/Nav.tsx`, `v6/shell.module.css`), so all v6 pages match: the current-page label in the left capsule has no hover and a default cursor; the right capsule holds a single "Contact us" button (contact page). /V3 (BRAIN's frozen copy) not touched.
 
 ### v6 · Press releases list (2026-10-05)
-- Client (Roundable RB-3.05) on `/designer2/v6/resources/news`: whole intro removed ("00 News & Media" label + hairline, "Press Releases" heading, intro paragraph, capsule tabs); the page opens on "01 Latest release" under the floating header. sr-only h1 "Press Releases" kept for screen readers / search. /V3 not touched.
+- Client (Roundable RB-3.05) on `/D2/v6/resources/news`: whole intro removed ("00 News & Media" label + hairline, "Press Releases" heading, intro paragraph, capsule tabs); the page opens on "01 Latest release" under the floating header. sr-only h1 "Press Releases" kept for screen readers / search. /V3 not touched.
 - Then (client video): "02 All releases" now uses the newsroom feed (`newsroom/_c/Feed.tsx`, `embedded`): sticky sidebar (Overview, Press releases [current], Publications, Projects & Case Studies, FAQs, Media enquiries), type / topic / search filters (paper-grey fields on the white page), rows in the 2 · 3 · 1-large rhythm with the same card reveals, loading as you scroll. Replaces the capsule-filter Archive (removed). Feed photos drift via `data-drift` so the page's own [data-px] motion doesn't double up. Newsroom unchanged.
 - Then (client): card → release page morph. Click a card (latest release, the feed, related releases on a release page, the newsroom feed) and its frame grows and moves to where the frame sits on the release page (photo kept in its current place under the title) while the rest of the page crossfades; no wait, no jump. Built on React's `<ViewTransition>` (View Transitions API, which Next runs on every route change): only the clicked card's frame is named (`news/_c/Morph.tsx`), the release page's frame always is. Content matches at both ends: the release page shows what the clicked card showed (photo, or the colour field with its title, which flies on its own to its place in the larger frame); the card's own image sits under the release photo while the large file loads. The release frame no longer wipes / drifts on load (it would fight the morph). `Face` (frame content) moved to `newsroom/_c/Face.tsx`, shared by cards and the release page; its mark and title scale with the frame. Browser back = normal navigation. Browsers without view transitions navigate normally. /V3 not touched.
 - Then (client): "All releases" is one even grid, three cards across (no 2 · 3 · 1-large rhythm; `Feed` `uniform`, `.grid3`; 2 across under 1100px, 1 under 640px). Loads 6 at a time. Colour-field titles now wrap at a width in em, so the card and the release page break lines the same way for the morph. Newsroom feed keeps its rhythm.
@@ -249,7 +249,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Then (client, press releases list): the "03 Media enquiries" band uses the footer's frame (same side padding and max width), so "For interviews, images and information…" lines up with "Advancing Agri-food Systems" at every width (and its right edge with the footer's). Body text left as is (client).
 
 ### v2 · News & Media tweaks (2026-10-05)
-- Client, on `/designer2/v2/resources/news`: (1) less space between the tabs and "01 Latest release" (first section now starts 28–40px under the tabs instead of 64–130px); (2) no large mark in the footer. The footer drops the big mark (and the top room it needed) on the News & Media pages only (list + release pages, `data-plain`); the v2 About page keeps its back-cover mark. /V2 (BRAIN's frozen copy) not touched.
+- Client, on `/D2/v2/resources/news`: (1) less space between the tabs and "01 Latest release" (first section now starts 28–40px under the tabs instead of 64–130px); (2) no large mark in the footer. The footer drops the big mark (and the top room it needed) on the News & Media pages only (list + release pages, `data-plain`); the v2 About page keeps its back-cover mark. /V2 (BRAIN's frozen copy) not touched.
 - Then: removed the blue rule above "01 Latest release" (it doubled the tabs' hairline right above). The other section rules (02, 03, related) stay.
 - Then ("there's still a blue line"): no blue lines anywhere on the News & Media pages (list + release pages): section rules removed, kicker dash removed, active-tab underline and title hover line in charcoal, boilerplate/meta rules grey; header (scrolled-state blue border + reading-progress line) and footer (rule beside the logo, rule above the copyright) turned to neutral hairlines via `data-plain` on these paths only. Verified with a computed-style scan of the whole page after scrolling: 0 blue lines. v2 About unchanged.
 - Then: removed the "News & Media • Innovation Oasis" kicker above the "Press Releases" title (list page).
