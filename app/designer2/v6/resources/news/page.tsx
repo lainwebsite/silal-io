@@ -20,13 +20,6 @@ export const metadata: Metadata = {
  * blue arrow link, the same reveals. Entries are SAMPLES until the client supplies releases.
  */
 
-const res = (label: string) => footerLinks.resources.find((r) => r.label === label)!.href;
-const tabs = [
-  { label: "Press Releases", href: `${BASE}/resources/news`, current: true },
-  { label: "Publications", href: res("Publications") },
-  { label: "Projects & Case Studies", href: res("Projects & Case Studies") },
-  { label: "FAQs", href: res("FAQs") },
-];
 
 export default function PressReleases() {
   const sorted = [...releases].sort((x, y) => y.date.localeCompare(x.date));
@@ -36,27 +29,12 @@ export default function PressReleases() {
     <div className={n.page}>
       <NewsMotion />
 
-      {/* ═══ HEAD ═══ */}
-      <section className={n.head} aria-labelledby="news-h">
-        <div className={n.wrap}>
-          <Label n="00">News &amp; Media</Label>
-          <div className={n.headGrid}>
-            <h1 id="news-h" className={n.title} data-lines>
-              Press Releases
-            </h1>
-            <p className={n.intro} data-up>
-              Announcements, programmes and research from Innovation Oasis, Silal&rsquo;s R&amp;D and venture engine, where the
-              UAE&rsquo;s toughest growing conditions become the ultimate proving ground for the future of food.
-            </p>
-          </div>
-          <nav className={n.tabs} aria-label="News & Media" data-up>
-            {tabs.map((t) => (
-              <Link key={t.label} href={t.href} aria-current={t.current ? "page" : undefined}>
-                {t.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+      {/* ═══ HEAD: no visible intro (client, Roundable RB-3.05: no label, heading, text or tabs); the page
+           opens on the latest release. The heading stays for screen readers and search. ═══ */}
+      <section className={`${n.head} ${n.headBare}`} aria-labelledby="news-h">
+        <h1 id="news-h" className={n.srOnly}>
+          Press Releases
+        </h1>
       </section>
 
       {/* ═══ 01 LATEST: a large image card, text on the photo ═══ */}

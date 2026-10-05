@@ -45,6 +45,13 @@
 .head {
   padding-top: calc(16px + 48px + clamp(56px, 10vh, 110px));
 }
+/* list page without its intro: room for the floating header, then the first label */
+.head.headBare {
+  padding-top: calc(16px + 48px);
+}
+.head.headBare + .sec {
+  padding-top: clamp(32px, 5vh, 56px);
+}
 .headGrid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
