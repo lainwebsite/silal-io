@@ -2,9 +2,9 @@
 
 **Read `docs/BRIEF.md` first, then `docs/brand.md` (brand rules, binding), `docs/sitemap.md` (nav + pages) and `content/` (final copy).** It is the shared brain: roles per chat (BRAIN, DESIGNER 1, DESIGNER 2), which folders each chat owns, pages, assets, open inputs, decisions log, cross-chat requests.
 
-Next.js app. Designer routes: `/D1/...`, `/D2/...` (folders `app/D1`, `app/D2`, assets `public/D1`, `public/D2`). Only write in the folders your chat owns.
+Next.js app. Designer routes: `/4fe86354b2/...`, `/390b3d94a5/...` (folders `app/4fe86354b2`, `app/390b3d94a5`, assets `public/4fe86354b2`, `public/390b3d94a5`). Only write in the folders your chat owns.
 
-**Renamed 2026-10-05:** `designer1` → `D1`, `designer2` → `D2` (routes, `app/` and `public/` folders). The old `/designer1`, `/designer2` URLs are gone on purpose (client had seen them) and must not come back: never create `app/designer*` or `public/designer*`, never link to them, no redirects. `git pull --rebase origin main` before continuing. Root `/` is a neutral page and must not link to `/D1` or `/D2`.
+**Renamed 2026-10-05:** design routes moved twice: `designer1` → `D1` → `4fe86354b2` (Designer 1), `designer2` → `D2` → `390b3d94a5` (Designer 2), in `app/` and `public/`. Random names so the client can't guess them. The old `/designer*` and `/D1`, `/D2` URLs are gone on purpose and must never come back: never create those folders, never link to them, no redirects, no index/directory page at `/`, `/4fe86354b2` or `/390b3d94a5`. Team link list = `docs/links.md` (add new pages there, not on the site). `git pull --rebase origin main` before continuing.
 
 Client presentation links `/V1`, `/V2`, `/V3` (`app/V1..V3`, `public/V1..V3`) are frozen, polished copies owned by BRAIN. Designers never edit them; see "Client presentation links" in `docs/BRIEF.md`.
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-// Neutral root. Design routes (/D1, /D2) are not linked from here on purpose: the client only gets /V1–/V3.
+// Neutral root. Design routes are not linked from here on purpose: the client only gets /V1–/V3.
 export const metadata: Metadata = { title: "Innovation Oasis", robots: { index: false, follow: false } };
 
 export default function Home() {
