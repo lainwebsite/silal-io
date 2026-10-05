@@ -405,10 +405,12 @@
   max-width: var(--max);
   margin-inline: auto;
 }
+/* link columns as wide as their content with one equal gap between them (client: Explore, Resources
+   and Contact were spaced unevenly); the tagline takes the rest */
 .footTop {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) repeat(3, minmax(0, 2fr));
-  gap: 40px 24px;
+  grid-template-columns: minmax(0, 1fr) repeat(3, max-content);
+  gap: 40px clamp(48px, 5vw, 80px);
 }
 .footTag {
   font-weight: 300;
@@ -443,6 +445,7 @@
 }
 .footCol address {
   display: block;
+  max-width: 21em; /* wraps the Arabic line, keeps the column narrow */
   margin-bottom: 14px;
   line-height: 1.6;
 }
@@ -481,6 +484,14 @@
   color: var(--io-ink);
 }
 
+@media (max-width: 1280px) {
+  .footTop {
+    grid-template-columns: repeat(3, max-content);
+  }
+  .footLead {
+    grid-column: 1 / -1;
+  }
+}
 @media (max-width: 900px) {
   .nav {
     grid-template-columns: auto 1fr auto;
