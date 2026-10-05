@@ -101,6 +101,7 @@ export function Feed({
   current = "Overview",
   lead,
   embedded = false,
+  uniform = false,
   title = "All news",
   note = "Sample entries shown for layout. Final news to be supplied by Innovation Oasis.",
 }: {
@@ -109,6 +110,7 @@ export function Feed({
   current?: string; // sidebar entry marked as the current page
   lead?: ReactNode; // shown above the feed, e.g. a section label
   embedded?: boolean; // a section of another page (press releases): no panel sliding over a hero
+  uniform?: boolean; // one even grid of three across instead of the 2 · 3 · 1 rhythm (press releases)
   title?: string;
   note?: string;
 }) {
@@ -164,7 +166,7 @@ export function Feed({
   const watcher = useRef<IntersectionObserver | null>(null);
   useEffect(() => {
     const reveal = (card: HTMLElement) => {
-      const row = Array.from(card.parentElement?.children ?? []).indexOf(card);
+      const row = Array.from(card.parentElement?.children ?? []).indexOf(card) % 3; // place in its row of up to three
       gsap.to(card.querySelector("[data-card-img]"), {
         clipPath: "inset(0% 0% 0% 0% round 6px)",
         duration: 1.3,
@@ -297,7 +299,14 @@ export function Feed({
             </div>
 
             <div ref={list} className={r.rows} aria-live="polite">
-              {rows.map((row, i) =>
+              {uniform ? (
+                <ul className={r.grid3}>
+                  {visible.map((it) => (
+                    <Card key={it.slug} it={it} size={3} />
+                  ))}
+                </ul>
+              ) : null}
+              {(uniform ? [] : rows).map((row, i) =>
                 row.size === 1 ? (
                   <ul key={i} className={r.rowBig}>
                     <Big it={row.items[0]} />

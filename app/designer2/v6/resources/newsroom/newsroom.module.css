@@ -458,6 +458,18 @@
 .row3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+/* press releases: one even grid, three across (no 2 · 3 · 1 rhythm) */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(40px, 6vh, 64px) 24px;
+}
+.grid3 .faceText {
+  font-size: var(--t-h3);
+}
+.grid3 .cardTitle {
+  font-size: clamp(16px, 1.15vw, 18px);
+}
 .cardLink {
   display: grid;
   gap: 12px;
@@ -519,7 +531,7 @@
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: #fff;
-  max-width: 16ch; /* same line breaks in the card and on the release page */
+  max-width: 8.5em; /* in em, so the line breaks match at every size (card and release page) */
 }
 .faceText small {
   font-weight: 400;
@@ -710,6 +722,9 @@
 
 /* ═════════ responsive ═════════ */
 @media (max-width: 1100px) {
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .row3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -755,7 +770,8 @@
 }
 @media (max-width: 640px) {
   .row2,
-  .row3 {
+  .row3,
+  .grid3 {
     grid-template-columns: 1fr;
   }
   .row3 > li:nth-child(3) .cardImg,

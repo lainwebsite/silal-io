@@ -68,11 +68,12 @@ export default function PressReleases() {
       </section>
 
       {/* ═══ 02 ALL RELEASES: the newsroom feed (client video): sticky sidebar, type / topic / search
-           filters, rows in a 2 · 3 · 1-large rhythm that keep loading as you scroll ═══ */}
+           filters, an even grid three across (client) that keeps loading as you scroll ═══ */}
       <Feed
         items={sorted}
         current="Press releases"
         embedded
+        uniform
         title="All releases"
         lead={<Label n="02">All releases</Label>}
         note="Sample entries shown for layout. Final releases to be supplied by Innovation Oasis."
