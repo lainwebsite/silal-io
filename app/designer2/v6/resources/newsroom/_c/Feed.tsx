@@ -12,7 +12,7 @@ import { categories, fmtDate, type Release, topics } from "../../../_lib/news";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STEP = 8;
+const STEP = 6; // one full 2 · 3 · 1 cycle per batch, so a batch never ends on a half-empty row
 const PATTERN = [2, 3, 1]; // two cards · three cards · one large card with its text beside it
 
 const res = (label: string) => footerLinks.resources.find((x) => x.label === label)!.href;
@@ -154,7 +154,10 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
     let i = 0;
     let k = 0;
     while (i < visible.length) {
-      const size = PATTERN[k++ % PATTERN.length];
+      let size = PATTERN[k++ % PATTERN.length];
+      const left = visible.length - i;
+      // never leave empty slots: a short last row becomes a pair, or a single large card
+      if (left < size) size = left === 1 ? 1 : 2;
       out.push({ size, items: visible.slice(i, i + size) });
       i += size;
     }
@@ -172,23 +175,33 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
     return () => io.disconnect();
   }, [shown, pool.length]);
 
-  // reveal new cards; parallax inside the photos
+  // one observer for the life of the feed: a card that is waiting to be revealed keeps its watcher
+  // when more cards load or filters change (it used to be dropped, leaving blank rows)
+  const watcher = useRef<IntersectionObserver | null>(null);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !list.current) return;
-    const fresh = Array.from(list.current.querySelectorAll<HTMLElement>("[data-card]:not([data-seen])"));
-    const io = new IntersectionObserver(
+    const reveal = (card: HTMLElement) => {
+      const row = Array.from(card.parentElement?.children ?? []).indexOf(card);
+      gsap.to(card.querySelector("[data-card-img]"), { clipPath: "inset(0% 0% 0% 0% round 6px)", duration: 1.3, ease: "expo.inOut", delay: row * 0.09 });
+      gsap.to(card.querySelectorAll("[data-card-txt]"), { opacity: 1, y: 0, duration: 1, ease: "expo.out", stagger: 0.06, delay: 0.35 + row * 0.09 });
+    };
+    watcher.current = new IntersectionObserver(
       (es) =>
         es.forEach((e) => {
-          if (!e.isIntersecting) return;
-          io.unobserve(e.target);
-          const card = e.target as HTMLElement;
-          const row = Array.from(card.parentElement!.children).indexOf(card);
-          gsap.to(card.querySelector("[data-card-img]"), { clipPath: "inset(0% 0% 0% 0% round 6px)", duration: 1.3, ease: "expo.inOut", delay: row * 0.09 });
-          gsap.to(card.querySelectorAll("[data-card-txt]"), { opacity: 1, y: 0, duration: 1, ease: "expo.out", stagger: 0.06, delay: 0.35 + row * 0.09 });
+          // on screen, or already scrolled past (fast scroll / jump): reveal either way
+          if (!e.isIntersecting && e.boundingClientRect.top > 0) return;
+          watcher.current?.unobserve(e.target);
+          reveal(e.target as HTMLElement);
         }),
-      { rootMargin: "0px 0px -8% 0px" },
+      { rootMargin: "0px 0px -6% 0px" },
     );
-    fresh.forEach((card) => {
+    return () => watcher.current?.disconnect();
+  }, []);
+
+  // prepare new cards (hidden, watched); parallax inside the photos
+  useEffect(() => {
+    const io = watcher.current;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !list.current || !io) return;
+    list.current.querySelectorAll<HTMLElement>("[data-card]:not([data-seen])").forEach((card) => {
       card.setAttribute("data-seen", "");
       gsap.set(card.querySelector("[data-card-img]"), { clipPath: "inset(100% 0% 0% 0% round 6px)" });
       gsap.set(card.querySelectorAll("[data-card-txt]"), { opacity: 0, y: 18 });
@@ -200,7 +213,6 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
         );
     });
     ScrollTrigger.refresh();
-    return () => io.disconnect();
   }, [rows]);
   useEffect(
     () => () =>
