@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import n from "./news.module.css";
 import { NewsMotion } from "./_c/NewsMotion";
-import { Archive } from "./_c/Archive";
+import { Feed } from "../newsroom/_c/Feed";
 import { Go, Label } from "../../_c/Brand";
 import { BASE, footerLinks } from "../../_lib/site";
 import { fmtDate, releases } from "../../_lib/news";
@@ -63,17 +63,16 @@ export default function PressReleases() {
         </div>
       </section>
 
-      {/* ═══ 02 ARCHIVE ═══ */}
-      <section className={n.sec} aria-labelledby="all-h">
-        <div className={n.wrap}>
-          <Label n="02">All releases</Label>
-          <h2 id="all-h" className={n.srOnly}>
-            All releases
-          </h2>
-          <Archive items={sorted} />
-          <p className={n.note}>Sample entries shown for layout. Final releases to be supplied by Innovation Oasis.</p>
-        </div>
-      </section>
+      {/* ═══ 02 ALL RELEASES: the newsroom feed (client video): sticky sidebar, type / topic / search
+           filters, rows in a 2 · 3 · 1-large rhythm that keep loading as you scroll ═══ */}
+      <Feed
+        items={sorted}
+        current="Press releases"
+        embedded
+        title="All releases"
+        lead={<Label n="02">All releases</Label>}
+        note="Sample entries shown for layout. Final releases to be supplied by Innovation Oasis."
+      />
 
       {/* ═══ 03 MEDIA ENQUIRIES ═══ */}
       <section className={n.media} aria-labelledby="media-h">

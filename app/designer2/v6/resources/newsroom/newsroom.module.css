@@ -217,6 +217,21 @@
   background: var(--paper);
   box-shadow: 0 -30px 60px -40px rgb(20 24 26 / 0.5);
 }
+/* the feed as a section of the press releases page: no panel sliding over a hero */
+.feedEmbed {
+  padding-block: clamp(72px, 11vh, 130px) 0;
+  background: none;
+  box-shadow: none;
+}
+.feedEmbed .wrap > p:first-child {
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+/* on the white page the filter fields take the paper grey (on the newsroom they are white on paper) */
+.feedEmbed .select select,
+.feedEmbed .search input,
+.feedEmbed .empty button {
+  background-color: var(--paper);
+}
 .feedGrid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));

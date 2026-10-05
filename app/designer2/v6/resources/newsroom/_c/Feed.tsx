@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import r from "../newsroom.module.css";
@@ -17,7 +17,7 @@ const PATTERN = [2, 3, 1]; // two cards · three cards · one large card with it
 const res = (label: string) => footerLinks.resources.find((x) => x.label === label)!.href;
 // sidebar: one plain list, no group headings (client: no "News & Media" / "Resources" labels)
 const sideLinks = [
-  { label: "Overview", href: `${BASE}/resources/newsroom`, current: true },
+  { label: "Overview", href: `${BASE}/resources/newsroom` },
   { label: "Press releases", href: `${BASE}/resources/news` },
   { label: "Publications", href: res("Publications") },
   { label: "Projects & Case Studies", href: res("Projects & Case Studies") },
@@ -45,7 +45,7 @@ function Face({ it, sizes }: { it: Release; sizes: string }) {
       </div>
     );
   return (
-    <div className={r.photo} data-px>
+    <div className={r.photo} data-drift>
       <Image src={it.src} alt={it.alt} fill sizes={sizes} />
     </div>
   );
@@ -115,7 +115,23 @@ function Big({ it }: { it: Release }) {
  * wipes up, text follows), the photo drifts inside its frame, and on hover the small arrow fills
  * into the round IO-Blue button.
  */
-export function Feed({ items, featured }: { items: Release[]; featured: string[] }) {
+export function Feed({
+  items,
+  featured = [],
+  current = "Overview",
+  lead,
+  embedded = false,
+  title = "All news",
+  note = "Sample entries shown for layout. Final news to be supplied by Innovation Oasis.",
+}: {
+  items: Release[];
+  featured?: string[];
+  current?: string; // sidebar entry marked as the current page
+  lead?: ReactNode; // shown above the feed, e.g. a section label
+  embedded?: boolean; // a section of another page (press releases): no panel sliding over a hero
+  title?: string;
+  note?: string;
+}) {
   const [type, setType] = useState("All types");
   const [topic, setTopic] = useState("All topics");
   const [q, setQ] = useState("");
@@ -194,7 +210,7 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
       gsap.set(card.querySelector("[data-card-img]"), { clipPath: "inset(100% 0% 0% 0% round 6px)" });
       gsap.set(card.querySelectorAll("[data-card-txt]"), { opacity: 0, y: 18 });
       io.observe(card);
-      const px = card.querySelector<HTMLElement>("[data-px]");
+      const px = card.querySelector<HTMLElement>("[data-drift]");
       if (px)
         drift.current.push(
           gsap.fromTo(px, { yPercent: -5 }, { yPercent: 5, ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: true } }),
@@ -212,15 +228,16 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
   );
 
   return (
-    <section className={r.feed} aria-labelledby="feed-h">
+    <section className={embedded ? `${r.feed} ${r.feedEmbed}` : r.feed} aria-labelledby="feed-h">
       <div className={r.wrap}>
+        {lead}
         <div className={r.feedGrid}>
           <aside className={r.side}>
             <nav className={r.sideNav} aria-label="Resources">
               <ul className={r.sideList}>
                 {sideLinks.map((l) => (
                   <li key={l.label}>
-                    <Link href={l.href} aria-current={l.current ? "page" : undefined}>
+                    <Link href={l.href} aria-current={l.label === current ? "page" : undefined}>
                       {l.label}
                     </Link>
                   </li>
@@ -237,7 +254,7 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
 
           <div className={r.main}>
             <h2 id="feed-h" className={r.srOnly}>
-              All news
+              {title}
             </h2>
             <div className={r.filters}>
               <label className={r.select}>
@@ -302,7 +319,7 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
 
             {shown < pool.length ? <div ref={sentinel} className={r.sentinel} aria-hidden /> : null}
             {pool.length && shown >= pool.length ? <p className={r.end}>You&rsquo;re up to date.</p> : null}
-            <p className={r.note}>Sample entries shown for layout. Final news to be supplied by Innovation Oasis.</p>
+            <p className={r.note}>{note}</p>
           </div>
         </div>
       </div>

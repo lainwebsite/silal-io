@@ -240,6 +240,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 
 ### v6 · Press releases list (2026-10-05)
 - Client (Roundable RB-3.05) on `/designer2/v6/resources/news`: whole intro removed ("00 News & Media" label + hairline, "Press Releases" heading, intro paragraph, capsule tabs); the page opens on "01 Latest release" under the floating header. sr-only h1 "Press Releases" kept for screen readers / search. /V3 not touched.
+- Then (client video): "02 All releases" now uses the newsroom feed (`newsroom/_c/Feed.tsx`, `embedded`): sticky sidebar (Overview, Press releases [current], Publications, Projects & Case Studies, FAQs, Media enquiries), type / topic / search filters (paper-grey fields on the white page), rows in the 2 · 3 · 1-large rhythm with the same card reveals, loading as you scroll. Replaces the capsule-filter Archive (removed). Feed photos drift via `data-drift` so the page's own [data-px] motion doesn't double up. Newsroom unchanged.
 
 ### v2 · News & Media tweaks (2026-10-05)
 - Client, on `/designer2/v2/resources/news`: (1) less space between the tabs and "01 Latest release" (first section now starts 28–40px under the tabs instead of 64–130px); (2) no large mark in the footer. The footer drops the big mark (and the top room it needed) on the News & Media pages only (list + release pages, `data-plain`); the v2 About page keeps its back-cover mark. /V2 (BRAIN's frozen copy) not touched.
