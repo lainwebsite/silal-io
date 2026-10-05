@@ -35,9 +35,15 @@ Snapshots of chosen About pages, given to the client without the designer URLs. 
 | https://silal-io.vercel.app/V1 | `/designer1/v1/about-d` | `e0ddf4a` |
 | https://silal-io.vercel.app/V2 | `/designer2/v2/about` | `e0ddf4a` |
 | https://silal-io.vercel.app/V3 | `/designer2/v6/about` | `e0ddf4a` |
+| https://silal-io.vercel.app/V2/resources/news (+ articles) | `/designer2/v2/resources/news` | `404bb07` |
+| https://silal-io.vercel.app/V3/resources/news (+ articles) | `/designer2/v6/resources/news` | `404bb07` |
+| https://silal-io.vercel.app/V3/resources/newsroom | `/designer2/v6/resources/newsroom` | `404bb07` |
 
 - Only polish allowed on these, never layout or design changes; the originals stay untouched.
-- Only the About page exists in each copy. Links to unbuilt pages point at `SOON` ("#") in each copy's `_lib/site.ts` and are made inert by `LinkGuard` (no 404s, no designer URLs).
+- /V2 and /V3 use route groups so each snapshot keeps the chrome it was copied with: `app/Vn/(about)/` = the About snapshot (URL `/Vn`), `app/Vn/(news)/` = the News snapshot (URL `/Vn/resources/...`). Each group is self-contained (own layout, components, `_lib`). The About footers' "News & Media" link points to `/Vn/resources/news`.
+- Short aliases `/V2/news` and `/V3/news` redirect to `/Vn/resources/news` (`proxy.ts`).
+- News entries are samples until the client sends real press releases.
+- Only the pages listed above exist in each copy. Links to unbuilt pages point at `SOON` ("#") in each copy's `_lib/site.ts` and are made inert by `LinkGuard` (no 404s, no designer URLs).
 - Lowercase `/v1`–`/v3` redirect to `/V1`–`/V3` (`proxy.ts`).
 - Pages are `noindex` and have share previews (`public/Vn/og.jpg`).
 
@@ -104,6 +110,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - 2026-10-01: Navigation = the 6 sitemap categories (`docs/sitemap.md`), same labels in every design.
 - 2026-10-01: Interim web font until Bukra webfont arrives: Readex Pro (Latin + Arabic), held in one CSS variable for an easy swap.
 - 2026-10-02: Client presentation links /V1 (Designer 1 About D), /V2 (Designer 2 v2 About), /V3 (Designer 2 v6 About): polished snapshots, owned by BRAIN.
+- 2026-10-05: News snapshots added to the client links: /V2/resources/news, /V3/resources/news, /V3/resources/newsroom (from Designer 2 v2/v6, polish only). Owned by BRAIN.
 
 ## Requests (cross-chat)
 _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._
@@ -119,3 +126,4 @@ _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._
 - **DESIGNER 2 → BRAIN (2026-10-05):** client asked for a press-releases page in the /V2 look. Built in the source variation: `/designer2/v2/resources/news` (+ detail `/designer2/v2/resources/news/[slug]`). /V2 not touched — add it to the snapshot if you want it on the client link. Releases are samples: please request real press releases (title, date, text, photo) from the client.
 - **DESIGNER 2 → BRAIN (2026-10-05):** same request for the /V3 look: built in the source variation, `/designer2/v6/resources/news` (+ detail `/designer2/v6/resources/news/[slug]`); v6 header capsule now names the current section. /V3 not touched — add to the snapshot if wanted. Same sample releases (need real ones from the client).
 - **DESIGNER 2 → BRAIN (2026-10-05):** also for /V3: a News & Media feed page after Hut 8 (client video), `/designer2/v6/resources/newsroom`. /V3 not touched; add to the snapshot if wanted. Sample entries (now 19) need real news from the client.
+- **BRAIN (2026-10-05):** done for all three news requests above: snapshotted into `/V2/resources/news`, `/V3/resources/news`, `/V3/resources/newsroom` (at `404bb07`). Later changes in `/designer2/...` are not carried over automatically; ask BRAIN to re-sync.

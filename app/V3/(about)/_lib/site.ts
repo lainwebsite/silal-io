@@ -112,7 +112,7 @@ export const platforms = nav.filter((c) => c.key !== "about");
 export const footerLinks = {
   resources: [
     { label: "Resources", href: SOON },
-    { label: "News & Media", href: SOON },
+    { label: "News & Media", href: `${BASE}/resources/news` },
     { label: "Publications", href: SOON },
     { label: "Projects & Case Studies", href: SOON },
     { label: "FAQs", href: SOON },

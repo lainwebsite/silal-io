@@ -1,0 +1,700 @@
+/* Designer 2 · v2 — shared chrome (tokens, header, footer, buttons). Scoped under .root.
+   Brand: docs/brand.md. Logical properties throughout so the layout mirrors for Arabic (RTL). */
+
+.root {
+  /* Core palette (dominant) */
+  --io: #3ca7d2; /* IO Blue: large type, rules, marks, rings */
+  --io-ink: #1c7299; /* darker IO-blue tint for small text/buttons on light (5.4:1 on white) */
+  --io-mist: #b8e0f0; /* light IO-blue tint for small text on charcoal (5.3:1) */
+  --charcoal: #595453;
+  --grey: #7f8284; /* large secondary text only */
+  --grey-ink: #6e7173; /* small secondary text on white (4.9:1) */
+  --light: #f1f1f1;
+  --white: #fff;
+  /* Secondary (accents only) */
+  --green: #00a16b;
+  --green-dark: #015825;
+  --lime: #70b62b;
+  --pink: #e94492;
+  --orange-red: #eb5d3e;
+  --orange: #f08104;
+
+  --f-brand: var(--font-d2-brand), "29LT Bukra", Arial, sans-serif;
+  --gutter: clamp(20px, 5vw, 80px);
+  --max: 1440px;
+  --rule: 1px solid var(--io);
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --header-h: 76px;
+  --kicker: var(--io-ink);
+
+  font-family: var(--f-brand);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--charcoal);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+/* Resets wrapped in :where() so single-class component rules win */
+.root :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.root :where(img) {
+  max-width: 100%;
+  display: block;
+}
+
+.root :where(ul, ol) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.root :where(h1, h2, h3, p, dl, dd) {
+  margin: 0;
+}
+
+.root :focus-visible {
+  outline: 2px solid var(--io);
+  outline-offset: 3px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  inset-inline-start: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--charcoal);
+  color: var(--white);
+}
+.skip:focus {
+  top: 16px;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Type primitives ---------- */
+
+.kicker {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--kicker);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.kicker::before {
+  content: "";
+  inline-size: 28px;
+  block-size: 1px;
+  background: var(--io);
+  flex: none;
+}
+
+/* Big lowercase Light display line, second half in IO blue (guidelines: "exploration") */
+.display {
+  font-weight: 300;
+  font-size: clamp(38px, 5.4vw, 84px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-transform: lowercase;
+}
+.display span {
+  color: var(--io);
+}
+
+.tagline {
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.arrowLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--io-ink);
+  padding-block: 6px;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 100% 1px;
+  transition: background-size 0.4s var(--ease);
+}
+.arrowLink::after {
+  content: "→";
+  transition: transform 0.4s var(--ease);
+}
+.arrowLink:hover {
+  background-size: 0 1px;
+}
+.arrowLink:hover::after {
+  transform: translateX(4px);
+}
+
+/* ---------- Buttons: square, architectural ---------- */
+
+.btn,
+.btnGhost,
+.btnLine {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 52px;
+  padding: 0 26px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.btn {
+  background: var(--io-ink);
+  color: var(--white);
+}
+.btn::after {
+  content: "→";
+  transition: transform 0.3s var(--ease);
+}
+.btn:hover {
+  background: var(--charcoal);
+}
+.btn:hover::after {
+  transform: translateX(4px);
+}
+.btnGhost {
+  color: var(--white);
+  border-color: rgb(255 255 255 / 0.55);
+}
+.btnGhost:hover {
+  background: var(--white);
+  color: var(--charcoal);
+}
+.btnLine {
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+}
+.btnLine:hover {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 50;
+  color: var(--charcoal);
+}
+.headerBar {
+  position: relative;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-inline: var(--gutter);
+  background: rgb(255 255 255 / 0.96);
+  backdrop-filter: blur(10px);
+  border-block-end: var(--rule);
+  transition: background-color 0.4s, border-color 0.4s, color 0.4s;
+}
+.header[data-ondark] .headerBar {
+  background: transparent;
+  backdrop-filter: none;
+  border-color: rgb(255 255 255 / 0.25);
+  color: var(--white);
+}
+.headerBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+.headerWordmark {
+  height: 50px;
+  width: auto;
+}
+.headerMark {
+  height: 38px;
+  width: auto;
+}
+
+.nav {
+  margin-inline-start: auto;
+}
+.nav ul {
+  display: flex;
+  gap: clamp(14px, 1.6vw, 26px);
+}
+.navLink {
+  position: relative;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  padding-block: 26px;
+}
+.navLink::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--io);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+.navLink[aria-expanded="true"]::after,
+.navLink[data-current]::after,
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+.headerEnd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.headerCta {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border: 1px solid currentColor;
+  transition: background-color 0.3s, color 0.3s;
+}
+.headerCta:hover {
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+  color: var(--white);
+}
+.header[data-ondark] .headerCta:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--charcoal);
+}
+
+.menuBtn {
+  display: none;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  place-items: center;
+}
+.menuBtnLines,
+.menuBtnLines::before,
+.menuBtnLines::after {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.3s var(--ease), opacity 0.2s;
+}
+.menuBtnLines {
+  position: relative;
+}
+.menuBtnLines::before,
+.menuBtnLines::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+}
+.menuBtnLines::before {
+  top: -7px;
+}
+.menuBtnLines::after {
+  top: 7px;
+}
+.menuBtn[aria-expanded="true"] .menuBtnLines {
+  background: transparent;
+}
+.menuBtn[aria-expanded="true"] .menuBtnLines::before {
+  transform: translateY(7px) rotate(45deg);
+}
+.menuBtn[aria-expanded="true"] .menuBtnLines::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mega menu */
+.mega {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  background: var(--white);
+  border-block-end: var(--rule);
+  box-shadow: 0 30px 60px -30px rgb(89 84 83 / 0.35);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.25s, transform 0.35s var(--ease), visibility 0s 0.35s;
+  color: var(--charcoal);
+}
+.mega[data-open] {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.25s, transform 0.35s var(--ease);
+}
+.megaInner {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr 1fr;
+  gap: 48px;
+  padding: 44px var(--gutter) 48px;
+  max-width: var(--max);
+  margin-inline: auto;
+  animation: d2-fade 0.4s var(--ease);
+}
+.megaIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.megaTitle {
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.megaBlurb {
+  color: var(--grey-ink);
+  font-size: 15px;
+  max-width: 34ch;
+}
+.megaList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+  align-content: start;
+}
+.megaList a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 14px;
+  border-block-end: 1px solid #ddd;
+  font-size: 15px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.megaList a span:last-child {
+  color: var(--io);
+  transition: transform 0.3s var(--ease);
+}
+.megaList a:hover {
+  color: var(--io-ink);
+  border-color: var(--io);
+}
+.megaList a:hover span:last-child {
+  transform: translateX(4px);
+}
+.megaImg {
+  min-height: 220px;
+  background: center / cover no-repeat var(--light);
+}
+
+@keyframes d2-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* Mobile menu */
+.mobile {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  background: var(--charcoal);
+  color: var(--white);
+  overflow-y: auto;
+  padding: 12px var(--gutter) 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  --kicker: var(--io-mist);
+}
+.mobile[hidden] {
+  display: none;
+}
+.mobileList > li {
+  border-block-end: 1px solid rgb(255 255 255 / 0.18);
+}
+.mobileList summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-block: 18px;
+  font-size: 22px;
+  font-weight: 300;
+}
+.mobileList summary::-webkit-details-marker {
+  display: none;
+}
+.mobileList summary::after {
+  content: "+";
+  margin-inline-start: auto;
+  color: var(--io);
+  font-size: 26px;
+  line-height: 1;
+  transition: transform 0.3s var(--ease);
+}
+.mobileList details[open] summary::after {
+  transform: rotate(45deg);
+}
+.mobileNum {
+  font-size: 12px;
+  color: var(--io-mist);
+  font-weight: 500;
+}
+.mobileList details ul {
+  padding: 0 0 18px 30px;
+}
+.mobileList details a {
+  display: block;
+  padding-block: 8px;
+  color: rgb(255 255 255 / 0.85);
+  font-size: 16px;
+}
+.mobileFoot {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+@media (max-width: 1280px) {
+  .nav,
+  .headerCta,
+  .mega {
+    display: none;
+  }
+  .menuBtn {
+    display: grid;
+  }
+  .headerEnd {
+    margin-inline-start: auto;
+  }
+}
+
+/* ---------- Footer (back cover, guidelines p.31) ---------- */
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  background: var(--charcoal);
+  color: var(--white);
+  padding: clamp(180px, 17vw, 260px) var(--gutter) 32px;
+  --kicker: var(--io-mist);
+}
+/* News & Media pages: no blue lines (client) — the footer's rules turn to a soft white hairline */
+.footer[data-plain] .footerBrand {
+  border-inline-start-color: rgb(255 255 255 / 0.18);
+}
+.footer[data-plain] .footerBase {
+  border-block-start-color: rgb(255 255 255 / 0.18);
+}
+/* without the large mark the footer doesn't need the room it makes for it */
+.footer[data-plain] {
+  padding-block-start: clamp(72px, 8vw, 120px);
+}
+.footerMark {
+  position: absolute;
+  inset-inline-end: -5vw;
+  top: -3vw;
+  width: clamp(240px, 23vw, 340px);
+  height: auto;
+  pointer-events: none;
+}
+.footerInner {
+  position: relative;
+  max-width: var(--max);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+  gap: 64px;
+  padding-block-end: 64px;
+}
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-inline-start: 24px;
+  border-inline-start: var(--rule);
+}
+.footerLockup {
+  width: 168px;
+  height: auto;
+}
+.footerBrand .tagline {
+  color: var(--io-mist);
+}
+/* columns as wide as their content, spread so the gaps between Explore, Resources and Visit are
+   equal (client: they were uneven with three equal-width columns) */
+.footerCols {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: space-between;
+  gap: 40px;
+  align-self: end;
+}
+.footerHead {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--io-mist);
+  margin-block-end: 18px;
+}
+.footerCols li + li {
+  margin-block-start: 10px;
+}
+.footerCols a {
+  font-size: 15px;
+  color: rgb(255 255 255 / 0.88);
+  transition: color 0.2s;
+}
+.footerCols a:hover {
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-color: var(--io);
+  text-underline-offset: 4px;
+}
+.footer address {
+  max-width: 19em; /* wraps the Arabic line, keeps the column narrow */
+  font-style: normal;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-block-end: 18px;
+  color: rgb(255 255 255 / 0.88);
+}
+.footerAr {
+  display: block;
+  margin-block-start: 8px;
+}
+.footerBase {
+  position: relative;
+  max-width: var(--max);
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block-start: 24px;
+  border-block-start: var(--rule);
+  font-size: 13px;
+  color: rgb(255 255 255 / 0.75);
+}
+.footerBase ul {
+  display: flex;
+  gap: 24px;
+}
+
+
+/* ---------- v2 header behaviour ---------- */
+
+/* Transparent over a light hero until scrolled; slides away on scroll down, back on scroll up. */
+.header {
+  transition: transform 0.6s var(--ease);
+}
+.header[data-hidden] {
+  transform: translateY(-100%);
+}
+.header[data-onlight] .headerBar {
+  background: transparent;
+  backdrop-filter: none;
+  border-color: transparent;
+}
+/* News & Media pages: no blue lines (client) — neutral hairline, no progress line */
+.header[data-plain]:not([data-onlight]) .headerBar {
+  border-block-end-color: rgb(89 84 83 / 0.14);
+}
+.header[data-plain] .headerBar::after {
+  content: none;
+}
+.headerBar::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: -1px;
+  height: 1px;
+  width: calc(var(--progress, 0) * 100%);
+  background: var(--io);
+  opacity: 0.9;
+}
+
+/* ---------- Chrome responsive ---------- */
+
+@media (max-width: 1000px) {
+  .footerInner {
+    grid-template-columns: 1fr;
+  }
+  .megaInner {
+    grid-template-columns: 1fr 1.4fr;
+  }
+  .megaImg {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .root {
+    --header-h: 64px;
+    font-size: 16px;
+  }
+  .headerWordmark {
+    height: 42px;
+  }
+  .headerMark {
+    height: 32px;
+  }
+  .footerCols {
+    grid-template-columns: 1fr;
+  }
+  .footerMark {
+    width: 220px;
+    inset-inline-end: -70px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root *,
+  .root *::before,
+  .root *::after {
+    transition-duration: 0s !important;
+  }
+}

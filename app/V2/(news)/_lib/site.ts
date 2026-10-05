@@ -2,8 +2,8 @@ import { P } from "./photo";
 
 export const BASE = "/V2";
 
-// Client preview: only this About page exists. Links to pages that aren't built yet point at SOON
-// and are made inert by LinkGuard (no 404s, no jump to top, no internal URLs).
+// Client preview: only the About page and News & Media exist. Links to pages that aren't built yet
+// point at SOON and are made inert by LinkGuard (no 404s, no jump to top, no internal URLs).
 export const SOON = "#";
 
 export type Sub = { label: string; href: string; external?: boolean };
@@ -112,7 +112,7 @@ export const platforms = nav.filter((c) => c.key !== "about");
 export const footerLinks = {
   resources: [
     { label: "Resources", href: SOON },
-    { label: "News & Media", href: SOON },
+    { label: "News & Media", href: `${BASE}/resources/news` },
     { label: "Publications", href: SOON },
     { label: "Projects & Case Studies", href: SOON },
     { label: "FAQs", href: SOON },
