@@ -74,7 +74,8 @@ export default function PressReleases() {
       {/* ───────── Latest ───────── */}
       <section className={n.sec} aria-labelledby="latest-h">
         <div className={n.wrap}>
-          <p className={n.row} data-rule>
+          {/* no blue rule here: the tabs' hairline sits right above (client feedback) */}
+          <p className={`${n.row} ${n.rowPlain}`}>
             <span className={n.rowNum}>01</span>
             <span id="latest-h">Latest release</span>
             <span className={n.rowEnd}>{fmtDate(latest.date)}</span>

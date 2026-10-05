@@ -238,6 +238,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 
 ### v2 · News & Media tweaks (2026-10-05)
 - Client, on `/designer2/v2/resources/news`: (1) less space between the tabs and "01 Latest release" (first section now starts 28–40px under the tabs instead of 64–130px); (2) no large mark in the footer. The footer drops the big mark (and the top room it needed) on the News & Media pages only (list + release pages, `data-plain`); the v2 About page keeps its back-cover mark. /V2 (BRAIN's frozen copy) not touched.
+- Then: removed the blue rule above "01 Latest release" (it doubled the tabs' hairline right above). The other section rules (02, 03, related) stay.
 
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.

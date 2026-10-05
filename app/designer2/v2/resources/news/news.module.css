@@ -89,6 +89,12 @@
   transform: scaleX(var(--rule));
   transform-origin: left;
 }
+.rowPlain {
+  padding-block-start: 0;
+}
+.rowPlain::before {
+  content: none;
+}
 .rowNum {
   color: var(--io-ink);
 }
