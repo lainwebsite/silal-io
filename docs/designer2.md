@@ -226,5 +226,11 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Header capsule now shows the current section ("News & Media" on these pages, "About IO" elsewhere).
 - Releases share `v6/_lib/news.ts` (copy of the v2 sample data): **samples**, flagged in the UI. /V3 not touched (request in BRIEF).
 
+### v6 · News & Media feed, after Hut 8 (2026-10-05)
+- New page `/designer2/v6/resources/newsroom` (the /V3 look). Client sent a screen recording of Hut 8's "News & Insights" page and asked for a page like it.
+- From the recording: full-screen featured carousel (title, meta, progress line that fills, 1/3 counter, arrows, "Scroll for feed") → feed panel slides up over the sticky hero → sticky left sidebar (section groups that open/close, a live figure at the bottom), type / topic / search filters, rows in a repeating 2 · 3 · 1-large rhythm (large = image with its text beside it, "Explore"), photo cards plus logo cards on striped fields, the small arrow that fills into a coloured circle on hover, the feed keeps loading as you scroll.
+- In Silal / V3 terms: v6 tokens and Label; IO Blue replaces lime; soft 6px corners replace Hut 8's notched corners; the official IO mark (single-colour white on IO ink / charcoal) replaces their sunburst; typographic cards for named programmes (Farm Innovation Fund, Agricultural Challenges, iO Sense); campus clock (Al Ain, GST) + media enquiries in place of their share price; topics = the sitemap's five areas. Motion: hero lines rise, photo wipes from the right per slide, title masks, the hero dims and drifts as the feed covers it; cards open (image wipe, text follows) as they enter, photos drift inside frames.
+- Data: `v6/_lib/news.ts` now has 19 sample releases (10 new), `topic` and optional `card` face; all link to the existing detail pages. Samples, flagged in the UI. /V3 not touched (BRIEF request).
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.

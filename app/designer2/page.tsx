@@ -26,6 +26,7 @@ const designs = [
     note: "One type/grid/motion system. Hero photo closes into a card and the 'at a glance' collage builds around it; one Our Story section; a detailed 3D model of the real site with cards beside each point; hover photos on the platforms; leadership in one screen; sticky team; Why Here as constraint → testbed and a dotted world map; a clear 'different' grid with flow line.",
     pages: [
       { href: "/designer2/v6/about", label: "About IO" },
+      { href: "/designer2/v6/resources/newsroom", label: "News & Media · Feed (after Hut 8)" },
       { href: "/designer2/v6/resources/news", label: "News & Media · Press releases" },
       { href: "/designer2/v6/resources/news/innovation-oasis-officially-opens", label: "Press release (detail)" },
     ],
