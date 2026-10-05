@@ -521,6 +521,10 @@
   padding: clamp(180px, 17vw, 260px) var(--gutter) 32px;
   --kicker: var(--io-mist);
 }
+/* without the large mark the footer doesn't need the room it makes for it */
+.footer[data-plain] {
+  padding-block-start: clamp(72px, 8vw, 120px);
+}
 .footerMark {
   position: absolute;
   inset-inline-end: -5vw;

@@ -236,5 +236,8 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 ### v6 header tweaks (2026-10-05)
 - Client, on `/designer2/v6/resources/news`: (1) no hover on "News & Media" in the header; (2) one button instead of "Contact" + "Enquire". Done in the shared v6 header (`v6/_c/Nav.tsx`, `v6/shell.module.css`), so all v6 pages match: the current-page label in the left capsule has no hover and a default cursor; the right capsule holds a single "Contact us" button (contact page). /V3 (BRAIN's frozen copy) not touched.
 
+### v2 · News & Media tweaks (2026-10-05)
+- Client, on `/designer2/v2/resources/news`: (1) less space between the tabs and "01 Latest release" (first section now starts 28–40px under the tabs instead of 64–130px); (2) no large mark in the footer. The footer drops the big mark (and the top room it needed) on the News & Media pages only (list + release pages, `data-plain`); the v2 About page keeps its back-cover mark. /V2 (BRAIN's frozen copy) not touched.
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.

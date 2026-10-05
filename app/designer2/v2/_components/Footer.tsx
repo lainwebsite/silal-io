@@ -1,12 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import s from "../chrome.module.css";
 import { Lockup, Mark } from "./Brand";
 import { BASE, footerLinks, nav } from "../_lib/site";
 
 export function Footer() {
+  // News & Media pages: no large mark (client feedback); the About page keeps its back-cover mark.
+  const plain = usePathname().includes("/resources/news");
   return (
-    <footer className={s.footer}>
-      <Mark className={s.footerMark} alt="" />
+    <footer className={s.footer} data-plain={plain ? "" : undefined}>
+      {plain ? null : <Mark className={s.footerMark} alt="" />}
       <div className={s.footerInner}>
         <div className={s.footerBrand}>
           <Link href={BASE} aria-label="Innovation Oasis, home">
