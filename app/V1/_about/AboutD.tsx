@@ -156,10 +156,6 @@ export function AboutD() {
         q(`.${c.headRow}`).forEach((el: Element) =>
           gsap.fromTo(el, { "--rule": 0 }, { "--rule": 1, duration: 1.6, ease: "expo.inOut", scrollTrigger: { trigger: el, start: "top 88%" } }),
         );
-        // lowercase brand word drifts behind the pull quote
-        q("[data-drift]").forEach((el: Element) =>
-          gsap.fromTo(el, { xPercent: 8 }, { xPercent: -14, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: true } }),
-        );
         // cropped mark slides in at the close
         q("[data-mark]").forEach((el: Element) =>
           gsap.fromTo(el, { xPercent: 20, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, ease: "none", scrollTrigger: { trigger: el.parentElement, start: "top 85%", end: "center center", scrub: true } }),
@@ -280,9 +276,6 @@ export function AboutD() {
             ))}
             <Photo src={HQ.atrium} alt="The IO atrium" ratio="16 / 10" sizes="(max-width: 1000px) 100vw, 55vw" />
             <blockquote className={c.pull}>
-              <span className={c.bigWord} aria-hidden="true" data-drift>
-                <IoWord word="implementation" />
-              </span>
               <p data-split>{story.turn[0]}</p>
               <p data-split>
                 What it lacked was <IoWord word="implementation." />

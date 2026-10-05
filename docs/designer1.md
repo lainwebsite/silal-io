@@ -40,6 +40,8 @@ Owned by the DESIGNER 1 chat. Record design directions, tokens (colours, type, s
 
 **Container (2026-10-05):** wide pages (About B, C, D) now use **1920px of content**, side padding (`--gutter`, 20–64px) outside it: `.root[data-wide] { --max: 1920px }`, `.wrap { max-width: calc(var(--max) + 2 × gutter) }`; all edge-aligned panels use `max(gutter, (100vw − var(--max)) / 2)`. Previously 1728px including padding. On a 1920px screen content is 1792px (screen minus padding); the full 1920px shows on screens ≥ 2048px.
 
+**2026-10-05:** removed the lowercase background word ("implementation") behind the pull quote on About C, D and `/V1` — client found it tacky.
+
 **About variation D** (`/designer1/v1/about-d`, 2026-10-01) — copy of C (C kept for comparison) with the **3D model matched to the aerial photography** (`assets/photos/Archive` 163505 / 163545 / 163812 / 164012):
 - Entrance: low white main building (taller central atrium block = "Collaboration spaces", two lab wings = "Laboratories"), entrance canopy + blue IO sign panel, forecourt with umbrella canopies (perforated), palm-lined drive, gatehouse, totem, roundabout with green island, palm avenue along the main road.
 - Fields: teal windbreak-fenced plot blocks (row crops), white shade-net frame grid, IO Blue irrigation. Greenhouse: ridged multi-span block (10 spans) with crops inside. Service area: two white domes, a glass geodesic dome, round tanks, long service building. Al Foah Farm palm grid across the east road.

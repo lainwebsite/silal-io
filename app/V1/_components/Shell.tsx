@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import s from "../v1.module.css";
 
-// Pages listed here use the wide 1728px container (nav + footer included).
+// Pages listed here use the wide container: 1920px of content + side padding (nav + footer included).
 const WIDE = ["/V1"];
 
 export function Shell({ className, children }: { className: string; children: ReactNode }) {
