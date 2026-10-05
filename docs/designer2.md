@@ -246,6 +246,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 
 ### v6 footer (2026-10-05)
 - Client: equal gaps between Explore, Resources and Contact (they were uneven: fixed fractional columns, text of different widths). Columns are now as wide as their content with one gap between them (48–80px, scales with the window); the tagline takes the rest. Under 1280px the tagline sits above the three columns; under 900px as before. Contact address capped at 21em so the Arabic line wraps. Shared footer, so all v6 pages. /V3 not touched.
+- Then (client, press releases list): the "03 Media enquiries" band uses the footer's frame (same side padding and max width), so "For interviews, images and information…" lines up with "Advancing Agri-food Systems" at every width (and its right edge with the footer's). Body text left as is (client).
 
 ### v2 · News & Media tweaks (2026-10-05)
 - Client, on `/designer2/v2/resources/news`: (1) less space between the tabs and "01 Latest release" (first section now starts 28–40px under the tabs instead of 64–130px); (2) no large mark in the footer. The footer drops the big mark (and the top room it needed) on the News & Media pages only (list + release pages, `data-plain`); the v2 About page keeps its back-cover mark. /V2 (BRAIN's frozen copy) not touched.

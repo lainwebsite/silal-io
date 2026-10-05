@@ -369,8 +369,12 @@
 /* ═════════ MEDIA ENQUIRIES (paper band, as the leadership band) ═════════ */
 .media {
   margin-top: var(--sp);
-  padding-block: var(--sp);
+  padding: var(--sp) var(--gx);
   background: var(--paper);
+}
+/* same frame as the footer below it (client): the heading lines up with "Advancing Agri-food Systems" */
+.media > .wrap {
+  padding-inline: 0;
 }
 .mediaGrid {
   display: grid;
