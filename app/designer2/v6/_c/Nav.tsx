@@ -75,9 +75,15 @@ export function Nav() {
             <span>{open ? "Close" : "Menu"}</span>
           </button>
           <span className={s.capSep} aria-hidden />
-          <Link href={`${BASE}/about`} className={s.capLink} aria-current="page">
-            About IO
-          </Link>
+          {pathname.includes("/resources/news") ? (
+            <Link href={`${BASE}/resources/news`} className={s.capLink} aria-current="page">
+              News &amp; Media
+            </Link>
+          ) : (
+            <Link href={`${BASE}/about`} className={s.capLink} aria-current="page">
+              About IO
+            </Link>
+          )}
         </div>
 
         <Link href={BASE} className={`${s.cap} ${s.capLogo}`} aria-label="Innovation Oasis, part of Silal — home">

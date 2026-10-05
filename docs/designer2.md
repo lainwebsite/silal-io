@@ -221,5 +221,10 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Same feel as v2 About: kicker with blue rule + dot, hairline chapter rows that draw, Light headings, photos framed with crop marks and "Fig." captions, arrow links, charcoal band, same GSAP motion (lines rise, fades, curtain-up photos with drift) and pre-paint contract (`data-d2m` / `__d2ready`).
 - **Releases are SAMPLES** (`v2/_lib/news.ts`): 9 entries written in the page's voice around real IO subjects and client photos (inauguration, FoodTech Challenge, Advanced Agritech Academy, growth chambers, soil sensing, drones, hydroponics, site tour); dates are placeholders. Marked in the UI ("Sample entries shown for layout…"). Need real releases from the client.
 
+### v6 · News & Media — press releases (2026-10-05)
+- New pages in v6 (the source of the client link /V3): `/designer2/v6/resources/news` (list) and `/designer2/v6/resources/news/[slug]` (detail, sitemap template 15). Same structure as the v2 version (after silal.ae press releases), told in v6's language: numbered labels with IO-Blue hairlines, Light type from the v6 tokens, latest release as a large soft-cornered image card with text on the photo, capsule tabs / filter chips / search, cards with category tag on the photo and the round blue arrow, paper band for media enquiries; detail with sticky meta card + share capsules, client boilerplate with an IO-Blue rule, prev/next cards, related. Motion: v6 reveals (lines rise, fade-up, image wipe + drift, hairlines draw).
+- Header capsule now shows the current section ("News & Media" on these pages, "About IO" elsewhere).
+- Releases share `v6/_lib/news.ts` (copy of the v2 sample data): **samples**, flagged in the UI. /V3 not touched (request in BRIEF).
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.
