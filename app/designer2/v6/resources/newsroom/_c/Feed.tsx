@@ -1,11 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useRef, useState, ViewTransition } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import r from "../newsroom.module.css";
+import { Face } from "./Face";
+import { armMorph, MorphStyles, useMorphName } from "../../news/_c/Morph";
 import { BASE, footerLinks } from "../../../_lib/site";
 import { categories, fmtDate, type Release, topics } from "../../../_lib/news";
 
@@ -24,33 +25,6 @@ const sideLinks = [
   { label: "FAQs", href: res("FAQs") },
 ];
 
-function Face({ it, sizes }: { it: Release; sizes: string }) {
-  if (it.card?.style === "mark")
-    return (
-      <div className={r.face} data-tone={it.card.tone}>
-        {/* official mark, single-colour white */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/io-mark.svg" alt="" className={r.faceMark} />
-      </div>
-    );
-  if (it.card?.style === "type")
-    return (
-      <div className={r.face} data-tone={it.card.tone}>
-        <p className={r.faceText}>
-          <small>{it.category}</small>
-          {it.card.text}
-        </p>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/io-mark.svg" alt="" className={r.faceMarkSm} />
-      </div>
-    );
-  return (
-    <div className={r.photo} data-drift>
-      <Image src={it.src} alt={it.alt} fill sizes={sizes} />
-    </div>
-  );
-}
-
 function Arrow() {
   return (
     <i className={r.arrow} aria-hidden>
@@ -62,12 +36,15 @@ function Arrow() {
 }
 
 function Card({ it, size }: { it: Release; size: 2 | 3 }) {
+  const vt = useMorphName(it.slug, "feed");
   return (
     <li className={r.card} data-card>
-      <Link href={`${BASE}/resources/news/${it.slug}`} className={r.cardLink}>
-        <div className={r.cardImg} data-card-img>
-          <Face it={it} sizes={size === 2 ? "(max-width: 900px) 100vw, 36vw" : "(max-width: 900px) 100vw, 24vw"} />
-        </div>
+      <Link href={`${BASE}/resources/news/${it.slug}`} className={r.cardLink} onClick={(e) => armMorph(e, it.slug, "feed")}>
+        <ViewTransition name={vt} share="d6-frame" default="none">
+          <div className={r.cardImg} data-card-img>
+            <Face it={it} vt={vt} sizes={size === 2 ? "(max-width: 900px) 100vw, 36vw" : "(max-width: 900px) 100vw, 24vw"} />
+          </div>
+        </ViewTransition>
         <p className={r.meta} data-card-txt>
           <time dateTime={it.date}>{fmtDate(it.date)}</time>
           <span>{it.category}</span>
@@ -82,12 +59,15 @@ function Card({ it, size }: { it: Release; size: 2 | 3 }) {
 }
 
 function Big({ it }: { it: Release }) {
+  const vt = useMorphName(it.slug, "feed");
   return (
     <li className={r.big} data-card>
-      <Link href={`${BASE}/resources/news/${it.slug}`} className={r.bigLink}>
-        <div className={r.bigImg} data-card-img>
-          <Face it={it} sizes="(max-width: 900px) 100vw, 50vw" />
-        </div>
+      <Link href={`${BASE}/resources/news/${it.slug}`} className={r.bigLink} onClick={(e) => armMorph(e, it.slug, "feed")}>
+        <ViewTransition name={vt} share="d6-frame" default="none">
+          <div className={r.bigImg} data-card-img>
+            <Face it={it} vt={vt} sizes="(max-width: 900px) 100vw, 50vw" />
+          </div>
+        </ViewTransition>
         <div className={r.bigText}>
           <p className={r.meta} data-card-txt>
             <time dateTime={it.date}>{fmtDate(it.date)}</time>
@@ -185,8 +165,20 @@ export function Feed({
   useEffect(() => {
     const reveal = (card: HTMLElement) => {
       const row = Array.from(card.parentElement?.children ?? []).indexOf(card);
-      gsap.to(card.querySelector("[data-card-img]"), { clipPath: "inset(0% 0% 0% 0% round 6px)", duration: 1.3, ease: "expo.inOut", delay: row * 0.09 });
-      gsap.to(card.querySelectorAll("[data-card-txt]"), { opacity: 1, y: 0, duration: 1, ease: "expo.out", stagger: 0.06, delay: 0.35 + row * 0.09 });
+      gsap.to(card.querySelector("[data-card-img]"), {
+        clipPath: "inset(0% 0% 0% 0% round 6px)",
+        duration: 1.3,
+        ease: "expo.inOut",
+        delay: row * 0.09,
+      });
+      gsap.to(card.querySelectorAll("[data-card-txt]"), {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "expo.out",
+        stagger: 0.06,
+        delay: 0.35 + row * 0.09,
+      });
     };
     watcher.current = new IntersectionObserver(
       (es) =>
@@ -207,13 +199,31 @@ export function Feed({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !list.current || !io) return;
     list.current.querySelectorAll<HTMLElement>("[data-card]:not([data-seen])").forEach((card) => {
       card.setAttribute("data-seen", "");
-      gsap.set(card.querySelector("[data-card-img]"), { clipPath: "inset(100% 0% 0% 0% round 6px)" });
-      gsap.set(card.querySelectorAll("[data-card-txt]"), { opacity: 0, y: 18 });
+      gsap.set(card.querySelector("[data-card-img]"), {
+        clipPath: "inset(100% 0% 0% 0% round 6px)",
+      });
+      gsap.set(card.querySelectorAll("[data-card-txt]"), {
+        opacity: 0,
+        y: 18,
+      });
       io.observe(card);
       const px = card.querySelector<HTMLElement>("[data-drift]");
       if (px)
         drift.current.push(
-          gsap.fromTo(px, { yPercent: -5 }, { yPercent: 5, ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: true } }),
+          gsap.fromTo(
+            px,
+            { yPercent: -5 },
+            {
+              yPercent: 5,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            },
+          ),
         );
     });
     ScrollTrigger.refresh();
@@ -229,6 +239,7 @@ export function Feed({
 
   return (
     <section className={embedded ? `${r.feed} ${r.feedEmbed}` : r.feed} aria-labelledby="feed-h">
+      <MorphStyles />
       <div className={r.wrap}>
         {lead}
         <div className={r.feedGrid}>

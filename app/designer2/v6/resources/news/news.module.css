@@ -434,6 +434,13 @@
 .articleImg img {
   object-fit: cover;
 }
+/* the card's own image under the release photo while it loads (Morph.tsx) */
+.standIn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
 .articleGrid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));

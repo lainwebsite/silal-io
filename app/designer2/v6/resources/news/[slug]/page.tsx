@@ -4,15 +4,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import n from "../news.module.css";
 import { NewsMotion } from "../_c/NewsMotion";
+import { MorphArea, MorphFrame, MorphStandIn, MorphStyles, MorphTarget } from "../_c/Morph";
+import { Face } from "../../newsroom/_c/Face";
 import { Go, Label } from "../../../_c/Brand";
 import { BASE, footerLinks } from "../../../_lib/site";
 import { boilerplate, fmtDate, releases } from "../../../_lib/news";
 
 /*
- * News / Media detail (sitemap template 15), v6: label + title + lead, a soft-cornered photo that
- * opens and drifts, body beside a sticky meta card (date, category, location, share capsules), the
- * client's "About Innovation Oasis" boilerplate as an IO-Blue-ruled block, media enquiries,
- * previous / next, related releases.
+ * News / Media detail (sitemap template 15), v6: label + title + lead, the soft-cornered frame the
+ * clicked card grows into (Morph.tsx), body beside a sticky meta card (date, category, location, share
+ * capsules), the client's "About Innovation Oasis" boilerplate as an IO-Blue-ruled block, media
+ * enquiries, previous / next, related releases.
  */
 
 export function generateStaticParams() {
@@ -22,7 +24,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const r = releases.find((x) => x.slug === slug);
-  return r ? { title: `${r.title} — News & Media · Innovation Oasis`, description: r.excerpt } : {};
+  return r
+    ? {
+        title: `${r.title} — News & Media · Innovation Oasis`,
+        description: r.excerpt,
+      }
+    : {};
 }
 
 export default async function Release({ params }: { params: Promise<{ slug: string }> }) {
@@ -37,14 +44,24 @@ export default async function Release({ params }: { params: Promise<{ slug: stri
   const related = [...others.filter((x) => x.category === r.category), ...others.filter((x) => x.category !== r.category)].slice(0, 3);
   const url = `https://silal-io.vercel.app${BASE}/resources/news/${r.slug}`;
   const share = [
-    { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}` },
-    { label: "X", href: `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(r.title)}` },
-    { label: "Email", href: `mailto:?subject=${encodeURIComponent(r.title)}&body=${encodeURIComponent(url)}` },
+    {
+      label: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+    },
+    {
+      label: "X",
+      href: `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(r.title)}`,
+    },
+    {
+      label: "Email",
+      href: `mailto:?subject=${encodeURIComponent(r.title)}&body=${encodeURIComponent(url)}`,
+    },
   ];
 
   return (
     <div className={n.page}>
       <NewsMotion />
+      <MorphStyles />
 
       <article>
         <header className={n.head}>
@@ -67,11 +84,25 @@ export default async function Release({ params }: { params: Promise<{ slug: stri
         </header>
 
         <div className={n.wrap}>
-          <figure className={n.articleFig} data-wipe>
-            <div className={n.articleImg} data-px>
-              <Image src={r.src} alt={r.alt} fill sizes="(max-width: 1440px) 100vw, 1440px" preload />
-            </div>
-          </figure>
+          {/* the frame the clicked card grows into (Morph.tsx): same content as that card (photo or colour
+               field); no wipe / drift of its own so the morph lands still */}
+          <MorphTarget
+            slug={r.slug}
+            face={
+              r.card ? (
+                <figure className={n.articleFig}>
+                  <Face it={r} vt={`rel-${r.slug}`} lg drift={false} sizes="(max-width: 1440px) 100vw, 1440px" />
+                </figure>
+              ) : undefined
+            }
+          >
+            <figure className={n.articleFig}>
+              <div className={n.articleImg}>
+                <MorphStandIn slug={r.slug} className={n.standIn} />
+                <Image src={r.src} alt={r.alt} fill sizes="(max-width: 1440px) 100vw, 1440px" preload />
+              </div>
+            </figure>
+          </MorphTarget>
 
           <div className={n.articleGrid}>
             <aside className={n.aside}>
@@ -150,22 +181,30 @@ export default async function Release({ params }: { params: Promise<{ slug: stri
             </h2>
             <Go href={`${BASE}/resources/news`}>All press releases</Go>
           </div>
-          <ul className={n.grid}>
-            {related.map((x) => (
-              <li key={x.slug} data-up>
-                <Link href={`${BASE}/resources/news/${x.slug}`} className={n.card}>
-                  <div className={n.cardImg}>
-                    <Image src={x.src} alt={x.alt} fill sizes="(max-width: 700px) 100vw, 30vw" />
-                    <span className={n.cardTag}>{x.category}</span>
-                  </div>
-                  <time className={n.cardDate} dateTime={x.date}>
-                    {fmtDate(x.date)}
-                  </time>
-                  <h3 className={n.cardTitle}>{x.title}</h3>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <MorphArea scope="related">
+            <ul className={n.grid}>
+              {related.map((x) => (
+                <li key={x.slug} data-up data-morph-slug={x.slug}>
+                  <Link href={`${BASE}/resources/news/${x.slug}`} className={n.card}>
+                    <MorphFrame slug={x.slug} scope="related">
+                      <div className={n.cardImg}>
+                        {x.card ? (
+                          <Face it={x} sizes="(max-width: 700px) 100vw, 30vw" drift={false} />
+                        ) : (
+                          <Image src={x.src} alt={x.alt} fill sizes="(max-width: 700px) 100vw, 30vw" />
+                        )}
+                        <span className={n.cardTag}>{x.category}</span>
+                      </div>
+                    </MorphFrame>
+                    <time className={n.cardDate} dateTime={x.date}>
+                      {fmtDate(x.date)}
+                    </time>
+                    <h3 className={n.cardTitle}>{x.title}</h3>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </MorphArea>
         </div>
       </section>
     </div>

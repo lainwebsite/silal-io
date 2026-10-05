@@ -492,12 +492,13 @@
   place-items: center;
   background: var(--charcoal) repeating-linear-gradient(180deg, rgb(255 255 255 / 0.05) 0 18px, transparent 18px 36px);
   transition: background-color 0.5s;
+  container-type: size; /* the mark sizes to the frame, so the card and the release page frame match */
 }
 .face[data-tone="blue"] {
   background-color: var(--io-ink);
 }
 .faceMark {
-  width: 34%;
+  width: min(34cqw, 56cqh);
   height: auto;
   filter: brightness(0) invert(1); /* single-colour white (allowed on colour fields) */
   transition: transform 1.2s var(--ease);
@@ -518,6 +519,7 @@
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: #fff;
+  max-width: 16ch; /* same line breaks in the card and on the release page */
 }
 .faceText small {
   font-weight: 400;
@@ -530,13 +532,23 @@
   position: absolute;
   right: 8%;
   bottom: 8%;
-  width: 18%;
+  width: min(18cqw, 30cqh);
   height: auto;
   filter: brightness(0) invert(1);
   opacity: 0.9;
 }
 .row3 .faceText {
   font-size: var(--t-h3);
+}
+/* the release page's large frame */
+.face[data-lg] .faceText {
+  top: 12%;
+  left: 5%;
+  font-size: clamp(24px, 9cqh, 84px);
+}
+.face[data-lg] .faceMarkSm {
+  right: 5%;
+  bottom: 10%;
 }
 
 .meta {
