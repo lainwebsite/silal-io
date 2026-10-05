@@ -20,12 +20,6 @@ export const metadata: Metadata = {
  * Entries are SAMPLES until the client supplies releases (see _lib/news.ts).
  */
 
-const tabs = [
-  { label: "Press Releases", href: `${BASE}/resources/news`, current: true },
-  { label: "Publications", href: footerLinks.resources.find((r) => r.label === "Publications")!.href },
-  { label: "Projects & Case Studies", href: footerLinks.resources.find((r) => r.label === "Projects & Case Studies")!.href },
-  { label: "FAQs", href: footerLinks.resources.find((r) => r.label === "FAQs")!.href },
-];
 
 export default function PressReleases() {
   const sorted = [...releases].sort((x, y) => y.date.localeCompare(x.date));
@@ -35,41 +29,18 @@ export default function PressReleases() {
     <div className={n.news}>
       <NewsMotion />
 
-      {/* ───────── Head ───────── */}
-      <section className={n.head} data-hero="light" aria-labelledby="news-h">
-        <div className={n.wrap}>
-          <nav className={n.crumbs} aria-label="Breadcrumb" data-fade>
-            <Link href={`${BASE}/resources`}>Resources</Link>
-            <span aria-hidden>/</span>
-            <span>News &amp; Media</span>
-            <span aria-hidden>/</span>
-            <span aria-current="page">Press Releases</span>
-          </nav>
-          <div className={n.headGrid}>
-            <div>
-              <h1 id="news-h" className={n.title} data-news-title>
-                Press Releases
-              </h1>
-            </div>
-            <p className={n.intro} data-fade>
-              Announcements, programmes and research from Innovation Oasis, Silal&rsquo;s R&amp;D and venture engine, where the
-              UAE&rsquo;s toughest growing conditions become the ultimate proving ground for the future of food.
-            </p>
-          </div>
-          <nav className={n.tabs} aria-label="News & Media" data-fade>
-            {tabs.map((t) => (
-              <Link key={t.label} href={t.href} aria-current={t.current ? "page" : undefined}>
-                {t.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+      {/* ───────── Head: no visible intro (client: no breadcrumb, heading, text or tabs); the page
+           opens on the latest release. The heading stays for screen readers and search. ───────── */}
+      <section className={`${n.head} ${n.headBare}`} data-hero="light" aria-labelledby="news-h">
+        <h1 id="news-h" className={n.srOnly}>
+          Press Releases
+        </h1>
       </section>
 
       {/* ───────── Latest ───────── */}
       <section className={n.sec} aria-labelledby="latest-h">
         <div className={n.wrap}>
-          {/* no blue rule here: the tabs' hairline sits right above (client feedback) */}
+          {/* no blue rule above the first label (client feedback) */}
           <p className={`${n.row} ${n.rowPlain}`}>
             <span className={n.rowNum}>01</span>
             <span id="latest-h">Latest release</span>

@@ -244,6 +244,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Then ("there's still a blue line"): no blue lines anywhere on the News & Media pages (list + release pages): section rules removed, kicker dash removed, active-tab underline and title hover line in charcoal, boilerplate/meta rules grey; header (scrolled-state blue border + reading-progress line) and footer (rule beside the logo, rule above the copyright) turned to neutral hairlines via `data-plain` on these paths only. Verified with a computed-style scan of the whole page after scrolling: 0 blue lines. v2 About unchanged.
 - Then: removed the "News & Media • Innovation Oasis" kicker above the "Press Releases" title (list page).
 - Then: gap between "01 Latest release" and the photo below cut to 16px (was 32–56px).
+- Then: the whole intro removed from the list page (breadcrumb, "Press Releases" heading, intro paragraph, section tabs); the page opens on "01 Latest release" right under the header. An sr-only h1 "Press Releases" stays for screen readers / search.
 
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.
