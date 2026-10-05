@@ -15,23 +15,13 @@ const STEP = 6; // one full 2 · 3 · 1 cycle per batch, so a batch never ends o
 const PATTERN = [2, 3, 1]; // two cards · three cards · one large card with its text beside it
 
 const res = (label: string) => footerLinks.resources.find((x) => x.label === label)!.href;
-const groups = [
-  {
-    title: "News & Media",
-    links: [
-      { label: "Overview", href: `${BASE}/resources/newsroom`, current: true },
-      { label: "Press releases", href: `${BASE}/resources/news` },
-      { label: "Publications", href: res("Publications") },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Resources hub", href: res("Resources") },
-      { label: "Projects & Case Studies", href: res("Projects & Case Studies") },
-      { label: "FAQs", href: res("FAQs") },
-    ],
-  },
+// sidebar: one plain list, no group headings (client: no "News & Media" / "Resources" labels)
+const sideLinks = [
+  { label: "Overview", href: `${BASE}/resources/newsroom`, current: true },
+  { label: "Press releases", href: `${BASE}/resources/news` },
+  { label: "Publications", href: res("Publications") },
+  { label: "Projects & Case Studies", href: res("Projects & Case Studies") },
+  { label: "FAQs", href: res("FAQs") },
 ];
 
 function Face({ it, sizes }: { it: Release; sizes: string }) {
@@ -119,8 +109,8 @@ function Big({ it }: { it: Release }) {
 }
 
 /*
- * The feed (after Hut 8): sticky sidebar (section nav with open/close groups, campus clock in place
- * of their share price, media contact), type / topic / search filters, then rows in a repeating
+ * The feed (after Hut 8): sticky sidebar (a plain list of pages and a media-enquiries link; no clock,
+ * the footer has the time; the old "News & Media" / "Resources" group headings are gone), type / topic / search filters, then rows in a repeating
  * rhythm of 2 · 3 · 1 large. More rows load as you near the end. Cards open as they enter (image
  * wipes up, text follows), the photo drifts inside its frame, and on hover the small arrow fills
  * into the round IO-Blue button.
@@ -130,7 +120,6 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
   const [topic, setTopic] = useState("All topics");
   const [q, setQ] = useState("");
   const [shown, setShown] = useState(STEP);
-  const [open, setOpen] = useState<Record<string, boolean>>({ "News & Media": true, Resources: false });
   const list = useRef<HTMLDivElement>(null);
   const sentinel = useRef<HTMLDivElement>(null);
   const drift = useRef<gsap.core.Tween[]>([]);
@@ -227,26 +216,16 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
       <div className={r.wrap}>
         <div className={r.feedGrid}>
           <aside className={r.side}>
-            <nav className={r.sideNav} aria-label="News & Media">
-              {groups.map((g) => (
-                <div key={g.title} className={r.group} data-open={open[g.title] ? "" : undefined}>
-                  <button type="button" className={r.groupHead} aria-expanded={!!open[g.title]} onClick={() => setOpen((o) => ({ ...o, [g.title]: !o[g.title] }))}>
-                    {g.title}
-                    <i aria-hidden />
-                  </button>
-                  <div className={r.groupBody}>
-                    <ul>
-                      {g.links.map((l) => (
-                        <li key={l.label}>
-                          <Link href={l.href} aria-current={"current" in l && l.current ? "page" : undefined} tabIndex={open[g.title] ? 0 : -1}>
-                            {l.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
+            <nav className={r.sideNav} aria-label="Resources">
+              <ul className={r.sideList}>
+                {sideLinks.map((l) => (
+                  <li key={l.label}>
+                    <Link href={l.href} aria-current={l.current ? "page" : undefined}>
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </nav>
             {/* no campus clock here: the footer already shows Al Ain time (client feedback) */}
             <div className={r.sideInfo}>
