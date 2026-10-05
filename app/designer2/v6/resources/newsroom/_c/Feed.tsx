@@ -6,7 +6,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import r from "../newsroom.module.css";
-import { Clock } from "../../../_c/Clock";
 import { BASE, footerLinks } from "../../../_lib/site";
 import { categories, fmtDate, type Release, topics } from "../../../_lib/news";
 
@@ -249,12 +248,8 @@ export function Feed({ items, featured }: { items: Release[]; featured: string[]
                 </div>
               ))}
             </nav>
+            {/* no campus clock here: the footer already shows Al Ain time (client feedback) */}
             <div className={r.sideInfo}>
-              <p className={r.sideLabel}>Al Ain, UAE</p>
-              <p className={r.sideSub}>Campus time</p>
-              <p className={r.sideClock}>
-                <Clock /> <small>GST</small>
-              </p>
               <Link href={footerLinks.contact} className={r.sideLink}>
                 Media enquiries <Arrow />
               </Link>

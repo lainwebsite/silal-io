@@ -59,7 +59,7 @@ export function Footer() {
                 <a href="tel:+97126144444">+971 261 44444</a>
               </li>
               <li>
-                <Link href={footerLinks.contact}>Contact &amp; enquiries</Link>
+                <Link href={footerLinks.contact}>Contact Us</Link>
               </li>
             </ul>
           </div>

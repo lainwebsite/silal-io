@@ -78,10 +78,11 @@
   margin-bottom: clamp(40px, 8vh, 96px);
 }
 .heroTitle {
+  margin-bottom: 12px;
   font-weight: 300;
-  font-size: var(--t-display);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  color: rgb(255 255 255 / 0.9);
 }
 .heroBar {
   display: flex;
@@ -147,7 +148,7 @@
 .heroLine {
   position: relative;
   height: 1px;
-  margin: 14px 0 clamp(24px, 4vh, 40px);
+  margin: 14px 0 clamp(22px, 3.5vh, 36px);
   background: rgb(255 255 255 / 0.28);
 }
 .heroLine i {

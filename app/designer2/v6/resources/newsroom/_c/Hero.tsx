@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 import r from "../newsroom.module.css";
-import { Go, Label } from "../../../_c/Brand";
+import { Go } from "../../../_c/Brand";
 import { BASE } from "../../../_lib/site";
 import { fmtDate, type Release } from "../../../_lib/news";
 
@@ -108,15 +108,6 @@ export function Hero({ items }: { items: Release[] }) {
 
       <div className={r.heroContent} data-hero-content>
         <div className={r.wrap}>
-          <div className={r.heroTop}>
-            <Label n="00" dark>
-              Resources
-            </Label>
-            <h1 className={r.heroTitle} data-hero-title>
-              News &amp; Media
-            </h1>
-          </div>
-
           <div className={r.heroBar} data-hero-in>
             <p className={r.heroMeta} aria-live="polite">
               <time dateTime={f.date}>{fmtDate(f.date)}</time>
@@ -142,6 +133,10 @@ export function Hero({ items }: { items: Release[] }) {
             <i ref={bar} />
           </div>
 
+          {/* page title, small, right above the featured headline (client feedback) */}
+          <h1 className={r.heroTitle} data-hero-title>
+            News &amp; Media
+          </h1>
           <div className={r.heroSlides}>
             {items.map((it, i) => (
               <div key={it.slug} className={r.heroSlide} data-slide-text style={{ visibility: i === 0 ? "visible" : "hidden" }} aria-hidden={i !== cur}>

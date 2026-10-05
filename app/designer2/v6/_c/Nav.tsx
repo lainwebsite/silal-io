@@ -74,8 +74,8 @@ export function Nav() {
             <i data-x={open ? "" : undefined} />
             <span>{open ? "Close" : "Menu"}</span>
           </button>
-          <span className={s.capSep} aria-hidden />
-          {pathname.includes("/resources/news") ? (
+          {pathname.includes("/resources/newsroom") ? null : <span className={s.capSep} aria-hidden />}
+          {pathname.includes("/resources/newsroom") ? null : pathname.includes("/resources/news") ? (
             <Link href={pathname.includes("/resources/newsroom") ? `${BASE}/resources/newsroom` : `${BASE}/resources/news`} className={s.capLink} aria-current="page">
               News &amp; Media
             </Link>
