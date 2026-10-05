@@ -273,6 +273,12 @@
 .capLink:hover {
   background: #fff;
 }
+/* the current page's name is a label, not a target: no hover */
+.capLink[aria-current],
+.capLink[aria-current]:hover {
+  background: transparent;
+  cursor: default;
+}
 .capCta {
   display: inline-flex;
   align-items: center;

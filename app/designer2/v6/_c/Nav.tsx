@@ -13,7 +13,7 @@ import { lenis } from "./SmoothScroll";
  * Header: three quiet capsules floating on the page (compact, minimal).
  *  left   — menu + the current page
  *  centre — the logo in format three (wordmark + "Part of Silal", mark right): the only place the mark appears
- *  right  — Contact / Enquire
+ *  right  — one "Contact us" button
  * Menu: a white panel drops from the top with the six sitemap categories and their pages.
  */
 export function Nav() {
@@ -94,12 +94,10 @@ export function Nav() {
           <img src="/brand/io-mark.svg" alt="" width={255} height={188} className={s.logoMark} />
         </Link>
 
+        {/* one action only (client: "Contact" and "Enquire" went to the same place) */}
         <div className={`${s.cap} ${s.capEnd}`}>
-          <Link href={footerLinks.contact} className={s.capLink}>
-            Contact
-          </Link>
           <Link href={footerLinks.contact} className={s.capCta}>
-            Enquire
+            Contact us
           </Link>
         </div>
       </header>

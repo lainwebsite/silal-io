@@ -233,5 +233,8 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Data: `v6/_lib/news.ts` now has 19 sample releases (10 new), `topic` and optional `card` face; all link to the existing detail pages. Samples, flagged in the UI. /V3 not touched (BRIEF request).
 - Fix (client video, blank space in the feed): cards waiting to be revealed lost their scroll watcher whenever the next batch loaded, so whole rows stayed invisible (typically the row after a large card). Now one observer lives for the whole feed (cards already scrolled past reveal too), batches load one full 2 · 3 · 1 cycle at a time, and a short last row becomes a pair or a single large card, so no empty slots. Verified with a scroll test at three speeds (old build: 2 cards left blank; fixed: 0).
 
+### v6 header tweaks (2026-10-05)
+- Client, on `/designer2/v6/resources/news`: (1) no hover on "News & Media" in the header; (2) one button instead of "Contact" + "Enquire". Done in the shared v6 header (`v6/_c/Nav.tsx`, `v6/shell.module.css`), so all v6 pages match: the current-page label in the left capsule has no hover and a default cursor; the right capsule holds a single "Contact us" button (contact page). /V3 (BRAIN's frozen copy) not touched.
+
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.
