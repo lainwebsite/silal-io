@@ -57,7 +57,11 @@ const designs = [
     href: "/designer2/v2/about",
     name: "v2 — About IO (storytelling)",
     note: "Light, information-first About page told as a story: client copy verbatim, a photo matched to every beat, slow GSAP + Lenis motion.",
-    pages: [{ href: "/designer2/v2/about", label: "About IO" }],
+    pages: [
+      { href: "/designer2/v2/about", label: "About IO" },
+      { href: "/designer2/v2/resources/news", label: "News & Media · Press releases" },
+      { href: "/designer2/v2/resources/news/innovation-oasis-officially-opens", label: "Press release (detail)" },
+    ],
   },
 ];
 
