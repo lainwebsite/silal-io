@@ -93,6 +93,7 @@
 }
 .rowPlain {
   padding-block-start: 0;
+  margin-block-end: 16px; /* client: the label sits close to the image below */
 }
 .rowPlain::before {
   content: none;
