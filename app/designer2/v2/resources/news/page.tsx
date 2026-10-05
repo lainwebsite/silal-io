@@ -47,11 +47,6 @@ export default function PressReleases() {
           </nav>
           <div className={n.headGrid}>
             <div>
-              <p className={n.kicker} data-fade>
-                News &amp; Media
-                <span className={n.kickerSep} aria-hidden />
-                Innovation Oasis
-              </p>
               <h1 id="news-h" className={n.title} data-news-title>
                 Press Releases
               </h1>
