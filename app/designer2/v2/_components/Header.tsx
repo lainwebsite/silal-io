@@ -81,6 +81,7 @@ export function Header() {
       data-ondark={onDark ? "" : undefined}
       data-onlight={onLight ? "" : undefined}
       data-hidden={hidden && !open && !mobile ? "" : undefined}
+      data-plain={pathname.includes("/resources/news") ? "" : undefined}
     >
       <div className={s.headerBar} onMouseLeave={leave}>
         <Link href={BASE} className={s.headerBrand} aria-label="Innovation Oasis, home">

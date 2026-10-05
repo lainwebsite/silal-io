@@ -521,6 +521,13 @@
   padding: clamp(180px, 17vw, 260px) var(--gutter) 32px;
   --kicker: var(--io-mist);
 }
+/* News & Media pages: no blue lines (client) — the footer's rules turn to a soft white hairline */
+.footer[data-plain] .footerBrand {
+  border-inline-start-color: rgb(255 255 255 / 0.18);
+}
+.footer[data-plain] .footerBase {
+  border-block-start-color: rgb(255 255 255 / 0.18);
+}
 /* without the large mark the footer doesn't need the room it makes for it */
 .footer[data-plain] {
   padding-block-start: clamp(72px, 8vw, 120px);
@@ -627,6 +634,13 @@
   background: transparent;
   backdrop-filter: none;
   border-color: transparent;
+}
+/* News & Media pages: no blue lines (client) — neutral hairline, no progress line */
+.header[data-plain]:not([data-onlight]) .headerBar {
+  border-block-end-color: rgb(89 84 83 / 0.14);
+}
+.header[data-plain] .headerBar::after {
+  content: none;
 }
 .headerBar::after {
   content: "";

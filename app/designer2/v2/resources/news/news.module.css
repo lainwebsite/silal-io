@@ -58,6 +58,7 @@
   inline-size: 28px;
   block-size: 1px;
   background: var(--io);
+  display: none;
 }
 .kickerSep {
   inline-size: 4px;
@@ -72,7 +73,7 @@
   gap: 18px;
   align-items: baseline;
   margin-block-end: clamp(32px, 4vw, 56px);
-  padding-block-start: 18px;
+  padding-block-start: 0;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -86,6 +87,7 @@
   inset-inline: 0;
   height: 1px;
   background: var(--io);
+  display: none; /* client: no blue rules on these pages */
   transform: scaleX(var(--rule));
   transform-origin: left;
 }
@@ -290,7 +292,7 @@ a.rowEnd:hover {
   inset-inline: 0 22px;
   bottom: -1px;
   height: 1px;
-  background: var(--io);
+  background: var(--charcoal);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.6s var(--slow);
@@ -330,7 +332,7 @@ a.rowEnd:hover {
   color: var(--charcoal);
 }
 .featureTitle a {
-  background: linear-gradient(var(--io), var(--io)) no-repeat 0 100% / 0 1px;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px;
   transition: background-size 0.7s var(--slow);
 }
 .featureTitle a:hover {
@@ -592,7 +594,7 @@ a.rowEnd:hover {
 }
 .aside dl {
   margin: 0;
-  border-block-start: 1px solid var(--io);
+  border-block-start: var(--hair);
 }
 .aside dl > div {
   display: flex;
@@ -657,7 +659,7 @@ a.rowEnd:hover {
   gap: 14px;
   margin-block-start: 24px;
   padding-block-start: 24px;
-  border-block-start: 1px solid var(--io);
+  border-block-start: var(--hair);
   font-size: 15px;
   color: var(--grey-ink);
 }
