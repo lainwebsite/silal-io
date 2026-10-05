@@ -563,9 +563,12 @@
 .footerBrand .tagline {
   color: var(--io-mist);
 }
+/* columns as wide as their content, spread so the gaps between Explore, Resources and Visit are
+   equal (client: they were uneven with three equal-width columns) */
 .footerCols {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, auto);
+  justify-content: space-between;
   gap: 40px;
   align-self: end;
 }
@@ -592,6 +595,7 @@
   text-underline-offset: 4px;
 }
 .footer address {
+  max-width: 19em; /* wraps the Arabic line, keeps the column narrow */
   font-style: normal;
   font-size: 15px;
   line-height: 1.6;

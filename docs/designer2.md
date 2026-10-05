@@ -254,6 +254,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 - Then: removed the "News & Media • Innovation Oasis" kicker above the "Press Releases" title (list page).
 - Then: gap between "01 Latest release" and the photo below cut to 16px (was 32–56px).
 - Then: the whole intro removed from the list page (breadcrumb, "Press Releases" heading, intro paragraph, section tabs); the page opens on "01 Latest release" right under the header. An sr-only h1 "Press Releases" stays for screen readers / search.
+- v2 footer: equal gaps between Explore, Resources and Visit (client; uneven with three equal-width columns). Columns are now as wide as their content and spread across the space, so the gaps match (40px at the narrowest, ~100px at 1512); the Visit address is capped at 19em so the Arabic line wraps. Shared v2 footer, so the About page too. /V2 not touched.
 
 ## Next
 - About IO (client copy verbatim, team grid per `content/team.md`), then Section Hub template, Research Area detail, Contact, Enquiry form.
