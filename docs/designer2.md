@@ -256,6 +256,9 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 ### v6 · Release page share icons (2026-10-06)
 - Client (`news_detail_v3.pdf`): only the share buttons change, in the side column of the release page: LinkedIn, X and mail are now three square icon buttons (47px, paper-grey, 6px corners, near-black glyphs, IO-ink fill on hover, aria-labels) instead of text capsules. Source `/390b3d94a5/v6/resources/news/[slug]`, and the same in `/V3` at the client's explicit request (`app/V3/(news)/resources/news/{[slug]/page.tsx,news.module.css}`; BRAIN's `SOON` link untouched). Nothing else changed.
 
+### v6 · Clipped headline descenders (2026-10-06)
+- Client screenshot: on the release page the bottoms of p / g / y in the title were cut off. Cause: the rising-lines reveal wraps each line in a mask (`overflow: clip`) as tall as the line box, and the title's leading (1.06) is tighter than the glyphs. Fix in `news/news.module.css` (v6 source and `/V3` copy at the client's request): every line mask gets 0.2em of room below and the same amount of negative margin, so nothing moves. Covers all rising headings on the v6 news pages (title, "More from Innovation Oasis", media enquiries). Checked at 1512px: descenders whole, h1 height unchanged.
+
 ### v2 · News & Media tweaks (2026-10-05)
 - Client, on `/390b3d94a5/v2/resources/news`: (1) less space between the tabs and "01 Latest release" (first section now starts 28–40px under the tabs instead of 64–130px); (2) no large mark in the footer. The footer drops the big mark (and the top room it needed) on the News & Media pages only (list + release pages, `data-plain`); the v2 About page keeps its back-cover mark. /V2 (BRAIN's frozen copy) not touched.
 - Then: removed the blue rule above "01 Latest release" (it doubled the tabs' hairline right above). The other section rules (02, 03, related) stay.

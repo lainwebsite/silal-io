@@ -406,6 +406,13 @@
 .crumbs [aria-current] {
   color: var(--charcoal);
 }
+/* the line masks of the rising headings clip at the line box; with tight leading that cut off descenders
+   (p, g, y). Give each mask room below the baseline and take it back with a negative margin, so the
+   layout does not move. */
+.page :global(.ln-mask) {
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+}
 .articleTitle {
   max-width: 22ch;
   margin-top: clamp(24px, 4vh, 40px);
