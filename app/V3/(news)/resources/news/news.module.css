@@ -495,14 +495,13 @@
   gap: 6px;
 }
 .share a {
-  display: inline-flex;
-  align-items: center;
-  height: 34px;
-  padding: 0 12px;
+  display: grid;
+  place-items: center;
+  inline-size: 47px;
+  block-size: 47px;
   border-radius: var(--r);
   background: var(--paper);
-  font-size: 13px;
-  color: var(--charcoal);
+  color: #14181a; /* near-black glyphs, as in the design */
   transition: background-color 0.3s, color 0.3s;
 }
 .share a:hover {
