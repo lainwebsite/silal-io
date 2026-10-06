@@ -564,8 +564,14 @@ a.rowEnd:hover {
 }
 
 /* ═════════ Detail ═════════ */
+/* press release page (client design, news_detail_v2.pdf): the kicker sits centred; title and lead step in
+   from the left like a staircase; the body column is narrower; share is three icons; no crop marks */
+.kickerMid {
+  justify-content: center;
+}
 .articleTitle {
   max-width: 22ch;
+  margin-inline-start: 13.9%;
   margin-block-start: clamp(20px, 2.4vw, 32px);
   font-weight: 300;
   font-size: clamp(36px, 4.6vw, 76px);
@@ -575,6 +581,7 @@ a.rowEnd:hover {
 }
 .articleLead {
   max-width: 52ch;
+  margin-inline-start: 27.4%;
   margin-block-start: clamp(20px, 2.4vw, 32px);
   font-size: clamp(17px, 1.3vw, 20px);
   font-weight: 300;
@@ -633,19 +640,20 @@ a.rowEnd:hover {
 .share {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  margin-block-start: 14px;
 }
 .share a {
-  display: inline-block;
-  padding: 8px 14px;
-  font-size: 13px;
-  color: var(--charcoal);
-  box-shadow: inset 0 0 0 1px rgb(89 84 83 / 0.2);
-  transition: box-shadow 0.3s, color 0.3s;
+  display: grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  color: #14181a; /* near-black, as in the design */
+  transition: color 0.3s, transform 0.5s var(--slow);
 }
 .share a:hover {
   color: var(--io-ink);
-  box-shadow: inset 0 0 0 1px var(--io);
+  transform: translateY(-2px);
 }
 .body {
   display: grid;
@@ -731,7 +739,24 @@ a.rowEnd:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+/* wide screens: the design's proportions (side column 27%, body 50%, a gap between) */
+@media (min-width: 1281px) {
+  .articleGrid {
+    grid-template-columns: minmax(0, 27.3%) minmax(0, 50%);
+    column-gap: 8.2%;
+  }
+  .articleGrid .body {
+    max-width: none;
+  }
+}
 @media (max-width: 900px) {
+  .kickerMid {
+    justify-content: flex-start;
+  }
+  .articleTitle,
+  .articleLead {
+    margin-inline-start: 0;
+  }
   .headGrid,
   .feature,
   .contactGrid,

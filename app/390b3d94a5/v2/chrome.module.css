@@ -646,6 +646,10 @@
 .header[data-plain] .headerBar::after {
   content: none;
 }
+/* News & Media pages (client design): the bar's content sits in the same 1440px frame as the footer */
+.header[data-plain] .headerBar {
+  padding-inline: max(var(--gutter), (100% - var(--max)) / 2);
+}
 .headerBar::after {
   content: "";
   position: absolute;

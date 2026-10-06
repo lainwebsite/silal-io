@@ -13,6 +13,21 @@ import { boilerplate, fmtDate, releases } from "../../../_lib/news";
  * media enquiries, then previous / next and related releases.
  */
 
+// The three share glyphs (client design: icons, no boxed text links), drawn in the text colour.
+function ShareIcon({ kind }: { kind: string }) {
+  return (
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden fill="currentColor">
+      {kind === "in" ? (
+        <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3v-11zm6.5 0h3.8v1.6h.06c.53-1 1.82-2.06 3.75-2.06 4.01 0 4.75 2.64 4.75 6.07v6.39h-4v-5.67c0-1.35-.02-3.09-1.88-3.09-1.89 0-2.18 1.47-2.18 3v5.76h-4v-11z" />
+      ) : kind === "x" ? (
+        <path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78L17.75 3zm-1.08 16.16h1.7L7.4 4.74H5.58l11.09 14.42z" />
+      ) : (
+        <path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h15A1.5 1.5 0 0 1 21 5.5v.2l-9 6.1-9-6.1v-.2zM3 8.1V18.5A1.5 1.5 0 0 0 4.5 20h15a1.5 1.5 0 0 0 1.5-1.5V8.1l-8.56 5.8a.8.8 0 0 1-.88 0L3 8.1z" />
+      )}
+    </svg>
+  );
+}
+
 export function generateStaticParams() {
   return releases.map((r) => ({ slug: r.slug }));
 }
@@ -48,7 +63,7 @@ export default async function Release({ params }: { params: Promise<{ slug: stri
               <span aria-hidden>/</span>
               <span aria-current="page">{r.category}</span>
             </nav>
-            <p className={n.kicker} data-fade>
+            <p className={`${n.kicker} ${n.kickerMid}`} data-fade>
               Press release
               <span className={n.kickerSep} aria-hidden />
               <time dateTime={r.date}>{fmtDate(r.date)}</time>
@@ -68,7 +83,6 @@ export default async function Release({ params }: { params: Promise<{ slug: stri
               <div className={n.frameInner} data-parallax>
                 <Image src={r.src} alt={r.alt} fill sizes="100vw" preload />
               </div>
-              <span className={n.corners} aria-hidden />
             </div>
             <figcaption className={n.caption}>
               <span>Fig. 01</span>
@@ -95,13 +109,13 @@ export default async function Release({ params }: { params: Promise<{ slug: stri
               <p className={n.shareLabel}>Share</p>
               <ul className={n.share}>
                 {[
-                  { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}` },
-                  { label: "X", href: `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(r.title)}` },
-                  { label: "Email", href: `mailto:?subject=${encodeURIComponent(r.title)}&body=${encodeURIComponent(url)}` },
+                  { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, icon: "in" },
+                  { label: "X", href: `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(r.title)}`, icon: "x" },
+                  { label: "Email", href: `mailto:?subject=${encodeURIComponent(r.title)}&body=${encodeURIComponent(url)}`, icon: "mail" },
                 ].map((s) => (
                   <li key={s.label}>
-                    <a href={s.href} target={s.label === "Email" ? undefined : "_blank"} rel="noreferrer">
-                      {s.label}
+                    <a href={s.href} target={s.label === "Email" ? undefined : "_blank"} rel="noreferrer" aria-label={`Share on ${s.label}`} title={s.label}>
+                      <ShareIcon kind={s.icon} />
                     </a>
                   </li>
                 ))}
@@ -164,7 +178,6 @@ export default async function Release({ params }: { params: Promise<{ slug: stri
                 <Link href={`${BASE}/resources/news/${x.slug}`} className={n.cardLink}>
                   <div className={n.cardImg}>
                     <Image src={x.src} alt={x.alt} fill sizes="(max-width: 700px) 100vw, 33vw" />
-                    <span className={n.corners} aria-hidden />
                   </div>
                   <p className={n.meta}>
                     <time dateTime={x.date}>{fmtDate(x.date)}</time>
