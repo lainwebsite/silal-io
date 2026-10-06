@@ -5,7 +5,7 @@ Owned by the DESIGNER 2 chat. Record design directions, tokens (colours, type, s
 ## Designs
 
 ### v1 — "Proving Ground" (2026-10-01)
-- Live: `/390b3d94a5/v1` (Home), `/390b3d94a5/v1/system` (design system). Index: `/390b3d94a5`.
+- Live: `/390b3d94a5/v1` (Home), `/390b3d94a5/v1/system` (design system).
 - Code: `app/390b3d94a5/v1/`: `layout.tsx`, `v1.module.css` (all tokens + components, scoped under `.root`), `_components/` (Brand, Header, Footer, HereAnywhere, Reveal), `_lib/` (`site.ts` = sitemap nav, `photo.ts` = shared web-copy paths).
 - Sources: `docs/brand.md`, `docs/sitemap.md`, `content/about.md`, `content/team.md`, guidelines PDF (all 35 pages viewed).
 

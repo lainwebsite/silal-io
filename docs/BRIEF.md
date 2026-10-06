@@ -17,14 +17,14 @@ Single source of truth for every Claude chat working on this repo. Update this f
 - Tagline: **Advancing Agri-food Systems** / نحو أنظمة زراعة وغذاء متطورة
 - Core line: "If it works here, it can work anywhere."
 - Live site: https://silal-io.vercel.app/ (Vercel auto-deploys `main`).
-- Stack: **Next.js** (App Router, TypeScript) on Vercel. Root `/` = index of designers.
+- Stack: **Next.js** (App Router, TypeScript) on Vercel. Root `/` = neutral page (logo only, no links). There is no index page of designs anywhere on the site; the team link list is `docs/links.md`.
 
 ## Chats and who owns what
 | Chat | Role | Owns (only writes here) | Live URL |
 |---|---|---|---|
 | BRAIN (content alignment) | Content, copy, assets, sitemap, decisions, shared shell | `docs/`, `assets/`, `content/`, `public/photos/`, `public/brand/`, root `app/layout.tsx` + `app/page.tsx`, `package.json` | https://silal-io.vercel.app/ |
-| DESIGNER 1 | Own design direction(s), full site in Next.js | `app/4fe86354b2/**`, `public/4fe86354b2/**`, `docs/designer1.md` | https://silal-io.vercel.app/4fe86354b2 |
-| DESIGNER 2 | Own design direction(s), full site in Next.js | `app/390b3d94a5/**`, `public/390b3d94a5/**`, `docs/designer2.md` | https://silal-io.vercel.app/390b3d94a5 |
+| DESIGNER 1 | Own design direction(s), full site in Next.js | `app/4fe86354b2/**`, `public/4fe86354b2/**`, `docs/designer1.md`, your section of `docs/links.md` | pages under `/4fe86354b2/...` (the bare `/4fe86354b2` is a 404 on purpose) |
+| DESIGNER 2 | Own design direction(s), full site in Next.js | `app/390b3d94a5/**`, `public/390b3d94a5/**`, `docs/designer2.md`, your section of `docs/links.md` | pages under `/390b3d94a5/...` (the bare `/390b3d94a5` is a 404 on purpose) |
 | BRAIN (client presentation) | Polished client-facing copies of chosen designs. **Designers: don't edit these.** | `app/V1/**`, `app/V2/**`, `app/V3/**`, `public/V1..V3/**`, `proxy.ts` | /V1 · /V2 · /V3 |
 
 ### Client presentation links (/V1, /V2, /V3)
@@ -47,9 +47,21 @@ Snapshots of chosen About pages, given to the client without the designer URLs. 
 - Lowercase `/v1`–`/v3` redirect to `/V1`–`/V3` (`proxy.ts`).
 - Pages are `noindex` and have share previews (`public/Vn/og.jpg`).
 
-### URL structure
-`/designerN/<design>/<page>` — e.g. `/4fe86354b2/v1` (Home), `/4fe86354b2/v1/about`, `/390b3d94a5/editorial/contact`.
-Each design is self-contained: its own `layout.tsx`, components and styles inside its folder (CSS Modules or scoped styles; no global CSS that leaks into other designers' routes).
+### URL structure (read this, every chat)
+Three kinds of links. Never mix them up.
+
+| Kind | Pattern | Who sees it | Who edits |
+|---|---|---|---|
+| **Client links** | `/V1`, `/V2`, `/V3`, `/V2/resources/news`, `/V3/resources/news`, `/V3/resources/newsroom` | The client. The only links ever sent to the client. | BRAIN only (frozen, polished snapshots) |
+| **Design routes (internal)** | Designer 1: `/4fe86354b2/<design>/<page>` (e.g. `/4fe86354b2/v1/about-d`). Designer 2: `/390b3d94a5/<design>/<page>` (e.g. `/390b3d94a5/v6/about`). | Team only. Never send to the client, never link to them from client pages or from `/`. | The owning designer |
+| **Root** | `/` | Anyone | BRAIN. Logo only, no links. |
+
+- Folder = URL: `app/4fe86354b2/v1/about-d/page.tsx` → `/4fe86354b2/v1/about-d`. Designer assets: `public/<your folder>/...` → `/<your folder>/...`.
+- Inside your designs, build every internal link from your design's `BASE` constant (e.g. `const BASE = "/390b3d94a5/v6"`). Never hard-code another folder name.
+- No index/directory pages: no `page.tsx` at `app/4fe86354b2/` or `app/390b3d94a5/`, no lists of designs anywhere on the site. When you add a page, add its link to your section of `docs/links.md` instead.
+- Dead names, never use again: `/designer1`, `/designer2`, `/D1`, `/D2` (the client saw the old ones). No folders, links, redirects or mentions in page titles/URLs.
+- Getting a design onto a client link: the designer builds it in their own folder, then asks BRAIN under "Requests". BRAIN snapshots it into `/V…`. Designers never edit `app/V*`/`public/V*`; changes in your folder do not reach the client link until BRAIN re-syncs.
+- Each design is self-contained: its own `layout.tsx`, components and styles inside its folder (CSS Modules or scoped styles; no global CSS that leaks into other designers' routes).
 
 ### Rules for every chat
 - Push straight to `main`. Always `git pull --rebase origin main` before pushing. Run `npm run build` before pushing; a broken build takes the whole site down.

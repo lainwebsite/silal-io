@@ -1,6 +1,6 @@
 # Silal IO website
 
-**Read `docs/BRIEF.md` first, then `docs/brand.md` (brand rules, binding), `docs/sitemap.md` (nav + pages) and `content/` (final copy).** It is the shared brain: roles per chat (BRAIN, DESIGNER 1, DESIGNER 2), which folders each chat owns, pages, assets, open inputs, decisions log, cross-chat requests.
+**Read `docs/BRIEF.md` first (its "URL structure" section explains our 3 kinds of links), then `docs/brand.md` (brand rules, binding), `docs/sitemap.md` (nav + pages) and `content/` (final copy).** It is the shared brain: roles per chat (BRAIN, DESIGNER 1, DESIGNER 2), which folders each chat owns, pages, assets, open inputs, decisions log, cross-chat requests.
 
 Next.js app. Designer routes: `/4fe86354b2/...`, `/390b3d94a5/...` (folders `app/4fe86354b2`, `app/390b3d94a5`, assets `public/4fe86354b2`, `public/390b3d94a5`). Only write in the folders your chat owns.
 
