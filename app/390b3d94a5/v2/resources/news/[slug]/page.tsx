@@ -163,7 +163,7 @@ export default async function Release({ params }: { params: Promise<{ slug: stri
         </div>
       </article>
 
-      <section className={n.sec} aria-labelledby="rel-h">
+      <section className={`${n.sec} ${n.relSec}`} aria-labelledby="rel-h">
         <div className={n.wrap}>
           <p className={n.row} data-rule>
             <span className={n.rowNum}>+</span>

@@ -564,24 +564,26 @@ a.rowEnd:hover {
 }
 
 /* ═════════ Detail ═════════ */
-/* press release page (client design, news_detail_v2.pdf): the kicker sits centred; title and lead step in
-   from the left like a staircase; the body column is narrower; share is three icons; no crop marks */
+/* press release page (client design, news_detail_v2.2.pdf): kicker, title (54px) and lead centred; the body
+   column is narrower; share is three icons; no crop marks; room between the last section and the footer */
 .kickerMid {
   justify-content: center;
 }
 .articleTitle {
-  max-width: 22ch;
-  margin-inline-start: 13.9%;
+  max-width: 14em;
+  margin-inline: auto;
   margin-block-start: clamp(20px, 2.4vw, 32px);
   font-weight: 300;
-  font-size: clamp(36px, 4.6vw, 76px);
-  line-height: 1.04;
+  font-size: clamp(32px, 8.5vw, 54px); /* 54px from 640px up (client) */
+  line-height: 1.45;
+  text-align: center;
   letter-spacing: -0.035em;
   color: var(--charcoal);
 }
 .articleLead {
   max-width: 52ch;
-  margin-inline-start: 27.4%;
+  margin-inline: auto;
+  text-align: center;
   margin-block-start: clamp(20px, 2.4vw, 32px);
   font-size: clamp(17px, 1.3vw, 20px);
   font-weight: 300;
@@ -590,6 +592,9 @@ a.rowEnd:hover {
 }
 .articleFig {
   margin-block-start: clamp(40px, 6vw, 80px);
+}
+.relSec {
+  padding-block-end: clamp(96px, 9.5vw, 164px);
 }
 .articleFig .frame {
   aspect-ratio: 21 / 9;
@@ -750,13 +755,6 @@ a.rowEnd:hover {
   }
 }
 @media (max-width: 900px) {
-  .kickerMid {
-    justify-content: flex-start;
-  }
-  .articleTitle,
-  .articleLead {
-    margin-inline-start: 0;
-  }
   .headGrid,
   .feature,
   .contactGrid,
