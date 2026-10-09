@@ -5,6 +5,7 @@ New area for the Home Page designs (separate from the About page work in `/V1`�
 - **Live (team link):** https://silal-io.vercel.app/home-page/c1-v2 (noindex; not on a client link yet)
 - **Code:** `app/home-page/c1-v2/` — `page.tsx` (server markup, the Figma 1440 × 870 frame), `Story.tsx` (client: one paused GSAP timeline scrubbed by ScrollTrigger + Lenis), `c1.module.css` (every rule scoped under `.root`, nothing leaks to other routes), `Symbols.tsx` (IO mark + cursor sprite), `chapters.ts` (left nav labels), `layout.tsx` (metadata, noindex).
 - **Assets:** `public/home-page/c1-v2/img/` (28 web images exported from Figma; hash names = Figma image hashes).
+- **Raw originals:** `assets/home-page/c1-v2/raw/fig_<hash>.<ext>` (28 untouched Figma exports, original filenames; same rule as `assets/photos`: never resize or recompress; excluded from the Vercel deploy). The web copy `public/home-page/c1-v2/img/<hash>.jpg|png` is the same pixels, except the six 4096px sources, which are 2400px JPG copies.
 - **Spec:** `docs/home-page/c1-design-spec.md` (extracted from Figma file `85J2hDmYtlUNY2GbDkFxZi`, page "Home Page", Concept 1 "Design" column). Reference frames: `docs/home-page/ref/` (Figma node screenshots).
 
 ## How it works
@@ -22,6 +23,6 @@ New area for the Home Page designs (separate from the About page work in `/V1`�
 
 ## Open items
 - Copy is what is in the Figma (placeholder in tone; the client has only supplied the About copy).
-- `0ba94745.jpg` (desert landscape) is only 735 × 420 in the Figma export; it is enlarged to full screen, so it looks soft. Needs a higher-resolution source.
+- `0ba94745.jpg` (desert landscape) is only 735 × 420 in the Figma file itself (the raw export is the same size); it is enlarged to full screen, so it looks soft. Needs a higher-resolution source from the client.
 - All CTAs / footer links point at `#anchors` (pages not built yet).
-- The spec mentions `assets/raw/` and `assets/svg/` from the extraction; they were not part of the hand-over. The logo and cursor are inlined in `Symbols.tsx`.
+- The spec mentions `assets/svg/` from the extraction; it was not part of the hand-over. The logo and cursor are inlined in `Symbols.tsx`.
