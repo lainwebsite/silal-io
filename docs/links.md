@@ -10,6 +10,9 @@ Design routes live under random folder names so they cannot be guessed. There is
 - https://silal-io.vercel.app/V2 · news: https://silal-io.vercel.app/V2/resources/news
 - https://silal-io.vercel.app/V3 · news: https://silal-io.vercel.app/V3/resources/news · feed: https://silal-io.vercel.app/V3/resources/newsroom
 
+## Home Page
+- C1 - V2 — Concept 1 "Built by the Desert" (immersive, scroll-scrubbed): https://silal-io.vercel.app/home-page/c1-v2 (docs: `docs/home-page/README.md`)
+
 ## Designer 1
 
 ### v1 — Clear Field
