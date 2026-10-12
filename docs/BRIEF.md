@@ -125,6 +125,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - 2026-10-05: News snapshots added to the client links: /V2/resources/news, /V3/resources/news, /V3/resources/newsroom (from Designer 2 v2/v6, polish only). Owned by BRAIN.
 - 2026-10-05: Designer routes renamed `/designer1` → `/4fe86354b2`, `/designer2` → `/390b3d94a5` (incl. `app/` and `public/` folders) because the client had seen the old links. Old URLs return 404 (no redirect, so they don't reveal the new location). Root `/` is now a neutral page with no links. Never recreate `designer*` folders.
 - 2026-10-05: `/D1`, `/D2` were still guessable: moved to random `/4fe86354b2` (Designer 1) and `/390b3d94a5` (Designer 2). Their index pages are deleted (parent URLs 404); the link list is `docs/links.md`. Never add a directory page back on the site.
+- 2026-10-12: Homepage Concept 1 "Built by the Desert" (static HTML prototype from the LAIN Figma) added at `/homepage-concept-1/v2`: files in `public/homepage-concept-1/v2/`, one rewrite in `next.config.ts`, notes in `prototypes/silal-homepage/`. Team link only (noindex, not linked from `/`). Touches no designer, `/V*` or root files.
 
 ## Requests (cross-chat)
 _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._

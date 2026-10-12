@@ -1,0 +1,21 @@
+# Silal IO – homepage prototype, Concept 1 "Built by the Desert"
+
+Live at `/homepage-concept-1/v2` (team link, `noindex`; not linked from anywhere on the site).
+A standalone scroll-driven HTML page (GSAP + Lenis from CDN) built from the Figma file "Silal IO – LAIN INTERNAL" (`85J2hDmYtlUNY2GbDkFxZi`, page "Home Page", Concept 1).
+
+- Served file: `public/homepage-concept-1/v2/index.html`, images in `.../media/img/`, hero video `.../media/intro.mp4`.
+  Folder is `media/`, not `assets/`, because `.vercelignore` excludes every folder named `assets/`.
+  All media paths in the page are absolute (`/homepage-concept-1/v2/media/...`) because the URL has no trailing slash.
+- The bare URL works through one rewrite in `next.config.ts`.
+- Figma spec and measurements: `DESIGN-SPEC.md` (this folder; not served).
+- Run locally: `npm install && npm run dev`, open http://localhost:3000/homepage-concept-1/v2
+
+## State (2026-10-12)
+- Client revisions applied: nav alignment; section 02 and "What we're growing" animate on hover, not scroll; footer turns black instead of scrolling; "We come to you" drone image goes full screen on scroll; 06.01/06.02/07.01 are one zoom-out image.
+- Hero video = "homepage 1 video new" (19.6 s), scrubbed by scroll and re-timed to the page timeline with keyframes (`VID_KEYS` in `index.html`, section "01 · INTRODUCTION"). Mapping also in `DESIGN-SPEC.md`.
+- Not tested: mobile, real mouse-wheel scrolling with Lenis.
+- Raw Figma exports (65 MB) and reference frames are not in git; re-export from Figma if needed.
+- Edit the files in this repo from now on; the original local prototype folder is only a copy.
+
+## Continuing in another Claude chat / on another Mac
+Clone the repo, tell the chat to read this README and `DESIGN-SPEC.md` first.

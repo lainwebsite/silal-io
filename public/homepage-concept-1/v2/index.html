@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Innovation Oasis — Built by the Desert</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Innovation Oasis by Silal — a scroll-driven journey from Earth to the farms, laboratories and people of Al Foah.">
+<meta name="theme-color" content="#0f0f0f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   Silal IO — Concept 1 "Built by the Desert"
+   Source of truth: Figma frames 1440 x 870. Every design px is multiplied by
+   --u (stage scale). Text uses --ft (never below .82 so it stays readable).
+   ========================================================================== */
+:root{--u:1;--ft:1;--fu:1;--ink:#0f0f0f}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink);color:#fff;font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{overflow-x:hidden;background:var(--ink)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img,svg{display:block}
+::selection{background:rgba(255,255,255,.25)}
+
+/* ---------- story / stage ---------- */
+.story{position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--ink);isolation:isolate}
+.base{position:absolute;inset:0;background:#101010}
+.bg{position:absolute;inset:0;opacity:0;pointer-events:none;overflow:hidden;will-change:opacity,transform;transform-origin:50% 50%}
+.bg .im,.bg .ov{position:absolute;inset:0}
+.im{background-repeat:no-repeat;background-color:rgba(255,255,255,.03)}
+.glow{inset:-12%}
+#bgVid{opacity:1;background:#000}
+#introVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+#glowT{inset:-12%}
+.gl{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease}
+.gl.on{opacity:1}
+.gl .im,.glow .im{filter:blur(calc(78px*var(--ft)))}
+.lb{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.lb.on{opacity:1}
+.row,.tcard{cursor:pointer}
+/* hidden blocks must never catch the pointer; JS opens each one only while it is on screen (data-live) */
+.frame,.labcard,.trio,.eng,.btn{pointer-events:none}
+.stage[data-live~="lab"] .labcard,.stage[data-live~="trio"] .trio,.stage[data-live~="eng"] .eng,.stage[data-live~="field"] #fieldCopy .btn,.stage[data-live~="ven"] #venBtn .btn,.stage[data-live~="tour"] #tourBtn .btn{pointer-events:auto}
+
+/* ---------- design frame (1440 x 870 box centred in the viewport) ---------- */
+.frame{position:absolute;left:50%;top:50%;width:calc(1440px*var(--u));height:calc(870px*var(--u));margin:calc(-435px*var(--u)) 0 0 calc(-720px*var(--u));z-index:5}
+.a{position:absolute;left:calc(var(--x,0)*var(--u)*1px);top:calc(var(--y,0)*var(--u)*1px);opacity:0;will-change:opacity,transform,filter}
+.w{width:calc(var(--w)*var(--u)*1px)}
+.full{left:0;width:100%;text-align:center;white-space:nowrap}
+.c{text-align:center}
+
+/* ---------- type ---------- */
+:root{--fz:calc(var(--ft)*1px)}
+.t-hero{font-size:calc(60*var(--fz));font-weight:500;line-height:1.21;letter-spacing:-.02em}
+.t-title{font-size:calc(42*var(--fz));font-weight:500;line-height:1.2;letter-spacing:-.01em}
+.t-stat{font-size:calc(105*var(--fz));font-weight:400;line-height:1.2;letter-spacing:-.03em;white-space:nowrap}
+.t-state{font-size:calc(24*var(--fz));font-weight:400;line-height:1.55}
+.t-lead{font-size:calc(16*var(--fz));font-weight:600;line-height:1.55}
+.t-body{font-size:calc(16*var(--fz));font-weight:400;line-height:1.55;color:rgba(255,255,255,.7)}
+.t-h12{font-size:calc(12*var(--fz));font-weight:600;line-height:1.55;letter-spacing:-.01em}
+.t-s12{font-size:calc(12*var(--fz));font-weight:400;line-height:1.55;letter-spacing:-.01em;color:rgba(255,255,255,.5)}
+.t-lab{font-size:calc(12*var(--fz));font-weight:400;line-height:1.5;color:rgba(255,255,255,.7)}
+.t-lab b{display:block;font-weight:600;color:#fff}
+.t-eye{font-size:calc(12*var(--fz));font-weight:500;line-height:1.25;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.t-18{font-size:calc(18*var(--fz));font-weight:500;line-height:1.5}
+.t-21{font-size:calc(21*var(--fz));font-weight:500;line-height:1.5;letter-spacing:-.01em}
+.t-14{font-size:calc(14*var(--fz));font-weight:400;line-height:1.5}
+.t-14.m{font-weight:500}
+.sub{text-align:center}
+
+/* ---------- glass (Figma GLASS: radius 60, depth 61, light 225deg, dispersion .47) ---------- */
+.glass{position:relative;background:rgba(255,255,255,var(--gf,.04));-webkit-backdrop-filter:blur(calc(var(--gb,26)*var(--u)*1px)) saturate(1.15);backdrop-filter:blur(calc(var(--gb,26)*var(--u)*1px)) saturate(1.15);}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:linear-gradient(225deg,rgba(255,255,255,.34),rgba(255,255,255,.03) 42%,rgba(255,255,255,.12) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.hair{display:block;height:.5px;background:linear-gradient(90deg,rgba(255,255,255,.02),rgba(255,255,255,.2) 50%,rgba(255,255,255,.02));flex:none}
+
+/* ---------- chrome (persistent UI) ---------- */
+.chrome{position:absolute;inset:0;z-index:20;pointer-events:none}
+.chrome > *{pointer-events:auto;animation:chromeIn 1.2s cubic-bezier(.2,.7,.1,1) backwards}
+.chrome > :nth-child(2){animation-delay:.1s}.chrome > :nth-child(3){animation-delay:.2s}.chrome > :nth-child(4){animation-delay:.3s}.chrome > :nth-child(5){animation-delay:.4s}.chrome > :nth-child(6){animation-delay:.5s}
+@keyframes chromeIn{from{opacity:0}}
+.rail{position:absolute;left:calc(40px*var(--u) - .25px);top:0;bottom:0;width:.5px;transition:opacity .6s;background:rgba(255,255,255,.2);pointer-events:none}
+.mark{position:absolute;left:calc(40px*var(--u) - .5px);top:calc(30px*var(--u));width:1px;height:calc(15px*var(--u));background:#fff;transition:transform .6s cubic-bezier(.2,.7,.1,1),opacity .4s;pointer-events:none;opacity:1}
+.nav{position:absolute;left:calc(60px*var(--u));top:calc(30px*var(--u));list-style:none;transition:opacity .5s}
+.nav li{height:calc(25px*var(--u));line-height:calc(15px*var(--u))}
+.nav a{display:inline-block;font-size:calc(12*var(--fz));line-height:calc(15px*var(--u));letter-spacing:-.01em;color:rgba(255,255,255,.4);font-weight:400;transition:color .4s,opacity .4s;white-space:nowrap}
+.nav a:hover{color:rgba(255,255,255,.75)}
+.nav a.on{color:#fff;font-weight:600}
+.nav a.half{color:rgba(255,255,255,.7);font-weight:500}
+.nav.off{opacity:0;pointer-events:none}
+.mark.off{opacity:0}
+.topbar{position:absolute;right:calc(40px*var(--u));top:calc(30px*var(--u));display:flex;gap:calc(4px*var(--u))}
+.pill{width:calc(80px*var(--u));height:calc(52px*var(--u));border-radius:1000px;display:grid;place-items:center;--gf:.1;--gb:30;transition:background .5s}
+.pill svg{width:calc(33px*var(--u));height:calc(24px*var(--u))}
+.menuBtn{width:calc(52px*var(--u));height:calc(52px*var(--u));border-radius:50%;--gf:.1;--gb:30;display:grid;place-content:center;gap:calc(4px*var(--u))}
+.menuBtn i{display:block;width:calc(20px*var(--u));height:calc(2px*var(--u));min-height:1.5px;background:#fff;border-radius:100px;transition:transform .4s cubic-bezier(.2,.7,.1,1),opacity .3s}
+.menuBtn[aria-expanded=true] i:nth-child(1){transform:translateY(calc(6px*var(--u))) rotate(45deg)}
+.menuBtn[aria-expanded=true] i:nth-child(2){opacity:0}
+.menuBtn[aria-expanded=true] i:nth-child(3){transform:translateY(calc(-6px*var(--u))) rotate(-45deg)}
+.hint{position:absolute;left:0;right:0;bottom:calc(30px*var(--u));text-align:center;font-size:calc(12*var(--fz));line-height:1.21;color:rgba(255,255,255,.5);pointer-events:none;letter-spacing:-.01em}
+.ladder{transition:opacity .6s;position:absolute;right:calc(40px*var(--u));bottom:calc(34px*var(--u));width:calc(14px*var(--u));height:calc(60px*var(--u));display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
+.ladder i{display:block;height:1.5px;background:#fff}
+.ladder i:nth-child(1),.ladder i:nth-child(2){opacity:.1}.ladder i:nth-child(3){opacity:.2}.ladder i:nth-child(4){opacity:.4}.ladder i:nth-child(5){opacity:.6}.ladder i:nth-child(6){opacity:.8}
+
+/* ---------- 02.x stats ---------- */
+#stats{width:calc(871px*var(--u));height:calc(200px*var(--u))}
+.stat{position:absolute;top:0;width:calc(372px*var(--u))}
+.stat:nth-child(1){left:0}.stat:nth-child(2){left:calc(499px*var(--u))}
+.stat .lab{position:absolute;left:0;top:0;width:100%}
+.stat .hr{position:absolute;left:0;top:calc(54px*var(--u));width:100%;height:.5px;background:rgba(255,255,255,.2);transform-origin:0 50%}
+.stat .num{position:absolute;left:0;top:calc(72px*var(--u));margin-left:calc(4px*var(--u))}
+.copy p{margin-top:calc(10px*var(--u))}
+
+/* ---------- 03.x lab card ---------- */
+.vc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.labcard{width:calc(427px*var(--u));padding:calc(18px*var(--u));border-radius:calc(34px*var(--u));opacity:0;display:flex;flex-direction:column;will-change:opacity,transform}
+.labcard .sep{margin:calc(18px*var(--u)) 0}
+.row{position:relative;display:flex;align-items:center;height:calc(80px*var(--u));padding-left:calc(104px*var(--u))}
+.row .media{position:absolute;left:0;top:0;width:calc(80px*var(--u));height:calc(80px*var(--u));border-radius:calc(16px*var(--u));overflow:hidden;background:rgba(255,255,255,.06)}
+.row .media .im{position:absolute;inset:0}
+.row .media .im::after{content:"";position:absolute;inset:0;background:rgba(15,15,15,.4)}
+.row .media .big{position:absolute;left:0;top:0;opacity:0}
+.row .txt{position:relative;z-index:2}
+.row .txt .t-eye{display:block;margin-bottom:calc(4px*var(--u))}
+.row .txt .t-18{display:block}
+
+/* ---------- 04.x trio ---------- */
+.trio{position:absolute;left:calc(175px*var(--u));top:calc(325px*var(--u));display:flex;gap:calc(16px*var(--u));opacity:0}
+.tcard{position:relative;width:calc(353px*var(--u));height:calc(220px*var(--u));flex:none}
+.tcard .face{position:absolute;inset:0;border-radius:calc(34px*var(--u));overflow:hidden;background:rgba(255,255,255,.05);-webkit-backdrop-filter:blur(calc(30px*var(--u)));backdrop-filter:blur(calc(30px*var(--u)))}
+.tcard .face .im{position:absolute;inset:0}
+.tcard .cap{position:absolute;left:calc(8px*var(--u));top:calc(244px*var(--u));width:calc(250px*var(--u));opacity:0}
+.tcard .cap .t-14:last-child{margin-top:calc(6px*var(--u));color:rgba(255,255,255,.5)}
+.ring{position:absolute;left:calc(-4px*var(--u));top:calc(-4px*var(--u));width:calc(361px*var(--u));height:calc(228px*var(--u));border-radius:calc(38px*var(--u));border:1px solid rgba(255,255,255,.4);pointer-events:none;opacity:0}
+.cursor{position:absolute;left:0;top:0;width:24px;height:27px;opacity:0;z-index:9;pointer-events:none;filter:none;will-change:transform,opacity}
+
+/* ---------- drone morph element ---------- */
+.drone{position:absolute;left:0;top:0;width:0;height:0;opacity:0;overflow:hidden;z-index:4;pointer-events:none;will-change:transform,width,height,opacity}
+.drone .im{position:absolute;inset:0}
+.drone .ov{position:absolute;inset:0;background:rgba(0,0,0,.2)}
+
+/* ---------- button ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:calc(49px*var(--u));padding:0 calc(22px*var(--u));border-radius:calc(34px*var(--u));background:#fff;color:var(--ink);font-size:calc(12*var(--fz));font-weight:500;line-height:1;white-space:nowrap;transition:transform .35s cubic-bezier(.2,.7,.1,1),background .3s}
+.btn:hover{transform:translateY(-2px);background:#f1f1f1}
+.cta{margin-top:calc(36px*var(--u))}
+
+/* ---------- 06.x tiles ---------- */
+.tiles{position:absolute;left:calc(313px*var(--u));top:calc(180px*var(--u));display:flex;gap:calc(72px*var(--u));opacity:0}
+.tile{width:calc(150px*var(--u))}
+.tile .box{position:relative;width:100%;height:calc(150px*var(--u));border-radius:calc(24px*var(--u));overflow:hidden;--gf:.06;--gb:30;background:rgba(255,255,255,.06)}
+.tile .box .im{position:absolute;inset:0;opacity:0;transform:scale(1.12)}
+.tile .l{margin-top:calc(16px*var(--u));text-align:center;font-size:calc(12*var(--fz));line-height:1.5;color:rgba(255,255,255,.5);font-weight:400;transition:color .4s,font-weight .2s}
+.tile.on .l{color:#fff;font-weight:500}
+
+/* ---------- 07.02 engagement cards ---------- */
+.eng{position:absolute;left:calc(175px*var(--u));top:calc(350px*var(--u));display:flex;gap:calc(16px*var(--u));opacity:0}
+.ecard{position:relative;width:calc(353px*var(--u));height:calc(171px*var(--u));border-radius:calc(28px*var(--u));--gf:.08;--gb:40;background:rgba(15,15,15,.08);text-align:center}
+.ecard .t-eye{position:absolute;left:0;right:0;top:calc(38px*var(--u))}
+.ecard .t-21{position:absolute;left:0;right:0;top:calc(57px*var(--u))}
+.ecard .hair{position:absolute;left:calc(18px*var(--u));right:calc(18px*var(--u));top:calc(116px*var(--u))}
+.ecard .go{position:absolute;left:0;right:0;top:calc(134px*var(--u));font-size:calc(12*var(--fz));font-weight:500;line-height:1.5;letter-spacing:-.01em}
+.ecard{transition:background .4s}
+.ecard:hover{--gf:.14}
+
+/* ---------- 08.x list ---------- */
+.list{position:absolute;left:calc(506px*var(--u));top:calc(272px*var(--u));width:calc(427px*var(--u));padding:calc(28px*var(--u));border-radius:calc(34px*var(--u));opacity:0}
+.list .li{display:flex;align-items:center;gap:calc(16px*var(--u));height:calc(30px*var(--u));color:rgba(255,255,255,.5);transition:color .45s}
+.list .li .n{flex:none;width:calc(30px*var(--u));height:calc(30px*var(--u));border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;font-size:calc(10*var(--fz));font-weight:500;letter-spacing:.04em;transition:border-color .45s}
+.list .li.on{color:#fff}
+.list .li.on .n{border-color:#fff}
+.list .sep{margin:calc(18px*var(--u)) 0}
+
+/* ---------- 09 tour ---------- */
+.tour{position:absolute;left:calc(540px*var(--u));top:calc(321px*var(--u));width:calc(360px*var(--u));height:calc(228px*var(--u));opacity:0}
+.tour .ringb{position:absolute;inset:0;border-radius:calc(38px*var(--u));border:1px solid rgba(255,255,255,.4)}
+.tour .face{position:absolute;left:calc(4px*var(--u));top:calc(4px*var(--u));width:calc(352px*var(--u));height:calc(220px*var(--u));border-radius:calc(34px*var(--u));overflow:hidden;background:rgba(255,255,255,.05)}
+.tour .face .im{position:absolute;inset:0;filter:saturate(.94) brightness(1.06)}
+
+/* ---------- footer (last scene: background turns black, rules and text draw in) ---------- */
+.footF{position:absolute;inset:0;pointer-events:none}
+.fbigs{position:absolute;left:calc(64px*var(--u));top:calc(70px*var(--u));width:calc(1312px*var(--u))}
+.fbig{display:block;position:relative;height:calc(81px*var(--u));line-height:calc(81px*var(--u));font-size:calc(34*var(--fz));font-weight:500;color:#fff;pointer-events:none;transition:padding .5s cubic-bezier(.2,.7,.1,1),color .4s}
+.fbigs:hover .fbig{color:rgba(255,255,255,.4)}.fbigs .fbig:hover{color:#fff;padding-left:calc(18px*var(--u))}
+.fbig .ftx{display:inline-block}
+.fhr{position:absolute;display:block;left:0;right:0;height:.5px;background:rgba(255,255,255,.3);transform-origin:0 50%}
+.fbig .fhr{bottom:0}
+.frow{position:absolute;left:calc(64px*var(--u));top:calc(434px*var(--u))}
+.fblurb{width:calc(520px*var(--u));font-size:calc(12*var(--fz));line-height:1.55;color:rgba(255,255,255,.4)}
+.fcol{position:absolute;top:0;display:flex;flex-direction:column;gap:calc(20px*var(--u))}
+.fcol:nth-of-type(1){left:calc(664px*var(--u))}.fcol:nth-of-type(2){left:calc(996px*var(--u))}
+.fcol a{font-size:calc(21*var(--fz));font-weight:500;line-height:1.21;color:rgba(255,255,255,.4);white-space:nowrap;pointer-events:none;transition:color .3s}
+.fcol a:hover{color:#fff}
+.fbar{position:absolute;left:calc(64px*var(--u));width:calc(1312px*var(--u));top:calc(759px*var(--u));display:flex;justify-content:space-between;padding-top:calc(30px*var(--u));font-size:calc(12*var(--fz));line-height:1.25;color:rgba(255,255,255,.4)}
+.fbar .fhr{top:0}
+.footlive .fbig,.footlive .fcol a{pointer-events:auto}
+.stage.end .rail,.stage.end .ladder{opacity:0}
+
+/* ---------- menu overlay ---------- */
+.menu{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:rgba(15,15,15,.55);-webkit-backdrop-filter:blur(34px) saturate(1.4);backdrop-filter:blur(34px) saturate(1.4);opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+.menu.open{opacity:1;visibility:visible}
+.menu ul{list-style:none;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.menu a{display:block;font-size:clamp(26px,4.4vw,56px);font-weight:500;letter-spacing:-.02em;line-height:1.15;color:rgba(255,255,255,.4);transition:color .3s,transform .5s cubic-bezier(.2,.7,.1,1)}
+.menu a:hover{color:#fff;transform:translateX(14px)}
+.menuBtn{position:relative;z-index:60}
+
+/* ==========================================================================
+   MOBILE / PORTRAIT — re-flowed layout (scale 1, no design box)
+   ========================================================================== */
+html.m{--u:1;--ft:1;--fu:1}
+html.m .frame{left:0;top:0;width:100%;height:100%;margin:0}
+html.m .a{left:24px;right:24px;top:auto;width:auto}
+html.m .full{left:24px;right:24px;width:auto;white-space:normal}
+html.m .w{width:auto}
+html.m .t-hero{font-size:clamp(36px,11vw,60px)}
+html.m .t-title{font-size:clamp(30px,8.6vw,42px)}
+html.m .t-state{font-size:clamp(20px,5.6vw,26px)}
+html.m .t-lead{font-size:16px}html.m .t-body{font-size:15px}
+html.m .t-stat{font-size:clamp(56px,17vw,84px)}
+html.m .chrome .nav{display:none}
+html.m .rail,html.m .mark{display:none}
+html.m .topbar{top:max(16px,env(safe-area-inset-top));right:16px}
+html.m .pill{width:72px;height:46px}html.m .pill svg{width:30px;height:22px}
+html.m .menuBtn{width:46px;height:46px;gap:4px}html.m .menuBtn i{width:18px;height:1.5px}
+html.m .menuBtn[aria-expanded=true] i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+html.m .menuBtn[aria-expanded=true] i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+html.m .hint{bottom:max(18px,env(safe-area-inset-bottom));font-size:11px}
+html.m .ladder{right:16px;bottom:max(20px,env(safe-area-inset-bottom));width:12px;height:48px}
+html.m #hero{top:40%}
+html.m #intro{top:auto;bottom:17svh}
+html.m #stats{top:auto;bottom:calc(7svh + 16px);width:auto;height:150px}
+html.m .stat{width:calc(50% - 10px)}
+html.m .stat .hr{top:48px}html.m .stat .num{top:62px;margin-left:0;font-size:clamp(48px,15vw,84px)}
+html.m .stat:nth-child(1){left:0}html.m .stat:nth-child(2){left:auto;right:0}
+html.m #statement{top:42%}
+html.m .hdr,html.m #capLab{top:74px}
+html.m .sub{top:104px;width:auto}
+html.m #rootTitle{top:40%}
+html.m #rootSub{top:auto;bottom:11svh}
+html.m #venTitle,html.m #engTitle{top:40%}
+html.m #fieldCopy{top:auto;bottom:17svh}
+html.m #venBtn{top:auto;bottom:max(70px,9svh)}
+html.m .vc{align-items:center}
+html.m .labcard{width:min(calc(100vw - 32px),427px);padding:16px}
+html.m .row{height:72px;padding-left:92px}
+html.m .row .media{width:72px;height:72px;border-radius:14px}
+html.m .row .txt .t-18{font-size:16px}
+html.m .labcard .sep{margin:15px 0}
+html.m .trio{left:0;top:30svh;gap:12px}
+html.m .tcard{width:min(78vw,340px);height:calc(min(78vw,340px)*.623)}
+html.m .tcard .face{border-radius:26px}
+html.m .tcard .cap{left:6px;top:calc(min(78vw,340px)*.623 + 22px);width:calc(min(78vw,340px) - 12px)}
+html.m .ring{left:-4px;top:-4px;width:calc(min(78vw,340px) + 8px);height:calc(min(78vw,340px)*.623 + 8px);border-radius:30px}
+html.m .tiles{left:24px;right:24px;top:20svh;gap:26px 14px;display:grid;grid-template-columns:1fr 1fr}
+html.m .tile{width:auto}html.m .tile .box{height:auto;aspect-ratio:1;border-radius:20px}
+html.m .eng{left:24px;right:24px;top:22svh;flex-direction:column;gap:12px}
+html.m .ecard{width:100%;height:150px;border-radius:24px}
+html.m .ecard .t-eye{top:30px}html.m .ecard .t-21{top:48px;font-size:19px}html.m .ecard .hair{top:98px;left:16px;right:16px}html.m .ecard .go{top:112px}
+html.m .list{left:50%;top:30svh;width:min(calc(100vw - 32px),427px);transform:translateX(-50%);padding:22px}
+html.m .list .li{height:30px;gap:14px}html.m .list .li .n{width:30px;height:30px}
+html.m .list .sep{margin:14px 0}
+html.m .tour{left:calc(50% - min(86vw,380px)/2);top:30svh;width:calc(min(86vw,380px));height:calc(min(86vw,380px)*.633)}
+html.m .tour .face{left:4px;top:4px;width:calc(100% - 8px);height:calc(100% - 8px);border-radius:26px}
+html.m .tour .ringb{border-radius:30px}
+html.m #tourBtn{top:calc(30svh + min(86vw,380px)*.633 + 36px)}
+html.m .btn{height:48px;padding:0 22px;font-size:13px;border-radius:34px}
+html.m .cta{margin-top:26px}
+
+html.m .footF{display:flex;flex-direction:column;padding:104px 24px 22px}
+html.m .fbigs{position:static;width:auto}
+html.m .fbig{height:62px;line-height:62px;font-size:28px}
+html.m .frow{position:static;margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:24px 18px}
+html.m .fblurb{width:auto;grid-column:1/-1;font-size:12px}
+html.m .fcol{position:static;gap:13px}html.m .fcol a{font-size:17px}
+html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;font-size:11px;flex-direction:column;gap:6px;padding-top:18px}
+@media (prefers-reduced-motion:reduce){.menu,.menu a,.nav a,.mark{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="logo" viewBox="0 0 33 24"><g fill="#fff" fill-rule="evenodd" clip-rule="evenodd"><path d="M6.90095 7.86755H2.30032L2.22099 7.94702H1.74507L1.58642 8.10596H1.34846L1.18982 8.2649H1.1105L1.03118 8.34437H0.951855L0.793212 8.50331H0.713891L0.475927 8.74172V8.82119L0.237964 8.98013V9.13907L0.0793212 9.29801V9.53642L0 9.61589V23.6027H4.44199L4.52131 23.5232H4.75927L4.83859 23.4437H5.2352L5.39384 23.2848H5.63181L5.86977 23.0464L6.10773 22.9669L6.58366 22.4901V22.4106L6.66298 22.3311V22.2517L6.90095 21.8543V7.86755Z"/><path d="M0.475927 1.11532V1.19479L0.237964 1.4332V1.51267L0.0793212 1.75108V1.9895L0 2.06897V6.59877H4.60063L4.67995 6.5193H4.91792L4.99724 6.43983H5.2352L5.31452 6.36036H5.47317L5.63181 6.20142H5.79045L6.02841 5.96301H6.10773L6.50434 5.56565V5.48618L6.58366 5.40671H6.66298V5.32724L6.7423 5.24777V5.08883L6.90095 4.85042V0.320621H1.98303L1.90371 0.400091H1.74507L1.66575 0.479562H1.5071L1.42778 0.559032H1.26914V0.638502L1.18982 0.717972H1.03118L0.872534 0.876913H0.793212L0.555249 1.11532H0.475927Z"/><path d="M19.1981 0.0794702L19.1188 0.15894H18.8808L18.8015 0.238411H18.5635L18.4842 0.317881H18.0876L18.0083 0.397351H17.8496L17.7703 0.476821H17.5324L17.453 0.556291H17.2944L17.2151 0.635762H17.0564L16.9771 0.715232H16.8185L16.5805 0.874172H16.3425L16.1839 1.03311H16.1046L16.0253 1.11258H15.8666L15.7873 1.19205H15.708L15.6286 1.27152H15.5493L15.47 1.35099H15.3907L15.3114 1.43046L15.0734 1.50993L14.9148 1.66887L14.6768 1.74834L14.5182 1.90728H14.4388L14.2009 2.1457H14.1215L13.9629 2.30464H13.8836L13.7249 2.46358H13.6456L13.3283 2.78146H13.249V2.86093L13.1697 2.9404H13.0904L11.9006 4.13245V4.21192L11.6626 4.37086V4.45033L11.4246 4.68874V4.76821L11.266 4.92715V5.00662L11.028 5.24503V5.3245L10.7107 5.72185L10.6314 5.96026L10.4728 6.1192V6.27815L10.3141 6.43709V6.51656L10.0762 6.91391V7.07285L9.99684 7.15232V7.23179L9.8382 7.39073V7.62914L9.67956 7.86755V8.10596L9.52091 8.34437V8.50331L9.44159 8.58278V8.82119L9.36227 8.90066V9.0596L9.28295 9.13907V9.61589L9.20363 9.69536V9.93377L9.12431 10.0132V10.2517L9.04499 10.3311V11.7616L8.96567 11.8411V12.2384L9.04499 12.3179V13.5894L9.12431 13.6689V13.9868L9.20363 14.0662V14.3046L9.28295 14.3841V14.7815L9.36227 14.8609V15.0199L9.44159 15.0993V15.4172L9.52091 15.4967V15.6556L9.67956 15.894V16.1325L9.75888 16.2119V16.2914L9.8382 16.3709V16.5298L10.0762 16.9272V17.0861L10.1555 17.1656V17.245L10.2348 17.3245L10.3141 17.5629L10.4728 17.7219V17.8013L10.5521 17.8808L10.6314 18.1192L10.7901 18.2781L10.8694 18.5166L11.1073 18.755V18.8344L11.266 18.9934V19.0728L11.4246 19.2318V19.3113L11.6626 19.5497V19.6291H11.7419L11.9006 19.7881V19.8675L12.9317 20.9007H13.011L13.0904 20.9801V21.0596H13.1697L13.5663 21.457H13.6456L13.8043 21.6159H13.8836L14.4388 22.0927H14.5975L14.6768 22.1722V22.2517H14.7561L14.8354 22.3311H14.9148L14.9941 22.4106L15.232 22.4901L15.3907 22.649H15.5493L15.708 22.8079H15.7873L15.8666 22.8874H16.0253L16.2632 23.0464H16.4219L16.8185 23.2848H17.0564L17.2944 23.4437H17.6117L17.8496 23.6026H18.0876L18.1669 23.6821H18.4842L18.5635 23.7616H18.8015L18.8808 23.8411H19.5947L19.674 23.9205H20.3086L20.3879 24H21.4984L21.5777 23.9205H22.2916L22.371 23.8411H23.0848L23.1642 23.7616H23.3228L23.4021 23.6821H23.8781L23.9574 23.6026H24.116L24.354 23.4437H24.6713L24.9092 23.2848H25.0679L25.1472 23.2053H25.3058L25.5438 23.0464H25.7024L25.9404 22.8874H26.0991L26.1784 22.8079H26.2577L26.4163 22.649H26.4957L26.575 22.5695H26.6543L26.7336 22.4901L26.9716 22.4106L27.1302 22.2517H27.2889L27.5268 22.0132H27.6062L27.7648 21.8543L28.0028 21.7748V21.6954L28.0821 21.6159H28.1614L28.32 21.457H28.3994L28.6373 21.2185H28.7167L28.9546 20.9801V20.9007L29.0339 20.8212H29.1133L29.2719 20.6623H29.3512V20.5828L30.1444 19.7881V19.7086L30.3824 19.4702V19.3907L30.779 18.9934L30.8583 18.755L31.017 18.596V18.5166L31.1756 18.3576L31.2549 18.1192L31.5722 17.7219V17.5629L31.7309 17.404V17.3245L31.8102 17.245V17.0861L31.9688 16.9272V16.6887L32.0481 16.6093V16.5298L32.2068 16.2914V16.1325L32.3654 15.894V15.6556L32.4447 15.5762V15.4172L32.5241 15.3377V15.1788L32.6034 15.0993V14.7815L32.762 14.543V13.9073L32.8414 13.8278V13.5099L32.9207 13.4305V12.9536L33 12.8742V11.1258L32.9207 11.0464V10.5695L32.8414 10.4901V10.1722L32.762 10.0927V9.53642L32.6827 9.45695V9.21854L32.6034 9.13907V8.82119L32.5241 8.74172V8.58278L32.3654 8.34437V8.10596L32.2068 7.86755V7.62914L32.1275 7.54967V7.4702L31.9688 7.23179V7.07285L31.8895 6.99338V6.91391L31.8102 6.83444L31.7309 6.59603L31.5722 6.43709V6.27815L31.4929 6.19868V6.1192L31.3343 5.96026V5.88079L31.2549 5.80132L31.1756 5.56291H31.0963L30.9376 5.40397V5.24503L30.779 5.08609V5.00662L30.4617 4.68874V4.60927L30.2238 4.37086V4.29139L29.9065 3.97351V3.89404H29.8271L29.7478 3.81457V3.7351H29.6685L29.5892 3.65563V3.57616L29.5099 3.49669H29.4305L29.3512 3.41722V3.33775H29.2719L29.1926 3.25828V3.17881H29.1133L28.7167 2.78146H28.6373L28.3994 2.54305H28.32L28.1614 2.38411V2.30464L27.9234 2.22517L27.7648 2.06623H27.6855L27.2889 1.74834L27.0509 1.66887L26.8923 1.50993H26.7336L26.575 1.35099H26.4957L26.4163 1.27152H26.2577L26.0991 1.11258H25.9404L25.7818 0.953642H25.6231L25.3852 0.794702H25.2265L25.1472 0.715232H24.9886L24.9092 0.635762H24.7506L24.5126 0.476821H24.1953L24.116 0.397351H23.9574L23.8781 0.317881H23.4815L23.4021 0.238411H23.1642L23.0848 0.15894H22.7676L22.6882 0.0794702H21.8157L21.7364 0H20.3879L20.3086 0.0794702H19.1981ZM20.6259 19.5497H20.7845L20.8638 19.4702H21.4191L21.895 19.947V20.6623L21.5777 20.9801H21.4984L21.3398 21.1391H20.8638L20.7052 20.9801H20.5466L20.3879 20.8212V20.6623L20.2293 20.5033V20.106L20.3086 20.0265L20.3879 19.7881L20.6259 19.5497ZM18.5635 17.8013L18.7222 17.6424V17.5629L19.0395 17.245H19.5947L19.7534 17.404H19.8327L20.0706 17.6424H20.15L20.3086 17.8013H22.5296L22.6089 17.7219H22.9262L23.0848 17.8808V18.1192L23.0055 18.1987H22.4503L22.371 18.1192H20.5466L20.4672 18.1987H20.15L19.7534 18.596H19.674L19.4361 18.755H19.1981L19.1188 18.6755L18.8808 18.596L18.7222 18.4371V18.3576L18.5635 18.1987V17.8013ZM17.7703 15.894L17.8496 15.8146V15.7351L18.0083 15.5762H18.0876L18.1669 15.4967H18.4842L18.5635 15.5762H18.6429L19.0395 15.8146H23.3228L23.4021 15.7351H23.5608L23.6401 15.6556H23.9574L24.116 15.8146V15.894L24.1953 15.9735V16.1325L24.0367 16.3709H23.5608L23.4815 16.2914H23.4021L23.3228 16.2119H23.1642L23.0848 16.1325H19.1981L19.1188 16.2119H19.0395L18.9601 16.2914L18.7222 16.3709L18.5635 16.5298H18.1669L18.0876 16.4503H18.0083L17.929 16.3709V16.2914L17.7703 16.1325V15.894ZM17.2151 13.9868L17.453 13.5894H18.0083L18.1669 13.7483H18.2463L18.3256 13.8278H23.9574L24.0367 13.7483H24.116L24.2747 13.5894H24.6713L24.9092 13.8278V14.2252L24.7506 14.3841H24.6713L24.5919 14.4636H24.354L24.2747 14.3841H24.0367L23.8781 14.2252H23.6401L23.5608 14.1457H18.7222L18.6429 14.2252H18.4049L18.3256 14.3046H18.2463L17.8496 14.543H17.6117L17.2944 14.2252L17.2151 13.9868ZM16.8185 12L17.0564 11.6026H17.6117L17.7703 11.7616H17.8496L17.929 11.8411H18.3256L18.4049 11.9205H23.5608L23.6401 11.8411H24.116L24.2747 11.6821H24.354L24.4333 11.6026H24.8299L25.0679 11.8411V12.2384L24.9092 12.3974V12.4768L24.8299 12.5563H24.4333L24.1953 12.3179H24.0367L23.9574 12.2384H18.0083L17.929 12.3179H17.7703L17.6117 12.4768H17.5324L17.453 12.5563H17.2151L16.9771 12.3974V12.3179L16.8978 12.2384L16.8185 12ZM24.9092 9.69536V10.1722L24.6713 10.4106H24.2747L24.1953 10.3311H24.0367L23.8781 10.1722H18.2463L18.0083 10.3311H17.453L17.2944 10.1722V10.0132L17.2151 9.93377V9.8543L17.453 9.61589H17.5324L17.6117 9.53642H17.8496L17.929 9.61589H18.0876L18.3256 9.77483H23.7194L23.7987 9.69536H23.9574L24.0367 9.61589H24.116L24.2747 9.45695H24.5919L24.7506 9.61589H24.8299L24.9092 9.69536ZM24.354 7.78808V8.10596L24.2747 8.18543V8.2649L24.0367 8.50331H23.6401L23.5608 8.42384V8.34437H23.4021L23.1642 8.18543H22.9262L22.8469 8.10596H19.0395L18.9601 8.18543H18.8015L18.5635 8.34437H18.2463L18.0083 8.10596V7.86755L18.2463 7.62914H18.6429L18.8808 7.78808H23.1642L23.2435 7.70861L23.4815 7.62914L23.6401 7.4702H23.7194L23.7987 7.39073H23.9574L24.354 7.78808ZM23.5608 5.80132V6.27815L23.4815 6.35762V6.43709L23.4021 6.51656H23.3228V6.59603L23.0848 6.75497H22.6089L22.5296 6.6755H22.4503L22.133 6.35762H22.0537L21.895 6.19868H19.674L19.5947 6.27815H19.2774L19.1188 6.1192V5.88079L19.3567 5.72185H19.4361L19.5154 5.80132H19.8327L19.912 5.88079H21.5777L21.6571 5.80132H21.9743L22.133 5.64238H22.2123V5.56291L22.2916 5.48344L22.5296 5.40397L22.6882 5.24503H23.0055L23.0848 5.3245L23.3228 5.40397L23.5608 5.80132ZM21.0225 2.78146H21.1811L21.2605 2.86093H21.4191L21.895 3.33775V4.05298L21.4191 4.5298H20.8638L20.7845 4.45033H20.7052L20.5466 4.29139H20.4672L20.3879 4.21192V4.13245L20.3086 4.05298V3.89404L20.2293 3.81457V3.49669L20.3086 3.41722L20.3879 3.17881L20.7845 2.86093H20.9432L21.0225 2.78146Z"/></g></symbol>
+    <symbol id="cur" viewBox="0 0 24 27"><defs><filter id="cs" x="0" y="0" width="24" height="27" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="b"/><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="h"/><feOffset dy="4"/><feGaussianBlur stdDeviation="2"/><feComposite in2="h" operator="out"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/><feBlend in2="b" result="e"/><feBlend in="SourceGraphic" in2="e" result="s"/></filter></defs><g filter="url(#cs)"><path d="M6.38652 0.756837C6.21778 0.621163 6.01297 0.535093 5.79598 0.508666C5.579 0.482239 5.35878 0.516545 5.16103 0.607582C4.96327 0.698619 4.79612 0.842633 4.67908 1.02283C4.56204 1.20302 4.49993 1.41197 4.5 1.62529V17.3722C4.5 18.415 5.8261 18.8965 6.5249 18.109L10.5885 13.5271C10.7509 13.3442 10.9517 13.1975 11.1774 13.097C11.403 12.9964 11.6481 12.9444 11.8962 12.9444H18.3445C19.4261 12.9444 19.9128 11.6215 19.0779 10.951L6.38652 0.756837Z" fill="#000" stroke="#fff"/></g></symbol>
+  </defs>
+</svg>
+
+<main class="story" id="story">
+ <div class="stage" id="stage">
+  <div class="base" id="base"></div>
+
+  <!-- ===== scene backgrounds (each = a Figma fill stack, top-most paint) ===== -->
+          <div class="bg" id="bgVid">
+    <video id="introVid" src="/homepage-concept-1/v2/media/intro.mp4" muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
+    <div class="ov" style="background:rgba(0,0,0,.2)"></div>
+    <div class="ov" id="vidOv2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6)),rgba(0,0,0,.2)"></div>
+  </div>
+  <div class="bg glow" id="glowA"><div class="im" data-img="b1788c81" data-crop=".73,0,.79,.21"></div><div class="ov" style="background:rgba(15,15,15,.5)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.25),#0f0f0f 80%)"></div></div>
+  <div class="bg" id="bgLab">
+    <div class="lb"><div class="im" data-img="8e44e3b2"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
+    <div class="lb"><div class="im" data-img="0c5a04bd" data-crop=".57,0,.52,.31"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
+    <div class="lb"><div class="im" data-img="3e723371"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
+    <div class="lb"><div class="im" data-img="bed5d79a"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
+  </div>
+  <div class="bg" id="glowT">
+    <div class="gl on"><div class="im" data-img="c67af94c" data-crop="1,0,.42,.34"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
+    <div class="gl"><div class="im" data-img="132f755b"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div><div class="ov" style="background:rgba(1,88,37,.3)"></div></div>
+    <div class="gl"><div class="im" data-img="80510502"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
+  </div>
+    <div class="bg glow" id="glowD"><div class="im" data-img="977c9001"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
+    <div class="bg" id="bgB"><div class="im" data-img="90abeb8f" data-crop=".49,.44,.44,.25"></div><div class="ov" style="background:rgba(0,0,0,.5)"></div></div>
+    <div class="bg" id="bgR"><div class="im" data-img="70840e80" data-crop="1,0,.45,.37"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div></div>
+    <div class="bg glow" id="glowE"><div class="im" data-img="0ba94745"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
+
+  <!-- shared-element image: card → drone frame → full bleed -->
+  <div class="drone" id="drone"><div class="im" data-img="bf471039" data-crop="1,0,.83,.14"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+
+  <!-- ===== design frame ===== -->
+  <div class="frame" id="frame">
+    <h1 class="a full t-hero" id="hero" style="--y:399">Step into the Oasis</h1>
+
+    <div class="a w copy" id="intro" style="--x:285;--y:610;--w:593">
+      <h2 class="t-lead">Why Al Foah?</h2>
+      <p class="t-body">A living research ground in the heart of the desert. Explore the farms, laboratories and people turning Al Foah's harshest conditions into the UAE's food future – the same way you would if you walked in.</p>
+    </div>
+
+    <div class="a" id="stats" style="--x:285;--y:522">
+      <div class="stat">
+        <p class="lab t-lab"><b>Site</b>Al Foah Farms&nbsp; ⋅ &nbsp;Al Ain</p>
+        <i class="hr"></i>
+        <p class="num t-stat" id="num1">34 ha</p>
+      </div>
+      <div class="stat">
+        <p class="lab t-lab"><b>Environmental fronts</b>Heat&nbsp; ⋅ &nbsp;Water&nbsp; ⋅ &nbsp;Soil&nbsp; ⋅ &nbsp;Energy</p>
+        <i class="hr"></i>
+        <p class="num t-stat" id="num2">04</p>
+      </div>
+    </div>
+
+    <p class="a full t-state" id="statement" style="--y:417">Every structure here answers a question the desert asked.</p>
+    <p class="a full t-s12" id="capLab" style="--y:28">Every structure here answers a question the desert asked.</p>
+
+    <div class="vc">
+      <div class="labcard glass" id="labcard" style="--gf:.04;--gb:30">
+        <div class="row" data-r="0"><div class="media"><div class="im thumb" data-img="8e44e3b2"></div><div class="im big" data-img="8e44e3b2"></div></div><div class="txt"><span class="t-eye">heat</span><span class="t-18">Growth Chambers</span></div></div>
+        <i class="hair sep"></i>
+        <div class="row" data-r="1"><div class="media"><div class="im thumb" data-img="0c5a04bd" data-crop=".35,0,.52,.3"></div><div class="im big" data-img="0c5a04bd" data-crop=".5,.01,.46,.32"></div></div><div class="txt"><span class="t-eye">water</span><span class="t-18">Soil &amp; Water Lab</span></div></div>
+        <i class="hair sep"></i>
+        <div class="row" data-r="2"><div class="media"><div class="im thumb" data-img="3e723371" data-crop=".67,.3,1,0"></div><div class="im big" data-img="3e723371"></div></div><div class="txt"><span class="t-eye">soil</span><span class="t-18">Crop Health Lab</span></div></div>
+        <i class="hair sep"></i>
+        <div class="row" data-r="3"><div class="media"><div class="im thumb" data-img="bed5d79a" data-crop=".51,.04,.76,.12"></div><div class="im big" data-img="bed5d79a"></div></div><div class="txt"><span class="t-eye">energy</span><span class="t-18">Mobile Crop-Health Lab</span></div></div>
+      </div>
+    </div>
+
+    <h2 class="a full t-title" id="rootTitle" style="--y:410">Where innovation takes root.</h2>
+    <div class="a full hdr" id="hdrRoot" style="--y:28"><h3 class="t-h12">Where innovation takes root.</h3></div>
+    <p class="a sub w t-s12" id="rootSub" style="--x:577;--y:57;--w:285">Specialised centres developing practical solutions for the future of agriculture.</p>
+
+    <div class="trio" id="trio">
+      <div class="tcard" data-c="0"><div class="face"><div class="im" data-img="c67af94c" data-crop="1,0,.42,.34"></div></div>
+        <div class="cap"><p class="t-14 m">Agri Robotics &amp; AI</p><p class="t-14">Smarter automation for more efficient farming.</p></div></div>
+      <div class="tcard" data-c="1"><div class="face"><div class="im" data-img="132f755b"></div></div>
+        <div class="cap"><p class="t-14 m">Smart Growing Systems</p><p class="t-14">Optimising greenhouse production in harsh climates.</p></div></div>
+      <div class="tcard" data-c="2"><div class="face"><div class="im" data-img="80510502"></div></div>
+        <div class="cap"><p class="t-14 m">Crop Resilience</p><p class="t-14">Developing crops resilient to heat and drought.</p></div></div>
+      <i class="ring" id="ring"></i>
+    </div>
+
+    <div class="a w copy" id="fieldCopy" style="--x:285;--y:529;--w:669">
+      <h2 class="t-lead">Technology that starts in the field.</h2>
+      <p class="t-body">From smart sensing to advanced analytics, our technologies help growers monitor conditions, improve efficiency and make better decisions in real time.</p>
+      <a class="btn cta" href="#technology">Explore Technology &amp; Services</a>
+    </div>
+
+    <h2 class="a full t-title" id="venTitle" style="--y:410">Innovation &amp; Venture Platforms</h2>
+    <div class="a full hdr" id="hdrVen" style="--y:28"><h3 class="t-h12">Innovation &amp; Venture Platforms</h3></div>
+    <p class="a sub w t-s12" id="venSub" style="--x:490;--y:57;--w:459">Supporting the next generation of agricultural innovation through funding, incubation, acceleration and challenge-driven programs.</p>
+    <div class="tiles" id="tiles">
+      <div class="tile on"><div class="box glass"><div class="im" data-img="050b0100"></div></div><p class="l">Farm Innovation Fund</p></div>
+      <div class="tile"><div class="box glass"><div class="im" data-img="e5f0025f"></div></div><p class="l">Incubation</p></div>
+      <div class="tile"><div class="box glass"><div class="im" data-img="1c4d7b58"></div></div><p class="l">Accelerator</p></div>
+      <div class="tile"><div class="box glass"><div class="im" data-img="e66cc018"></div></div><p class="l">Agricultural Challenges</p></div>
+    </div>
+    <p class="a full" id="venBtn" style="--y:701"><a class="btn" href="#team">Meet the team</a></p>
+
+    <h2 class="a full t-title" id="engTitle" style="--y:410">One Oasis. Three ways in.</h2>
+    <div class="a full hdr" id="hdrEng" style="--y:28"><h3 class="t-h12">One Oasis. Three ways in.</h3></div>
+    <div class="eng" id="eng">
+      <a class="ecard glass" href="#farmers"><span class="t-eye">For farmers</span><span class="t-21">Grow with us</span><i class="hair"></i><span class="go">Apply for funding</span></a>
+      <a class="ecard glass" href="#government"><span class="t-eye">For government</span><span class="t-21">Built by the desert</span><i class="hair"></i><span class="go">Explore the research</span></a>
+      <a class="ecard glass" href="#robotics"><span class="t-eye">For robotics</span><span class="t-21">The future is built here</span><i class="hair"></i><span class="go">Apply for funding</span></a>
+    </div>
+
+    <div class="a full hdr" id="hdrTal" style="--y:28"><h3 class="t-h12">Building agricultural talent.</h3></div>
+    <p class="a sub w t-s12" id="talSub" style="--x:495;--y:57;--w:449">Supporting future researchers, entrepreneurs and industry leaders through practical learning and development opportunities.</p>
+    <div class="list glass" id="list" style="--gf:.04;--gb:30">
+      <div class="li" data-i="0"><span class="n">01</span><span class="t-18">Advanced Agritech Academy</span></div><i class="hair sep"></i>
+      <div class="li" data-i="1"><span class="n">02</span><span class="t-18">Student Sponsorship</span></div><i class="hair sep"></i>
+      <div class="li" data-i="2"><span class="n">03</span><span class="t-18">School Programs</span></div><i class="hair sep"></i>
+      <div class="li" data-i="3"><span class="n">04</span><span class="t-18">IO Academy Training</span></div>
+    </div>
+
+    <div class="a full hdr" id="hdrTour" style="--y:28"><h3 class="t-h12">Walk through the Oasis, wherever you are.</h3></div>
+    <p class="a sub w t-s12" id="tourSub" style="--x:518;--y:57;--w:403">Take the interactive virtual tour of our farms, laboratories, greenhouses and meeting spaces – no visit required.</p>
+    <div class="tour" id="tour"><i class="ringb"></i><div class="face"><div class="im" data-img="4bf8fa0b" data-crop=".82,.17,.84,.08"></div></div></div>
+    <p class="a full" id="tourBtn" style="--y:589"><a class="btn" href="#tour-launch">Launch Virtual Tour</a></p>
+
+    <div class="footF" id="footF">
+      <nav class="fbigs" aria-label="Footer">
+        <a class="fbig" href="#research"><span class="ftx">Research</span><i class="fhr"></i></a>
+        <a class="fbig" href="#programmes"><span class="ftx">Programmes</span><i class="fhr"></i></a>
+        <a class="fbig" href="#community"><span class="ftx">Community</span><i class="fhr"></i></a>
+        <a class="fbig" href="#contact"><span class="ftx">Contact</span><i class="fhr"></i></a>
+      </nav>
+      <div class="frow">
+        <p class="fblurb ftx">A strategic enabler of the UAE’s vision – transforming national priorities into tangible innovation outcomes across agriculture and food systems.</p>
+        <nav class="fcol" aria-label="Footer — programmes"><a class="ftx" href="#research">Research</a><a class="ftx" href="#talent">Talent &amp; Training</a><a class="ftx" href="#centres">Centres of Excellence</a></nav>
+        <nav class="fcol" aria-label="Footer — community"><a class="ftx" href="#entrepreneurs">Entrepreneurs</a><a class="ftx" href="#companies">Companies</a><a class="ftx" href="#investors">Investors</a></nav>
+      </div>
+      <div class="fbar"><i class="fhr"></i><span class="ftx">Innovation Oasis — Silal, Al Ain, UAE</span><span class="ftx">Part of Silal</span></div>
+    </div>
+  </div>
+
+  <!-- ===== persistent chrome ===== -->
+  <div class="chrome">
+    <i class="rail"></i><i class="mark" id="mark"></i>
+    <ul class="nav" id="nav" aria-label="Story chapters">
+      <li><a href="#" data-i="0">Innovation Oasis</a></li>
+      <li><a href="#" data-i="1">The location</a></li>
+      <li><a href="#" data-i="2">What you’ll pass on the way</a></li>
+      <li><a href="#" data-i="3">What we’re growing</a></li>
+      <li><a href="#" data-i="4">We come to you</a></li>
+      <li><a href="#" data-i="5">Who you’ll meet</a></li>
+      <li><a href="#" data-i="6">Find your door</a></li>
+    </ul>
+    <div class="topbar">
+      <a class="pill glass" href="#" aria-label="Innovation Oasis — back to top" id="home"><svg><use href="#logo"/></svg></a>
+      <button class="menuBtn glass" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+    </div>
+    <p class="hint" id="hint">Scroll</p>
+    <div class="ladder" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+ </div>
+</main>
+
+
+<div class="menu" id="menu" aria-hidden="true">
+  <ul id="menuList">
+    <li><a href="#" data-i="0">Innovation Oasis</a></li>
+    <li><a href="#" data-i="1">The location</a></li>
+    <li><a href="#" data-i="2">What you’ll pass on the way</a></li>
+    <li><a href="#" data-i="3">What we’re growing</a></li>
+    <li><a href="#" data-i="4">We come to you</a></li>
+    <li><a href="#" data-i="5">Who you’ll meet</a></li>
+    <li><a href="#" data-i="6">Find your door</a></li>
+  </ul>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+'use strict';
+gsap.registerPlugin(ScrollTrigger);
+
+/* ------------------------------------------------------------------ images */
+// natural pixel size of every web asset (only the aspect ratio matters for crops)
+const DIM = {'2c9732cc':[1880,1058],'f502e814':[1880,1058],'e95e0b67':[1614,975],'0ba94745':[735,420],'b1788c81':[1680,936],
+ '8e44e3b2':[2400,1600],'0c5a04bd':[2400,1600],'3e723371':[2400,1600],'bed5d79a':[2400,1600],'c67af94c':[867,1300],'132f755b':[1880,1253],
+ '80510502':[1880,1058],'977c9001':[1880,1058],'bf471039':[1732,1300],'90abeb8f':[2400,1600],'70840e80':[1086,1448],'06f2951c':[1360,764],
+ '4bf8fa0b':[1614,975],'050b0100':[867,1300],'1c4d7b58':[867,1300],'e5f0025f':[867,1300],'e66cc018':[1880,1253]};
+const EXT = {'06f2951c':'png'};
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+// Figma "CROP" fill: imageTransform [[a,0,tx],[0,d,ty]] = visible window of the image.
+// The window is scaled to cover its box (identical to Figma at the design aspect, graceful elsewhere).
+function applyCrop(el, W, H, v) {
+  const k = el.dataset.img, [iw, ih] = DIM[k];
+  const [a, tx, d, ty] = v || (el.dataset.crop || '1,0,1,0').split(',').map(Number);
+  W = W || el.offsetWidth; H = H || el.offsetHeight;
+  if (!W || !H) return;
+  const S = Math.max(W / (a * iw), H / (d * ih));
+  el.style.backgroundSize = `${iw * S}px ${ih * S}px`;
+  el.style.backgroundPosition = `${W / 2 - (tx + a / 2) * iw * S}px ${H / 2 - (ty + d / 2) * ih * S}px`;
+}
+$$('[data-img]').forEach(el => { const k = el.dataset.img; el.style.backgroundImage = `url(/homepage-concept-1/v2/media/img/${k}.${EXT[k] || 'jpg'})`; });
+const refreshCrops = () => $$('[data-img]').forEach(el => { if (el.closest('#drone')) return; applyCrop(el); });
+
+/* ------------------------------------------------------------------ refs */
+const root = document.documentElement, story = $('#story'), stage = $('#stage'), frame = $('#frame');
+const el = id => document.getElementById(id);
+const E = {};
+['bgVid','introVid','vidOv2','glowA','bgLab','glowT','glowD','bgB','bgR','glowE','base','drone',
+ 'hero','intro','stats','statement','capLab','labcard','rootTitle','hdrRoot','rootSub','trio','ring','fieldCopy','venTitle','hdrVen','venSub','tiles','venBtn',
+ 'engTitle','hdrEng','eng','hdrTal','talSub','list','hdrTour','tourSub','tour','tourBtn','footF','num1','num2','hint','nav','mark'].forEach(i => E[i] = el(i));
+
+// Hover now drives the lab card and the three centres, so the scroll beats that used to play them are cut:
+// events after 20.9 move 1.2 units earlier, events after 29.5 move 3.8 units earlier.
+const tm = t => t < 20.9 ? t : t < 29.5 ? t - 1.2 : t - 3.8;
+const TOTAL = tm(57.6);                 // timeline length in "scroll units"
+let U = 1, M = false, ctx = null, tl = null, st = null, lenis = null;
+
+function metrics() {
+  const w = innerWidth, h = innerHeight;
+  M = w < 820 || w / h < 0.9;
+  U = M ? 1 : Math.min(w / 1440, h / 870);
+  root.classList.toggle('m', M);
+  root.style.setProperty('--u', U.toFixed(4));
+  root.style.setProperty('--ft', (M ? 1 : Math.max(U, .82)).toFixed(4));
+  root.style.setProperty('--fu', (M ? 1 : Math.max(w / 1440, .7)).toFixed(4));
+  const ppu = h * (M ? .62 : .7);
+  story.style.height = (TOTAL * ppu + h) + 'px';
+  return ppu;
+}
+
+/* ------------------------------------------------------------------ geometry helpers */
+const px = n => n * U;
+// absolute stage rect of a design-space box (desktop)
+const R = (x, y, w, h) => ({ x: frame.offsetLeft + x * U, y: frame.offsetTop + y * U, w: w * U, h: h * U });
+const offsetIn = (node, anc) => { let x = 0, y = 0; while (node && node !== anc) { x += node.offsetLeft; y += node.offsetTop; node = node.offsetParent; } return { x, y }; };
+
+/* ------------------------------------------------------------------ build the story */
+let hoverAC = new AbortController();
+function build() {
+  hoverAC.abort(); hoverAC = new AbortController();
+  if (ctx) ctx.revert();
+  const ppu = metrics();
+  refreshCrops();
+  const vw = stage.clientWidth, vh = stage.clientHeight;
+  ctx = gsap.context(() => {
+    const A = E;
+    const bgs = ['glowA','bgLab','glowT','glowD','bgB','bgR','glowE'].map(k => A[k]);
+    gsap.set(bgs, { opacity: 0 });
+    gsap.set(A.bgVid, { opacity: 1 }); gsap.set(A.vidOv2, { opacity: 0 });
+    gsap.set(A.base, { backgroundColor: '#101010' });
+
+    // hidden initial states of every UI block
+    const hide = [A.hero, A.intro, A.stats, A.statement, A.capLab, A.labcard, A.rootTitle, A.hdrRoot, A.rootSub, A.trio, A.fieldCopy, A.venTitle, A.hdrVen, A.venSub, A.tiles, A.venBtn,
+      A.engTitle, A.hdrEng, A.eng, A.hdrTal, A.talSub, A.list, A.hdrTour, A.tourSub, A.tour, A.tourBtn];
+    gsap.set(hide, { opacity: 0 });
+    gsap.set(A.drone, { opacity: 0 });
+
+    const tcards = $$('.tcard'), rows = $$('.row', A.labcard), tiles = $$('.tile'), ecards = $$('.ecard'), lis = $$('.li', A.list);
+    const ft = (t, tg, from, to, at, ease) => tl.fromTo(tg, from, Object.assign({ ease: ease || 'power2.inOut', immediateRender: false }, to), tm(at));
+    const io = 'power2.inOut', out = 'power3.out';
+
+    tl = gsap.timeline({ paused: true, defaults: { duration: 1 } });
+
+    /* ---------- 01 · INTRODUCTION — scroll scrubs the flight video (Earth → close-up → aerial → desert → Al Foah) ----------
+       media/intro.mp4 = "homepage 1 video new" (19.63 s). The page timeline (title, copy, cards) is unchanged, so the
+       video is re-timed to it with keyframes [scroll unit → video second]:
+       unit 0–2.4   video 0–5.6    01.01 Earth overview → 01.02 close-up (Americas → Africa → Asia)
+       unit 2.4     video 5.6      01.03 "Step into the Oasis" arrives as the camera dives through the clouds toward Arabia
+       unit 2.4–4.2 video 5.6–9    descent over the desert from altitude
+       unit 4.2–8.2 video 9–14.8   01.04 desert landscape (title stays)
+       unit 8.2–9.2 video 14.8–16.6 01.05 transition to Al Foah — dunes, footage softens (vidOv2 at unit 8.8)
+       unit 9.2–12.05 video 16.6–19.55 02.01 / 02.02 over the farm (green circles appear at ≈16.5 s) */
+    const vid = A.introVid, VID_END = 19.55, vp = { t: 0 };
+    const VID_KEYS = [[0, 0], [2.4, 5.6], [4.2, 9], [8.2, 14.8], [9.2, 16.6], [12.05, VID_END]];
+    const seekVid = () => { const t = Math.min(vp.t, VID_END); if (Math.abs(vid.currentTime - t) > 0.016) vid.currentTime = t; };
+    vid.pause(); try { vid.currentTime = 0.001; } catch (e) { /* metadata not ready yet — the first scrub tick will seek */ }
+    VID_KEYS.slice(1).forEach(([u, t], i) => {
+      const [u0, t0] = VID_KEYS[i];
+      tl.fromTo(vp, { t: t0 }, { t, duration: u - u0, ease: 'none', immediateRender: false, onUpdate: seekVid }, u0);
+    });
+    ft(0, A.hero, { opacity: 0, y: px(26), filter: 'blur(14px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .9, ease: out }, 2.4);
+    ft(0, A.hero, { opacity: 1, filter: 'blur(0px)', scale: 1 }, { opacity: 0, filter: 'blur(14px)', scale: 1.04, duration: 1.1 }, 8.2);
+    ft(0, A.vidOv2, { opacity: 0 }, { opacity: 1, duration: 1.4 }, 8.8);
+
+    /* ---------- 02 · THE LOCATION ---------- */
+    ft(0, A.intro, { opacity: 0, y: px(40), filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 9.2);
+    const upY = M ? -(vh * .3) : px(-325);
+    ft(0, A.intro, { y: 0 }, { y: upY, duration: 1.1 }, 10.9);
+    const sl = $$('.stat'), hr = $$('.hr');
+    gsap.set(hr, { scaleX: 0 });
+    ft(0, A.stats, { opacity: 0, y: px(36) }, { opacity: 1, y: 0, duration: 1, ease: out }, 11.2);
+    ft(0, hr, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: .12, ease: out }, 11.3);
+    const cnt = { a: 0, b: 0 };
+    tl.fromTo(cnt, { a: 0, b: 0 }, { a: 34, b: 4, duration: 1.4, ease: 'power2.out', immediateRender: false,
+      onUpdate() { A.num1.textContent = Math.round(cnt.a) + ' ha'; A.num2.textContent = String(Math.round(cnt.b)).padStart(2, '0'); } }, 11.4);
+
+    /* ---------- 03 · WHAT YOU'LL PASS ON THE WAY ---------- */
+    ft(0, A.bgVid, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 13.5);
+    ft(0, A.glowA, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 13.5);
+    ft(0, [A.intro, A.stats], { opacity: 1, filter: 'blur(0px)' }, { opacity: 0, filter: 'blur(12px)', duration: .9 }, 13.3);
+    ft(0, A.statement, { opacity: 0, y: px(30), filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 14.2);
+    // 03.02 — statement docks to the top as a caption; lab card opens
+    ft(0, A.statement, { opacity: 1, y: 0 }, { opacity: 0, y: px(-34), duration: .8 }, 15.7);
+    ft(0, A.capLab, { opacity: 0, y: px(14) }, { opacity: 1, y: 0, duration: .8 }, 16.0);
+    ft(0, A.labcard, { opacity: 0, y: px(46), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: out }, 16.0);
+    ft(0, rows, { opacity: 0, x: px(-12) }, { opacity: 1, x: 0, duration: .8, stagger: .12, ease: out }, 16.3);
+    ft(0, A.bgLab, { opacity: 0 }, { opacity: 1, duration: 1.1 }, 16.0);
+    // 03.03 — hover: a row unfolds into its photo, the background becomes that lab (Figma "Soil & Water Lab highlighted")
+    const bigW = rows[0].clientWidth || px(391), bigH = M ? bigW * .614 : px(240), rowH = rows[0].clientHeight, rad0 = M ? 14 : px(16), rad1 = M ? 20 : px(24);
+    const lbs = $$('.lb', A.bgLab);
+    const rp = rows.map(r => ({ r, m: $('.media', r), big: $('.big', r), th: $('.thumb', r), title: $('.t-18', r), eye: $('.t-eye', r) }));
+    rp.forEach(p => {
+      gsap.set(p.r, { height: rowH }); gsap.set(p.m, { width: rowH, height: rowH, borderRadius: rad0 });
+      gsap.set(p.big, { width: bigW, height: bigH, opacity: 0 }); applyCrop(p.big, bigW, bigH);
+      gsap.set(p.th, { opacity: 1 }); gsap.set(p.title, { opacity: 1 }); gsap.set(p.eye, { color: 'rgba(255,255,255,.5)' });
+    });
+    lbs.forEach(l => l.classList.remove('on'));
+    let openRow = -1;
+    const openLab = i => {
+      if (i === openRow) return; openRow = i;
+      rp.forEach((p, k) => {
+        const on = k === i;
+        gsap.to(p.r, { height: on ? bigH : rowH, duration: .7, ease: 'power3.out', overwrite: 'auto' });
+        gsap.to(p.m, { width: on ? bigW : rowH, height: on ? bigH : rowH, borderRadius: on ? rad1 : rad0, duration: .7, ease: 'power3.out', overwrite: 'auto' });
+        gsap.to(p.big, { opacity: on ? 1 : 0, duration: .5, overwrite: 'auto' });
+        gsap.to(p.th, { opacity: on ? 0 : 1, duration: .4, overwrite: 'auto' });
+        gsap.to(p.title, { opacity: (i < 0 || on) ? 1 : .5, duration: .5, overwrite: 'auto' });
+        gsap.to(p.eye, { color: on ? '#ffffff' : 'rgba(255,255,255,.5)', duration: .5, overwrite: 'auto' });
+      });
+      lbs.forEach((l, k) => l.classList.toggle('on', k === i));
+    };
+    const live = node => parseFloat(getComputedStyle(node).opacity) > .85;
+    let lastType = 'mouse';
+    const sig = { signal: hoverAC.signal };
+    rows.forEach((r, k) => {
+      r.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(A.labcard)) openLab(k); }, sig);
+      r.addEventListener('click', () => { if (lastType === 'touch' && live(A.labcard)) openLab(k === openRow ? -1 : k); }, sig);
+    });
+    A.labcard.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') openLab(-1); }, sig);
+
+    /* ---------- 04 · WHAT WE'RE GROWING ---------- */
+    ft(0, [A.labcard, A.capLab], { opacity: 1 }, { opacity: 0, duration: .9 }, 20.9);
+    ft(0, A.labcard, { y: 0 }, { y: px(-28), duration: .9 }, 20.9);
+    ft(0, A.bgLab, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 20.9);
+    ft(0, A.glowA, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 20.9);
+    ft(0, A.glowT, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 20.9);
+    ft(0, A.base, { backgroundColor: '#101010' }, { backgroundColor: '#0f0f0f', duration: 1 }, 20.9);
+    ft(0, A.rootTitle, { opacity: 0, y: px(30), filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 21.4);
+    const subDy = M ? 0 : px(670);
+    gsap.set(A.rootSub, { y: subDy });
+    ft(0, A.rootSub, { opacity: 0, y: subDy + px(24) }, { opacity: 1, y: subDy, duration: .9, ease: out }, 21.7);
+    // 04.02 — title shrinks into the header, the sub travels up, three centres appear
+    ft(0, A.rootTitle, { opacity: 1, y: 0, scale: 1 }, { opacity: 0, y: px(-60), scale: .92, filter: 'blur(10px)', duration: 1 }, 23.2);
+    ft(0, A.hdrRoot, { opacity: 0, y: px(10) }, { opacity: 1, y: 0, duration: .9 }, 23.5);
+    if (!M) ft(0, A.rootSub, { y: subDy }, { y: 0, duration: 1.2 }, 23.2);
+    else ft(0, A.rootSub, { opacity: 1 }, { opacity: 0, duration: .5 }, 23.2);
+    ft(0, A.trio, { opacity: 0 }, { opacity: 1, duration: .6 }, 23.5);
+    ft(0, tcards, { y: px(56), scale: .94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1, stagger: .14, ease: out }, 23.5);
+    ft(0, A.ring, { opacity: 0 }, { opacity: 1, duration: .8 }, 24.4);
+    // 04.02 → 04.04 — hover (tap on touch) moves the focus ring, the caption and the glow behind
+    const caps = tcards.map(c => $('.cap', c)), faces = tcards.map(c => $('.face', c)), gls = $$('.gl', A.glowT);
+    const ringX = i => tcards[i].offsetLeft - tcards[0].offsetLeft;
+    const trioBase = M ? (vw - tcards[0].offsetWidth) / 2 : 0;
+    const focusX = i => M ? trioBase - tcards[i].offsetLeft : 0;
+    gsap.set(A.trio, { x: focusX(0) });
+    gsap.set(A.ring, { x: 0 });
+    gsap.set(caps, { opacity: 0, y: px(10) }); gsap.set(caps[0], { opacity: 1, y: 0 });
+    gsap.set(faces, { opacity: .4 }); gsap.set(faces[0], { opacity: 1 });
+    gls.forEach((g, k) => g.classList.toggle('on', k === 0));
+    let focused = 0;
+    const focusCard = i => {
+      if (i === focused) return; focused = i;
+      gsap.to(A.ring, { x: ringX(i), duration: .7, ease: 'power3.out', overwrite: 'auto' });
+      if (M) gsap.to(A.trio, { x: focusX(i), duration: .8, ease: 'power3.out', overwrite: 'auto' });
+      faces.forEach((f, k) => gsap.to(f, { opacity: k === i ? 1 : .4, duration: .6, overwrite: 'auto' }));
+      caps.forEach((c, k) => gsap.to(c, { opacity: k === i ? 1 : 0, y: k === i ? 0 : px(10), duration: k === i ? .6 : .3, delay: k === i ? .15 : 0, overwrite: 'auto' }));
+      gls.forEach((g, k) => g.classList.toggle('on', k === i));
+    };
+    tcards.forEach((c, k) => {
+      c.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(A.trio)) focusCard(k); }, sig);
+      c.addEventListener('click', () => { if (lastType === 'touch' && live(A.trio)) focusCard(k); }, sig);
+    });
+
+    /* ---------- 05 · WE COME TO YOU — a card appears in the centre, then grows straight to full screen (one scroll move, one photo) ---------- */
+    const rO = M ? { x: vw * .07, y: vh * .5 - vw * .86 * .31, w: vw * .86, h: vw * .86 * .624 } : R(396, 233, 647, 404);
+    const rQ = { x: 0, y: 0, w: vw, h: vh };
+    const dr = E.drone, drIm = $('.im', dr), drOv = $('.ov', dr), drOv2 = $('.ov2', dr);
+    const setBox = r => ({ x: r.x, y: r.y, width: r.w, height: r.h });
+    const dTick = () => applyCrop(drIm, dr.offsetWidth, dr.offsetHeight);
+    gsap.set(dr, Object.assign({ opacity: 0, borderRadius: M ? 26 : px(40) }, setBox(rO)));
+    gsap.set(drOv, { backgroundColor: 'rgba(0,0,0,.2)' }); gsap.set(drOv2, { opacity: 0 });
+    dTick();
+    ft(0, [A.hdrRoot, A.rootSub], { opacity: 1 }, { opacity: 0, duration: .7 }, 29.7);
+    ft(0, A.trio, { opacity: 1 }, { opacity: 0, duration: .8 }, 29.7);
+    ft(0, A.glowT, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 29.7);
+    ft(0, A.glowD, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 29.7);
+    // 05.01 — the card arrives in the middle
+    ft(0, dr, { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: .9, ease: out }, 30.1);
+    // 05.02 → 05.03 — straight to full screen; the same element becomes the background (no second photo, no fade)
+    ft(0, dr, setBox(rO), Object.assign({ borderRadius: 0, duration: 1.7, onUpdate: dTick }, setBox(rQ)), 32.0);
+    ft(0, drOv, { backgroundColor: 'rgba(0,0,0,.2)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 1.7 }, 32.0);
+    ft(0, drOv2, { opacity: 0 }, { opacity: 1, duration: 1.7 }, 32.0);
+    ft(0, A.glowD, { opacity: 1 }, { opacity: 0, duration: .4 }, 33.8);
+    ft(0, A.fieldCopy, { opacity: 0, y: px(40), filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 34.0);
+
+    /* ---------- 06 · WHO YOU'LL MEET — innovation & venture platforms ---------- */
+    ft(0, A.fieldCopy, { opacity: 1, y: 0 }, { opacity: 0, y: px(-30), filter: 'blur(10px)', duration: .8 }, 37.0);
+    ft(0, dr, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 37.0);
+    // one photo for 06.01 + 06.02: the crop window pulls back from the building top to the whole forecourt (zoom-out)
+    const cropMove = (layer, from, to, at, dur) => {
+      const im = $('.im', layer), o = from.slice(), tw = { p: 0 };
+      tl.fromTo(tw, { p: 0 }, { p: 1, duration: dur, ease: 'power2.inOut', immediateRender: false,
+        onUpdate() { const k = tw.p; applyCrop(im, 0, 0, o.map((x, i) => x + (to[i] - x) * k)); } }, tm(at));
+    };
+    ft(0, A.bgB, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.2 }, 37.0);
+    ft(0, A.venTitle, { opacity: 0, y: px(30), filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 37.5);
+    // 06.02 — funding, incubation, acceleration
+    ft(0, A.venTitle, { opacity: 1, y: 0 }, { opacity: 0, y: px(-50), filter: 'blur(10px)', duration: .9 }, 39.0);
+    cropMove(A.bgB, [.49, .44, .44, .25], [.9, .03, .81, .06], 39.0, 1.6);
+    ft(0, $('.ov', A.bgB), { backgroundColor: 'rgba(0,0,0,.5)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 1.6 }, 39.0);
+    ft(0, [A.hdrVen, A.venSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 39.3);
+    ft(0, A.tiles, { opacity: 0 }, { opacity: 1, duration: .5 }, 39.4);
+    ft(0, tiles, { opacity: 0, y: px(46), scale: .94 }, { opacity: 1, y: 0, scale: 1, duration: 1, stagger: .12, ease: out }, 39.5);
+    ft(0, A.venBtn, { opacity: 0, y: px(20) }, { opacity: 1, y: 0, duration: .8, ease: out }, 40.2);
+    const tImgs = tiles.map(t => $('.im', t)), tOn = (i, at) => {
+      ft(0, tiles[i], {}, { duration: 0.001, onStart() { tiles.forEach((t, k) => t.classList.toggle('on', k === i)); }, onReverseComplete() { tiles.forEach((t, k) => t.classList.toggle('on', k === Math.max(i - 1, 0))); } }, at);
+      ft(0, tImgs[i], { opacity: 0, scale: 1.14 }, { opacity: 1, scale: 1, duration: .9 }, at);
+      if (i > 0) ft(0, tImgs[i - 1], { opacity: 1 }, { opacity: 0, duration: .6 }, at);
+    };
+    gsap.set(tImgs, { opacity: 0, scale: 1.14 }); gsap.set(tImgs[0], { opacity: 1, scale: 1 });
+    tiles.forEach((t, k) => t.classList.toggle('on', k === 0));
+    tOn(1, 41.2); tOn(2, 42.2); tOn(3, 43.2);
+
+    /* ---------- 07 · ONE OASIS, THREE WAYS IN ---------- */
+    ft(0, [A.hdrVen, A.venSub, A.tiles, A.venBtn], { opacity: 1 }, { opacity: 0, duration: .8 }, 44.2);
+    ft(0, A.bgB, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 44.2);
+    ft(0, A.bgR, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.2 }, 44.2);
+    ft(0, A.engTitle, { opacity: 0, y: px(30), filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 44.8);
+    ft(0, A.engTitle, { opacity: 1, y: 0 }, { opacity: 0, y: px(-50), filter: 'blur(10px)', duration: .9 }, 46.2);
+    // one photo for 07.01 + 07.02: the crop window slides down and pushes in (turun + zoom in)
+    cropMove(A.bgR, [1, 0, .45, .37], [.8, .10, .363, .53], 46.2, 1.6);
+    ft(0, A.hdrEng, { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9 }, 46.5);
+    ft(0, A.eng, { opacity: 0 }, { opacity: 1, duration: .5 }, 46.6);
+    ft(0, ecards, { opacity: 0, y: px(50), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1, stagger: .14, ease: out }, 46.7);
+
+    /* ---------- 08 · TRAINING & TALENT ---------- */
+    ft(0, [A.hdrEng, A.eng], { opacity: 1 }, { opacity: 0, duration: .8 }, 48.2);
+    ft(0, A.bgR, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 48.2);
+    ft(0, A.base, { backgroundColor: '#0f0f0f' }, { backgroundColor: '#000000', duration: 1.2 }, 48.2);
+    ft(0, A.glowE, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 48.2);
+    ft(0, [A.hdrTal, A.talSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 48.8);
+    ft(0, A.list, { opacity: 0, y: px(44), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1, ease: out }, 48.9);
+    ft(0, lis, { opacity: 0, x: px(-10) }, { opacity: 1, x: 0, duration: .8, stagger: .1, ease: out }, 49.2);
+    const liOn = (i, at) => ft(0, lis[i], {}, { duration: .001, onStart() { lis.forEach((l, k) => l.classList.toggle('on', k === i)); }, onReverseComplete() { lis.forEach((l, k) => l.classList.toggle('on', k === Math.max(i - 1, 0))); } }, at);
+    lis.forEach(l => l.classList.remove('on')); lis[0].classList.add('on');
+    liOn(1, 49.9); liOn(2, 50.4); liOn(3, 50.9);
+
+    /* ---------- 09 · VIRTUAL TOUR ---------- */
+    ft(0, [A.hdrTal, A.talSub, A.list], { opacity: 1 }, { opacity: 0, duration: .8 }, 51.4);
+    ft(0, [A.hdrTour, A.tourSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 51.8);
+    ft(0, A.tour, { opacity: 0, scale: .9, y: px(30) }, { opacity: 1, scale: 1, y: 0, duration: 1.1, ease: out }, 51.9);
+    ft(0, A.tourBtn, { opacity: 0, y: px(20) }, { opacity: 1, y: 0, duration: .8, ease: out }, 52.5);
+
+    /* ---------- 10 · FOOTER — the world goes black, rules draw in, text follows ---------- */
+    const fhr = $$('.fhr', A.footF), ftx = $$('.ftx', A.footF);
+    gsap.set(fhr, { scaleX: 0 }); gsap.set(ftx, { opacity: 0, y: px(18) });
+    ft(0, [A.hdrTour, A.tourSub, A.tour, A.tourBtn], { opacity: 1 }, { opacity: 0, duration: .9 }, 53.8);
+    ft(0, A.glowE, { opacity: 1 }, { opacity: 0, duration: 1.3 }, 53.8);
+    ft(0, A.base, { backgroundColor: '#000000' }, { backgroundColor: '#101010', duration: 1.3 }, 53.8);
+    ft(0, fhr, { scaleX: 0 }, { scaleX: 1, duration: 1.2, stagger: .14, ease: out }, 54.8);
+    ft(0, ftx, { opacity: 0, y: px(18) }, { opacity: 1, y: 0, duration: .9, stagger: .06, ease: out }, 54.9);
+    tl.to({}, { duration: .001 }, TOTAL - .001);
+
+    /* ---------- scroll binding ---------- */
+    st = ScrollTrigger.create({
+      trigger: story, start: 'top top', end: 'bottom bottom', animation: tl,
+      scrub: matchMedia('(prefers-reduced-motion: reduce)').matches ? true : .7,
+      onUpdate: self => chrome(tl.time())
+    });
+    // nav "Scroll" hint fades once the journey begins
+    chrome(tl.time());
+  }, stage);
+  tl.scrollTo = null;
+  return ppu;
+}
+
+/* ------------------------------------------------------------------ chrome state (nav, marker, hint) */
+const navLinks = $$('#nav a');
+const CHAPTERS = [0, 8.6, 14.4, 21.0, 29.0, 37.0].map(tm);                    // when each nav item takes over
+const TARGETS = [0, 9.6, 16.4, 23.6, 34.8, 39.8, 46.8].map(tm);               // where a click scrolls to (timeline units)
+let lastIdx = -2;
+function chrome(t) {
+  let i = -1;
+  if (t < tm(48.4)) { i = 0; for (let k = 1; k < CHAPTERS.length; k++) if (t >= CHAPTERS[k]) i = k; }
+  if (i !== lastIdx) {
+    lastIdx = i;
+    navLinks.forEach((a, k) => a.classList.toggle('on', k === i));
+    E.nav.classList.toggle('off', i < 0); E.mark.classList.toggle('off', i < 0);
+    if (i >= 0 && !M) E.mark.style.transform = `translateY(${25 * i * U}px)`;
+    const mi = $$('#menuList a'); mi.forEach((a, k) => a.style.color = k === i ? '#fff' : '');
+  }
+  const win = (a, b) => t >= tm(a) && t < tm(b);
+  const live = [win(16.6, 20.8) && 'lab', win(24.4, 29.6) && 'trio', win(35.4, 37.0) && 'field', win(40.4, 44.2) && 'ven', win(47.0, 48.1) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
+  if (stage.dataset.live !== live) stage.dataset.live = live;
+  stage.classList.toggle('end', t >= tm(54.4)); stage.classList.toggle('footlive', t >= tm(56.0));
+  E.hint.style.opacity = Math.max(.0, Math.min(1, 1 - (t - .3) / .5));
+}
+function go(i) {
+  const ppu = innerHeight * (M ? .62 : .7);
+  const y = story.offsetTop + TARGETS[i] * ppu;
+  lenis ? lenis.scrollTo(y, { duration: 2.2, easing: t => 1 - Math.pow(1 - t, 4) }) : scrollTo({ top: y, behavior: 'smooth' });
+}
+$$('#nav a, #menuList a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); closeMenu(); go(+a.dataset.i); }));
+$('#home').addEventListener('click', e => { e.preventDefault(); go(0); });
+
+/* ------------------------------------------------------------------ menu overlay */
+const menu = $('#menu'), menuBtn = $('#menuBtn');
+function closeMenu() { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-hidden', 'true'); lenis && lenis.start(); }
+menuBtn.addEventListener('click', () => {
+  const open = !menu.classList.contains('open');
+  menu.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-hidden', String(!open));
+  lenis && (open ? lenis.stop() : lenis.start());
+});
+addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* ------------------------------------------------------------------ boot */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const Q = new URLSearchParams(location.search);          // ?t=12.4 jumps to a timeline position, ?lenis=0 disables smooth scroll (QA / deep links)
+if (Q.get('t') && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (window.Lenis && !reduce && Q.get('lenis') !== '0') {
+  lenis = new Lenis({ lerp: .1, wheelMultiplier: .95, smoothWheel: true });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+}
+function init() {
+  const p = st ? st.progress : 0;
+  build();
+  ScrollTrigger.refresh();
+  if (p > 0) scrollTo(0, story.offsetTop + p * (story.offsetHeight - innerHeight));
+  else if (Q.get('t')) { const y = story.offsetTop + parseFloat(Q.get('t')) * innerHeight * (M ? .62 : .7); lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : scrollTo(0, y); }
+  chrome(tl.time());
+}
+window.__story = { jump: t => { const y = story.offsetTop + t * innerHeight * (M ? .62 : .7); lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : scrollTo(0, y); }, time: () => tl.time() };
+let rt;
+addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (innerWidth === lastW && Math.abs(innerHeight - lastH) < 120 && M) return; lastW = innerWidth; lastH = innerHeight; init(); }, 180); });
+let lastW = innerWidth, lastH = innerHeight;
+const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+fontsReady.then(() => { init(); requestAnimationFrame(() => { document.documentElement.classList.add('ready'); }); });
+})();
+</script>
+</body>
+</html>

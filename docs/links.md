@@ -54,3 +54,8 @@ Design routes live under random folder names so they cannot be guessed. There is
 - About IO: https://silal-io.vercel.app/390b3d94a5/v2/about
 - News & Media · Press releases: https://silal-io.vercel.app/390b3d94a5/v2/resources/news
 - Press release (detail): https://silal-io.vercel.app/390b3d94a5/v2/resources/news/innovation-oasis-officially-opens
+
+## Homepage prototype (LAIN, static)
+
+### Concept 1 — Built by the Desert
+- Home: https://silal-io.vercel.app/homepage-concept-1/v2  (static page in `public/homepage-concept-1/v2/`, notes in `prototypes/silal-homepage/README.md`)
