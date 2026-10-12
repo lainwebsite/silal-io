@@ -124,7 +124,6 @@ img,svg{display:block}
 .row .media{position:absolute;left:0;top:0;width:calc(80px*var(--u));height:calc(80px*var(--u));border-radius:calc(16px*var(--u));overflow:hidden;background:rgba(255,255,255,.06)}
 .row .media .im{position:absolute;inset:0}
 .row .media .im::after{content:"";position:absolute;inset:0;background:rgba(15,15,15,.4)}
-.row .media .big{position:absolute;left:0;top:0;opacity:0}
 .row .txt{position:relative;z-index:2}
 .row .txt .t-eye{display:block;margin-bottom:calc(4px*var(--u))}
 .row .txt .t-18{display:block}
@@ -345,13 +344,13 @@ html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;fon
 
     <div class="vc">
       <div class="labcard glass" id="labcard" style="--gf:.04;--gb:30">
-        <div class="row" data-r="0"><div class="media"><div class="im thumb" data-img="8e44e3b2"></div><div class="im big" data-img="8e44e3b2"></div></div><div class="txt"><span class="t-eye">heat</span><span class="t-18">Growth Chambers</span></div></div>
+        <div class="row" data-r="0"><div class="media"><div class="im" data-img="8e44e3b2" data-open="1,0,1,0"></div></div><div class="txt"><span class="t-eye">heat</span><span class="t-18">Growth Chambers</span></div></div>
         <i class="hair sep"></i>
-        <div class="row" data-r="1"><div class="media"><div class="im thumb" data-img="0c5a04bd" data-crop=".35,0,.52,.3"></div><div class="im big" data-img="0c5a04bd" data-crop=".5,.01,.46,.32"></div></div><div class="txt"><span class="t-eye">water</span><span class="t-18">Soil &amp; Water Lab</span></div></div>
+        <div class="row" data-r="1"><div class="media"><div class="im" data-img="0c5a04bd" data-crop=".35,0,.52,.3" data-open=".5,.01,.46,.32"></div></div><div class="txt"><span class="t-eye">water</span><span class="t-18">Soil &amp; Water Lab</span></div></div>
         <i class="hair sep"></i>
-        <div class="row" data-r="2"><div class="media"><div class="im thumb" data-img="3e723371" data-crop=".67,.3,1,0"></div><div class="im big" data-img="3e723371"></div></div><div class="txt"><span class="t-eye">soil</span><span class="t-18">Crop Health Lab</span></div></div>
+        <div class="row" data-r="2"><div class="media"><div class="im" data-img="3e723371" data-crop=".67,.3,1,0" data-open="1,0,1,0"></div></div><div class="txt"><span class="t-eye">soil</span><span class="t-18">Crop Health Lab</span></div></div>
         <i class="hair sep"></i>
-        <div class="row" data-r="3"><div class="media"><div class="im thumb" data-img="bed5d79a" data-crop=".51,.04,.76,.12"></div><div class="im big" data-img="bed5d79a"></div></div><div class="txt"><span class="t-eye">energy</span><span class="t-18">Mobile Crop-Health Lab</span></div></div>
+        <div class="row" data-r="3"><div class="media"><div class="im" data-img="bed5d79a" data-crop=".51,.04,.76,.12" data-open="1,0,1,0"></div></div><div class="txt"><span class="t-eye">energy</span><span class="t-18">Mobile Crop-Health Lab</span></div></div>
       </div>
     </div>
 
@@ -500,8 +499,8 @@ const E = {};
  'engTitle','hdrEng','eng','hdrTal','talSub','list','hdrTour','tourSub','tour','tourBtn','footF','num1','num2','hint','nav','mark'].forEach(i => E[i] = el(i));
 
 // Hover now drives the lab card and the three centres, so the scroll beats that used to play them are cut:
-// events after 20.9 move 1.2 units earlier, events after 29.5 move 3.8 units earlier.
-const tm = t => t < 20.9 ? t : t < 29.5 ? t - 1.2 : t - 3.8;
+// events after 20.9 move 2.9 units earlier (lab card holds ~0.9 units), events after 29.5 move 5.5 units earlier.
+const tm = t => t < 20.9 ? t : t < 29.5 ? t - 2.9 : t - 5.5;
 const TOTAL = tm(57.6);                 // timeline length in "scroll units"
 let U = 1, M = false, ctx = null, tl = null, st = null, lenis = null;
 
@@ -596,24 +595,24 @@ function build() {
     ft(0, rows, { opacity: 0, x: px(-12) }, { opacity: 1, x: 0, duration: .8, stagger: .12, ease: out }, 16.3);
     ft(0, A.bgLab, { opacity: 0 }, { opacity: 1, duration: 1.1 }, 16.0);
     // 03.03 — hover: a row unfolds into its photo, the background becomes that lab (Figma "Soil & Water Lab highlighted")
+    // one photo per row: the row box grows and the crop window opens with it (no thumbnail / big-photo crossfade)
+    rows.forEach(r => { r.style.height = ''; const m = $('.media', r); m.style.width = m.style.height = m.style.borderRadius = ''; });
     const bigW = rows[0].clientWidth || px(391), bigH = M ? bigW * .614 : px(240), rowH = rows[0].clientHeight, rad0 = M ? 14 : px(16), rad1 = M ? 20 : px(24);
-    const lbs = $$('.lb', A.bgLab);
-    const rp = rows.map(r => ({ r, m: $('.media', r), big: $('.big', r), th: $('.thumb', r), title: $('.t-18', r), eye: $('.t-eye', r) }));
-    rp.forEach(p => {
-      gsap.set(p.r, { height: rowH }); gsap.set(p.m, { width: rowH, height: rowH, borderRadius: rad0 });
-      gsap.set(p.big, { width: bigW, height: bigH, opacity: 0 }); applyCrop(p.big, bigW, bigH);
-      gsap.set(p.th, { opacity: 1 }); gsap.set(p.title, { opacity: 1 }); gsap.set(p.eye, { color: 'rgba(255,255,255,.5)' });
-    });
+    const lbs = $$('.lb', A.bgLab), parse = s => (s || '1,0,1,0').split(',').map(Number);
+    const rp = rows.map(r => { const im = $('.im', r); return { r, m: $('.media', r), im, c0: parse(im.dataset.crop), c1: parse(im.dataset.open), title: $('.t-18', r), eye: $('.t-eye', r), st: { p: 0 } }; });
+    const paint = p => {
+      const k = p.st.p, w = rowH + (bigW - rowH) * k, h = rowH + (bigH - rowH) * k;
+      gsap.set(p.r, { height: h }); gsap.set(p.m, { width: w, height: h, borderRadius: rad0 + (rad1 - rad0) * k });
+      applyCrop(p.im, w, h, p.c0.map((x, i) => x + (p.c1[i] - x) * k));
+    };
+    rp.forEach(p => { paint(p); gsap.set(p.title, { opacity: 1 }); gsap.set(p.eye, { color: 'rgba(255,255,255,.5)' }); });
     lbs.forEach(l => l.classList.remove('on'));
     let openRow = -1;
     const openLab = i => {
       if (i === openRow) return; openRow = i;
       rp.forEach((p, k) => {
         const on = k === i;
-        gsap.to(p.r, { height: on ? bigH : rowH, duration: .7, ease: 'power3.out', overwrite: 'auto' });
-        gsap.to(p.m, { width: on ? bigW : rowH, height: on ? bigH : rowH, borderRadius: on ? rad1 : rad0, duration: .7, ease: 'power3.out', overwrite: 'auto' });
-        gsap.to(p.big, { opacity: on ? 1 : 0, duration: .5, overwrite: 'auto' });
-        gsap.to(p.th, { opacity: on ? 0 : 1, duration: .4, overwrite: 'auto' });
+        gsap.to(p.st, { p: on ? 1 : 0, duration: .8, ease: 'power3.inOut', overwrite: 'auto', onUpdate: () => paint(p) });
         gsap.to(p.title, { opacity: (i < 0 || on) ? 1 : .5, duration: .5, overwrite: 'auto' });
         gsap.to(p.eye, { color: on ? '#ffffff' : 'rgba(255,255,255,.5)', duration: .5, overwrite: 'auto' });
       });
@@ -622,10 +621,13 @@ function build() {
     const live = node => parseFloat(getComputedStyle(node).opacity) > .85;
     let lastType = 'mouse';
     const sig = { signal: hoverAC.signal };
-    rows.forEach((r, k) => {
-      r.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(A.labcard)) openLab(k); }, sig);
-      r.addEventListener('click', () => { if (lastType === 'touch' && live(A.labcard)) openLab(k === openRow ? -1 : k); }, sig);
-    });
+    let px0 = -1e4, py0 = -1e4;
+    A.labcard.addEventListener('pointermove', e => {
+      lastType = e.pointerType; if (e.pointerType === 'touch' || !live(A.labcard)) return;
+      if (Math.abs(e.clientX - px0) + Math.abs(e.clientY - py0) < 3) return; px0 = e.clientX; py0 = e.clientY;
+      const k = rows.indexOf(e.target.closest('.row')); if (k >= 0) openLab(k);
+    }, sig);
+    rows.forEach((r, k) => r.addEventListener('click', () => { if (lastType === 'touch' && live(A.labcard)) openLab(k === openRow ? -1 : k); }, sig));
     A.labcard.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') openLab(-1); }, sig);
 
     /* ---------- 04 · WHAT WE'RE GROWING ---------- */
@@ -790,7 +792,7 @@ function chrome(t) {
     const mi = $$('#menuList a'); mi.forEach((a, k) => a.style.color = k === i ? '#fff' : '');
   }
   const win = (a, b) => t >= tm(a) && t < tm(b);
-  const live = [win(16.6, 20.8) && 'lab', win(24.4, 29.6) && 'trio', win(35.4, 37.0) && 'field', win(40.4, 44.2) && 'ven', win(47.0, 48.1) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
+  const live = [win(16.6, 20.9) && 'lab', win(24.4, 29.6) && 'trio', win(35.4, 37.0) && 'field', win(40.4, 44.2) && 'ven', win(47.0, 48.1) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
   if (stage.dataset.live !== live) stage.dataset.live = live;
   stage.classList.toggle('end', t >= tm(54.4)); stage.classList.toggle('footlive', t >= tm(56.0));
   E.hint.style.opacity = Math.max(.0, Math.min(1, 1 - (t - .3) / .5));
