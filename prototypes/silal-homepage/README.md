@@ -3,7 +3,7 @@
 Live at `/homepage-concept-1/v2` (team link, `noindex`; not linked from anywhere on the site).
 A standalone scroll-driven HTML page (GSAP + Lenis from CDN) built from the Figma file "Silal IO – LAIN INTERNAL" (`85J2hDmYtlUNY2GbDkFxZi`, page "Home Page", Concept 1).
 
-- Served file: `public/homepage-concept-1/v2/index.html`, images in `.../media/img/`, hero video `.../media/intro.mp4`.
+- Served file: `public/homepage-concept-1/v2/index.html`, images in `.../media/img/`, hero video `.../media/intro-smooth.mp4`.
   Folder is `media/`, not `assets/`, because `.vercelignore` excludes every folder named `assets/`.
   All media paths in the page are absolute (`/homepage-concept-1/v2/media/...`) because the URL has no trailing slash.
 - The bare URL works through one rewrite in `next.config.ts`.
@@ -19,3 +19,8 @@ A standalone scroll-driven HTML page (GSAP + Lenis from CDN) built from the Figm
 
 ## Continuing in another Claude chat / on another Mac
 Clone the repo, tell the chat to read this README and `DESIGN-SPEC.md` first.
+
+## 2026-10-12 round 5
+- Hero video re-encoded for scrubbing: black bars cropped (1192x672), motion-interpolated to 60 fps, a keyframe every 4 frames (`media/intro-smooth.mp4`, ~16 MB). The page eases the shown time toward the scroll target and only seeks when the previous seek has landed.
+- Dead scroll removed with `CUTS` in `index.html`; lab card, trio and venture tiles are hover, with short holds.
+- "Where innovation takes root." is one element that scrolls up and docks into the header slot. The drone is one continuous move to full screen (radius kept; corners leave the screen). Left nav stays through "Find your door" and fades with the footer.

@@ -46,7 +46,7 @@ img,svg{display:block}
 .row,.tcard{cursor:pointer}
 /* hidden blocks must never catch the pointer; JS opens each one only while it is on screen (data-live) */
 .frame,.labcard,.trio,.eng,.btn{pointer-events:none}
-.stage[data-live~="lab"] .labcard,.stage[data-live~="trio"] .trio,.stage[data-live~="eng"] .eng,.stage[data-live~="field"] #fieldCopy .btn,.stage[data-live~="ven"] #venBtn .btn,.stage[data-live~="tour"] #tourBtn .btn{pointer-events:auto}
+.stage[data-live~="lab"] .labcard,.stage[data-live~="trio"] .trio,.stage[data-live~="eng"] .eng,.stage[data-live~="field"] #fieldCopy .btn,.stage[data-live~="ven"] #venBtn .btn,.stage[data-live~="ven"] .tiles,.stage[data-live~="tour"] #tourBtn .btn{pointer-events:auto}
 
 /* ---------- design frame (1440 x 870 box centred in the viewport) ---------- */
 .frame{position:absolute;left:50%;top:50%;width:calc(1440px*var(--u));height:calc(870px*var(--u));margin:calc(-435px*var(--u)) 0 0 calc(-720px*var(--u));z-index:5}
@@ -293,7 +293,7 @@ html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;fon
 
   <!-- ===== scene backgrounds (each = a Figma fill stack, top-most paint) ===== -->
           <div class="bg" id="bgVid">
-    <video id="introVid" src="/homepage-concept-1/v2/media/intro.mp4" muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
+    <video id="introVid" src="/homepage-concept-1/v2/media/intro-smooth.mp4" muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
     <div class="ov" style="background:rgba(0,0,0,.2)"></div>
     <div class="ov" id="vidOv2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6)),rgba(0,0,0,.2)"></div>
   </div>
@@ -498,11 +498,20 @@ const E = {};
  'hero','intro','stats','statement','capLab','labcard','rootTitle','hdrRoot','rootSub','trio','ring','fieldCopy','venTitle','hdrVen','venSub','tiles','venBtn',
  'engTitle','hdrEng','eng','hdrTal','talSub','list','hdrTour','tourSub','tour','tourBtn','footF','num1','num2','hint','nav','mark'].forEach(i => E[i] = el(i));
 
-// Hover now drives the lab card and the three centres, so the scroll beats that used to play them are cut:
-// events after 20.9 move 2.9 units earlier (lab card holds ~0.9 units), events after 29.5 move 5.5 units earlier.
-const tm = t => t < 20.9 ? t : t < 29.5 ? t - 2.9 : t - 5.5;
+// Hover drives the lab card, the three centres and the venture tiles, so those sections only need a short hold.
+// Authoring times stay in "design" units; CUTS [from,to) remove the dead scroll between a section's last event and the next one:
+// lab card holds ~0.9u, trio ~1.0u, drone copy ~1.0u, venture tiles ~1.2u.
+const CUTS = [[18.0, 20.9], [26.0, 29.5], [34.3, 37.0], [42.2, 44.2]];
+const tm = t => { let o = 0; for (const [a, b] of CUTS) { if (t >= b) o += b - a; else if (t > a) return a - o; } return t - o; };
 const TOTAL = tm(57.6);                 // timeline length in "scroll units"
 let U = 1, M = false, ctx = null, tl = null, st = null, lenis = null;
+const VS = { el: null, target: 0, shown: 0, end: 19.55 };
+gsap.ticker.add((_, dt) => {
+  const v = VS.el; if (!v || v.readyState < 2) return;
+  VS.shown += (VS.target - VS.shown) * (1 - Math.exp(-(dt || 16) / 55));
+  if (Math.abs(VS.target - VS.shown) < .002) VS.shown = VS.target;
+  if (!v.seeking && Math.abs(v.currentTime - VS.shown) > .008) v.currentTime = Math.min(VS.shown, VS.end);
+});
 
 function metrics() {
   const w = innerWidth, h = innerHeight;
@@ -561,8 +570,10 @@ function build() {
        unit 9.2–12.05 video 16.6–19.55 02.01 / 02.02 over the farm (green circles appear at ≈16.5 s) */
     const vid = A.introVid, VID_END = 19.55, vp = { t: 0 };
     const VID_KEYS = [[0, 0], [2.4, 5.6], [4.2, 9], [8.2, 14.8], [9.2, 16.6], [12.05, VID_END]];
-    const seekVid = () => { const t = Math.min(vp.t, VID_END); if (Math.abs(vid.currentTime - t) > 0.016) vid.currentTime = t; };
-    vid.pause(); try { vid.currentTime = 0.001; } catch (e) { /* metadata not ready yet — the first scrub tick will seek */ }
+    // the scrub writes a target; one ticker eases the shown time towards it and seeks only when the last seek has landed
+    VS.el = vid; VS.end = VID_END;
+    const seekVid = () => { VS.target = Math.min(vp.t, VID_END); };
+    vid.pause(); VS.shown = VS.target = 0.001; try { vid.currentTime = 0.001; } catch (e) { /* metadata not ready yet — the ticker seeks */ }
     VID_KEYS.slice(1).forEach(([u, t], i) => {
       const [u0, t0] = VID_KEYS[i];
       tl.fromTo(vp, { t: t0 }, { t, duration: u - u0, ease: 'none', immediateRender: false, onUpdate: seekVid }, u0);
@@ -592,7 +603,6 @@ function build() {
     ft(0, A.statement, { opacity: 1, y: 0 }, { opacity: 0, y: px(-34), duration: .8 }, 15.7);
     ft(0, A.capLab, { opacity: 0, y: px(14) }, { opacity: 1, y: 0, duration: .8 }, 16.0);
     ft(0, A.labcard, { opacity: 0, y: px(46), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: out }, 16.0);
-    ft(0, rows, { opacity: 0, x: px(-12) }, { opacity: 1, x: 0, duration: .8, stagger: .12, ease: out }, 16.3);
     ft(0, A.bgLab, { opacity: 0 }, { opacity: 1, duration: 1.1 }, 16.0);
     // 03.03 — hover: a row unfolds into its photo, the background becomes that lab (Figma "Soil & Water Lab highlighted")
     // one photo per row: the row box grows and the crop window opens with it (no thumbnail / big-photo crossfade)
@@ -637,18 +647,25 @@ function build() {
     ft(0, A.glowA, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 20.9);
     ft(0, A.glowT, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 20.9);
     ft(0, A.base, { backgroundColor: '#101010' }, { backgroundColor: '#0f0f0f', duration: 1 }, 20.9);
-    ft(0, A.rootTitle, { opacity: 0, y: px(30), filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 21.4);
+    // one element: rises into the middle with the scroll, then keeps travelling up and shrinks into the header slot
+    const rtH = parseFloat(getComputedStyle($('h3', A.hdrRoot)).fontSize) / parseFloat(getComputedStyle(A.rootTitle).fontSize);
+    const rtDock = (A.hdrRoot.offsetTop + A.hdrRoot.offsetHeight / 2) - (A.rootTitle.offsetTop + A.rootTitle.offsetHeight * rtH / 2);
+    gsap.set(A.rootTitle, { transformOrigin: '50% 0%' });
+    ft(0, A.rootTitle, { opacity: 0 }, { opacity: 1, duration: .7, ease: 'none' }, 21.0);
+    ft(0, A.rootTitle, { y: px(190) }, { y: 0, duration: 1.4, ease: 'power2.out' }, 21.0);
     const subDy = M ? 0 : px(670);
     gsap.set(A.rootSub, { y: subDy });
-    ft(0, A.rootSub, { opacity: 0, y: subDy + px(24) }, { opacity: 1, y: subDy, duration: .9, ease: out }, 21.7);
+    ft(0, A.rootSub, { opacity: 0, y: subDy + px(24) }, { opacity: 1, y: subDy, duration: .9, ease: out }, 21.9);
     // 04.02 — title shrinks into the header, the sub travels up, three centres appear
-    ft(0, A.rootTitle, { opacity: 1, y: 0, scale: 1 }, { opacity: 0, y: px(-60), scale: .92, filter: 'blur(10px)', duration: 1 }, 23.2);
-    ft(0, A.hdrRoot, { opacity: 0, y: px(10) }, { opacity: 1, y: 0, duration: .9 }, 23.5);
-    if (!M) ft(0, A.rootSub, { y: subDy }, { y: 0, duration: 1.2 }, 23.2);
-    else ft(0, A.rootSub, { opacity: 1 }, { opacity: 0, duration: .5 }, 23.2);
-    ft(0, A.trio, { opacity: 0 }, { opacity: 1, duration: .6 }, 23.5);
-    ft(0, tcards, { y: px(56), scale: .94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1, stagger: .14, ease: out }, 23.5);
-    ft(0, A.ring, { opacity: 0 }, { opacity: 1, duration: .8 }, 24.4);
+    ft(0, A.rootTitle, { y: 0, scale: 1 }, { y: rtDock, scale: rtH, duration: 1.5, ease: 'power2.inOut' }, 23.0);
+    const rtSw = M ? .35 : .12;   // swap for the real 12 px header at the same spot (a wrapped mobile title needs a softer swap)
+    ft(0, A.rootTitle, { opacity: 1 }, { opacity: 0, duration: rtSw, ease: 'none' }, 24.5 - rtSw);
+    ft(0, A.hdrRoot, { opacity: 0 }, { opacity: 1, duration: rtSw, ease: 'none' }, 24.5 - rtSw);
+    if (!M) ft(0, A.rootSub, { y: subDy }, { y: 0, duration: 1.5 }, 23.0);
+    else ft(0, A.rootSub, { opacity: 1 }, { opacity: 0, duration: .5 }, 23.0);
+    ft(0, A.trio, { opacity: 0 }, { opacity: 1, duration: .05 }, 24.0);
+    ft(0, tcards, { y: px(56), scale: .94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1, stagger: .14, ease: out }, 24.0);
+    ft(0, A.ring, { opacity: 0 }, { opacity: 1, duration: .8 }, 24.9);
     // 04.02 → 04.04 — hover (tap on touch) moves the focus ring, the caption and the glow behind
     const caps = tcards.map(c => $('.cap', c)), faces = tcards.map(c => $('.face', c)), gls = $$('.gl', A.glowT);
     const ringX = i => tcards[i].offsetLeft - tcards[0].offsetLeft;
@@ -675,25 +692,31 @@ function build() {
 
     /* ---------- 05 · WE COME TO YOU — a card appears in the centre, then grows straight to full screen (one scroll move, one photo) ---------- */
     const rO = M ? { x: vw * .07, y: vh * .5 - vw * .86 * .31, w: vw * .86, h: vw * .86 * .624 } : R(396, 233, 647, 404);
-    const rQ = { x: 0, y: 0, w: vw, h: vh };
     const dr = E.drone, drIm = $('.im', dr), drOv = $('.ov', dr), drOv2 = $('.ov2', dr);
-    const setBox = r => ({ x: r.x, y: r.y, width: r.w, height: r.h });
-    const dTick = () => applyCrop(drIm, dr.offsetWidth, dr.offsetHeight);
-    gsap.set(dr, Object.assign({ opacity: 0, borderRadius: M ? 26 : px(40) }, setBox(rO)));
+    // the card keeps its 40 px radius all the way: the box ends a radius beyond the screen, so the corners simply leave the view
+    const rad = M ? 26 : px(40);
+    const rS = { x: rO.x + rO.w * .06, y: rO.y + rO.h * .06 + px(46), w: rO.w * .88, h: rO.h * .88 };
+    const rQ = { x: -rad, y: -rad, w: vw + 2 * rad, h: vh + 2 * rad };
+    const dm = { p: 0 }, mix = (a, b, p) => a + (b - a) * p;
+    const dPaint = () => {
+      const p = dm.p;
+      gsap.set(dr, { x: mix(rS.x, rQ.x, p), y: mix(rS.y, rQ.y, p), width: mix(rS.w, rQ.w, p), height: mix(rS.h, rQ.h, p) });
+      applyCrop(drIm, dr.offsetWidth, dr.offsetHeight);
+    };
+    gsap.set(dr, { opacity: 0, borderRadius: rad });
     gsap.set(drOv, { backgroundColor: 'rgba(0,0,0,.2)' }); gsap.set(drOv2, { opacity: 0 });
-    dTick();
+    dPaint();
     ft(0, [A.hdrRoot, A.rootSub], { opacity: 1 }, { opacity: 0, duration: .7 }, 29.7);
-    ft(0, A.trio, { opacity: 1 }, { opacity: 0, duration: .8 }, 29.7);
+    ft(0, A.trio, { opacity: 1, y: 0 }, { opacity: 0, y: px(-36), duration: .9 }, 29.7);
     ft(0, A.glowT, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 29.7);
     ft(0, A.glowD, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 29.7);
-    // 05.01 — the card arrives in the middle
-    ft(0, dr, { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: .9, ease: out }, 30.1);
-    // 05.02 → 05.03 — straight to full screen; the same element becomes the background (no second photo, no fade)
-    ft(0, dr, setBox(rO), Object.assign({ borderRadius: 0, duration: 1.7, onUpdate: dTick }, setBox(rQ)), 32.0);
-    ft(0, drOv, { backgroundColor: 'rgba(0,0,0,.2)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 1.7 }, 32.0);
-    ft(0, drOv2, { opacity: 0 }, { opacity: 1, duration: 1.7 }, 32.0);
-    ft(0, A.glowD, { opacity: 1 }, { opacity: 0, duration: .4 }, 33.8);
-    ft(0, A.fieldCopy, { opacity: 0, y: px(40), filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 34.0);
+    // 05.01 → 05.03 — the photo rises out of the trio and opens to full screen in a single move (no rest stop in between)
+    tl.fromTo(dm, { p: 0 }, { p: 1, duration: 3, ease: 'power3.inOut', immediateRender: false, onUpdate: dPaint }, tm(29.9));
+    ft(0, dr, { opacity: 0 }, { opacity: 1, duration: .9, ease: 'power2.out' }, 29.9);
+    ft(0, drOv, { backgroundColor: 'rgba(0,0,0,.2)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 2.4 }, 30.4);
+    ft(0, drOv2, { opacity: 0 }, { opacity: 1, duration: 2.4 }, 30.4);
+    ft(0, A.glowD, { opacity: 1 }, { opacity: 0, duration: .4 }, 32.0);
+    ft(0, A.fieldCopy, { opacity: 0, y: px(40), filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 32.3);
 
     /* ---------- 06 · WHO YOU'LL MEET — innovation & venture platforms ---------- */
     ft(0, A.fieldCopy, { opacity: 1, y: 0 }, { opacity: 0, y: px(-30), filter: 'blur(10px)', duration: .8 }, 37.0);
@@ -711,17 +734,22 @@ function build() {
     cropMove(A.bgB, [.49, .44, .44, .25], [.9, .03, .81, .06], 39.0, 1.6);
     ft(0, $('.ov', A.bgB), { backgroundColor: 'rgba(0,0,0,.5)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 1.6 }, 39.0);
     ft(0, [A.hdrVen, A.venSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 39.3);
-    ft(0, A.tiles, { opacity: 0 }, { opacity: 1, duration: .5 }, 39.4);
+    ft(0, A.tiles, { opacity: 0 }, { opacity: 1, duration: .05 }, 39.5);
     ft(0, tiles, { opacity: 0, y: px(46), scale: .94 }, { opacity: 1, y: 0, scale: 1, duration: 1, stagger: .12, ease: out }, 39.5);
     ft(0, A.venBtn, { opacity: 0, y: px(20) }, { opacity: 1, y: 0, duration: .8, ease: out }, 40.2);
-    const tImgs = tiles.map(t => $('.im', t)), tOn = (i, at) => {
-      ft(0, tiles[i], {}, { duration: 0.001, onStart() { tiles.forEach((t, k) => t.classList.toggle('on', k === i)); }, onReverseComplete() { tiles.forEach((t, k) => t.classList.toggle('on', k === Math.max(i - 1, 0))); } }, at);
-      ft(0, tImgs[i], { opacity: 0, scale: 1.14 }, { opacity: 1, scale: 1, duration: .9 }, at);
-      if (i > 0) ft(0, tImgs[i - 1], { opacity: 1 }, { opacity: 0, duration: .6 }, at);
-    };
+    const tImgs = tiles.map(t => $('.im', t));
     gsap.set(tImgs, { opacity: 0, scale: 1.14 }); gsap.set(tImgs[0], { opacity: 1, scale: 1 });
     tiles.forEach((t, k) => t.classList.toggle('on', k === 0));
-    tOn(1, 41.2); tOn(2, 42.2); tOn(3, 43.2);
+    let tileOn = 0;
+    const setTile = i => {
+      if (i === tileOn) return; tileOn = i;
+      tiles.forEach((t, k) => t.classList.toggle('on', k === i));
+      tImgs.forEach((im, k) => gsap.to(im, { opacity: k === i ? 1 : 0, scale: k === i ? 1 : 1.14, duration: k === i ? .9 : .6, ease: 'power2.out', overwrite: 'auto' }));
+    };
+    tiles.forEach((t, k) => {
+      t.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(A.tiles)) setTile(k); }, sig);
+      t.addEventListener('click', () => { if (lastType === 'touch' && live(A.tiles)) setTile(k); }, sig);
+    });
 
     /* ---------- 07 · ONE OASIS, THREE WAYS IN ---------- */
     ft(0, [A.hdrVen, A.venSub, A.tiles, A.venBtn], { opacity: 1 }, { opacity: 0, duration: .8 }, 44.2);
@@ -732,7 +760,7 @@ function build() {
     // one photo for 07.01 + 07.02: the crop window slides down and pushes in (turun + zoom in)
     cropMove(A.bgR, [1, 0, .45, .37], [.8, .10, .363, .53], 46.2, 1.6);
     ft(0, A.hdrEng, { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9 }, 46.5);
-    ft(0, A.eng, { opacity: 0 }, { opacity: 1, duration: .5 }, 46.6);
+    ft(0, A.eng, { opacity: 0 }, { opacity: 1, duration: .05 }, 46.7);
     ft(0, ecards, { opacity: 0, y: px(50), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1, stagger: .14, ease: out }, 46.7);
 
     /* ---------- 08 · TRAINING & TALENT ---------- */
@@ -742,7 +770,7 @@ function build() {
     ft(0, A.glowE, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 48.2);
     ft(0, [A.hdrTal, A.talSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 48.8);
     ft(0, A.list, { opacity: 0, y: px(44), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1, ease: out }, 48.9);
-    ft(0, lis, { opacity: 0, x: px(-10) }, { opacity: 1, x: 0, duration: .8, stagger: .1, ease: out }, 49.2);
+    ft(0, lis, { opacity: 0, x: px(-10) }, { opacity: 1, x: 0, duration: .8, stagger: .1, ease: out }, 48.9);
     const liOn = (i, at) => ft(0, lis[i], {}, { duration: .001, onStart() { lis.forEach((l, k) => l.classList.toggle('on', k === i)); }, onReverseComplete() { lis.forEach((l, k) => l.classList.toggle('on', k === Math.max(i - 1, 0))); } }, at);
     lis.forEach(l => l.classList.remove('on')); lis[0].classList.add('on');
     liOn(1, 49.9); liOn(2, 50.4); liOn(3, 50.9);
@@ -778,12 +806,13 @@ function build() {
 
 /* ------------------------------------------------------------------ chrome state (nav, marker, hint) */
 const navLinks = $$('#nav a');
-const CHAPTERS = [0, 8.6, 14.4, 21.0, 29.0, 37.0].map(tm);                    // when each nav item takes over
-const TARGETS = [0, 9.6, 16.4, 23.6, 34.8, 39.8, 46.8].map(tm);               // where a click scrolls to (timeline units)
+const CHAPTERS = [0, 8.6, 14.4, 21.0, 29.0, 37.0, 44.2].map(tm);                    // when each nav item takes over
+const TARGETS = [0, 9.6, 16.4, 23.6, 33.6, 39.8, 46.8].map(tm);               // where a click scrolls to (timeline units)
 let lastIdx = -2;
 function chrome(t) {
   let i = -1;
-  if (t < tm(48.4)) { i = 0; for (let k = 1; k < CHAPTERS.length; k++) if (t >= CHAPTERS[k]) i = k; }
+  i = 0; for (let k = 1; k < CHAPTERS.length; k++) if (t >= CHAPTERS[k]) i = k;
+  if (t >= tm(53.8)) i = -1;                       // the footer scene owns the left edge; the nav stays through "Find your door" until then
   if (i !== lastIdx) {
     lastIdx = i;
     navLinks.forEach((a, k) => a.classList.toggle('on', k === i));
@@ -792,7 +821,7 @@ function chrome(t) {
     const mi = $$('#menuList a'); mi.forEach((a, k) => a.style.color = k === i ? '#fff' : '');
   }
   const win = (a, b) => t >= tm(a) && t < tm(b);
-  const live = [win(16.6, 20.9) && 'lab', win(24.4, 29.6) && 'trio', win(35.4, 37.0) && 'field', win(40.4, 44.2) && 'ven', win(47.0, 48.1) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
+  const live = [win(16.6, 20.9) && 'lab', win(24.4, 29.6) && 'trio', win(33.4, 34.3) && 'field', win(40.4, 44.2) && 'ven', win(47.0, 48.1) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
   if (stage.dataset.live !== live) stage.dataset.live = live;
   stage.classList.toggle('end', t >= tm(54.4)); stage.classList.toggle('footlive', t >= tm(56.0));
   E.hint.style.opacity = Math.max(.0, Math.min(1, 1 - (t - .3) / .5));
