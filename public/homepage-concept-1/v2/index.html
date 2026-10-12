@@ -35,6 +35,7 @@ img,svg{display:block}
 .bg .im,.bg .ov{position:absolute;inset:0}
 .im{background-repeat:no-repeat;background-color:rgba(255,255,255,.03)}
 .glow{inset:-12%}
+#bgB,#bgR{z-index:4}   /* the venture / engagement photos wipe in over the drone */
 #bgVid{opacity:1;background:#000}
 #introVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 #glowT{inset:-12%}
@@ -94,7 +95,7 @@ img,svg{display:block}
 .nav a.half{color:rgba(255,255,255,.7);font-weight:500}
 .nav.off{opacity:0;pointer-events:none}
 .mark.off{opacity:0}
-.topbar{position:absolute;right:calc(40px*var(--u));top:calc(30px*var(--u));display:flex;gap:calc(4px*var(--u))}
+.topbar{position:absolute;z-index:60;right:calc(40px*var(--u));top:calc(30px*var(--u));display:flex;gap:calc(4px*var(--u))}
 .pill{width:calc(80px*var(--u));height:calc(52px*var(--u));border-radius:1000px;display:grid;place-items:center;--gf:.1;--gb:30;transition:background .5s}
 .pill svg{width:calc(33px*var(--u));height:calc(24px*var(--u))}
 .menuBtn{width:calc(52px*var(--u));height:calc(52px*var(--u));border-radius:50%;--gf:.1;--gb:30;display:grid;place-content:center;gap:calc(4px*var(--u))}
@@ -103,9 +104,15 @@ img,svg{display:block}
 .menuBtn[aria-expanded=true] i:nth-child(2){opacity:0}
 .menuBtn[aria-expanded=true] i:nth-child(3){transform:translateY(calc(-6px*var(--u))) rotate(-45deg)}
 .hint{position:absolute;left:0;right:0;bottom:calc(30px*var(--u));text-align:center;font-size:calc(12*var(--fz));line-height:1.21;color:rgba(255,255,255,.5);pointer-events:none;letter-spacing:-.01em}
-.ladder{transition:opacity .6s;position:absolute;right:calc(40px*var(--u));bottom:calc(34px*var(--u));width:calc(14px*var(--u));height:calc(60px*var(--u));display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
-.ladder i{display:block;height:1.5px;background:#fff}
-.ladder i:nth-child(1),.ladder i:nth-child(2){opacity:.1}.ladder i:nth-child(3){opacity:.2}.ladder i:nth-child(4){opacity:.4}.ladder i:nth-child(5){opacity:.6}.ladder i:nth-child(6){opacity:.8}
+.ladder{transition:opacity .6s;position:absolute;right:calc(40px*var(--u));bottom:calc(30px*var(--u));width:calc(14px*var(--u));height:calc(77px*var(--u));display:flex;flex-direction:column;justify-content:space-between}
+.ladder a{position:relative;display:block;flex:1;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ladder a::before{content:"";position:absolute;left:calc(-10px*var(--u));right:calc(-10px*var(--u));top:0;bottom:0}
+.ladder a i{position:absolute;right:0;top:50%;width:62%;height:1.5px;margin-top:-.75px;background:#fff;opacity:.2;transition:width .45s cubic-bezier(.2,.7,.1,1),opacity .35s}
+.ladder a.done i{opacity:.6}
+.ladder a.on i{width:100%;opacity:1;background:linear-gradient(90deg,#fff calc(var(--p,0)*100%),rgba(255,255,255,.4) 0)}
+.ladder a:hover i,.ladder a:focus-visible i{width:100%;opacity:1}
+.ladder a span{position:absolute;right:calc(100% + 18px);top:50%;transform:translate(10px,-50%);white-space:nowrap;font-size:calc(12*var(--fz));line-height:1;letter-spacing:-.01em;color:#fff;opacity:0;pointer-events:none;transition:opacity .3s,transform .5s cubic-bezier(.2,.7,.1,1)}
+.ladder a:hover span,.ladder a:focus-visible span{opacity:1;transform:translate(0,-50%)}
 
 /* ---------- 02.x stats ---------- */
 #stats{width:calc(871px*var(--u));height:calc(200px*var(--u))}
@@ -129,7 +136,7 @@ img,svg{display:block}
 .row .txt .t-18{display:block}
 
 /* ---------- 04.x trio ---------- */
-.trio{position:absolute;left:calc(175px*var(--u));top:calc(325px*var(--u));display:flex;gap:calc(16px*var(--u));opacity:0}
+.trio{position:absolute;left:calc(175px*var(--u));top:calc(325px*var(--u));display:flex;gap:calc(16px*var(--u))}
 .tcard{position:relative;width:calc(353px*var(--u));height:calc(220px*var(--u));flex:none}
 .tcard .face{position:absolute;inset:0;border-radius:calc(34px*var(--u));overflow:hidden;background:rgba(255,255,255,.05);-webkit-backdrop-filter:blur(calc(30px*var(--u)));backdrop-filter:blur(calc(30px*var(--u)))}
 .tcard .face .im{position:absolute;inset:0}
@@ -139,7 +146,7 @@ img,svg{display:block}
 .cursor{position:absolute;left:0;top:0;width:24px;height:27px;opacity:0;z-index:9;pointer-events:none;filter:none;will-change:transform,opacity}
 
 /* ---------- drone morph element ---------- */
-.drone{position:absolute;left:0;top:0;width:0;height:0;opacity:0;overflow:hidden;z-index:4;pointer-events:none;will-change:transform,width,height,opacity}
+.drone{position:absolute;left:0;top:0;width:0;height:0;opacity:0;overflow:hidden;z-index:3;pointer-events:none;will-change:transform,width,height,opacity}
 .drone .im{position:absolute;inset:0}
 .drone .ov{position:absolute;inset:0;background:rgba(0,0,0,.2)}
 
@@ -149,7 +156,7 @@ img,svg{display:block}
 .cta{margin-top:calc(36px*var(--u))}
 
 /* ---------- 06.x tiles ---------- */
-.tiles{position:absolute;left:calc(313px*var(--u));top:calc(180px*var(--u));display:flex;gap:calc(72px*var(--u));opacity:0}
+.tiles{position:absolute;left:calc(313px*var(--u));top:calc(180px*var(--u));display:flex;gap:calc(72px*var(--u))}
 .tile{width:calc(150px*var(--u))}
 .tile .box{position:relative;width:100%;height:calc(150px*var(--u));border-radius:calc(24px*var(--u));overflow:hidden;--gf:.06;--gb:30;background:rgba(255,255,255,.06)}
 .tile .box .im{position:absolute;inset:0;opacity:0;transform:scale(1.12)}
@@ -157,7 +164,8 @@ img,svg{display:block}
 .tile.on .l{color:#fff;font-weight:500}
 
 /* ---------- 07.02 engagement cards ---------- */
-.eng{position:absolute;left:calc(175px*var(--u));top:calc(350px*var(--u));display:flex;gap:calc(16px*var(--u));opacity:0}
+.eng{position:absolute;left:calc(175px*var(--u));top:calc(350px*var(--u));display:flex;gap:calc(16px*var(--u))}
+.tcard,.ecard,.tile .box,.tile .l{opacity:0}
 .ecard{position:relative;width:calc(353px*var(--u));height:calc(171px*var(--u));border-radius:calc(28px*var(--u));--gf:.08;--gb:40;background:rgba(15,15,15,.08);text-align:center}
 .ecard .t-eye{position:absolute;left:0;right:0;top:calc(38px*var(--u))}
 .ecard .t-21{position:absolute;left:0;right:0;top:calc(57px*var(--u))}
@@ -168,10 +176,8 @@ img,svg{display:block}
 
 /* ---------- 08.x list ---------- */
 .list{position:absolute;left:calc(506px*var(--u));top:calc(272px*var(--u));width:calc(427px*var(--u));padding:calc(28px*var(--u));border-radius:calc(34px*var(--u));opacity:0}
-.list .li{display:flex;align-items:center;gap:calc(16px*var(--u));height:calc(30px*var(--u));color:rgba(255,255,255,.5);transition:color .45s}
-.list .li .n{flex:none;width:calc(30px*var(--u));height:calc(30px*var(--u));border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;font-size:calc(10*var(--fz));font-weight:500;letter-spacing:.04em;transition:border-color .45s}
-.list .li.on{color:#fff}
-.list .li.on .n{border-color:#fff}
+.list .li{display:flex;align-items:center;gap:calc(16px*var(--u));height:calc(30px*var(--u));color:#fff}
+.list .li .n{flex:none;width:calc(30px*var(--u));height:calc(30px*var(--u));border-radius:50%;border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;font-size:calc(10*var(--fz));font-weight:500;letter-spacing:.04em}
 .list .sep{margin:calc(18px*var(--u)) 0}
 
 /* ---------- 09 tour ---------- */
@@ -197,15 +203,18 @@ img,svg{display:block}
 .fbar{position:absolute;left:calc(64px*var(--u));width:calc(1312px*var(--u));top:calc(759px*var(--u));display:flex;justify-content:space-between;padding-top:calc(30px*var(--u));font-size:calc(12*var(--fz));line-height:1.25;color:rgba(255,255,255,.4)}
 .fbar .fhr{top:0}
 .footlive .fbig,.footlive .fcol a{pointer-events:auto}
-.stage.end .rail,.stage.end .ladder{opacity:0}
+.stage.end .rail,.stage.end .ladder{opacity:0;pointer-events:none}
 
-/* ---------- menu overlay ---------- */
-.menu{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:rgba(15,15,15,.55);-webkit-backdrop-filter:blur(34px) saturate(1.4);backdrop-filter:blur(34px) saturate(1.4);opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
-.menu.open{opacity:1;visibility:visible}
-.menu ul{list-style:none;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
-.menu a{display:block;font-size:clamp(26px,4.4vw,56px);font-weight:500;letter-spacing:-.02em;line-height:1.15;color:rgba(255,255,255,.4);transition:color .3s,transform .5s cubic-bezier(.2,.7,.1,1)}
+/* ---------- menu overlay (lives inside .chrome so the top bar and its X stay above it) ---------- */
+.menu{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(15,15,15,.66);-webkit-backdrop-filter:blur(34px) saturate(1.4);backdrop-filter:blur(34px) saturate(1.4);visibility:hidden;pointer-events:none;clip-path:circle(0px at 100% 0)}
+.menu.open{visibility:visible;pointer-events:auto}
+.menu ul{list-style:none;display:flex;flex-direction:column;gap:2px;align-items:flex-start}
+.menu li{overflow:hidden;padding:0 28px 6px 0}
+.menu a{display:flex;align-items:baseline;gap:20px;font-size:clamp(26px,4.4vw,56px);font-weight:500;letter-spacing:-.02em;line-height:1.15;color:rgba(255,255,255,.4);transition:color .3s,transform .5s cubic-bezier(.2,.7,.1,1)}
+.menu a em{font-style:normal;font-size:12px;font-weight:500;letter-spacing:.04em;line-height:1;color:rgba(255,255,255,.4);min-width:22px;transform:translateY(-1.2em)}
+.menu a .ln{display:block}
 .menu a:hover{color:#fff;transform:translateX(14px)}
-.menuBtn{position:relative;z-index:60}
+.menuBtn{position:relative;z-index:60;cursor:pointer}
 
 /* ==========================================================================
    MOBILE / PORTRAIT — re-flowed layout (scale 1, no design box)
@@ -228,7 +237,8 @@ html.m .menuBtn{width:46px;height:46px;gap:4px}html.m .menuBtn i{width:18px;heig
 html.m .menuBtn[aria-expanded=true] i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
 html.m .menuBtn[aria-expanded=true] i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
 html.m .hint{bottom:max(18px,env(safe-area-inset-bottom));font-size:11px}
-html.m .ladder{right:16px;bottom:max(20px,env(safe-area-inset-bottom));width:12px;height:48px}
+html.m .ladder{right:16px;bottom:max(18px,env(safe-area-inset-bottom));width:12px;height:63px}
+html.m .ladder a span{display:none}
 html.m #hero{top:40%}
 html.m #intro{top:auto;bottom:17svh}
 html.m #stats{top:auto;bottom:calc(7svh + 16px);width:auto;height:150px}
@@ -276,7 +286,7 @@ html.m .frow{position:static;margin-top:28px;display:grid;grid-template-columns:
 html.m .fblurb{width:auto;grid-column:1/-1;font-size:12px}
 html.m .fcol{position:static;gap:13px}html.m .fcol a{font-size:17px}
 html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;font-size:11px;flex-direction:column;gap:6px;padding-top:18px}
-@media (prefers-reduced-motion:reduce){.menu,.menu a,.nav a,.mark{transition:none}}
+@media (prefers-reduced-motion:reduce){.menu a,.nav a,.mark,.ladder a i,.ladder a span{transition:none}}
 </style>
 </head>
 <body>
@@ -315,7 +325,7 @@ html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;fon
     <div class="bg glow" id="glowE"><div class="im" data-img="0ba94745"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
 
   <!-- shared-element image: card → drone frame → full bleed -->
-  <div class="drone" id="drone"><div class="im" data-img="bf471039" data-crop="1,0,.83,.14"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+  <div class="drone" id="drone"><div class="im c0" data-img="c67af94c" data-crop="1,0,.42,.34"></div><div class="im c1" data-img="bf471039" data-crop="1,0,.83,.14"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
 
   <!-- ===== design frame ===== -->
   <div class="frame" id="frame">
@@ -440,23 +450,32 @@ html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;fon
       <button class="menuBtn glass" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
     </div>
     <p class="hint" id="hint">Scroll</p>
-    <div class="ladder" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="menu" id="menu" aria-hidden="true">
+    <ul id="menuList">
+      <li><a href="#" data-i="0"><em>01</em><span class="ln">Innovation Oasis</span></a></li>
+      <li><a href="#" data-i="1"><em>02</em><span class="ln">The location</span></a></li>
+      <li><a href="#" data-i="2"><em>03</em><span class="ln">What you’ll pass on the way</span></a></li>
+      <li><a href="#" data-i="3"><em>04</em><span class="ln">What we’re growing</span></a></li>
+      <li><a href="#" data-i="4"><em>05</em><span class="ln">We come to you</span></a></li>
+      <li><a href="#" data-i="5"><em>06</em><span class="ln">Who you’ll meet</span></a></li>
+      <li><a href="#" data-i="6"><em>07</em><span class="ln">Find your door</span></a></li>
+    </ul>
+  </div>
+    <nav class="ladder" aria-label="Chapters">
+      <a href="#" data-i="0" aria-label="Innovation Oasis"><span>Innovation Oasis</span><i></i></a>
+      <a href="#" data-i="1" aria-label="The location"><span>The location</span><i></i></a>
+      <a href="#" data-i="2" aria-label="What you’ll pass on the way"><span>What you’ll pass on the way</span><i></i></a>
+      <a href="#" data-i="3" aria-label="What we’re growing"><span>What we’re growing</span><i></i></a>
+      <a href="#" data-i="4" aria-label="We come to you"><span>We come to you</span><i></i></a>
+      <a href="#" data-i="5" aria-label="Who you’ll meet"><span>Who you’ll meet</span><i></i></a>
+      <a href="#" data-i="6" aria-label="Find your door"><span>Find your door</span><i></i></a>
+    </nav>
   </div>
  </div>
 </main>
 
 
-<div class="menu" id="menu" aria-hidden="true">
-  <ul id="menuList">
-    <li><a href="#" data-i="0">Innovation Oasis</a></li>
-    <li><a href="#" data-i="1">The location</a></li>
-    <li><a href="#" data-i="2">What you’ll pass on the way</a></li>
-    <li><a href="#" data-i="3">What we’re growing</a></li>
-    <li><a href="#" data-i="4">We come to you</a></li>
-    <li><a href="#" data-i="5">Who you’ll meet</a></li>
-    <li><a href="#" data-i="6">Find your door</a></li>
-  </ul>
-</div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -501,7 +520,7 @@ const E = {};
 // Hover drives the lab card, the three centres and the venture tiles, so those sections only need a short hold.
 // Authoring times stay in "design" units; CUTS [from,to) remove the dead scroll between a section's last event and the next one:
 // lab card holds ~0.9u, trio ~1.0u, drone copy ~1.0u, venture tiles ~1.2u.
-const CUTS = [[18.0, 20.9], [26.0, 29.5], [34.3, 37.0], [42.2, 44.2]];
+const CUTS = [[18.0, 20.9], [26.0, 29.5], [34.3, 37.0], [42.6, 44.2], [49.2, 48.2], [50.8, 51.4]];   // [49.2,48.2] is a +1u hold (negative cut)
 const tm = t => { let o = 0; for (const [a, b] of CUTS) { if (t >= b) o += b - a; else if (t > a) return a - o; } return t - o; };
 const TOTAL = tm(57.6);                 // timeline length in "scroll units"
 let U = 1, M = false, ctx = null, tl = null, st = null, lenis = null;
@@ -548,12 +567,13 @@ function build() {
     gsap.set(A.base, { backgroundColor: '#101010' });
 
     // hidden initial states of every UI block
-    const hide = [A.hero, A.intro, A.stats, A.statement, A.capLab, A.labcard, A.rootTitle, A.hdrRoot, A.rootSub, A.trio, A.fieldCopy, A.venTitle, A.hdrVen, A.venSub, A.tiles, A.venBtn,
-      A.engTitle, A.hdrEng, A.eng, A.hdrTal, A.talSub, A.list, A.hdrTour, A.tourSub, A.tour, A.tourBtn];
+    const hide = [A.hero, A.intro, A.stats, A.statement, A.capLab, A.labcard, A.rootTitle, A.hdrRoot, A.rootSub, A.fieldCopy, A.venTitle, A.hdrVen, A.venSub, A.venBtn,
+      A.engTitle, A.hdrEng, A.hdrTal, A.talSub, A.list, A.hdrTour, A.tourSub, A.tour, A.tourBtn];
     gsap.set(hide, { opacity: 0 });
     gsap.set(A.drone, { opacity: 0 });
 
     const tcards = $$('.tcard'), rows = $$('.row', A.labcard), tiles = $$('.tile'), ecards = $$('.ecard'), lis = $$('.li', A.list);
+    const tGlass = tiles.flatMap(t => [$('.box', t), $('.l', t)]);   // tile glass boxes + labels fade on their own: no ancestor opacity over a backdrop-filter
     const ft = (t, tg, from, to, at, ease) => tl.fromTo(tg, from, Object.assign({ ease: ease || 'power2.inOut', immediateRender: false }, to), tm(at));
     const io = 'power2.inOut', out = 'power3.out';
 
@@ -647,23 +667,25 @@ function build() {
     ft(0, A.glowA, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 20.9);
     ft(0, A.glowT, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 20.9);
     ft(0, A.base, { backgroundColor: '#101010' }, { backgroundColor: '#0f0f0f', duration: 1 }, 20.9);
-    // one element: rises into the middle with the scroll, then keeps travelling up and shrinks into the header slot
-    const rtH = parseFloat(getComputedStyle($('h3', A.hdrRoot)).fontSize) / parseFloat(getComputedStyle(A.rootTitle).fontSize);
-    const rtDock = (A.hdrRoot.offsetTop + A.hdrRoot.offsetHeight / 2) - (A.rootTitle.offsetTop + A.rootTitle.offsetHeight * rtH / 2);
-    gsap.set(A.rootTitle, { transformOrigin: '50% 0%' });
-    ft(0, A.rootTitle, { opacity: 0 }, { opacity: 1, duration: .7, ease: 'none' }, 21.0);
-    ft(0, A.rootTitle, { y: px(190) }, { y: 0, duration: 1.4, ease: 'power2.out' }, 21.0);
+    // a title is ONE element: it rises into the middle with the scroll, then keeps travelling up and shrinks into the 12 px header slot
+    const dock = (title, hdr, tIn, tDock, dDock) => {
+      const k = parseFloat(getComputedStyle($('h3', hdr)).fontSize) / parseFloat(getComputedStyle(title).fontSize);
+      const dy = (hdr.offsetTop + hdr.offsetHeight / 2) - (title.offsetTop + title.offsetHeight * k / 2);
+      const sw = M ? .35 : .12, end = tDock + dDock;   // swap for the real header at the same spot (a wrapped mobile title needs a softer swap)
+      gsap.set(title, { transformOrigin: '50% 0%' });
+      ft(0, title, { opacity: 0 }, { opacity: 1, duration: .7, ease: 'none' }, tIn);
+      ft(0, title, { y: px(190) }, { y: 0, duration: 1.4, ease: 'power2.out' }, tIn);
+      ft(0, title, { y: 0, scale: 1 }, { y: dy, scale: k, duration: dDock, ease: 'power2.inOut' }, tDock);
+      ft(0, title, { opacity: 1 }, { opacity: 0, duration: sw, ease: 'none' }, end - sw);
+      ft(0, hdr, { opacity: 0 }, { opacity: 1, duration: sw, ease: 'none' }, end - sw);
+    };
+    dock(A.rootTitle, A.hdrRoot, 21.0, 23.0, 1.5);
     const subDy = M ? 0 : px(670);
     gsap.set(A.rootSub, { y: subDy });
     ft(0, A.rootSub, { opacity: 0, y: subDy + px(24) }, { opacity: 1, y: subDy, duration: .9, ease: out }, 21.9);
-    // 04.02 — title shrinks into the header, the sub travels up, three centres appear
-    ft(0, A.rootTitle, { y: 0, scale: 1 }, { y: rtDock, scale: rtH, duration: 1.5, ease: 'power2.inOut' }, 23.0);
-    const rtSw = M ? .35 : .12;   // swap for the real 12 px header at the same spot (a wrapped mobile title needs a softer swap)
-    ft(0, A.rootTitle, { opacity: 1 }, { opacity: 0, duration: rtSw, ease: 'none' }, 24.5 - rtSw);
-    ft(0, A.hdrRoot, { opacity: 0 }, { opacity: 1, duration: rtSw, ease: 'none' }, 24.5 - rtSw);
+    // 04.02 — the sub travels up with the title, then the three centres appear
     if (!M) ft(0, A.rootSub, { y: subDy }, { y: 0, duration: 1.5 }, 23.0);
     else ft(0, A.rootSub, { opacity: 1 }, { opacity: 0, duration: .5 }, 23.0);
-    ft(0, A.trio, { opacity: 0 }, { opacity: 1, duration: .05 }, 24.0);
     ft(0, tcards, { y: px(56), scale: .94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1, stagger: .14, ease: out }, 24.0);
     ft(0, A.ring, { opacity: 0 }, { opacity: 1, duration: .8 }, 24.9);
     // 04.02 → 04.04 — hover (tap on touch) moves the focus ring, the caption and the glow behind
@@ -686,57 +708,63 @@ function build() {
       gls.forEach((g, k) => g.classList.toggle('on', k === i));
     };
     tcards.forEach((c, k) => {
-      c.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(A.trio)) focusCard(k); }, sig);
-      c.addEventListener('click', () => { if (lastType === 'touch' && live(A.trio)) focusCard(k); }, sig);
+      c.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(tcards[0])) focusCard(k); }, sig);
+      c.addEventListener('click', () => { if (lastType === 'touch' && live(tcards[0])) focusCard(k); }, sig);
     });
 
-    /* ---------- 05 · WE COME TO YOU — a card appears in the centre, then grows straight to full screen (one scroll move, one photo) ---------- */
-    const rO = M ? { x: vw * .07, y: vh * .5 - vw * .86 * .31, w: vw * .86, h: vw * .86 * .624 } : R(396, 233, 647, 404);
-    const dr = E.drone, drIm = $('.im', dr), drOv = $('.ov', dr), drOv2 = $('.ov2', dr);
-    // the card keeps its 40 px radius all the way: the box ends a radius beyond the screen, so the corners simply leave the view
-    const rad = M ? 26 : px(40);
-    const rS = { x: rO.x + rO.w * .06, y: rO.y + rO.h * .06 + px(46), w: rO.w * .88, h: rO.h * .88 };
-    const rQ = { x: -rad, y: -rad, w: vw + 2 * rad, h: vh + 2 * rad };
+    /* ---------- 05 · WE COME TO YOU — card 1 itself opens to full screen (one box, one move, no rest stop) ---------- */
+    const dr = E.drone, drC1 = $('.c1', dr), drC0 = $('.c0', dr), drOv = $('.ov', dr), drOv2 = $('.ov2', dr);
+    const sRect = stage.getBoundingClientRect(), f0 = faces[0].getBoundingClientRect();
+    const rS = { x: f0.left - sRect.left, y: f0.top - sRect.top, w: f0.width, h: f0.height };       // exactly where card 1's photo sits
+    const rad = parseFloat(getComputedStyle(faces[0]).borderTopLeftRadius) || px(34);               // its radius is kept all the way …
+    const rQ = { x: -rad, y: -rad, w: vw + 2 * rad, h: vh + 2 * rad };                              // … the box ends a radius past the screen, so the corners just leave the view
     const dm = { p: 0 }, mix = (a, b, p) => a + (b - a) * p;
     const dPaint = () => {
-      const p = dm.p;
-      gsap.set(dr, { x: mix(rS.x, rQ.x, p), y: mix(rS.y, rQ.y, p), width: mix(rS.w, rQ.w, p), height: mix(rS.h, rQ.h, p) });
-      applyCrop(drIm, dr.offsetWidth, dr.offsetHeight);
+      const p = dm.p, w = mix(rS.w, rQ.w, p), h = mix(rS.h, rQ.h, p);
+      gsap.set(dr, { x: mix(rS.x, rQ.x, p), y: mix(rS.y, rQ.y, p), width: w, height: h });
+      applyCrop(drC0, w, h); applyCrop(drC1, w, h);
     };
     gsap.set(dr, { opacity: 0, borderRadius: rad });
-    gsap.set(drOv, { backgroundColor: 'rgba(0,0,0,.2)' }); gsap.set(drOv2, { opacity: 0 });
+    gsap.set(drOv, { backgroundColor: 'rgba(0,0,0,0)' }); gsap.set(drOv2, { opacity: 0 }); gsap.set(drC1, { opacity: 0 });
     dPaint();
-    ft(0, [A.hdrRoot, A.rootSub], { opacity: 1 }, { opacity: 0, duration: .7 }, 29.7);
-    ft(0, A.trio, { opacity: 1, y: 0 }, { opacity: 0, y: px(-36), duration: .9 }, 29.7);
+    ft(0, [A.hdrRoot, A.rootSub], { opacity: 1, y: 0 }, { opacity: 0, y: px(-14), duration: .7 }, 29.7);
+    ft(0, [tcards[1], tcards[2]], { opacity: 1, x: 0 }, { opacity: 0, x: px(44), duration: .7, stagger: .08 }, 29.7);
+    ft(0, A.ring, { opacity: 1 }, { opacity: 0, duration: .4 }, 29.7);
     ft(0, A.glowT, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 29.7);
     ft(0, A.glowD, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 29.7);
-    // 05.01 → 05.03 — the photo rises out of the trio and opens to full screen in a single move (no rest stop in between)
-    tl.fromTo(dm, { p: 0 }, { p: 1, duration: 3, ease: 'power3.inOut', immediateRender: false, onUpdate: dPaint }, tm(29.9));
-    ft(0, dr, { opacity: 0 }, { opacity: 1, duration: .9, ease: 'power2.out' }, 29.9);
-    ft(0, drOv, { backgroundColor: 'rgba(0,0,0,.2)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 2.4 }, 30.4);
+    ft(0, dr, { opacity: 0 }, { opacity: 1, duration: .001 }, 29.9);                                   // same photo, same box, directly under card 1 …
+    ft(0, tcards[0], { opacity: 1 }, { opacity: 0, duration: .35, ease: 'none' }, 29.95);              // … then the card lets go (its caption fades with it)
+    tl.fromTo(dm, { p: 0 }, { p: 1, duration: 2.7, ease: 'power3.inOut', immediateRender: false, onUpdate: dPaint }, tm(29.9));
+    ft(0, drC1, { opacity: 0 }, { opacity: 1, duration: 1.1, ease: 'power1.inOut' }, 30.3);            // the wide drone photo dissolves in while the box opens
+    ft(0, drOv, { backgroundColor: 'rgba(0,0,0,0)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 2.4 }, 30.1);
     ft(0, drOv2, { opacity: 0 }, { opacity: 1, duration: 2.4 }, 30.4);
     ft(0, A.glowD, { opacity: 1 }, { opacity: 0, duration: .4 }, 32.0);
     ft(0, A.fieldCopy, { opacity: 0, y: px(40), filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 32.3);
 
     /* ---------- 06 · WHO YOU'LL MEET — innovation & venture platforms ---------- */
-    ft(0, A.fieldCopy, { opacity: 1, y: 0 }, { opacity: 0, y: px(-30), filter: 'blur(10px)', duration: .8 }, 37.0);
-    ft(0, dr, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 37.0);
-    // one photo for 06.01 + 06.02: the crop window pulls back from the building top to the whole forecourt (zoom-out)
+    // new photo wipes up over the old one (curtain), instead of a cross-fade
+    const wipe = (layer, at, dur) => ft(0, layer, { opacity: 1, scale: 1.08, clipPath: 'inset(100% 0% 0% 0%)' }, { scale: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: dur, ease: 'power3.inOut' }, at);
+    // one photo, zoom/pan done with a transform (GPU) instead of re-painting background-position every frame
     const cropMove = (layer, from, to, at, dur) => {
-      const im = $('.im', layer), o = from.slice(), tw = { p: 0 };
-      tl.fromTo(tw, { p: 0 }, { p: 1, duration: dur, ease: 'power2.inOut', immediateRender: false,
-        onUpdate() { const k = tw.p; applyCrop(im, 0, 0, o.map((x, i) => x + (to[i] - x) * k)); } }, tm(at));
+      const im = $('.im', layer), [iw, ih] = DIM[im.dataset.img], W = layer.clientWidth, H = layer.clientHeight;
+      const geo = v => { const [a, tx, d, ty] = v, S = Math.max(W / (a * iw), H / (d * ih)); return { S, x: W / 2 - (tx + a / 2) * iw * S, y: H / 2 - (ty + d / 2) * ih * S }; };
+      const S0 = Math.max(geo(from).S, geo(to).S);
+      Object.assign(im.style, { inset: 'auto', left: '0', top: '0', width: iw * S0 + 'px', height: ih * S0 + 'px', backgroundSize: '100% 100%', backgroundPosition: '0 0', transformOrigin: '0 0', willChange: 'transform' });
+      const set = p => { const g = geo(from.map((x, i) => x + (to[i] - x) * p)); im.style.transform = `translate3d(${g.x}px,${g.y}px,0) scale(${g.S / S0})`; };
+      const tw = { p: 0 }; set(0);
+      tl.fromTo(tw, { p: 0 }, { p: 1, duration: dur, ease: 'power2.inOut', immediateRender: false, onUpdate: () => set(tw.p) }, tm(at));
     };
-    ft(0, A.bgB, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.2 }, 37.0);
-    ft(0, A.venTitle, { opacity: 0, y: px(30), filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 37.5);
+    ft(0, A.fieldCopy, { opacity: 1, y: 0 }, { opacity: 0, y: px(-40), filter: 'blur(8px)', duration: .8 }, 37.0);
+    wipe(A.bgB, 37.0, 1.5);
+    ft(0, dr, { opacity: 1 }, { opacity: 0, duration: .001 }, 38.5);                                   // fully covered by the wipe by now
+    dock(A.venTitle, A.hdrVen, 37.6, 39.0, 1.3);
     // 06.02 — funding, incubation, acceleration
-    ft(0, A.venTitle, { opacity: 1, y: 0 }, { opacity: 0, y: px(-50), filter: 'blur(10px)', duration: .9 }, 39.0);
     cropMove(A.bgB, [.49, .44, .44, .25], [.9, .03, .81, .06], 39.0, 1.6);
     ft(0, $('.ov', A.bgB), { backgroundColor: 'rgba(0,0,0,.5)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 1.6 }, 39.0);
-    ft(0, [A.hdrVen, A.venSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 39.3);
-    ft(0, A.tiles, { opacity: 0 }, { opacity: 1, duration: .05 }, 39.5);
-    ft(0, tiles, { opacity: 0, y: px(46), scale: .94 }, { opacity: 1, y: 0, scale: 1, duration: 1, stagger: .12, ease: out }, 39.5);
-    ft(0, A.venBtn, { opacity: 0, y: px(20) }, { opacity: 1, y: 0, duration: .8, ease: out }, 40.2);
+    ft(0, A.venSub, { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9 }, 40.0);
+    ft(0, tiles, { y: px(46), scale: .94 }, { y: 0, scale: 1, duration: 1, stagger: .12, ease: out }, 39.9);
+    ft(0, tGlass, { opacity: 0 }, { opacity: 1, duration: .8, stagger: .06, ease: 'power1.out' }, 39.9);
+    ft(0, A.venBtn, { opacity: 0, y: px(20) }, { opacity: 1, y: 0, duration: .8, ease: out }, 40.6);
     const tImgs = tiles.map(t => $('.im', t));
     gsap.set(tImgs, { opacity: 0, scale: 1.14 }); gsap.set(tImgs[0], { opacity: 1, scale: 1 });
     tiles.forEach((t, k) => t.classList.toggle('on', k === 0));
@@ -747,33 +775,29 @@ function build() {
       tImgs.forEach((im, k) => gsap.to(im, { opacity: k === i ? 1 : 0, scale: k === i ? 1 : 1.14, duration: k === i ? .9 : .6, ease: 'power2.out', overwrite: 'auto' }));
     };
     tiles.forEach((t, k) => {
-      t.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(A.tiles)) setTile(k); }, sig);
-      t.addEventListener('click', () => { if (lastType === 'touch' && live(A.tiles)) setTile(k); }, sig);
+      t.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(tGlass[0])) setTile(k); }, sig);
+      t.addEventListener('click', () => { if (lastType === 'touch' && live(tGlass[0])) setTile(k); }, sig);
     });
 
     /* ---------- 07 · ONE OASIS, THREE WAYS IN ---------- */
-    ft(0, [A.hdrVen, A.venSub, A.tiles, A.venBtn], { opacity: 1 }, { opacity: 0, duration: .8 }, 44.2);
-    ft(0, A.bgB, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 44.2);
-    ft(0, A.bgR, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.2 }, 44.2);
-    ft(0, A.engTitle, { opacity: 0, y: px(30), filter: 'blur(12px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: out }, 44.8);
-    ft(0, A.engTitle, { opacity: 1, y: 0 }, { opacity: 0, y: px(-50), filter: 'blur(10px)', duration: .9 }, 46.2);
+    ft(0, [A.hdrVen, A.venSub, A.venBtn], { opacity: 1 }, { opacity: 0, duration: .8 }, 44.2);
+    ft(0, tGlass, { opacity: 1 }, { opacity: 0, duration: .8 }, 44.2);
+    wipe(A.bgR, 44.2, 1.4);
+    ft(0, A.bgB, { opacity: 1 }, { opacity: 0, duration: .001 }, 45.6);
+    dock(A.engTitle, A.hdrEng, 44.8, 46.2, 1.2);
     // one photo for 07.01 + 07.02: the crop window slides down and pushes in (turun + zoom in)
     cropMove(A.bgR, [1, 0, .45, .37], [.8, .10, .363, .53], 46.2, 1.6);
-    ft(0, A.hdrEng, { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9 }, 46.5);
-    ft(0, A.eng, { opacity: 0 }, { opacity: 1, duration: .05 }, 46.7);
-    ft(0, ecards, { opacity: 0, y: px(50), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1, stagger: .14, ease: out }, 46.7);
+    ft(0, ecards, { opacity: 0, y: px(50), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1, stagger: .14, ease: out }, 46.9);
 
     /* ---------- 08 · TRAINING & TALENT ---------- */
-    ft(0, [A.hdrEng, A.eng], { opacity: 1 }, { opacity: 0, duration: .8 }, 48.2);
+    ft(0, A.hdrEng, { opacity: 1 }, { opacity: 0, duration: .8 }, 48.2);
+    ft(0, ecards, { opacity: 1 }, { opacity: 0, duration: .8 }, 48.2);
     ft(0, A.bgR, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 48.2);
     ft(0, A.base, { backgroundColor: '#0f0f0f' }, { backgroundColor: '#000000', duration: 1.2 }, 48.2);
     ft(0, A.glowE, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 48.2);
     ft(0, [A.hdrTal, A.talSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 48.8);
     ft(0, A.list, { opacity: 0, y: px(44), scale: .95 }, { opacity: 1, y: 0, scale: 1, duration: 1, ease: out }, 48.9);
     ft(0, lis, { opacity: 0, x: px(-10) }, { opacity: 1, x: 0, duration: .8, stagger: .1, ease: out }, 48.9);
-    const liOn = (i, at) => ft(0, lis[i], {}, { duration: .001, onStart() { lis.forEach((l, k) => l.classList.toggle('on', k === i)); }, onReverseComplete() { lis.forEach((l, k) => l.classList.toggle('on', k === Math.max(i - 1, 0))); } }, at);
-    lis.forEach(l => l.classList.remove('on')); lis[0].classList.add('on');
-    liOn(1, 49.9); liOn(2, 50.4); liOn(3, 50.9);
 
     /* ---------- 09 · VIRTUAL TOUR ---------- */
     ft(0, [A.hdrTal, A.talSub, A.list], { opacity: 1 }, { opacity: 0, duration: .8 }, 51.4);
@@ -805,23 +829,27 @@ function build() {
 }
 
 /* ------------------------------------------------------------------ chrome state (nav, marker, hint) */
-const navLinks = $$('#nav a');
+const navLinks = $$('#nav a'), ladderA = $$('.ladder a');
 const CHAPTERS = [0, 8.6, 14.4, 21.0, 29.0, 37.0, 44.2].map(tm);                    // when each nav item takes over
-const TARGETS = [0, 9.6, 16.4, 23.6, 33.6, 39.8, 46.8].map(tm);               // where a click scrolls to (timeline units)
+const TARGETS = [0, 9.6, 16.4, 23.6, 33.6, 41.0, 47.9].map(tm);               // where a click scrolls to (timeline units)
 let lastIdx = -2;
 function chrome(t) {
   let i = -1;
   i = 0; for (let k = 1; k < CHAPTERS.length; k++) if (t >= CHAPTERS[k]) i = k;
+  const ci = i;
   if (t >= tm(53.8)) i = -1;                       // the footer scene owns the left edge; the nav stays through "Find your door" until then
   if (i !== lastIdx) {
     lastIdx = i;
     navLinks.forEach((a, k) => a.classList.toggle('on', k === i));
+    ladderA.forEach((a, k) => { a.classList.toggle('on', k === ci); a.classList.toggle('done', k < ci); });
     E.nav.classList.toggle('off', i < 0); E.mark.classList.toggle('off', i < 0);
     if (i >= 0 && !M) E.mark.style.transform = `translateY(${25 * i * U}px)`;
     const mi = $$('#menuList a'); mi.forEach((a, k) => a.style.color = k === i ? '#fff' : '');
   }
+  const lo = CHAPTERS[ci], hi = ci < CHAPTERS.length - 1 ? CHAPTERS[ci + 1] : tm(53.8);   // ladder: the active line fills as you move through its chapter
+  ladderA[ci].style.setProperty('--p', Math.max(0, Math.min(1, (t - lo) / (hi - lo))).toFixed(3));
   const win = (a, b) => t >= tm(a) && t < tm(b);
-  const live = [win(16.6, 20.9) && 'lab', win(24.4, 29.6) && 'trio', win(33.4, 34.3) && 'field', win(40.4, 44.2) && 'ven', win(47.0, 48.1) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
+  const live = [win(16.6, 20.9) && 'lab', win(24.4, 29.6) && 'trio', win(33.4, 34.3) && 'field', win(40.6, 44.2) && 'ven', win(47.2, 48.2) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
   if (stage.dataset.live !== live) stage.dataset.live = live;
   stage.classList.toggle('end', t >= tm(54.4)); stage.classList.toggle('footlive', t >= tm(56.0));
   E.hint.style.opacity = Math.max(.0, Math.min(1, 1 - (t - .3) / .5));
@@ -831,17 +859,35 @@ function go(i) {
   const y = story.offsetTop + TARGETS[i] * ppu;
   lenis ? lenis.scrollTo(y, { duration: 2.2, easing: t => 1 - Math.pow(1 - t, 4) }) : scrollTo({ top: y, behavior: 'smooth' });
 }
-$$('#nav a, #menuList a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); closeMenu(); go(+a.dataset.i); }));
+$$('#nav a, #menuList a, .ladder a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); closeMenu(); go(+a.dataset.i); }));
 $('#home').addEventListener('click', e => { e.preventDefault(); go(0); });
 
 /* ------------------------------------------------------------------ menu overlay */
 const menu = $('#menu'), menuBtn = $('#menuBtn');
-function closeMenu() { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-hidden', 'true'); lenis && lenis.start(); }
-menuBtn.addEventListener('click', () => {
-  const open = !menu.classList.contains('open');
-  menu.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-hidden', String(!open));
-  lenis && (open ? lenis.stop() : lenis.start());
-});
+const mp = { p: 0 };
+const paintMenu = () => {
+  const m = menu.getBoundingClientRect(), b = menuBtn.getBoundingClientRect();
+  const cx = b.left + b.width / 2 - m.left, cy = b.top + b.height / 2 - m.top;
+  const R = Math.hypot(Math.max(cx, m.width - cx), Math.max(cy, m.height - cy));
+  menu.style.clipPath = `circle(${(mp.p * R).toFixed(1)}px at ${cx.toFixed(1)}px ${cy.toFixed(1)}px)`;
+};
+const menuLns = $$('#menuList .ln'), menuNums = $$('#menuList em');
+gsap.set(menuLns, { yPercent: 118 }); gsap.set(menuNums, { opacity: 0 });
+const menuTl = gsap.timeline({ paused: true, onReverseComplete() { menu.classList.remove('open'); menu.style.clipPath = ''; } });
+menuTl.to(mp, { p: 1, duration: 1, ease: 'power3.inOut', onUpdate: paintMenu }, 0)
+  .to(menuLns, { yPercent: 0, duration: .95, ease: 'power4.out', stagger: .055 }, .32)
+  .to(menuNums, { opacity: 1, duration: .5, stagger: .055 }, .5);
+const reduceMenu = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function openMenu() {
+  menu.classList.add('open'); menu.setAttribute('aria-hidden', 'false'); menuBtn.setAttribute('aria-expanded', 'true');
+  lenis && lenis.stop(); menuTl.timeScale(reduceMenu ? 50 : 1).play();
+}
+function closeMenu() {
+  if (!menu.classList.contains('open')) return;
+  menu.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false');
+  lenis && lenis.start(); menuTl.timeScale(reduceMenu ? 50 : 1.35).reverse();
+}
+menuBtn.addEventListener('click', () => menu.classList.contains('open') && menuBtn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu());
 addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
 /* ------------------------------------------------------------------ boot */

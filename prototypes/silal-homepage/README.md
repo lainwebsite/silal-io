@@ -24,3 +24,8 @@ Clone the repo, tell the chat to read this README and `DESIGN-SPEC.md` first.
 - Hero video re-encoded for scrubbing: black bars cropped (1192x672), motion-interpolated to 60 fps, a keyframe every 4 frames (`media/intro-smooth.mp4`, ~16 MB). The page eases the shown time toward the scroll target and only seeks when the previous seek has landed.
 - Dead scroll removed with `CUTS` in `index.html`; lab card, trio and venture tiles are hover, with short holds.
 - "Where innovation takes root." is one element that scrolls up and docks into the header slot. The drone is one continuous move to full screen (radius kept; corners leave the screen). Left nav stays through "Find your door" and fades with the footer.
+
+## 2026-10-12 round 6
+- Trio → drone is a shared-element move: card 1's own box opens to full screen. Venture / engagement photos wipe in like a curtain. Venture + engagement titles dock into the header like "Where innovation takes root.".
+- Glass blocks never sit under an element with opacity < 1 (that switches `backdrop-filter` off while it fades); photo zoom/pan uses a transform instead of re-painting `background-position`.
+- Bottom-right ladder = chapter map: click to jump, hover for the name, the active line fills with progress. Menu overlay lives inside `.chrome` (X is above it) and opens as a circular reveal from the button.
