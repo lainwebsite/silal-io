@@ -72,12 +72,12 @@ Every frame = **1440 × 870** (footer 1440 × 844). Coordinates below are frame-
 ## Assets
 Raw exports: `assets/raw/fig_<hash8>.*`; web-ready: `assets/img/<hash8>.jpg|png`. Figma image-fill crops are expressed as `[[sx,0,tx],[0,sy,ty]]` (fraction of image shown / offset).
 
-## Intro video — UPDATED 2026-10-12: public/homepage-concept-1/v2/media/intro-smooth.mp4 is now "homepage 1 video new" (1192x720, 19.63 s). The old one is kept as (old video, kept locally only).
+## Intro video — UPDATED 2026-10-12: public/homepage-concept-1/v2/media/intro-light.mp4 is now "homepage 1 video new" (1192x720, 19.63 s). The old one is kept as (old video, kept locally only).
 Re-timed to the existing page timeline with keyframes [scroll unit → video second] (see index.html, "01 · INTRODUCTION"):
 0→0 · 2.4→5.6 ("Step into the Oasis" arrives, dive toward Arabia) · 4.2→9 · 8.2→14.8 (title leaves) · 9.2→16.6 (02.01 copy arrives, farm) · 12.05→19.55 (end).
 New video beats: 0–5.5 s Earth (Americas → Africa → Asia) · 5.5–8.5 clouds over Arabia, descent · 9–15 desert horizon · 15–16.5 dunes · 16.5–19.6 dunes → green farm circles, top-down.
 
-## (Previous) Intro video (old public/homepage-concept-1/v2/media/intro-smooth.mp4, 1192x720, 15.07 s) — supplied by the designer
+## (Previous) Intro video (old public/homepage-concept-1/v2/media/intro-light.mp4, 1192x720, 15.07 s) — supplied by the designer
 Continuous flight: Earth → atmosphere → desert → dunes → top-down farm. The site scrubs it with scroll (1 video second = 0.8 scroll unit):
 - 0–3 s: 01.01 Earth overview → 01.02 close-up
 - 3–6 s: 01.03 aerial; title "Step into the Oasis" arrives (≈3.0 s)

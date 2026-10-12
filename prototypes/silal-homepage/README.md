@@ -3,7 +3,7 @@
 Live at `/homepage-concept-1/v2` (team link, `noindex`; not linked from anywhere on the site).
 A standalone scroll-driven HTML page (GSAP + Lenis from CDN) built from the Figma file "Silal IO – LAIN INTERNAL" (`85J2hDmYtlUNY2GbDkFxZi`, page "Home Page", Concept 1).
 
-- Served file: `public/homepage-concept-1/v2/index.html`, images in `.../media/img/`, hero video `.../media/intro-smooth.mp4`.
+- Served file: `public/homepage-concept-1/v2/index.html`, images in `.../media/img/`, hero video `.../media/intro-light.mp4`.
   Folder is `media/`, not `assets/`, because `.vercelignore` excludes every folder named `assets/`.
   All media paths in the page are absolute (`/homepage-concept-1/v2/media/...`) because the URL has no trailing slash.
 - The bare URL works through one rewrite in `next.config.ts`.
@@ -21,7 +21,7 @@ A standalone scroll-driven HTML page (GSAP + Lenis from CDN) built from the Figm
 Clone the repo, tell the chat to read this README and `DESIGN-SPEC.md` first.
 
 ## 2026-10-12 round 5
-- Hero video re-encoded for scrubbing: black bars cropped (1192x672), motion-interpolated to 60 fps, a keyframe every 4 frames (`media/intro-smooth.mp4`, ~16 MB). The page eases the shown time toward the scroll target and only seeks when the previous seek has landed.
+- Hero video re-encoded for scrubbing: black bars cropped (1192x672), motion-interpolated to 60 fps, a keyframe every 4 frames (`media/intro-light.mp4`, ~16 MB). The page eases the shown time toward the scroll target and only seeks when the previous seek has landed.
 - Dead scroll removed with `CUTS` in `index.html`; lab card, trio and venture tiles are hover, with short holds.
 - "Where innovation takes root." is one element that scrolls up and docks into the header slot. The drone is one continuous move to full screen (radius kept; corners leave the screen). Left nav stays through "Find your door" and fades with the footer.
 
@@ -33,3 +33,10 @@ Clone the repo, tell the chat to read this README and `DESIGN-SPEC.md` first.
 ## 2026-10-12 round 7
 - Preloader: the official IO mark (paths copied unchanged from `/brand/io-mark.svg`, exact colours) fills from the bottom with the real load progress (fonts + hero video buffer + first photos), counter rolls 0 → 100, wordmark from the brand lockup. Exit: mark ignites, the cover lifts like a curtain with a curved lip, the hero video scales into place. Skipped with `?t=` or `?preload=0` (QA) and with reduced motion. Page is built underneath after the entrance has settled.
 - Location numbers roll up like an odometer. Venture / engagement photos: crop moves are back to `background-position` (the transform version produced giant layers that could render blank on a real GPU); the curtain is now a pure transform; glass tiles/cards wait until the photo has stopped moving.
+
+## 2026-10-12 round 8 (weight + smoothness audit)
+- Hero video `media/intro-light.mp4`: 60 fps, 1192x672, keyframe every 4 frames, **6 MB** (was 16 MB), visually identical.
+- Glow layers use small pre-blurred copies (`media/img/g_<key>.jpg`, 4–9 KB) instead of a live 78 px CSS blur on 24 %-oversized layers.
+- No filter tweens, no scale on backdrop-filter elements, no live blur where it cannot be seen (talent list, 3 trio faces, menu); layers are promoted only while their scene is near; the faded video surface is released; photos are decoded in idle time; Lenis drives the scroll directly (no second 0.7 s lag).
+- Headless scroll benchmark (software raster, 900 frames through the whole story): frames over 33 ms 51 → ~20, worst frame 217 ms → ~67 ms.
+- Preloader mark/wordmark are white (official vector, same artwork as the logo beside the menu button).
