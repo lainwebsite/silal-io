@@ -58,4 +58,4 @@ Design routes live under random folder names so they cannot be guessed. There is
 ## Homepage prototype (LAIN, static)
 
 ### Concept 1 — Built by the Desert
-- Home: https://silal-io.vercel.app/homepage-concept-1/v2  (static page in `public/homepage-concept-1/v2/`, notes in `prototypes/silal-homepage/README.md`)
+- Home: https://silal-io.vercel.app/homepage-concept-1  (also /homepage-concept-1/v2; static page in `public/homepage-concept-1/v2/`, notes in `prototypes/silal-homepage/README.md`)
