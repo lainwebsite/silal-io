@@ -69,7 +69,7 @@ img,svg{display:block}
 .t-state{font-size:calc(24*var(--fz));font-weight:400;line-height:1.55}
 .t-lead{font-size:calc(16*var(--fz));font-weight:600;line-height:1.55}
 .t-body{font-size:calc(16*var(--fz));font-weight:400;line-height:1.55;color:rgba(255,255,255,.7)}
-.t-h12{font-size:calc(12*var(--fz));font-weight:600;line-height:1.55;letter-spacing:-.01em}
+.t-h12{font-size:calc(12*var(--fz));font-weight:500;line-height:1.55;letter-spacing:-.01em}
 .t-s12{font-size:calc(12*var(--fz));font-weight:400;line-height:1.55;letter-spacing:-.01em;color:rgba(255,255,255,.5)}
 .t-lab{font-size:calc(12*var(--fz));font-weight:400;line-height:1.5;color:rgba(255,255,255,.7)}
 .t-lab b{display:block;font-weight:600;color:#fff}
@@ -83,7 +83,7 @@ img,svg{display:block}
 /* ---------- glass (Figma GLASS: radius 60, depth 61, light 225deg, dispersion .47) ---------- */
 .glass{position:relative;background:rgba(255,255,255,var(--gf,.04));-webkit-backdrop-filter:blur(calc(var(--gb,26)*var(--u)*1px)) saturate(1.15);backdrop-filter:blur(calc(var(--gb,26)*var(--u)*1px)) saturate(1.15);}
 .glass::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:linear-gradient(225deg,rgba(255,255,255,.34),rgba(255,255,255,.03) 42%,rgba(255,255,255,.12) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
-.hair{display:block;height:.5px;background:linear-gradient(90deg,rgba(255,255,255,.02),rgba(255,255,255,.2) 50%,rgba(255,255,255,.02));flex:none}
+.hair{display:block;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.04),rgba(255,255,255,.17) 50%,rgba(255,255,255,.04));flex:none}   /* 1px (not .5px): half-pixel lines vanish at fractional positions */
 
 /* ---------- chrome (persistent UI) ---------- */
 .chrome{position:absolute;inset:0;z-index:20;pointer-events:none}
@@ -972,13 +972,13 @@ function build() {
       ft(0, title, { opacity: 0 }, { opacity: 1, duration: .7, ease: 'none' }, tIn);
       ft(0, title, { y: px(190) }, { y: 0, duration: 1.4, ease: 'power2.out' }, tIn);
       // the title is ONE element that travels with transform only (y + scale, compositor), so nothing is re-laid-out or re-rasterised while it moves: no font-size / weight / line-height
-      // tweens (those were what made it stutter). The real 12 px header takes over with a short cross-fade over the last stretch, when both are the same size and place.
+      // tweens (those were what made it stutter). The real 12 px header takes over instantly when the title has landed on it.
       const k = parseFloat(getComputedStyle(h3).fontSize) / parseFloat(getComputedStyle(title).fontSize);
       const dy = (hdr.offsetTop + hdr.offsetHeight / 2) - (title.offsetTop + title.offsetHeight * k / 2);
       gsap.set(title, { transformOrigin: '50% 0%' });
       ft(0, title, { y: 0, scale: 1 }, { y: dy, scale: k, duration: dDock, ease: 'power2.inOut' }, tDock);
-      ft(0, title, { opacity: 1 }, { opacity: 0, duration: .3, ease: 'none' }, end - .3);
-      ft(0, hdr, { opacity: 0 }, { opacity: 1, duration: .3, ease: 'none' }, end - .3);
+      ft(0, title, { opacity: 1 }, { opacity: 0, duration: .001, ease: 'none' }, end);   // hand-over on the very last frame, same place, same weight: never two texts, no fade
+      ft(0, hdr, { opacity: 0 }, { opacity: 1, duration: .001, ease: 'none' }, end);
     };
     dock(A.rootTitle, A.hdrRoot, 21.4, 22.8, 1.8);   // rises while the lab card is already gone (it fades 20.9–21.8), and lands exactly when the dock starts
     const subDy = M ? 0 : px(670);
@@ -1189,16 +1189,15 @@ function build() {
     /* ---------- 08 · TRAINING & TALENT ---------- */
     ft(0, A.hdrEng, { opacity: 1 }, { opacity: 0, duration: .8 }, 48.2);
     ft(0, ecards, { opacity: 1 }, { opacity: 0, duration: .8 }, 48.2);
-    curtain(A.glowE, 48.2, 1.5);
-    release(A.bgR, 49.7);
+    curtain(A.glowE, 48.2, 1.3);   // (48.2 is after the +1.6u hold of the three cards, see CUTS)
+    release(A.bgR, 49.55);
     ft(0, A.base, { backgroundColor: '#0f0f0f' }, { backgroundColor: '#000000', duration: 1.2 }, 48.2);
-    ft(0, [A.hdrTal, A.talSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 48.8);
+    ft(0, [A.hdrTal, A.talSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 49.3);
     // ONE fade (the glass card's own alpha), no scale on a backdrop-filter element, no second per-row fade: the four rows only cascade upward inside it
     const seps = $$('.sep', A.list);
     gsap.set(seps, { transformOrigin: '0 50%' });
-    ft(0, A.list, { opacity: 0, y: px(30) }, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' }, 48.9);
-    ft(0, lis, { y: px(30) }, { y: 0, duration: 1.2, stagger: .09, ease: 'power3.out' }, 48.9);
-    ft(0, seps, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: .09, ease: 'power3.out' }, 49.0);
+    ft(0, A.list, { opacity: 0, y: px(30) }, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' }, 49.5);
+    ft(0, seps, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: .09, ease: 'power3.out' }, 49.6);   // the rows stay put inside the card (they used to travel separately over their own lines)
 
     /* ---------- 09 · VIRTUAL TOUR ---------- */
     ft(0, [A.hdrTal, A.talSub, A.list], { opacity: 1 }, { opacity: 0, duration: .8 }, 51.4);
@@ -1262,7 +1261,7 @@ function chrome(t) {
   const lo = CHAPTERS[ci], hi = ci < CHAPTERS.length - 1 ? CHAPTERS[ci + 1] : tm(53.8);   // ladder: the active line fills as you move through its chapter
   ladderU[ci].style.transform = `scaleX(${Math.max(0, Math.min(1, (t - lo) / ((hi - lo) || 1))).toFixed(3)})`;
   const win = (a, b) => t >= tm(a) && t < tm(b);
-  const live = [win(16.6, 20.9) && 'lab', win(25.2, 37.0) && 'trio', win(41.2, 44.2) && 'ven', (t >= tm(48.9) + 1.2 && t < tm(51.4)) && 'tal', (t >= tm(47.5) + 1.2 && t < tm(48.2)) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
+  const live = [win(16.6, 20.9) && 'lab', win(25.2, 37.0) && 'trio', win(41.2, 44.2) && 'ven', (t >= tm(49.5) + 1.1 && t < tm(51.4)) && 'tal', (t >= tm(47.5) + 1.2 && t < tm(48.2)) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
   if (stage.dataset.live !== live) stage.dataset.live = live;
   stage.classList.toggle('end', t >= tm(54.4)); stage.classList.toggle('footlive', t >= tm(56.0));
   E.hint.style.opacity = Math.max(.0, Math.min(1, 1 - (t - .3) / .5));
