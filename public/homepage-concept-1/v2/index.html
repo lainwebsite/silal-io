@@ -222,15 +222,10 @@ img,svg{display:block}
 .f-top{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(20px,4vw,60px);min-height:0}
 .f-kick{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:clamp(14px,2.6vh,28px)}
 .f-kick i{display:block;width:44px;height:.5px;background:rgba(255,255,255,.4)}
-.f-head{font-size:clamp(32px,6.3vw,100px);font-weight:500;letter-spacing:-.035em;line-height:1.03;max-width:11.5em}
+.f-head{font-size:clamp(32px,6.3vw,100px);font-weight:500;letter-spacing:-.035em;line-height:1.03;max-width:13em;text-wrap:balance}
 .f-head .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .08em 0;margin-bottom:-.08em}
 .f-head .w i{display:inline-block;font-style:normal}
 .f-head em{font-style:normal;color:#3DA7CF}
-.f-cta{position:relative;flex:none;width:clamp(96px,9.4vw,136px);aspect-ratio:1;border-radius:50%;background:#fff;color:#0f0f0f;display:grid;place-content:center;justify-items:center;gap:6px;font-size:13px;font-weight:500;letter-spacing:-.01em;will-change:transform}
-.f-cta svg{width:22px;height:22px;transition:transform .6s cubic-bezier(.2,.7,.1,1)}
-.f-cta:hover svg{transform:rotate(-45deg)}
-.f-cta::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:.5px solid rgba(255,255,255,.35);transition:inset .5s cubic-bezier(.2,.7,.1,1),opacity .4s;opacity:.7}
-.f-cta:hover::after{inset:-16px;opacity:0}
 .f-cols{position:relative;display:grid;grid-template-columns:1.25fr .9fr .95fr 1.7fr;gap:clamp(18px,2.8vw,44px);padding-top:clamp(18px,3vh,32px)}
 .fl{position:absolute;left:0;right:0;top:0;height:.5px;background:rgba(255,255,255,.22);transform-origin:0 50%}
 .f-cols h4{font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:#3DA7CF;margin-bottom:clamp(10px,1.8vh,20px)}
@@ -402,7 +397,6 @@ html.m .cta{margin-top:26px}
 html.m .foot{padding:78px 20px 14px;row-gap:14px;grid-template-rows:auto 1fr auto;overflow:hidden}
 html.m .f-top{flex-direction:column;align-items:flex-start;gap:16px}
 html.m .f-head{font-size:clamp(26px,8.2vw,36px);max-width:none}
-html.m .f-cta{width:auto;aspect-ratio:auto;height:46px;padding:0 22px;grid-auto-flow:column;gap:10px;border-radius:1000px;font-size:13px}html.m .f-cta::after{display:none}
 html.m .f-kick{margin-bottom:10px}
 html.m .f-cols{grid-template-columns:1fr 1fr;gap:16px 14px;align-content:start}
 html.m .f-cols .news{grid-column:1/-1}.f-cols .news p{max-width:none}
@@ -591,7 +585,6 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
         <p class="f-kick fx"><i></i>Innovation Oasis · Part of Silal</p>
         <h2 class="f-head" aria-label="If it works here, it can work anywhere."><span class="w"><i>If</i></span> <span class="w"><i>it</i></span> <span class="w"><i>works</i></span> <span class="w"><i>here,</i></span> <span class="w"><i>it</i></span> <span class="w"><i>can</i></span> <span class="w"><i>work</i></span> <span class="w"><i>anywhere.</i></span></h2>
       </div>
-      <a class="f-cta fx" href="#enquire" id="fCta"><span>Enquire</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <div class="f-cols">
       <i class="fl"></i>
@@ -1231,17 +1224,14 @@ $('#home').addEventListener('click', e => { e.preventDefault(); go(0); });
   const tick = () => { clk.textContent = fmt.format(new Date()); }; tick(); setInterval(tick, 15000);
   const form = $('#fNews'); form.addEventListener('submit', e => { e.preventDefault(); form.classList.add('ok'); const i = $('input', form); i.value = ''; i.placeholder = 'Thank you (sample, not connected yet)'; });
   $('#fTop').addEventListener('click', e => { e.preventDefault(); go(0); });
-  // the Enquire button and the big mark lean towards the pointer
-  const foot = $('#footF'), cta = $('#fCta'), mark = $('#fMark');
+  // the big mark leans away from the pointer
+  const foot = $('#footF'), mark = $('#fMark');
   if (matchMedia('(hover:hover)').matches) {
-    const cx = gsap.quickTo(cta, 'x', { duration: .6, ease: 'power3.out' }), cy = gsap.quickTo(cta, 'y', { duration: .6, ease: 'power3.out' });
     const mx = gsap.quickTo(mark, 'x', { duration: 1.2, ease: 'power3.out' }), my = gsap.quickTo(mark, 'y', { duration: 1.2, ease: 'power3.out' });
     foot.addEventListener('pointermove', e => {
-      const r = cta.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2), d = Math.hypot(dx, dy);
-      if (d < r.width * 1.1) { cx(dx * .28); cy(dy * .28); } else { cx(0); cy(0); }
       mx((e.clientX / innerWidth - .5) * -16); my((e.clientY / innerHeight - .5) * -10);
     });
-    foot.addEventListener('pointerleave', () => { cx(0); cy(0); mx(0); my(0); });
+    foot.addEventListener('pointerleave', () => { mx(0); my(0); });
   }
 })();
 
@@ -1291,7 +1281,7 @@ const menuLns = $$('#menuList .ln'), menuNums = $$('#menuList em'), menuHr = $$(
 gsap.set(menuLns, { yPercent: 118 }); gsap.set(menuNums, { opacity: 0 });
 const menuTl = gsap.timeline({ paused: true, onReverseComplete() { menu.classList.remove('open'); mbA.style.clipPath = mbB.style.clipPath = mCont.style.clipPath = ''; } });
 menuTl.to(mpA, { p: 1, duration: 1.05, ease: 'power3.inOut', onUpdate: paintMenu }, 0)
-  .to(mpB, { p: 1, duration: 1.05, ease: 'power3.inOut', onUpdate: paintMenu }, .11)
+  .to(mpB, { p: 1, duration: 1.05, ease: 'power3.inOut', onUpdate: paintMenu }, .07)
   .fromTo('.mtop', { opacity: 0 }, { opacity: 1, duration: .6 }, .6)
   .to(menuLns, { yPercent: 0, duration: 1, ease: 'power4.out', stagger: .06 }, .5)
   .to(menuNums, { opacity: 1, duration: .5, stagger: .06 }, .65)

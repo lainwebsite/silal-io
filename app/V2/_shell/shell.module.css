@@ -524,7 +524,8 @@
   font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1.03;
-  max-width: 11.5em;
+  max-width: 13em;
+  text-wrap: balance;
 }
 
 .fW {
@@ -540,50 +541,9 @@
   font-style: normal;
 }
 
-.fCta {
-  position: relative;
-  flex: none;
-  width: clamp(96px, 9.4vw, 136px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #fff;
-  color: #0f0f0f;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  will-change: transform;
-}
 
-.fCta svg {
-  width: 22px;
-  height: 22px;
-  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.1, 1);
-}
 
-.fCta:hover svg {
-  transform: rotate(-45deg);
-}
 
-.fCta::after {
-  content: "";
-  position: absolute;
-  inset: -9px;
-  border-radius: 50%;
-  border: 0.5px solid rgba(255, 255, 255, 0.35);
-  transition:
-    inset 0.5s cubic-bezier(0.2, 0.7, 0.1, 1),
-    opacity 0.4s;
-  opacity: 0.7;
-}
-
-.fCta:hover::after {
-  inset: -16px;
-  opacity: 0;
-}
 
 .fCols {
   position: relative;
@@ -947,20 +907,6 @@
     max-width: none;
   }
 
-  .fCta {
-    width: auto;
-    aspect-ratio: auto;
-    height: 46px;
-    padding: 0 22px;
-    grid-auto-flow: column;
-    gap: 10px;
-    border-radius: 1000px;
-    font-size: 13px;
-  }
-
-  .fCta::after {
-    display: none;
-  }
 
   .fKick {
     margin-bottom: 10px;
@@ -1021,9 +967,6 @@
   .ms a,
   .fLink,
   .fLink::after,
-  .fCta svg {
-    transition: none;
-  }
 
   .fClock::before {
     animation: none;

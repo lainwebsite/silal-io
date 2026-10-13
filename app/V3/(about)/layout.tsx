@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description,
   icons: { icon: [{ url: "/brand/io-mark.svg", type: "image/svg+xml" }, { url: "/brand/io-icon-32.png", sizes: "32x32" }], apple: "/brand/io-icon-180.png" },
   robots: { index: false, follow: false },
-  openGraph: { type: "website", siteName: "Innovation Oasis", title, description, url: "/V3", images: [{ url: "/V3/og.jpg", width: 1200, height: 630, alt: "Innovation Oasis" }] },
+  openGraph: { type: "website", siteName: "Innovation Oasis", title, description, url: "/V3/about", images: [{ url: "/V3/og.jpg", width: 1200, height: 630, alt: "Innovation Oasis" }] },
   twitter: { card: "summary_large_image", title, description, images: ["/V3/og.jpg"] },
 };
 

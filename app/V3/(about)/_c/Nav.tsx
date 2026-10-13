@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import s from "../shell.module.css";
-import { BASE, footerLinks, nav } from "../_lib/site";
+import { ABOUT, BASE, footerLinks, nav } from "../_lib/site";
 import { lenis } from "./SmoothScroll";
 
 /*
@@ -75,7 +75,7 @@ export function Nav() {
             <span>{open ? "Close" : "Menu"}</span>
           </button>
           <span className={s.capSep} aria-hidden />
-          <Link href={BASE} className={s.capLink} aria-current="page">
+          <Link href={ABOUT} className={s.capLink} aria-current="page">
             About IO
           </Link>
         </div>

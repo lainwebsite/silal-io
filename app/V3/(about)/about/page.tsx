@@ -1,13 +1,13 @@
 import Image from "next/image";
-import a from "./_about/about.module.css";
-import { Motion } from "./_about/_c/Motion";
-import { Hero } from "./_about/_c/Hero";
-import { Site3D } from "./_about/_c/Site3D";
-import { Platforms } from "./_about/_c/Platforms";
-import { WhyHere } from "./_about/_c/WhyHere";
-import { Go, Label } from "./_c/Brand";
-import { P, photo } from "./_lib/photo";
-import { SOON } from "./_lib/site";
+import a from "../_about/about.module.css";
+import { Motion } from "../_about/_c/Motion";
+import { Hero } from "../_about/_c/Hero";
+import { Site3D } from "../_about/_c/Site3D";
+import { Platforms } from "../_about/_c/Platforms";
+import { WhyHere } from "../_about/_c/WhyHere";
+import { Go, Label } from "../_c/Brand";
+import { P, photo } from "../_lib/photo";
+import { SOON } from "../_lib/site";
 
 /*
  * About Innovation Oasis — v6.

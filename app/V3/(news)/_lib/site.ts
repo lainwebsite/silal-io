@@ -1,6 +1,7 @@
 import { P } from "./photo";
 
-export const BASE = "/V3";
+export const BASE = "/V3"; // home (static homepage, served by a rewrite)
+export const ABOUT = `${BASE}/about`;
 
 // Client preview: only the About page and News & Media exist. Links to pages that aren't built yet
 // point at SOON and are made inert by LinkGuard (no 404s, no jump to top, no internal URLs).
@@ -26,11 +27,11 @@ export const nav: Category[] = [
     key: "about",
     n: "00",
     label: "About IO",
-    href: BASE,
+    href: ABOUT,
     img: P.atrium,
     blurb: "Silal's R&D and venture engine, on 34 hectares beside Al Foah Farm.",
     subs: [
-      { label: "Our Story", href: BASE },
+      { label: "Our Story", href: ABOUT },
       { label: "Team & CEO Message", href: SOON },
       { label: "Virtual Tour", href: SOON, external: true },
     ],

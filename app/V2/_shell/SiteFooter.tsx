@@ -36,7 +36,6 @@ const Arrow = ({ className }: { className?: string }) => (
  */
 export function SiteFooter({ nav, resources, legal, contact, linkedin }: Props) {
   const rootRef = useRef<HTMLElement>(null);
-  const ctaRef = useRef<HTMLAnchorElement>(null);
   const markRef = useRef<HTMLDivElement>(null);
   const clockRef = useRef<HTMLElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -101,34 +100,19 @@ export function SiteFooter({ nav, resources, legal, contact, linkedin }: Props) 
     return () => window.clearInterval(id);
   }, []);
 
-  // The Enquire button and the big mark lean towards the pointer (hover devices only).
+  // The big mark leans away from the pointer (hover devices only).
   useEffect(() => {
     const root = rootRef.current;
-    const cta = ctaRef.current;
     const mark = markRef.current;
-    if (!root || !cta || !mark) return;
+    if (!root || !mark) return;
     if (!window.matchMedia("(hover: hover)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const cx = gsap.quickTo(cta, "x", { duration: 0.6, ease: "power3.out" });
-    const cy = gsap.quickTo(cta, "y", { duration: 0.6, ease: "power3.out" });
     const mx = gsap.quickTo(mark, "x", { duration: 1.2, ease: "power3.out" });
     const my = gsap.quickTo(mark, "y", { duration: 1.2, ease: "power3.out" });
     const onMove = (e: PointerEvent) => {
-      const r = cta.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width / 2);
-      const dy = e.clientY - (r.top + r.height / 2);
-      if (Math.hypot(dx, dy) < r.width * 1.1) {
-        cx(dx * 0.28);
-        cy(dy * 0.28);
-      } else {
-        cx(0);
-        cy(0);
-      }
       mx((e.clientX / window.innerWidth - 0.5) * -16);
       my((e.clientY / window.innerHeight - 0.5) * -10);
     };
     const onLeave = () => {
-      cx(0);
-      cy(0);
       mx(0);
       my(0);
     };
@@ -174,10 +158,6 @@ export function SiteFooter({ nav, resources, legal, contact, linkedin }: Props) 
             ))}
           </h2>
         </div>
-        <Link ref={ctaRef} className={`${s.fCta}`} href={contact} data-fx>
-          <span>Enquire</span>
-          <Arrow />
-        </Link>
       </div>
 
       <div className={s.fCols}>

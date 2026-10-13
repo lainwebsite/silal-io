@@ -102,7 +102,7 @@ export function SiteMenu({ nav, home, news, contact, linkedin }: Props) {
         },
       });
       tl.to(mpA, { p: 1, duration: 1.05, ease: "power3.inOut", onUpdate: paint }, 0)
-        .to(mpB, { p: 1, duration: 1.05, ease: "power3.inOut", onUpdate: paint }, 0.11)
+        .to(mpB, { p: 1, duration: 1.05, ease: "power3.inOut", onUpdate: paint }, 0.07)
         .fromTo("[data-mtop]", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.6)
         .to(lns, { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.06 }, 0.5)
         .to(nums, { opacity: 1, duration: 0.5, stagger: 0.06 }, 0.65)
