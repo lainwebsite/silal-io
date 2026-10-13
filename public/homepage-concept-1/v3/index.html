@@ -477,9 +477,6 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
           <div class="bg" id="bgVid">
     <video id="introVid" src="/homepage-concept-1/v2/media/intro-light.mp4" muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
     <div class="ov" style="background:rgba(0,0,0,.2)"></div>
-    <div class="im" id="holdB1" data-img="x_hold1" style="opacity:0"></div>
-    <div class="im" id="holdBM" data-img="x_holdM" style="opacity:0"></div>
-    <div class="im" id="holdB2" data-img="x_hold2" style="opacity:0"></div>
     <div class="im" id="imFarm" data-img="x_farm" style="opacity:0"></div>
     <div class="im" id="imQuin" data-img="x_quinoa" style="opacity:0"></div>
   </div>
@@ -744,7 +741,7 @@ const DIM = {'2c9732cc':[1880,1058],'f502e814':[1880,1058],'e95e0b67':[1614,975]
 const EXT = {'06f2951c':'png'};
 // new round-12 assets (x_*) live next to this page; the older ones are shared with /V2
 const imgUrl = k => `/homepage-concept-1/${/^(g_)?x_/.test(k) ? 'v3' : 'v2'}/media/img/${k}.${EXT[k] || 'jpg'}`;
-Object.assign(DIM, {'x_farm':[1728,1044],'x_quinoa':[1728,1044],'x_drone':[1710,954],'x_chamber':[1716,1141],'x_green':[1716,1141],'x_manlab':[1718,1143],'x_pipette':[1710,1135],'x_tour':[1624,976],'x_field':[1728,1152],'x_hold1':[1192,672],'x_holdM':[1192,672],'x_sky':[1728,2304],'x_hold2':[1192,672]});
+Object.assign(DIM, {'x_farm':[1728,1044],'x_quinoa':[1728,1044],'x_drone':[1710,954],'x_chamber':[1716,1141],'x_green':[1716,1141],'x_manlab':[1718,1143],'x_pipette':[1710,1135],'x_tour':[1624,976],'x_field':[1728,1152],'x_sky':[1728,2304]});
 ['x_drone','x_chamber','x_green'].forEach(k => { DIM['g_' + k] = DIM[k]; });
 Object.keys(DIM).forEach(k => { DIM['g_' + k] = DIM[k]; });   // g_<key> = small pre-blurred copy of <key> (same aspect, so the crop maths is identical)
 const $ = (s, r = document) => r.querySelector(s);
@@ -768,7 +765,7 @@ const refreshCrops = () => $$('[data-img]').forEach(el => { if (el.closest('#det
 const root = document.documentElement, story = $('#story'), stage = $('#stage'), frame = $('#frame');
 const el = id => document.getElementById(id);
 const E = {};
-['bgVid','introVid','holdB1','holdBM','holdB2','imFarm','imQuin','glowA','bgLab','glowT','bgB','bgR','imR','glowE','base','detail','dctl','dn',
+['bgVid','introVid','imFarm','imQuin','glowA','bgLab','glowT','bgB','bgR','imR','glowE','base','detail','dctl','dn',
  'hero','intro','stats','statement','capLab','labcard','rootTitle','hdrRoot','rootSub','trio','ring','venTitle','hdrVen','venSub','tiles','venBtn',
  'engTitle','hdrEng','eng','hdrTal','talSub','list','hdrTour','tourSub','tour','tourBtn','footF','num1','num2','hint','nav','mark'].forEach(i => E[i] = el(i));
 
@@ -839,7 +836,7 @@ function build() {
        unit 0–2.4   video 0–5.6    01.01 Earth overview → 01.02 close-up (Americas → Africa → Asia)
        unit 2.4     video 5.6      01.03 "Step into the Innovation Oasis" arrives as the camera dives through the clouds toward Arabia
        unit 2.4–4.2 video 5.6–9    descent over the desert from altitude
-       unit 4.2–8.8 video 9–15.6   01.04 desert landscape, the flight eases down to the dunes; from unit 6.2 it keeps moving while it softens into blur and the title blurs away
+       unit 4.2–8.8 video 9–15.6   01.04 desert landscape, the flight eases down to the dunes; over its last stretch (unit 7.1–8.8) the footage itself blurs, frame by frame, to full blur on the last frame
        unit 8.8     the video ends on the dunes frame (15.6 s)
        unit 8.7     02.01 the new Al Foah photo takes over (no more footage after the dunes), unit 10.9 the quinoa field (stats) */
     const vid = A.introVid, VID_END = 15.6, vp = { t: 0 };
@@ -853,12 +850,10 @@ function build() {
       tl.fromTo(vp, { t: t0 }, { t, duration: u - u0, ease: 'none', immediateRender: false, onUpdate: seekVid }, u0);
     });
     ft(0, A.hero, { opacity: 0, y: px(26) }, { opacity: 1, y: 0, duration: .9, ease: out }, 2.4);
-    // the title dissolves into the blur together with the picture (one small text layer, the only filter in the page)
-    ft(0, A.hero, { opacity: 1, scale: 1, filter: 'blur(0px)' }, { opacity: 0, scale: 1.03, filter: 'blur(18px)', duration: 2.0, ease: 'power1.in' }, 6.6);
-    // the footage keeps flying while it softens: three stills of the video's own frames (taken ~where the flight is at that moment, increasingly blurred) dissolve over it in turn
-    ft(0, A.holdB1, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'none' }, 6.2);
-    ft(0, A.holdBM, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'none' }, 7.0);
-    ft(0, A.holdB2, { opacity: 0 }, { opacity: 1, duration: 1.1, ease: 'none' }, 7.9);
+    // the footage keeps flying and is blurred FRAME BY FRAME by the scrub itself: no blur at the start of the last stretch, full blur on the video's last frame.
+    // (a real blur on the video element, tied to the video position; the slight scale hides the soft edge. The title dissolves into the same blur.)
+    ft(0, A.introVid, { filter: 'blur(0px)', scale: 1 }, { filter: 'blur(30px)', scale: 1.1, duration: 1.7, ease: 'power1.in' }, 7.1);
+    ft(0, A.hero, { opacity: 1, scale: 1, filter: 'blur(0px)' }, { opacity: 0, scale: 1.03, filter: 'blur(18px)', duration: 1.7, ease: 'power1.in' }, 7.1);
 
     /* ---------- 02 · THE LOCATION ---------- */
     ft(0, A.imFarm, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.6, ease: out }, 8.7);
