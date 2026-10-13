@@ -5,7 +5,7 @@ import { SiteMenu } from "../_shell/SiteMenu";
 import { SiteFooter } from "../_shell/SiteFooter";
 import { SmoothScroll } from "./_components/SmoothScroll";
 import { LinkGuard } from "./_components/LinkGuard";
-import { BASE, SOON, footerLinks, nav } from "./_lib/site";
+import { BASE, footerLinks, nav } from "./_lib/site";
 
 // Stand-in for 29LT Bukra until the licensed webfont arrives (docs/brand.md). Swap here only.
 const brand = Readex_Pro({ subsets: ["latin", "arabic"], variable: "--font-d2-brand", display: "swap" });
@@ -37,7 +37,7 @@ export default function V2Layout({ children }: { children: React.ReactNode }) {
       </a>
       <SiteMenu nav={nav} home={BASE} news={`${BASE}/resources/news`} contact={footerLinks.contact} linkedin={footerLinks.linkedin} />
       <main id="d2-main">{children}</main>
-      <SiteFooter soon={SOON} news={`${BASE}/resources/news`} legal={footerLinks.legal} />
+      <SiteFooter nav={nav} resources={footerLinks.resources} legal={footerLinks.legal} contact={footerLinks.contact} linkedin={footerLinks.linkedin} />
       <SmoothScroll />
       <LinkGuard />
     </div>
