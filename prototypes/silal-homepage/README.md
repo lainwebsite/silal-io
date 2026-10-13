@@ -66,3 +66,10 @@ Live at `/homepage-concept-3` (team link, `noindex`, not linked anywhere). Same 
 - **Polish:** official IO mark (`#logo`) in the pill instead of the "iO" text; preloader (mark fills with real load progress, curtain exit, hero settles); button label roll on hover; pin ping rings; footer dims siblings on hover; tour card hover zoom; focus rings; theme-color + favicon.
 - QA: `?preload=0` skips the preloader, `?t=<beat|number>` jumps (no entrance), `?lenis=0` turns smooth scroll off.
 
+## Concept 3, revision 2 (2026-10-13, client feedback)
+- **Impact dial:** the fixed centre line (needle) is gone. The ruler now travels with the scroll for the whole scene (`TRAVEL`, bound to the timeline, painted every frame by a ticker in "details"), every 5th tick is a major one, the ticks passing the active column swell (fisheye) and the swell grows a little with scroll speed. Only ticks near the swell are touched per frame. `#metrics` is `visibility:hidden` outside its scene (this also removed stray tick lines on phones).
+- **Dock overlap bug fixed:** a stop's list/thumbnail (`.dt`) is `visibility:hidden` except while its own card is open, and the swap is strictly ordered: old header rises out while the card collapses, old stop hidden, then the next header rolls in once the card is back to its small height (`nextStop`).
+- **Hairlines:** wheel top line, the bar next to the active item, the card separators and the footer rules now use `--hl` (= one device pixel inside the scaled frame, so they never drop out like the old 0.5 px ones) and fade at both ends; the active bar is a thin gradient line.
+- **Magnet:** buttons follow the pointer a little (`magnet()`); over a card thumbnail the whole image area attracts the button, the picture zooms and drifts against the pointer. Fixed button widths removed (they clipped the label roll).
+- **Footer:** big rows with letter-by-letter roll, a fill that sweeps in, index + arrow circle, siblings dim, a photo preview that follows the pointer (tilts with speed), pointer spotlight, column links with drawn underline, live Al Ain clock (Asia/Dubai), "Back to top" magnet pill, staggered clip reveal.
+

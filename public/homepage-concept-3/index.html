@@ -19,7 +19,7 @@
 <link rel="preload" as="image" href="/homepage-concept-3/media/img/intro.jpg">
 <style>
 /* ===== tokens (Figma: Silal IO – Concept 3 "From Desert to Discovery") ===== */
-:root{--ink:#101010;--ink2:#0f0f0f;--u:1;--fw:1440;--fh:870;--ease:cubic-bezier(.2,.7,.1,1)}
+:root{--ink:#101010;--ink2:#0f0f0f;--u:1;--fw:1440;--fh:870;--ease:cubic-bezier(.2,.7,.1,1);--hl:calc(1px / var(--u))}  /* --hl = one device pixel inside the scaled frame: hairlines never vanish */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--ink);color:#fff;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 html.lenis,html.lenis body{height:auto}
@@ -71,10 +71,10 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 .dim6{color:rgba(255,255,255,.6)}.dim7{color:rgba(255,255,255,.7)}
 
 /* buttons: the label rolls up on hover (a second copy slides in from below) */
-.btn{display:inline-flex;align-items:center;justify-content:center;height:41px;padding:0 20px;border-radius:34px;background:#fff;color:var(--ink2);font-weight:500;font-size:12px;line-height:1;white-space:nowrap;transition:background-color .35s,transform .5s var(--ease)}
-.btn:hover{background:#ededed;transform:scale(1.03)}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:41px;padding:0 20px;border-radius:34px;background:#fff;color:var(--ink2);font-weight:500;font-size:12px;line-height:1;white-space:nowrap;transition:background-color .35s;will-change:transform}
+.btn:hover{background:#ededed}
 .btn.lg{height:49px;padding:0 22px}
-.btn .bt{display:block;position:relative;height:15px;overflow:hidden;padding:0 1px;margin:0 -1px}
+.btn .bt{display:block;position:relative;height:15px;overflow:hidden}
 .btn .bt span{display:block;height:15px;line-height:15px;transition:transform .55s var(--ease)}
 .btn:hover .bt span{transform:translateY(-100%)}
 
@@ -123,8 +123,8 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 
 /* ----- 05–12 journey dock: wheel + card ----- */
 .wheel{left:30px;top:88px;width:350px;height:143px;border-radius:30px;background:rgba(16,16,16,.3);pointer-events:auto}
-.wheel .hl{position:absolute;left:28px;top:20px;width:103px;height:.5px;background:linear-gradient(90deg,rgba(255,255,255,.1),#fff 50%,rgba(255,255,255,.1));opacity:.5}
-.wheel .bar{position:absolute;left:28px;top:61px;width:1px;height:21px;background:#fff}
+.wheel .hl{position:absolute;left:28px;top:20px;width:103px;height:var(--hl);background:linear-gradient(90deg,rgba(255,255,255,0),#fff 50%,rgba(255,255,255,0));opacity:.55}
+.wheel .bar{position:absolute;left:28px;top:56px;width:var(--hl);min-width:1px;height:31px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 28%,#fff 72%,rgba(255,255,255,0));transform-origin:50% 50%}
 .wheel ul{position:absolute;inset:0;-webkit-mask:linear-gradient(180deg,transparent 22px,#000 46px,#000 97px,transparent 121px);mask:linear-gradient(180deg,transparent 22px,#000 46px,#000 97px,transparent 121px)}
 .wheel li{position:absolute;left:48px;top:61px;height:21px;font-size:14px;line-height:1.5;white-space:nowrap;cursor:pointer;will-change:transform}
 
@@ -141,11 +141,12 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 .card .li .dot i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.7)}
 .card .li.on span{transform:translateX(24px);color:rgba(255,255,255,.95)}
 .card .li.on .dot{opacity:1}
-.card .sep{position:absolute;left:28px;width:294px;height:.5px;background:linear-gradient(90deg,rgba(255,255,255,.1),#fff 50%,rgba(255,255,255,.1));opacity:.2;transform-origin:0 50%}
-.card .th{position:absolute;left:14px;width:322px;height:190px;border-radius:24px;overflow:hidden;background-size:cover}
-.card .th::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.2)}
-.card .th .btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1}
-.card .th .btn:hover{transform:translate(-50%,-50%) scale(1.03)}
+.card .sep{position:absolute;left:28px;width:294px;height:var(--hl);background:linear-gradient(90deg,rgba(255,255,255,0),#fff 50%,rgba(255,255,255,0));opacity:.28;transform-origin:50% 50%}
+.card .th{position:absolute;left:14px;width:322px;height:190px;border-radius:24px;overflow:hidden;cursor:pointer}
+.card .th .bgi{position:absolute;inset:0;background-repeat:no-repeat;will-change:transform}
+.card .th::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.2);transition:background-color .6s;pointer-events:none}
+.card .th:hover::after{background:rgba(0,0,0,.08)}
+.card .th .btn{position:absolute;left:50%;top:50%;z-index:1}
 
 /* ----- 13 impact ----- */
 #impH{--x:64;--y:130;width:529px}
@@ -155,7 +156,6 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 .ruler{position:absolute;left:0;right:0;top:620px;height:60px;margin-top:-23px;-webkit-mask:linear-gradient(90deg,transparent,#000 140px,#000 calc(100% - 140px),transparent);mask:linear-gradient(90deg,transparent,#000 140px,#000 calc(100% - 140px),transparent)}
 .ruler .trk{position:absolute;left:0;top:0;width:0;height:100%}
 .ruler .trk i{position:absolute;top:23px;width:1px;height:14px;background:#fff;opacity:.28}
-.ruler .needle{position:absolute;left:560px;top:0;width:1px;height:60px;margin-left:-.5px;background:#fff;box-shadow:0 0 14px rgba(255,255,255,.45)}
 .mt{position:absolute;left:0;top:0;width:0}
 .mt .num{position:absolute;left:0;top:463px;font-size:120px;line-height:1;letter-spacing:-.03em;white-space:nowrap;transform-origin:50% 104px;font-variant-numeric:tabular-nums}
 .mt .lab{position:absolute;left:-130px;top:0;width:260px;text-align:center;font-size:12px;line-height:1.5;white-space:nowrap}
@@ -176,16 +176,45 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 
 /* ----- 15 footer (final in-stage scene) ----- */
 .foot{pointer-events:none}
-.foot .fl{font-weight:500;font-size:34px;line-height:41px;white-space:nowrap}
-.foot .fl a{display:inline-block;transition:transform .5s var(--ease),opacity .35s}
-.foot .fl a:hover{transform:translateX(12px)}
-.foot:has(.fl a:hover) .fl a:not(:hover){opacity:.35}
-.foot .hr{position:absolute;left:64px;right:64px;height:1px;background:rgba(255,255,255,.3);transform:scaleY(.5);transform-origin:0 50%}
+#spot{position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,50%) var(--my,40%),rgba(255,255,255,.065),rgba(255,255,255,0) 62%);opacity:0}
+.foot .hr{position:absolute;left:64px;right:64px;height:var(--hl);background:rgba(255,255,255,.3);transform-origin:0 50%}
+/* big rows: roll-up letters, a fill that sweeps in, index + arrow, siblings dim */
+.frw{left:64px;right:64px;top:calc(var(--y)*1px);height:81px;display:flex;align-items:center;font-weight:500;font-size:34px;line-height:41px;white-space:nowrap;transition:opacity .45s}
+.frw::before{content:"";position:absolute;left:-24px;right:-24px;top:0;bottom:0;border-radius:22px;background:rgba(255,255,255,.045);transform:scaleX(.96);opacity:0;transform-origin:0 50%;transition:transform .8s var(--ease),opacity .5s}
+.frw .tx{position:relative;display:block;transition:transform .8s var(--ease)}
+.frw .fnum{position:absolute;right:84px;top:50%;margin-top:-8px;font-size:12px;line-height:16px;letter-spacing:.06em;font-weight:500;color:rgba(255,255,255,.35);transition:color .4s,transform .8s var(--ease)}
+.frw .farr{position:absolute;right:0;top:50%;margin-top:-23px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;overflow:hidden;transition:background-color .5s,border-color .5s,transform .8s var(--ease)}
+.frw .farr svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .7s var(--ease),stroke .4s}
+.frw:hover::before{transform:scaleX(1);opacity:1}
+.frw:hover .tx{transform:translateX(22px)}
+.frw:hover .fnum{color:#fff;transform:translateX(-8px)}
+.frw:hover .farr{background:#fff;border-color:#fff;transform:scale(1.06)}
+.frw:hover .farr svg{stroke:var(--ink2);transform:rotate(45deg)}
+.foot:has(.frw:hover) .frw:not(:hover){opacity:.32}
+.rl{display:inline-block;white-space:nowrap}
+.rl .ch{display:inline-block;overflow:hidden;height:1.25em;line-height:1.25em;vertical-align:top}
+.rl .ch>span{display:block;height:1.25em;transition:transform .7s var(--ease) calc(var(--i)*22ms)}
+.rl .ch .sp{display:inline-block;width:.28em}
+a:hover>.tx .ch>span,a:hover .rl .ch>span{transform:translateY(-100%)}
 .foot .bl{font-size:12px;line-height:1.55;color:rgba(255,255,255,.4)}
-.foot .col a{display:block;font-weight:500;font-size:21px;line-height:25px;color:rgba(255,255,255,.4);margin-bottom:20px;transition:color .3s,transform .5s var(--ease);white-space:nowrap}
-.foot .col a:hover{color:#fff;transform:translateX(6px)}
+.foot .col a{position:relative;display:block;width:max-content;font-weight:500;font-size:21px;line-height:25px;color:rgba(255,255,255,.4);margin-bottom:20px;transition:color .3s,transform .6s var(--ease);white-space:nowrap}
+.foot .col a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:var(--hl);background:#fff;transform:scaleX(0);transform-origin:100% 50%;transition:transform .6s var(--ease)}
+.foot .col a:hover{color:#fff;transform:translateX(8px)}
+.foot .col a:hover::after{transform:scaleX(1);transform-origin:0 50%}
+.foot .col:has(a:hover) a:not(:hover){color:rgba(255,255,255,.2)}
 .foot .sm{font-size:12px;line-height:15px;color:rgba(255,255,255,.4)}
+.foot .sm b{font-weight:500;color:rgba(255,255,255,.75);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.foot .sm i.live{display:inline-block;width:5px;height:5px;margin:0 8px 1px 0;border-radius:50%;background:#7bd88f;box-shadow:0 0 0 0 rgba(123,216,143,.6);animation:livedot 2.4s infinite}
+@keyframes livedot{70%{box-shadow:0 0 0 7px rgba(123,216,143,0)}100%{box-shadow:0 0 0 0 rgba(123,216,143,0)}}
+.btt{height:34px;padding:0 16px 0 18px;border-radius:34px;border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;gap:10px;font-weight:500;font-size:12px;line-height:1;color:#fff;transition:background-color .4s,color .4s,border-color .4s;will-change:transform}
+.btt svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .6s var(--ease)}
+.btt:hover{background:#fff;color:var(--ink2);border-color:#fff}
+.btt:hover svg{transform:translateY(-3px)}
 .stage.footlive .foot a{pointer-events:auto}
+/* floating preview that follows the pointer over the big rows */
+#fprev{position:absolute;left:0;top:0;width:232px;height:148px;border-radius:20px;overflow:hidden;opacity:0;pointer-events:none;z-index:4;will-change:transform,opacity;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+#fprev i{position:absolute;inset:0;background-size:cover;background-position:center}
+#fprev::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12)}
 
 /* ----- menu panel (inside the frame, so it scales with the pill) ----- */
 .menu{left:30px;top:94px;width:272px;padding:10px;border-radius:26px;background:rgba(16,16,16,.5);visibility:hidden;pointer-events:none;clip-path:inset(0% 0% 100% 0% round 26px)}
@@ -245,9 +274,13 @@ html.m #impH{--x:20;--y:96;width:350px}
 html.m .metrics{transform:scale(var(--ms));transform-origin:0 435px;left:calc(195px - 560px*var(--ms));width:calc(100% / var(--ms) + 560px)}
 html.m #tourC{flex-direction:column;gap:16px;--x:0;width:100%;justify-content:center;left:0!important}
 html.m #tourC h2{font-size:22px}
-html.m .foot .fl{font-size:28px}
+html.m .frw{left:20px;right:20px;font-size:26px}
+html.m .frw .fnum{display:none}
+html.m .frw .farr{width:38px;height:38px;margin-top:-19px}
 html.m .foot .hr{left:20px;right:20px}
 html.m .foot .x64{--x:20!important}
+html.m #fclock{display:none}
+html.m .btt{--r:20!important;--b:130!important}
 html.m .foot .bl{width:350px!important;top:400px!important}
 html.m .foot .c1{--x:20!important;top:480px!important}
 html.m .foot .c2{--x:210!important;top:480px!important}
@@ -294,12 +327,13 @@ html.m .foot .sm.r{--r:20!important}
   <div id="tour"><div class="cn"><div class="im"></div></div></div>
   <div id="tourRing"></div>
   <div class="pins" id="pins"></div>
+  <div id="fprev" aria-hidden="true"><i id="fpi"></i></div>
 
   <div class="frame" id="frame">
     <!-- 01 Hero -->
     <h1 class="a cx cy t-hero" id="heroT"><span class="mk"><span class="in">A Different Kind of Destination</span></span></h1>
     <p class="a cx b t-16" id="heroS"><span class="mk"><span class="in">Where a harsher environment grows brighter possibilities.</span></span></p>
-    <p class="a cx b" id="heroB" data-w="hero"><a class="btn" style="width:141px" href="#enter" data-go="enter">Start the Journey</a></p>
+    <p class="a cx b" id="heroB" data-w="hero"><a class="btn" href="#enter" data-go="enter">Start the Journey</a></p>
 
     <!-- 02 Enter → 03 caption -->
     <h2 class="a l cy t-enter" id="enterT"><span class="mk"><span class="in">Enter the Oasis.</span></span></h2>
@@ -314,7 +348,7 @@ html.m .foot .sm.r{--r:20!important}
     <!-- 13 Impact -->
     <div class="a l t" id="impH"><p class="t-16s"><span class="mk"><span class="in">A more resilient future.</span></span></p><p class="t-16 dim7"><span class="mk"><span class="in">Research, technology and collaboration come together to create solutions that extend far beyond the campus.</span></span></p></div>
     <div class="a cy metrics" id="metrics" data-w="imp">
-      <div class="ruler" id="ruler"><div class="trk" id="trk"></div><i class="needle"></i></div>
+      <div class="ruler" id="ruler"><div class="trk" id="trk"></div></div>
       <div id="mts"></div>
     </div>
 
@@ -323,17 +357,20 @@ html.m .foot .sm.r{--r:20!important}
 
     <!-- 15 Footer -->
     <div class="a foot" id="foot" style="inset:0">
-      <p class="a l t fl x64" style="--x:64;--y:90"><a href="#research">Research</a></p>
-      <p class="a l t fl x64" style="--x:64;--y:171"><a href="#programmes">Programmes</a></p>
-      <p class="a l t fl x64" style="--x:64;--y:252"><a href="#community">Community</a></p>
-      <p class="a l t fl x64" style="--x:64;--y:333"><a href="#contact">Contact</a></p>
+      <div id="spot"></div>
+      <a class="a frw" style="--y:70" href="#research" data-prev="t-lab"><span class="tx rv"><span class="rl" data-t="Research"></span></span><i class="fnum">01</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
+      <a class="a frw" style="--y:151" href="#programmes" data-prev="t-gh"><span class="tx rv"><span class="rl" data-t="Programmes"></span></span><i class="fnum">02</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
+      <a class="a frw" style="--y:232" href="#community" data-prev="t-part"><span class="tx rv"><span class="rl" data-t="Community"></span></span><i class="fnum">03</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
+      <a class="a frw" style="--y:313" href="#contact" data-prev="t-tech"><span class="tx rv"><span class="rl" data-t="Contact"></span></span><i class="fnum">04</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
       <i class="hr" style="top:151px"></i><i class="hr" style="top:232px"></i><i class="hr" style="top:313px"></i>
-      <p class="a l t bl x64" style="--x:64;--y:434;width:520px">A strategic enabler of the UAE’s vision – transforming national priorities into tangible innovation outcomes across agriculture and food systems.</p>
-      <div class="a l t col c1" style="--x:728;--y:434"><a href="#research">Research</a><a href="#talent">Talent &amp; Training</a><a href="#centres">Centres of Excellence</a></div>
-      <div class="a l t col c2" style="--x:1060;--y:434"><a href="#entrepreneurs">Entrepreneurs</a><a href="#companies">Companies</a><a href="#investors">Investors</a></div>
+      <p class="a l t bl x64 rv" style="--x:64;--y:434;width:520px">A strategic enabler of the UAE’s vision – transforming national priorities into tangible innovation outcomes across agriculture and food systems.</p>
+      <div class="a l t col c1" style="--x:728;--y:434"><a class="rv" href="#research">Research</a><a class="rv" href="#talent">Talent &amp; Training</a><a class="rv" href="#centres">Centres of Excellence</a></div>
+      <div class="a l t col c2" style="--x:1060;--y:434"><a class="rv" href="#entrepreneurs">Entrepreneurs</a><a class="rv" href="#companies">Companies</a><a class="rv" href="#investors">Investors</a></div>
       <i class="hr hrb" style="bottom:111px"></i>
-      <p class="a l b sm x64" style="--x:64;--b:55">Innovation Oasis — Silal, Al Ain, UAE</p>
-      <p class="a r b sm" style="--r:64;--b:55">Part of Silal</p>
+      <p class="a l b sm x64 rv" style="--x:64;--b:55">Innovation Oasis — Silal, Al Ain, UAE</p>
+      <p class="a cx b sm rv" id="fclock" style="--x:720;--b:55;transform:translateX(-50%)"><i class="live"></i>Al Ain&nbsp; <b id="fTime">--:--:--</b>&nbsp; GST</p>
+      <a class="a r b btt rv" id="btt" href="#top" data-go="hero" style="--r:152;--b:45"><span>Back to top</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 11V1M1.5 5.5L6 1l4.5 4.5"/></svg></a>
+      <p class="a r b sm rv" style="--r:64;--b:55">Part of Silal</p>
     </div>
 
     <!-- menu panel -->
@@ -371,16 +408,16 @@ const LAYERS = ['hero','intro','map','gh','ghin','lab','labin','tech','techin','
 const STOPS = [
   { k:'gh', name:'Greenhouses', t:'From Research to Production', d:'Ideas developed in the greenhouses are validated, refined and prepared for real-world farming conditions.',
     li:['Climate-controlled Environments','Crop Performance Trials','Water-use Optimisation','Research to Market'], on:1, ls:166, th:340, ho:156, hd:544,
-    img:'t-gh', crop:[1,0,.9,.1], cta:'Explore Greenhouses', cw:159 },
+    img:'t-gh', crop:[1,0,.9,.1], cta:'Explore Greenhouses' },
   { k:'lab', name:'Research Labs', t:'Soil. Water. Genetics.', d:'Our research focuses on solving practical challenges faced by growers today.',
     li:['Genetics and Crop Improvement','Soil and Water Analysis','Plant Health Research','Applied Agricultural Science'], on:2, ls:145, th:319, ho:135, hd:523,
-    img:'t-lab', crop:[1,0,.9,.1], cta:'Explore Labs', cw:110 },
+    img:'t-lab', crop:[1,0,.9,.1], cta:'Explore Labs' },
   { k:'tech', name:'Technology and Innovation', t:'Turning Data into Growth', d:'Real-time data, automation and analytics help transform research into practical outcomes for growers and communities.',
     li:['Sensors and IoT Monitoring','Smart Irrigation Systems','Robotics and Automation','AI-driven Analytics'], on:2, ls:162, th:336, ho:156, hd:540,
-    img:'t-tech', crop:[1,0,.4,.3], cta:'Explore Tech', cw:110 },
+    img:'t-tech', crop:[1,0,.4,.3], cta:'Explore Tech' },
   { k:'part', name:'Partnerships', t:'Built through Collaboration', d:'A connected network working toward a more resilient food future.',
     li:['Universities and Research Institutions','Agri-tech Startups','Industry and Commercial Partners','Local Farming Communities'], on:0, ls:145, th:319, ho:135, hd:523,
-    img:'t-part', crop:[.9,0,.8,.1], cta:'Explore Partnerships', cw:156 }
+    img:'t-part', crop:[.9,0,.8,.1], cta:'Explore Partnerships' }
 ];
 const THUMB = { 't-gh':[900,600], 't-lab':[900,600], 't-tech':[600,900], 't-part':[900,600] };
 
@@ -399,8 +436,8 @@ const METRICS = [
   { v:4, f:n => String(n).padStart(2, '0'), t:'Research areas', d:'Focused on the challenges that matter most.' },
   { v:10, f:n => n + '+', t:'Crops under research', d:'Testing varieties for local conditions.' }
 ];
-/* dial geometry (design px): needle x, tick pitch, distance between two metrics (31 ticks), fisheye reach */
-const NX = 560, TICK = 12, STEP = 372, SPAN = 120;
+/* dial geometry (design px): x of the active column (= the fisheye centre), tick pitch, distance between two metrics (31 ticks), fisheye reach, how far the ruler travels while you scroll through the scene */
+const NX = 560, TICK = 12, STEP = 372, SPAN = 120, TRAVEL = 2400, J0 = -47, J1 = 330;
 
 /* ---------- beats (timeline units). One table, no remapping. ---------- */
 const B = {
@@ -422,7 +459,7 @@ STOPS.forEach((s, i) => {
   let h = `<p class="ct">${s.t}</p><button class="chev" aria-label="Show details"><svg><use href="#chevI"/></svg></button><p class="cd">${s.d}</p>`;
   s.li.forEach((x, j) => { h += `<div class="li dt${j === s.on ? ' on' : ''}" style="top:${s.ls + 42 * j}px"><i class="dot"><i></i></i><span>${x}</span></div>`;
     if (j < 3) h += `<i class="sep dt" style="top:${s.ls + 30 + 42 * j}px"></i>`; });
-  h += `<div class="th dt" style="top:${s.th}px" data-img="${s.img}"><a class="btn" href="#${s.k}" style="width:${s.cw}px">${s.cta}</a></div>`;
+  h += `<div class="th dt" style="top:${s.th}px"><i class="bgi" data-img="${s.img}"></i><a class="btn" href="#${s.k}">${s.cta}</a></div>`;
   c.innerHTML = h; card.appendChild(c);
   // hover moves the active marker (Figma shows one item marked); leaving restores the default
   const lis = $$('.li', c);
@@ -435,10 +472,11 @@ PINS.forEach(p => { const d = document.createElement('div'); d.className = 'pin'
   d.innerHTML = `<div class="in"><a class="tag" href="#${p.go}" data-go="${p.go}">${p.n}</a><i class="ring"><i></i></i><i class="line" style="height:${p.g - p.y - 7}px"></i><i class="gd"></i></div>`;
   pinsEl.appendChild(d); p.el = d; });
 
-/* dial: ticks on a fixed grid, one of them is always exactly under the needle */
+/* dial: a ruler that travels with the scroll. Every 5th tick is a major one; the ones passing the active column swell (fisheye) */
 const ruler = $('#ruler'), trk = $('#trk'), TICKS = [];
-$('.needle', ruler).style.left = NX + 'px';
-for (let j = -47; j <= 229; j++) { const i = document.createElement('i'), x = NX + TICK * j; i.style.left = (x - .5) + 'px'; trk.appendChild(i); TICKS.push({ el:i, x, q:-1 }); }
+for (let j = J0; j <= J1; j++) { const i = document.createElement('i'), major = j % 5 === 0, base = major ? 21 : 14;
+  i.style.left = (NX + TICK * j - .5) + 'px'; i.style.transform = `scaleY(${base / 14})`; i.style.opacity = major ? .42 : .28; trk.appendChild(i);
+  TICKS.push({ el:i, base, op: major ? .42 : .28, h:-1, o:-1 }); }
 const mts = $('#mts');
 METRICS.forEach((m, k) => { const d = document.createElement('div'); d.className = 'mt'; d.dataset.k = k;
   d.innerHTML = `<p class="num">${m.f(m.v)}</p><p class="lab"><b>${m.t}</b>${m.d}</p>`; mts.appendChild(d); m.el = d; m.num = $('.num', d); m.lab = $('.lab', d);
@@ -451,6 +489,9 @@ CHAPTERS.forEach(([n, k], i) => { const li = document.createElement('li');
 
 /* buttons: label roll on hover */
 $$('.btn').forEach(b => { const t = b.textContent.trim(); b.innerHTML = `<span class="bt"><span>${t}</span><span aria-hidden="true">${t}</span></span>`; });
+/* footer rows: every letter is its own roll-up (stagger comes from --i) */
+$$('.rl[data-t]').forEach(el => { const t = el.dataset.t; el.setAttribute('aria-label', t);
+  el.innerHTML = [...t].map((c, i) => c === ' ' ? '<span class="ch"><span class="sp"></span></span>' : `<span class="ch" aria-hidden="true" style="--i:${i}"><span>${c}</span><span>${c}</span></span>`).join(''); });
 
 /* ---------- layout metrics ---------- */
 let W, H, U, M, ppu, tl, st, lenis, ctx, entered = false;
@@ -485,7 +526,7 @@ function crop(el, k, v) {
   el.style.backgroundSize = `${iw * S}px ${ih * S}px`;
   el.style.backgroundPosition = `${Wd / 2 - (tx + a / 2) * iw * S}px ${Hd / 2 - (ty + d / 2) * ih * S}px`;
 }
-STOPS.forEach((s, i) => crop($(`.cc[data-i="${i}"] .th`, card), s.img, s.crop));
+STOPS.forEach((s, i) => crop($(`.cc[data-i="${i}"] .th .bgi`, card), s.img, s.crop));
 
 function placePins() { PINS.forEach(p => { const [x, y] = pt('map', p.x, p.g); p.el.style.left = x + 'px'; p.el.style.top = y + 'px'; }); }
 
@@ -495,8 +536,8 @@ function setWheel(a) {
     li.style.transform = `translateY(${d * 37}px)`; li.style.fontWeight = Math.round(400 + 200 * q);
     li.style.visibility = Math.abs(d) > 1.6 ? 'hidden' : 'visible'; });
 }
-/* metrics dial: continuous index m (0..2). Numbers and labels are centred on their column, the needle on the active one. */
-function setMetrics(m) {
+/* numbers: continuous index m (0..2). Numbers and labels are centred on their column, which is where the dial swells. */
+function setNums(m) {
   METRICS.forEach((o, k) => { const d = k - m, q = Math.max(0, 1 - Math.abs(d));
     o.el.style.left = (NX + STEP * d) + 'px'; const fa = d < 0 ? Math.max(0, 1 + d * 1.4) : 1;
     o.num.style.transform = `translateX(-50%) scale(${.2 + .8 * q})`;
@@ -504,15 +545,22 @@ function setMetrics(m) {
     o.lab.style.transform = `translateY(${658 + 39 * q}px)`;
     o.lab.style.color = `rgba(255,255,255,${(.4 + .6 * q) * fa})`;
     $('b', o.lab).style.fontWeight = Math.round(400 + 200 * q); });
-  const sh = -STEP * m;
-  trk.style.transform = `translateX(${sh}px)`;
-  // fisheye: the tick under the needle is the tallest and brightest, its neighbours fall off smoothly
-  for (const t of TICKS) {
-    const dist = Math.abs(t.x + sh - NX), q = dist >= SPAN ? 0 : Math.pow(1 - dist / SPAN, 1.7), v = Math.round(q * 200);
-    if (v === t.q) continue; t.q = v;
-    t.el.style.transform = q ? `scaleY(${((14 + 46 * q) / 14).toFixed(3)})` : '';
-    t.el.style.opacity = (.28 + .72 * q).toFixed(2);
+}
+/* the ruler: position follows the scroll (dialS 0..1), height/brightness fall off with distance from NX, and the swell
+   grows a little with scroll speed so fast scrolling feels "pushed" */
+let dialS = 0, dialBoost = 0, dialLast = [0, -1];
+function paintDial() {
+  const sh = -TRAVEL * dialS; trk.style.transform = `translate3d(${sh.toFixed(2)}px,0,0)`;
+  const jc = -sh / TICK, span = Math.ceil(SPAN / TICK) + 2, a = Math.floor(jc - span), b = Math.ceil(jc + span);
+  const lo = Math.max(J0, Math.min(a, dialLast[0])), hi = Math.min(J1, Math.max(b, dialLast[1]));
+  const peak = 60 * (1 + .3 * dialBoost);
+  for (let j = lo; j <= hi; j++) {
+    const t = TICKS[j - J0], dist = Math.abs(TICK * j + sh), q = dist >= SPAN ? 0 : Math.pow(1 - dist / SPAN, 1.7);
+    const h = Math.round((t.base + (peak - t.base) * q) * 10) / 10, o = Math.round((t.op + (1 - t.op) * q) * 100) / 100;
+    if (h !== t.h) { t.h = h; t.el.style.transform = `scaleY(${(h / 14).toFixed(3)})`; }
+    if (o !== t.o) { t.o = o; t.el.style.opacity = o; }
   }
+  dialLast = [a, b];
 }
 function setCount(c) { const o = METRICS[0]; o.num.textContent = o.f(Math.round(o.v * c)); }
 
@@ -543,15 +591,15 @@ function build() {
     gsap.set($$('#enterT .in, #capD .in, #impH .in, #tourC .in'), { yPercent: 115 });
     gsap.set(['#mapB .btn', '#tourC .btn'], { clipPath: 'inset(100% 0% 0% 0% round 34px)' });
     gsap.set(cc, { visibility: 'hidden', y: 0 }); gsap.set(cc[0], { visibility: 'visible' }); gsap.set(cc.slice(1), { y: 80 });
-    gsap.set($$('.dt', card), { y: 24 });
+    gsap.set($$('.dt', card), { y: 24, visibility: 'hidden' });   // each stop's list only exists while its own card is open: nothing can pile up
     gsap.set('.card .th', { clipPath: 'inset(100% 0% 0% 0% round 24px)' });
     gsap.set($$('.pin .tag, .pin .ring'), { opacity: 0, y: 10 }); gsap.set('.pin .line', { scaleY: 0 }); gsap.set('.pin .gd', { opacity: 0 });
     const FIN = 'inset(0% -60px -10px -60px)', FOUT = 'inset(100% -60px -10px -60px)';
-    gsap.set($$('.foot .hr'), { scaleX: 0 }); gsap.set($$('.foot p, .foot .col a'), { clipPath: FOUT, y: 30 });
+    gsap.set($$('.frw .fnum, .frw .farr'), { opacity: 0 }); gsap.set($$('.foot .hr'), { scaleX: 0 }); gsap.set($$('.foot .rv'), { clipPath: FOUT, y: 30 }); gsap.set('#spot', { opacity: 0 });
     card.style.height = STOPS[0].ho + 'px';
-    setWheel(0); setMetrics(0); setCount(0);
+    dialS = 0; dialLast = [J0, J1]; setWheel(0); setNums(0); setCount(0); paintDial();
     const rw = ruler.offsetWidth, rClosed = `inset(0px ${Math.max(0, rw - NX)}px 0px ${NX}px)`, rOpen = 'inset(0px 0px 0px 0px)';
-    gsap.set(ruler, { clipPath: rClosed }); gsap.set('.needle', { scaleY: 0 });
+    gsap.set(ruler, { clipPath: rClosed }); gsap.set('#metrics', { visibility: 'hidden' });
     gsap.set(tourEl, { left: 0, top: 0, width: W, height: H, y: H, borderRadius: FLAT });
     gsap.set(tourCN, { y: -H });
 
@@ -639,6 +687,7 @@ function build() {
       if (i === 0) ft('#hint', { opacity: 1 }, { opacity: 0 }, at, .3);
       if (out) { ft(IM(out), { scale: 1 }, { scale: 1.7 }, at, 1.4, 'power2.in'); iris(inn, out, vp, at + .55, 1.0); }
       else ft(IM(inn), { scale: 1 }, { scale: 1.1 }, at, 1.6, 'power1.inOut'); // same photo: keep the camera moving
+      vis(dts, true, at + .5);
       ft(card, { height: s.ho }, { height: s.hd }, at + .5, .9, 'power3.inOut');
       ft(c, { '--rot': '0deg' }, { '--rot': '180deg' }, at + .5, .9, 'power3.inOut');
       if (i === 0) ft(card, { backgroundColor: 'rgba(16,16,16,.25)' }, { backgroundColor: 'rgba(16,16,16,.3)' }, at + .5, .9);
@@ -650,11 +699,14 @@ function build() {
     /* details → next stop (travel sideways along the route: curtain from the right, the card text rolls like the wheel) */
     const nextStop = (i, at, out, inn) => {
       const s = STOPS[i], n = STOPS[i + 1], c = cc[i], c2 = cc[i + 1];
+      // strict order, so two stops can never overlap: 1) the old header rises out while the card collapses (its list is clipped by the shrinking card),
+      // 2) once the card is back to its small height the old stop is gone completely, 3) only then the next header rolls in from below
       ft(card, { height: s.hd }, { height: n.ho }, at + .2, .8, 'power3.inOut');
-      ft(c, { y: 0 }, { y: -80 }, at + .2, .6, 'power3.in');
-      vis(c, false, at + .85);
-      vis(c2, true, at + .75);
-      ft(c2, { y: 80 }, { y: 0 }, at + .75, .75, 'power3.out');
+      ft(c, { y: 0 }, { y: -80 }, at + .25, .6, 'power3.in');
+      vis($$('.dt', c), false, at + .45);
+      vis(c, false, at + .9);
+      vis(c2, true, at + .95);
+      ft(c2, { y: 80 }, { y: 0 }, at + .95, .7, 'power3.out');
       const w = { a: i }; ft(w, { a: i }, { a: i + 1, onUpdate: () => setWheel(w.a) }, at + .3, .9, 'power3.inOut');
       slideX(inn, out, at + .2, 1.35);
     };
@@ -677,18 +729,19 @@ function build() {
     ft($$('#impH .in'), { yPercent: 115 }, { yPercent: 0, stagger: .1 }, 28.3, .8, 'power3.out');
     // the dial opens from the needle outwards; its ticks swell as they pass under it
     ft(ruler, { clipPath: rClosed }, { clipPath: rOpen }, 28.4, 1.1, 'power3.out');
-    ft('.needle', { scaleY: 0 }, { scaleY: 1 }, 28.5, .6, 'power3.out');
     ft($$('.mt'), { opacity: 0, y: 44 }, { opacity: 1, y: 0, stagger: .08 }, 28.6, .8, 'power3.out');
     const cn = { c: 0 }; ft(cn, { c: 0 }, { c: 1, onUpdate: () => setCount(cn.c) }, 28.5, .9, 'power2.out');
     const mv = { m: 0 };
-    ft(mv, { m: 0 }, { m: 1, onUpdate: () => setMetrics(mv.m) }, 30.0, 1.0, 'power3.inOut');
-    ft(mv, { m: 1 }, { m: 2, onUpdate: () => setMetrics(mv.m) }, 31.6, 1.0, 'power3.inOut');
+    ft(mv, { m: 0 }, { m: 1, onUpdate: () => setNums(mv.m) }, 30.0, 1.0, 'power3.inOut');
+    ft(mv, { m: 1 }, { m: 2, onUpdate: () => setNums(mv.m) }, 31.6, 1.0, 'power3.inOut');
+    vis('#metrics', true, 28.3); vis('#metrics', false, 33.8);   // the dial exists only inside its scene
+    // the ruler is bound to the scroll for the whole scene (painted by the ticker below, which also adds the speed swell)
+    const ds = { s: 0 }; ft(ds, { s: 0 }, { s: 1, onUpdate: () => { dialS = ds.s; } }, 28.4, 4.9, 'none');
 
     /* 13 → 14  the text leaves upwards, the oasis rises as a curtain and becomes the tour window */
     ft($$('#impH .in'), { yPercent: 0 }, { yPercent: -125, stagger: .06 }, 33.1, .6, 'power3.in');
     ft($$('.mt'), { y: 0, opacity: 1 }, { y: -70, opacity: 0, stagger: .05 }, 33.1, .55, 'power3.in');
     ft(ruler, { clipPath: rOpen }, { clipPath: rClosed }, 33.1, .6, 'power3.in');
-    ft('.needle', { scaleY: 1 }, { scaleY: 0 }, 33.3, .4, 'power3.in');
     const cx = (W / U) / 2 + (372 - 720), cyy = (H / U) / 2 + (225 - 435);
     const box = { left: cx * U, top: cyy * U, width: 696 * U, height: 420 * U, br: 60 * U };
     if (M) { const w = W - 32, h = w * 420 / 696; Object.assign(box, { left: 16, top: (H - h) / 2, width: w, height: h, br: 40 }); }
@@ -709,7 +762,9 @@ function build() {
     ft('#tourC', { y: 0 }, { y: -(H + 80) }, 37.0, 1.0, 'power3.inOut');
     ft('#pill', { y: 0 }, { y: -110 }, 37.0, .8, 'power3.in');
     ft($$('.foot .hr'), { scaleX: 0 }, { scaleX: 1, stagger: .08 }, 37.5, .9, 'power3.inOut');
-    ft($$('.foot p, .foot .col a'), { clipPath: FOUT, y: 30 }, { clipPath: FIN, y: 0, stagger: .035 }, 37.65, .9, 'power3.out');
+    ft('#spot', { opacity: 0 }, { opacity: 1 }, 37.6, 1.4, 'power2.out');
+    ft($$('.foot .rv'), { clipPath: FOUT, y: 30 }, { clipPath: FIN, y: 0, stagger: .04 }, 37.65, .95, 'power3.out');
+    ft($$('.frw .fnum, .frw .farr'), { opacity: 0 }, { opacity: 1, stagger: .06 }, 38.0, .6, 'power2.out');
   }, stage);
 
   // Lenis already eases the wheel: scrubbing straight to the scroll position avoids a second lag on top
@@ -791,6 +846,54 @@ function playEntrance() {
    .to($$('#heroT .in, #heroS .in'), { yPercent: 0, duration: 1.4, ease: 'power4.out', stagger: .14 }, .25)
    .to('#heroB .btn', { clipPath: 'inset(0% 0% 0% 0% round 34px)', duration: .9, ease: 'power3.out' }, .75);
 }
+
+/* ---------- details: magnet buttons, image tab hover, footer (preview that follows the pointer, spotlight, clock), dial speed swell ---------- */
+gsap.set($$('.th .btn'), { xPercent: -50, yPercent: -50 });
+function magnet(btn, area, k = .2, max = 14) {
+  const qx = gsap.quickTo(btn, 'x', { duration: .6, ease: 'power3' }), qy = gsap.quickTo(btn, 'y', { duration: .6, ease: 'power3' });
+  const cl = v => Math.max(-max, Math.min(max, v));
+  area.addEventListener('pointermove', e => { if (e.pointerType === 'touch') return;
+    const r = btn.getBoundingClientRect(), cx = r.left + r.width / 2 - gsap.getProperty(btn, 'x') * U, cy = r.top + r.height / 2 - gsap.getProperty(btn, 'y') * U;
+    qx(cl((e.clientX - cx) * k / U)); qy(cl((e.clientY - cy) * k / U)); });
+  area.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') gsap.to(btn, { scale: 1.05, duration: .55, ease: 'power3.out', overwrite: 'auto' }); });
+  area.addEventListener('pointerleave', () => { qx(0); qy(0); gsap.to(btn, { scale: 1, duration: .7, ease: 'elastic.out(1,.5)', overwrite: 'auto' }); });
+}
+$$('.th').forEach(th => {
+  const btn = $('.btn', th), bgi = $('.bgi', th);
+  magnet(btn, th, .16, 16);
+  const bx = gsap.quickTo(bgi, 'x', { duration: .9, ease: 'power3' }), by = gsap.quickTo(bgi, 'y', { duration: .9, ease: 'power3' });
+  th.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') gsap.to(bgi, { scale: 1.08, duration: 1.2, ease: 'power3.out', overwrite: 'auto' }); });
+  th.addEventListener('pointermove', e => { if (e.pointerType === 'touch') return; const r = th.getBoundingClientRect(); bx(-(e.clientX - r.left - r.width / 2) / r.width * 18); by(-(e.clientY - r.top - r.height / 2) / r.height * 12); });
+  th.addEventListener('pointerleave', () => { bx(0); by(0); gsap.to(bgi, { scale: 1, duration: 1.1, ease: 'power3.out', overwrite: 'auto' }); });
+});
+[['#heroB .btn', null], ['#mapB .btn', null], ['#tourC .btn', null]].forEach(([q]) => { const b = $(q); if (b) magnet(b, b, .28, 9); });
+
+const fprev = $('#fprev'), fpi = $('#fpi'), spot = $('#spot'), fT = $('#fTime');
+const fxq = gsap.quickTo(fprev, 'x', { duration: .55, ease: 'power3' }), fyq = gsap.quickTo(fprev, 'y', { duration: .55, ease: 'power3' }), frq = gsap.quickTo(fprev, 'rotation', { duration: .7, ease: 'power3' });
+let frT;
+$$('.frw').forEach(r => {
+  r.addEventListener('pointerenter', e => { if (e.pointerType === 'touch') return; fpi.style.backgroundImage = `url(${IMGDIR}${r.dataset.prev}.jpg)`;
+    gsap.fromTo(fprev, { scale: .8 }, { scale: 1, opacity: 1, duration: .65, ease: 'power3.out', overwrite: 'auto' }); });
+  r.addEventListener('pointerleave', () => gsap.to(fprev, { scale: .86, opacity: 0, duration: .4, ease: 'power3.in', overwrite: 'auto' }));
+});
+magnet($('#btt'), $('#btt'), .3, 8);
+document.addEventListener('pointermove', e => {
+  if (!stage.classList.contains('footlive')) return;
+  fxq(e.clientX + 36); fyq(e.clientY - 100); frq(Math.max(-8, Math.min(8, e.movementX * .5))); clearTimeout(frT); frT = setTimeout(() => frq(0), 90);
+  spot.style.setProperty('--mx', (e.clientX / U) + 'px'); spot.style.setProperty('--my', (e.clientY / U) + 'px');
+});
+const clock = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+const tickClock = () => { fT.textContent = clock.format(new Date()); };
+tickClock(); setInterval(() => { if (stage.classList.contains('footlive')) tickClock(); }, 1000);
+
+// the ruler follows the scroll every frame; the swell grows with scroll speed
+let tPrev = 0, tClock = performance.now(), vSm = 0;
+gsap.ticker.add(() => {
+  if (!tl) return;
+  const t = tl.time(), now = performance.now(), v = Math.abs(t - tPrev) / Math.max(.001, (now - tClock) / 1000); tPrev = t; tClock = now;
+  vSm += (Math.min(1, v / 4) - vSm) * .1; dialBoost = vSm;
+  if ((t > 28.2 && t < 34) || vSm > .01) paintDial();
+});
 
 /* ---------- boot ---------- */
 let rz, lastW = 0;
