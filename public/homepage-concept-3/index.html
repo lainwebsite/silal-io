@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Innovation Oasis — From Desert to Discovery</title>
+<meta name="description" content="Silal Innovation Oasis, Al Foah — a journey through the campus, from the desert to discovery.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/homepage-concept-3/media/img/hero.jpg">
+<link rel="preload" as="image" href="/homepage-concept-3/media/img/intro.jpg">
+<style>
+/* ===== tokens (Figma: Silal IO – Concept 3 "From Desert to Discovery") ===== */
+:root{--ink:#101010;--ink2:#0f0f0f;--u:1;--fw:1440;--fh:870}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:#fff;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+
+.story{position:relative}
+.stage{position:fixed;inset:0;overflow:hidden;background:var(--ink)}
+
+/* ----- backgrounds: one layer per photo, camera = transform on .im ----- */
+.bg{position:absolute;inset:0;opacity:0;will-change:opacity}
+.bg .im{position:absolute;inset:0;background-size:cover;background-position:var(--fx,50%) 50%;will-change:transform}
+.shade{position:absolute;inset:0;background:rgba(0,0,0,.3);pointer-events:none}
+.g{position:absolute;pointer-events:none;opacity:0}
+#gBot{left:0;right:0;bottom:0;height:71.4%;background:linear-gradient(0deg,rgba(16,16,16,.6),rgba(16,16,16,0))}
+#gLeft{left:0;top:0;bottom:0;width:50%;background:linear-gradient(90deg,rgba(15,15,15,.4),rgba(15,15,15,0))}
+#gImp{inset:0;background:linear-gradient(0deg,#101010,rgba(16,16,16,0)),linear-gradient(0deg,#101010,rgba(16,16,16,0)) bottom/100% 69% no-repeat}
+#dark{position:absolute;inset:0;background:var(--ink);opacity:0}
+
+/* ----- fluid design frame: 1440×870 design px, scaled by --u, stretched on the long axis ----- */
+.frame{position:absolute;left:0;top:0;width:calc(var(--fw)*1px);height:calc(var(--fh)*1px);transform:scale(var(--u));transform-origin:0 0;pointer-events:none}
+.a{position:absolute}
+.cx{left:calc(50% + (var(--x) - 720)*1px)}
+.l{left:calc(var(--x)*1px)}
+.r{right:calc(var(--r)*1px)}
+.cy{top:calc(50% + (var(--y) - 435)*1px)}
+.t{top:calc(var(--y)*1px)}
+.b{bottom:calc(var(--b)*1px)}
+
+/* ----- type ----- */
+.t-hero{font-weight:600;font-size:42px;line-height:1.55;letter-spacing:-.02em;text-align:center;white-space:nowrap}
+.t-enter{font-weight:600;font-size:42px;line-height:1.55;letter-spacing:-.01em;white-space:nowrap}
+.t-16{font-size:16px;line-height:1.55}
+.t-16s{font-size:16px;line-height:1.55;font-weight:600}
+.t-14{font-size:14px;line-height:1.5}
+.t-12{font-size:12px;line-height:1.5}
+.dim6{color:rgba(255,255,255,.6)}.dim7{color:rgba(255,255,255,.7)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;height:41px;padding:0 20px;border-radius:34px;background:#fff;color:var(--ink2);font-weight:500;font-size:12px;line-height:1;white-space:nowrap;transition:background-color .35s,transform .35s cubic-bezier(.2,.7,.2,1)}
+.btn:hover{background:#ededed;transform:scale(1.03)}
+.btn.lg{height:49px;padding:0 22px}
+
+/* glass (Figma GLASS r60 · light 225° · no shadow) */
+.glass{-webkit-backdrop-filter:blur(30px) saturate(140%);backdrop-filter:blur(30px) saturate(140%)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(225deg,rgba(255,255,255,.30),rgba(255,255,255,.05) 35%,rgba(255,255,255,.02) 65%,rgba(255,255,255,.12));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+
+/* ----- persistent chrome ----- */
+.pill{left:30px;top:30px;width:122px;height:52px;border-radius:70px;background:rgba(16,16,16,.2);display:flex;align-items:center;pointer-events:auto}
+.pill .logo{position:absolute;left:24px;top:0;height:52px;display:flex;align-items:center;font-weight:700;font-size:19px;letter-spacing:0}
+.pill .dots{position:absolute;left:73px;top:0;width:49px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:0 70px 70px 0}
+.pill .dots svg{width:13px;height:20px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.pill .dots:hover svg{transform:rotate(90deg)}
+.hint{font-size:12px;letter-spacing:-.01em;opacity:0}
+
+/* ----- 01 hero ----- */
+#heroT{--x:423;--y:403;width:594px}
+#heroS{--x:583;--b:145;width:274px;text-align:center}
+#heroB{--x:649.5;--b:80;pointer-events:auto}
+.rise{display:block;animation:rise 1.6s cubic-bezier(.2,.7,.1,1) backwards}
+.btn.rise{display:flex}
+@keyframes rise{from{opacity:0;transform:translateY(28px);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+
+/* ----- 02/03 enter → caption (one element, FLIP) ----- */
+#enterT{--x:64;--y:403;transform-origin:0 0}
+#capD{--x:205;--b:64}
+#mapB{--r:64;--b:56;pointer-events:auto}
+
+/* ----- 04 map pins (live in stage space, anchored to the photo) ----- */
+.pins{position:absolute;inset:0;pointer-events:none}
+.pin{position:absolute;width:0;height:0}
+.pin .in{position:absolute;left:0;bottom:-2px;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%) scale(var(--pu));transform-origin:50% 100%}
+.pin .tag{height:41px;padding:0 16px;border-radius:34px;background:rgba(255,255,255,.1);display:flex;align-items:center;font-weight:500;font-size:12px;white-space:nowrap;pointer-events:auto;cursor:pointer;transition:background-color .35s}
+.pin .tag:hover{background:rgba(255,255,255,.24)}
+.pin .ring{margin-top:15px;width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center}
+.pin .ring i{width:6px;height:6px;border-radius:50%;background:#fff}
+.pin .line{width:1px;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.15));transform-origin:50% 100%}
+.pin .gd{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2)}
+.pin:has(.tag:hover) .line{background:linear-gradient(180deg,#fff,rgba(255,255,255,.35))}
+
+/* ----- 05–12 journey dock: wheel + card ----- */
+.wheel{left:30px;top:88px;width:350px;height:143px;border-radius:30px;background:rgba(16,16,16,.3);pointer-events:auto}
+.wheel .hl{position:absolute;left:28px;top:20px;width:103px;height:.5px;background:linear-gradient(90deg,rgba(255,255,255,.1),#fff 50%,rgba(255,255,255,.1));opacity:.5}
+.wheel .bar{position:absolute;left:28px;top:61px;width:1px;height:21px;background:#fff}
+.wheel ul{position:absolute;inset:0;-webkit-mask:linear-gradient(180deg,transparent 22px,#000 46px,#000 97px,transparent 121px);mask:linear-gradient(180deg,transparent 22px,#000 46px,#000 97px,transparent 121px)}
+.wheel li{position:absolute;left:48px;top:61px;height:21px;font-size:14px;line-height:1.5;white-space:nowrap;cursor:pointer;will-change:transform}
+
+.card{left:30px;top:237px;width:350px;height:156px;border-radius:30px;background:rgba(16,16,16,.25);overflow:hidden;pointer-events:auto}
+.card .cc{position:absolute;inset:0;opacity:0}
+.card .ct{position:absolute;left:28px;top:30px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.7)}
+.card .cd{position:absolute;left:28px;top:63px;width:294px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.7)}
+.card .chev{position:absolute;left:286px;top:29px;width:36px;height:23px;border-radius:1000px;background:rgba(255,255,255,.1);display:grid;place-items:center;transition:background-color .3s}
+.card .chev:hover{background:rgba(255,255,255,.2)}
+.card .chev svg{width:7px;height:4px;transform:rotate(var(--rot,0deg))}
+.card .li{position:absolute;left:28px;width:294px;height:18px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.7);cursor:default}
+.card .li span{display:block;transition:transform .45s cubic-bezier(.2,.7,.2,1),color .3s}
+.card .li .dot{position:absolute;left:0;top:1px;width:16px;height:16px;display:grid;place-items:center;opacity:0;transition:opacity .3s}
+.card .li .dot i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.7)}
+.card .li.on span{transform:translateX(24px);color:rgba(255,255,255,.95)}
+.card .li.on .dot{opacity:1}
+.card .sep{position:absolute;left:28px;width:294px;height:.5px;background:linear-gradient(90deg,rgba(255,255,255,.1),#fff 50%,rgba(255,255,255,.1));opacity:.2;transform-origin:0 50%}
+.card .th{position:absolute;left:14px;width:322px;height:190px;border-radius:24px;overflow:hidden;background-size:cover}
+.card .th::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.2)}
+.card .th .btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1}
+.card .th .btn:hover{transform:translate(-50%,-50%) scale(1.03)}
+
+/* ----- 13 impact ----- */
+#impH{--x:64;--y:130;width:529px}
+#impH p+p{margin-top:10px}
+.metrics{--x:0;--y:0;left:0;width:100%;height:0}
+.ruler{position:absolute;left:64px;right:0;top:620px;height:60px;margin-top:-23px;-webkit-mask:linear-gradient(90deg,transparent,#000 40px);mask:linear-gradient(90deg,transparent,#000 40px)}
+.ruler i{position:absolute;top:23px;width:1px;height:14px;background:#fff;opacity:.3}
+.ruler .needle{position:absolute;left:360px;top:0;width:1px;height:60px;background:#fff}
+.mt{position:absolute;left:0;top:0}
+.mt .num{position:absolute;left:0;top:463px;font-size:120px;line-height:1;letter-spacing:-.03em;white-space:nowrap;transform-origin:0 104px;font-variant-numeric:tabular-nums}
+.mt .lab{position:absolute;left:0;top:0;width:260px;font-size:12px;line-height:1.5;white-space:nowrap}
+.mt .lab b{display:block;font-weight:600}
+.metrics .mt{cursor:pointer}
+.stage[data-live~="imp"] .metrics .mt{pointer-events:auto}
+.ruler .trk{position:absolute;left:0;top:0;width:0;height:100%}
+
+/* ----- 14 tour ----- */
+#tour{position:absolute;left:0;top:0;opacity:0;overflow:hidden;will-change:left,top,width,height}
+#tour .im{position:absolute;inset:0;background:url(/homepage-concept-3/media/img/map.jpg) center/cover}
+#tour .im::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.2)}
+#tourRing{position:absolute;opacity:0;border:1px solid rgba(255,255,255,.3);pointer-events:none}
+#tourC{--x:474;--y:411;display:flex;align-items:center;gap:30px;pointer-events:auto}
+#tourC h2{font-weight:500;font-size:32px;line-height:1.2;letter-spacing:-.01em;white-space:nowrap}
+
+/* ----- 15 footer (final in-stage scene) ----- */
+.foot{pointer-events:none}
+.foot .fl{font-weight:500;font-size:34px;line-height:41px;white-space:nowrap}
+.foot .fl a{display:inline-block;transition:transform .45s cubic-bezier(.2,.7,.2,1),opacity .3s}
+.foot .fl a:hover{transform:translateX(10px)}
+.foot .hr{position:absolute;left:64px;right:64px;height:1px;background:rgba(255,255,255,.3);transform:scaleY(.5);transform-origin:0 50%}
+.foot .bl{font-size:12px;line-height:1.55;color:rgba(255,255,255,.4)}
+.foot .col a{display:block;font-weight:500;font-size:21px;line-height:25px;color:rgba(255,255,255,.4);margin-bottom:20px;transition:color .3s;white-space:nowrap}
+.foot .col a:hover{color:#fff}
+.foot .sm{font-size:12px;line-height:15px;color:rgba(255,255,255,.4)}
+.stage.footlive .foot a{pointer-events:auto}
+
+/* ----- menu ----- */
+.menu{position:fixed;left:calc(30px*var(--u));top:calc(90px*var(--u));width:260px;padding:14px 10px;border-radius:24px;background:rgba(16,16,16,.55);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .35s,transform .45s cubic-bezier(.2,.7,.2,1),visibility .35s;z-index:5}
+.menu.open{opacity:1;visibility:visible;transform:none}
+.menu a{display:flex;gap:12px;padding:9px 14px;border-radius:14px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.55);transition:color .25s,background-color .25s}
+.menu a em{font-style:normal;font-size:10px;letter-spacing:.04em;color:rgba(255,255,255,.4);width:16px;padding-top:3px}
+.menu a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.menu a.on{color:#fff}
+
+/* interactivity is only live inside its scene window */
+.stage [data-w]{pointer-events:none!important}
+.stage[data-live~="hero"] [data-w="hero"],.stage[data-live~="over"] [data-w="over"],.stage[data-live~="map"] [data-w="map"],
+.stage[data-live~="dock"] [data-w="dock"],.stage[data-live~="imp"] [data-w="imp"],.stage[data-live~="tour"] [data-w="tour"]{pointer-events:auto!important}
+.stage[data-live~="map"] .pin .tag{pointer-events:auto}
+.stage:not([data-live~="map"]) .pin .tag{pointer-events:none}
+
+/* ===== mobile / portrait (design width 390) ===== */
+html.m #heroT{--x:25;width:340px;white-space:normal;font-size:30px;line-height:1.3;--y:380}
+html.m #heroS{--x:58;--b:150;width:274px}
+html.m #heroB{--x:124.5;--b:84}
+html.m .cx{left:calc(50% + (var(--x) - 195)*1px)}
+html.m #enterT{--x:20;--y:380;font-size:34px}
+html.m #capD{--x:20;--b:96;width:300px;font-size:14px;white-space:normal}
+html.m #mapB{--r:20;--b:36}
+html.m .pill{left:16px;top:16px;transform:scale(.86);transform-origin:0 0}
+html.m .wheel{left:16px;top:70px;transform:scale(var(--dk));transform-origin:0 0}
+html.m .card{left:16px;top:calc(70px + 149px*var(--dk));transform:scale(var(--dk));transform-origin:0 0}
+html.m .menu{left:16px;top:66px}
+html.m .hint{--r:20;--b:24}
+html.m #impH{--x:20;--y:96;width:350px}
+html.m .metrics{transform:scale(var(--ms));transform-origin:0 435px;left:calc(20px - 408px*var(--ms));width:calc(100% / var(--ms) + 408px)}
+html.m #tourC{flex-direction:column;gap:16px;--x:0;width:100%;justify-content:center;left:0!important}
+html.m #tourC h2{font-size:22px}
+html.m .foot .fl{font-size:28px}
+html.m .foot .hr{left:20px;right:20px}
+html.m .foot .x64{--x:20!important}
+html.m .foot .bl{width:350px!important;top:400px!important}
+html.m .foot .c1{--x:20!important;top:480px!important}
+html.m .foot .c2{--x:210!important;top:480px!important}
+html.m .foot .col a{font-size:17px;margin-bottom:14px}
+html.m .foot .sm.r{--r:20!important}
+
+@media (prefers-reduced-motion:reduce){.rise{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="dotsI" viewBox="0 0 13 20"><path d="M1.93679 1.75H1.91981M10.75 1.75H10.733M1.76698 9.75H1.75M10.75 9.75H10.733M1.93679 17.75H1.91981M10.75 17.75H10.733" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/></symbol>
+  <symbol id="chevI" viewBox="0 0 7 4"><path d="M0.5 0.5L3.5 3.5L6.5 0.5" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+</svg>
+
+<main class="story" id="story">
+ <div class="stage" id="stage" data-live="hero">
+  <!-- photos, in journey order -->
+  <div class="bg" id="b-hero"><div class="im" style="background-image:url(/homepage-concept-3/media/img/hero.jpg)"></div></div>
+  <div class="bg" id="b-intro"><div class="im" style="background-image:url(/homepage-concept-3/media/img/intro.jpg)"></div></div>
+  <div class="bg" id="b-map"><div class="im" style="background-image:url(/homepage-concept-3/media/img/map.jpg)"></div></div>
+  <div class="bg" id="b-gh"><div class="im" style="background-image:url(/homepage-concept-3/media/img/gh.jpg)"></div></div>
+  <div class="bg" id="b-ghin"><div class="im" style="background-image:url(/homepage-concept-3/media/img/ghin.jpg)"></div></div>
+  <div class="bg" id="b-lab"><div class="im" style="background-image:url(/homepage-concept-3/media/img/lab.jpg)"></div></div>
+  <div class="bg" id="b-labin"><div class="im" style="background-image:url(/homepage-concept-3/media/img/labin.jpg)"></div></div>
+  <div class="bg" id="b-tech"><div class="im" style="background-image:url(/homepage-concept-3/media/img/tech.jpg)"></div></div>
+  <div class="bg" id="b-techin"><div class="im" style="background-image:url(/homepage-concept-3/media/img/techin.jpg)"></div></div>
+  <div class="bg" id="b-part"><div class="im" style="background-image:url(/homepage-concept-3/media/img/part.jpg)"></div></div>
+  <div class="bg" id="b-impact"><div class="im" style="background-image:url(/homepage-concept-3/media/img/impact.jpg)"></div></div>
+  <div class="shade" id="shade"></div>
+  <div class="g" id="gBot"></div><div class="g" id="gLeft"></div><div class="g" id="gImp"></div>
+  <div id="dark"></div>
+  <div id="tour"><div class="im"></div></div>
+  <div id="tourRing"></div>
+  <div class="pins" id="pins"></div>
+
+  <div class="frame" id="frame">
+    <!-- 01 Hero -->
+    <h1 class="a cx cy t-hero" id="heroT"><span class="rise">A Different Kind of Destination</span></h1>
+    <p class="a cx b t-16" id="heroS"><span class="rise" style="animation-delay:.25s">Where a harsher environment grows brighter possibilities.</span></p>
+    <p class="a cx b" id="heroB" data-w="hero"><a class="btn rise" style="animation-delay:.45s;width:141px" href="#enter" data-go="enter">Start the Journey</a></p>
+
+    <!-- 02 Enter → 03 caption -->
+    <h2 class="a l cy t-enter" id="enterT">Enter the Oasis.</h2>
+    <p class="a l b t-16 dim6" id="capD">An integrated site for research, innovation and real-world impact.</p>
+    <p class="a r b" id="mapB" data-w="over"><a class="btn" href="#map" data-go="map">Explore the Map</a></p>
+
+    <!-- 05–12 dock -->
+    <div class="a wheel glass" id="wheel" data-w="dock"><i class="hl"></i><i class="bar"></i><ul id="wheelL"></ul></div>
+    <div class="a card glass" id="card" data-w="dock"></div>
+    <p class="a r b hint" id="hint" style="--r:30;--b:30">Scroll</p>
+
+    <!-- 13 Impact -->
+    <div class="a l t" id="impH"><p class="t-16s">A more resilient future.</p><p class="t-16 dim7">Research, technology and collaboration come together to create solutions that extend far beyond the campus.</p></div>
+    <div class="a cy metrics" id="metrics" data-w="imp">
+      <div class="ruler" id="ruler"><div class="trk" id="trk"></div><i class="needle"></i></div>
+      <div id="mts"></div>
+    </div>
+
+    <!-- 14 Tour -->
+    <div class="a cx cy" id="tourC" data-w="tour"><h2>Innovation Oasis tour</h2><a class="btn lg" href="#tour">Start Virtual Tour</a></div>
+
+    <!-- 15 Footer -->
+    <div class="a foot" id="foot" style="inset:0">
+      <p class="a l t fl x64" style="--x:64;--y:90"><a href="#research">Research</a></p>
+      <p class="a l t fl x64" style="--x:64;--y:171"><a href="#programmes">Programmes</a></p>
+      <p class="a l t fl x64" style="--x:64;--y:252"><a href="#community">Community</a></p>
+      <p class="a l t fl x64" style="--x:64;--y:333"><a href="#contact">Contact</a></p>
+      <i class="hr" style="top:151px"></i><i class="hr" style="top:232px"></i><i class="hr" style="top:313px"></i>
+      <p class="a l t bl x64" style="--x:64;--y:434;width:520px">A strategic enabler of the UAE’s vision – transforming national priorities into tangible innovation outcomes across agriculture and food systems.</p>
+      <div class="a l t col c1" style="--x:728;--y:434"><a href="#research">Research</a><a href="#talent">Talent &amp; Training</a><a href="#centres">Centres of Excellence</a></div>
+      <div class="a l t col c2" style="--x:1060;--y:434"><a href="#entrepreneurs">Entrepreneurs</a><a href="#companies">Companies</a><a href="#investors">Investors</a></div>
+      <i class="hr hrb" style="bottom:111px"></i>
+      <p class="a l b sm x64" style="--x:64;--b:55">Innovation Oasis — Silal, Al Ain, UAE</p>
+      <p class="a r b sm" style="--r:64;--b:55">Part of Silal</p>
+    </div>
+
+    <!-- persistent -->
+    <div class="a pill glass" id="pill"><a class="logo" href="#top" data-go="hero" aria-label="Innovation Oasis — back to start">iO</a><button class="dots" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg><use href="#dotsI"/></svg></button></div>
+  </div>
+ </div>
+</main>
+<nav class="menu glass" id="menu" aria-label="Journey"></nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const story = $('#story'), stage = $('#stage'), frame = $('#frame');
+
+/* natural image sizes (for mapping Figma frame points onto the cover-fitted photo) */
+const IMG = { hero:[1613,975], intro:[1612,975], map:[1672,941], gh:[1613,975], ghin:[1614,975], lab:[1614,975], labin:[1613,975],
+  tech:[1613,975], techin:[1614,975], part:[1613,975], impact:[1614,975] };
+/* mobile focal point (background-position x) so the subject stays in a portrait crop */
+const FX = { hero:.5, intro:.66, map:.74, gh:.42, ghin:.55, lab:.55, labin:.6, tech:.4, techin:.62, part:.55, impact:.62 };
+
+/* ---------- journey content (Figma 05–12) ---------- */
+const STOPS = [
+  { k:'gh', name:'Greenhouses', t:'From Research to Production', d:'Ideas developed in the greenhouses are validated, refined and prepared for real-world farming conditions.',
+    li:['Climate-controlled Environments','Crop Performance Trials','Water-use Optimisation','Research to Market'], on:1, ls:166, th:340, ho:156, hd:544,
+    img:'t-gh', crop:[1,0,.9,.1], cta:'Explore Greenhouses', cw:159 },
+  { k:'lab', name:'Research Labs', t:'Soil. Water. Genetics.', d:'Our research focuses on solving practical challenges faced by growers today.',
+    li:['Genetics and Crop Improvement','Soil and Water Analysis','Plant Health Research','Applied Agricultural Science'], on:2, ls:145, th:319, ho:135, hd:523,
+    img:'t-lab', crop:[1,0,.9,.1], cta:'Explore Labs', cw:110 },
+  { k:'tech', name:'Technology and Innovation', t:'Turning Data into Growth', d:'Real-time data, automation and analytics help transform research into practical outcomes for growers and communities.',
+    li:['Sensors and IoT Monitoring','Smart Irrigation Systems','Robotics and Automation','AI-driven Analytics'], on:2, ls:162, th:336, ho:156, hd:540,
+    img:'t-tech', crop:[1,0,.4,.3], cta:'Explore Tech', cw:110 },
+  { k:'part', name:'Partnerships', t:'Built through Collaboration', d:'A connected network working toward a more resilient food future.',
+    li:['Universities and Research Institutions','Agri-tech Startups','Industry and Commercial Partners','Local Farming Communities'], on:0, ls:145, th:319, ho:135, hd:523,
+    img:'t-part', crop:[.9,0,.8,.1], cta:'Explore Partnerships', cw:156 }
+];
+const THUMB = { 't-gh':[900,600], 't-lab':[900,600], 't-tech':[600,900], 't-part':[900,600] };
+
+/* map pins: dot (x,y) and ground y in Figma frame 04 coords */
+const PINS = [
+  { n:'Greenhouses', x:567, y:311, g:427, go:'gh' },
+  { n:'Research Labs', x:1010, y:196, g:372, go:'lab' },
+  { n:'Tech Hub', x:841, y:315, g:375, go:'tech' },
+  { n:'Greenhouses', x:1255, y:382, g:442, go:'gh' },
+  { n:'Farms and Field Trials', x:1119, y:519, g:579, go:'imp' }
+];
+
+/* impact metrics (Figma 13) */
+const METRICS = [
+  { v:30, f:n => n + '%', t:'Water use efficiency', d:'Helping growers use water more effectively.' },
+  { v:4, f:n => String(n).padStart(2, '0'), t:'Research areas', d:'Focused on the challenges that matter most.' },
+  { v:10, f:n => n + '+', t:'Crops under research', d:'Testing varieties for local conditions.' }
+];
+
+/* ---------- beats (timeline units). One table, no remapping. ---------- */
+const B = {
+  hero:0, enter:2.6, over:4.7, map:7.3, gh:10.0, ghd:12.4, lab:14.8, labd:17.2, tech:19.6, techd:22.0, part:24.4, partd:26.7,
+  imp:29.4, imp2:31.0, imp3:32.6, tour:35.8, foot:38.4, END:39.0
+};
+const CHAPTERS = [
+  ['The Destination','hero'], ['Enter the Oasis','enter'], ['Campus Map','map'], ['Greenhouses','gh'], ['Research Labs','lab'],
+  ['Technology & Innovation','tech'], ['Partnerships','part'], ['Impact','imp'], ['Virtual Tour','tour'], ['Contact','foot']
+];
+const LIVE = [ ['hero',0,1.0], ['over',4.4,5.1], ['map',7.0,8.1], ['dock',9.8,27.1], ['imp',29.0,33.4], ['tour',35.4,36.6] ];
+
+/* ---------- build DOM ---------- */
+const wheelL = $('#wheelL');
+STOPS.forEach((s, i) => { const li = document.createElement('li'); li.textContent = s.name; li.dataset.go = s.k; wheelL.appendChild(li); });
+const card = $('#card');
+STOPS.forEach((s, i) => {
+  const c = document.createElement('div'); c.className = 'cc'; c.dataset.i = i;
+  let h = `<p class="ct">${s.t}</p><button class="chev" aria-label="Show details"><svg><use href="#chevI"/></svg></button><p class="cd">${s.d}</p>`;
+  s.li.forEach((x, j) => { h += `<div class="li dt${j === s.on ? ' on' : ''}" style="top:${s.ls + 42 * j}px"><i class="dot"><i></i></i><span>${x}</span></div>`;
+    if (j < 3) h += `<i class="sep dt" style="top:${s.ls + 30 + 42 * j}px"></i>`; });
+  h += `<div class="th dt" style="top:${s.th}px" data-img="${s.img}"><a class="btn" href="#${s.k}" style="width:${s.cw}px">${s.cta}</a></div>`;
+  c.innerHTML = h; card.appendChild(c);
+  // hover moves the active marker (Figma shows one item marked); leaving restores the default
+  const lis = $$('.li', c);
+  lis.forEach((el, j) => el.addEventListener('pointerenter', () => lis.forEach((o, q) => o.classList.toggle('on', q === j))));
+  c.addEventListener('pointerleave', () => lis.forEach((o, q) => o.classList.toggle('on', q === s.on)));
+  $('.chev', c).addEventListener('click', () => { const open = parseFloat(getComputedStyle(c).getPropertyValue('--rot')) > 90; go(open ? s.k : s.k + 'd'); });
+});
+const pinsEl = $('#pins');
+PINS.forEach(p => { const d = document.createElement('div'); d.className = 'pin';
+  d.innerHTML = `<div class="in"><a class="tag" href="#${p.go}" data-go="${p.go}">${p.n}</a><i class="ring"><i></i></i><i class="line" style="height:${p.g - p.y - 7}px"></i><i class="gd"></i></div>`;
+  pinsEl.appendChild(d); p.el = d; });
+const ruler = $('#ruler'), trk = $('#trk'), TICKS = [];
+for (let x = 64 - 760; x <= 2400; x += 12) { const i = document.createElement('i'); i.style.left = (x - 64) + 'px'; trk.appendChild(i); TICKS.push([i, x]); }
+const mts = $('#mts');
+METRICS.forEach((m, k) => { const d = document.createElement('div'); d.className = 'mt'; d.dataset.k = k;
+  d.innerHTML = `<p class="num">${m.f(m.v)}</p><p class="lab"><b>${m.t}</b>${m.d}</p>`; mts.appendChild(d); m.el = d; m.num = $('.num', d); m.lab = $('.lab', d);
+  d.addEventListener('click', () => go(['imp','imp2','imp3'][k])); });
+const menu = $('#menu');
+menu.innerHTML = CHAPTERS.map(([n, k], i) => `<a href="#${k}" data-go="${k}"><em>${String(i + 1).padStart(2, '0')}</em>${n}</a>`).join('');
+
+/* ---------- layout metrics ---------- */
+let W, H, U, M, ppu, tl, st, lenis, ctx, mVal = 0, cntVal = 0;
+const P = new URLSearchParams(location.search);
+const useLenis = P.get('lenis') !== '0' && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function metrics() {
+  W = innerWidth; H = innerHeight;
+  M = W < 820 || W / H < .9;
+  document.documentElement.classList.toggle('m', M);
+  U = M ? W / 390 : Math.min(W / 1440, H / 870);
+  const r = document.documentElement.style;
+  r.setProperty('--u', U); r.setProperty('--fw', W / U); r.setProperty('--fh', H / U);
+  r.setProperty('--pu', M ? .78 * U : U);
+  r.setProperty('--dk', Math.min(1, (390 - 32) / 350));
+  r.setProperty('--ms', .56);
+  $$('.bg').forEach(b => b.querySelector('.im').style.setProperty('--fx', M ? (FX[b.id.slice(2)] * 100) + '%' : '50%'));
+  ppu = H * (M ? .62 : .72);
+  story.style.height = (B.END * ppu + H) + 'px';
+}
+/* Figma frame point → screen point on a cover-fitted photo */
+function pt(k, fx, fy) {
+  const [iw, ih] = IMG[k], s1 = Math.max(1440 / iw, 870 / ih);
+  const ix = (fx - (1440 - iw * s1) / 2) / s1, iy = (fy - (870 - ih * s1) / 2) / s1;
+  const s2 = Math.max(W / iw, H / ih), f = M ? FX[k] : .5;
+  return [(W - iw * s2) * f + ix * s2, (H - ih * s2) / 2 + iy * s2];
+}
+const origin = (k, x, y) => { const [a, b] = pt(k, x, y); return `${a.toFixed(1)}px ${b.toFixed(1)}px`; };
+/* Figma CROP fill → background-size/position */
+function crop(el, k, v) {
+  const [iw, ih] = THUMB[k], [a, tx, d, ty] = v, Wd = 322, Hd = 190;
+  const S = Math.max(Wd / (a * iw), Hd / (d * ih));
+  el.style.backgroundImage = `url(/homepage-concept-3/media/img/${k}.jpg)`;
+  el.style.backgroundSize = `${iw * S}px ${ih * S}px`;
+  el.style.backgroundPosition = `${Wd / 2 - (tx + a / 2) * iw * S}px ${Hd / 2 - (ty + d / 2) * ih * S}px`;
+}
+STOPS.forEach((s, i) => crop($(`.cc[data-i="${i}"] .th`, card), s.img, s.crop));
+
+function placePins() { PINS.forEach(p => { const [x, y] = pt('map', p.x, p.g); p.el.style.left = x + 'px'; p.el.style.top = y + 'px'; }); }
+
+/* wheel: continuous active index a (0..3) */
+function setWheel(a) {
+  $$('li', wheelL).forEach((li, k) => { const d = k - a, q = Math.max(0, 1 - Math.abs(d));
+    li.style.transform = `translateY(${d * 37}px)`; li.style.fontWeight = Math.round(400 + 200 * q);
+    li.style.visibility = Math.abs(d) > 1.6 ? 'hidden' : 'visible'; });
+}
+/* metrics dial: continuous index m (0..2) */
+function setMetrics(m) {
+  METRICS.forEach((o, k) => { const d = k - m, q = Math.max(0, 1 - Math.abs(d)), x = 424 + 372 * d;
+    o.el.style.left = x + 'px'; const fa = d < 0 ? Math.max(0, 1 + d * 1.4) : 1;
+    o.num.style.transform = `translateX(${-16 * q}px) scale(${.2 + .8 * q})`;
+    o.num.style.color = `rgba(255,255,255,${(.4 + .6 * q) * fa})`;
+    o.lab.style.transform = `translate(${-2 * q}px,${658 + 39 * q}px)`;
+    o.lab.style.color = `rgba(255,255,255,${(.4 + .6 * q) * fa})`;
+    $('b', o.lab).style.fontWeight = Math.round(400 + 200 * q); });
+  const sh = -372 * m;
+  trk.style.transform = `translateX(${sh}px)`;
+  TICKS.forEach(([el, x]) => { const sx = x + sh; el.style.opacity = sx >= 350 && sx <= 425 ? .9 : .3; });
+}
+function setCount(c) { const o = METRICS[0]; o.num.textContent = o.f(Math.round(o.v * c)); }
+
+/* ---------- master timeline ---------- */
+function build() {
+  const keep = tl ? tl.time() : (P.has('t') ? (B[P.get('t')] ?? +P.get('t')) : 0);
+  if (ctx) ctx.revert(); if (st) st.kill();
+  metrics(); placePins();
+  ctx = gsap.context(() => {
+    const im = id => $(`#b-${id} .im`), bg = id => $(`#b-${id}`);
+    const card = $('#card'), cc = $$('.cc', card), wheel = $('#wheel');
+    const enterT = $('#enterT'), capD = $('#capD');
+    const tourEl = $('#tour'), ring = $('#tourRing');
+
+    // initial state (= Figma 01)
+    gsap.set('.bg', { opacity: 0 }); gsap.set(bg('hero'), { opacity: 1 });
+    gsap.set('.bg .im', { scale: 1, xPercent: 0, yPercent: 0 });
+    gsap.set('#gBot', { opacity: 1 }); gsap.set(['#gLeft', '#gImp', '#dark'], { opacity: 0 });
+    gsap.set([enterT, capD, '#mapB', wheel, card, '#hint', '#impH', '#metrics', '#tourC', ring, '#foot'], { opacity: 0 });
+    gsap.set(cc, { opacity: 0 }); gsap.set(cc[0], { opacity: 1 });
+    gsap.set($$('.dt', card), { opacity: 0 });
+    gsap.set('.card .th', { clipPath: 'inset(100% 0% 0% 0% round 24px)' });
+    gsap.set($$('.pin .tag, .pin .ring'), { opacity: 0, y: 10 }); gsap.set('.pin .line', { scaleY: 0 }); gsap.set('.pin .gd', { opacity: 0 });
+    gsap.set($$('.foot .hr'), { scaleX: 0 }); gsap.set($$('.foot p, .foot .col a'), { opacity: 0, y: 24 });
+    gsap.set('#foot', { opacity: 1 });
+    card.style.height = STOPS[0].ho + 'px';
+    setWheel(0); setMetrics(0); setCount(0);
+
+    // camera origins (Figma frame coords → screen)
+    gsap.set(im('hero'), { transformOrigin: origin('hero', 720, 520) });
+    gsap.set(im('intro'), { transformOrigin: origin('intro', 954, 432) });   // the oasis on the horizon
+    gsap.set(im('map'), { transformOrigin: origin('map', 900, 414) });
+    gsap.set(im('gh'), { transformOrigin: origin('gh', 1000, 345) });        // down the greenhouse avenue
+    gsap.set(im('ghin'), { transformOrigin: origin('ghin', 1062, 378) });
+    gsap.set(im('lab'), { transformOrigin: origin('lab', 882, 522) });       // the lab entrance
+    gsap.set(im('labin'), { transformOrigin: origin('labin', 760, 430) });
+    gsap.set(im('tech'), { transformOrigin: origin('tech', 900, 420) });
+    gsap.set(im('techin'), { transformOrigin: origin('techin', 900, 380) });
+    gsap.set(im('part'), { transformOrigin: origin('part', 830, 560) });
+    gsap.set(im('impact'), { transformOrigin: origin('impact', 960, 450) });
+
+    tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' } });
+    const ft = (t, from, to, at, dur, ease) => tl.fromTo(t, from, { ...to, duration: dur, ease: ease || 'power2.inOut', immediateRender: false }, at);
+    const to = (t, v, at, dur, ease) => tl.to(t, { ...v, duration: dur, ease: ease || 'power2.inOut' }, at);
+    tl.set({}, {}, B.END);
+
+    /* 01 → 02  leave the dunes, the oasis appears on the horizon */
+    ft(im('hero'), { scale: 1 }, { scale: 1.32 }, 0, 2.5, 'power1.in');
+    ft(['#heroT', '#heroS', '#heroB'], { opacity: 1, y: 0, filter: 'blur(0px)' }, { opacity: 0, y: -40, filter: 'blur(8px)', stagger: .07 }, 1.0, .7, 'power2.in');
+    ft(bg('hero'), { opacity: 1 }, { opacity: 0 }, 1.5, .9);
+    ft(bg('intro'), { opacity: 0 }, { opacity: 1 }, 1.4, 1.0);
+    ft(im('intro'), { scale: 1.2 }, { scale: 1 }, 1.4, 1.4, 'power2.out');
+    ft('#gBot', { opacity: 1 }, { opacity: 0 }, 1.6, .8); ft('#gLeft', { opacity: 0 }, { opacity: 1 }, 1.6, .8);
+    ft(enterT, { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)' }, 2.0, .7, 'power3.out');
+
+    /* 02 → 03  same photo: the title settles into the caption (one element) */
+    const dy = (capD.offsetTop - enterT.offsetTop);
+    ft(im('intro'), { scale: 1 }, { scale: 1.06 }, 2.8, 2.3, 'none');
+    ft(enterT, { y: 0, scale: 1 }, { y: dy, scale: 16 / (M ? 34 : 42) }, 3.2, 1.1, 'power3.inOut');
+    if (M) ft(enterT, { y: dy }, { y: dy - 28 }, 3.2, 1.1, 'power3.inOut');
+    ft(capD, { opacity: 0, x: 14 }, { opacity: 1, x: 0 }, 3.95, .6, 'power2.out');
+    ft('#mapB', { opacity: 0, y: 10 }, { opacity: 1, y: 0 }, 4.1, .5, 'power2.out');
+
+    /* 03 → 04  push towards the oasis, match-cut into the campus aerial */
+    ft('#mapB', { opacity: 1 }, { opacity: 0 }, 5.1, .4);
+    ft(im('intro'), { scale: 1.06 }, { scale: 2.1 }, 5.1, 1.5, 'power2.in');
+    ft(bg('intro'), { opacity: 1 }, { opacity: 0 }, 5.8, .8);
+    ft(bg('map'), { opacity: 0 }, { opacity: 1 }, 5.8, .8);
+    ft(im('map'), { scale: 1.45 }, { scale: 1 }, 5.5, 1.5, 'power2.out');
+    PINS.forEach((p, i) => { const a = 6.35 + i * .1, e = p.el;
+      ft($('.gd', e), { opacity: 0 }, { opacity: 1 }, a, .2);
+      ft($('.line', e), { scaleY: 0 }, { scaleY: 1 }, a + .05, .45, 'power3.out');
+      ft([$('.ring', e), $('.tag', e)], { opacity: 0, y: 10 }, { opacity: 1, y: 0, stagger: .06 }, a + .3, .4, 'power3.out'); });
+
+    /* 04 → 05  dive to the greenhouses pin; the journey dock arrives */
+    PINS.forEach((p, i) => ft($$('.tag,.ring,.line,.gd', p.el), { opacity: 1 }, { opacity: 0 }, 8.1 + i * .03, .35));
+    ft([enterT, capD], { opacity: 1 }, { opacity: 0 }, 8.1, .45);
+    gsap.set(im('map'), { transformOrigin: origin('map', 567, 427) });
+    ft(im('map'), { scale: 1 }, { scale: 2.3 }, 8.2, 1.45, 'power2.in');
+    ft(bg('map'), { opacity: 1 }, { opacity: 0 }, 8.9, .8);
+    ft(bg('gh'), { opacity: 0 }, { opacity: 1 }, 8.9, .8);
+    ft(im('gh'), { scale: 1.35 }, { scale: 1 }, 8.7, 1.4, 'power2.out');
+    ft([wheel, card], { opacity: 0, x: -50 }, { opacity: 1, x: 0, stagger: .1 }, 9.2, .8, 'power3.out');
+    ft('#hint', { opacity: 0 }, { opacity: 1 }, 9.6, .4);
+
+    /* stop: overview → details (walk inside) */
+    const enterStop = (i, at, out, inn) => {
+      const s = STOPS[i], c = cc[i], dts = $$('.dt', c);
+      if (i === 0) ft('#hint', { opacity: 1 }, { opacity: 0 }, at, .3);
+      if (out) { // different photo: push through the doorway, match-cut inside
+        ft(im(out), { scale: 1 }, { scale: 1.7 }, at, 1.3, 'power2.in');
+        ft(bg(out), { opacity: 1 }, { opacity: 0 }, at + .6, .7);
+        ft(bg(inn), { opacity: 0 }, { opacity: 1 }, at + .6, .7);
+        ft(im(inn), { scale: 1.3 }, { scale: 1 }, at + .4, 1.3, 'power2.out');
+      } else ft(im(inn), { scale: 1 }, { scale: 1.1 }, at, 1.6, 'power1.inOut'); // same photo: keep the camera moving
+      ft(card, { height: s.ho }, { height: s.hd }, at + .5, .9, 'power3.inOut');
+      ft(c, { '--rot': '0deg' }, { '--rot': '180deg' }, at + .5, .9, 'power3.inOut');
+      if (i === 0) ft(card, { backgroundColor: 'rgba(16,16,16,.25)' }, { backgroundColor: 'rgba(16,16,16,.3)' }, at + .5, .9);
+      ft(dts, { opacity: 0, y: 12 }, { opacity: 1, y: 0, stagger: .05 }, at + .85, .5, 'power3.out');
+      ft($$('.sep', c), { scaleX: 0 }, { scaleX: 1, stagger: .05 }, at + .9, .5, 'power3.out');
+      ft($('.th', c), { clipPath: 'inset(100% 0% 0% 0% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)' }, at + 1.05, .7, 'power3.inOut');
+    };
+    /* details → next stop (travel sideways along the route) */
+    const nextStop = (i, at, out, inn) => {
+      const s = STOPS[i], n = STOPS[i + 1], c = cc[i], c2 = cc[i + 1];
+      ft($$('.dt', c), { opacity: 1 }, { opacity: 0 }, at, .35);
+      ft(card, { height: s.hd }, { height: n.ho }, at + .2, .8, 'power3.inOut');
+      ft(c, { opacity: 1 }, { opacity: 0 }, at + .25, .3);
+      ft(c2, { opacity: 0 }, { opacity: 1 }, at + .7, .45);
+      ft(c2, { '--rot': '0deg' }, { '--rot': '0deg' }, at, .01);
+      const w = { a: i }; ft(w, { a: i }, { a: i + 1, onUpdate: () => setWheel(w.a) }, at + .3, .9, 'power3.inOut');
+      ft(im(out), { xPercent: 0, scale: 1 }, { xPercent: -8, scale: 1.08 }, at, 1.5, 'power2.in');
+      ft(bg(out), { opacity: 1 }, { opacity: 0 }, at + .4, .9);
+      ft(bg(inn), { opacity: 0 }, { opacity: 1 }, at + .4, .9);
+      ft(im(inn), { xPercent: 8, scale: 1.12 }, { xPercent: 0, scale: 1 }, at + .2, 1.6, 'power2.out');
+    };
+    enterStop(0, 10.6, 'gh', 'ghin');
+    nextStop(0, 13.0, 'ghin', 'lab');
+    enterStop(1, 15.4, 'lab', 'labin');
+    nextStop(1, 17.8, 'labin', 'tech');
+    enterStop(2, 20.2, 'tech', 'techin');
+    nextStop(2, 22.6, 'techin', 'part');
+    enterStop(3, 24.9, null, 'part');
+
+    /* 12 → 13  look down to the field: impact */
+    ft($$('.dt', cc[3]), { opacity: 1 }, { opacity: 0 }, 27.1, .35);
+    ft([card, wheel], { opacity: 1, x: 0 }, { opacity: 0, x: -50, stagger: .08 }, 27.3, .6, 'power2.in');
+    ft(im('part'), { yPercent: 0 }, { yPercent: -10 }, 27.3, 1.4, 'power2.in');
+    ft(bg('part'), { opacity: 1 }, { opacity: 0 }, 27.6, 1.0);
+    ft(bg('impact'), { opacity: 0 }, { opacity: 1 }, 27.6, 1.0);
+    ft(im('impact'), { yPercent: 10, scale: 1.12 }, { yPercent: 0, scale: 1 }, 27.4, 1.8, 'power2.out');
+    ft(im('impact'), { scale: 1 }, { scale: 1.06 }, 29.2, 4.4, 'none');
+    ft('#gLeft', { opacity: 1 }, { opacity: 0 }, 27.6, 1.0); ft('#gImp', { opacity: 0 }, { opacity: 1 }, 27.6, 1.0);
+    ft('#pill', { backgroundColor: 'rgba(16,16,16,.2)' }, { backgroundColor: 'rgba(255,255,255,.1)' }, 27.6, 1.0);
+    ft($$('#impH p'), { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: .1 }, 28.3, .6, 'power3.out');
+    gsap.set('#impH', { opacity: 1 }); gsap.set($$('#impH p'), { opacity: 0 });
+    ft('#metrics', { opacity: 0 }, { opacity: 1 }, 28.4, .4);
+    ft($('i', trk), { scaleY: 0 }, { scaleY: 1, stagger: { each: .004, from: 'start' } }, 28.4, .5, 'power3.out');
+    ft('.needle', { scaleY: 0 }, { scaleY: 1 }, 28.7, .5, 'power3.out');
+    ft($$('.mt'), { opacity: 0, y: 16 }, { opacity: 1, y: 0, stagger: .08 }, 28.6, .6, 'power3.out');
+    const cn = { c: 0 }; ft(cn, { c: 0 }, { c: 1, onUpdate: () => setCount(cn.c) }, 28.5, .9, 'power2.out');
+    const mv = { m: 0 };
+    ft(mv, { m: 0 }, { m: 1, onUpdate: () => setMetrics(mv.m) }, 30.0, 1.0, 'power3.inOut');
+    ft(mv, { m: 1 }, { m: 2, onUpdate: () => setMetrics(mv.m) }, 31.6, 1.0, 'power3.inOut');
+
+    /* 13 → 14  pull back to the whole oasis; it becomes the tour window */
+    ft(['#impH', '#metrics'], { opacity: 1 }, { opacity: 0 }, 33.4, .5);
+    const fr = frame.getBoundingClientRect(), tc = $('#tourC');
+    const cx = (W / U) / 2 + (372 - 720), cyy = (H / U) / 2 + (225 - 435);
+    const box = { left: cx * U, top: cyy * U, width: 696 * U, height: 420 * U, borderRadius: 60 * U };
+    if (M) { const w = W - 32, h = w * 420 / 696; Object.assign(box, { left: 16, top: (H - h) / 2, width: w, height: h, borderRadius: 40 }); }
+    gsap.set(tourEl, { left: 0, top: 0, width: W, height: H, borderRadius: 0 });
+    gsap.set(ring, { left: box.left - 6 * U, top: box.top - 6 * U, width: box.width + 12 * U, height: box.height + 12 * U, borderRadius: box.borderRadius + 4 * U });
+    ft(tourEl, { opacity: 0 }, { opacity: 1 }, 33.8, .7);
+    ft('#dark', { opacity: 0 }, { opacity: 1 }, 34.4, .1, 'none');
+    ft(tourEl, { left: 0, top: 0, width: W, height: H, borderRadius: 0 }, { ...box }, 34.5, 1.2, 'power3.inOut');
+    ft(ring, { opacity: 0, scale: 1.02 }, { opacity: 1, scale: 1 }, 35.35, .5, 'power2.out');
+    ft(tc, { opacity: 0, y: 14 }, { opacity: 1, y: 0 }, 35.3, .5, 'power3.out');
+
+    /* 14 → 15  footer: the last scene */
+    ft([tourEl, ring], { opacity: 1, y: 0 }, { opacity: 0, y: -60 }, 36.6, .7, 'power2.in');
+    ft(tc, { opacity: 1, y: 0 }, { opacity: 0, y: -60 }, 36.6, .6, 'power2.in');
+    ft('#pill', { opacity: 1 }, { opacity: 0 }, 36.6, .5);
+    ft($$('.foot .hr'), { scaleX: 0 }, { scaleX: 1, stagger: .08 }, 37.0, .8, 'power3.inOut');
+    ft($$('.foot p, .foot .col a'), { opacity: 0, y: 24 }, { opacity: 1, y: 0, stagger: .035 }, 37.15, .8, 'power3.out');
+  }, stage);
+
+  st = ScrollTrigger.create({ trigger: story, start: 'top top', end: 'bottom bottom', animation: tl, scrub: useLenis ? .6 : true,
+    onUpdate: () => chrome(tl.time()) });
+  if (keep) { const y = story.offsetTop + keep * ppu; window.scrollTo(0, y); tl.time(keep); }
+  ScrollTrigger.refresh(); chrome(tl.time());
+}
+
+/* ---------- chrome: live windows, active chapter ---------- */
+let lastLive = '';
+function chrome(t) {
+  const live = LIVE.filter(([, a, b]) => t >= a && t <= b).map(x => x[0]).join(' ');
+  if (live !== lastLive) { stage.dataset.live = live; lastLive = live; }
+  stage.classList.toggle('footlive', t > 37.6);
+  let ci = 0; CHAPTERS.forEach(([, k], i) => { if (t >= B[k] - .6) ci = i; });
+  $$('a', menu).forEach((a, i) => a.classList.toggle('on', i === ci));
+}
+function go(k) {
+  const t = typeof k === 'number' ? k : B[k]; const y = story.offsetTop + t * ppu;
+  if (lenis) lenis.scrollTo(y, { duration: Math.min(3.2, .9 + Math.abs(y - scrollY) / (ppu * 9)), easing: x => 1 - Math.pow(1 - x, 4) });
+  else window.scrollTo({ top: y, behavior: 'smooth' });
+  closeMenu();
+}
+document.addEventListener('click', e => { const a = e.target.closest('[data-go]'); if (a) { e.preventDefault(); go(a.dataset.go); } });
+const menuBtn = $('#menuBtn');
+const closeMenu = () => { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); };
+menuBtn.addEventListener('click', () => { const o = menu.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* ---------- boot ---------- */
+let rz, lastW = 0;
+addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (Math.abs(innerWidth - lastW) < 2 && M && Math.abs(innerHeight - H) < 120) return; lastW = innerWidth; build(); }, 180); });
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+  lastW = innerWidth;
+  if (useLenis) {
+    lenis = new Lenis({ lerp: .085, wheelMultiplier: .9, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+  }
+  build();
+  window.__story = { jump: t => { const v = B[t] ?? t; window.scrollTo(0, story.offsetTop + v * ppu); tl.time(v); chrome(v); }, time: () => tl.time(), B };
+});
+</script>
+</body>
+</html>

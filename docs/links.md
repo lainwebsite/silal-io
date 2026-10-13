@@ -59,3 +59,6 @@ Design routes live under random folder names so they cannot be guessed. There is
 
 ### Concept 1 — Built by the Desert
 - Home: https://silal-io.vercel.app/homepage-concept-1  (also /homepage-concept-1/v2; static page in `public/homepage-concept-1/v2/`, notes in `prototypes/silal-homepage/README.md`)
+
+### Concept 3 — From Desert to Discovery
+- Home: https://silal-io.vercel.app/homepage-concept-3  (static page in `public/homepage-concept-3/`, notes in `prototypes/silal-homepage/README.md`, spec in `DESIGN-SPEC-CONCEPT-3.md`)

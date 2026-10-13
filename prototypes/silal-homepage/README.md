@@ -43,3 +43,16 @@ Clone the repo, tell the chat to read this README and `DESIGN-SPEC.md` first.
 
 ## 2026-10-13 fix: venture photo went black after scrolling back
 Cause: the curtain tween had `opacity` only in its `from` values. GSAP applies such values once; after the playhead had gone back across that point and forward again the photo's opacity stayed 0 (black scene). Rule for this file: every property in a `from` object must also be in its `to` object. Verified with a history test (fresh load vs forward / backward / random hops at 31 points of the story: 0 differences). Also: `chrome()` now runs from the timeline's own update so the nav and hover windows are right when a smoothed scrub settles.
+
+---
+
+# Concept 3 "From Desert to Discovery" (added 2026-10-13)
+
+Live at `/homepage-concept-3` (team link, `noindex`, not linked anywhere). Same Figma file (`85J2hDmYtlUNY2GbDkFxZi`, page "Home Page", Concept 3 "Design" column, frames `131:*`).
+- Served file: `public/homepage-concept-3/index.html` (GSAP + Lenis from CDN), 15 photos in `public/homepage-concept-3/media/img/` (`media/`, not `assets/`: `.vercelignore`). Media paths are absolute.
+- Bare URL works through one rewrite in `next.config.ts`.
+- Spec + build notes: `DESIGN-SPEC-CONCEPT-3.md` (frame → scene table, tokens, code map, interpretations). Playbook: `ADD-A-CONCEPT.md`.
+- Imported from the local prototype folder as-is; only changes: `assets/img/` → `/homepage-concept-3/media/img/`, `noindex` meta, `.btn.rise{display:flex}` (hero button label was stuck at the top of the pill). Behaviour untouched.
+- QA flags (from the spec): `?t=<beat or number>` jumps the timeline, `?lenis=0` turns off smooth scroll, `window.__story.jump()`.
+- Reference frame exports (`ref/c3ref_01..15.jpg`, 11 MB) are not in git; re-export from Figma if needed.
+- Not tested here: mobile, real wheel scrolling on hardware.
