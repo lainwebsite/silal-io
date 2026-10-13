@@ -7,7 +7,7 @@ Design routes live under random folder names so they cannot be guessed. There is
 
 ## Client links (OK to share)
 - https://silal-io.vercel.app/V1
-- https://silal-io.vercel.app/V2 · news: https://silal-io.vercel.app/V2/resources/news
+- https://silal-io.vercel.app/V2 (new homepage + unified shell) · About: https://silal-io.vercel.app/V2/about · news: https://silal-io.vercel.app/V2/resources/news
 - https://silal-io.vercel.app/V3 · news: https://silal-io.vercel.app/V3/resources/news · feed: https://silal-io.vercel.app/V3/resources/newsroom
 
 ## Designer 1

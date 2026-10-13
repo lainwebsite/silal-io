@@ -37,7 +37,6 @@ img,svg{display:block}
 .bg .im,.bg .ov{position:absolute;inset:0}
 .im{background-repeat:no-repeat;background-color:rgba(255,255,255,.03)}
 .glow{inset:-12%}
-#bgB,#bgR{z-index:4}   /* the venture / engagement photos wipe in over the drone */
 #bgVid{opacity:1;background:#000}
 #introVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 #glowT{inset:-12%}
@@ -48,7 +47,7 @@ img,svg{display:block}
 .row,.tcard{cursor:pointer}
 /* hidden blocks must never catch the pointer; JS opens each one only while it is on screen (data-live) */
 .frame,.labcard,.trio,.eng,.btn{pointer-events:none}
-.stage[data-live~="lab"] .labcard,.stage[data-live~="trio"] .trio,.stage[data-live~="eng"] .eng,.stage[data-live~="field"] #fieldCopy .btn,.stage[data-live~="ven"] #venBtn .btn,.stage[data-live~="ven"] .tiles,.stage[data-live~="tour"] #tourBtn .btn{pointer-events:auto}
+.stage[data-live~="lab"] .labcard,.stage[data-live~="trio"] .trio,.stage[data-live~="eng"] .eng,.stage[data-live~="tal"] .list,.stage[data-live~="ven"] #venBtn .btn,.stage[data-live~="ven"] .tiles,.stage[data-live~="tour"] #tourBtn .btn{pointer-events:auto}
 
 /* ---------- design frame (1440 x 870 box centred in the viewport) ---------- */
 .frame{position:absolute;left:50%;top:50%;width:calc(1440px*var(--u));height:calc(870px*var(--u));margin:calc(-435px*var(--u)) 0 0 calc(-720px*var(--u));z-index:5}
@@ -151,10 +150,27 @@ img,svg{display:block}
 .ring{position:absolute;left:calc(-4px*var(--u));top:calc(-4px*var(--u));width:calc(361px*var(--u));height:calc(228px*var(--u));border-radius:calc(38px*var(--u));border:1px solid rgba(255,255,255,.4);pointer-events:none;opacity:0}
 .cursor{position:absolute;left:0;top:0;width:24px;height:27px;opacity:0;z-index:9;pointer-events:none;filter:none;will-change:transform,opacity}
 
-/* ---------- drone morph element ---------- */
-.drone{position:absolute;left:0;top:0;width:0;height:0;opacity:0;overflow:hidden;z-index:3;pointer-events:none}
-.drone .im{position:absolute;inset:0}
-.drone .ov{position:absolute;inset:0;background:rgba(0,0,0,.2)}
+/* ---------- 05 · click-to-open detail view (cards 1-3 open full screen) ---------- */
+.detail{position:absolute;inset:0;z-index:6;pointer-events:none;visibility:hidden}
+.detail.open{visibility:visible}
+.detail.open .dp{pointer-events:auto}
+.dp{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden;opacity:0;will-change:transform,width,height}
+.dp .im{position:absolute;inset:0}
+.dp .ov{position:absolute;inset:0;background:rgba(0,0,0,0)}
+.dframe{z-index:1}
+.dcopy .btn{pointer-events:auto}
+.dctlw{position:absolute;left:0;right:0;bottom:calc(30px*var(--u));display:flex;justify-content:center;z-index:7;pointer-events:none}
+.dctl{display:flex;align-items:center;gap:calc(4px*var(--u));padding:calc(6px*var(--u));border-radius:1000px;--gf:.1;--gb:30;opacity:0}
+.detail.open .dctl{pointer-events:auto}
+.dctl button{height:calc(40px*var(--u));min-width:calc(40px*var(--u));padding:0 calc(14px*var(--u));border-radius:1000px;font-size:calc(12*var(--fz));font-weight:500;line-height:1;color:#fff;transition:background .3s,color .3s}
+.dctl button:hover{background:rgba(255,255,255,.16)}
+.dctl .dclose{background:#fff;color:var(--ink)}.dctl .dclose:hover{background:#f1f1f1}
+.dctl .dnum{padding:0 calc(10px*var(--u));font-size:calc(12*var(--fz));letter-spacing:.04em;color:rgba(255,255,255,.6);font-variant-numeric:tabular-nums}
+.dctl .dnum b{font-weight:500;color:#fff}
+.tcard .plus{position:absolute;z-index:2;right:calc(14px*var(--u));top:calc(14px*var(--u));width:calc(36px*var(--u));height:calc(36px*var(--u));border-radius:50%;background:rgba(15,15,15,.45);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:.5px solid rgba(255,255,255,.4);opacity:0;pointer-events:none}
+.tcard .plus::before,.tcard .plus::after{content:"";position:absolute;left:50%;top:50%;width:calc(12px*var(--u));height:1.5px;background:#fff;transform:translate(-50%,-50%)}
+.tcard .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.tcard:focus-visible{outline:none}
 
 /* ---------- button ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;height:calc(49px*var(--u));padding:0 calc(22px*var(--u));border-radius:calc(34px*var(--u));background:#fff;color:var(--ink);font-size:calc(12*var(--fz));font-weight:500;line-height:1;white-space:nowrap;transition:transform .35s cubic-bezier(.2,.7,.1,1),background .3s}
@@ -163,7 +179,7 @@ img,svg{display:block}
 
 /* ---------- 06.x tiles ---------- */
 .tiles{position:absolute;left:calc(313px*var(--u));top:calc(180px*var(--u));display:flex;gap:calc(72px*var(--u))}
-.tile{width:calc(150px*var(--u))}
+.tile{display:block;width:calc(150px*var(--u))}
 .tile .box{position:relative;width:100%;height:calc(150px*var(--u));border-radius:calc(24px*var(--u));overflow:hidden;--gf:.06;--gb:30;background:rgba(255,255,255,.06)}
 .tile .box .im{position:absolute;inset:0;opacity:0;transform:scale(1.12)}
 .tile .l{margin-top:calc(16px*var(--u));text-align:center;font-size:calc(12*var(--fz));line-height:1.5;color:rgba(255,255,255,.5);font-weight:400;transition:color .4s,font-weight .2s}
@@ -182,7 +198,11 @@ img,svg{display:block}
 
 /* ---------- 08.x list ---------- */
 .list{position:absolute;left:calc(506px*var(--u));top:calc(272px*var(--u));width:calc(427px*var(--u));padding:calc(28px*var(--u));border-radius:calc(34px*var(--u));opacity:0}
-.list .li{display:flex;align-items:center;gap:calc(16px*var(--u));height:calc(30px*var(--u));color:#fff}
+.list .li{display:flex;align-items:center;gap:calc(16px*var(--u));height:calc(30px*var(--u));color:#fff;cursor:pointer;transition:color .35s}
+.list:hover .li{color:rgba(255,255,255,.5)}.list .li:hover{color:#fff}
+.list .li .t-18{transition:transform .5s cubic-bezier(.2,.7,.1,1)}.list .li:hover .t-18{transform:translateX(6px)}
+.list .li .go{margin-left:auto;font-size:calc(16*var(--fz));opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .5s cubic-bezier(.2,.7,.1,1)}.list .li:hover .go{opacity:1;transform:none}
+.list .li:hover .n{border-color:#fff}
 .list .li .n{flex:none;width:calc(30px*var(--u));height:calc(30px*var(--u));border-radius:50%;border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;font-size:calc(10*var(--fz));font-weight:500;letter-spacing:.04em}
 .list .sep{margin:calc(18px*var(--u)) 0}
 .list.glass{-webkit-backdrop-filter:none;backdrop-filter:none}   /* it sits on an already-blurred glow: a live blur there changes nothing but costs every frame */
@@ -302,7 +322,7 @@ html.m .sub{top:104px;width:auto}
 html.m #rootTitle{top:40%}
 html.m #rootSub{top:auto;bottom:11svh}
 html.m #venTitle,html.m #engTitle{top:40%}
-html.m #fieldCopy{top:auto;bottom:17svh}
+html.m .dcopy{top:auto;bottom:17svh}
 html.m #venBtn{top:auto;bottom:max(70px,9svh)}
 html.m .vc{align-items:center}
 html.m .labcard{width:min(calc(100vw - 32px),427px);padding:16px}
@@ -388,13 +408,40 @@ html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;fon
     <div class="gl"><div class="im" data-img="g_132f755b"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div><div class="ov" style="background:rgba(1,88,37,.3)"></div></div>
     <div class="gl"><div class="im" data-img="g_80510502"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
   </div>
-    <div class="bg glow" id="glowD"><div class="im" data-img="g_977c9001"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
     <div class="bg" id="bgB"><div class="im" data-img="90abeb8f" data-crop=".49,.44,.44,.25"></div><div class="ov" style="background:rgba(0,0,0,.5)"></div></div>
     <div class="bg" id="bgR"><div class="im" data-img="70840e80" data-crop="1,0,.45,.37"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div></div>
     <div class="bg glow" id="glowE"><div class="im" data-img="g_0ba94745"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
 
-  <!-- shared-element image: card → drone frame → full bleed -->
-  <div class="drone" id="drone"><div class="im c0" data-img="c67af94c" data-crop="1,0,.42,.34"></div><div class="im c1" data-img="bf471039" data-crop="1,0,.83,.14"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+
+  <!-- ===== 05 · detail view: opens from the three centre cards ===== -->
+  <div class="detail" id="detail" aria-hidden="true">
+    <div class="dp" data-k="0"><div class="im c0" data-img="c67af94c" data-crop="1,0,.42,.34"></div><div class="im c1" data-img="bf471039" data-crop="1,0,.83,.14"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+    <div class="dp" data-k="1"><div class="im c0" data-img="132f755b"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+    <div class="dp" data-k="2"><div class="im c0" data-img="80510502"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+    <div class="frame dframe">
+      <div class="a w copy dcopy" data-k="0" style="--x:285;--y:529;--w:669">
+        <h2 class="t-lead">Technology that starts in the field.</h2>
+        <p class="t-body">From smart sensing to advanced analytics, our technologies help growers monitor conditions, improve efficiency and make better decisions in real time.</p>
+        <a class="btn cta" href="#technology">Explore Technology &amp; Services</a>
+      </div>
+      <div class="a w copy dcopy" data-k="1" style="--x:285;--y:529;--w:669">
+        <h2 class="t-lead">Smart Growing Systems.</h2>
+        <p class="t-body">Optimising greenhouse production in harsh climates.</p>
+        <a class="btn cta" href="#growing">Learn more</a>
+      </div>
+      <div class="a w copy dcopy" data-k="2" style="--x:285;--y:529;--w:669">
+        <h2 class="t-lead">Crop Resilience.</h2>
+        <p class="t-body">Developing crops resilient to heat and drought.</p>
+        <a class="btn cta" href="#resilience">Learn more</a>
+      </div>
+    </div>
+    <div class="dctlw"><div class="dctl glass" id="dctl" role="group" aria-label="Centres">
+      <button type="button" class="dprev" aria-label="Previous centre">‹</button>
+      <span class="dnum"><b id="dn">01</b> / 03</span>
+      <button type="button" class="dnext" aria-label="Next centre">›</button>
+      <button type="button" class="dclose" aria-label="Close">Close</button>
+    </div></div>
+  </div>
 
   <!-- ===== design frame ===== -->
   <div class="frame" id="frame">
@@ -438,29 +485,24 @@ html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;fon
     <p class="a sub w t-s12" id="rootSub" style="--x:577;--y:57;--w:285">Specialised centres developing practical solutions for the future of agriculture.</p>
 
     <div class="trio" id="trio">
-      <div class="tcard" data-c="0"><div class="face"><div class="im" data-img="c67af94c" data-crop="1,0,.42,.34"></div></div>
+      <div class="tcard" data-c="0" role="button" tabindex="0" aria-label="Open Agri Robotics &amp; AI"><div class="face"><i class="plus"></i><div class="im" data-img="c67af94c" data-crop="1,0,.42,.34"></div></div>
         <div class="cap"><p class="t-14 m">Agri Robotics &amp; AI</p><p class="t-14">Smarter automation for more efficient farming.</p></div></div>
-      <div class="tcard" data-c="1"><div class="face"><div class="im" data-img="132f755b"></div></div>
+      <div class="tcard" data-c="1" role="button" tabindex="0" aria-label="Open Smart Growing Systems"><div class="face"><i class="plus"></i><div class="im" data-img="132f755b"></div></div>
         <div class="cap"><p class="t-14 m">Smart Growing Systems</p><p class="t-14">Optimising greenhouse production in harsh climates.</p></div></div>
-      <div class="tcard" data-c="2"><div class="face"><div class="im" data-img="80510502"></div></div>
+      <div class="tcard" data-c="2" role="button" tabindex="0" aria-label="Open Crop Resilience"><div class="face"><i class="plus"></i><div class="im" data-img="80510502"></div></div>
         <div class="cap"><p class="t-14 m">Crop Resilience</p><p class="t-14">Developing crops resilient to heat and drought.</p></div></div>
       <i class="ring" id="ring"></i>
     </div>
 
-    <div class="a w copy" id="fieldCopy" style="--x:285;--y:529;--w:669">
-      <h2 class="t-lead">Technology that starts in the field.</h2>
-      <p class="t-body">From smart sensing to advanced analytics, our technologies help growers monitor conditions, improve efficiency and make better decisions in real time.</p>
-      <a class="btn cta" href="#technology">Explore Technology &amp; Services</a>
-    </div>
 
     <h2 class="a full t-title" id="venTitle" style="--y:410">Innovation &amp; Venture Platforms</h2>
     <div class="a full hdr" id="hdrVen" style="--y:28"><h3 class="t-h12">Innovation &amp; Venture Platforms</h3></div>
     <p class="a sub w t-s12" id="venSub" style="--x:490;--y:57;--w:459">Supporting the next generation of agricultural innovation through funding, incubation, acceleration and challenge-driven programs.</p>
     <div class="tiles" id="tiles">
-      <div class="tile on"><div class="box glass"><div class="im" data-img="050b0100"></div></div><p class="l">Farm Innovation Fund</p></div>
-      <div class="tile"><div class="box glass"><div class="im" data-img="e5f0025f"></div></div><p class="l">Incubation</p></div>
-      <div class="tile"><div class="box glass"><div class="im" data-img="1c4d7b58"></div></div><p class="l">Accelerator</p></div>
-      <div class="tile"><div class="box glass"><div class="im" data-img="e66cc018"></div></div><p class="l">Agricultural Challenges</p></div>
+      <a class="tile on" href="#"><div class="box glass"><div class="im" data-img="050b0100"></div></div><p class="l">Farm Innovation Fund</p></a>
+      <a class="tile" href="#"><div class="box glass"><div class="im" data-img="e5f0025f"></div></div><p class="l">Incubation</p></a>
+      <a class="tile" href="#"><div class="box glass"><div class="im" data-img="1c4d7b58"></div></div><p class="l">Accelerator</p></a>
+      <a class="tile" href="#"><div class="box glass"><div class="im" data-img="e66cc018"></div></div><p class="l">Agricultural Challenges</p></a>
     </div>
     <p class="a full" id="venBtn" style="--y:701"><a class="btn" href="#team">Meet the team</a></p>
 
@@ -475,10 +517,10 @@ html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;fon
     <div class="a full hdr" id="hdrTal" style="--y:28"><h3 class="t-h12">Building agricultural talent.</h3></div>
     <p class="a sub w t-s12" id="talSub" style="--x:495;--y:57;--w:449">Supporting future researchers, entrepreneurs and industry leaders through practical learning and development opportunities.</p>
     <div class="list glass" id="list" style="--gf:.04;--gb:30">
-      <div class="li" data-i="0"><span class="n">01</span><span class="t-18">Advanced Agritech Academy</span></div><i class="hair sep"></i>
-      <div class="li" data-i="1"><span class="n">02</span><span class="t-18">Student Sponsorship</span></div><i class="hair sep"></i>
-      <div class="li" data-i="2"><span class="n">03</span><span class="t-18">School Programs</span></div><i class="hair sep"></i>
-      <div class="li" data-i="3"><span class="n">04</span><span class="t-18">IO Academy Training</span></div>
+      <a class="li" href="#"><span class="n">01</span><span class="t-18">Advanced Agritech Academy</span><span class="go" aria-hidden="true">→</span></a><i class="hair sep"></i>
+      <a class="li" href="#"><span class="n">02</span><span class="t-18">Student Sponsorship</span><span class="go" aria-hidden="true">→</span></a><i class="hair sep"></i>
+      <a class="li" href="#"><span class="n">03</span><span class="t-18">School Programs</span><span class="go" aria-hidden="true">→</span></a><i class="hair sep"></i>
+      <a class="li" href="#"><span class="n">04</span><span class="t-18">IO Academy Training</span><span class="go" aria-hidden="true">→</span></a>
     </div>
 
     <div class="a full hdr" id="hdrTour" style="--y:28"><h3 class="t-h12">Walk through the Oasis, wherever you are.</h3></div>
@@ -588,20 +630,20 @@ function applyCrop(el, W, H, v) {
   el.style.backgroundPosition = `${W / 2 - (tx + a / 2) * iw * S}px ${H / 2 - (ty + d / 2) * ih * S}px`;
 }
 $$('[data-img]').forEach(el => { const k = el.dataset.img; el.style.backgroundImage = `url(/homepage-concept-1/v2/media/img/${k}.${EXT[k] || 'jpg'})`; });
-const refreshCrops = () => $$('[data-img]').forEach(el => { if (el.closest('#drone')) return; applyCrop(el); });
+const refreshCrops = () => $$('[data-img]').forEach(el => { if (el.closest('#detail')) return; applyCrop(el); });
 
 /* ------------------------------------------------------------------ refs */
 const root = document.documentElement, story = $('#story'), stage = $('#stage'), frame = $('#frame');
 const el = id => document.getElementById(id);
 const E = {};
-['bgVid','introVid','vidOv2','glowA','bgLab','glowT','glowD','bgB','bgR','glowE','base','drone',
- 'hero','intro','stats','statement','capLab','labcard','rootTitle','hdrRoot','rootSub','trio','ring','fieldCopy','venTitle','hdrVen','venSub','tiles','venBtn',
+['bgVid','introVid','vidOv2','glowA','bgLab','glowT','bgB','bgR','glowE','base','detail','dctl','dn',
+ 'hero','intro','stats','statement','capLab','labcard','rootTitle','hdrRoot','rootSub','trio','ring','venTitle','hdrVen','venSub','tiles','venBtn',
  'engTitle','hdrEng','eng','hdrTal','talSub','list','hdrTour','tourSub','tour','tourBtn','footF','num1','num2','hint','nav','mark'].forEach(i => E[i] = el(i));
 
 // Hover drives the lab card, the three centres and the venture tiles, so those sections only need a short hold.
 // Authoring times stay in "design" units; CUTS [from,to) remove the dead scroll between a section's last event and the next one:
-// lab card holds ~0.9u, trio ~1.0u, drone copy ~1.0u, venture tiles ~1.2u.
-const CUTS = [[18.0, 20.9], [26.0, 29.5], [34.3, 37.0], [43.0, 44.2], [49.8, 48.2], [50.8, 51.4]];   // [49.8,48.2] is a +1.6u hold (negative cut)
+// lab card holds ~0.9u, trio ~1.1u (the three cards open on click, the scroll goes straight on), venture tiles ~1.2u.
+const CUTS = [[18.0, 20.9], [26.4, 37.0], [43.0, 44.2], [49.8, 48.2], [50.8, 51.4]];   // [49.8,48.2] is a +1.6u hold (negative cut)
 const tm = t => { let o = 0; for (const [a, b] of CUTS) { if (t >= b) o += b - a; else if (t > a) return a - o; } return t - o; };
 const TOTAL = tm(57.6);                 // timeline length in "scroll units"
 let U = 1, M = false, ctx = null, tl = null, st = null, lenis = null;
@@ -635,6 +677,7 @@ const offsetIn = (node, anc) => { let x = 0, y = 0; while (node && node !== anc)
 /* ------------------------------------------------------------------ build the story */
 let hoverAC = new AbortController();
 function build() {
+  window.__detail && window.__detail.reset();
   hoverAC.abort(); hoverAC = new AbortController();
   if (ctx) ctx.revert();
   const ppu = metrics();
@@ -642,16 +685,15 @@ function build() {
   const vw = stage.clientWidth, vh = stage.clientHeight;
   ctx = gsap.context(() => {
     const A = E;
-    const bgs = ['glowA','bgLab','glowT','glowD','bgB','bgR','glowE'].map(k => A[k]);
+    const bgs = ['glowA','bgLab','glowT','bgB','bgR','glowE'].map(k => A[k]);
     gsap.set(bgs, { opacity: 0 });
     gsap.set(A.bgVid, { opacity: 1 }); gsap.set(A.vidOv2, { opacity: 0 });
     gsap.set(A.base, { backgroundColor: '#101010' });
 
     // hidden initial states of every UI block
-    const hide = [A.hero, A.intro, A.stats, A.statement, A.capLab, A.labcard, A.rootTitle, A.hdrRoot, A.rootSub, A.fieldCopy, A.venTitle, A.hdrVen, A.venSub, A.venBtn,
+    const hide = [A.hero, A.intro, A.stats, A.statement, A.capLab, A.labcard, A.rootTitle, A.hdrRoot, A.rootSub, A.venTitle, A.hdrVen, A.venSub, A.venBtn,
       A.engTitle, A.hdrEng, A.hdrTal, A.talSub, A.list, A.hdrTour, A.tourSub, A.tour, A.tourBtn];
     gsap.set(hide, { opacity: 0 });
-    gsap.set(A.drone, { opacity: 0 });
 
     const tcards = $$('.tcard'), rows = $$('.row', A.labcard), tiles = $$('.tile'), ecards = $$('.ecard'), lis = $$('.li', A.list);
     const tGlass = tiles.flatMap(t => [$('.box', t), $('.l', t)]);   // tile glass boxes + labels fade on their own: no ancestor opacity over a backdrop-filter
@@ -792,7 +834,8 @@ function build() {
     gsap.set(A.trio, { x: focusX(0) });
     gsap.set(A.ring, { x: 0 });
     gsap.set(caps, { opacity: 0, y: px(10) }); gsap.set(caps[0], { opacity: 1, y: 0 });
-    gsap.set(faces, { opacity: .4 }); gsap.set(faces[0], { opacity: 1 });
+    const plus = tcards.map(c => $('.plus', c));
+    gsap.set(faces, { opacity: .4 }); gsap.set(faces[0], { opacity: 1 }); gsap.set(plus, { opacity: 0 }); gsap.set(plus[0], { opacity: 1 });
     gls.forEach((g, k) => g.classList.toggle('on', k === 0));
     let focused = 0;
     const focusCard = i => {
@@ -800,42 +843,107 @@ function build() {
       gsap.to(A.ring, { x: ringX(i), duration: .7, ease: 'power3.out', overwrite: 'auto' });
       if (M) gsap.to(A.trio, { x: focusX(i), duration: .8, ease: 'power3.out', overwrite: 'auto' });
       faces.forEach((f, k) => gsap.to(f, { opacity: k === i ? 1 : .4, duration: .6, overwrite: 'auto' }));
+      plus.forEach((pl, k) => gsap.to(pl, { opacity: k === i ? 1 : 0, duration: .4, overwrite: 'auto' }));
       caps.forEach((c, k) => gsap.to(c, { opacity: k === i ? 1 : 0, y: k === i ? 0 : px(10), duration: k === i ? .6 : .3, delay: k === i ? .15 : 0, overwrite: 'auto' }));
       gls.forEach((g, k) => g.classList.toggle('on', k === i));
     };
     tcards.forEach((c, k) => {
       c.addEventListener('pointerenter', e => { lastType = e.pointerType; if (e.pointerType !== 'touch' && live(tcards[0])) focusCard(k); }, sig);
-      c.addEventListener('click', () => { if (lastType === 'touch' && live(tcards[0])) focusCard(k); }, sig);
     });
 
-    /* ---------- 05 · WE COME TO YOU — card 1 itself opens to full screen (one box, one move, no rest stop) ---------- */
-    const dr = E.drone, drC1 = $('.c1', dr), drC0 = $('.c0', dr), drOv = $('.ov', dr), drOv2 = $('.ov2', dr);
-    const sRect = stage.getBoundingClientRect(), f0 = faces[0].getBoundingClientRect();
-    const rS = { x: f0.left - sRect.left, y: f0.top - sRect.top, w: f0.width, h: f0.height };       // exactly where card 1's photo sits
-    const rad = parseFloat(getComputedStyle(faces[0]).borderTopLeftRadius) || px(34);               // its radius is kept all the way …
-    const rQ = { x: -rad, y: -rad, w: vw + 2 * rad, h: vh + 2 * rad };                              // … the box ends a radius past the screen, so the corners just leave the view
-    const dm = { p: 0 }, mix = (a, b, p) => a + (b - a) * p;
-    const dPaint = () => {
-      const p = dm.p, w = mix(rS.w, rQ.w, p), h = mix(rS.h, rQ.h, p);
-      gsap.set(dr, { x: mix(rS.x, rQ.x, p), y: mix(rS.y, rQ.y, p), width: w, height: h });
-      applyCrop(drC0, w, h); applyCrop(drC1, w, h);
+    /* ---------- 05 · WE COME TO YOU — click a card: it opens full screen (the card itself grows), scroll / arrows / buttons move between the three, Close returns ---------- */
+    // the scroll no longer stops here: it carries straight on to the venture platforms (see CUTS). The exit of the three cards is part of that hand-over.
+    ft(0, [A.hdrRoot, A.rootSub], { opacity: 1, y: 0 }, { opacity: 0, y: px(-14), duration: .7 }, 37.0);
+    ft(0, tcards, { opacity: 1, y: 0 }, { opacity: 0, y: px(-36), duration: .8, stagger: .06 }, 37.0);
+    ft(0, A.ring, { opacity: 1 }, { opacity: 0, duration: .4 }, 37.0);
+    ft(0, A.glowT, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 37.0);
+
+    const det = E.detail, dps = $$('.dp', det), dcs = $$('.dcopy', det), dctl = E.dctl, dn = E.dn;
+    const radC = parseFloat(getComputedStyle(faces[0]).borderTopLeftRadius) || px(34);
+    const rQ = { x: -radC, y: -radC, w: vw + 2 * radC, h: vh + 2 * radC };       // a radius past the screen: the corners leave the view, they never go sharp
+    const kk = vh + 2 * radC, mix = (a, b, p) => a + (b - a) * p;
+    const cardRect = k => { const sr = stage.getBoundingClientRect(), f = faces[k].getBoundingClientRect(); return { x: f.left - sr.left, y: f.top - sr.top, w: f.width, h: f.height }; };
+    const boxTo = (dp, r, p) => {
+      const w = mix(r.w, rQ.w, p), h = mix(r.h, rQ.h, p);
+      gsap.set(dp, { x: mix(r.x, rQ.x, p), y: mix(r.y, rQ.y, p), width: w, height: h });
+      $$('.im', dp).forEach(im => applyCrop(im, w, h));
     };
-    gsap.set(dr, { opacity: 0, borderRadius: rad });
-    gsap.set(drOv, { backgroundColor: 'rgba(0,0,0,0)' }); gsap.set(drOv2, { opacity: 0 }); gsap.set(drC1, { opacity: 0 });
-    dPaint();
-    ft(0, [A.hdrRoot, A.rootSub], { opacity: 1, y: 0 }, { opacity: 0, y: px(-14), duration: .7 }, 29.7);
-    ft(0, [tcards[1], tcards[2]], { opacity: 1, x: 0 }, { opacity: 0, x: px(44), duration: .7, stagger: .08 }, 29.7);
-    ft(0, A.ring, { opacity: 1 }, { opacity: 0, duration: .4 }, 29.7);
-    ft(0, A.glowT, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 29.7);
-    ft(0, A.glowD, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 29.7);
-    ft(0, dr, { opacity: 0 }, { opacity: 1, duration: .001 }, 29.9);                                   // same photo, same box, directly under card 1 …
-    ft(0, tcards[0], { opacity: 1 }, { opacity: 0, duration: .35, ease: 'none' }, 29.95);              // … then the card lets go (its caption fades with it)
-    tl.fromTo(dm, { p: 0 }, { p: 1, duration: 2.7, ease: 'power3.inOut', immediateRender: false, onUpdate: dPaint }, tm(29.9));
-    ft(0, drC1, { opacity: 0 }, { opacity: 1, duration: 1.1, ease: 'power1.inOut' }, 30.3);            // the wide drone photo dissolves in while the box opens
-    ft(0, drOv, { backgroundColor: 'rgba(0,0,0,0)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 2.4 }, 30.1);
-    ft(0, drOv2, { opacity: 0 }, { opacity: 1, duration: 2.4 }, 30.4);
-    ft(0, A.glowD, { opacity: 1 }, { opacity: 0, duration: .4 }, 32.0);
-    ft(0, A.fieldCopy, { opacity: 0, y: px(40) }, { opacity: 1, y: 0, duration: 1, ease: out }, 32.3);
+    const dReset = dp => {
+      const c1 = $('.c1', dp);
+      gsap.set(dp, { opacity: 0, borderRadius: radC, zIndex: 0 }); gsap.set($$('.im, .ov', dp), { y: 0 });
+      gsap.set($('.ov', dp), { backgroundColor: 'rgba(0,0,0,0)' }); gsap.set($('.ov2', dp), { opacity: 0 }); if (c1) gsap.set(c1, { opacity: 0 });
+    };
+    dps.forEach(dReset); gsap.set(dcs, { opacity: 0 }); gsap.set(dctl, { opacity: 0 });
+    let dIdx = -1, dBusy = false, dTl = null, lastNav = 0;
+    const setD = i => { dIdx = i; detailIdx = i; lastIdx = -2; chrome(tl.time()); };
+    const openDetail = i => {
+      if (dIdx >= 0 || dBusy) return; dBusy = true; focusCard(i); setD(i);
+      lenis && lenis.stop(); det.classList.add('open'); det.setAttribute('aria-hidden', 'false');
+      const dp = dps[i], r = cardRect(i), mp = { p: 0 }, c1 = $('.c1', dp);
+      dps.forEach(dReset); gsap.set(dp, { opacity: 1 }); boxTo(dp, r, 0);
+      gsap.set(dcs, { opacity: 0 }); gsap.set(dctl, { opacity: 0, y: px(16) }); dn.textContent = String(i + 1).padStart(2, '0');
+      dTl && dTl.kill();
+      dTl = gsap.timeline({ onComplete: () => { dBusy = false; } });
+      dTl.to(mp, { p: 1, duration: 1.25, ease: 'power3.inOut', onUpdate: () => boxTo(dp, r, mp.p) }, 0)
+        .to($('.ov', dp), { backgroundColor: 'rgba(0,0,0,.6)', duration: 1.1, ease: 'power2.inOut' }, .05)
+        .to($('.ov2', dp), { opacity: 1, duration: 1.1, ease: 'power2.inOut' }, .05);
+      if (c1) dTl.to(c1, { opacity: 1, duration: .8, ease: 'power1.inOut' }, .25);                  // card 1: the wide drone photo dissolves in while the box opens
+      dTl.fromTo(dcs[i], { opacity: 0, y: px(30) }, { opacity: 1, y: 0, duration: .9, ease: 'power3.out' }, .8)
+        .to(dctl, { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, .9);
+    };
+    const goDetail = j => {
+      if (dIdx < 0 || dBusy || j === dIdx || j < 0 || j > 2) return;
+      dBusy = true; const dir = j > dIdx ? 1 : -1, prev = dIdx, from = dps[prev], to = dps[j], c1 = $('.c1', to);
+      dReset(to); gsap.set(to, { opacity: 1, zIndex: 2 }); gsap.set(from, { zIndex: 1 }); boxTo(to, rQ, 1);
+      gsap.set($('.ov', to), { backgroundColor: 'rgba(0,0,0,.6)' }); gsap.set($('.ov2', to), { opacity: 1 }); if (c1) gsap.set(c1, { opacity: 1 });
+      gsap.set(to, { y: rQ.y + dir * kk }); gsap.set($$('.im, .ov', to), { y: -dir * kk });          // curtain: the box slides in, its picture stays put
+      dn.textContent = String(j + 1).padStart(2, '0'); setD(j); focusCard(j);
+      dTl && dTl.kill();
+      dTl = gsap.timeline({ onComplete: () => { gsap.set(from, { opacity: 0, zIndex: 0 }); gsap.set(to, { zIndex: 0 }); dBusy = false; } });
+      dTl.to(dcs[prev], { opacity: 0, y: px(-24) * dir, duration: .45, ease: 'power2.in' }, 0)
+        .to(to, { y: rQ.y, duration: 1.15, ease: 'power3.inOut' }, 0)
+        .to($$('.im, .ov', to), { y: 0, duration: 1.15, ease: 'power3.inOut' }, 0)
+        .fromTo(dcs[j], { opacity: 0, y: px(30) * dir }, { opacity: 1, y: 0, duration: .9, ease: 'power3.out' }, .65);
+    };
+    const closeDetail = after => {
+      if (dIdx < 0 || dBusy) return; dBusy = true; const i = dIdx, dp = dps[i], r = cardRect(i), mp = { p: 1 }, c1 = $('.c1', dp);
+      focusCard(i); dTl && dTl.kill();
+      dTl = gsap.timeline({ onComplete: () => { dReset(dp); det.classList.remove('open'); det.setAttribute('aria-hidden', 'true'); setD(-1); dBusy = false; lenis && lenis.start(); after && after(); } });
+      dTl.to(dcs[i], { opacity: 0, y: px(-16), duration: .35, ease: 'power2.in' }, 0)
+        .to(dctl, { opacity: 0, y: px(10), duration: .3 }, 0)
+        .to(mp, { p: 0, duration: 1.05, ease: 'power3.inOut', onUpdate: () => boxTo(dp, r, mp.p) }, .1)
+        .to($('.ov', dp), { backgroundColor: 'rgba(0,0,0,0)', duration: .9 }, .15)
+        .to($('.ov2', dp), { opacity: 0, duration: .7 }, .1);
+      if (c1) dTl.to(c1, { opacity: 0, duration: .7 }, .2);
+    };
+    const toVenture = () => { const y = story.offsetTop + (tm(37.0) + .35) * ppu; lenis ? lenis.scrollTo(y, { duration: 2.2, easing: t => 1 - Math.pow(1 - t, 4) }) : scrollTo({ top: y, behavior: 'smooth' }); };
+    const navDir = d => {
+      const now = performance.now(); if (dBusy || dIdx < 0 || now - lastNav < 1400) return; lastNav = now;
+      if (d > 0) (dIdx < 2 ? goDetail(dIdx + 1) : closeDetail(toVenture));        // after the last one the scroll carries on to the next section
+      else (dIdx > 0 ? goDetail(dIdx - 1) : closeDetail());
+    };
+    tcards.forEach((c, k) => {
+      c.addEventListener('click', () => { if (live(tcards[0])) openDetail(k); }, sig);
+      c.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && live(tcards[0])) { e.preventDefault(); openDetail(k); } }, sig);
+    });
+    $('.dprev', det).addEventListener('click', () => { lastNav = 0; navDir(-1); }, sig);
+    $('.dnext', det).addEventListener('click', () => { lastNav = 0; navDir(1); }, sig);
+    $('.dclose', det).addEventListener('click', () => closeDetail(), sig);
+    addEventListener('wheel', e => { if (dIdx < 0) return; e.preventDefault(); if (Math.abs(e.deltaY) > 8) navDir(Math.sign(e.deltaY)); }, { passive: false, signal: hoverAC.signal });
+    let ty0 = null;
+    addEventListener('touchstart', e => { if (dIdx >= 0) ty0 = e.touches[0].clientY; }, { passive: true, signal: hoverAC.signal });
+    addEventListener('touchmove', e => { if (dIdx >= 0 && !e.target.closest('.dctl')) e.preventDefault(); }, { passive: false, signal: hoverAC.signal });
+    addEventListener('touchend', e => { if (dIdx < 0 || ty0 == null) return; const dy = ty0 - e.changedTouches[0].clientY; ty0 = null; if (Math.abs(dy) > 50) navDir(Math.sign(dy)); }, { passive: true, signal: hoverAC.signal });
+    addEventListener('keydown', e => {
+      if (dIdx < 0) return;
+      if (e.key === 'Escape') closeDetail();
+      else if (['ArrowDown', 'ArrowRight', 'PageDown'].includes(e.key)) { e.preventDefault(); navDir(1); }
+      else if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); navDir(-1); }
+    }, { signal: hoverAC.signal });
+    window.__detail = {
+      open: openDetail,
+      reset() { dTl && dTl.kill(); dps.forEach(dReset); gsap.set(dcs, { opacity: 0 }); gsap.set(dctl, { opacity: 0 }); det.classList.remove('open'); det.setAttribute('aria-hidden', 'true'); if (dIdx >= 0) { dIdx = -1; detailIdx = -1; lastIdx = -2; lenis && lenis.start(); } dBusy = false; },
+    };
 
     /* ---------- 06 · WHO YOU'LL MEET — innovation & venture platforms ---------- */
     // new photo wipes up over the old one (curtain), instead of a cross-fade: the layer slides up while its content slides down by the same
@@ -851,9 +959,7 @@ function build() {
       tl.fromTo(tw, { p: 0 }, { p: 1, duration: dur, ease: 'power2.inOut', immediateRender: false,
         onUpdate() { const k = tw.p; applyCrop(im, 0, 0, o.map((x, i) => x + (to[i] - x) * k)); } }, tm(at));
     };
-    ft(0, A.fieldCopy, { opacity: 1, y: 0 }, { opacity: 0, y: px(-40), duration: .8 }, 37.0);
     wipe(A.bgB, 37.0, 1.5);
-    ft(0, dr, { opacity: 1 }, { opacity: 0, duration: .001 }, 38.5);                                   // fully covered by the wipe by now
     dock(A.venTitle, A.hdrVen, 37.6, 39.0, 1.3);
     // 06.02 — funding, incubation, acceleration
     cropMove(A.bgB, [.49, .44, .44, .25], [.9, .03, .81, .06], 39.0, 1.6);
@@ -935,19 +1041,19 @@ const CHAPTERS = [0, 8.6, 14.4, 21.0, 29.0, 37.0, 44.2].map(tm);                
 // GPU layers (will-change) are only kept for the scenes that are near, a full-screen layer costs ~20 MB on a retina display
 let WCR = null;
 function promote(t) {
-  WCR = WCR || [['bgVid', 0, 15], ['glowA', 13, 22], ['bgLab', 15.4, 22.5], ['glowT', 20.4, 31], ['glowD', 29, 33.5], ['drone', 29.2, 38.6], ['bgB', 36.4, 46, 1], ['bgR', 43.6, 49.8, 1], ['glowE', 47.6, 58]].map(([id, a, b, k]) => [E[id], tm(a), tm(b), null, k]);
+  WCR = WCR || [['bgVid', 0, 15], ['glowA', 13, 22], ['bgLab', 15.4, 22.5], ['glowT', 20.4, 38.5], ['bgB', 36.4, 46, 1], ['bgR', 43.6, 49.8, 1], ['glowE', 47.6, 58]].map(([id, a, b, k]) => [E[id], tm(a), tm(b), null, k]);
   for (const w of WCR) {
     const on = t >= w[1] && t <= w[2];
     if (on !== w[3]) { w[3] = on; w[0].style.willChange = on ? 'opacity, transform' : 'auto'; if (w[4]) w[0].querySelectorAll('.im, .ov').forEach(k => { k.style.willChange = on ? 'transform' : 'auto'; }); }   // the curtain moves the layer's content too
   }
 }
 const TARGETS = [0, 9.6, 16.4, 23.6, 33.6, 41.5].map(tm).concat(tm(47.5) + 1.9);               // where a click scrolls to (timeline units)
-let lastIdx = -2;
+let lastIdx = -2, detailIdx = -1;   // detailIdx >= 0 while a centre is open: the nav shows "We come to you"
 function chrome(t) {
   promote(t);
   let i = -1;
   i = 0; for (let k = 1; k < CHAPTERS.length; k++) if (t >= CHAPTERS[k]) i = k;
-  const ci = i;
+  const ci = detailIdx >= 0 ? 4 : i; i = ci;
   if (t >= tm(53.8)) i = -1;                       // the footer scene owns the left edge; the nav stays through "Find your door" until then
   if (i !== lastIdx) {
     lastIdx = i;
@@ -957,17 +1063,23 @@ function chrome(t) {
     if (i >= 0 && !M) E.mark.style.transform = `translateY(${25 * i * U}px)`;
   }
   const lo = CHAPTERS[ci], hi = ci < CHAPTERS.length - 1 ? CHAPTERS[ci + 1] : tm(53.8);   // ladder: the active line fills as you move through its chapter
-  ladderA[ci].style.setProperty('--p', Math.max(0, Math.min(1, (t - lo) / (hi - lo))).toFixed(3));
+  ladderA[ci].style.setProperty('--p', Math.max(0, Math.min(1, (t - lo) / ((hi - lo) || 1))).toFixed(3));
   const win = (a, b) => t >= tm(a) && t < tm(b);
-  const live = [win(16.6, 20.9) && 'lab', win(24.4, 29.6) && 'trio', win(33.4, 34.3) && 'field', win(41.2, 44.2) && 'ven', (t >= tm(47.5) + 1.2 && t < tm(48.2)) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
+  const live = [win(16.6, 20.9) && 'lab', win(24.9, 37.0) && 'trio', win(41.2, 44.2) && 'ven', (t >= tm(48.9) + 1.2 && t < tm(51.4)) && 'tal', (t >= tm(47.5) + 1.2 && t < tm(48.2)) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
   if (stage.dataset.live !== live) stage.dataset.live = live;
   stage.classList.toggle('end', t >= tm(54.4)); stage.classList.toggle('footlive', t >= tm(56.0));
   E.hint.style.opacity = Math.max(.0, Math.min(1, 1 - (t - .3) / .5));
 }
 function go(i) {
-  const ppu = innerHeight * (M ? .62 : .7);
+  window.__detail && window.__detail.reset();
+  const ppu = innerHeight * (M ? .62 : .7), ease = t => 1 - Math.pow(1 - t, 4);
+  if (i === 4) {      // "We come to you" = the first centre, opened
+    const y = story.offsetTop + (tm(25.3) + .6) * ppu, open = () => window.__detail && window.__detail.open(0);
+    lenis ? lenis.scrollTo(y, { duration: 2.2, easing: ease, onComplete: open }) : (scrollTo({ top: y, behavior: 'smooth' }), setTimeout(open, 1300));
+    return;
+  }
   const y = story.offsetTop + TARGETS[i] * ppu;
-  lenis ? lenis.scrollTo(y, { duration: 2.2, easing: t => 1 - Math.pow(1 - t, 4) }) : scrollTo({ top: y, behavior: 'smooth' });
+  lenis ? lenis.scrollTo(y, { duration: 2.2, easing: ease }) : scrollTo({ top: y, behavior: 'smooth' });
 }
 $$('#nav a, .ladder a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); closeMenu(); go(+a.dataset.i); }));
 $('#home').addEventListener('click', e => { e.preventDefault(); go(0); });
