@@ -73,3 +73,8 @@ Live at `/homepage-concept-3` (team link, `noindex`, not linked anywhere). Same 
 - **Magnet:** buttons follow the pointer a little (`magnet()`); over a card thumbnail the whole image area attracts the button, the picture zooms and drifts against the pointer. Fixed button widths removed (they clipped the label roll).
 - **Footer:** big rows with letter-by-letter roll, a fill that sweeps in, index + arrow circle, siblings dim, a photo preview that follows the pointer (tilts with speed), pointer spotlight, column links with drawn underline, live Al Ain clock (Asia/Dubai), "Back to top" magnet pill, staggered clip reveal.
 
+
+## 2026-10-13 — /V2 = homepage + unified shell (client feedback)
+- `/V2` now serves this homepage (rewrite in `next.config.ts`); `/V2/about` and `/V2/resources/news` are the inner pages with the same capsule (logo pill + menu), overlay menu and black footer (`app/V2/_shell/`). `/homepage-concept-1` and `/homepage-concept-1/v2` still work.
+- The three centre cards (Agri Robotics & AI, Smart Growing Systems, Crop Resilience) open full screen on click (`#detail`, `.dp` panes; Esc / Close, arrows or scroll move between them, scrolling past the last one carries on to the venture section). The scroll itself skips the old drone scene.
+- Venture tiles and talent rows are links (inert `#` until the inner pages exist). Centre 2 and 3 copy is placeholder (their card captions).
