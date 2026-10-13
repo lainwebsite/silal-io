@@ -93,3 +93,7 @@ Live at `/homepage-concept-3` (team link, `noindex`, not linked anywhere). Same 
 - **Impact numbers:** odometer reels (digits 0-9 twice, the last digit turns an extra revolution). 30% rolls in with the section; 04 and 10+ roll up while they travel into focus (`setOdo`, driven by the dial position `m`).
 - **Footer:** the Al Ain clock text is removed (bottom bar = "Innovation Oasis — Silal, Al Ain, UAE", Back to top, "Part of Silal").
 
+## Concept 3, revision 5 (2026-10-13, client feedback)
+- **Wheel tab hugs its rows:** at the first and last stop only two rows exist, so the tab wraps them (`--wt` = space given up at the top, `--wb` at the bottom, one row pitch = 37 px, set in `setWheel(a)`); it grows back to the normal three-row tab as the wheel moves on. The card below follows the tab's bottom edge (`--wb`). The tab clips its content (`.wi` wrapper shifts by `--wt`), the faint rail stays inside the visible tab.
+- **Preloader (from the client's reference frames):** a ring of 40 ticks lights up clockwise around the IO mark, which fills from the bottom with the real load progress; the % below is an odometer; a small fade bar at the bottom grows with the percentage. White while loading, IO blue (`#3CA7D2`) at 100 % (`.prl.done`; the mark symbol `#ioMarkW` now uses `currentColor`). Exit: the ring flies outwards, the circle of the mark becomes a window onto the hero and opens.
+
