@@ -476,19 +476,22 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
           <div class="bg" id="bgVid">
     <video id="introVid" src="/homepage-concept-1/v2/media/intro-light.mp4" muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
     <div class="ov" style="background:rgba(0,0,0,.2)"></div>
-    <div class="ov" id="vidOv2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6)),rgba(0,0,0,.2)"></div>
+    <div class="im" id="holdB1" data-img="x_hold1" style="opacity:0"></div>
+    <div class="im" id="holdB2" data-img="x_hold2" style="opacity:0"></div>
+    <div class="im" id="imFarm" data-img="x_farm" style="opacity:0"></div>
+    <div class="im" id="imQuin" data-img="x_quinoa" style="opacity:0"></div>
   </div>
   <div class="bg glow" id="glowA"><div class="im" data-img="g_b1788c81" data-crop=".73,0,.79,.21"></div><div class="ov" style="background:rgba(15,15,15,.5)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.25),#0f0f0f 80%)"></div></div>
   <div class="bg" id="bgLab">
     <div class="lb"><div class="im" data-img="8e44e3b2"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
-    <div class="lb"><div class="im" data-img="0c5a04bd" data-crop=".57,0,.52,.31"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
-    <div class="lb"><div class="im" data-img="3e723371"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
+    <div class="lb"><div class="im" data-img="x_manlab"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
+    <div class="lb"><div class="im" data-img="x_pipette"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
     <div class="lb"><div class="im" data-img="bed5d79a"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.65),#0f0f0f)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,0),#0f0f0f)"></div></div>
   </div>
   <div class="bg" id="glowT">
-    <div class="gl on"><div class="im" data-img="g_c67af94c" data-crop="1,0,.42,.34"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
-    <div class="gl"><div class="im" data-img="g_132f755b"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div><div class="ov" style="background:rgba(1,88,37,.3)"></div></div>
-    <div class="gl"><div class="im" data-img="g_80510502"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
+    <div class="gl on"><div class="im" data-img="g_x_drone"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
+    <div class="gl"><div class="im" data-img="g_x_chamber"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div><div class="ov" style="background:rgba(1,88,37,.3)"></div></div>
+    <div class="gl"><div class="im" data-img="g_x_green"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
   </div>
     <div class="bg" id="bgB"><div class="im" data-img="90abeb8f" data-crop=".49,.44,.44,.25"></div><div class="ov" style="background:rgba(0,0,0,.5)"></div></div>
     <div class="bg" id="bgR"><div class="im" data-img="70840e80" data-crop="1,0,.45,.37"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div></div>
@@ -497,9 +500,9 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
 
   <!-- ===== 05 · detail view: opens from the three centre cards ===== -->
   <div class="detail" id="detail" aria-hidden="true">
-    <div class="dp" data-k="0"><div class="im c0" data-img="c67af94c" data-crop="1,0,.42,.34"></div><div class="im c1" data-img="bf471039" data-crop="1,0,.83,.14"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
-    <div class="dp" data-k="1"><div class="im c0" data-img="132f755b"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
-    <div class="dp" data-k="2"><div class="im c0" data-img="80510502"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+    <div class="dp" data-k="0"><div class="im c0" data-img="x_drone"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+    <div class="dp" data-k="1"><div class="im c0" data-img="x_chamber"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
+    <div class="dp" data-k="2"><div class="im c0" data-img="x_green"></div><div class="ov"></div><div class="ov ov2" style="opacity:0;background:linear-gradient(90deg,rgba(15,15,15,0),rgba(15,15,15,.6))"></div></div>
     <div class="frame dframe">
       <div class="a w copy dcopy" data-k="0" style="--x:285;--y:529;--w:669">
         <h2 class="t-lead">Technology that starts in the field.</h2>
@@ -507,12 +510,12 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
         <a class="btn cta" href="#technology">Explore Technology &amp; Services</a>
       </div>
       <div class="a w copy dcopy" data-k="1" style="--x:285;--y:529;--w:669">
-        <h2 class="t-lead">Smart Growing Systems.</h2>
+        <h2 class="t-lead">Abiotic Resilience &amp; Crop Genomics (ARC-GEN).</h2>
         <p class="t-body">Optimising greenhouse production in harsh climates.</p>
         <a class="btn cta" href="#growing">Learn more</a>
       </div>
       <div class="a w copy dcopy" data-k="2" style="--x:285;--y:529;--w:669">
-        <h2 class="t-lead">Crop Resilience.</h2>
+        <h2 class="t-lead">Advanced Controlled Environment Ag (CEA).</h2>
         <p class="t-body">Developing crops resilient to heat and drought.</p>
         <a class="btn cta" href="#resilience">Learn more</a>
       </div>
@@ -527,7 +530,7 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
 
   <!-- ===== design frame ===== -->
   <div class="frame" id="frame">
-    <h1 class="a full t-hero" id="hero" style="--y:399">Step into the Oasis</h1>
+    <h1 class="a full t-hero" id="hero" style="--y:399">Step into the Innovation Oasis</h1>
 
     <div class="a w copy" id="intro" style="--x:285;--y:610;--w:593">
       <h2 class="t-lead">Why Al Foah?</h2>
@@ -554,9 +557,9 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
       <div class="labcard glass" id="labcard" style="--gf:.04;--gb:30">
         <div class="row" data-r="0"><div class="media"><div class="im" data-img="8e44e3b2" data-open="1,0,1,0"></div></div><div class="txt"><span class="t-eye">heat</span><span class="t-18">Growth Chambers</span></div></div>
         <i class="hair sep"></i>
-        <div class="row" data-r="1"><div class="media"><div class="im" data-img="0c5a04bd" data-crop=".35,0,.52,.3" data-open=".5,.01,.46,.32"></div></div><div class="txt"><span class="t-eye">water</span><span class="t-18">Soil &amp; Water Lab</span></div></div>
+        <div class="row" data-r="1"><div class="media"><div class="im" data-img="x_manlab" data-crop=".5,.5,1,0"></div></div><div class="txt"><span class="t-eye">water</span><span class="t-18">Soil &amp; Water Lab</span></div></div>
         <i class="hair sep"></i>
-        <div class="row" data-r="2"><div class="media"><div class="im" data-img="3e723371" data-crop=".67,.3,1,0" data-open="1,0,1,0"></div></div><div class="txt"><span class="t-eye">soil</span><span class="t-18">Crop Health Lab</span></div></div>
+        <div class="row" data-r="2"><div class="media"><div class="im" data-img="x_pipette" data-crop=".5,.3,1,0" data-open="1,0,1,0"></div></div><div class="txt"><span class="t-eye">soil</span><span class="t-18">Crop Health Lab</span></div></div>
         <i class="hair sep"></i>
         <div class="row" data-r="3"><div class="media"><div class="im" data-img="bed5d79a" data-crop=".51,.04,.76,.12" data-open="1,0,1,0"></div></div><div class="txt"><span class="t-eye">energy</span><span class="t-18">Mobile Crop-Health Lab</span></div></div>
       </div>
@@ -567,12 +570,12 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
     <p class="a sub w t-s12" id="rootSub" style="--x:577;--y:57;--w:285">Specialised centres developing practical solutions for the future of agriculture.</p>
 
     <div class="trio" id="trio">
-      <div class="tcard" data-c="0" role="button" tabindex="0" aria-label="Open Agri Robotics &amp; AI"><div class="face"><i class="plus"></i><div class="im" data-img="c67af94c" data-crop="1,0,.42,.34"></div></div>
+      <div class="tcard" data-c="0" role="button" tabindex="0" aria-label="Open Agri Robotics &amp; AI"><div class="face"><i class="plus"></i><div class="im" data-img="x_drone"></div></div>
         <div class="cap"><p class="t-14 m">Agri Robotics &amp; AI</p><p class="t-14">Smarter automation for more efficient farming.</p></div></div>
-      <div class="tcard" data-c="1" role="button" tabindex="0" aria-label="Open Smart Growing Systems"><div class="face"><i class="plus"></i><div class="im" data-img="132f755b"></div></div>
-        <div class="cap"><p class="t-14 m">Smart Growing Systems</p><p class="t-14">Optimising greenhouse production in harsh climates.</p></div></div>
-      <div class="tcard" data-c="2" role="button" tabindex="0" aria-label="Open Crop Resilience"><div class="face"><i class="plus"></i><div class="im" data-img="80510502"></div></div>
-        <div class="cap"><p class="t-14 m">Crop Resilience</p><p class="t-14">Developing crops resilient to heat and drought.</p></div></div>
+      <div class="tcard" data-c="1" role="button" tabindex="0" aria-label="Open Abiotic Resilience &amp; Crop Genomics (ARC-GEN)"><div class="face"><i class="plus"></i><div class="im" data-img="x_chamber"></div></div>
+        <div class="cap"><p class="t-14 m">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</p><p class="t-14">Optimising greenhouse production in harsh climates.</p></div></div>
+      <div class="tcard" data-c="2" role="button" tabindex="0" aria-label="Open Advanced Controlled Environment Ag (CEA)"><div class="face"><i class="plus"></i><div class="im" data-img="x_green"></div></div>
+        <div class="cap"><p class="t-14 m">Advanced Controlled Environment Ag (CEA)</p><p class="t-14">Developing crops resilient to heat and drought.</p></div></div>
       <i class="ring" id="ring"></i>
     </div>
 
@@ -581,7 +584,7 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
     <div class="a full hdr" id="hdrVen" style="--y:28"><h3 class="t-h12">Innovation &amp; Venture Platforms</h3></div>
     <p class="a sub w t-s12" id="venSub" style="--x:490;--y:57;--w:459">Supporting the next generation of agricultural innovation through funding, incubation, acceleration and challenge-driven programs.</p>
     <div class="tiles" id="tiles">
-      <a class="tile on" href="#"><div class="box glass"><div class="im" data-img="050b0100"></div></div><p class="l">Farm Innovation Fund</p></a>
+      <a class="tile on" href="#"><div class="box glass"><div class="im" data-img="x_field" data-crop=".67,0,1,0"></div></div><p class="l">Farm Innovation Fund</p></a>
       <a class="tile" href="#"><div class="box glass"><div class="im" data-img="e5f0025f"></div></div><p class="l">Incubation</p></a>
       <a class="tile" href="#"><div class="box glass"><div class="im" data-img="1c4d7b58"></div></div><p class="l">Accelerator</p></a>
       <a class="tile" href="#"><div class="box glass"><div class="im" data-img="e66cc018"></div></div><p class="l">Agricultural Challenges</p></a>
@@ -593,7 +596,7 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
     <div class="eng" id="eng">
       <a class="ecard glass" href="#farmers"><span class="t-eye">For farmers</span><span class="t-21">Grow with us</span><i class="hair"></i><span class="go">Apply for funding</span></a>
       <a class="ecard glass" href="#government"><span class="t-eye">For government</span><span class="t-21">Built by the desert</span><i class="hair"></i><span class="go">Explore the research</span></a>
-      <a class="ecard glass" href="#robotics"><span class="t-eye">For robotics</span><span class="t-21">The future is built here</span><i class="hair"></i><span class="go">Apply for funding</span></a>
+      <a class="ecard glass" href="#robotics"><span class="t-eye">For robotics</span><span class="t-21">The future is built here</span><i class="hair"></i><span class="go">Collaborate</span></a>
     </div>
 
     <div class="a full hdr" id="hdrTal" style="--y:28"><h3 class="t-h12">Building agricultural talent.</h3></div>
@@ -607,7 +610,7 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
 
     <div class="a full hdr" id="hdrTour" style="--y:28"><h3 class="t-h12">Walk through the Oasis, wherever you are.</h3></div>
     <p class="a sub w t-s12" id="tourSub" style="--x:518;--y:57;--w:403">Take the interactive virtual tour of our farms, laboratories, greenhouses and meeting spaces – no visit required.</p>
-    <div class="tour" id="tour"><i class="ringb"></i><div class="face"><div class="im" data-img="4bf8fa0b" data-crop=".82,.17,.84,.08"></div></div></div>
+    <div class="tour" id="tour"><i class="ringb"></i><div class="face"><div class="im" data-img="x_tour"></div></div></div>
     <p class="a full" id="tourBtn" style="--y:589"><a class="btn" href="#tour-launch">Launch Virtual Tour</a></p>
 
   </div>
@@ -737,6 +740,10 @@ const DIM = {'2c9732cc':[1880,1058],'f502e814':[1880,1058],'e95e0b67':[1614,975]
  '80510502':[1880,1058],'977c9001':[1880,1058],'bf471039':[1732,1300],'90abeb8f':[2400,1600],'70840e80':[1086,1448],'06f2951c':[1360,764],
  '4bf8fa0b':[1614,975],'050b0100':[867,1300],'1c4d7b58':[867,1300],'e5f0025f':[867,1300],'e66cc018':[1880,1253]};
 const EXT = {'06f2951c':'png'};
+// new round-12 assets (x_*) live next to this page; the older ones are shared with /V2
+const imgUrl = k => `/homepage-concept-1/${/^(g_)?x_/.test(k) ? 'v3' : 'v2'}/media/img/${k}.${EXT[k] || 'jpg'}`;
+Object.assign(DIM, {'x_farm':[1728,1044],'x_quinoa':[1728,1044],'x_drone':[1710,954],'x_chamber':[1716,1141],'x_green':[1716,1141],'x_manlab':[1718,1143],'x_pipette':[1710,1135],'x_tour':[1624,976],'x_field':[1728,1152],'x_hold1':[1192,672],'x_hold2':[1192,672]});
+['x_drone','x_chamber','x_green'].forEach(k => { DIM['g_' + k] = DIM[k]; });
 Object.keys(DIM).forEach(k => { DIM['g_' + k] = DIM[k]; });   // g_<key> = small pre-blurred copy of <key> (same aspect, so the crop maths is identical)
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -752,14 +759,14 @@ function applyCrop(el, W, H, v) {
   el.style.backgroundSize = `${iw * S}px ${ih * S}px`;
   el.style.backgroundPosition = `${W / 2 - (tx + a / 2) * iw * S}px ${H / 2 - (ty + d / 2) * ih * S}px`;
 }
-$$('[data-img]').forEach(el => { const k = el.dataset.img; el.style.backgroundImage = `url(/homepage-concept-1/v2/media/img/${k}.${EXT[k] || 'jpg'})`; });
+$$('[data-img]').forEach(el => { const k = el.dataset.img; el.style.backgroundImage = `url(${imgUrl(k)})`; });
 const refreshCrops = () => $$('[data-img]').forEach(el => { if (el.closest('#detail')) return; applyCrop(el); });
 
 /* ------------------------------------------------------------------ refs */
 const root = document.documentElement, story = $('#story'), stage = $('#stage'), frame = $('#frame');
 const el = id => document.getElementById(id);
 const E = {};
-['bgVid','introVid','vidOv2','glowA','bgLab','glowT','bgB','bgR','glowE','base','detail','dctl','dn',
+['bgVid','introVid','holdB1','holdB2','imFarm','imQuin','glowA','bgLab','glowT','bgB','bgR','glowE','base','detail','dctl','dn',
  'hero','intro','stats','statement','capLab','labcard','rootTitle','hdrRoot','rootSub','trio','ring','venTitle','hdrVen','venSub','tiles','venBtn',
  'engTitle','hdrEng','eng','hdrTal','talSub','list','hdrTour','tourSub','tour','tourBtn','footF','num1','num2','hint','nav','mark'].forEach(i => E[i] = el(i));
 
@@ -810,7 +817,7 @@ function build() {
     const A = E;
     const bgs = ['glowA','bgLab','glowT','bgB','bgR','glowE'].map(k => A[k]);
     gsap.set(bgs, { opacity: 0 });
-    gsap.set(A.bgVid, { opacity: 1 }); gsap.set(A.vidOv2, { opacity: 0 });
+    gsap.set(A.bgVid, { opacity: 1 });
     gsap.set(A.base, { backgroundColor: '#101010' });
 
     // hidden initial states of every UI block
@@ -825,17 +832,16 @@ function build() {
 
     tl = gsap.timeline({ paused: true, defaults: { duration: 1 }, onUpdate: () => chrome(tl.time()) });   // chrome follows the timeline itself, so the nav / hover windows are right when a smoothed scrub settles
 
-    /* ---------- 01 · INTRODUCTION — scroll scrubs the flight video (Earth → close-up → aerial → desert → Al Foah) ----------
-       media/intro.mp4 = "homepage 1 video new" (19.63 s). The page timeline (title, copy, cards) is unchanged, so the
-       video is re-timed to it with keyframes [scroll unit → video second]:
+    /* ---------- 01 · INTRODUCTION — scroll scrubs the flight video (Earth → close-up → aerial → desert) ----------
+       media/intro-light.mp4 (19.58 s) is re-timed to the page with keyframes [scroll unit → video second]:
        unit 0–2.4   video 0–5.6    01.01 Earth overview → 01.02 close-up (Americas → Africa → Asia)
-       unit 2.4     video 5.6      01.03 "Step into the Oasis" arrives as the camera dives through the clouds toward Arabia
+       unit 2.4     video 5.6      01.03 "Step into the Innovation Oasis" arrives as the camera dives through the clouds toward Arabia
        unit 2.4–4.2 video 5.6–9    descent over the desert from altitude
-       unit 4.2–8.2 video 9–14.8   01.04 desert landscape (title stays)
-       unit 8.2–9.2 video 14.8–16.6 01.05 transition to Al Foah — dunes, footage softens (vidOv2 at unit 8.8)
-       unit 9.2–12.05 video 16.6–19.55 02.01 / 02.02 over the farm (green circles appear at ≈16.5 s) */
-    const vid = A.introVid, VID_END = 19.55, vp = { t: 0 };
-    const VID_KEYS = [[0, 0], [2.4, 5.6], [4.2, 9], [8.2, 14.8], [9.2, 16.6], [12.05, VID_END]];
+       unit 4.2–8.2 video 9–15.6   01.04 desert landscape, the flight comes to rest over the dunes (the title stays)
+       unit 8.2     the video STOPS on that frame (15.6 s): the picture softens (two pre-blurred stills of that frame fade in) and the title blurs away
+       unit 9.3     02.01 the new Al Foah photo takes over (no more footage after the dunes), unit 10.9 the quinoa field (stats) */
+    const vid = A.introVid, VID_END = 15.6, vp = { t: 0 };
+    const VID_KEYS = [[0, 0], [2.4, 5.6], [4.2, 9], [8.2, VID_END]];
     // the scrub writes a target; one ticker eases the shown time towards it and seeks only when the last seek has landed
     VS.el = vid; VS.end = VID_END;
     const seekVid = () => { VS.target = Math.min(vp.t, VID_END); };
@@ -845,15 +851,19 @@ function build() {
       tl.fromTo(vp, { t: t0 }, { t, duration: u - u0, ease: 'none', immediateRender: false, onUpdate: seekVid }, u0);
     });
     ft(0, A.hero, { opacity: 0, y: px(26) }, { opacity: 1, y: 0, duration: .9, ease: out }, 2.4);
-    ft(0, A.hero, { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.04, duration: 1.1 }, 8.2);
-    ft(0, A.vidOv2, { opacity: 0 }, { opacity: 1, duration: 1.4 }, 8.8);
+    // the title dissolves into the blur together with the picture (one small text layer, the only filter in the page)
+    ft(0, A.hero, { opacity: 1, scale: 1, filter: 'blur(0px)' }, { opacity: 0, scale: 1.03, filter: 'blur(18px)', duration: 1.2, ease: 'power1.in' }, 8.2);
+    ft(0, A.holdB1, { opacity: 0 }, { opacity: 1, duration: .9, ease: 'none' }, 8.2);
+    ft(0, A.holdB2, { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'none' }, 8.9);
 
     /* ---------- 02 · THE LOCATION ---------- */
-    ft(0, A.intro, { opacity: 0, y: px(40) }, { opacity: 1, y: 0, duration: 1, ease: out }, 9.2);
+    ft(0, A.imFarm, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.5, ease: out }, 9.3);
+    ft(0, A.intro, { opacity: 0, y: px(40) }, { opacity: 1, y: 0, duration: 1, ease: out }, 9.7);
     const upY = M ? -(vh * .3) : px(-325);
     ft(0, A.intro, { y: 0 }, { y: upY, duration: 1.1 }, 10.9);
     const sl = $$('.stat'), hr = $$('.hr');
     gsap.set(hr, { scaleX: 0 });
+    ft(0, A.imQuin, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.4, ease: out }, 10.9);
     ft(0, A.stats, { opacity: 0, y: px(36) }, { opacity: 1, y: 0, duration: 1, ease: out }, 11.2);
     ft(0, hr, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: .12, ease: out }, 11.3);
     // numbers roll up like an odometer (digit columns slide up through the digits) instead of switching instantly
@@ -1206,7 +1216,7 @@ function promote(t) {
     if (on !== w[3]) { w[3] = on; w[0].style.willChange = on ? 'opacity, transform' : 'auto'; if (w[4]) w[0].querySelectorAll('.im, .ov').forEach(k => { k.style.willChange = on ? 'transform' : 'auto'; }); }   // the curtain moves the layer's content too
   }
 }
-const TARGETS = [0, 9.6, 16.4, 23.6, 33.6, 41.5].map(tm).concat(tm(47.5) + 1.9);               // where a click scrolls to (timeline units)
+const TARGETS = [0, 10.4, 16.4, 23.6, 33.6, 41.5].map(tm).concat(tm(47.5) + 1.9);               // where a click scrolls to (timeline units)
 let lastIdx = -2, detailIdx = -1;   // detailIdx >= 0 while a centre is open: the nav shows "We come to you"
 function chrome(t) {
   promote(t);
@@ -1350,7 +1360,7 @@ function warmImages() {
   const keys = [...new Set($$('[data-img]').map(e => e.dataset.img))]; let i = 0;
   const next = () => {
     if (i >= keys.length) return;
-    const k = keys[i++], im = new Image(); im.src = `/homepage-concept-1/v2/media/img/${k}.${EXT[k] || 'jpg'}`;
+    const k = keys[i++], im = new Image(); im.src = imgUrl(k);
     (im.decode ? im.decode() : Promise.resolve()).catch(() => {}).then(() => { window.requestIdleCallback ? requestIdleCallback(next, { timeout: 500 }) : setTimeout(next, 80); });
   };
   next();
@@ -1368,7 +1378,7 @@ function runPreloader() {
   const src = { fonts: 0, imgs: 0 };
   fontsReady.then(() => { src.fonts = 1; });
   const keys = [...new Set($$('[data-img]').map(e => e.dataset.img))].slice(0, 8);
-  let loaded = 0; keys.forEach(k => { const im = new Image(); im.onload = im.onerror = () => { loaded++; src.imgs = loaded / keys.length; }; im.src = `/homepage-concept-1/v2/media/img/${k}.${EXT[k] || 'jpg'}`; });
+  let loaded = 0; keys.forEach(k => { const im = new Image(); im.onload = im.onerror = () => { loaded++; src.imgs = loaded / keys.length; }; im.src = imgUrl(k); });
   const vidProg = () => {
     if (!vid || vid.error || vid.readyState >= 4) return 1;
     const d = vid.duration;
