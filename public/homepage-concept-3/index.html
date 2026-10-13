@@ -14,7 +14,8 @@
 </script>
 <noscript><style>.prl{display:none}html.pre{overflow:auto}html.pre .frame{visibility:visible}</style></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">   <!-- not render-blocking: a slow font CDN can never leave the page blank -->
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" as="image" href="/homepage-concept-3/media/img/hero.jpg">
 <link rel="preload" as="image" href="/homepage-concept-3/media/img/intro.jpg">
 <style>
@@ -86,12 +87,13 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 
 /* ----- persistent chrome: pill (official IO mark + dot grid) ----- */
 .pill{left:30px;top:30px;width:122px;height:52px;border-radius:70px;background:rgba(16,16,16,.2);display:flex;align-items:center;pointer-events:auto}
-.pill::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(255,255,255,.09);opacity:0;transition:opacity .45s;pointer-events:none}
-.pill:hover::after{opacity:1}
 .pill .logo{position:absolute;left:24px;top:0;height:52px;display:flex;align-items:center}
-.pill .logo svg{display:block;width:33px;height:24px;transition:transform .7s var(--ease)}
-.pill .logo:hover svg{transform:scale(1.1) rotate(-6deg)}
+.pill .logo svg{display:block;width:33px;height:24px}
 .pill .dots{position:absolute;left:73px;top:0;width:49px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:0 70px 70px 0}
+.pill .dots::before{content:"";position:absolute;left:4px;right:4px;top:6px;bottom:6px;border-radius:50%;background:rgba(255,255,255,.13);opacity:0;transform:scale(.55);transition:opacity .4s,transform .7s var(--ease)}
+.pill .dots:hover::before{opacity:1;transform:scale(1)}
+.pillw{left:0;top:0;width:1px;height:1px}
+.in2{display:block;will-change:transform}
 .dots .dg{position:relative;display:block;width:20px;height:20px;will-change:transform}
 .dots .dg i{position:absolute;left:50%;top:50%;width:3.5px;height:3.5px;margin:-1.75px 0 0 -1.75px;border-radius:50%;background:#fff;will-change:transform}
 .dots .pulse{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:1px solid rgba(255,255,255,.7);opacity:0;pointer-events:none}
@@ -123,6 +125,7 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 
 /* ----- 05–12 journey dock: wheel + card ----- */
 .wheel{left:30px;top:88px;width:350px;height:143px;border-radius:30px;background:rgba(16,16,16,.3);pointer-events:auto}
+.wheel .rail{position:absolute;left:28px;top:14px;bottom:14px;width:var(--hl);min-width:1px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.34) 22%,rgba(255,255,255,.34) 78%,rgba(255,255,255,0))}
 .wheel .hl{position:absolute;left:28px;top:20px;width:103px;height:var(--hl);background:linear-gradient(90deg,rgba(255,255,255,0),#fff 50%,rgba(255,255,255,0));opacity:.55}
 .wheel .bar{position:absolute;left:28px;top:56px;width:var(--hl);min-width:1px;height:31px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 28%,#fff 72%,rgba(255,255,255,0));transform-origin:50% 50%}
 .wheel ul{position:absolute;inset:0;-webkit-mask:linear-gradient(180deg,transparent 22px,#000 46px,#000 97px,transparent 121px);mask:linear-gradient(180deg,transparent 22px,#000 46px,#000 97px,transparent 121px)}
@@ -155,7 +158,8 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 /* the dial: the needle is fixed at --NX; the ticks slide under it and swell as they pass (fisheye) */
 .ruler{position:absolute;left:0;right:0;top:620px;height:60px;margin-top:-23px;-webkit-mask:linear-gradient(90deg,transparent,#000 140px,#000 calc(100% - 140px),transparent);mask:linear-gradient(90deg,transparent,#000 140px,#000 calc(100% - 140px),transparent)}
 .ruler .trk{position:absolute;left:0;top:0;width:0;height:100%}
-.ruler .trk i{position:absolute;top:23px;width:1px;height:14px;background:#fff;opacity:.28}
+.ruler .trk i{position:absolute;top:23px;width:1px;height:14px;background:#fff;opacity:.2}
+.ruler .trk i.sd{top:2px;width:4px;height:4px;border-radius:50%;opacity:.26}
 .mt{position:absolute;left:0;top:0;width:0}
 .mt .num{position:absolute;left:0;top:463px;font-size:120px;line-height:1;letter-spacing:-.03em;white-space:nowrap;transform-origin:50% 104px;font-variant-numeric:tabular-nums}
 .mt .lab{position:absolute;left:-130px;top:0;width:260px;text-align:center;font-size:12px;line-height:1.5;white-space:nowrap}
@@ -176,7 +180,6 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 
 /* ----- 15 footer (final in-stage scene) ----- */
 .foot{pointer-events:none}
-#spot{position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,50%) var(--my,40%),rgba(255,255,255,.065),rgba(255,255,255,0) 62%);opacity:0}
 .foot .hr{position:absolute;left:64px;right:64px;height:var(--hl);background:rgba(255,255,255,.3);transform-origin:0 50%}
 /* big rows: roll-up letters, a fill that sweeps in, index + arrow, siblings dim */
 .frw{left:64px;right:64px;top:calc(var(--y)*1px);height:81px;display:flex;align-items:center;font-weight:500;font-size:34px;line-height:41px;white-space:nowrap;transition:opacity .45s}
@@ -240,19 +243,17 @@ a:hover>.tx .ch>span,a:hover .rl .ch>span{transform:translateY(-100%)}
 .stage[data-live~="map"] .pin .tag{pointer-events:auto}
 .stage:not([data-live~="map"]) .pin .tag{pointer-events:none}
 
-/* ----- preloader: the official IO mark fills with the real load progress ----- */
-.prl{position:fixed;inset:0;z-index:100;background:var(--ink);color:#fff;overflow:hidden;will-change:transform;contain:layout paint}
-.prl.leaving{border-radius:0 0 50% 50% / 0 0 9vh 9vh}
-.prl .c{position:absolute;left:0;right:0;top:46%;display:flex;flex-direction:column;align-items:center;transform:translateY(-50%)}
-.prl .mk2{position:relative;width:clamp(120px,22vh,210px);aspect-ratio:255/188;will-change:transform}
-.prl .mk2 svg{position:absolute;inset:0;width:100%;height:100%}
-.prl .mk2 .ghost{opacity:.16}
-.prl .mk2 .fill{position:absolute;inset:0;overflow:hidden;transform:translate3d(0,100%,0)}
-.prl .mk2 .fill>div{position:absolute;inset:0;transform:translate3d(0,-100%,0)}
+/* ----- preloader "Desert → Discovery": a sun rises over a horizon while the line draws; at 100 % the sun turns into a window onto the oasis and opens ----- */
+.prl{position:fixed;inset:0;z-index:100;background:var(--ink);color:#fff;overflow:hidden;--sd:clamp(92px,16vh,150px);--hy:58%;--cx:50%;--cy:50%;--r:0px;contain:layout paint}
+.prl.leaving{-webkit-mask-image:radial-gradient(circle at var(--cx) var(--cy),transparent var(--r),#000 calc(var(--r) + 1.5px));mask-image:radial-gradient(circle at var(--cx) var(--cy),transparent var(--r),#000 calc(var(--r) + 1.5px))}
+.prl .sky{position:absolute;left:0;right:0;top:0;height:var(--hy);overflow:hidden}
+.prl .glow{position:absolute;left:50%;bottom:0;width:calc(var(--sd)*5);height:calc(var(--sd)*2.6);margin-left:calc(var(--sd)*-2.5);background:radial-gradient(closest-side,rgba(255,255,255,.14),rgba(255,255,255,0));opacity:0;transform-origin:50% 100%}
+.prl .sun{position:absolute;left:50%;bottom:0;width:var(--sd);height:var(--sd);margin-left:calc(var(--sd)/-2);border-radius:50%;background:#fff;transform:translate3d(0,100%,0);will-change:transform}
+.prl .hz{position:absolute;left:0;right:0;top:var(--hy);height:1px;background:rgba(255,255,255,.4);transform:scaleX(0);transform-origin:50% 50%}
+.prl .lb{position:absolute;top:calc(var(--hy) + 16px);font-size:12px;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.prl .lb.l{left:clamp(20px,3.2vw,48px)}.prl .lb.r{right:clamp(20px,3.2vw,48px)}
 .prl .meta{position:absolute;left:clamp(20px,3.2vw,48px);right:clamp(20px,3.2vw,48px);bottom:clamp(20px,3.6vh,40px);display:flex;justify-content:space-between;align-items:flex-end;font-size:12px;line-height:1.5;letter-spacing:-.01em;color:rgba(255,255,255,.5)}
 .prl .meta b{font-weight:400;font-size:clamp(34px,5vw,64px);letter-spacing:-.04em;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
-.prl .bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.08)}
-.prl .bar i{position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:0 50%}
 @keyframes preFailsafe{to{visibility:hidden}}
 .prl{animation:preFailsafe 0s 15s forwards}
 @media (prefers-reduced-motion:reduce){.prl{display:none}}
@@ -297,14 +298,12 @@ html.m .foot .sm.r{--r:20!important}
   </defs>
 </svg>
 
-<!-- preloader -->
+<!-- preloader: Desert → Discovery -->
 <div class="prl" id="pre" role="status" aria-label="Loading Innovation Oasis">
-  <div class="c"><div class="mk2" id="preMk">
-    <svg class="ghost" aria-hidden="true"><use href="#ioMarkW" width="100%" height="100%"/></svg>
-    <div class="fill" id="preFill"><div id="preFillIn"><svg aria-hidden="true"><use href="#ioMarkW" width="100%" height="100%"/></svg></div></div>
-  </div></div>
+  <div class="sky"><i class="glow" id="preGlow"></i><i class="sun" id="preSun"></i></div>
+  <i class="hz" id="preHz"></i>
+  <p class="lb l"><span id="preL">Desert</span></p><p class="lb r"><span id="preR">Discovery</span></p>
   <div class="meta" id="preMeta"><span>Al Foah&nbsp; ⋅ &nbsp;Al Ain&nbsp; ⋅ &nbsp;UAE</span><b id="preN">0</b></div>
-  <div class="bar"><i id="preBar"></i></div>
 </div>
 
 <main class="story" id="story">
@@ -331,8 +330,8 @@ html.m .foot .sm.r{--r:20!important}
 
   <div class="frame" id="frame">
     <!-- 01 Hero -->
-    <h1 class="a cx cy t-hero" id="heroT"><span class="mk"><span class="in">A Different Kind of Destination</span></span></h1>
-    <p class="a cx b t-16" id="heroS"><span class="mk"><span class="in">Where a harsher environment grows brighter possibilities.</span></span></p>
+    <h1 class="a cx cy t-hero" id="heroT"><span class="mk"><span class="in"><span class="in2">A Different Kind of Destination</span></span></span></h1>
+    <p class="a cx b t-16" id="heroS"><span class="mk"><span class="in"><span class="in2">Where a harsher environment grows brighter possibilities.</span></span></span></p>
     <p class="a cx b" id="heroB" data-w="hero"><a class="btn" href="#enter" data-go="enter">Start the Journey</a></p>
 
     <!-- 02 Enter → 03 caption -->
@@ -341,7 +340,7 @@ html.m .foot .sm.r{--r:20!important}
     <p class="a r b" id="mapB" data-w="over"><a class="btn" href="#map" data-go="map">Explore the Map</a></p>
 
     <!-- 05–12 dock -->
-    <div class="a wheel glass" id="wheel" data-w="dock"><i class="hl"></i><i class="bar"></i><ul id="wheelL"></ul></div>
+    <div class="a wheel glass" id="wheel" data-w="dock"><i class="hl"></i><i class="rail"></i><i class="bar"></i><ul id="wheelL"></ul></div>
     <div class="a card glass" id="card" data-w="dock"></div>
     <p class="a r b hint" id="hint" style="--r:30;--b:30">Scroll</p>
 
@@ -357,7 +356,6 @@ html.m .foot .sm.r{--r:20!important}
 
     <!-- 15 Footer -->
     <div class="a foot" id="foot" style="inset:0">
-      <div id="spot"></div>
       <a class="a frw" style="--y:70" href="#research" data-prev="t-lab"><span class="tx rv"><span class="rl" data-t="Research"></span></span><i class="fnum">01</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
       <a class="a frw" style="--y:151" href="#programmes" data-prev="t-gh"><span class="tx rv"><span class="rl" data-t="Programmes"></span></span><i class="fnum">02</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
       <a class="a frw" style="--y:232" href="#community" data-prev="t-part"><span class="tx rv"><span class="rl" data-t="Community"></span></span><i class="fnum">03</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
@@ -377,10 +375,10 @@ html.m .foot .sm.r{--r:20!important}
     <nav class="a menu glass" id="menu" aria-label="Journey" aria-hidden="true"><ul id="menuL"><i class="hl" id="menuHl"></i></ul></nav>
 
     <!-- persistent -->
-    <div class="a pill glass" id="pill">
+    <div class="a pillw" id="pillw"><div class="a pill glass" id="pill">
       <a class="logo" href="#top" data-go="hero" aria-label="Innovation Oasis — back to start"><svg aria-hidden="true"><use href="#logo"/></svg></a>
       <button class="dots" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span class="dg" id="dg"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pulse" id="pulse"></span></button>
-    </div>
+    </div></div>
   </div>
  </div>
 </main>
@@ -437,7 +435,7 @@ const METRICS = [
   { v:10, f:n => n + '+', t:'Crops under research', d:'Testing varieties for local conditions.' }
 ];
 /* dial geometry (design px): x of the active column (= the fisheye centre), tick pitch, distance between two metrics (31 ticks), fisheye reach, how far the ruler travels while you scroll through the scene */
-const NX = 560, TICK = 12, STEP = 372, SPAN = 120, TRAVEL = 2400, J0 = -47, J1 = 330;
+const NX = 560, TICK = 12, STEP = 372, SPAN = 54, PEAK = 30, J0 = -47, J1 = 220;
 
 /* ---------- beats (timeline units). One table, no remapping. ---------- */
 const B = {
@@ -472,11 +470,12 @@ PINS.forEach(p => { const d = document.createElement('div'); d.className = 'pin'
   d.innerHTML = `<div class="in"><a class="tag" href="#${p.go}" data-go="${p.go}">${p.n}</a><i class="ring"><i></i></i><i class="line" style="height:${p.g - p.y - 7}px"></i><i class="gd"></i></div>`;
   pinsEl.appendChild(d); p.el = d; });
 
-/* dial: a ruler that travels with the scroll. Every 5th tick is a major one; the ones passing the active column swell (fisheye) */
+/* dial: the ruler slides left/right between the three numbers (one dot per number, stopping exactly under its copy). Every 5th tick is a major one; the few passing the active column swell a little (fisheye) */
 const ruler = $('#ruler'), trk = $('#trk'), TICKS = [];
-for (let j = J0; j <= J1; j++) { const i = document.createElement('i'), major = j % 5 === 0, base = major ? 21 : 14;
-  i.style.left = (NX + TICK * j - .5) + 'px'; i.style.transform = `scaleY(${base / 14})`; i.style.opacity = major ? .42 : .28; trk.appendChild(i);
-  TICKS.push({ el:i, base, op: major ? .42 : .28, h:-1, o:-1 }); }
+for (let j = J0; j <= J1; j++) { const i = document.createElement('i'), major = j % 5 === 0, base = major ? 14 : 9, op = major ? .34 : .2;
+  i.style.left = (NX + TICK * j - .5) + 'px'; i.style.transform = `scaleY(${base / 14})`; i.style.opacity = op; trk.appendChild(i);
+  TICKS.push({ el:i, base, op, h:-1, o:-1 }); }
+const STOPDOTS = [0, 1, 2].map(k => { const d = document.createElement('i'); d.className = 'sd'; d.style.left = (NX + STEP * k - 2) + 'px'; trk.appendChild(d); return d; });
 const mts = $('#mts');
 METRICS.forEach((m, k) => { const d = document.createElement('div'); d.className = 'mt'; d.dataset.k = k;
   d.innerHTML = `<p class="num">${m.f(m.v)}</p><p class="lab"><b>${m.t}</b>${m.d}</p>`; mts.appendChild(d); m.el = d; m.num = $('.num', d); m.lab = $('.lab', d);
@@ -545,22 +544,25 @@ function setNums(m) {
     o.lab.style.transform = `translateY(${658 + 39 * q}px)`;
     o.lab.style.color = `rgba(255,255,255,${(.4 + .6 * q) * fa})`;
     $('b', o.lab).style.fontWeight = Math.round(400 + 200 * q); });
+  dialM = m; paintDial();
 }
-/* the ruler: position follows the scroll (dialS 0..1), height/brightness fall off with distance from NX, and the swell
-   grows a little with scroll speed so fast scrolling feels "pushed" */
-let dialS = 0, dialBoost = 0, dialLast = [0, -1];
+/* the ruler: its position is the active metric index (dialM), so each dot stops exactly under its number. Height/brightness of the few ticks near NX
+   follow a short, soft curve; the swell grows slightly with scroll speed */
+let dialM = 0, dialBoost = 0, dialLast = [0, -1];
 function paintDial() {
-  const sh = -TRAVEL * dialS; trk.style.transform = `translate3d(${sh.toFixed(2)}px,0,0)`;
+  const sh = -STEP * dialM; trk.style.transform = `translate3d(${sh.toFixed(2)}px,0,0)`;
   const jc = -sh / TICK, span = Math.ceil(SPAN / TICK) + 2, a = Math.floor(jc - span), b = Math.ceil(jc + span);
   const lo = Math.max(J0, Math.min(a, dialLast[0])), hi = Math.min(J1, Math.max(b, dialLast[1]));
-  const peak = 60 * (1 + .3 * dialBoost);
+  const peak = PEAK * (1 + .22 * dialBoost);
   for (let j = lo; j <= hi; j++) {
-    const t = TICKS[j - J0], dist = Math.abs(TICK * j + sh), q = dist >= SPAN ? 0 : Math.pow(1 - dist / SPAN, 1.7);
+    const t = TICKS[j - J0], dist = Math.abs(TICK * j + sh), q = dist >= SPAN ? 0 : Math.pow(1 - dist / SPAN, 1.5);
     const h = Math.round((t.base + (peak - t.base) * q) * 10) / 10, o = Math.round((t.op + (1 - t.op) * q) * 100) / 100;
     if (h !== t.h) { t.h = h; t.el.style.transform = `scaleY(${(h / 14).toFixed(3)})`; }
     if (o !== t.o) { t.o = o; t.el.style.opacity = o; }
   }
   dialLast = [a, b];
+  STOPDOTS.forEach((d, k) => { const q = Math.max(0, 1 - Math.abs(STEP * (k - dialM)) / (STEP * .5)), e = q * q;
+    d.style.opacity = (.26 + .74 * e).toFixed(2); d.style.transform = `scale(${(1 + .7 * e).toFixed(2)})`; d.style.boxShadow = `0 0 0 ${(5 * e).toFixed(1)}px rgba(255,255,255,${(.1 * e).toFixed(3)})`; });
 }
 function setCount(c) { const o = METRICS[0]; o.num.textContent = o.f(Math.round(o.v * c)); }
 
@@ -595,9 +597,9 @@ function build() {
     gsap.set('.card .th', { clipPath: 'inset(100% 0% 0% 0% round 24px)' });
     gsap.set($$('.pin .tag, .pin .ring'), { opacity: 0, y: 10 }); gsap.set('.pin .line', { scaleY: 0 }); gsap.set('.pin .gd', { opacity: 0 });
     const FIN = 'inset(0% -60px -10px -60px)', FOUT = 'inset(100% -60px -10px -60px)';
-    gsap.set($$('.frw .fnum, .frw .farr'), { opacity: 0 }); gsap.set($$('.foot .hr'), { scaleX: 0 }); gsap.set($$('.foot .rv'), { clipPath: FOUT, y: 30 }); gsap.set('#spot', { opacity: 0 });
+    gsap.set($$('.frw .fnum, .frw .farr'), { opacity: 0 }); gsap.set($$('.foot .hr'), { scaleX: 0 }); gsap.set($$('.foot .rv'), { clipPath: FOUT, y: 30 });
     card.style.height = STOPS[0].ho + 'px';
-    dialS = 0; dialLast = [J0, J1]; setWheel(0); setNums(0); setCount(0); paintDial();
+    dialM = 0; dialLast = [J0, J1]; setWheel(0); setNums(0); setCount(0); paintDial();
     const rw = ruler.offsetWidth, rClosed = `inset(0px ${Math.max(0, rw - NX)}px 0px ${NX}px)`, rOpen = 'inset(0px 0px 0px 0px)';
     gsap.set(ruler, { clipPath: rClosed }); gsap.set('#metrics', { visibility: 'hidden' });
     gsap.set(tourEl, { left: 0, top: 0, width: W, height: H, y: H, borderRadius: FLAT });
@@ -735,8 +737,6 @@ function build() {
     ft(mv, { m: 0 }, { m: 1, onUpdate: () => setNums(mv.m) }, 30.0, 1.0, 'power3.inOut');
     ft(mv, { m: 1 }, { m: 2, onUpdate: () => setNums(mv.m) }, 31.6, 1.0, 'power3.inOut');
     vis('#metrics', true, 28.3); vis('#metrics', false, 33.8);   // the dial exists only inside its scene
-    // the ruler is bound to the scroll for the whole scene (painted by the ticker below, which also adds the speed swell)
-    const ds = { s: 0 }; ft(ds, { s: 0 }, { s: 1, onUpdate: () => { dialS = ds.s; } }, 28.4, 4.9, 'none');
 
     /* 13 → 14  the text leaves upwards, the oasis rises as a curtain and becomes the tour window */
     ft($$('#impH .in'), { yPercent: 0 }, { yPercent: -125, stagger: .06 }, 33.1, .6, 'power3.in');
@@ -760,9 +760,8 @@ function build() {
     /* 14 → 15  the tour card is pushed up and away; the footer rises into the same ink (nothing fades) */
     ft([tourEl, ring], { y: 0 }, { y: -(H + 80) }, 37.0, 1.0, 'power3.inOut');
     ft('#tourC', { y: 0 }, { y: -(H + 80) }, 37.0, 1.0, 'power3.inOut');
-    ft('#pill', { y: 0 }, { y: -110 }, 37.0, .8, 'power3.in');
+    ft('#pillw', { y: 0 }, { y: -110 }, 37.0, .8, 'power3.in');
     ft($$('.foot .hr'), { scaleX: 0 }, { scaleX: 1, stagger: .08 }, 37.5, .9, 'power3.inOut');
-    ft('#spot', { opacity: 0 }, { opacity: 1 }, 37.6, 1.4, 'power2.out');
     ft($$('.foot .rv'), { clipPath: FOUT, y: 30 }, { clipPath: FIN, y: 0, stagger: .04 }, 37.65, .95, 'power3.out');
     ft($$('.frw .fnum, .frw .farr'), { opacity: 0 }, { opacity: 1, stagger: .06 }, 38.0, .6, 'power2.out');
   }, stage);
@@ -833,21 +832,22 @@ menu.addEventListener('pointerleave', () => gsap.to(menuHl, { opacity: 0, durati
 
 /* ---------- entrance (after the preloader): hero photo settles, text rises out of its masks, the pill drops in ---------- */
 function prepEntrance() {
-  gsap.set('#pill', { y: -110 });
-  gsap.set($$('#heroT .in, #heroS .in'), { yPercent: 125 });
-  gsap.set('#heroB .btn', { clipPath: 'inset(100% 0% 0% 0% round 34px)' });
+  gsap.set('#pill', { y: -110 });                                   // entrance lives on its own elements (.in2, #heroB, #pill) so the scroll timeline (which owns .in, .btn, #pillw) can never be overwritten by it
+  gsap.set($$('#heroT .in2, #heroS .in2'), { yPercent: 125 });
+  gsap.set('#heroB', { clipPath: 'inset(100% 0% 0% 0% round 34px)' });
   gsap.set(CN('hero'), { scale: 1.2, transformOrigin: '50% 60%' });
 }
+function showEntrance() { gsap.set('#pill', { y: 0 }); gsap.set($$('#heroT .in2, #heroS .in2'), { yPercent: 0 }); gsap.set('#heroB', { clipPath: 'inset(0% 0% 0% 0% round 34px)' }); gsap.set(CN('hero'), { scale: 1 }); }
 function playEntrance() {
   if (entered) return; entered = true;
   const e = gsap.timeline();
   e.to(CN('hero'), { scale: 1, duration: 2.6, ease: 'expo.out' }, 0)
    .to('#pill', { y: 0, duration: 1.3, ease: 'expo.out' }, .35)
-   .to($$('#heroT .in, #heroS .in'), { yPercent: 0, duration: 1.4, ease: 'power4.out', stagger: .14 }, .25)
-   .to('#heroB .btn', { clipPath: 'inset(0% 0% 0% 0% round 34px)', duration: .9, ease: 'power3.out' }, .75);
+   .to($$('#heroT .in2, #heroS .in2'), { yPercent: 0, duration: 1.4, ease: 'power4.out', stagger: .14 }, .25)
+   .to('#heroB', { clipPath: 'inset(0% 0% 0% 0% round 34px)', duration: .9, ease: 'power3.out' }, .75);
 }
 
-/* ---------- details: magnet buttons, image tab hover, footer (preview that follows the pointer, spotlight, clock), dial speed swell ---------- */
+/* ---------- details: magnet buttons, image tab hover, footer (preview that follows the pointer, clock), dial speed swell ---------- */
 gsap.set($$('.th .btn'), { xPercent: -50, yPercent: -50 });
 function magnet(btn, area, k = .2, max = 14) {
   const qx = gsap.quickTo(btn, 'x', { duration: .6, ease: 'power3' }), qy = gsap.quickTo(btn, 'y', { duration: .6, ease: 'power3' });
@@ -868,7 +868,7 @@ $$('.th').forEach(th => {
 });
 [['#heroB .btn', null], ['#mapB .btn', null], ['#tourC .btn', null]].forEach(([q]) => { const b = $(q); if (b) magnet(b, b, .28, 9); });
 
-const fprev = $('#fprev'), fpi = $('#fpi'), spot = $('#spot'), fT = $('#fTime');
+const fprev = $('#fprev'), fpi = $('#fpi'), fT = $('#fTime');
 const fxq = gsap.quickTo(fprev, 'x', { duration: .55, ease: 'power3' }), fyq = gsap.quickTo(fprev, 'y', { duration: .55, ease: 'power3' }), frq = gsap.quickTo(fprev, 'rotation', { duration: .7, ease: 'power3' });
 let frT;
 $$('.frw').forEach(r => {
@@ -880,7 +880,6 @@ magnet($('#btt'), $('#btt'), .3, 8);
 document.addEventListener('pointermove', e => {
   if (!stage.classList.contains('footlive')) return;
   fxq(e.clientX + 36); fyq(e.clientY - 100); frq(Math.max(-8, Math.min(8, e.movementX * .5))); clearTimeout(frT); frT = setTimeout(() => frq(0), 90);
-  spot.style.setProperty('--mx', (e.clientX / U) + 'px'); spot.style.setProperty('--my', (e.clientY / U) + 'px');
 });
 const clock = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 const tickClock = () => { fT.textContent = clock.format(new Date()); };
@@ -898,7 +897,8 @@ gsap.ticker.add(() => {
 /* ---------- boot ---------- */
 let rz, lastW = 0;
 addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (Math.abs(innerWidth - lastW) < 2 && M && Math.abs(innerHeight - H) < 120) return; lastW = innerWidth; build(); }, 180); });
-const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+const fontsReady = Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise(r => setTimeout(r, 2500))]);   // never wait forever on a slow web font
 const pre = $('#pre'), skipPre = !root.classList.contains('pre') || !pre;
 function warm() {   // decode the rest of the photos in idle time so the first dive never stalls
   const keys = LAYERS.concat(Object.keys(THUMB)); let i = 0;
@@ -908,14 +908,13 @@ function warm() {   // decode the rest of the photos in idle time so the first d
 }
 function endPre() { root.classList.remove('pre'); lenis && lenis.start(); pre && pre.remove(); }
 function preloader() {
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   scrollTo(0, 0); lenis && lenis.stop();
-  const T0 = performance.now(), MIN = 2.0, MAX = 9;
-  const mk = $('#preMk'), fill = $('#preFill'), fillIn = $('#preFillIn'), bar = $('#preBar'), n = $('#preN');
+  const T0 = performance.now(), MIN = 2.4, MAX = 9;
+  const sun = $('#preSun'), glow = $('#preGlow'), hz = $('#preHz'), n = $('#preN'), L = $('#preL'), R = $('#preR'), meta = $('#preMeta');
   const src = { fonts: 0, imgs: 0 }, keys = ['hero', 'intro', 'map', 'gh', 'ghin', 'lab'];
   fontsReady.then(() => { src.fonts = 1; });
   let loaded = 0; keys.forEach(k => { const im = new Image(); im.onload = im.onerror = () => { loaded++; src.imgs = loaded / keys.length; }; im.src = IMGDIR + k + '.jpg'; });
-  gsap.fromTo(mk, { opacity: 0, scale: .92 }, { opacity: 1, scale: 1, duration: 1.4, ease: 'expo.out' });
+  gsap.fromTo([L, R, meta], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: .1 });
   let shown = 0, done = false;
   const sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
   const tick = (_, dt) => {
@@ -924,19 +923,29 @@ function preloader() {
     if (el >= MIN && raw >= .995) target = 1; if (el >= MAX) target = 1;
     shown += (target - shown) * (1 - Math.exp(-(dt || 16) / 150));
     if (target === 1 && 1 - shown < .0015) shown = 1;
-    const t = (1 - shown) * 100;
-    fill.style.transform = `translate3d(0,${t}%,0)`; fillIn.style.transform = `translate3d(0,${-t}%,0)`;
-    bar.style.transform = `scaleX(${shown})`; n.textContent = Math.round(shown * 100);
+    sun.style.transform = `translate3d(0,${((1 - shown) * 100).toFixed(2)}%,0)`;   // the sun climbs out from behind the horizon
+    glow.style.opacity = (shown * .9).toFixed(3);
+    hz.style.transform = `scaleX(${shown})`;                                        // the horizon draws from the centre outwards
+    L.style.opacity = (1 - .6 * shown).toFixed(3); R.style.opacity = (.3 + .7 * shown).toFixed(3);   // Desert → Discovery
+    n.textContent = Math.round(shown * 100);
     if (shown >= 1 && !done) { done = true; gsap.ticker.remove(tick); leave(); }
   };
   gsap.ticker.add(tick);
   function leave() {
-    pre.classList.add('leaving'); setTimeout(warm, 900);
-    const x = gsap.timeline({ onComplete: endPre });
-    x.to(mk, { scale: 1.07, duration: .55, ease: 'power2.out' }, 0)
-     .to('#preMeta', { y: -14, opacity: 0, duration: .5, ease: 'power2.in' }, .1)
-     .add(() => { root.classList.remove('pre'); playEntrance(); }, .5)
-     .to(pre, { yPercent: -100, duration: 1.3, ease: 'expo.inOut' }, .5);
+    setTimeout(warm, 900);
+    const Wd = innerWidth, Hd = innerHeight, rc = sun.getBoundingClientRect(), cx = rc.left + rc.width / 2, cy = rc.top + rc.height / 2, r0 = rc.width / 2 * 1.08;
+    const Rmax = Math.hypot(Math.max(cx, Wd - cx), Math.max(cy, Hd - cy)) + 6;
+    gsap.timeline({ onComplete: endPre })
+      .to(sun, { scale: 1.08, duration: .5, ease: 'power2.out' }, 0)                 // the sun ignites …
+      .to(glow, { opacity: 1, scale: 1.25, duration: .5, ease: 'power2.out' }, 0)
+      .to([L, R, meta], { y: -12, opacity: 0, duration: .45, ease: 'power2.in', stagger: .04 }, .05)
+      .add(() => {                                                                    // … and turns into a window onto the oasis, which then opens
+        pre.style.setProperty('--cx', cx + 'px'); pre.style.setProperty('--cy', cy + 'px'); pre.style.setProperty('--r', r0 + 'px');
+        pre.classList.add('leaving'); sun.style.visibility = 'hidden'; glow.style.opacity = 0;
+        root.classList.remove('pre');
+      }, .6)
+      .add(playEntrance, .95)
+      .to(pre, { '--r': Rmax + 'px', duration: 1.7, ease: 'expo.inOut' }, .65);
   }
 }
 fontsReady.then(() => {
@@ -950,12 +959,14 @@ fontsReady.then(() => {
   window.__story = { jump: t => { const v = B[t] ?? t, y = story.offsetTop + v * ppu; lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : window.scrollTo(0, y); tl.time(v); chrome(v); }, time: () => tl.time(), B };
   if (skipPre) {
     endPre();
-    if (P.has('t')) { entered = true; gsap.set('#pill', { y: 0 }); gsap.set($$('#heroT .in, #heroS .in'), { yPercent: 0 }); gsap.set('#heroB .btn', { clipPath: 'inset(0% 0% 0% 0% round 34px)' }); gsap.set(CN('hero'), { scale: 1 }); }   // QA deep link: no entrance
+    if (P.has('t')) { entered = true; showEntrance(); }   // QA deep link: no entrance
     else playEntrance();
     setTimeout(warm, 1500);
   }
   else preloader();
 });
+// last resort: whatever happens, the page is never left hidden behind the preloader
+setTimeout(() => { if (root.classList.contains('pre')) { try { playEntrance(); } catch (e) {} endPre(); } }, 14000);
 </script>
 </body>
 </html>

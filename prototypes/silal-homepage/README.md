@@ -78,3 +78,12 @@ Live at `/homepage-concept-3` (team link, `noindex`, not linked anywhere). Same 
 - `/V2` now serves this homepage (rewrite in `next.config.ts`); `/V2/about` and `/V2/resources/news` are the inner pages with the same capsule (logo pill + menu), overlay menu and black footer (`app/V2/_shell/`). `/homepage-concept-1` and `/homepage-concept-1/v2` still work.
 - The three centre cards (Agri Robotics & AI, Smart Growing Systems, Crop Resilience) open full screen on click (`#detail`, `.dp` panes; Esc / Close, arrows or scroll move between them, scrolling past the last one carries on to the venture section). The scroll itself skips the old drone scene.
 - Venture tiles and talent rows are links (inert `#` until the inner pages exist). Centre 2 and 3 copy is placeholder (their card captions).
+
+## Concept 3, revision 3 (2026-10-13, client feedback)
+- **Wheel:** a faint full-height rail (`.rail`, device-pixel hairline, fading ends) runs behind the brighter active bar.
+- **Preloader "Desert → Discovery":** a sun climbs out from behind a horizon while the horizon line draws and the count runs (DESERT dims, DISCOVERY lights up). At 100 % the sun ignites and turns into a circular window onto the oasis (`mask` hole, `--r` tweened) that opens to the full hero; the hero text then rises in. Progress = fonts + first photos. Skipped with `?preload=0` / `?t=`.
+- **Footer:** the cursor spotlight is gone (row fill, letter roll, arrow circle and the pointer-following photo stay).
+- **Logo:** no hover animation; only the dots button reacts (round highlight + dot ripple).
+- **Glitch fix (hero text stuck / pill gone):** the entrance animation and the scroll timeline wrote to the same elements, so a quick scroll or menu jump during the first ~2.5 s let the entrance overwrite the scroll state (hero text stayed over later sections). They now own different elements: entrance = `.in2`, `#heroB`, `#pill`; scroll = `.in`, `.btn`, `#pillw`. The web-font stylesheet is no longer render-blocking, `fonts.ready` is raced against 2.5 s, scroll restoration is manual and a 14 s failsafe always removes the preloader (before, a hanging font request could leave the whole UI hidden). Checked with a history test: 21 timeline positions, fresh load vs. random hops, no stale state.
+- **Dial:** the ruler is bound to the active number again (slides left/right between numbers, 3 subtle dots stop exactly under their copy and light up when active). The swell is short and soft (`SPAN` 54, `PEAK` 30), ticks are thinner and dimmer.
+
