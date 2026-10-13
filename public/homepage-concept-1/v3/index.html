@@ -886,8 +886,8 @@ function build() {
     ft(0, A.hero, { opacity: 1, scale: 1, filter: 'blur(0px)' }, { opacity: 0, scale: 1.03, filter: 'blur(18px)', duration: 1.7, ease: 'power1.in' }, 7.1);
 
     /* ---------- 02 · THE LOCATION ---------- */
-    curtain(A.imFarm, 8.7, 1.6, 1.14);
-    ft(0, A.intro, { opacity: 0, y: px(40) }, { opacity: 1, y: 0, duration: 1, ease: out }, 9.5);
+    curtain(A.imFarm, 7.5, 2.1, 1.14);   // starts while the blur is still building (7.1–8.8): blur and rise are one movement
+    ft(0, A.intro, { opacity: 0, y: px(40) }, { opacity: 1, y: 0, duration: 1, ease: out }, 9.2);
     const upY = M ? -(vh * .3) : px(-325);
     ft(0, A.intro, { y: 0 }, { y: upY, duration: 1.0 }, 10.6);
     const sl = $$('.stat'), hr = $$('.hr');
@@ -971,23 +971,14 @@ function build() {
       const h3 = $('h3', hdr), end = tDock + dDock;
       ft(0, title, { opacity: 0 }, { opacity: 1, duration: .7, ease: 'none' }, tIn);
       ft(0, title, { y: px(190) }, { y: 0, duration: 1.4, ease: 'power2.out' }, tIn);
-      if (!M) {
-        // the title itself becomes the header: font-size, weight and line-height tween to the header's values and its top lands on the header's top,
-        // so the text is real (sharp) glyphs the whole way and the hand-over at the end is pixel-identical
-        const fs0 = parseFloat(getComputedStyle(title).fontSize), fs1 = parseFloat(getComputedStyle(h3).fontSize);
-        const dy = hdr.offsetTop - title.offsetTop;
-        ft(0, title, { y: 0, fontSize: fs0, lineHeight: 1.2 }, { y: dy, fontSize: fs1, lineHeight: 1.55, duration: dDock, ease: 'power2.inOut' }, tDock);
-        ft(0, title, { fontWeight: 500 }, { fontWeight: 600, duration: dDock * .25, ease: 'none' }, tDock);
-        ft(0, title, { opacity: 1 }, { opacity: 0, duration: .001, ease: 'none' }, end);
-        ft(0, hdr, { opacity: 0 }, { opacity: 1, duration: .001, ease: 'none' }, end);
-      } else {
-        const k = parseFloat(getComputedStyle(h3).fontSize) / parseFloat(getComputedStyle(title).fontSize);
-        const dy = (hdr.offsetTop + hdr.offsetHeight / 2) - (title.offsetTop + title.offsetHeight * k / 2);
-        gsap.set(title, { transformOrigin: '50% 0%' });
-        ft(0, title, { y: 0, scale: 1 }, { y: dy, scale: k, duration: dDock, ease: 'power2.inOut' }, tDock);
-        ft(0, title, { opacity: 1 }, { opacity: 0, duration: .35, ease: 'none' }, end - .35);
-        ft(0, hdr, { opacity: 0 }, { opacity: 1, duration: .35, ease: 'none' }, end - .35);
-      }
+      // the title is ONE element that travels with transform only (y + scale, compositor), so nothing is re-laid-out or re-rasterised while it moves: no font-size / weight / line-height
+      // tweens (those were what made it stutter). The real 12 px header takes over with a short cross-fade over the last stretch, when both are the same size and place.
+      const k = parseFloat(getComputedStyle(h3).fontSize) / parseFloat(getComputedStyle(title).fontSize);
+      const dy = (hdr.offsetTop + hdr.offsetHeight / 2) - (title.offsetTop + title.offsetHeight * k / 2);
+      gsap.set(title, { transformOrigin: '50% 0%' });
+      ft(0, title, { y: 0, scale: 1 }, { y: dy, scale: k, duration: dDock, ease: 'power2.inOut' }, tDock);
+      ft(0, title, { opacity: 1 }, { opacity: 0, duration: .3, ease: 'none' }, end - .3);
+      ft(0, hdr, { opacity: 0 }, { opacity: 1, duration: .3, ease: 'none' }, end - .3);
     };
     dock(A.rootTitle, A.hdrRoot, 21.4, 22.8, 1.8);   // rises while the lab card is already gone (it fades 20.9–21.8), and lands exactly when the dock starts
     const subDy = M ? 0 : px(670);
@@ -1241,7 +1232,7 @@ function build() {
 
 /* ------------------------------------------------------------------ chrome state (nav, marker, hint) */
 const navLinks = $$('#nav a'), ladderA = $$('.ladder a'), ladderU = ladderA.map(a => { const u = document.createElement('u'); $('i', a).appendChild(u); return u; });
-const CHAPTERS = [0, 8.0, 14.4, 21.0, 29.0, 37.0, 44.2].map(tm);                    // when each nav item takes over
+const CHAPTERS = [0, 7.6, 14.4, 21.0, 29.0, 37.0, 44.2].map(tm);                    // when each nav item takes over
 // GPU layers (will-change) are only kept for the scenes that are near, a full-screen layer costs ~20 MB on a retina display
 let WCR = null;
 function promote(t) {
