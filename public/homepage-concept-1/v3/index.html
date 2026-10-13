@@ -983,7 +983,7 @@ function build() {
       const H = (t, y0, y1, d0, d1_) => { const t2 = t * t, t3 = t2 * t; return (2 * t3 - 3 * t2 + 1) * y0 + (t3 - 2 * t2 + t) * d0 + (-2 * t3 + 3 * t2) * y1 + (t3 - t2) * d1_; };
       const path = p => p <= 0 ? 0 : p >= 1 ? 1 : p < pm ? H(p / pm, 0, ym, m0 * pm, mm * pm) : H((p - pm) / (1 - pm), ym, 1, mm * (1 - pm), 0);
       const tail = t => (path(pm + t * (1 - pm)) - ym) / (1 - ym);   // the second half on its own, 0..1 (for anything that must travel in step with the title)
-      gsap.set(title, { transformOrigin: '50% 0%' });
+      gsap.set(title, { transformOrigin: '50% 0%', y: Y0 });   // parked below the screen from the start: before its tween runs the title must already be out of sight (it used to sit at the centre for a few pixels of scroll)
       ft(0, title, { opacity: 0 }, { opacity: 1, duration: .001, ease: 'none' }, T0 - .02);   // it starts below the screen: nothing to see, nothing to fade
       ft(0, title, { y: Y0 }, { y: dy, duration: d1 + d2, ease: path }, T0);
       ft(0, title, { scale: 1 }, { scale: k, duration: d2, ease: 'sine.inOut' }, T1);
@@ -996,7 +996,7 @@ function build() {
     dock(A.statement, A.capLab, 13.5, 1.5, 1.3);
     const dRoot = dock(A.rootTitle, A.hdrRoot, 20.9, 1.6, 2.1);
     const subDy = M ? 0 : px(670);
-    gsap.set(A.rootSub, { y: subDy });
+    gsap.set(A.rootSub, { y: M ? 0 : vh });
     if (!M) {
       // the description rides up from below the screen with its heading, comes to rest low on the screen, then travels to its place under the header with the SAME curve as the title's second half
       // (same start, same duration): the gap between heading and description closes smoothly and they never meet
