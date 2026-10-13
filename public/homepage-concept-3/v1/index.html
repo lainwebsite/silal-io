@@ -641,7 +641,7 @@ function build() {
     gsap.set('.card .th', { clipPath: 'inset(100% 0% 0% 0% round 24px)' });
     gsap.set($$('.pin .tag, .pin .ring'), { opacity: 0, y: 10 }); gsap.set('.pin .line', { scaleY: 0 }); gsap.set('.pin .gd', { opacity: 0 });
     const FIN = 'inset(-8px -60px -10px -60px)', FOUT = 'inset(100% -60px -10px -60px)';
-    gsap.set($$('.foot .hr'), { scaleX: 0 }); gsap.set('#fvl', { scaleY: 0 }); gsap.set($$('.foot .rv'), { clipPath: FOUT, y: 30 });
+    gsap.set('#foot', { visibility: 'hidden' }); gsap.set($$('.foot .hr'), { scaleX: 0 }); gsap.set('#fvl', { scaleY: 0 }); gsap.set($$('.foot .rv'), { clipPath: FOUT, y: 30 });
     card.style.height = STOPS[0].ho + 'px';
     dialM = 0; dialLast = [J0, J1]; setWheel(0); setNums(0); setCount(0); paintDial();
     const rw = ruler.offsetWidth, rClosed = `inset(0px ${Math.max(0, rw - NX)}px 0px ${NX}px)`, rOpen = 'inset(0px 0px 0px 0px)';
@@ -808,6 +808,7 @@ function build() {
     ftl.to([ring, '#tourC'], { y: -(H + 80), duration: .8, ease: 'power3.inOut' }, 0)
        .to(tourEl, { yPercent: -((H + 80) / box.height) * 100, duration: .8, ease: 'power3.inOut' }, 0)
        .to('#pillw', { y: -110, duration: .5, ease: 'power3.in' }, 0)
+       .fromTo('#foot', { visibility: 'hidden' }, { visibility: 'visible', duration: .001, immediateRender: false }, .6)   // nothing of the footer exists while the tour card is on screen
        .to($$('.foot .hr'), { scaleX: 1, duration: .8, ease: 'power3.inOut' }, .65)
        .to('#fvl', { scaleY: 1, duration: .8, ease: 'power3.inOut' }, .75)
        .to(rvs, { clipPath: FIN, y: 0, duration: .75, ease: 'power3.out', stagger: .02, onComplete: () => gsap.set(rvs, { clearProps: 'transform' }) }, .8);   // transforms cleared so the CSS hover shifts work
@@ -822,17 +823,48 @@ function build() {
 }
 
 /* ---------- chrome: live windows, active chapter ---------- */
-let lastLive = '', footState = 0, lastT = 0, ftl = null;
-const ZIN = 36.62, ZOUT = 36.45;   // scroll positions (timeline units) where the footer section starts / ends
+let lastLive = '', footState = 0, lastT = 0, ftl = null, busy = false, busyT;
+/* The footer is a section with two resting places: the tour card (CTA_T) and the footer (END). One gesture moves between them — scrolling down from the
+   card plays the footer, scrolling up from the footer returns to the card — instead of the scroll position scrubbing anything. */
+const CTA_T = 36.3, ZIN = 36.45, ZOUT = 36.25;   // timeline units: card resting place / fallback thresholds for keyboard, scrollbar drags, deep links
+function scrollToT(t, dur) {
+  const y = story.offsetTop + t * ppu;
+  if (lenis) lenis.scrollTo(y, { duration: dur, easing: x => 1 - Math.pow(1 - x, 3), lock: true, force: true }); else window.scrollTo({ top: y, behavior: 'smooth' });
+}
+function footerGo(to, jumped) {
+  if (!ftl || to === footState) return; footState = to;
+  if (jumped) { ftl.pause().reversed(false); ftl.progress(to ? 1 : 0, true); stage.classList.toggle('footlive', !!to); if (to) gsap.set($$('.foot .rv'), { clearProps: 'transform' }); return; }
+  busy = true; clearTimeout(busyT); busyT = setTimeout(() => { busy = false; }, 1500);          // swallow wheel momentum while it moves
+  if (to) { ftl.reversed(false).timeScale(1).play(); scrollToT(B.END, 1.1); }
+  else { ftl.timeScale(1.15).reverse(); scrollToT(CTA_T, 1.0); }
+}
 function footerCheck(t) {
   const jumped = Math.abs(t - lastT) > 1.5; lastT = t;
-  const want = t >= ZIN ? 1 : (t <= ZOUT ? 0 : footState);
-  if (want === footState || !ftl) return;
-  footState = want;
-  if (jumped) { ftl.pause().reversed(false); ftl.progress(want ? 1 : 0, true); stage.classList.toggle('footlive', !!want); if (want) gsap.set($$('.foot .rv'), { clearProps: 'transform' }); }
-  else if (want) { ftl.reversed(false).timeScale(1).play(); const y = story.offsetTop + B.END * ppu; if (lenis) lenis.scrollTo(y, { duration: 1.2, easing: x => 1 - Math.pow(1 - x, 3) }); else window.scrollTo({ top: y, behavior: 'smooth' }); }
-  else ftl.timeScale(1.3).reverse();
+  if (busy && !jumped) return;
+  footerGo(t >= ZIN ? 1 : (t <= ZOUT ? 0 : footState), jumped);
 }
+const inCard = () => tl && tl.time() >= CTA_T - .15 && tl.time() <= ZIN + .3;
+addEventListener('wheel', e => {
+  if (menuOpen || !ftl) return;
+  const dy = e.deltaY, stop = () => { e.preventDefault(); e.stopImmediatePropagation(); };
+  if (busy) return stop();
+  if (footState === 0 && dy > 6 && inCard()) { stop(); footerGo(1); }
+  else if (footState === 1) { if (dy < -6) { stop(); footerGo(0); } else if (dy > 0) stop(); }
+}, { passive: false, capture: true });
+let ty0 = null;
+addEventListener('touchstart', e => { ty0 = e.touches[0].clientY; }, { passive: true });
+addEventListener('touchmove', e => {
+  if (ty0 === null || menuOpen || !ftl) return; const dy = ty0 - e.touches[0].clientY;
+  if (busy) { if (e.cancelable) e.preventDefault(); return; }
+  if ((footState === 0 && dy > 36 && inCard()) || (footState === 1 && dy < -36)) { if (e.cancelable) e.preventDefault(); ty0 = null; footerGo(footState ? 0 : 1); }
+}, { passive: false });
+addEventListener('keydown', e => {
+  if (menuOpen || !ftl || /^(INPUT|TEXTAREA|BUTTON|A)$/.test((document.activeElement || {}).tagName)) return;
+  const down = ['ArrowDown', 'PageDown', ' ', 'End'].includes(e.key), up = ['ArrowUp', 'PageUp', 'Home'].includes(e.key);
+  if (busy && (down || up)) return e.preventDefault();
+  if (footState === 0 && down && inCard()) { e.preventDefault(); footerGo(1); }
+  else if (footState === 1 && up) { e.preventDefault(); footerGo(0); }
+});
 function chrome(t) {
   const live = LIVE.filter(([, a, b]) => t >= a && t <= b).map(x => x[0]).join(' ');
   if (live !== lastLive) { stage.dataset.live = live; lastLive = live; }
