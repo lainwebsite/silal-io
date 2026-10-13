@@ -243,14 +243,27 @@ html.pre .chrome > *{animation:none;opacity:0}
 @media (prefers-reduced-motion:reduce){.prl{display:none}}
 
 /* ---------- menu overlay (lives inside .chrome so the top bar and its X stay above it) ---------- */
-.menu{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(15,15,15,.93);visibility:hidden;pointer-events:none;clip-path:circle(0px at 100% 0)}
+.menu{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:#0f0f0f;visibility:hidden;pointer-events:none;clip-path:circle(0px at 100% 0)}
 .menu.open{visibility:visible;pointer-events:auto}
+.menu{padding:0 clamp(24px,6vw,96px)}
+.mwrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,7vw,120px);width:min(1320px,100%);align-items:center}
 .menu ul{list-style:none;display:flex;flex-direction:column;gap:2px;align-items:flex-start}
 .menu li{overflow:hidden;padding:0 28px 6px 0}
-.menu a{display:flex;align-items:baseline;gap:20px;font-size:clamp(26px,4.4vw,56px);font-weight:500;letter-spacing:-.02em;line-height:1.15;color:rgba(255,255,255,.4);transition:color .3s,transform .5s cubic-bezier(.2,.7,.1,1)}
-.menu a em{font-style:normal;font-size:12px;font-weight:500;letter-spacing:.04em;line-height:1;color:rgba(255,255,255,.4);min-width:22px;transform:translateY(-1.2em)}
-.menu a .ln{display:block}
-.menu a:hover{color:#fff;transform:translateX(14px)}
+.menu #menuList a{display:flex;align-items:baseline;gap:20px;font-size:clamp(26px,3.5vw,50px);font-weight:500;letter-spacing:-.02em;line-height:1.15;color:rgba(255,255,255,.4);transition:color .3s,transform .5s cubic-bezier(.2,.7,.1,1)}
+.menu #menuList a em{font-style:normal;font-size:12px;font-weight:500;letter-spacing:.04em;line-height:1;color:rgba(255,255,255,.4);min-width:22px;transform:translateY(-1.2em)}
+.menu #menuList a .ln{display:block}
+.menu #menuList:hover a{color:rgba(255,255,255,.28)}
+.menu #menuList a:hover,.menu #menuList a:focus-visible,.menu #menuList a.on{color:#fff;transform:translateX(14px)}
+.mpanel{display:flex;flex-direction:column;gap:18px;min-width:0}
+.mpanel .mimg{width:100%;aspect-ratio:16/10;border-radius:24px;background:#1b1b1b center/cover no-repeat;overflow:hidden}
+.mpanel .mk{font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.25}
+.mpanel .mb{font-size:16px;line-height:1.55;color:rgba(255,255,255,.7);max-width:46ch}
+.mpanel .ms{gap:0;width:100%}
+.mpanel .ms li{padding:0;overflow:visible;width:100%}
+.mpanel .ms a{display:flex;justify-content:space-between;gap:16px;padding:11px 0;font-size:14px;line-height:1.4;color:rgba(255,255,255,.7);border-top:.5px solid rgba(255,255,255,.2);transition:color .3s,padding .4s cubic-bezier(.2,.7,.1,1)}
+.mpanel .ms a:hover{color:#fff;padding-left:8px}
+.mfoot{position:absolute;left:clamp(24px,6vw,96px);right:clamp(24px,6vw,96px);bottom:clamp(20px,4vh,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.4)}
+.mfoot .mlinks{display:flex;gap:22px}.mfoot a{color:rgba(255,255,255,.5);transition:color .3s}.mfoot a:hover{color:#fff}
 .menuBtn{position:relative;z-index:60;cursor:pointer}
 
 /* ==========================================================================
@@ -270,6 +283,7 @@ html.m .chrome .nav{display:none}
 html.m .rail,html.m .mark{display:none}
 html.m .topbar{top:max(16px,env(safe-area-inset-top));right:16px}
 html.m .pill{width:72px;height:46px}html.m .pill svg{width:30px;height:22px}
+html.m .mwrap{grid-template-columns:1fr}html.m .mpanel{display:none}html.m .mfoot{flex-direction:column;align-items:flex-start;gap:10px}html.m .menu #menuList a{font-size:clamp(24px,7.4vw,34px)}
 html.m .menuBtn{width:46px;height:46px;gap:4px}html.m .menuBtn i{width:18px;height:1.5px}
 html.m .menuBtn[aria-expanded=true] i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
 html.m .menuBtn[aria-expanded=true] i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
@@ -506,15 +520,26 @@ html.m .fbar{position:relative;left:auto;top:auto;width:auto;margin-top:auto;fon
     </div>
     <p class="hint" id="hint">Scroll</p>
 <div class="menu" id="menu" aria-hidden="true">
-    <ul id="menuList">
-      <li><a href="#" data-i="0"><em>01</em><span class="ln">Innovation Oasis</span></a></li>
-      <li><a href="#" data-i="1"><em>02</em><span class="ln">The location</span></a></li>
-      <li><a href="#" data-i="2"><em>03</em><span class="ln">What you’ll pass on the way</span></a></li>
-      <li><a href="#" data-i="3"><em>04</em><span class="ln">What we’re growing</span></a></li>
-      <li><a href="#" data-i="4"><em>05</em><span class="ln">We come to you</span></a></li>
-      <li><a href="#" data-i="5"><em>06</em><span class="ln">Who you’ll meet</span></a></li>
-      <li><a href="#" data-i="6"><em>07</em><span class="ln">Find your door</span></a></li>
-    </ul>
+    <div class="mwrap">
+      <ul id="menuList">
+      <li><a href="/V2/about" data-k="0"><em>00</em><span class="ln">About IO</span></a></li>
+      <li><a href="#" data-k="1"><em>01</em><span class="ln">Research &amp; Science</span></a></li>
+      <li><a href="#" data-k="2"><em>02</em><span class="ln">Innovation &amp; Venture Platforms</span></a></li>
+      <li><a href="#" data-k="3"><em>03</em><span class="ln">Centres of Excellence</span></a></li>
+      <li><a href="#" data-k="4"><em>04</em><span class="ln">Technology &amp; Services</span></a></li>
+      <li><a href="#" data-k="5"><em>05</em><span class="ln">Talent &amp; Training</span></a></li>
+      </ul>
+      <aside class="mpanel" id="menuPanel" aria-live="polite">
+        <div class="mimg" id="mpImg"></div>
+        <p class="mk" id="mpKick"></p>
+        <p class="mb" id="mpBlurb"></p>
+        <ul class="ms" id="mpSubs"></ul>
+      </aside>
+    </div>
+    <div class="mfoot">
+      <p class="mtag">Advancing Agri-food Systems</p>
+      <p class="mlinks"><a href="#">Contact</a><a href="#">LinkedIn&nbsp;↗</a><a href="/V2/resources/news">News &amp; Media</a></p>
+    </div>
   </div>
     <nav class="ladder" aria-label="Chapters">
       <a href="#" data-i="0" aria-label="Innovation Oasis"><span>Innovation Oasis</span><i></i></a>
@@ -930,7 +955,6 @@ function chrome(t) {
     ladderA.forEach((a, k) => { a.classList.toggle('on', k === ci); a.classList.toggle('done', k < ci); });
     E.nav.classList.toggle('off', i < 0); E.mark.classList.toggle('off', i < 0);
     if (i >= 0 && !M) E.mark.style.transform = `translateY(${25 * i * U}px)`;
-    const mi = $$('#menuList a'); mi.forEach((a, k) => a.style.color = k === i ? '#fff' : '');
   }
   const lo = CHAPTERS[ci], hi = ci < CHAPTERS.length - 1 ? CHAPTERS[ci + 1] : tm(53.8);   // ladder: the active line fills as you move through its chapter
   ladderA[ci].style.setProperty('--p', Math.max(0, Math.min(1, (t - lo) / (hi - lo))).toFixed(3));
@@ -945,7 +969,7 @@ function go(i) {
   const y = story.offsetTop + TARGETS[i] * ppu;
   lenis ? lenis.scrollTo(y, { duration: 2.2, easing: t => 1 - Math.pow(1 - t, 4) }) : scrollTo({ top: y, behavior: 'smooth' });
 }
-$$('#nav a, #menuList a, .ladder a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); closeMenu(); go(+a.dataset.i); }));
+$$('#nav a, .ladder a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); closeMenu(); go(+a.dataset.i); }));
 $('#home').addEventListener('click', e => { e.preventDefault(); go(0); });
 
 /* ------------------------------------------------------------------ menu overlay */
@@ -957,12 +981,29 @@ const paintMenu = () => {
   const R = Math.hypot(Math.max(cx, m.width - cx), Math.max(cy, m.height - cy));
   menu.style.clipPath = `circle(${(mp.p * R).toFixed(1)}px at ${cx.toFixed(1)}px ${cy.toFixed(1)}px)`;
 };
+const SITE = [{"k": "about", "n": "00", "label": "About IO", "href": "/V2/about", "img": "/photos/Professional%20Facility%20Photos%20%281%29/PA__1211-Edit-Edit.jpg", "blurb": "Silal's R&D and venture engine, on 34 hectares beside Al Foah Farm.", "subs": [["Our Story", "/V2/about"], ["Team & CEO Message", "#"], ["Virtual Tour", "#"]]}, {"k": "research", "n": "01", "label": "Research & Science", "href": "#", "img": "/photos/Professional%20Facility%20Photos%20%281%29/PA__1421.jpg", "blurb": "Breeding, soil, water and food science, proven under arid pressure.", "subs": [["Precision Breeding & Plant Health", "#"], ["Crop Diversification Research", "#"], ["Soil & Water Research", "#"], ["Food Technology", "#"], ["R&D Trialing", "#"]]}, {"k": "ventures", "n": "02", "label": "Innovation & Venture Platforms", "href": "#", "img": "/photos/Final%20Pitches/FRH_1604.JPG", "blurb": "Funding, incubation and acceleration for agri-food founders.", "subs": [["Farm Innovation Fund", "#"], ["Incubation", "#"], ["Accelerator", "#"], ["Agricultural Challenges", "#"]]}, {"k": "centres", "n": "03", "label": "Centres of Excellence", "href": "#", "img": "/photos/Professional%20Facility%20Photos%20%281%29/PA__1464.jpg", "blurb": "Specialist hubs for robotics, crop genomics and controlled environments.", "subs": [["Agri Robotics & AI", "#"], ["Abiotic Resilience & Crop Genomics (ARC-GEN)", "#"], ["Advanced Controlled Environment Ag (CEA)", "#"]]}, {"k": "services", "n": "04", "label": "Technology & Services", "href": "#", "img": "/photos/Archive/Screenshot%202026-09-24%20163925.jpg", "blurb": "Sensing, desalination, analytics, trials and facilities, on demand.", "subs": [["iO Sense", "#"], ["Solar Desalination", "#"], ["Analytical Services", "#"], ["Paid Trials", "#"], ["Program Management as a Service", "#"], ["Facilities as a Service", "#"]]}, {"k": "training", "n": "05", "label": "Talent & Training", "href": "#", "img": "/photos/Archive/Screenshot%202026-09-24%20164221.jpg", "blurb": "Growing the next generation of agri-food talent in the UAE.", "subs": [["Advanced Agritech Academy", "#"], ["Student Sponsorship", "#"], ["Mustadeem / School Programs", "#"], ["IO Academy Training", "#"], ["Silal Careers Centre", "#"]]}];
+const mpImg = $('#mpImg'), mpKick = $('#mpKick'), mpBlurb = $('#mpBlurb'), mpSubs = $('#mpSubs'), menuLinks = $$('#menuList a');
+let mpOn = -1;
+function showPanel(i) {
+  if (i === mpOn) return; mpOn = i; const c = SITE[i];
+  menuLinks.forEach((a, k) => a.classList.toggle('on', k === i));
+  gsap.killTweensOf([mpImg, mpKick, mpBlurb, mpSubs]);
+  gsap.fromTo([mpImg, mpKick, mpBlurb, mpSubs], { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .55, ease: 'power3.out', stagger: .05 });
+  mpImg.style.backgroundImage = `url("${c.img}")`;
+  mpKick.textContent = c.n === '00' ? 'About' : 'Platform ' + c.n;
+  mpBlurb.textContent = c.blurb;
+  mpSubs.innerHTML = c.subs.map(([l, h]) => `<li><a href="${h}"><span>${l.replace(/&/g, '&amp;')}</span><span aria-hidden="true">${h === '#' ? '→' : '→'}</span></a></li>`).join('');
+}
+menuLinks.forEach((a, k) => { a.addEventListener('pointerenter', () => showPanel(k)); a.addEventListener('focus', () => showPanel(k)); });
+showPanel(0);
 const menuLns = $$('#menuList .ln'), menuNums = $$('#menuList em');
 gsap.set(menuLns, { yPercent: 118 }); gsap.set(menuNums, { opacity: 0 });
 const menuTl = gsap.timeline({ paused: true, onReverseComplete() { menu.classList.remove('open'); menu.style.clipPath = ''; } });
 menuTl.to(mp, { p: 1, duration: 1, ease: 'power3.inOut', onUpdate: paintMenu }, 0)
   .to(menuLns, { yPercent: 0, duration: .95, ease: 'power4.out', stagger: .055 }, .32)
-  .to(menuNums, { opacity: 1, duration: .5, stagger: .055 }, .5);
+  .to(menuNums, { opacity: 1, duration: .5, stagger: .055 }, .5)
+  .fromTo('#menuPanel', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .9, ease: 'power3.out' }, .5)
+  .fromTo('.mfoot', { opacity: 0 }, { opacity: 1, duration: .6 }, .8);
 const reduceMenu = matchMedia('(prefers-reduced-motion: reduce)').matches;
 function openMenu() {
   menu.classList.add('open'); menu.setAttribute('aria-hidden', 'false'); menuBtn.setAttribute('aria-expanded', 'true');
@@ -973,6 +1014,9 @@ function closeMenu() {
   menu.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false');
   lenis && lenis.start(); menuTl.timeScale(reduceMenu ? 50 : 1.35).reverse();
 }
+document.addEventListener('click', e => { const a = e.target.closest && e.target.closest('a[href^="#"]'); if (a && !a.dataset.i && a.getAttribute('href').length > 0) e.preventDefault(); });   // placeholder links never jump or change the URL
+// every menu link: close the overlay first; links to pages that do not exist yet stay inert
+$$('#menu a').forEach(a => a.addEventListener('click', e => { if ((a.getAttribute('href') || '#') === '#') e.preventDefault(); closeMenu(); }));
 menuBtn.addEventListener('click', () => menu.classList.contains('open') && menuBtn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu());
 addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
