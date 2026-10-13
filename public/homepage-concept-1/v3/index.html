@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#0f0f0f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Readex+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&family=Readex+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
    Silal IO — Concept 1 "Built by the Desert"
@@ -35,7 +35,10 @@ img,svg{display:block}
 .base{position:absolute;inset:0;background:#101010}
 .bg{position:absolute;inset:0;opacity:0;pointer-events:none;overflow:hidden;transform-origin:50% 50%}
 .bg .im,.bg .ov{position:absolute;inset:0}
-.panimg{position:absolute;left:0;top:0;display:block;background-size:100% 100%;background-repeat:no-repeat;will-change:transform}   /* the tall sky-to-plaza render: sized in JS, panned with a transform only */
+.bg .im{transform-origin:50% 100%}
+.cv{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.cw{position:absolute;overflow:hidden;pointer-events:none}.cf{position:absolute}   /* curtain: .cw is a wide, round-topped sheet that only ever moves with a transform; .cf is a viewport-sized frame inside it */.cv .im{position:absolute;inset:0;transform-origin:50% 100%}
+.panimg,.pic{position:absolute;left:0;top:0;display:block;background-size:100% 100%;background-repeat:no-repeat;will-change:transform;transform-origin:0 0}   /* the tall sky-to-plaza render: sized in JS, panned with a transform only */
 .im{background-repeat:no-repeat;background-color:rgba(255,255,255,.03)}
 .glow{inset:-12%}
 #bgVid{opacity:1;background:#000}
@@ -60,6 +63,7 @@ img,svg{display:block}
 /* ---------- type ---------- */
 :root{--fz:calc(var(--ft)*1px)}
 .t-hero{font-size:calc(60*var(--fz));font-weight:500;line-height:1.21;letter-spacing:-.02em}
+.t-title,.t-h12{text-rendering:geometricPrecision}
 .t-title{font-size:calc(42*var(--fz));font-weight:500;line-height:1.2;letter-spacing:-.01em}
 .t-stat{font-size:calc(105*var(--fz));font-weight:400;line-height:1.2;letter-spacing:-.03em;white-space:nowrap}
 .t-state{font-size:calc(24*var(--fz));font-weight:400;line-height:1.55}
@@ -103,10 +107,11 @@ img,svg{display:block}
 .ladder{transition:opacity .6s;position:absolute;right:calc(40px*var(--u));bottom:calc(30px*var(--u));width:calc(14px*var(--u));height:calc(77px*var(--u));display:flex;flex-direction:column;justify-content:space-between}
 .ladder a{position:relative;display:block;flex:1;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .ladder a::before{content:"";position:absolute;left:calc(-10px*var(--u));right:calc(-10px*var(--u));top:0;bottom:0}
-.ladder a i{position:absolute;right:0;top:50%;width:62%;height:1.5px;margin-top:-.75px;background:#fff;opacity:.2;transition:width .45s cubic-bezier(.2,.7,.1,1),opacity .35s}
+.ladder a i{position:absolute;right:0;top:50%;width:100%;height:1.5px;margin-top:-.75px;background:#fff;opacity:.2;transform:scaleX(.62);transform-origin:100% 50%;transition:transform .45s cubic-bezier(.2,.7,.1,1),opacity .35s}
+.ladder a i u{position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:0 50%}
 .ladder a.done i{opacity:.6}
-.ladder a.on i{width:100%;opacity:1;background:linear-gradient(90deg,#fff calc(var(--p,0)*100%),rgba(255,255,255,.4) 0)}
-.ladder a:hover i,.ladder a:focus-visible i{width:100%;opacity:1}
+.ladder a.on i{transform:scaleX(1);opacity:1;background:rgba(255,255,255,.4)}
+.ladder a:hover i,.ladder a:focus-visible i{transform:scaleX(1);opacity:1}
 .ladder a span{position:absolute;right:calc(100% + 18px);top:50%;transform:translate(10px,-50%);white-space:nowrap;font-size:calc(12*var(--fz));line-height:1;letter-spacing:-.01em;color:#fff;opacity:0;pointer-events:none;transition:opacity .3s,transform .5s cubic-bezier(.2,.7,.1,1)}
 .ladder a:hover span,.ladder a:focus-visible span{opacity:1;transform:translate(0,-50%)}
 
@@ -477,8 +482,8 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
           <div class="bg" id="bgVid">
     <video id="introVid" src="/homepage-concept-1/v2/media/intro-light.mp4" muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
     <div class="ov" style="background:rgba(0,0,0,.2)"></div>
-    <div class="im" id="imFarm" data-img="x_farm" style="opacity:0"></div>
-    <div class="im" id="imQuin" data-img="x_quinoa" style="opacity:0"></div>
+    <div class="cv" id="imFarm" style="opacity:0"><div class="im" data-img="x_farm"></div></div>
+    <div class="cv" id="imQuin" style="opacity:0"><div class="im" data-img="x_quinoa"></div></div>
   </div>
   <div class="bg glow" id="glowA"><div class="im" data-img="g_b1788c81" data-crop=".73,0,.79,.21"></div><div class="ov" style="background:rgba(15,15,15,.5)"></div><div class="ov" style="background:linear-gradient(180deg,rgba(15,15,15,.25),#0f0f0f 80%)"></div></div>
   <div class="bg" id="bgLab">
@@ -492,7 +497,7 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
     <div class="gl"><div class="im" data-img="g_x_chamber"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div><div class="ov" style="background:rgba(1,88,37,.3)"></div></div>
     <div class="gl"><div class="im" data-img="g_x_green"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
   </div>
-    <div class="bg" id="bgB"><div class="im" data-img="90abeb8f" data-crop=".49,.44,.44,.25"></div><div class="ov" style="background:rgba(0,0,0,.5)"></div></div>
+    <div class="bg" id="bgB"><div class="im"><i class="pic" id="picB" data-img="90abeb8f" data-fixed="1"></i></div><div class="ov" style="background:rgba(0,0,0,.5)"></div></div>
     <div class="bg" id="bgR"><div class="im"><i class="panimg" id="imR" data-img="x_sky" data-fixed="1"></i></div><div class="ov" style="background:rgba(0,0,0,.4)"></div></div>
     <div class="bg glow" id="glowE"><div class="im" data-img="g_0ba94745"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
 
@@ -765,7 +770,7 @@ const refreshCrops = () => $$('[data-img]').forEach(el => { if (el.closest('#det
 const root = document.documentElement, story = $('#story'), stage = $('#stage'), frame = $('#frame');
 const el = id => document.getElementById(id);
 const E = {};
-['bgVid','introVid','imFarm','imQuin','glowA','bgLab','glowT','bgB','bgR','imR','glowE','base','detail','dctl','dn',
+['bgVid','introVid','imFarm','imQuin','glowA','bgLab','glowT','bgB','bgR','imR','picB','glowE','base','detail','dctl','dn',
  'hero','intro','stats','statement','capLab','labcard','rootTitle','hdrRoot','rootSub','trio','ring','venTitle','hdrVen','venSub','tiles','venBtn',
  'engTitle','hdrEng','eng','hdrTal','talSub','list','hdrTour','tourSub','tour','tourBtn','footF','num1','num2','hint','nav','mark'].forEach(i => E[i] = el(i));
 
@@ -828,6 +833,31 @@ function build() {
     const tGlass = tiles.flatMap(t => [$('.box', t), $('.l', t)]);   // tile glass boxes + labels fade on their own: no ancestor opacity over a backdrop-filter
     const ft = (t, tg, from, to, at, ease) => tl.fromTo(tg, from, Object.assign({ ease: ease || 'power2.inOut', immediateRender: false }, to), tm(at));
     const io = 'power2.inOut', out = 'power3.out';
+    // every background change is the same gesture: the new picture rises from the bottom as a gently CURVED sheet, while its content settles from a slight zoom (parallax).
+    // The sheet is a wide element with elliptical top corners (a shallow arc across the screen) that only moves with a transform, so it never re-paints or re-masks per frame.
+    // The old layer stays underneath until the sheet has covered it, then it is released: no cross-fades.
+    // (every prop in `from` is also in `to`, or going back and forth over a point loses it)
+    const CR = Math.round(Math.min(vh * .09, vw * .07));   // the arc's rise; the layer is CR taller than the screen so the arc zone is filled with picture (that part sits above the screen once the sheet has landed)
+    const sheetOf = layer => {
+      let cw = CWM.get(layer);
+      if (!cw) {
+        cw = document.createElement('div'); const cf = document.createElement('div'); cw.className = 'cw'; cf.className = 'cf';
+        layer.parentNode.insertBefore(cw, layer); cf.appendChild(layer); cw.appendChild(cf); CWM.set(layer, cw);
+      }
+      const cf = cw.firstChild;
+      Object.assign(cw.style, { left: (-.1 * vw) + 'px', width: (1.2 * vw) + 'px', top: (-CR) + 'px', height: (vh + CR) + 'px', borderRadius: `50% 50% 0 0 / ${CR}px ${CR}px 0 0` });
+      Object.assign(cf.style, { left: (.1 * vw) + 'px', top: '0px', width: vw + 'px', height: (vh + CR) + 'px' });
+      gsap.set(cw, { y: vh + CR });
+      return cw;
+    };
+    const curtain = (layer, at, dur, zoom) => {
+      const cw = sheetOf(layer), kids = $$('.im, .ov', layer);
+      ft(0, layer, { opacity: 0 }, { opacity: 1, duration: .001 }, at);
+      ft(0, cw, { y: vh + CR }, { y: 0, duration: dur, ease: 'power3.inOut' }, at);
+      ft(0, kids, { scale: zoom || 1.12 }, { scale: 1, duration: dur, ease: 'power3.inOut' }, at);
+    };
+    const release = (layer, at) => ft(0, layer, { opacity: 1 }, { opacity: 0, duration: .001 }, at);
+    const wipe = (layer, at, dur) => curtain(layer, at, dur);
 
     tl = gsap.timeline({ paused: true, defaults: { duration: 1 }, onUpdate: () => chrome(tl.time()) });   // chrome follows the timeline itself, so the nav / hover windows are right when a smoothed scrub settles
 
@@ -856,15 +886,15 @@ function build() {
     ft(0, A.hero, { opacity: 1, scale: 1, filter: 'blur(0px)' }, { opacity: 0, scale: 1.03, filter: 'blur(18px)', duration: 1.7, ease: 'power1.in' }, 7.1);
 
     /* ---------- 02 · THE LOCATION ---------- */
-    ft(0, A.imFarm, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.6, ease: out }, 8.7);
+    curtain(A.imFarm, 8.7, 1.6, 1.14);
     ft(0, A.intro, { opacity: 0, y: px(40) }, { opacity: 1, y: 0, duration: 1, ease: out }, 9.5);
     const upY = M ? -(vh * .3) : px(-325);
-    ft(0, A.intro, { y: 0 }, { y: upY, duration: 1.1 }, 10.9);
+    ft(0, A.intro, { y: 0 }, { y: upY, duration: 1.0 }, 10.6);
     const sl = $$('.stat'), hr = $$('.hr');
     gsap.set(hr, { scaleX: 0 });
-    ft(0, A.imQuin, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1.4, ease: out }, 10.9);
-    ft(0, A.stats, { opacity: 0, y: px(36) }, { opacity: 1, y: 0, duration: 1, ease: out }, 11.2);
-    ft(0, hr, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: .12, ease: out }, 11.3);
+    curtain(A.imQuin, 10.9, 1.5, 1.12);
+    ft(0, A.stats, { opacity: 0, y: px(36) }, { opacity: 1, y: 0, duration: 1, ease: out }, 11.45);
+    ft(0, hr, { scaleX: 0 }, { scaleX: 1, duration: 1.1, stagger: .12, ease: out }, 11.55);
     // numbers roll up like an odometer (digit columns slide up through the digits) instead of switching instantly
     const rolls = [[A.num1, 0], [A.num2, .14]].flatMap(([el, delay]) => {
       const txt = el.dataset.final || (el.dataset.final = el.textContent.trim()), m = txt.match(/^(\d+)(.*)$/), cols = [];
@@ -881,12 +911,12 @@ function build() {
       if (m[2]) { const sfx = document.createElement('span'); sfx.className = 'sfx'; sfx.setAttribute('aria-hidden', 'true'); sfx.textContent = m[2]; el.appendChild(sfx); }
       return cols;
     });
-    rolls.forEach(r => ft(0, r.col, { yPercent: 0 }, { yPercent: r.y, duration: 1.7, ease: 'expo.out' }, 11.35 + r.delay));
+    rolls.forEach(r => ft(0, r.col, { yPercent: 0 }, { yPercent: r.y, duration: 1.7, ease: 'expo.out' }, 11.6 + r.delay));
 
     /* ---------- 03 · WHAT YOU'LL PASS ON THE WAY ---------- */
-    ft(0, A.bgVid, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 13.5);
-    ft(0, A.bgVid, { visibility: 'visible' }, { visibility: 'hidden', duration: .001 }, 14.75);   // once it has faded, the video surface is released
-    ft(0, A.glowA, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 13.5);
+    curtain(A.glowA, 13.5, 1.5);
+    release(A.bgVid, 15.0);
+    ft(0, A.bgVid, { visibility: 'visible' }, { visibility: 'hidden', duration: .001 }, 15.0);   // once it is covered, the video surface is released
     ft(0, [A.intro, A.stats], { opacity: 1 }, { opacity: 0, duration: .9 }, 13.3);
     ft(0, A.statement, { opacity: 0, y: px(30) }, { opacity: 1, y: 0, duration: 1, ease: out }, 14.2);
     // 03.02 — statement docks to the top as a caption; lab card opens
@@ -933,9 +963,8 @@ function build() {
     /* ---------- 04 · WHAT WE'RE GROWING ---------- */
     ft(0, [A.labcard, A.capLab], { opacity: 1 }, { opacity: 0, duration: .9 }, 20.9);
     ft(0, A.labcard, { y: 0 }, { y: px(-28), duration: .9 }, 20.9);
-    ft(0, A.bgLab, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 20.9);
-    ft(0, A.glowA, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 20.9);
-    ft(0, A.glowT, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 20.9);
+    curtain(A.glowT, 20.9, 1.5);
+    release(A.bgLab, 22.4); release(A.glowA, 22.4);
     ft(0, A.base, { backgroundColor: '#101010' }, { backgroundColor: '#0f0f0f', duration: 1 }, 20.9);
     // a title is ONE element: it rises into the middle with the scroll, then keeps travelling up and shrinks into the 12 px header slot
     const dock = (title, hdr, tIn, tDock, dDock) => {
@@ -960,7 +989,7 @@ function build() {
         ft(0, hdr, { opacity: 0 }, { opacity: 1, duration: .35, ease: 'none' }, end - .35);
       }
     };
-    dock(A.rootTitle, A.hdrRoot, 21.0, 22.8, 1.8);
+    dock(A.rootTitle, A.hdrRoot, 21.4, 22.8, 1.8);   // rises while the lab card is already gone (it fades 20.9–21.8), and lands exactly when the dock starts
     const subDy = M ? 0 : px(670);
     gsap.set(A.rootSub, { y: subDy });
     ft(0, A.rootSub, { opacity: 0, y: subDy + px(24) }, { opacity: 1, y: subDy, duration: .9, ease: out }, 21.9);
@@ -999,7 +1028,7 @@ function build() {
     ft(0, [A.hdrRoot, A.rootSub], { opacity: 1, y: 0 }, { opacity: 0, y: px(-14), duration: .7 }, 37.0);
     ft(0, tcards, { opacity: 1, y: 0 }, { opacity: 0, y: px(-36), duration: .8, stagger: .06 }, 37.0);
     ft(0, A.ring, { opacity: 1 }, { opacity: 0, duration: .4 }, 37.0);
-    ft(0, A.glowT, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 37.0);
+    release(A.glowT, 38.5);
 
     const det = E.detail, dps = $$('.dp', det), dcs = $$('.dcopy', det), dctl = E.dctl, dn = E.dn;
     const radC = parseFloat(getComputedStyle(faces[0]).borderTopLeftRadius) || px(34);
@@ -1112,13 +1141,6 @@ function build() {
     };
 
     /* ---------- 06 · WHO YOU'LL MEET — innovation & venture platforms ---------- */
-    // new photo wipes up over the old one (curtain), instead of a cross-fade: the layer slides up while its content slides down by the same
-    // amount, so the picture stays put and is revealed (transform only: no clip-path, no giant layers)
-    const wipe = (layer, at, dur) => {
-      const kids = $$('.im, .ov', layer);
-      ft(0, layer, { opacity: 1, y: vh }, { opacity: 1, y: 0, duration: dur, ease: 'power3.inOut' }, at);   // every prop in `from` must also be in `to`, or going back and forth over this point loses it
-      ft(0, kids, { y: -vh }, { y: 0, duration: dur, ease: 'power3.inOut' }, at);
-    };
     // one photo, the crop window pulls back / pushes in
     const cropMove = (layer, from, to, at, dur) => {
       const im = $('.im', layer), o = from.slice(), tw = { p: 0 };
@@ -1128,7 +1150,16 @@ function build() {
     wipe(A.bgB, 37.0, 1.5);
     dock(A.venTitle, A.hdrVen, 37.6, 39.0, 1.5);
     // 06.02 — funding, incubation, acceleration
-    cropMove(A.bgB, [.49, .44, .44, .25], [.9, .03, .81, .06], 39.0, 1.6);
+    {
+      // the photo is a fixed-size element (its natural size) moved with x / y / scale only: the crop window slides and pulls back on the compositor, no background re-paint per frame
+      const [iw, ih] = DIM['90abeb8f'], W = vw, H = vh + CR, w0 = [.49, .44, .44, .25], w1 = [.9, .03, .81, .06], tw = { p: 0 };
+      const put = k => {
+        const [a, tx, d, ty] = w0.map((x, i) => x + (w1[i] - x) * k), S = Math.max(W / (a * iw), H / (d * ih));
+        gsap.set(A.picB, { x: W / 2 - (tx + a / 2) * iw * S, y: H / 2 - (ty + d / 2) * ih * S, scale: S });
+      };
+      gsap.set(A.picB, { width: iw, height: ih }); put(0);
+      tl.fromTo(tw, { p: 0 }, { p: 1, duration: 1.6, ease: 'power2.inOut', immediateRender: false, onUpdate() { put(tw.p); } }, tm(39.0));
+    }
     ft(0, $('.ov', A.bgB), { backgroundColor: 'rgba(0,0,0,.5)' }, { backgroundColor: 'rgba(0,0,0,.6)', duration: 1.6 }, 39.0);
     // the glass tiles wait until the photo has finished moving, so their blur never has to track a moving picture
     ft(0, A.venSub, { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9 }, 40.2);
@@ -1159,17 +1190,17 @@ function build() {
     {
       const pan = A.imR, iw = DIM.x_sky[0], ih = DIM.x_sky[1];
       const Hh = Math.max(vw * ih / iw, vh * 1.5), Ww = Hh * iw / ih;       // the render at least as wide as the screen, and tall enough to travel
-      gsap.set(pan, { width: Ww, height: Hh, x: -(Ww - vw) / 2, y: 0 });
-      ft(0, pan, { y: 0 }, { y: -(Hh - vh), duration: 1.9, ease: 'power2.inOut' }, 46.0);
+      gsap.set(pan, { width: Ww, height: Hh, x: -(Ww - vw) / 2, y: 0 });   // the layer is CR taller than the screen: the render runs from its top edge to its bottom edge
+      ft(0, pan, { y: 0 }, { y: -(Hh - vh - CR), duration: 1.9, ease: 'power2.inOut' }, 46.0);
     }
     ft(0, ecards, { opacity: 0, y: px(50) }, { opacity: 1, y: 0, duration: 1, stagger: .14, ease: out }, 47.5);   // after the photo has stopped moving (46.2 + 1.6)
 
     /* ---------- 08 · TRAINING & TALENT ---------- */
     ft(0, A.hdrEng, { opacity: 1 }, { opacity: 0, duration: .8 }, 48.2);
     ft(0, ecards, { opacity: 1 }, { opacity: 0, duration: .8 }, 48.2);
-    ft(0, A.bgR, { opacity: 1 }, { opacity: 0, duration: 1.2 }, 48.2);
+    curtain(A.glowE, 48.2, 1.5);
+    release(A.bgR, 49.7);
     ft(0, A.base, { backgroundColor: '#0f0f0f' }, { backgroundColor: '#000000', duration: 1.2 }, 48.2);
-    ft(0, A.glowE, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 48.2);
     ft(0, [A.hdrTal, A.talSub], { opacity: 0, y: px(12) }, { opacity: 1, y: 0, duration: .9, stagger: .08 }, 48.8);
     // ONE fade (the glass card's own alpha), no scale on a backdrop-filter element, no second per-row fade: the four rows only cascade upward inside it
     const seps = $$('.sep', A.list);
@@ -1209,18 +1240,19 @@ function build() {
 }
 
 /* ------------------------------------------------------------------ chrome state (nav, marker, hint) */
-const navLinks = $$('#nav a'), ladderA = $$('.ladder a');
+const navLinks = $$('#nav a'), ladderA = $$('.ladder a'), ladderU = ladderA.map(a => { const u = document.createElement('u'); $('i', a).appendChild(u); return u; });
 const CHAPTERS = [0, 8.0, 14.4, 21.0, 29.0, 37.0, 44.2].map(tm);                    // when each nav item takes over
 // GPU layers (will-change) are only kept for the scenes that are near, a full-screen layer costs ~20 MB on a retina display
 let WCR = null;
 function promote(t) {
-  WCR = WCR || [['bgVid', 0, 15], ['glowA', 13, 22], ['bgLab', 15.4, 22.5], ['glowT', 20.4, 38.5], ['bgB', 36.4, 46, 1], ['bgR', 43.6, 49.8, 1], ['glowE', 47.6, 58]].map(([id, a, b, k]) => [E[id], tm(a), tm(b), null, k]);
+  WCR = WCR || [['bgVid', 0, 15.2], ['glowA', 13, 22.5, 1], ['bgLab', 15.4, 22.5], ['glowT', 20.4, 38.6, 1], ['bgB', 36.4, 46, 1], ['bgR', 43.6, 49.8, 1], ['glowE', 47.6, 58, 1]].map(([id, a, b, k]) => [CWM.get(E[id]) || E[id], tm(a), tm(b), null, k]);
   for (const w of WCR) {
     const on = t >= w[1] && t <= w[2];
     if (on !== w[3]) { w[3] = on; w[0].style.willChange = on ? 'opacity, transform' : 'auto'; if (w[4]) w[0].querySelectorAll('.im, .ov').forEach(k => { k.style.willChange = on ? 'transform' : 'auto'; }); }   // the curtain moves the layer's content too
   }
 }
 const TARGETS = [0, 10.4, 16.4, 23.6, 33.6, 41.5].map(tm).concat(tm(47.5) + 1.9);               // where a click scrolls to (timeline units)
+const CWM = new WeakMap();   // curtain layer -> its sheet
 let lastIdx = -2, detailIdx = -1;   // detailIdx >= 0 while a centre is open: the nav shows "We come to you"
 function chrome(t) {
   promote(t);
@@ -1232,11 +1264,12 @@ function chrome(t) {
     lastIdx = i;
     navLinks.forEach((a, k) => a.classList.toggle('on', k === i));
     ladderA.forEach((a, k) => { a.classList.toggle('on', k === ci); a.classList.toggle('done', k < ci); });
+    ladderU.forEach((u, k) => { u.style.transform = k < ci ? 'scaleX(1)' : 'scaleX(0)'; });
     E.nav.classList.toggle('off', i < 0); E.mark.classList.toggle('off', i < 0);
     if (i >= 0 && !M) E.mark.style.transform = `translateY(${25 * i * U}px)`;
   }
   const lo = CHAPTERS[ci], hi = ci < CHAPTERS.length - 1 ? CHAPTERS[ci + 1] : tm(53.8);   // ladder: the active line fills as you move through its chapter
-  ladderA[ci].style.setProperty('--p', Math.max(0, Math.min(1, (t - lo) / ((hi - lo) || 1))).toFixed(3));
+  ladderU[ci].style.transform = `scaleX(${Math.max(0, Math.min(1, (t - lo) / ((hi - lo) || 1))).toFixed(3)})`;
   const win = (a, b) => t >= tm(a) && t < tm(b);
   const live = [win(16.6, 20.9) && 'lab', win(25.2, 37.0) && 'trio', win(41.2, 44.2) && 'ven', (t >= tm(48.9) + 1.2 && t < tm(51.4)) && 'tal', (t >= tm(47.5) + 1.2 && t < tm(48.2)) && 'eng', t >= tm(52.6) && t < tm(53.8) && 'tour'].filter(Boolean).join(' ');
   if (stage.dataset.live !== live) stage.dataset.live = live;
@@ -1300,7 +1333,9 @@ mHead.forEach((a, k) => a.addEventListener('click', e => {
   e.preventDefault(); const was = mcols[k].classList.contains('open'); mcols.forEach(c => c.classList.remove('open')); if (!was) mcols[k].classList.add('open');
 }));
 const reduceMenu = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const menuTl = gsap.timeline({ paused: true, onReverseComplete() { menu.classList.remove('open'); mbA.style.clipPath = mbB.style.clipPath = mCont.style.clipPath = ''; } });
+const menuTl = gsap.timeline({ paused: true,
+  onUpdate() { if (menuTl.reversed() && mpB.p < 11) document.documentElement.classList.remove('mo'); },   // the logo + Menu capsule returns when the white sheet has lifted past it, not before (they overlapped the sheet's own Enquire / Close)
+  onReverseComplete() { menu.classList.remove('open'); document.documentElement.classList.remove('mo'); mbA.style.clipPath = mbB.style.clipPath = mCont.style.clipPath = ''; } });
 menuTl.to(mpA, { p: 150, duration: 1.1, ease: 'power3.inOut', onUpdate: paintA }, 0)
   .to(mpB, { p: 150, duration: 1.1, ease: 'power3.inOut', onUpdate: paintB }, .025)
   .fromTo('.mutil, .mhead', { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: .8, ease: 'power3.out', stagger: .08 }, .55)
@@ -1317,8 +1352,7 @@ function openMenu() {
 }
 function closeMenu() {
   if (!menu.classList.contains('open')) return;
-  menu.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false'); document.documentElement.classList.remove('mo');
-  lenis && lenis.start(); menuTl.timeScale(reduceMenu ? 50 : 1.5).reverse();
+  menu.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false'); lenis && lenis.start(); menuTl.timeScale(reduceMenu ? 50 : 1.5).reverse();
 }
 document.addEventListener('click', e => { const a = e.target.closest && e.target.closest('a[href^="#"]'); if (a && !a.dataset.i && a.getAttribute('href').length > 0) e.preventDefault(); });   // placeholder links never jump or change the URL
 // every menu link: close the overlay first; links to pages that do not exist yet stay inert
@@ -1338,7 +1372,7 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const Q = new URLSearchParams(location.search);          // ?t=12.4 jumps to a timeline position, ?lenis=0 disables smooth scroll (QA / deep links)
 if (Q.get('t') && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
 if (window.Lenis && !reduce && Q.get('lenis') !== '0') {
-  lenis = new Lenis({ lerp: .1, wheelMultiplier: .95, smoothWheel: true });
+  lenis = new Lenis({ lerp: .085, wheelMultiplier: .9, smoothWheel: true });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(t => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
