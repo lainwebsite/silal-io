@@ -38,7 +38,7 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 
 /* ----- backgrounds: one layer per photo.
    .bg = the curtain / iris window · .cn = what the entrance moves · .im = the in-scene camera ----- */
-.bg{position:absolute;inset:0;visibility:hidden;overflow:hidden}
+.bg{position:absolute;inset:0;visibility:hidden;overflow:hidden;box-shadow:0 -1px 0 rgba(255,255,255,.16),0 -26px 60px rgba(0,0,0,.28)}
 .bg .cn{position:absolute;inset:0;will-change:transform}
 .bg .im{position:absolute;inset:0;background-size:cover;background-position:var(--fx,50%) 50%;will-change:transform}
 .shade{position:absolute;inset:0;background:rgba(0,0,0,.3);pointer-events:none}
@@ -123,21 +123,25 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 .pin .gd{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2)}
 .pin:has(.tag:hover) .line{background:linear-gradient(180deg,#fff,rgba(255,255,255,.35))}
 
-/* ----- 05–12 journey dock: wheel + card ----- */
-.wheel{left:30px;top:calc(88px + var(--wt,0)*1px);width:350px;height:calc(143px - (var(--wt,0) + var(--wb,0))*1px);border-radius:30px;background:rgba(16,16,16,.3);pointer-events:auto;overflow:hidden}   /* --wt / --wb = how much the tab gives up at the top / bottom when only two rows exist */
-.wheel .wi{position:absolute;left:0;top:0;width:100%;height:143px;transform:translateY(calc(var(--wt,0)*-1px))}
-.wheel .rail{position:absolute;left:28px;top:14px;bottom:14px;width:var(--hl);min-width:1px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.34) 22%,rgba(255,255,255,.34) 78%,rgba(255,255,255,0))}
-.wheel .bar{position:absolute;left:28px;top:56px;width:var(--hl);min-width:1px;height:31px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 28%,#fff 72%,rgba(255,255,255,0));transform-origin:50% 50%}
-.wheel ul{position:absolute;inset:0;-webkit-mask:linear-gradient(180deg,transparent 22px,#000 46px,#000 97px,transparent 121px);mask:linear-gradient(180deg,transparent 22px,#000 46px,#000 97px,transparent 121px)}
-.wheel li{position:absolute;left:48px;top:61px;height:21px;font-size:14px;line-height:1.5;white-space:nowrap;cursor:pointer;will-change:transform}
+/* ----- 05–12 journey dock: one steady panel. All four stops are always visible, a rail fills as you travel, the card below never changes size or place ----- */
+.wheel{left:30px;top:88px;width:350px;height:186px;border-radius:30px;background:rgba(16,16,16,.3);pointer-events:auto}
+.wheel .jh{position:absolute;left:30px;right:30px;top:23px;display:flex;justify-content:space-between;align-items:baseline;font-size:11px;line-height:14px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:rgba(255,255,255,.4)}
+.wheel .jh b{font-weight:500;letter-spacing:.06em;color:#fff;font-variant-numeric:tabular-nums}
+.wheel .jh b i{font-style:normal;color:rgba(255,255,255,.4)}
+.wheel .jr{position:absolute;left:34px;top:71px;height:84px;width:1px;background:rgba(255,255,255,.2)}
+.wheel .jf{position:absolute;left:0;top:0;width:100%;height:0;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.4)}
+.wheel ul{position:absolute;left:0;right:0;top:56px}
+.wheel li{position:absolute;left:0;right:0;height:30px}
+.wheel li a{display:flex;align-items:center;height:100%;padding-left:58px;font-size:14px;line-height:1;white-space:nowrap;cursor:pointer}
+.wheel li em{font-style:normal;font-size:10px;letter-spacing:.06em;width:22px;font-variant-numeric:tabular-nums}
+.wheel li .nm{display:block;will-change:transform}
+.wheel li a:hover .nm,.wheel li a:focus-visible .nm{filter:brightness(1.55)}
+.wheel li .nd{position:absolute;left:30px;top:11px;width:8px;height:8px;border-radius:50%;border:1px solid rgba(255,255,255,.4);box-sizing:border-box;background:transparent}
 
-.card{left:30px;top:calc(237px - var(--wb,0)*1px);width:350px;height:156px;border-radius:30px;background:rgba(16,16,16,.25);overflow:hidden;pointer-events:auto}
+.card{left:30px;top:282px;width:350px;height:456px;border-radius:30px;background:rgba(16,16,16,.25);overflow:hidden;pointer-events:auto}
 .card .cc{position:absolute;inset:0;visibility:hidden}
-.card .ct{position:absolute;left:28px;top:30px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.7)}
-.card .cd{position:absolute;left:28px;top:63px;width:294px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.7)}
-.card .chev{position:absolute;left:286px;top:29px;width:36px;height:23px;border-radius:1000px;background:rgba(255,255,255,.1);display:grid;place-items:center;transition:background-color .3s}
-.card .chev:hover{background:rgba(255,255,255,.2)}
-.card .chev svg{width:7px;height:4px;transform:rotate(var(--rot,0deg))}
+.card .ct{position:absolute;left:28px;top:27px;font-size:16px;line-height:1.35;font-weight:500;color:rgba(255,255,255,.96);letter-spacing:-.005em}
+.card .cd{position:absolute;left:28px;top:60px;width:294px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.66)}
 .card .li{position:absolute;left:28px;width:294px;height:18px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.7);cursor:default}
 .card .li span{display:block;transition:transform .45s var(--ease),color .3s}
 .card .li .dot{position:absolute;left:0;top:1px;width:16px;height:16px;display:grid;place-items:center;opacity:0;transition:opacity .3s}
@@ -145,7 +149,7 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 .card .li.on span{transform:translateX(24px);color:rgba(255,255,255,.95)}
 .card .li.on .dot{opacity:1}
 .card .sep{position:absolute;left:28px;width:294px;height:var(--hl);background:linear-gradient(90deg,rgba(255,255,255,0),#fff 50%,rgba(255,255,255,0));opacity:.28;transform-origin:50% 50%}
-.card .th{position:absolute;left:14px;width:322px;height:190px;border-radius:24px;overflow:hidden;cursor:pointer}
+.card .th{position:absolute;left:14px;top:292px;width:322px;height:150px;border-radius:24px;overflow:hidden;cursor:pointer}
 .card .th .bgi{position:absolute;inset:0;background-repeat:no-repeat;will-change:transform}
 .card .th::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.2);transition:background-color .6s;pointer-events:none}
 .card .th:hover::after{background:rgba(0,0,0,.08)}
@@ -182,43 +186,55 @@ a:focus-visible,button:focus-visible{outline:2px solid rgba(255,255,255,.75);out
 #tourC{--x:474;--y:411;display:flex;align-items:center;gap:30px;pointer-events:auto}
 #tourC h2{font-weight:500;font-size:32px;line-height:1.2;letter-spacing:-.01em;white-space:nowrap}
 
-/* ----- 15 footer (final in-stage scene) ----- */
-.foot{pointer-events:none}
-.foot .hr{position:absolute;left:64px;right:64px;height:var(--hl);background:rgba(255,255,255,.3);transform-origin:0 50%}
-/* big rows: roll-up letters, a fill that sweeps in, index + arrow, siblings dim */
-.frw{left:64px;right:64px;top:calc(var(--y)*1px);height:81px;display:flex;align-items:center;font-weight:500;font-size:34px;line-height:41px;white-space:nowrap;transition:opacity .45s}
-.frw::before{content:"";position:absolute;left:-24px;right:-24px;top:0;bottom:0;border-radius:22px;background:rgba(255,255,255,.045);transform:scaleX(.96);opacity:0;transform-origin:0 50%;transition:transform .8s var(--ease),opacity .5s}
-.frw .tx{position:relative;display:block;transition:transform .8s var(--ease)}
-.frw .fnum{position:absolute;right:84px;top:50%;margin-top:-8px;font-size:12px;line-height:16px;letter-spacing:.06em;font-weight:500;color:rgba(255,255,255,.35);transition:color .4s,transform .8s var(--ease)}
-.frw .farr{position:absolute;right:0;top:50%;margin-top:-23px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;overflow:hidden;transition:background-color .5s,border-color .5s,transform .8s var(--ease)}
-.frw .farr svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .7s var(--ease),stroke .4s}
-.frw:hover::before{transform:scaleX(1);opacity:1}
-.frw:hover .tx{transform:translateX(22px)}
-.frw:hover .fnum{color:#fff;transform:translateX(-8px)}
-.frw:hover .farr{background:#fff;border-color:#fff;transform:scale(1.06)}
-.frw:hover .farr svg{stroke:var(--ink2);transform:rotate(45deg)}
-.foot:has(.frw:hover) .frw:not(:hover){opacity:.32}
-.rl{display:inline-block;white-space:nowrap}
-.rl .ch{display:inline-block;overflow:hidden;height:1.25em;line-height:1.25em;vertical-align:top}
-.rl .ch>span{display:block;height:1.25em;transition:transform .7s var(--ease) calc(var(--i)*22ms)}
-.rl .ch .sp{display:inline-block;width:.28em}
-a:hover>.tx .ch>span,a:hover .rl .ch>span{transform:translateY(-100%)}
-.foot .bl{font-size:12px;line-height:1.55;color:rgba(255,255,255,.4)}
-.foot .col a{position:relative;display:block;width:max-content;font-weight:500;font-size:21px;line-height:25px;color:rgba(255,255,255,.4);margin-bottom:20px;transition:color .3s,transform .6s var(--ease);white-space:nowrap}
-.foot .col a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:var(--hl);background:#fff;transform:scaleX(0);transform-origin:100% 50%;transition:transform .6s var(--ease)}
-.foot .col a:hover{color:#fff;transform:translateX(8px)}
-.foot .col a:hover::after{transform:scaleX(1);transform-origin:0 50%}
-.foot .col:has(a:hover) a:not(:hover){color:rgba(255,255,255,.2)}
-.foot .sm{font-size:12px;line-height:15px;color:rgba(255,255,255,.4)}
-.btt{height:34px;padding:0 16px 0 18px;border-radius:34px;border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;gap:10px;font-weight:500;font-size:12px;line-height:1;color:#fff;transition:background-color .4s,color .4s,border-color .4s;will-change:transform}
-.btt svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .6s var(--ease)}
-.btt:hover{background:#fff;color:var(--ink2);border-color:#fff}
-.btt:hover svg{transform:translateY(-3px)}
-.stage.footlive .foot a{pointer-events:auto}
-/* floating preview that follows the pointer over the big rows */
-#fprev{position:absolute;left:0;top:0;width:232px;height:148px;border-radius:20px;overflow:hidden;opacity:0;pointer-events:none;z-index:4;will-change:transform,opacity;box-shadow:0 18px 50px rgba(0,0,0,.45)}
-#fprev i{position:absolute;inset:0;background-size:cover;background-position:center}
-#fprev::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12)}
+/* ----- 15 footer (final in-stage scene) — V3: one quiet statement, one strict grid ----- */
+.foot{pointer-events:none;--fy:calc((var(--fh) - 668)*.4px);--blue:#3CA7D2;--fg:rgba(255,255,255,.6)}
+.foot .hr{position:absolute;left:0;right:0;bottom:74px;height:var(--hl);background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(255,255,255,.07));transform-origin:0 50%}
+.fsg{position:absolute;right:-96px;bottom:-84px;width:540px;display:block;opacity:.1;pointer-events:none;-webkit-mask:linear-gradient(135deg,transparent 12%,#000 72%);mask:linear-gradient(135deg,transparent 12%,#000 72%)}
+.fmain{position:absolute;left:64px;right:64px;top:var(--fy)}
+.fstate{position:relative;height:178px}
+.fst{font-size:76px;line-height:1.03;letter-spacing:-.035em;font-weight:500;color:#fff;margin:0}
+.fst em{font-style:normal;color:var(--blue)}
+.far{position:absolute;right:0;bottom:4px;font-size:30px;line-height:1.5;font-weight:400;color:rgba(255,255,255,.5);margin:0}
+.fhr{position:absolute;left:0;right:0;top:206px;height:var(--hl);background:linear-gradient(90deg,rgba(255,255,255,.32),rgba(255,255,255,.12) 55%,rgba(255,255,255,.04));transform-origin:0 50%}
+.fcols{position:absolute;left:0;right:0;top:246px}
+.fc{position:absolute;top:0}
+.fc.c1{left:0;width:304px}.fc.c2{left:408px;width:210px}.fc.c3{left:664px;width:200px}.fc.c4{right:0;width:268px;height:330px;text-align:right}
+.fh1{font-size:19px;line-height:1.3;font-weight:500;color:#fff;margin:0;letter-spacing:-.01em}
+.fp{font-size:14.5px;line-height:1.6;color:var(--fg);margin:10px 0 0;width:284px}
+.fl{font-size:11px;line-height:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--blue);margin:0 0 20px}
+.fc.c3 .fl+ul+.fl{margin-top:38px}
+.fc ul{list-style:none}
+.fc ul a{position:relative;display:block;width:max-content;max-width:100%;font-size:15px;line-height:22px;font-weight:400;color:rgba(255,255,255,.64);margin-bottom:12px;transition:color .35s,transform .6s var(--ease)}
+.fc ul a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:var(--hl);background:#fff;transform:scaleX(0);transform-origin:100% 50%;transition:transform .6s var(--ease)}
+.fc ul a:hover{color:#fff;transform:translateX(6px)}
+.fc ul a:hover::after{transform:scaleX(1);transform-origin:0 50%}
+.fc ul:hover a:not(:hover){color:rgba(255,255,255,.34)}
+.fform{position:relative;display:flex;align-items:center;width:304px;height:52px;margin-top:26px;border-radius:52px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);padding:0 7px 0 22px;transition:border-color .4s,background-color .4s}
+.fform:focus-within{border-color:rgba(60,167,210,.75);background:rgba(255,255,255,.05)}
+.fform.bad{border-color:#EB5D3E}
+.fform input{flex:1;min-width:0;height:100%;background:none;border:0;outline:0;color:#fff;font:inherit;font-size:15px}
+.fform input::placeholder{color:rgba(255,255,255,.55)}
+.fform button{position:relative;width:38px;height:38px;border-radius:50%;background:#2B8DB5;display:grid;place-items:center;flex:none;overflow:hidden;transition:background-color .4s}
+.fform button:hover{background:var(--blue)}
+.fform button svg{position:absolute;left:50%;top:50%;margin:-7.5px 0 0 -7.5px;width:15px;height:15px;stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:transform .6s var(--ease)}
+.fform button .ck{transform:translateY(36px)}
+.fform.ok button .ar{transform:translateY(-36px)}
+.fform.ok button .ck{transform:none}
+.fok{font-size:12px;line-height:18px;color:rgba(255,255,255,.4);margin:14px 0 0;transition:color .4s}
+.fok.good{color:var(--blue)}.fok.err{color:#EB5D3E}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.fvl{position:absolute;left:-44px;top:0;bottom:0;width:var(--hl);min-width:1px;background:linear-gradient(180deg,rgba(60,167,210,.75),rgba(60,167,210,0));transform-origin:50% 0}
+.fwm{display:block;margin-left:auto;width:196px;height:auto}
+.fweb{position:relative;display:inline-block;margin-top:22px;font-size:14px;line-height:20px;color:var(--blue)}
+.fweb::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:var(--hl);background:var(--blue);transform:scaleX(0);transform-origin:100% 50%;transition:transform .6s var(--ease)}
+.fweb:hover::after{transform:scaleX(1);transform-origin:0 50%}
+.fadr{font-size:13.5px;line-height:21px;color:rgba(255,255,255,.62);margin:6px 0 0}
+.fadr.ar{margin-top:16px}
+.fbar{position:absolute;left:64px;right:64px;bottom:0;height:74px;display:flex;align-items:center;justify-content:space-between;font-size:13.5px;line-height:20px;color:rgba(255,255,255,.55)}
+.fbar p{margin:0}
+.fbar div a{margin-left:30px;transition:color .35s}
+.fbar div a:hover{color:#fff}
+.stage.footlive .foot a,.stage.footlive .foot input,.stage.footlive .foot button{pointer-events:auto}
 
 /* ----- menu panel (inside the frame, so it scales with the pill) ----- */
 .menu{left:30px;top:94px;width:272px;padding:10px;border-radius:26px;background:rgba(16,16,16,.5);visibility:hidden;pointer-events:none;clip-path:inset(0% 0% 100% 0% round 26px)}
@@ -278,20 +294,34 @@ html.m #enterT{--x:20;--y:380;font-size:34px}
 html.m #capD{--x:20;--b:96;width:300px;font-size:14px;white-space:normal}
 html.m #mapB{--r:20;--b:36}
 html.m .pill{left:16px;top:16px;transform:scale(.86);transform-origin:0 0}
-html.m .wheel{left:16px;top:calc(70px + var(--wt,0)*1px);transform:scale(var(--dk));transform-origin:0 0}
-html.m .card{left:16px;top:calc(70px + 149px*var(--dk) - var(--wb,0)*1px);transform:scale(var(--dk));transform-origin:0 0}
+html.m .wheel{left:16px;top:70px;transform:scale(var(--dk));transform-origin:0 0}
+html.m .card{left:16px;top:calc(70px + 194px*var(--dk));height:176px;transform:scale(var(--dk));transform-origin:0 0}
+html.m .card .li,html.m .card .sep,html.m .card .th{display:none}
 html.m .menu{left:16px;top:66px}
 html.m .hint{--r:20;--b:24}
 html.m #impH{--x:20;--y:96;width:350px}
 html.m .metrics{transform:scale(var(--ms));transform-origin:0 435px;left:calc(195px - 560px*var(--ms));width:calc(100% / var(--ms) + 560px)}
 html.m #tourC{flex-direction:column;gap:16px;--x:0;width:100%;justify-content:center;left:0!important}
 html.m #tourC h2{font-size:22px}
-html.m .frw{left:20px;right:20px;font-size:26px}
-html.m .frw .fnum{display:none}
-html.m .frw .farr{width:38px;height:38px;margin-top:-19px}
-html.m .foot .hr{left:20px;right:20px}
-html.m .foot .x64{--x:20!important}
-html.m .btt{--r:20!important;--b:130!important}
+html.m .foot{--fy:0px}
+html.m .fmain{left:20px;right:20px;top:66px}
+html.m .fstate{height:auto;margin-bottom:24px}
+html.m .fst{font-size:38px}
+html.m .far{position:static;font-size:19px;text-align:right;margin-top:6px}
+html.m .fhr,html.m .fvl,html.m .fsg,html.m .fp,html.m .fadr{display:none}
+html.m .fcols{position:static;display:grid;grid-template-columns:1fr 1fr;gap:22px 14px}
+html.m .fc{position:static;width:auto!important;height:auto!important}
+html.m .fc.c1{grid-column:1/-1}
+html.m .fc.c4{grid-column:1/-1;text-align:left;display:flex;align-items:center;gap:18px}
+html.m .fwm{margin:0;width:136px}
+html.m .fweb{margin:0;font-size:13px}
+html.m .fh1{font-size:17px}
+html.m .fform{width:100%;margin-top:14px}
+html.m .fl{margin-bottom:12px}
+html.m .fc ul a{font-size:14px;line-height:20px;margin-bottom:8px;width:auto}
+html.m .fbar{left:20px;right:20px;height:76px;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;font-size:12px}
+html.m .fbar div a{margin:0 18px 0 0}
+html.m .foot .hr{bottom:76px}
 html.m .foot .bl{width:350px!important;top:400px!important}
 html.m .foot .c1{--x:20!important;top:480px!important}
 html.m .foot .c2{--x:210!important;top:480px!important}
@@ -339,7 +369,6 @@ html.m .foot .sm.r{--r:20!important}
   <div id="tour"><div class="cn"><div class="im"></div></div></div>
   <div id="tourRing"></div>
   <div class="pins" id="pins"></div>
-  <div id="fprev" aria-hidden="true"><i id="fpi"></i></div>
 
   <div class="frame" id="frame">
     <!-- 01 Hero -->
@@ -353,7 +382,7 @@ html.m .foot .sm.r{--r:20!important}
     <p class="a r b" id="mapB" data-w="over"><a class="btn" href="#map" data-go="map">Explore the Map</a></p>
 
     <!-- 05–12 dock -->
-    <div class="a wheel glass" id="wheel" data-w="dock"><i class="rail"></i><div class="wi"><i class="bar"></i><ul id="wheelL"></ul></div></div>
+    <div class="a wheel glass" id="wheel" data-w="dock" role="navigation" aria-label="Journey"><div class="jh"><span>Journey</span><b id="jcount">01<i> / 04</i></b></div><i class="jr"><i class="jf" id="jfill"></i></i><ul id="wheelL"></ul></div>
     <div class="a card glass" id="card" data-w="dock"></div>
     <p class="a r b hint" id="hint" style="--r:30;--b:30">Scroll</p>
 
@@ -367,20 +396,35 @@ html.m .foot .sm.r{--r:20!important}
     <!-- 14 Tour -->
     <div class="a cx cy" id="tourC" data-w="tour"><h2><span class="mk"><span class="in">Innovation Oasis tour</span></span></h2><a class="btn lg" href="#tour">Start Virtual Tour</a></div>
 
-    <!-- 15 Footer -->
+    <!-- 15 Footer — V3 -->
     <div class="a foot" id="foot" style="inset:0">
-      <a class="a frw" style="--y:70" href="#research" data-prev="t-lab"><span class="tx rv"><span class="rl" data-t="Research"></span></span><i class="fnum">01</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
-      <a class="a frw" style="--y:151" href="#programmes" data-prev="t-gh"><span class="tx rv"><span class="rl" data-t="Programmes"></span></span><i class="fnum">02</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
-      <a class="a frw" style="--y:232" href="#community" data-prev="t-part"><span class="tx rv"><span class="rl" data-t="Community"></span></span><i class="fnum">03</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
-      <a class="a frw" style="--y:313" href="#contact" data-prev="t-tech"><span class="tx rv"><span class="rl" data-t="Contact"></span></span><i class="fnum">04</i><i class="farr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13L13 3M5 3h8v8"/></svg></i></a>
-      <i class="hr" style="top:151px"></i><i class="hr" style="top:232px"></i><i class="hr" style="top:313px"></i>
-      <p class="a l t bl x64 rv" style="--x:64;--y:434;width:520px">A strategic enabler of the UAE’s vision – transforming national priorities into tangible innovation outcomes across agriculture and food systems.</p>
-      <div class="a l t col c1" style="--x:728;--y:434"><a class="rv" href="#research">Research</a><a class="rv" href="#talent">Talent &amp; Training</a><a class="rv" href="#centres">Centres of Excellence</a></div>
-      <div class="a l t col c2" style="--x:1060;--y:434"><a class="rv" href="#entrepreneurs">Entrepreneurs</a><a class="rv" href="#companies">Companies</a><a class="rv" href="#investors">Investors</a></div>
-      <i class="hr hrb" style="bottom:111px"></i>
-      <p class="a l b sm x64 rv" style="--x:64;--b:55">Innovation Oasis — Silal, Al Ain, UAE</p>
-      <a class="a r b btt rv" id="btt" href="#top" data-go="hero" style="--r:152;--b:45"><span>Back to top</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 11V1M1.5 5.5L6 1l4.5 4.5"/></svg></a>
-      <p class="a r b sm rv" style="--r:64;--b:55">Part of Silal</p>
+      <img class="fsg rv" src="/brand/io-mark.svg" alt="" aria-hidden="true" width="540" height="398">
+      <div class="fmain">
+        <div class="fstate">
+          <h2 class="fst"><span class="mk"><span class="in">Advancing</span></span><span class="mk"><span class="in"><em>Agri-food</em> Systems</span></span></h2>
+          <p class="far" dir="rtl" lang="ar"><span class="mk"><span class="in">نحو أنظمة زراعة وغذاء متطورة</span></span></p>
+        </div>
+        <i class="fhr"></i>
+        <div class="fcols">
+          <section class="fc c1" aria-labelledby="fh1">
+            <h3 class="fh1 rv" id="fh1">Stay close to the work</h3>
+            <p class="fp rv">Research, programmes and calls for innovators, a few times a year.</p>
+            <form class="fform rv" id="fform" novalidate><label class="sr" for="femail">Email address</label><input id="femail" type="email" placeholder="Email address" autocomplete="email"><button type="submit" aria-label="Subscribe"><svg class="ar" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h11M9 3.5L13.5 8 9 12.5"/></svg><svg class="ck" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg></button></form>
+            <p class="fok rv" id="fok" role="status" aria-live="polite">One email, a few times a year. No spam.</p>
+          </section>
+          <nav class="fc c2" aria-labelledby="fh2"><h3 class="fl rv" id="fh2">Explore</h3><ul><li><a class="rv" href="#">About IO</a></li><li><a class="rv" href="#">Research &amp; Science</a></li><li><a class="rv" href="#">Innovation &amp; Venture Platforms</a></li><li><a class="rv" href="#">Centres of Excellence</a></li><li><a class="rv" href="#">Technology &amp; Services</a></li><li><a class="rv" href="#">Talent &amp; Training</a></li></ul></nav>
+          <nav class="fc c3" aria-label="Resources and connect"><h3 class="fl rv">Resources</h3><ul><li><a class="rv" href="#">News &amp; Media</a></li><li><a class="rv" href="#">Publications</a></li><li><a class="rv" href="#">Projects &amp; Case Studies</a></li><li><a class="rv" href="#">FAQs</a></li></ul><h3 class="fl rv">Connect</h3><ul><li><a class="rv" href="#">Contact</a></li><li><a class="rv" href="#">Enquire</a></li><li><a class="rv" href="#">LinkedIn</a></li></ul></nav>
+          <div class="fc c4">
+            <i class="fvl"></i>
+            <img class="fwm rv" src="/homepage-concept-3/media/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="196" height="89">
+            <a class="fweb rv" href="#">io-silal.ae</a>
+            <p class="fadr ar rv" dir="rtl" lang="ar">واحة الابتكار – سلال، العين، الإمارات العربية المتحدة</p>
+            <p class="fadr rv">Innovation Oasis – Silal, Al Ain, UAE</p>
+          </div>
+        </div>
+      </div>
+      <i class="hr"></i>
+      <div class="fbar"><p class="rv">© 2026 Silal. All rights reserved.</p><div><a class="rv" href="#">Terms of Use</a><a class="rv" href="#">Privacy</a></div></div>
     </div>
 
     <!-- menu panel -->
@@ -417,16 +461,16 @@ const LAYERS = ['hero','intro','map','gh','ghin','lab','labin','tech','techin','
 /* ---------- journey content (Figma 05–12) ---------- */
 const STOPS = [
   { k:'gh', name:'Greenhouses', t:'From Research to Production', d:'Ideas developed in the greenhouses are validated, refined and prepared for real-world farming conditions.',
-    li:['Climate-controlled Environments','Crop Performance Trials','Water-use Optimisation','Research to Market'], on:1, ls:166, th:340, ho:156, hd:544,
+    li:['Climate-controlled Environments','Crop Performance Trials','Water-use Optimisation','Research to Market'], on:1,
     img:'t-gh', crop:[1,0,.9,.1], cta:'Explore Greenhouses' },
   { k:'lab', name:'Research Labs', t:'Soil. Water. Genetics.', d:'Our research focuses on solving practical challenges faced by growers today.',
-    li:['Genetics and Crop Improvement','Soil and Water Analysis','Plant Health Research','Applied Agricultural Science'], on:2, ls:145, th:319, ho:135, hd:523,
+    li:['Genetics and Crop Improvement','Soil and Water Analysis','Plant Health Research','Applied Agricultural Science'], on:2,
     img:'t-lab', crop:[1,0,.9,.1], cta:'Explore Labs' },
   { k:'tech', name:'Technology and Innovation', t:'Turning Data into Growth', d:'Real-time data, automation and analytics help transform research into practical outcomes for growers and communities.',
-    li:['Sensors and IoT Monitoring','Smart Irrigation Systems','Robotics and Automation','AI-driven Analytics'], on:2, ls:162, th:336, ho:156, hd:540,
+    li:['Sensors and IoT Monitoring','Smart Irrigation Systems','Robotics and Automation','AI-driven Analytics'], on:2,
     img:'t-tech', crop:[1,0,.4,.3], cta:'Explore Tech' },
   { k:'part', name:'Partnerships', t:'Built through Collaboration', d:'A connected network working toward a more resilient food future.',
-    li:['Universities and Research Institutions','Agri-tech Startups','Industry and Commercial Partners','Local Farming Communities'], on:0, ls:145, th:319, ho:135, hd:523,
+    li:['Universities and Research Institutions','Agri-tech Startups','Industry and Commercial Partners','Local Farming Communities'], on:0,
     img:'t-part', crop:[.9,0,.8,.1], cta:'Explore Partnerships' }
 ];
 const THUMB = { 't-gh':[900,600], 't-lab':[900,600], 't-tech':[600,900], 't-part':[900,600] };
@@ -452,30 +496,30 @@ const NX = 560, TICK = 12, STEP = 372, SPAN = 54, PEAK = 30, J0 = -47, J1 = 220;
 /* ---------- beats (timeline units). One table, no remapping. ---------- */
 const B = {
   hero:0, enter:2.6, over:4.7, map:7.3, gh:10.0, ghd:12.4, lab:14.8, labd:17.2, tech:19.6, techd:22.0, part:24.4, partd:26.7,
-  imp:29.4, imp2:31.0, imp3:32.6, tour:35.9, foot:38.6, END:39.3
+  imp:29.4, imp2:32.0, imp3:34.3, tour:37.4, foot:38.5, END:38.5
 };
 const CHAPTERS = [
   ['The Destination','hero'], ['Enter the Oasis','enter'], ['Campus Map','map'], ['Greenhouses','gh'], ['Research Labs','lab'],
   ['Technology & Innovation','tech'], ['Partnerships','part'], ['Impact','imp'], ['Virtual Tour','tour'], ['Contact','foot']
 ];
-const LIVE = [ ['hero',0,1.0], ['over',4.4,5.1], ['map',7.0,8.1], ['dock',9.8,27.1], ['imp',29.0,33.4], ['tour',35.7,37.1] ];
+const LIVE = [ ['hero',0,1.0], ['over',4.4,5.1], ['map',7.0,8.1], ['dock',9.8,27.1], ['imp',29.0,34.9], ['tour',37.2,38.0] ];
 
 /* ---------- build DOM ---------- */
-const wheelL = $('#wheelL'), wheelEl = $('#wheel');
-STOPS.forEach(s => { const li = document.createElement('li'); li.textContent = s.name; li.dataset.go = s.k; wheelL.appendChild(li); });
+const wheelL = $('#wheelL'), jfill = $('#jfill'), jcount = $('#jcount');
+STOPS.forEach((s, i) => { const li = document.createElement('li'); li.style.top = (28 * i) + 'px';
+  li.innerHTML = `<a href="#${s.k}" data-go="${s.k}"><i class="nd"></i><em>0${i + 1}</em><span class="nm">${s.name}</span></a>`; wheelL.appendChild(li); });
 const card = $('#card');
 STOPS.forEach((s, i) => {
   const c = document.createElement('div'); c.className = 'cc'; c.dataset.i = i;
-  let h = `<p class="ct">${s.t}</p><button class="chev" aria-label="Show details"><svg><use href="#chevI"/></svg></button><p class="cd">${s.d}</p>`;
-  s.li.forEach((x, j) => { h += `<div class="li dt${j === s.on ? ' on' : ''}" style="top:${s.ls + 42 * j}px"><i class="dot"><i></i></i><span>${x}</span></div>`;
-    if (j < 3) h += `<i class="sep dt" style="top:${s.ls + 30 + 42 * j}px"></i>`; });
-  h += `<div class="th dt" style="top:${s.th}px"><i class="bgi" data-img="${s.img}"></i><a class="btn" href="#${s.k}">${s.cta}</a></div>`;
+  let h = `<p class="ct">${s.t}</p><p class="cd">${s.d}</p>`;
+  s.li.forEach((x, j) => { h += `<div class="li${j === s.on ? ' on' : ''}" style="top:${152 + 34 * j}px"><i class="dot"><i></i></i><span>${x}</span></div>`;
+    if (j < 3) h += `<i class="sep" style="top:${152 + 26 + 34 * j}px"></i>`; });
+  h += `<div class="th"><i class="bgi" data-img="${s.img}"></i><a class="btn" href="#${s.k}">${s.cta}</a></div>`;
   c.innerHTML = h; card.appendChild(c);
   // hover moves the active marker (Figma shows one item marked); leaving restores the default
   const lis = $$('.li', c);
   lis.forEach((el, j) => el.addEventListener('pointerenter', () => lis.forEach((o, q) => o.classList.toggle('on', q === j))));
   c.addEventListener('pointerleave', () => lis.forEach((o, q) => o.classList.toggle('on', q === s.on)));
-  $('.chev', c).addEventListener('click', () => { const open = parseFloat(getComputedStyle(c).getPropertyValue('--rot')) > 90; go(open ? s.k : s.k + 'd'); });
 });
 const pinsEl = $('#pins');
 PINS.forEach(p => { const d = document.createElement('div'); d.className = 'pin';
@@ -505,9 +549,6 @@ CHAPTERS.forEach(([n, k], i) => { const li = document.createElement('li');
 
 /* buttons: label roll on hover */
 $$('.btn').forEach(b => { const t = b.textContent.trim(); b.innerHTML = `<span class="bt"><span>${t}</span><span aria-hidden="true">${t}</span></span>`; });
-/* footer rows: every letter is its own roll-up (stagger comes from --i) */
-$$('.rl[data-t]').forEach(el => { const t = el.dataset.t; el.setAttribute('aria-label', t);
-  el.innerHTML = [...t].map((c, i) => c === ' ' ? '<span class="ch"><span class="sp"></span></span>' : `<span class="ch" aria-hidden="true" style="--i:${i}"><span>${c}</span><span>${c}</span></span>`).join(''); });
 
 /* ---------- layout metrics ---------- */
 let W, H, U, M, ppu, tl, st, lenis, ctx, entered = false;
@@ -536,7 +577,7 @@ function pt(k, fx, fy) {
 const origin = (k, x, y) => { const [a, b] = pt(k, x, y); return `${a.toFixed(1)}px ${b.toFixed(1)}px`; };
 /* Figma CROP fill → background-size/position */
 function crop(el, k, v) {
-  const [iw, ih] = THUMB[k], [a, tx, d, ty] = v, Wd = 322, Hd = 190;
+  const [iw, ih] = THUMB[k], [a, tx, d, ty] = v, Wd = 322, Hd = 150;
   const S = Math.max(Wd / (a * iw), Hd / (d * ih));
   el.style.backgroundImage = `url(${IMGDIR}${k}.jpg)`;
   el.style.backgroundSize = `${iw * S}px ${ih * S}px`;
@@ -546,14 +587,18 @@ STOPS.forEach((s, i) => crop($(`.cc[data-i="${i}"] .th .bgi`, card), s.img, s.cr
 
 function placePins() { PINS.forEach(p => { const [x, y] = pt('map', p.x, p.g); p.el.style.left = x + 'px'; p.el.style.top = y + 'px'; }); }
 
-/* wheel: continuous active index a (0..3) */
+/* journey panel: continuous active index a (0..3). Rows brighten / dim smoothly, the rail fills up to the active stop, the counter follows */
+let lastIdx = -1;
 function setWheel(a) {
-  $$('li', wheelL).forEach((li, k) => { const d = k - a, q = Math.max(0, 1 - Math.abs(d));
-    li.style.transform = `translateY(${d * 37}px)`; li.style.fontWeight = Math.round(400 + 200 * q);
-    li.style.visibility = Math.abs(d) > 1.6 ? 'hidden' : 'visible'; });
-  // first and last stop only have two rows: the tab wraps them (37 px = one row pitch); it grows back to the normal three-row tab as soon as the wheel moves on
-  const t = 37 * Math.max(0, 1 - a), b = 37 * Math.max(0, a - 2);
-  wheelEl.style.setProperty('--wt', t.toFixed(2)); wheelEl.style.setProperty('--wb', b.toFixed(2)); card.style.setProperty('--wb', b.toFixed(2));
+  $$('li', wheelL).forEach((li, k) => { const q = Math.max(0, 1 - Math.abs(k - a)), done = k < a ? 1 : 0, nm = $('.nm', li), nd = $('.nd', li), em = $('em', li);
+    nm.style.color = `rgba(255,255,255,${(.46 + .54 * q).toFixed(2)})`; nm.style.fontWeight = Math.round(400 + 200 * q);
+    nm.style.transform = `translateX(${(4 * q).toFixed(2)}px)`;
+    em.style.color = `rgba(255,255,255,${(.32 + .68 * Math.max(q, done * .6)).toFixed(2)})`;
+    const f = Math.max(q, done); nd.style.background = `rgba(255,255,255,${(f * (done && q < 1 ? .62 : 1)).toFixed(2)})`; nd.style.borderColor = `rgba(255,255,255,${(.4 + .6 * f).toFixed(2)})`;
+    nd.style.boxShadow = `0 0 0 ${(5 * q * q).toFixed(1)}px rgba(255,255,255,${(.14 * q * q).toFixed(3)})`; });
+  jfill.style.height = (84 * Math.min(1, Math.max(0, a / 3))).toFixed(2) + 'px';
+  const idx = Math.min(3, Math.max(0, Math.round(a)));
+  if (idx !== lastIdx) { lastIdx = idx; jcount.innerHTML = `0${idx + 1}<i> / 04</i>`; }
 }
 /* numbers: continuous index m (0..2). Numbers and labels are centred on their column, which is where the dial swells. */
 function setNums(m) {
@@ -569,7 +614,7 @@ function setNums(m) {
 }
 /* the ruler: its position is the active metric index (dialM), so each dot stops exactly under its number. Height/brightness of the few ticks near NX
    follow a short, soft curve; the swell grows slightly with scroll speed */
-let dialM = 0, dialBoost = 0, dialLast = [0, -1];
+let dialM = 0, dialBoost = 0, dialLast = [0, -1], mTarget = 0, mDisp = 0;
 function paintDial() {
   const sh = -STEP * dialM; trk.style.transform = `translate3d(${sh.toFixed(2)}px,0,0)`;
   const jc = -sh / TICK, span = Math.ceil(SPAN / TICK) + 2, a = Math.floor(jc - span), b = Math.ceil(jc + span);
@@ -616,13 +661,13 @@ function build() {
     gsap.set($$('#enterT .in, #capD .in, #impH .in, #tourC .in'), { yPercent: 115 });
     gsap.set(['#mapB .btn', '#tourC .btn'], { clipPath: 'inset(100% 0% 0% 0% round 34px)' });
     gsap.set(cc, { visibility: 'hidden', y: 0 }); gsap.set(cc[0], { visibility: 'visible' }); gsap.set(cc.slice(1), { y: 80 });
-    gsap.set($$('.dt', card), { y: 24, visibility: 'hidden' });   // each stop's list only exists while its own card is open: nothing can pile up
+    gsap.set($$('.sep', card), { scaleX: 0 });
     gsap.set('.card .th', { clipPath: 'inset(100% 0% 0% 0% round 24px)' });
     gsap.set($$('.pin .tag, .pin .ring'), { opacity: 0, y: 10 }); gsap.set('.pin .line', { scaleY: 0 }); gsap.set('.pin .gd', { opacity: 0 });
-    const FIN = 'inset(0% -60px -10px -60px)', FOUT = 'inset(100% -60px -10px -60px)';
-    gsap.set($$('.frw .fnum, .frw .farr'), { opacity: 0 }); gsap.set($$('.foot .hr'), { scaleX: 0 }); gsap.set($$('.foot .rv'), { clipPath: FOUT, y: 30 });
-    card.style.height = STOPS[0].ho + 'px';
-    dialM = 0; dialLast = [J0, J1]; setWheel(0); setNums(0); setCount(0); paintDial();
+    const FIN = 'inset(-8px -60px -10px -60px)', FOUT = 'inset(100% -60px -10px -60px)';
+    gsap.set('#foot', { visibility: 'hidden' }); gsap.set($$('.foot .hr, .foot .fhr'), { scaleX: 0 }); gsap.set('.foot .fvl', { scaleY: 0 }); gsap.set($$('.foot .rv'), { clipPath: FOUT, y: 30 }); gsap.set($$('.fst .in, .far .in'), { yPercent: 118 });
+    lastIdx = -1;
+    dialM = 0; mTarget = 0; mDisp = 0; dialLast = [J0, J1]; setWheel(0); setNums(0); setCount(0); paintDial();
     const rw = ruler.offsetWidth, rClosed = `inset(0px ${Math.max(0, rw - NX)}px 0px ${NX}px)`, rOpen = 'inset(0px 0px 0px 0px)';
     gsap.set(ruler, { clipPath: rClosed }); gsap.set('#metrics', { visibility: 'hidden' });
     gsap.set(tourEl, { left: 0, top: 0, width: W, height: H, y: H, borderRadius: FLAT });
@@ -657,16 +702,19 @@ function build() {
       ft(CN(id), { scale: 1.4 }, { scale: 1 }, at, dur * 1.2, 'power2.out');
       vis(L(prev), false, at + dur + .05);
     };
-    const slideY = (id, prev, at, dur, lip = 56) => {
+    // the edge of an arriving layer is an arc (elliptical corners meeting in the middle); the arc relaxes to a straight edge as the layer lands
+    const arcCss = (dir, h) => h < .6 ? '0px' : (dir === 'y' ? `50% 50% 0 0 / ${h.toFixed(1)}px ${h.toFixed(1)}px 0 0` : `${h.toFixed(1)}px 0 0 ${h.toFixed(1)}px / 50% 0 0 50%`);
+    const curve = (el, dir, h0, at, dur) => { const o = { h: h0 }; tl.fromTo(o, { h: h0 }, { h: 0, duration: dur, ease: 'power2.in', immediateRender: false, onUpdate: () => { el.style.borderRadius = arcCss(dir, o.h); } }, at); };
+    const slideY = (id, prev, at, dur) => {
       vis(L(id), true, at);
-      ft(L(id), { y: H, borderRadius: `${lip}px ${lip}px 0px 0px` }, { y: 0, borderRadius: FLAT }, at, dur, 'power3.inOut');
+      ft(L(id), { y: H }, { y: 0 }, at, dur, 'power3.inOut'); curve(L(id), 'y', Math.min(H * .17, 190), at, dur);
       ft(CN(id), { y: -H }, { y: 0 }, at, dur, 'power3.inOut');
       ft(CN(prev), { y: 0 }, { y: -H * .22 }, at, dur, 'power3.inOut');
       vis(L(prev), false, at + dur + .05);
     };
-    const slideX = (id, prev, at, dur, lip = 56) => {
+    const slideX = (id, prev, at, dur) => {
       vis(L(id), true, at);
-      ft(L(id), { x: W, borderRadius: `${lip}px 0px 0px ${lip}px` }, { x: 0, borderRadius: FLAT }, at, dur, 'power3.inOut');
+      ft(L(id), { x: W }, { x: 0 }, at, dur, 'power3.inOut'); curve(L(id), 'x', Math.min(W * .1, 170), at, dur);
       ft(CN(id), { x: -W }, { x: 0 }, at, dur, 'power3.inOut');
       ft(CN(prev), { x: 0 }, { x: -W * .22 }, at, dur, 'power3.inOut');
       vis(L(prev), false, at + dur + .05);
@@ -706,33 +754,26 @@ function build() {
     ft([wheel, card], { x: -470 }, { x: 0, stagger: .1 }, 9.3, 1.0, 'power3.out');
     ft('#hint', { opacity: 0 }, { opacity: 1 }, 9.8, .4);
 
+    /* the card never changes size or place: its content is swapped (old text rises out, the next one rolls in) and its picture opens */
+    const reveal = (i, at) => { const c = cc[i];
+      ft($$('.sep', c), { scaleX: 0 }, { scaleX: 1, stagger: .06 }, at, .6, 'power3.out');
+      ft($('.th', c), { clipPath: 'inset(100% 0% 0% 0% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)' }, at + .1, .8, 'power3.inOut'); };
+    reveal(0, 9.95);
     /* stop: overview → details (walk inside: the next photo opens as an iris from the vanishing point) */
     const enterStop = (i, at, out, inn, vp) => {
-      const s = STOPS[i], c = cc[i], dts = $$('.dt', c);
       if (i === 0) ft('#hint', { opacity: 1 }, { opacity: 0 }, at, .3);
       if (out) { ft(IM(out), { scale: 1 }, { scale: 1.7 }, at, 1.4, 'power2.in'); iris(inn, out, vp, at + .55, 1.0); }
       else ft(IM(inn), { scale: 1 }, { scale: 1.1 }, at, 1.6, 'power1.inOut'); // same photo: keep the camera moving
-      vis(dts, true, at + .5);
-      ft(card, { height: s.ho }, { height: s.hd }, at + .5, .9, 'power3.inOut');
-      ft(c, { '--rot': '0deg' }, { '--rot': '180deg' }, at + .5, .9, 'power3.inOut');
-      if (i === 0) ft(card, { backgroundColor: 'rgba(16,16,16,.25)' }, { backgroundColor: 'rgba(16,16,16,.3)' }, at + .5, .9);
-      // the list is revealed by the card growing; it only rises into place (no fade)
-      ft(dts, { y: 24 }, { y: 0, stagger: .05 }, at + .85, .7, 'power3.out');
-      ft($$('.sep', c), { scaleX: 0 }, { scaleX: 1, stagger: .05 }, at + .9, .5, 'power3.out');
-      ft($('.th', c), { clipPath: 'inset(100% 0% 0% 0% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)' }, at + 1.05, .7, 'power3.inOut');
     };
-    /* details → next stop (travel sideways along the route: curtain from the right, the card text rolls like the wheel) */
+    /* details → next stop (travel sideways along the route: curtain from the right; the journey rail advances, the card text rolls) */
     const nextStop = (i, at, out, inn) => {
-      const s = STOPS[i], n = STOPS[i + 1], c = cc[i], c2 = cc[i + 1];
-      // strict order, so two stops can never overlap: 1) the old header rises out while the card collapses (its list is clipped by the shrinking card),
-      // 2) once the card is back to its small height the old stop is gone completely, 3) only then the next header rolls in from below
-      ft(card, { height: s.hd }, { height: n.ho }, at + .2, .8, 'power3.inOut');
-      ft(c, { y: 0 }, { y: -80 }, at + .25, .6, 'power3.in');
-      vis($$('.dt', c), false, at + .45);
-      vis(c, false, at + .9);
-      vis(c2, true, at + .95);
-      ft(c2, { y: 80 }, { y: 0 }, at + .95, .7, 'power3.out');
-      const w = { a: i }; ft(w, { a: i }, { a: i + 1, onUpdate: () => setWheel(w.a) }, at + .3, .9, 'power3.inOut');
+      const c = cc[i], c2 = cc[i + 1];
+      ft(c, { y: 0 }, { y: -90 }, at + .25, .6, 'power3.in');
+      vis(c, false, at + .85);
+      vis(c2, true, at + .75);
+      ft(c2, { y: 90 }, { y: 0 }, at + .75, .8, 'power3.out');
+      reveal(i + 1, at + .95);
+      const w = { a: i }; ft(w, { a: i }, { a: i + 1, onUpdate: () => setWheel(w.a) }, at + .3, 1.2, 'power2.inOut');
       slideX(inn, out, at + .2, 1.35);
     };
     enterStop(0, 10.6, 'gh', 'ghin', oGh);
@@ -757,36 +798,42 @@ function build() {
     ft($$('.mt'), { opacity: 0, y: 44 }, { opacity: 1, y: 0, stagger: .08 }, 28.6, .8, 'power3.out');
     const cn = { c: 0 }; ft(cn, { c: 0 }, { c: 1, onUpdate: () => setCount(cn.c) }, 28.5, .9, 'power2.out');
     const mv = { m: 0 };
-    ft(mv, { m: 0 }, { m: 1, onUpdate: () => setNums(mv.m) }, 30.0, 1.0, 'power3.inOut');
-    ft(mv, { m: 1 }, { m: 2, onUpdate: () => setNums(mv.m) }, 31.6, 1.0, 'power3.inOut');
-    vis('#metrics', true, 28.3); vis('#metrics', false, 33.8);   // the dial exists only inside its scene
+    ft(mv, { m: 0 }, { m: 1, onUpdate: () => { mTarget = mv.m; } }, 29.9, 1.8, 'sine.inOut');      // long, soft steps; the display below follows with inertia
+    ft(mv, { m: 1 }, { m: 2, onUpdate: () => { mTarget = mv.m; } }, 32.3, 1.8, 'sine.inOut');
+    vis('#metrics', true, 28.3); vis('#metrics', false, 35.3);   // the dial exists only inside its scene
 
     /* 13 → 14  the text leaves upwards, the oasis rises as a curtain and becomes the tour window */
-    ft($$('#impH .in'), { yPercent: 0 }, { yPercent: -125, stagger: .06 }, 33.1, .6, 'power3.in');
-    ft($$('.mt'), { y: 0, opacity: 1 }, { y: -70, opacity: 0, stagger: .05 }, 33.1, .55, 'power3.in');
-    ft(ruler, { clipPath: rOpen }, { clipPath: rClosed }, 33.1, .6, 'power3.in');
+    ft($$('#impH .in'), { yPercent: 0 }, { yPercent: -125, stagger: .06 }, 34.6, .6, 'power3.in');
+    ft($$('.mt'), { y: 0, opacity: 1 }, { y: -70, opacity: 0, stagger: .05 }, 34.6, .55, 'power3.in');
+    ft(ruler, { clipPath: rOpen }, { clipPath: rClosed }, 34.6, .6, 'power3.in');
     const cx = (W / U) / 2 + (372 - 720), cyy = (H / U) / 2 + (225 - 435);
     const box = { left: cx * U, top: cyy * U, width: 696 * U, height: 420 * U, br: 60 * U };
     if (M) { const w = W - 32, h = w * 420 / 696; Object.assign(box, { left: 16, top: (H - h) / 2, width: w, height: h, br: 40 }); }
     gsap.set(ring, { left: box.left - 6 * U, top: box.top - 6 * U, width: box.width + 12 * U, height: box.height + 12 * U, borderRadius: box.br + 4 * U });
-    vis(tourEl, true, 33.6);
-    ft(tourEl, { y: H, borderRadius: '56px 56px 0px 0px' }, { y: 0, borderRadius: FLAT }, 33.6, 1.25, 'power3.inOut');
-    ft(tourCN, { y: -H }, { y: 0 }, 33.6, 1.25, 'power3.inOut');
-    ft(CN('impact'), { y: 0 }, { y: -H * .22 }, 33.6, 1.25, 'power3.inOut');
-    vis('#dark', true, 34.95); vis(L('impact'), false, 34.95);      // fully covered by now: swap the stage to plain ink
+    vis(tourEl, true, 35.1);
+    ft(tourEl, { y: H }, { y: 0 }, 35.1, 1.25, 'power3.inOut'); curve(tourEl, 'y', Math.min(H * .17, 190), 35.1, 1.25);
+    ft(tourCN, { y: -H }, { y: 0 }, 35.1, 1.25, 'power3.inOut');
+    ft(CN('impact'), { y: 0 }, { y: -H * .22 }, 35.1, 1.25, 'power3.inOut');
+    vis('#dark', true, 36.45); vis(L('impact'), false, 36.45);      // fully covered by now: swap the stage to plain ink
     ft(tourEl, { left: 0, top: 0, width: W, height: H, borderRadius: FLAT },
-      { left: box.left, top: box.top, width: box.width, height: box.height, borderRadius: `${box.br}px ${box.br}px ${box.br}px ${box.br}px` }, 35.0, 1.2, 'power3.inOut');
-    ft(ring, { opacity: 0, scale: 1.02 }, { opacity: 1, scale: 1 }, 35.9, .5, 'power2.out');
-    ft('#tourC .in', { yPercent: 115 }, { yPercent: 0 }, 35.85, .8, 'power3.out');
-    ft('#tourC .btn', { clipPath: 'inset(100% 0% 0% 0% round 34px)' }, { clipPath: 'inset(0% 0% 0% 0% round 34px)' }, 36.0, .6, 'power3.out');
+      { left: box.left, top: box.top, width: box.width, height: box.height, borderRadius: `${box.br}px ${box.br}px ${box.br}px ${box.br}px` }, 36.5, 1.2, 'power3.inOut');
+    ft(ring, { opacity: 0, scale: 1.02 }, { opacity: 1, scale: 1 }, 37.4, .5, 'power2.out');
+    ft('#tourC .in', { yPercent: 115 }, { yPercent: 0 }, 37.35, .8, 'power3.out');
+    ft('#tourC .btn', { clipPath: 'inset(100% 0% 0% 0% round 34px)' }, { clipPath: 'inset(0% 0% 0% 0% round 34px)' }, 37.5, .6, 'power3.out');
 
-    /* 14 → 15  the tour card is pushed up and away; the footer rises into the same ink (nothing fades) */
-    ft([tourEl, ring], { y: 0 }, { y: -(H + 80) }, 37.0, 1.0, 'power3.inOut');
-    ft('#tourC', { y: 0 }, { y: -(H + 80) }, 37.0, 1.0, 'power3.inOut');
-    ft('#pillw', { y: 0 }, { y: -110 }, 37.0, .8, 'power3.in');
-    ft($$('.foot .hr'), { scaleX: 0 }, { scaleX: 1, stagger: .08 }, 37.5, .9, 'power3.inOut');
-    ft($$('.foot .rv'), { clipPath: FOUT, y: 30 }, { clipPath: FIN, y: 0, stagger: .04 }, 37.65, .95, 'power3.out');
-    ft($$('.frw .fnum, .frw .farr'), { opacity: 0 }, { opacity: 1, stagger: .06 }, 38.0, .6, 'power2.out');
+    /* 14 → 15  the footer is its own SECTION, not a scrubbed stretch of scroll: once the scroll enters the zone after the tour card (see footerCheck)
+       this timed sequence plays — the tour card is pushed up and away first, only then the footer wipes in. Scrolling back up reverses it. */
+    const rvs = $$('.foot .rv');
+    ftl = gsap.timeline({ paused: true, onUpdate: () => stage.classList.toggle('footlive', ftl.progress() > .72) });
+    ftl.to([ring, '#tourC'], { y: -(H + 80), duration: .8, ease: 'power3.inOut' }, 0)
+       .to(tourEl, { yPercent: -((H + 80) / box.height) * 100, duration: .8, ease: 'power3.inOut' }, 0)
+       .to('#pillw', { y: -110, duration: .5, ease: 'power3.in' }, 0)
+       .fromTo('#foot', { visibility: 'hidden' }, { visibility: 'visible', duration: .001, immediateRender: false }, .6)   // nothing of the footer exists while the tour card is on screen
+       .to($$('.fst .in, .far .in'), { yPercent: 0, duration: 1.0, ease: 'power4.out', stagger: .1 }, .7)          // the statement rises line by line
+       .to($$('.foot .hr, .foot .fhr'), { scaleX: 1, duration: .9, ease: 'power3.inOut', stagger: .08 }, .8)
+       .to('.foot .fvl', { scaleY: 1, duration: .9, ease: 'power3.inOut' }, 1.0)
+       .to(rvs, { clipPath: FIN, y: 0, duration: .75, ease: 'power3.out', stagger: .02, onComplete: () => gsap.set(rvs, { clearProps: 'transform' }) }, 1.0);   // transforms cleared so the CSS hover shifts work
+    ftl.pause().reversed(false); ftl.progress(footState ? 1 : 0, true); if (footState) gsap.set(rvs, { clearProps: 'transform' });
   }, stage);
 
   // Lenis already eases the wheel: scrubbing straight to the scroll position avoids a second lag on top
@@ -797,11 +844,52 @@ function build() {
 }
 
 /* ---------- chrome: live windows, active chapter ---------- */
-let lastLive = '';
+let lastLive = '', footState = 0, lastT = 0, ftl = null, busy = false, busyT;
+/* The footer is a section with two resting places: the tour card (CTA_T) and the footer (END). One gesture moves between them — scrolling down from the
+   card plays the footer, scrolling up from the footer returns to the card — instead of the scroll position scrubbing anything. */
+const CTA_T = 37.8, ZIN = 37.95, ZOUT = 37.75;   // timeline units: card resting place / fallback thresholds for keyboard, scrollbar drags, deep links
+function scrollToT(t, dur) {
+  const y = story.offsetTop + t * ppu;
+  if (lenis) lenis.scrollTo(y, { duration: dur, easing: x => 1 - Math.pow(1 - x, 3), lock: true, force: true }); else window.scrollTo({ top: y, behavior: 'smooth' });
+}
+function footerGo(to, jumped) {
+  if (!ftl || to === footState) return; footState = to;
+  if (jumped) { ftl.pause().reversed(false); ftl.progress(to ? 1 : 0, true); stage.classList.toggle('footlive', !!to); if (to) gsap.set($$('.foot .rv'), { clearProps: 'transform' }); return; }
+  busy = true; clearTimeout(busyT); busyT = setTimeout(() => { busy = false; }, 1500);          // swallow wheel momentum while it moves
+  if (to) { ftl.reversed(false).timeScale(1).play(); scrollToT(B.END, 1.1); }
+  else { ftl.timeScale(1.15).reverse(); scrollToT(CTA_T, 1.0); }
+}
+function footerCheck(t) {
+  const jumped = Math.abs(t - lastT) > 1.5; lastT = t;
+  if (busy && !jumped) return;
+  footerGo(t >= ZIN ? 1 : (t <= ZOUT ? 0 : footState), jumped);
+}
+const inCard = () => tl && tl.time() >= CTA_T - .15 && tl.time() <= ZIN + .3;
+addEventListener('wheel', e => {
+  if (menuOpen || !ftl) return;
+  const dy = e.deltaY, stop = () => { e.preventDefault(); e.stopImmediatePropagation(); };
+  if (busy) return stop();
+  if (footState === 0 && dy > 6 && inCard()) { stop(); footerGo(1); }
+  else if (footState === 1) { if (dy < -6) { stop(); footerGo(0); } else if (dy > 0) stop(); }
+}, { passive: false, capture: true });
+let ty0 = null;
+addEventListener('touchstart', e => { ty0 = e.touches[0].clientY; }, { passive: true });
+addEventListener('touchmove', e => {
+  if (ty0 === null || menuOpen || !ftl) return; const dy = ty0 - e.touches[0].clientY;
+  if (busy) { if (e.cancelable) e.preventDefault(); return; }
+  if ((footState === 0 && dy > 36 && inCard()) || (footState === 1 && dy < -36)) { if (e.cancelable) e.preventDefault(); ty0 = null; footerGo(footState ? 0 : 1); }
+}, { passive: false });
+addEventListener('keydown', e => {
+  if (menuOpen || !ftl || /^(INPUT|TEXTAREA|BUTTON|A)$/.test((document.activeElement || {}).tagName)) return;
+  const down = ['ArrowDown', 'PageDown', ' ', 'End'].includes(e.key), up = ['ArrowUp', 'PageUp', 'Home'].includes(e.key);
+  if (busy && (down || up)) return e.preventDefault();
+  if (footState === 0 && down && inCard()) { e.preventDefault(); footerGo(1); }
+  else if (footState === 1 && up) { e.preventDefault(); footerGo(0); }
+});
 function chrome(t) {
   const live = LIVE.filter(([, a, b]) => t >= a && t <= b).map(x => x[0]).join(' ');
   if (live !== lastLive) { stage.dataset.live = live; lastLive = live; }
-  stage.classList.toggle('footlive', t > 38.0);
+  footerCheck(t);
   let ci = 0; CHAPTERS.forEach(([, k], i) => { if (t >= B[k] - .6) ci = i; });
   $$('a', menu).forEach((a, i) => a.classList.toggle('on', i === ci));
 }
@@ -870,7 +958,7 @@ function playEntrance() {
    .to('#heroB', { clipPath: 'inset(0% 0% 0% 0% round 34px)', duration: .9, ease: 'power3.out' }, .75);
 }
 
-/* ---------- details: magnet buttons, image tab hover, footer (preview that follows the pointer), dial speed swell ---------- */
+/* ---------- details: magnet buttons, image tab hover, footer , dial speed swell ---------- */
 gsap.set($$('.th .btn'), { xPercent: -50, yPercent: -50 });
 function magnet(btn, area, k = .2, max = 14) {
   const qx = gsap.quickTo(btn, 'x', { duration: .6, ease: 'power3' }), qy = gsap.quickTo(btn, 'y', { duration: .6, ease: 'power3' });
@@ -891,27 +979,25 @@ $$('.th').forEach(th => {
 });
 [['#heroB .btn', null], ['#mapB .btn', null], ['#tourC .btn', null]].forEach(([q]) => { const b = $(q); if (b) magnet(b, b, .28, 9); });
 
-const fprev = $('#fprev'), fpi = $('#fpi');
-const fxq = gsap.quickTo(fprev, 'x', { duration: .55, ease: 'power3' }), fyq = gsap.quickTo(fprev, 'y', { duration: .55, ease: 'power3' }), frq = gsap.quickTo(fprev, 'rotation', { duration: .7, ease: 'power3' });
-let frT;
-$$('.frw').forEach(r => {
-  r.addEventListener('pointerenter', e => { if (e.pointerType === 'touch') return; fpi.style.backgroundImage = `url(${IMGDIR}${r.dataset.prev}.jpg)`;
-    gsap.fromTo(fprev, { scale: .8 }, { scale: 1, opacity: 1, duration: .65, ease: 'power3.out', overwrite: 'auto' }); });
-  r.addEventListener('pointerleave', () => gsap.to(fprev, { scale: .86, opacity: 0, duration: .4, ease: 'power3.in', overwrite: 'auto' }));
-});
-magnet($('#btt'), $('#btt'), .3, 8);
-document.addEventListener('pointermove', e => {
-  if (!stage.classList.contains('footlive')) return;
-  fxq(e.clientX + 36); fyq(e.clientY - 100); frq(Math.max(-8, Math.min(8, e.movementX * .5))); clearTimeout(frT); frT = setTimeout(() => frq(0), 90);
-});
+/* footer: links are inert placeholders until the pages exist; the newsletter form is front-end only */
+document.addEventListener('click', e => { const a = e.target.closest('.foot a'); if (a && !a.dataset.go) e.preventDefault(); });
+const fform = $('#fform'), femail = $('#femail'), fok = $('#fok');
+fform.addEventListener('submit', e => { e.preventDefault();
+  const v = femail.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { fform.classList.add('bad'); fok.textContent = 'Please enter a valid email address.'; fok.className = 'fok rv err';
+    gsap.fromTo(fform, { x: -7 }, { keyframes: [{ x: 7, duration: .08 }, { x: -5, duration: .08 }, { x: 3, duration: .08 }, { x: 0, duration: .1 }], overwrite: 'auto' }); return; }
+  fform.classList.remove('bad'); fform.classList.add('ok'); femail.value = ''; femail.disabled = true; femail.placeholder = 'Subscribed';
+  fok.textContent = 'Thank you — you are on the list.'; fok.className = 'fok rv good'; });
+femail.addEventListener('input', () => { fform.classList.remove('bad'); if (!fform.classList.contains('ok')) { fok.textContent = 'One email, a few times a year. No spam.'; fok.className = 'fok rv'; } });
 
 // the ruler follows the scroll every frame; the swell grows with scroll speed
 let tPrev = 0, tClock = performance.now(), vSm = 0;
-gsap.ticker.add(() => {
+gsap.ticker.add((_, dt) => {
   if (!tl) return;
   const t = tl.time(), now = performance.now(), v = Math.abs(t - tPrev) / Math.max(.001, (now - tClock) / 1000); tPrev = t; tClock = now;
   vSm += (Math.min(1, v / 4) - vSm) * .1; dialBoost = vSm;
-  if ((t > 28.2 && t < 34) || vSm > .01) paintDial();
+  if (mDisp !== mTarget) { mDisp += (mTarget - mDisp) * (1 - Math.exp(-(dt || 16) / 170)); if (Math.abs(mTarget - mDisp) < .0006) mDisp = mTarget; setNums(mDisp); }   // numbers + ruler glide towards the scroll target
+  else if ((t > 28.2 && t < 35.6) || vSm > .01) paintDial();
 });
 
 /* ---------- boot ---------- */

@@ -67,6 +67,5 @@ Design routes live under random folder names so they cannot be guessed. There is
 ### Concept 3 — V1 (client footer design)
 - Home: https://silal-io.vercel.app/homepage-concept-3/V1  (copy of Concept 3 with the footer replaced by the client's footer design; `public/homepage-concept-3/v1/`, rewrite in `next.config.ts`; `/homepage-concept-3` is unchanged)
 
-### Concept 3 — V3 (journey panel, smoother numbers, curved masks, new footer)
-- Home: https://silal-io.vercel.app/homepage-concept-3/V3  (copy of V1; `public/homepage-concept-3/v3/`, rewrite in `next.config.ts`). NOT the same as `https://silal-io.vercel.app/V3` (that is Concept 1). V1 and `/homepage-concept-3` untouched.
-
+### Concept 3 — main link = client submission (2026-10-13)
+- Home: https://silal-io.vercel.app/homepage-concept-3  (now the latest version: journey panel, smoother numbers, curved masks, new footer; `public/homepage-concept-3/index.html`). The temporary `/homepage-concept-3/V3` link was removed. `/homepage-concept-3/V1` (client footer variant) is unchanged. Previous revision 5 of the main page is in git history (commit before this change).
