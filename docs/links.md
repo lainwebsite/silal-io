@@ -63,3 +63,7 @@ Design routes live under random folder names so they cannot be guessed. There is
 
 ### Concept 3 — From Desert to Discovery
 - Home: https://silal-io.vercel.app/homepage-concept-3  (static page in `public/homepage-concept-3/`, notes in `prototypes/silal-homepage/README.md`, spec in `DESIGN-SPEC-CONCEPT-3.md`)
+
+### Concept 3 — V1 (client footer design)
+- Home: https://silal-io.vercel.app/homepage-concept-3/V1  (copy of Concept 3 with the footer replaced by the client's footer design; `public/homepage-concept-3/v1/`, rewrite in `next.config.ts`; `/homepage-concept-3` is unchanged)
+
