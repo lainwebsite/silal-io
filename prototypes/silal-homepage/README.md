@@ -40,3 +40,6 @@ Clone the repo, tell the chat to read this README and `DESIGN-SPEC.md` first.
 - No filter tweens, no scale on backdrop-filter elements, no live blur where it cannot be seen (talent list, 3 trio faces, menu); layers are promoted only while their scene is near; the faded video surface is released; photos are decoded in idle time; Lenis drives the scroll directly (no second 0.7 s lag).
 - Headless scroll benchmark (software raster, 900 frames through the whole story): frames over 33 ms 51 → ~20, worst frame 217 ms → ~67 ms.
 - Preloader mark/wordmark are white (official vector, same artwork as the logo beside the menu button).
+
+## 2026-10-13 fix: venture photo went black after scrolling back
+Cause: the curtain tween had `opacity` only in its `from` values. GSAP applies such values once; after the playhead had gone back across that point and forward again the photo's opacity stayed 0 (black scene). Rule for this file: every property in a `from` object must also be in its `to` object. Verified with a history test (fresh load vs forward / backward / random hops at 31 points of the story: 0 differences). Also: `chrome()` now runs from the timeline's own update so the nav and hover windows are right when a smoothed scrub settles.

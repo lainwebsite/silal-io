@@ -633,7 +633,7 @@ function build() {
     const ft = (t, tg, from, to, at, ease) => tl.fromTo(tg, from, Object.assign({ ease: ease || 'power2.inOut', immediateRender: false }, to), tm(at));
     const io = 'power2.inOut', out = 'power3.out';
 
-    tl = gsap.timeline({ paused: true, defaults: { duration: 1 } });
+    tl = gsap.timeline({ paused: true, defaults: { duration: 1 }, onUpdate: () => chrome(tl.time()) });   // chrome follows the timeline itself, so the nav / hover windows are right when a smoothed scrub settles
 
     /* ---------- 01 · INTRODUCTION — scroll scrubs the flight video (Earth → close-up → aerial → desert → Al Foah) ----------
        media/intro.mp4 = "homepage 1 video new" (19.63 s). The page timeline (title, copy, cards) is unchanged, so the
@@ -817,7 +817,7 @@ function build() {
     // amount, so the picture stays put and is revealed (transform only: no clip-path, no giant layers)
     const wipe = (layer, at, dur) => {
       const kids = $$('.im, .ov', layer);
-      ft(0, layer, { opacity: 1, y: vh }, { y: 0, duration: dur, ease: 'power3.inOut' }, at);
+      ft(0, layer, { opacity: 1, y: vh }, { opacity: 1, y: 0, duration: dur, ease: 'power3.inOut' }, at);   // every prop in `from` must also be in `to`, or going back and forth over this point loses it
       ft(0, kids, { y: -vh }, { y: 0, duration: dur, ease: 'power3.inOut' }, at);
     };
     // one photo, the crop window pulls back / pushes in
@@ -896,7 +896,6 @@ function build() {
     st = ScrollTrigger.create({
       trigger: story, start: 'top top', end: 'bottom bottom', animation: tl,
       scrub: (lenis || matchMedia('(prefers-reduced-motion: reduce)').matches) ? true : .7,   // Lenis already eases the wheel: no second 0.7 s lag on top
-      onUpdate: self => chrome(tl.time())
     });
     // nav "Scroll" hint fades once the journey begins
     chrome(tl.time());
