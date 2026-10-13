@@ -56,3 +56,13 @@ Live at `/homepage-concept-3` (team link, `noindex`, not linked anywhere). Same 
 - QA flags (from the spec): `?t=<beat or number>` jumps the timeline, `?lenis=0` turns off smooth scroll, `window.__story.jump()`.
 - Reference frame exports (`ref/c3ref_01..15.jpg`, 11 MB) are not in git; re-export from Figma if needed.
 - Not tested here: mobile, real wheel scrolling on hardware.
+
+## Concept 3, revision 1 (2026-10-13, client feedback)
+- **Scene changes have no cross-fades any more.** Layers are `.bg` (window) > `.cn` (how the layer arrives) > `.im` (in-scene camera). Arrivals: *iris* (clip-path circle from the dive point: intro→map, map→greenhouses, and the walk inside each stop), *curtain-up* with a rounded lip (hero→intro, part→impact, impact→tour), *curtain-side* (travel between stops). Old layers are hidden with a `visibility` tween after they are covered. Helpers `iris / slideY / slideX / vis` in `build()`.
+- Same-context text never fades: "Enter the Oasis." is still one element that FLIPs into the caption. New headings and paragraphs rise out of a mask (`.mk > .in`), buttons wipe in with clip-path, the card list is revealed by the card growing, the card text rolls like the wheel, footer lines wipe up. The tour card is pushed up and out while the footer rises (no fade).
+- **Menu:** dot grid → X (middle dots merge, corners fly out, whole icon turns), hover ripple through the dots, pulse ring on click, magnetic button, panel reveals with a clip, rows slide up from masks, one shared highlight follows the pointer, active chapter dot. Esc / click outside closes, Lenis is stopped while it is open. Panel now lives inside `.frame` so it scales with the pill.
+- **Impact dial:** numbers and labels are centred on their column and the needle sits exactly on the active number's centre (`NX = 560`). Ticks are on a fixed 12 px grid (31 per step) so one tick is always under the needle, and they swell/brighten with distance from it (fisheye, `SPAN`). The dial opens from the needle outwards.
+- **Smooth scroll:** Lenis drives the scroll directly (`scrub: true`, no second lag), no filter tweens, layers only visible while on screen, photos decoded in idle time.
+- **Polish:** official IO mark (`#logo`) in the pill instead of the "iO" text; preloader (mark fills with real load progress, curtain exit, hero settles); button label roll on hover; pin ping rings; footer dims siblings on hover; tour card hover zoom; focus rings; theme-color + favicon.
+- QA: `?preload=0` skips the preloader, `?t=<beat|number>` jumps (no entrance), `?lenis=0` turns smooth scroll off.
+
