@@ -35,6 +35,7 @@ img,svg{display:block}
 .base{position:absolute;inset:0;background:#101010}
 .bg{position:absolute;inset:0;opacity:0;pointer-events:none;overflow:hidden;transform-origin:50% 50%}
 .bg .im,.bg .ov{position:absolute;inset:0}
+.panimg{position:absolute;left:0;top:0;display:block;background-size:100% 100%;background-repeat:no-repeat;will-change:transform}   /* the tall sky-to-plaza render: sized in JS, panned with a transform only */
 .im{background-repeat:no-repeat;background-color:rgba(255,255,255,.03)}
 .glow{inset:-12%}
 #bgVid{opacity:1;background:#000}
@@ -494,7 +495,7 @@ html.m .f-bar{flex-direction:column;align-items:flex-start;gap:6px;font-size:11p
     <div class="gl"><div class="im" data-img="g_x_green"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
   </div>
     <div class="bg" id="bgB"><div class="im" data-img="90abeb8f" data-crop=".49,.44,.44,.25"></div><div class="ov" style="background:rgba(0,0,0,.5)"></div></div>
-    <div class="bg" id="bgR"><div class="im" data-img="70840e80" data-crop="1,0,.45,.37"></div><div class="ov" style="background:rgba(0,0,0,.4)"></div></div>
+    <div class="bg" id="bgR"><div class="im"><i class="panimg" id="imR" data-img="x_sky" data-fixed="1"></i></div><div class="ov" style="background:rgba(0,0,0,.4)"></div></div>
     <div class="bg glow" id="glowE"><div class="im" data-img="g_0ba94745"></div><div class="ov" style="background:rgba(15,15,15,.4)"></div></div>
 
 
@@ -742,7 +743,7 @@ const DIM = {'2c9732cc':[1880,1058],'f502e814':[1880,1058],'e95e0b67':[1614,975]
 const EXT = {'06f2951c':'png'};
 // new round-12 assets (x_*) live next to this page; the older ones are shared with /V2
 const imgUrl = k => `/homepage-concept-1/${/^(g_)?x_/.test(k) ? 'v3' : 'v2'}/media/img/${k}.${EXT[k] || 'jpg'}`;
-Object.assign(DIM, {'x_farm':[1728,1044],'x_quinoa':[1728,1044],'x_drone':[1710,954],'x_chamber':[1716,1141],'x_green':[1716,1141],'x_manlab':[1718,1143],'x_pipette':[1710,1135],'x_tour':[1624,976],'x_field':[1728,1152],'x_hold1':[1192,672],'x_hold2':[1192,672]});
+Object.assign(DIM, {'x_farm':[1728,1044],'x_quinoa':[1728,1044],'x_drone':[1710,954],'x_chamber':[1716,1141],'x_green':[1716,1141],'x_manlab':[1718,1143],'x_pipette':[1710,1135],'x_tour':[1624,976],'x_field':[1728,1152],'x_hold1':[1192,672],'x_sky':[1728,2304],'x_hold2':[1192,672]});
 ['x_drone','x_chamber','x_green'].forEach(k => { DIM['g_' + k] = DIM[k]; });
 Object.keys(DIM).forEach(k => { DIM['g_' + k] = DIM[k]; });   // g_<key> = small pre-blurred copy of <key> (same aspect, so the crop maths is identical)
 const $ = (s, r = document) => r.querySelector(s);
@@ -760,13 +761,13 @@ function applyCrop(el, W, H, v) {
   el.style.backgroundPosition = `${W / 2 - (tx + a / 2) * iw * S}px ${H / 2 - (ty + d / 2) * ih * S}px`;
 }
 $$('[data-img]').forEach(el => { const k = el.dataset.img; el.style.backgroundImage = `url(${imgUrl(k)})`; });
-const refreshCrops = () => $$('[data-img]').forEach(el => { if (el.closest('#detail')) return; applyCrop(el); });
+const refreshCrops = () => $$('[data-img]').forEach(el => { if (el.closest('#detail') || el.dataset.fixed) return; applyCrop(el); });
 
 /* ------------------------------------------------------------------ refs */
 const root = document.documentElement, story = $('#story'), stage = $('#stage'), frame = $('#frame');
 const el = id => document.getElementById(id);
 const E = {};
-['bgVid','introVid','holdB1','holdB2','imFarm','imQuin','glowA','bgLab','glowT','bgB','bgR','glowE','base','detail','dctl','dn',
+['bgVid','introVid','holdB1','holdB2','imFarm','imQuin','glowA','bgLab','glowT','bgB','bgR','imR','glowE','base','detail','dctl','dn',
  'hero','intro','stats','statement','capLab','labcard','rootTitle','hdrRoot','rootSub','trio','ring','venTitle','hdrVen','venSub','tiles','venBtn',
  'engTitle','hdrEng','eng','hdrTal','talSub','list','hdrTour','tourSub','tour','tourBtn','footF','num1','num2','hint','nav','mark'].forEach(i => E[i] = el(i));
 
@@ -1156,8 +1157,13 @@ function build() {
     wipe(A.bgR, 44.2, 1.4);
     ft(0, A.bgB, { opacity: 1 }, { opacity: 0, duration: .001 }, 45.6);
     dock(A.engTitle, A.hdrEng, 44.8, 46.2, 1.3);
-    // one photo for 07.01 + 07.02: the crop window slides down and pushes in (turun + zoom in)
-    cropMove(A.bgR, [1, 0, .45, .37], [.8, .10, .363, .53], 46.2, 1.6);
+    // one tall render for 07.01 + 07.02: it starts on the sky (title) and the whole picture glides DOWN to the building and plaza (cards). Pure vertical pan, no zoom, transform only
+    {
+      const pan = A.imR, iw = DIM.x_sky[0], ih = DIM.x_sky[1];
+      const Hh = Math.max(vw * ih / iw, vh * 1.5), Ww = Hh * iw / ih;       // the render at least as wide as the screen, and tall enough to travel
+      gsap.set(pan, { width: Ww, height: Hh, x: -(Ww - vw) / 2, y: 0 });
+      ft(0, pan, { y: 0 }, { y: -(Hh - vh), duration: 1.9, ease: 'power2.inOut' }, 46.0);
+    }
     ft(0, ecards, { opacity: 0, y: px(50) }, { opacity: 1, y: 0, duration: 1, stagger: .14, ease: out }, 47.5);   // after the photo has stopped moving (46.2 + 1.6)
 
     /* ---------- 08 · TRAINING & TALENT ---------- */
