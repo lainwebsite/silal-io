@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Readex_Pro } from "next/font/google";
 import s from "./chrome.module.css";
-import { Header } from "./_components/Header";
-import { Footer } from "./_components/Footer";
+import { SiteMenu } from "../_shell/SiteMenu";
+import { SiteFooter } from "../_shell/SiteFooter";
 import { SmoothScroll } from "./_components/SmoothScroll";
 import { LinkGuard } from "./_components/LinkGuard";
+import { BASE, SOON, footerLinks, nav } from "./_lib/site";
 
 // Stand-in for 29LT Bukra until the licensed webfont arrives (docs/brand.md). Swap here only.
 const brand = Readex_Pro({ subsets: ["latin", "arabic"], variable: "--font-d2-brand", display: "swap" });
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   description,
   icons: { icon: [{ url: "/brand/io-mark.svg", type: "image/svg+xml" }, { url: "/brand/io-icon-32.png", sizes: "32x32" }], apple: "/brand/io-icon-180.png" },
   robots: { index: false, follow: false },
-  openGraph: { type: "website", siteName: "Innovation Oasis", title, description, url: "/V2", images: [{ url: "/V2/og.jpg", width: 1200, height: 630, alt: "Innovation Oasis" }] },
+  openGraph: { type: "website", siteName: "Innovation Oasis", title, description, url: "/V2/about", images: [{ url: "/V2/og.jpg", width: 1200, height: 630, alt: "Innovation Oasis" }] },
   twitter: { card: "summary_large_image", title, description, images: ["/V2/og.jpg"] },
 };
 
@@ -34,9 +35,9 @@ export default function V2Layout({ children }: { children: React.ReactNode }) {
       <a href="#d2-main" className={s.skip}>
         Skip to content
       </a>
-      <Header />
+      <SiteMenu nav={nav} home={BASE} news={`${BASE}/resources/news`} contact={footerLinks.contact} linkedin={footerLinks.linkedin} />
       <main id="d2-main">{children}</main>
-      <Footer />
+      <SiteFooter soon={SOON} news={`${BASE}/resources/news`} legal={footerLinks.legal} />
       <SmoothScroll />
       <LinkGuard />
     </div>

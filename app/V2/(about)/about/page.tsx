@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import a from "./_about/about.module.css";
-import { Mark } from "./_components/Brand";
-import { AboutMotion } from "./_about/_components/AboutMotion";
-import { ChapterIndex } from "./_about/_components/ChapterIndex";
-import { Journey } from "./_about/_components/Journey";
-import { LocalTime } from "./_about/_components/LocalTime";
-import { Principles } from "./_about/_components/Principles";
-import { P, photo } from "./_lib/photo";
-import { SOON } from "./_lib/site";
+import a from "../_about/about.module.css";
+import { Mark } from "../_components/Brand";
+import { AboutMotion } from "../_about/_components/AboutMotion";
+import { ChapterIndex } from "../_about/_components/ChapterIndex";
+import { Journey } from "../_about/_components/Journey";
+import { LocalTime } from "../_about/_components/LocalTime";
+import { Principles } from "../_about/_components/Principles";
+import { P, photo } from "../_lib/photo";
+import { SOON } from "../_lib/site";
 
 // Copy: content/about.md, client-supplied, verbatim. Section order follows the client PDF.
 
