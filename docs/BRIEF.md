@@ -52,7 +52,7 @@ Three kinds of links. Never mix them up.
 
 | Kind | Pattern | Who sees it | Who edits |
 |---|---|---|---|
-| **Client links** | `/V1`, `/V2`, `/V3`, `/V2/resources/news`, `/V3/resources/news`, `/V3/resources/newsroom` | The client. The only links ever sent to the client. | BRAIN only (frozen, polished snapshots) |
+| **Client links** | Since 2026-10-23 the tidy links `/Homepage-concept-1`, `/Homepage-concept-3`, `/New-Homepage/V1`, `/About/V1`, `/News/V1`, `/News-Detail` (list in `docs/links.md`); the older `/V1`, `/V2`, `/V3`, `/V2/resources/news`, `/V3/resources/news`, `/V3/resources/newsroom` still work | The client. The only links ever sent to the client. | BRAIN only (frozen, polished snapshots) |
 | **Design routes (internal)** | Designer 1: `/4fe86354b2/<design>/<page>` (e.g. `/4fe86354b2/v1/about-d`). Designer 2: `/390b3d94a5/<design>/<page>` (e.g. `/390b3d94a5/v6/about`). | Team only. Never send to the client, never link to them from client pages or from `/`. | The owning designer |
 | **Root** | `/` | Anyone | BRAIN. Logo only, no links. |
 
@@ -128,6 +128,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - 2026-10-12: Homepage Concept 1 "Built by the Desert" (static HTML prototype from the LAIN Figma) added at `/homepage-concept-1/v2`: files in `public/homepage-concept-1/v2/`, one rewrite in `next.config.ts`, notes in `prototypes/silal-homepage/`. Team link only (noindex, not linked from `/`). Touches no designer, `/V*` or root files.
 - 2026-10-13: Homepage Concept 3 "From Desert to Discovery" (static HTML prototype from the LAIN Figma, Concept 3 column) added at `/homepage-concept-3`: files in `public/homepage-concept-3/` (images in `media/img/`), one more rewrite in `next.config.ts`, spec in `prototypes/silal-homepage/DESIGN-SPEC-CONCEPT-3.md`, how-to in `prototypes/silal-homepage/ADD-A-CONCEPT.md`. Team link only (noindex, not linked from `/`). Touches no designer, `/V*` or root files.
 - 2026-10-23: `New Update 23 Oct/` (repo root) = copy-only snapshot of the latest client pages (Homepage-concept-1, Homepage-concept-3, New-Homepage [files to come], About, News, News-Detail, Team [not built]). Not deployed (`.vercelignore`), not built (`tsconfig.json` exclude); editing it changes nothing live.
+- 2026-10-23: **Silal Links Tidy Up.** Client links are now `/Homepage-concept-1`, `/Homepage-concept-3`, `/New-Homepage/V1`, `/About/V1` (= V3 About), `/News/V1` (= V3 News), `/News-Detail` (= V3 press release; `/News-Detail/<slug>` for others). `/Team/V1` waits for the Team page. Done with rewrites in `next.config.ts`; the `/V1`, `/V2`, `/V3` links stay as they were. New homepage added at `public/new-homepage/` (sources in `prototypes/new-homepage/v2/`, helix from the client's SVG, no fade animations).
 
 ## Requests (cross-chat)
 _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._

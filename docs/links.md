@@ -5,7 +5,18 @@ Design routes live under random folder names so they cannot be guessed. There is
 - Designer 1 folder: `app/4fe86354b2` (assets `public/4fe86354b2`)
 - Designer 2 folder: `app/390b3d94a5` (assets `public/390b3d94a5`)
 
-## Client links (OK to share)
+## Client links, "Silal Links Tidy Up" (2026-10-23) — the ones to send
+- https://silal-io.vercel.app/Homepage-concept-1 (= `/homepage-concept-1`, the V3 static page)
+- https://silal-io.vercel.app/Homepage-concept-3
+- https://silal-io.vercel.app/New-Homepage/V1 (new homepage, `public/new-homepage/`; team alias `/new-homepage`)
+- https://silal-io.vercel.app/About/V1 (= `/V3/about`)
+- https://silal-io.vercel.app/News/V1 (= `/V3/resources/news`)
+- https://silal-io.vercel.app/News-Detail (= the V3 press release; any article: `/News-Detail/<slug>`)
+- `/Team/V1`: not built yet, not published.
+
+Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below keep working.
+
+## Client links, earlier (still live)
 - https://silal-io.vercel.app/V1
 - https://silal-io.vercel.app/V2 (new homepage + unified shell) · About: https://silal-io.vercel.app/V2/about · news: https://silal-io.vercel.app/V2/resources/news
 - https://silal-io.vercel.app/V3 (same homepage, V1-style directory menu) · About: https://silal-io.vercel.app/V3/about (the former /V3, designer 2 v6) · news: https://silal-io.vercel.app/V3/resources/news
