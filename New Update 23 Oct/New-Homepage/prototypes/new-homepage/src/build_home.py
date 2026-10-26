@@ -164,6 +164,8 @@ b[data-reveal] { font-weight: inherit; }
 .c_page { padding-bottom: 0; }
 /* the intro sits above the pinned 3D panel: it needs its own solid ground so the panel does not show through */
 .c_page .c_intro { background: var(--light); }
+.c_introRight { display: flex; flex-direction: column; align-items: flex-start; }
+.c_introBtn { margin-top: 28px; }
 .n_wrap { }
 .c_page { --grey-ink: #6e7173; --slow: cubic-bezier(0.16, 1, 0.3, 1); }
 .hm_press { padding-top: clamp(72px, 8vw, 140px); padding-bottom: clamp(96px, 10vw, 170px); --grey-ink: #6e7173; --slow: cubic-bezier(0.16, 1, 0.3, 1); font-size: 17px; }
@@ -421,6 +423,9 @@ def wrap_text(html, pattern, repl):
 hero = A.hero.replace('c_eyebrowLight">About Innovation Oasis<', 'c_eyebrowLight">Innovation Oasis<')
 intro = A.intro.replace('<p class="c_lead">If solutions can succeed here, they can succeed almost anywhere.</p>', '<p class="c_lead">What it lacked was implementation.</p>')
 assert intro != A.intro and hero != A.hero
+# client comment (Rushikesh): the 'About IO' button next to the lead was missing
+intro = intro.replace('<p class="c_lead">What it lacked was implementation.</p>', '<div class="c_introRight"><p class="c_lead">What it lacked was implementation.</p><a href="/About/V1" class="s_btn s_btnPrimary s_btnSm c_introBtn">About IO ' + A.ARROW + '</a></div>', 1)
+assert 'c_introBtn' in intro
 intro = intro.replace('<section class="c_section">', '<section class="c_section c_intro">', 1)
 a_js = A.js.replace("lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, touchMultiplier: 1.4 });",
                     "lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, touchMultiplier: 1.4 }); window.__lenis = lenis;")
