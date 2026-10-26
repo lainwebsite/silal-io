@@ -4,6 +4,7 @@ import s from "./shell.module.css";
 import { Header } from "./_c/Header";
 import { Footer } from "./_c/Footer";
 import { LinkGuard } from "./_c/LinkGuard";
+import { SmoothScroll } from "./_c/SmoothScroll";
 
 /*
  * Designer 2 · v10: inner pages in the NEW HOMEPAGE shell (public/new-homepage, sources prototypes/new-homepage/v2,
@@ -27,6 +28,7 @@ export default function V10Layout({ children }: { children: React.ReactNode }) {
       <Header />
       <main id="d10-main">{children}</main>
       <Footer />
+      <SmoothScroll />
       <LinkGuard />
     </div>
   );
