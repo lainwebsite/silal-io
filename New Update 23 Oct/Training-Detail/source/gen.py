@@ -1,7 +1,7 @@
 import re,json,base64,io
 from PIL import Image
 S="/tmp/claude-0/-home-user-silal-io/a35b169d-f94b-5421-b8a0-c6b77ebde0a1/scratchpad/"
-V="app/390b3d94a5/v10/"
+V="New Update 23 Oct/IO-Academy/app/390b3d94a5/v10/"
 D=json.load(open(S+"courses.json")); ph=json.load(open(S+"photos.json"))
 def img(path,w,q):
     im=Image.open(path).convert("RGB"); im.thumbnail((w,w)); b=io.BytesIO(); im.save(b,"JPEG",quality=q,optimize=True); return "data:image/jpeg;base64,"+base64.b64encode(b.getvalue()).decode()
@@ -47,4 +47,4 @@ var WM="{WM}",WMR="{WMR}",MK="{MK}",PH={json.dumps(ph)},HERO={json.dumps(heroes)
 {js}
 </script>
 '''
-open(S+"io-academy-library.html","w").write(html); print(len(html)//1024,"KB")
+open(S+"index.html","w").write(html); print(len(html)//1024,"KB")

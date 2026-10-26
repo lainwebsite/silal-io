@@ -1,12 +1,11 @@
 # Training Detail Page
 
 ## Latest design: `index.html` (2026-10-26)
-Open `index.html` in a browser (single file, photos embedded; needs internet for the Readex Pro font and Lenis from jsDelivr). It holds **both pages** and links them: the IO Academy library (Content / Media Centre layout) and the **training detail** (Delphy structure), for all 7 sample courses. Click any course card or "View course" to open its detail page.
-- Library: sticky featured carousel hero (dark overlay, masked title swap), feed panel that slides over it, sticky track sidebar with a blue marker that follows the courses while you scroll, filters, 2 · 3 · 1 rows.
-- Detail: breadcrumb, title, lead, facts bar, photo, sticky "Request information" card, Overview + quote, What do you learn?, Planning, Content, How does it work?, The result, Your trainers, Questions, previous/next, more courses.
+Training detail page only (the IO Academy library is a separate page, in `../IO-Academy/`). Open `index.html` in a browser: one file, photos embedded; needs internet for the Readex Pro font and Lenis from jsDelivr. It shows the detail of the flagship course and lets you step through all 7 sample courses with the previous / next buttons and the "More from the Academy" cards.
+- Structure after the Delphy training page: breadcrumb, title, lead, facts bar (type, duration, audience, prior education, language, investment), photo, sticky "Request information" card with a short form, then Overview + quote, What do you learn?, Planning, Content, How does it work?, The result + key concepts, Your trainers, Questions, a closing "Do you have a question?" band, previous / next course, more courses.
 - Header and footer = the new homepage. Lenis smooth scroll with the homepage settings. Light only.
-- `source/`: generator for `index.html` (`gen.py` builds it from `gen.css`, `gen.js`, `courses.json` + the shell CSS in `../IO-Academy/app/390b3d94a5/v10/shell.module.css`; paths in `gen.py` assume the repo root and the `public/` photos). `academy.ts` = the course copy (sample).
-- Trainers: only Dr. Shamal Mohammed (CEO, from `content/about.md`) is a real person; his course role is "proposed". Other team members' job titles have not been supplied, so none are assigned. Needed: name, job title, course for each.
+- `source/`: generator for `index.html` (`python3 gen.py` from the repo root; it reads `gen.css`, `gen.js`, `courses.json` and the shell CSS in `../IO-Academy/app/390b3d94a5/v10/shell.module.css`, photos from `public/photos`). `academy.ts` is the course copy (sample).
+- Trainers: only Dr. Shamal Mohammed (CEO, from `content/about.md`) is a real person; his course role is "proposed". Other team members' job titles have not been supplied, so none are assigned. Needed: name, job title and course for each.
 - All course data (dates, fees, quotes) is sample content.
 
 ## Earlier draft (Next.js source, below)
