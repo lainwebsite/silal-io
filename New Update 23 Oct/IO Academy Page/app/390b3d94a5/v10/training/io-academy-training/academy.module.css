@@ -1,0 +1,429 @@
+/* Designer 2 · v6 — IO Academy (library + training detail).
+   Extends ../../pages.module.css (imported as `n`: wrap, head, tabs, feature, chips, grid, card…).
+   Only what the news pages do not already have lives here. Tokens come from ../../shell.module.css. */
+
+/* ═════════ LIBRARY ═════════ */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.step {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--io);
+}
+.stepN {
+  font-size: var(--t-label);
+  letter-spacing: 0.12em;
+  color: var(--io-ink);
+}
+.stepT {
+  font-weight: 300;
+  font-size: var(--t-h3);
+  line-height: 1.3;
+  color: var(--charcoal);
+}
+.stepD {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--grey-ink);
+}
+.cardFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 13px;
+  color: var(--grey-ink);
+}
+
+/* ═════════ DETAIL ═════════ */
+/* facts bar: the Delphy key-value list, as one soft capsule row under the title */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 24px;
+  margin: clamp(40px, 7vh, 72px) 0 0;
+  padding: 6px clamp(18px, 2.4vw, 32px);
+  border-radius: var(--r);
+  background: var(--paper);
+}
+.fact {
+  display: grid;
+  gap: 4px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.fact:nth-last-child(-n + 3) {
+  border-bottom: 0;
+}
+.fact dt {
+  font-size: var(--t-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--io-ink);
+}
+.fact dd {
+  margin: 0;
+  font-size: var(--t-body);
+  color: var(--charcoal);
+}
+.headActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 28px;
+  margin-top: 28px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: var(--r);
+  background: var(--io-ink);
+  color: #fff;
+  font: inherit;
+  font-size: var(--t-small);
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.pill:hover {
+  background: var(--charcoal);
+}
+
+/* the article: a sticky section index on the left, copy on the right (same grid as the press release) */
+.index {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.index a {
+  display: block;
+  padding: 8px 0 8px 16px;
+  border-left: 1px solid var(--line);
+  font-size: var(--t-small);
+  color: var(--grey-ink);
+  transition: color 0.3s, border-color 0.3s;
+}
+.index a:hover {
+  color: var(--charcoal);
+  border-color: var(--io);
+}
+.block {
+  display: grid;
+  gap: 18px;
+  scroll-margin-top: 110px;
+}
+.article .block + .block {
+  margin-top: clamp(28px, 5vh, 52px);
+}
+.blockH {
+  font-weight: 300;
+  font-size: var(--t-h2);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--charcoal);
+}
+.article .block > p:first-child {
+  font-weight: 400;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+.pull {
+  margin: 8px 0;
+  padding-left: 22px;
+  border-left: 1px solid var(--io);
+  font-weight: 300;
+  font-size: var(--t-lead);
+  line-height: 1.4;
+  color: var(--charcoal);
+}
+.pull cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: var(--t-small);
+  color: var(--grey-ink);
+}
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.list li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 8px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.list li::before {
+  content: attr(data-n);
+  font-size: var(--t-label);
+  letter-spacing: 0.1em;
+  padding-top: 4px;
+  color: var(--io-ink);
+}
+.sessions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sessions li {
+  padding: 8px 14px;
+  border-radius: var(--r);
+  background: var(--paper);
+  font-size: var(--t-small);
+  color: var(--charcoal);
+}
+.planMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  font-size: var(--t-small);
+  color: var(--grey-ink);
+}
+.planMeta b {
+  font-weight: 400;
+  color: var(--charcoal);
+}
+.concepts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.concepts li {
+  padding: 6px 12px;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  font-size: var(--t-small);
+  color: var(--charcoal);
+}
+.trainers {
+  display: grid;
+  gap: 12px;
+}
+.trainer {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: var(--r);
+  background: var(--paper);
+}
+.trainerMark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--io);
+}
+.trainerMark img {
+  width: 30px;
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+.trainer p {
+  margin: 0;
+}
+.trainer p:first-child {
+  font-weight: 300;
+  font-size: var(--t-h3);
+  color: var(--charcoal);
+}
+.trainer p + p {
+  font-size: var(--t-small);
+  color: var(--grey-ink);
+}
+.faq {
+  display: grid;
+}
+.faq details {
+  border-top: 1px solid var(--line);
+}
+.faq details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  font-weight: 300;
+  font-size: var(--t-h3);
+  color: var(--charcoal);
+  cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: "+";
+  color: var(--io-ink);
+}
+.faq details[open] summary::after {
+  content: "–";
+}
+.faq details p {
+  padding-bottom: 18px;
+  color: var(--ink);
+}
+
+/* request information: the Delphy registration form, shortened to what a first enquiry needs */
+.request {
+  margin-top: var(--sp);
+  padding: var(--sp) var(--gx);
+  background: var(--paper);
+  scroll-margin-top: 40px;
+}
+.request > .wrap {
+  padding-inline: 0;
+}
+.reqGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 40px 24px;
+}
+.reqIntro {
+  grid-column: 1 / span 5;
+  display: grid;
+  align-content: start;
+  gap: 20px;
+}
+.form {
+  grid-column: 7 / span 6;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 16px;
+}
+.field {
+  display: grid;
+  gap: 6px;
+}
+.field.wide {
+  grid-column: 1 / -1;
+}
+.field span {
+  font-size: var(--t-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--io-ink);
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: var(--t-small);
+  color: var(--charcoal);
+  border: 0;
+  border-radius: var(--r);
+  background: #fff;
+}
+.field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--io);
+  outline-offset: 1px;
+}
+.consent {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: var(--t-small);
+  color: var(--grey-ink);
+}
+.consent input {
+  margin-top: 3px;
+  accent-color: var(--io-ink);
+}
+.formEnd {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+}
+.thanks {
+  grid-column: 7 / span 6;
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+  border-radius: var(--r);
+  background: #fff;
+  border-left: 1px solid var(--io);
+}
+.thanks h3 {
+  font-weight: 300;
+  font-size: var(--t-h2);
+  line-height: 1.1;
+  color: var(--charcoal);
+}
+
+@media (max-width: 1100px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fact:nth-last-child(-n + 3) {
+    border-bottom: 1px solid var(--line);
+  }
+  .fact:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+  .reqIntro,
+  .form,
+  .thanks {
+    grid-column: 1 / -1;
+  }
+  .index {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .steps,
+  .facts,
+  .form {
+    grid-template-columns: 1fr;
+  }
+  .fact:nth-last-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+  .fact:last-child {
+    border-bottom: 0;
+  }
+}
