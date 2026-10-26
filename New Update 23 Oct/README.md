@@ -14,6 +14,8 @@ Each folder mirrors the repo layout (`app/…`, `public/…`), so every absolute
 | `About/V1` · `About/V2` · `About/V3` | https://silal-io.vercel.app/V1 · https://silal-io.vercel.app/V2/about · https://silal-io.vercel.app/V3/about | `app/V1` · `app/V2/(about)` · `app/V3/(about)` |
 | `News/V2` · `News/V3` | https://silal-io.vercel.app/V2/resources/news · https://silal-io.vercel.app/V3/resources/news + feed https://silal-io.vercel.app/V3/resources/newsroom | `app/V2/(news)` · `app/V3/(news)` |
 | `News-Detail/V2` · `News-Detail/V3` | articles, e.g. https://silal-io.vercel.app/V2/resources/news/innovation-oasis-officially-opens | `…/resources/news/[slug]/page.tsx` |
+| `IO Academy Page/` | library: `/390b3d94a5/v10/training/io-academy-training` (branch `23-oct/io-academy-page`) | `app/390b3d94a5/v10`, style guide `docs/io-academy/` |
+| `Training Detail Page/` | detail draft: `…/io-academy-training/[slug]` (branch `23-oct/training-detail-page`) | same `v10`, brief `docs/io-academy/DETAIL-BRIEF.md` |
 | `Team/` | not built yet (`/Team/V1` not published) | content status in `content/team.md` |
 
 - News articles are sample content until the client sends real press releases.
