@@ -18,7 +18,8 @@ const nextConfig: NextConfig = {
       { source: "/Homepage-concept-1", destination: "/homepage-concept-1/v3/index.html" },
       { source: "/Homepage-concept-3", destination: "/homepage-concept-3/index.html" },
       { source: "/New-Homepage/V1", destination: "/new-homepage/index.html" },
-      { source: "/new-homepage", destination: "/new-homepage/index.html" },                       // team link
+      { source: "/new-homepage", destination: "/new-homepage/index.html" },
+      { source: "/Training-Detail", destination: "/training-detail/index.html" },                // IO Academy training detail page (copy of New Update 23 Oct/Training-Detail/index.html)                       // team link
       { source: "/About/V1", destination: "/V3/about" },
       { source: "/News/V1", destination: "/V3/resources/news" },
       { source: "/News-Detail", destination: "/V3/resources/news/innovation-oasis-officially-opens" },
