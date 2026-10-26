@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import s from "../shell.module.css";
 import { ACADEMY, nav } from "../_lib/site";
@@ -9,6 +10,7 @@ import { lenis } from "./SmoothScroll";
 /* The new homepage's header (prototypes/new-homepage/v2/header.html): utility strip, logo, six categories with
    dropdowns, Enquire pill, and below 1180px the round menu button + full-screen list. White, not over a hero. */
 const WM = "/new-homepage/brand/io-wordmark-endorsed.svg";
+const WMR = "/new-homepage/brand/io-wordmark-endorsed-reversed.svg";
 const MARK = "/new-homepage/brand/io-mark.svg";
 const Arrow = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -20,6 +22,7 @@ const sub = (l: { label: string; ext?: boolean }) => (l.ext ? `${l.label} ↗` :
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const hero = usePathname()?.replace(/\/$/, "") === ACADEMY; // the library opens on a full-bleed photo: header is transparent until the page moves, like the homepage
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40);
     on();
@@ -39,7 +42,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className={s.header} data-scrolled={scrolled} data-overlay="false">
+    <header className={s.header} data-scrolled={scrolled} data-overlay={hero && !scrolled && !open}>
       <div className={s.utility}>
         <div className={`${s.wrap} ${s.utilityInner}`}>
           <span>
@@ -60,6 +63,14 @@ export function Header() {
                 <span style={{ display: "inline-flex", alignItems: "flex-start", gap: 9 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={WM} alt="Innovation Oasis — Part of Silal" width={110} height={50} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={MARK} alt="" height={39} width={53} />
+                </span>
+              </span>
+              <span className={s.logoOnDark}>
+                <span style={{ display: "inline-flex", alignItems: "flex-start", gap: 9 }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={WMR} alt="Innovation Oasis — Part of Silal" width={110} height={50} />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={MARK} alt="" height={39} width={53} />
                 </span>

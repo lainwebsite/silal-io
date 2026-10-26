@@ -341,6 +341,23 @@ export const courses: Course[] = [
 ];
 
 export const academyCopy = {
+  hero: {
+    eyebrow: "Innovation Oasis",
+    title: "Learn where the future of food is built.",
+    sub: ["Practical training from the people who run Innovation Oasis.", "Toward Advanced Agricultural and Food Systems"],
+  },
+  statement: "The conditions challenging agriculture in the UAE today will be faced by much of the world tomorrow. Our training prepares you for them.",
+  introBody:
+    "Short courses for growers, technicians, researchers and founders, taught online and on a working 34-hectare campus beside Al Foah Farm. Every lesson is built on real data from our own laboratories, greenhouses and trial fields.",
+  introLead: "If it works here, it can work anywhere.",
+  stats: [
+    { n: "34", l: "hectare campus where you learn" },
+    { n: "5", l: "training tracks, from greenhouse to venture" },
+    { n: "3", l: "ways to learn: online, on campus, blended" },
+    { n: "7", l: "sample courses shown here" },
+  ],
+  library: { title: "Find your course.", body: "Filter by track and format, or search by topic. Each course lists who it is for and what you need first." },
+  chapter: { eyebrow: "How the Academy works", title: "Learn where the research happens.", lead: "No slides about someone else's farm. You learn with our team, on our data, in conditions that match your own." },
   kicker: "Talent & Training",
   title: "IO Academy",
   intro:
