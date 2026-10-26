@@ -40,7 +40,7 @@ export type Course = {
 };
 
 /** false until the training detail page (branch 23-oct/training-detail-page) is merged: library cards stay inert instead of 404ing. */
-export const DETAIL_LIVE = true;
+export const DETAIL_LIVE = false;
 
 export const SAMPLE_NOTE = "Sample course shown for structure and tone. Dates, fees and session plans to be supplied by the IO Academy.";
 
