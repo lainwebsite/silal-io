@@ -109,34 +109,26 @@ mapsec = f"""
 </section>"""
 
 # ---------------------------------------------------------------- Helix section ("Where do you want to look first?")
-# geometry measured from the client's PDFs (1440 x 931 frame); order of steps = helix flow 01..05
-rungs = [  # y, bar x0, bar x1, cap cx, cap r, right cx, right r
-    (311, 652, 750, 658, 8, 788, 20), (361, 623, 775, 631, 9, 814, 14), (413, 603, 789, 612, 11, 829, 13), (468, 593, 795, 606, 14, 847, 13),
-    (519, 604, 790, 619, 14, 830, 11), (571, 620, 773, 633, 15, 812, 9), (621, 640, 746, 660, 21, 787, 7)]
-idle = [0.30, 0.28, 0.26, 0.25, 0.24, 0.2, 0.14]
-hx_svg = f'<circle class="hx_end" cx="703" cy="250" r="23"/><circle class="hx_end" cx="703" cy="681" r="23"/>'
-for k, (y, b0, b1, cx, cr, rx, rr) in enumerate(rungs):
-    hx_svg += (f'<g class="hx_r" data-r="{k}" style="--o:{idle[k]}"><rect x="{b0}" y="{y-3.5}" width="{b1-b0}" height="7" rx="3.5"/>'
-               f'<circle cx="{cx}" cy="{y}" r="{cr}"/><circle cx="{rx}" cy="{y}" r="{rr}"/></g>')
-flows = [  # rung, card centre x, image top y, image, title, text
+# 3D helix = the client's helix_3d.gltf (welded to helix.glb); cards + order of steps = helix flow 01..05 of the client PDFs.
+# Background = the photo of the highlighted card, blurred (one layer per step, cross-faded).
+flows = [  # rung (0 = top), card centre x, image top y, image, title, text
     (1, 386, 275, "hx_research", "Research &amp; Science", "Driving agricultural progress through research and discovery."),
     (1, 1037, 275, "hx_innov", "Innovation &amp; Venture Platforms", "Supporting innovation from idea to impact."),
     (3, 1029, 380, "hx_tech", "Technology &amp; Services", "Solutions designed for real-world challenges."),
     (2, 400, 327, "hx_centres", "Centres of Excellence", "Advancing agriculture through specialised expertise."),
     (4, 304, 416, "hx_talent", "Talent &amp; Training", "Empowering the next generation of innovators."),
 ]
-cards = "".join(
-    f'<figure class="hx_card" data-i="{i}" data-rung="{r}" style="left:{x}px;top:{y}px"><span class="hx_img"><img src="img/{im}.jpg" alt="" loading="lazy"></span><figcaption><b>{t}</b><span>{d}</span></figcaption></figure>'
-    for i, (r, x, y, im, t, d) in enumerate(flows))
+def card_html(i, r, x, y, im, t, d):
+    return f'<figure class="hx_card" data-i="{i}" data-rung="{r}" style="left:{x}px;top:{y}px"><span class="hx_img"><img src="img/{im}.jpg" alt="" loading="lazy"></span><figcaption><b>{t}</b><span>{d}</span></figcaption></figure>'
+# one layer per step = blurred photo + tint + that step's card: the circle mask reveals the whole layer, so the previous card is covered by it
+bgs = "".join(f'<div class="hx_bgimg" data-i="{i}"><i class="hx_bgin" style="background-image:url(img/bg_{i}.jpg)"></i><div class="hx_tint"></div><div class="hx_stage">{card_html(i, *f)}</div></div>' for i, f in enumerate(flows))
 helix = f"""
 <div class="c_curtain" id="helixCurtain" data-on="true">
-<section class="hx c_curtainStick" id="helixSec" aria-label="Where do you want to look first?" data-step="0">
-  <div class="hx_bg" style="background-image:url(img/helix_bg.jpg)"></div>
-  <div class="hx_stage" id="hxStage">
-    <p class="hx_title">This is Innovation Oasis. Where do you want to look first?</p>
-    <svg class="hx_helix" viewBox="0 0 1440 931" aria-hidden="true">{hx_svg}</svg>
-    {cards}
-  </div>
+<section class="hx c_curtainStick" id="helixSec" aria-label="Where do you want to look first?" data-hxstep="0">
+  <div class="hx_bg"></div>
+  <div class="hx_bgs" id="hxBgs">{bgs}</div>
+  <div class="hx_gl" id="hxGL" aria-hidden="true"></div>
+  <p class="hx_title">This is Innovation Oasis. Where do you want to look first?</p>
 </section>
 </div>"""
 
@@ -144,10 +136,10 @@ helix = f"""
 press = """
 <section class="c_section c_white hm_press" aria-label="Latest release">
   <div class="s_wrap">
-    <p class="n_row n_rowPlain"><span class="n_rowNum"></span><span></span><span class="n_rowEnd">26 Nov 2025</span></p>
+    <p class="n_row n_rowPlain"><span class="c_eyebrow">Latest release</span><span class="n_rowEnd">26 Nov 2025</span></p>
     <article class="n_feature">
       <figure class="n_figure">
-        <a href="#" class="n_frame" tabindex="-1" aria-hidden="true"><div class="n_frameInner" data-parallax="5"><img src="img/press.jpg" alt="" loading="lazy"></div><span class="n_corners"></span></a>
+        <a href="#" class="n_frame" tabindex="-1" aria-hidden="true"><div class="n_frameInner" data-parallax="11"><img src="img/press.jpg" alt="" loading="lazy"></div><span class="n_corners"></span></a>
         <figcaption class="n_caption"><span>Fig. 01</span>FoodTech Challenge winners on stage</figcaption>
       </figure>
       <div class="n_featureText">
@@ -162,6 +154,12 @@ press = """
 
 # ---------------------------------------------------------------- CSS (new sections only)
 home_css = r"""
+/* ---- text reveal ---- */
+.rv [data-reveal] { visibility: hidden; }
+span[data-reveal], b[data-reveal], time[data-reveal] { display: inline-block; }
+b[data-reveal] { font-weight: inherit; }
+[data-reveal] [class*="-mask"], [data-reveal][class*="-mask"] { padding-bottom: 0.12em; margin-bottom: -0.12em; }
+
 /* ============ homepage: new sections ============ */
 .c_page { padding-bottom: 0; }
 /* the intro sits above the pinned 3D panel: it needs its own solid ground so the panel does not show through */
@@ -171,7 +169,7 @@ home_css = r"""
 .hm_press { padding-top: clamp(72px, 8vw, 140px); padding-bottom: clamp(96px, 10vw, 170px); --grey-ink: #6e7173; --slow: cubic-bezier(0.16, 1, 0.3, 1); font-size: 17px; }
 .n_frame { aspect-ratio: 16 / 10; }
 .n_frameInner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.n_frameInner { inset: -6% 0; will-change: transform; }
+.n_frameInner { inset: -14% 0; will-change: transform; }
 .n_figure { min-width: 0; }
 .n_featureText { min-width: 0; }
 @media (max-width: 900px) { .n_feature { grid-template-columns: 1fr; } }
@@ -195,26 +193,51 @@ home_css = r"""
 .hm_chips li { padding: 8px 14px; border: 1px solid var(--line); border-radius: 4px; background: #fff; font-size: .75rem; color: var(--charcoal); box-shadow: 0 6px 16px -12px rgba(40, 36, 35, .25); }
 @media (max-width: 1000px) { .hm_stmt, .hm_side { grid-column: 1 / -1; } }
 
-/* --- helix: where do you want to look first? (client PDFs, flows 01-05) --- */
+/* --- mobile: map labels in proportion to the map; helix card below the helix, never cut off --- */
+@media (max-width: 760px) {
+  .hm_map { padding-block: 64px; }
+  .hm_stmt { font-size: clamp(1.4rem, 6.2vw, 1.75rem); }
+  .hm_legend { font-size: .625rem; gap: 6px 14px; margin-top: 10px; }
+  .hm_legend em { font-size: .5625rem; }
+  .hm_k::before { width: 5px; height: 5px; margin-right: 5px; }
+  .hm_chips { gap: 6px; margin-top: 16px; }
+  .hm_chips li { padding: 5px 9px; font-size: .625rem; }
+  .hx_stage { left: 0; top: 0; width: 100%; height: 100%; margin: 0; transform: none; }
+  .hx_card { left: 50% !important; top: auto !important; bottom: 6%; width: min(300px, calc(100vw - 40px)); margin-left: calc(min(300px, calc(100vw - 40px)) / -2); }
+  .hx_img { width: 150px; height: 100px; margin-bottom: 10px; }
+  .hx_card b { font-size: 16px; }
+  .hx_card figcaption span { font-size: 13px; }
+  .hx_title { top: 84px; font-size: 13px; }
+  .n_frameInner { inset: -26% 0; }
+}
+/* journey timeline (unpinned layout): the dots sit on the line */
+@media (max-width: 1000px) { .j_jourLine { inset-inline-start: -32px; } }
+/* --- helix: where do you want to look first? (client PDFs, flows 01-05; 3D from helix_3d.gltf) --- */
 .hx { position: relative; overflow: hidden; color: #fff; background: #7a3b1c; }
-.hx_bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
-.hx_stage { position: absolute; left: 50%; top: 50%; width: 1440px; height: 931px; margin: -465.5px 0 0 -720px; transform: scale(var(--hs, 1)); transform-origin: 50% 50%; }
-.hx_title { position: absolute; left: 0; right: 0; top: 38px; text-align: center; font-size: 13px; font-weight: 500; letter-spacing: 0; text-shadow: 0 1px 10px rgba(0, 0, 0, .25); }
-.hx_helix { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.hx_end { fill: #fff; opacity: .22; }
-.hx_r { --o: .3; transform-box: fill-box; transform-origin: center; }
-.hx_r rect, .hx_r circle { fill: #fff; opacity: var(--o); transition: opacity .7s ease; }
-.hx_r[data-on] rect, .hx_r[data-on] circle { opacity: 1; }
-.hx_r { transition: transform .8s var(--ease); }
-.hx_r[data-on] { transform: scale(1.04); }
-.hx_card { position: absolute; margin: 0; width: 220px; margin-left: -110px; text-align: center; opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .9s var(--ease); pointer-events: none; }
-.hx_card[data-on] { opacity: 1; transform: none; }
-.hx_img { display: block; width: 156px; height: 105px; margin: 0 auto 14px; border-radius: 14px; overflow: hidden; border: 3px solid rgba(255, 224, 190, .45); box-shadow: 0 18px 40px -18px rgba(60, 20, 0, .5); }
+.hx_bg, .hx_bgs, .hx_bgimg, .hx_gl { position: absolute; inset: 0; }
+.hx_bg { background: #3DA7CF; } /* intro: Silal blue */
+/* circle mask on the section photo (from the centre, small to large) + parallax zoom; cards enter/exit with a rise + scale in step with it. Driven by scroll, no timed fades. */
+.hx_bgs { z-index: 0; isolation: isolate; }
+.hx_gl { z-index: 2; }
+.hx_bgimg { overflow: hidden; clip-path: inset(0 0 0 0); visibility: hidden; will-change: clip-path; }
+.hx_bgin { position: absolute; left: 0; right: 0; top: -12%; bottom: -12%; background-size: cover; background-position: center; will-change: transform; }
+.hx_tint, .hx_gl { position: absolute; inset: 0; }
+.hx_bg { background-size: cover; background-position: center; }
+/* no fades in this section: photo + card switch instantly with the step (same as the other scroll sections) */
+.hx_bgimg { background-size: cover; background-position: center; visibility: hidden; transform: scale(1.06); }
+.hx_bgimg[data-on] { visibility: visible; }
+.hx_bgimg[data-on] { opacity: 1; transform: scale(1.06); }
+.hx_tint { background: linear-gradient(180deg, rgba(0, 0, 0, .22) 0%, rgba(0, 0, 0, .30) 55%, rgba(0, 0, 0, .42) 100%); }
+.hx_gl canvas { display: block; width: 100%; height: 100%; }
+.hx_stage { position: absolute; left: 50%; top: 50%; width: 1440px; height: 931px; margin: -465.5px 0 0 -720px; transform: scale(var(--hs, 1)); transform-origin: 50% 50%; pointer-events: none; }
+/* the title sits below the sticky header (it was hidden behind it on desktop) */
+.hx_title { position: absolute; left: 0; right: 0; top: 104px; z-index: 4; margin: 0; padding-inline: 16px; text-align: center; font-size: 14px; font-weight: 500; text-shadow: 0 1px 10px rgba(0, 0, 0, .3); }
+.hx_card { position: absolute; margin: 0; width: 280px; margin-left: -140px; text-align: center; pointer-events: none; will-change: transform; }
+.hx_img { display: block; width: 190px; height: 128px; margin: 0 auto 14px; border-radius: 14px; overflow: hidden; border: 3px solid rgba(255, 236, 214, .5); box-shadow: 0 18px 40px -18px rgba(40, 14, 0, .6); }
 .hx_img img { width: 100%; height: 100%; object-fit: cover; }
-.hx_card figcaption { display: flex; flex-direction: column; gap: 3px; }
-.hx_card b { font-size: 12.5px; font-weight: 600; }
-.hx_card figcaption span { font-size: 11.5px; line-height: 1.45; color: rgba(255, 255, 255, .78); }
-@media (prefers-reduced-motion: reduce) { .hx_r, .hx_r rect, .hx_r circle, .hx_card { transition: none !important; } }
+.hx_card figcaption { display: flex; flex-direction: column; gap: 6px; text-shadow: 0 1px 8px rgba(0, 0, 0, .35); }
+.hx_card b { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+.hx_card figcaption span { font-size: 14px; line-height: 1.5; color: rgba(255, 255, 255, .92); }
 """
 
 # ---------------------------------------------------------------- page-specific JS
@@ -237,7 +260,7 @@ home_js = r"""
 
   /* ---------- The Site: V1's 3D model, driven by scroll ---------- */
   var TOUR = __TOUR__, SITE_F = (TOUR.length - 1) * 0.95;
-  var sCurtain = $('#siteCurtain'), sBody = $('#siteBody'), sImgs = $$('.c_mapImg img'), sPills = $$('#siteIndex button'), sCount = $('#siteCount'), model = null, sActive = 0;
+  var sCurtain = $('#siteCurtain'), sBody = $('#siteBody'), sImgs = $$('.c_mapImg img'), sPills = $$('#siteIndex button'), sCount = $('#siteCount'), model = null, sActive = 0, sPlayed = {}, sCurStop = 0;
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
   function renderStop(i) {
     var t = TOUR[i];
@@ -250,6 +273,8 @@ home_js = r"""
     if (t.cta) h += '<a href="#" class="c_mapCta">' + esc(t.cta) + ' ↗</a>';
     sBody.innerHTML = h;
     $$('a[href="#"]', sBody).forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); }); });
+    sCurStop = i;
+    if (typeof RV !== 'undefined' && RV.ok && typeof siteArmed !== 'undefined') { var pre = !!sPlayed[i]; $$('h3, p, .c_mapFacts li, .c_mapRelated a, .c_mapCta', sBody).forEach(function (e) { makeRv(e, pre); }); if (siteArmed && !pre) siteCardText(); }
   }
   renderStop(0);
   sPills.forEach(function (b) { b.addEventListener('click', function () { scrollToPin(sCurtain, +b.dataset.i / (TOUR.length - 1), SITE_F); }); });
@@ -275,43 +300,155 @@ home_js = r"""
     lit = want;
   }
 
-  /* ---------- Helix: scroll highlights one rung + card at a time ---------- */
-  var hCurtain = $('#helixCurtain'), hSec = $('#helixSec'), hStage = $('#hxStage'), rungsEl = $$('.hx_r'), cardsEl = $$('.hx_card'), HX_F = 0.8 * cardsEl.length, hCur = -1;
+  /* ---------- Helix: 3D helix turns with the scroll; one rung + card + blurred photo per step ---------- */
+  var hCurtain = $('#helixCurtain'), hSec = $('#helixSec'), cardsEl = $$('.hx_card'), bgsEl = $$('.hx_bgimg'), HX_F = 1.0 * (cardsEl.length + 1), hCur = -2, hxGL = null, hxP = 0, hxE = 0, hxRot = 0;
   function hxScale() { var s = Math.min(hSec.clientWidth / 1440, hSec.clientHeight / 931); hSec.style.setProperty('--hs', Math.max(0.5, Math.min(1.35, s)).toFixed(3)); }
-  function setHx(i) {
-    if (i === hCur) return; hCur = i;
-    var rung = +cardsEl[i].dataset.rung;
-    rungsEl.forEach(function (g, k) { k === rung ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'); });
-    cardsEl.forEach(function (c, k) { k === i ? c.setAttribute('data-on', '') : c.removeAttribute('data-on'); });
-    hSec.dataset.step = i;
+  var HX_WIN = 0.32; // share of each step used by the transition to the next one (the rest is a hold)
+  var ease = function (t) { return t * t * (3 - 2 * t); };
+  // slot 0 = intro (helix only, no card yet); slots 1..n = the five places
+  function layHx(p) {
+    var n = cardsEl.length, m = n + 1, u = Math.min(m - 1e-6, p * m), slot = Math.floor(u), f = u - slot;
+    var t = (slot < m - 1 && f > 1 - HX_WIN) ? ease((f - (1 - HX_WIN)) / HX_WIN) : 0, ci = slot - 1, ni = t > 0 ? slot : -1;
+    // circle reveal on the section photo only (the card lives in its layer, so the new circle also covers the previous card)
+    var R = function (k) { return (k * 74).toFixed(2) + '%'; };
+    bgsEl.forEach(function (bg, k) {
+      var inn = bg.firstElementChild, vis = k === ci || k === ni;
+      bg.style.visibility = vis ? 'visible' : 'hidden'; bg.style.zIndex = k === ni ? 2 : 1;
+      if (k === ci) { bg.style.clipPath = 'inset(0 0 0 0)'; inn.style.transform = 'scale(' + (1.06 + t * 0.03).toFixed(3) + ')'; }
+      else if (k === ni) { bg.style.clipPath = 'circle(' + R(t) + ' at 50% 50%)'; inn.style.transform = 'scale(' + (1.12 - t * 0.06).toFixed(3) + ')'; }
+    });
+    cardsEl.forEach(function (c, k) { c.style.transform = k === ni ? 'translate3d(0,' + ((1 - t) * 14).toFixed(1) + 'px,0) scale(' + (0.86 + t * 0.14).toFixed(3) + ')' : 'none'; });
+        hxRot = p;   // continuous: the helix keeps turning with the scroll and settles only when the scroll stops
+    var cur = t >= 0.5 ? slot : slot - 1;   // -1 = intro, nothing highlighted
+    if (cur !== hCur) { hCur = cur; hSec.dataset.hxstep = cur; if (cur >= 0) hxCardText(cardsEl[cur]); if (hxGL) hxGL.highlight(cur >= 0 ? +cardsEl[cur].dataset.rung : -1); }
   }
+  function setHx() { layHx(0.0001); }
+  function mountHx() {
+    if (hxGL || !window.mountHelix) return;
+    var b64 = window.__HX_GLB || '', bin = atob(b64), buf = new Uint8Array(bin.length); for (var q = 0; q < bin.length; q++) buf[q] = bin.charCodeAt(q);
+    hxGL = window.mountHelix({ host: $('#hxGL'), data: buf.buffer, onFail: function () {} });
+    if (hxGL) { hxGL.setScroll(hxRot); hxGL.setEnter(hxE); hxGL.highlight(hCur >= 0 ? +cardsEl[hCur].dataset.rung : -1); }
+  }
+  if ('IntersectionObserver' in window) { var ho = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { mountHx(); ho.disconnect(); } }, { rootMargin: '1200px' }); ho.observe(hCurtain); } else mountHx();
+
+
+  /* ---------- Text reveal (Codegrid "Copy"): lines split in an overflow mask, y 100% -> 0, stagger .1, power3.out ---------- */
+  var RV = { ok: !!(window.gsap && window.SplitText && window.ScrollTrigger) && !reduce, all: [] };
+  if (RV.ok) gsap.registerPlugin(ScrollTrigger, SplitText);
+  function makeRv(el, pre) {
+    if (el.__rv) return el.__rv;
+    var rv = el.__rv = { lines: [], played: !!pre, tw: null };
+    SplitText.create(el, { type: 'lines', mask: 'lines', autoSplit: true, aria: 'none', onSplit: function (self) {
+      rv.lines = self.lines; gsap.set(rv.lines, { yPercent: rv.played ? 0 : 100 }); el.style.visibility = 'visible';
+    } });
+    rv.play = function (delay) { if (rv.played) return; rv.played = true; if (rv.tw) rv.tw.kill(); rv.tw = gsap.to(rv.lines, { yPercent: 0, duration: 1, stagger: 0.1, delay: delay || 0, ease: 'power3.out' }); };
+    return rv;
+  }
+  function playAll(els, delay) { els.forEach(function (el) { makeRv(el).play(delay); }); }
+  var rvGroups = {}, heroEls = [];
+  function initReveal() {
+    if (!RV.ok) { document.documentElement.classList.remove('rv'); return; }
+    $$('[data-reveal]').forEach(function (el) {
+      var g = el.getAttribute('data-rvg'); makeRv(el);
+      if (g) { (rvGroups[g] = rvGroups[g] || []).push(el); return; }
+      if (el.closest('.c_hero')) { heroEls.push(el); return; }   // hero: plays on load (Copy with animateOnScroll off)
+      ScrollTrigger.create({ trigger: el, start: 'top 75%', once: true, onEnter: function () { makeRv(el).play(0); } });
+    });
+    $$('h3, p, .c_mapFacts li, .c_mapRelated a, .c_mapCta', sBody).forEach(function (e) { makeRv(e); });
+    heroEls.forEach(function (el, k) { makeRv(el).play(0.3 + k * 0.12); });
+    var at = function (wrap, f, fn) { ScrollTrigger.create({ trigger: wrap, start: function () { return 'top+=' + Math.round(sh() * f) + ' top'; }, once: true, onEnter: fn }); };
+    // pinned panels: their text plays when the panel has lifted into view
+    at($('#siteCurtain'), 0.6, function () { playAll(rvGroups.site || []); playAll($$('h3, p, .c_mapFacts li, .c_mapRelated a, .c_mapCta', sBody).map(function (e) { return e; }), 0.1); siteArmed = true; });
+    at($('#helixCurtain'), 0.05, function () { playAll(rvGroups.helix || []); hxArmed = true; if (hCur >= 0) hxCardText(cardsEl[hCur]); });
+    at($('#jCurtain'), 0.7, function () { playAll((rvGroups.jour || []).filter(function (e) { return !e.closest('.j_jourStep') || e.closest('.j_jourStep').hasAttribute('data-on'); })); jrArmed = true; });
+    // journey: a step's text plays when that step becomes the active one
+    $$('.j_jourStep').forEach(function (st) {
+      new MutationObserver(function () { if (jrArmed && st.hasAttribute('data-on')) { playAll($$('[data-reveal]', st), 0.05); } }).observe(st, { attributes: true, attributeFilter: ['data-on'] });
+    });
+    document.documentElement.classList.remove('rv');
+  }
+  var siteArmed = false, hxArmed = false, jrArmed = false;
+  // helix card text: plays when the card becomes the current step
+  function hxCardText(c) { if (!RV.ok || !hxArmed) return; playAll($$('[data-rvg="hxc"]', c), 0.05); }
+  // site card text: re-plays for each place
+  function siteCardText() { if (!RV.ok || !siteArmed) return; playAll($$('h3, p, .c_mapFacts li, .c_mapRelated a, .c_mapCta', sBody)); sPlayed[sCurStop] = true; }
 
   function onScroll() {
     if (model) model.setProgress(pin(sCurtain, SITE_F));
     mapProgress();
-    var p = pin(hCurtain, HX_F);
-    setHx(Math.min(cardsEl.length - 1, Math.floor(p * cardsEl.length)));
+    // helix: progress runs from the moment its panel starts to uncover (no dead scroll before it); the 3D entrance plays while it is uncovered
+    var hl = Math.round(HX_F * innerHeight); hCurtain.style.setProperty('--len', hl + 'px');
+    var hr = -hCurtain.getBoundingClientRect().top, p = clamp(hr / (hl + sh()), 0, 1), e = clamp(hr / (sh() * 0.9), 0, 1); hxP = p; hxE = e;
+    layHx(p);
+    if (hxGL) { hxGL.setScroll(hxRot); hxGL.setEnter(e); }
   }
   hxScale(); setHx(0);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(function () { initReveal(); onScroll(); }, 60); });
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', function () { hxScale(); onScroll(); });
   onScroll();
 })();
 """.replace("__TOUR__", tour_json)
 
+
+# ---------------------------------------------------------------- text reveal (Codegrid "Copy": SplitText lines in an overflow mask, y 100% -> 0, stagger .1, power3.out, once at top 75%)
+import re as _re
+def tag(html, classes, attr="data-reveal"):
+    def f(m):
+        toks = m.group(0).split('class="')[1].split('"')[0].split()
+        return m.group(0)[:-1] + f" {attr}>" if any(c in toks for c in classes) and attr not in m.group(0) else m.group(0)
+    return _re.sub(r'<\w+\s[^>]*class="[^"]*"[^>]*>', f, html)
+def wrap_text(html, pattern, repl):
+    return _re.sub(pattern, repl, html)
+
 # ---------------------------------------------------------------- patch reused pieces
 hero = A.hero.replace('c_eyebrowLight">About Innovation Oasis<', 'c_eyebrowLight">Innovation Oasis<')
 intro = A.intro.replace('<p class="c_lead">If solutions can succeed here, they can succeed almost anywhere.</p>', '<p class="c_lead">What it lacked was implementation.</p>')
+assert intro != A.intro and hero != A.hero
 intro = intro.replace('<section class="c_section">', '<section class="c_section c_intro">', 1)
-assert 'c_intro' in intro and hero != A.hero
 a_js = A.js.replace("lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, touchMultiplier: 1.4 });",
                     "lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, touchMultiplier: 1.4 }); window.__lenis = lenis;")
 assert a_js != A.js
+assert 'var p = Math.max(0, Math.min(1, (-cw.getBoundingClientRect().top - sh()) / len));' in a_js
+# journey progress starts as soon as its panel starts to uncover (no dead scroll while the helix lifts off)
+a_js = a_js.replace('var p = Math.max(0, Math.min(1, (-cw.getBoundingClientRect().top - sh()) / len));', 'var p = Math.max(0, Math.min(1, -cw.getBoundingClientRect().top / (len + sh())));')
+why = A.why.replace('<span class="c_eyebrowNum">01</span>Why Here?', 'Why Here?')
+princ = A.princ.replace('<span class="c_eyebrowNum">02</span>The Principles', 'The Principles')
+jour = A.jour.replace('<span><b>03</b>Our Journey</span>', '<span class="c_eyebrow">Our Journey</span>')
+footer = A.footer.replace("News &amp; Media", "Content Library").replace('<li><a href="#">Publications &amp; Case Studies</a></li>', "")
+assert why != A.why and princ != A.princ and jour != A.jour and footer != A.footer
+
+# --- tag every text for the reveal (numbering text is left out: stat numbers, odometer, counters, tick years, 01-05 numbers)
+hero = tag(hero, ["c_heroTitle", "c_heroSub", "c_eyebrow"])
+intro = tag(intro, ["c_statement", "c_body", "c_lead", "c_statLabel"])
+why = tag(why, ["c_eyebrow", "c_h2", "c_statement", "c_body", "c_lead", "c_quoteBlue"])
+why = _re.sub(r'(<li><span>\d+</span>)([^<]+)(</li>)', r'\1<b data-reveal>\2</b>\3', why)
+princ = tag(princ, ["c_eyebrow"]).replace('<h3>', '<h3 data-reveal>').replace('<p>', '<p data-reveal>')
+mapsec = tag(mapsec, ["hm_stmt"])
+mapsec = _re.sub(r'(<li>)(Heat|Water scarcity|Salinity|Resource constraints|Operational complexity)(</li>)', r'\1<span data-reveal>\2</span>\3', mapsec)
+site = tag(site, ["c_eyebrow", "c_mapHint", "c_mapNote"], "data-reveal data-rvg=\"site\"")
+helix = helix.replace('<p class="hx_title">', '<p class="hx_title" data-reveal data-rvg="helix">', 1)
+helix = _re.sub(r'(<figcaption>)<b>', r'\1<b data-reveal data-rvg="hxc">', helix)
+helix = helix.replace('</b><span>', '</b><span data-reveal data-rvg="hxc">')
+jour = tag(jour, ["c_eyebrow", "j_jourTitle", "j_jourText"], "data-reveal data-rvg=\"jour\"")
+press = tag(press, ["c_eyebrow", "n_featureExcerpt", "n_rowEnd", "n_metaCat"])
+press = press.replace('<time datetime="2025-11-26">', '<time datetime="2025-11-26" data-reveal>', 1)
+press = press.replace('<h2 class="n_featureTitle">', '<h2 class="n_featureTitle" data-reveal>', 1)
+press = press.replace('>Read the release</a>', '><span data-reveal>Read the release</span></a>', 1)
+press = press.replace('</span>FoodTech Challenge winners on stage</figcaption>', '</span><span data-reveal>FoodTech Challenge winners on stage</span></figcaption>', 1)
+footer = footer.replace('<h4>', '<h4 data-reveal>').replace('<h4 style="margin-top:32px">', '<h4 style="margin-top:32px" data-reveal>').replace('<p>', '<p data-reveal>').replace('<address>', '<address data-reveal>')
+footer = _re.sub(r'(<li><a href="#">)([^<]+)', r'\1<span data-reveal>\2</span>', footer)
+footer = footer.replace('class="s_footerUrl">io-silal.ae</a>', 'class="s_footerUrl"><span data-reveal>io-silal.ae</span></a>', 1)
+footer = footer.replace('<span>© 2026 Silal. All rights reserved.</span>', '<span data-reveal>© 2026 Silal. All rights reserved.</span>', 1)
+footer = _re.sub(r'(<nav aria-label="Legal">)(.*?)(</nav>)', lambda m: m.group(1) + _re.sub(r'(<a href="#">)([^<]+)', r'\1<span data-reveal>\2</span>', m.group(2)) + m.group(3), footer, flags=_re.S)
 
 bundle = (HERE / "hpb" / "site3d.bundle.js").read_text()
+import base64
+glb_b64 = base64.b64encode((HERE / "gl" / "helix.glb").read_bytes()).decode()
 css = A.css + "\n" + news_css_out + "\n" + home_css
 
 page = f"""<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IO Homepage</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -320,14 +457,19 @@ page = f"""<meta charset="utf-8">
 :root {{ color-scheme: light; }}
 {css}
 </style>
+<script>document.documentElement.classList.add("rv");setTimeout(function(){{document.documentElement.classList.remove("rv")}},6000)</script>
 <div class="s_root" data-wide data-blue="false">
 {A.header}
 <main><div class="c_page">
-{hero}{intro}{site}{mapsec}{A.why}{A.princ}{helix}{A.jour}{press}
+{hero}{intro}{site}{mapsec}{why}{princ}{helix}{jour}{press}
 </div></main>
-{A.footer}
+{footer}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script>window.__HX_GLB="{glb_b64}";</script>
 <script>{bundle}</script>
 <script>{a_js}</script>
 <script>{home_js}</script>

@@ -387,13 +387,13 @@ js = r"""
   function lerp(a, b, t) { return a + (b - a) * t; }
   // subtle parallax: photos drift inside their frame; the second card in the pair drifts a little against the first
   var par = $$('[data-parallax]'), drift = $$('[data-drift]'), pimg = $$('[data-pimg]'), heroM = $('.c_heroMedia'), hero = $('.c_hero'), fimgs = $$('.j_jourFrame img'), jp = 0.5;
-  pimg.forEach(function (im) { im.style.scale = '1.14'; }); fimgs.forEach(function (im) { im.style.scale = '1.08'; });
+  pimg.forEach(function (im) { im.style.scale = innerWidth < 760 ? '1.24' : '1.14'; }); fimgs.forEach(function (im) { im.style.scale = '1.08'; });
   function parallax() {
     if (reduce) return; var vh = innerHeight;
-    par.forEach(function (el) { var r = el.parentElement.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100) return; var p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2))); el.style.transform = 'translate3d(0,' + (-p * el.dataset.parallax).toFixed(2) + '%,0)'; });
+    par.forEach(function (el) { var r = el.parentElement.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100) return; var p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2))); el.style.transform = 'translate3d(0,' + (-p * el.dataset.parallax * (innerWidth < 760 ? 1.5 : 1)).toFixed(2) + '%,0)'; });
     // hero photo trails the scroll; sticky/pinned photos drift with their section's progress
     var hr = hero.getBoundingClientRect(); if (hr.bottom > 0) heroM.style.transform = 'translate3d(0,' + (Math.max(0, Math.min(1, -hr.top / hr.height)) * 12).toFixed(2) + '%,0)';
-    pimg.forEach(function (im) { var box = im.closest('[data-pbox]') || im.parentElement, r = box.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100) return; var q = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height))) - 0.5; im.style.translate = '0 ' + (-q * 2 * im.dataset.pimg).toFixed(2) + '%'; });
+    pimg.forEach(function (im) { var box = im.closest('[data-pbox]') || im.parentElement, r = box.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100) return; var q = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height))) - 0.5; im.style.translate = '0 ' + (-q * 2 * im.dataset.pimg * (innerWidth < 760 ? 1.7 : 1)).toFixed(2) + '%'; });
     fimgs.forEach(function (im) { im.style.translate = '0 ' + ((0.5 - jp) * 6).toFixed(2) + '%'; });
     drift.forEach(function (el) { var r = el.getBoundingClientRect(); var p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2))); el.style.transform = 'translate3d(0,' + (p * el.dataset.drift).toFixed(1) + 'px,0)'; });
   }
