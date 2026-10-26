@@ -7,7 +7,7 @@ import { Motion } from "../../_c/Motion";
 import { ACADEMY, Library } from "./_c/Library";
 import { Go, Label } from "../../_c/Brand";
 import { BASE, footerLinks } from "../../_lib/site";
-import { academyCopy, courses, SAMPLE_NOTE } from "../../_lib/academy";
+import { academyCopy, courses, DETAIL_LIVE, SAMPLE_NOTE } from "../../_lib/academy";
 
 export const metadata: Metadata = {
   title: "IO Academy · Talent & Training · Innovation Oasis",
@@ -72,10 +72,10 @@ export default function IOAcademy() {
                 <span>{featured.track}</span>
               </p>
               <h2 id="featured-h" className={n.featureTitle}>
-                <Link href={`${ACADEMY}/${featured.slug}`}>{featured.title}</Link>
+                <Link href={DETAIL_LIVE ? `${ACADEMY}/${featured.slug}` : "#"}>{featured.title}</Link>
               </h2>
               <p className={n.featureExcerpt}>{featured.excerpt}</p>
-              <Go href={`${ACADEMY}/${featured.slug}`} dark>
+              <Go href={DETAIL_LIVE ? `${ACADEMY}/${featured.slug}` : "#"} dark>
                 View the course
               </Go>
             </div>

@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import n from "../../../pages.module.css";
 import a from "../academy.module.css";
 import { BASE } from "../../../_lib/site";
-import { type Course, modes, tracks } from "../../../_lib/academy";
+import { type Course, DETAIL_LIVE, modes, tracks } from "../../../_lib/academy";
 
 export const ACADEMY = `${BASE}/training/io-academy-training`;
 
@@ -66,7 +66,7 @@ export function Library({ items }: { items: Course[] }) {
         <ul className={n.grid}>
           {list.map((c) => (
             <li key={c.slug}>
-              <Link href={`${ACADEMY}/${c.slug}`} className={n.card}>
+              <Link href={DETAIL_LIVE ? `${ACADEMY}/${c.slug}` : "#"} className={n.card}>
                 <div className={n.cardImg}>
                   <Image src={c.src} alt={c.alt} fill sizes="(max-width: 700px) 100vw, 30vw" />
                   <span className={n.cardTag}>{c.mode}</span>
