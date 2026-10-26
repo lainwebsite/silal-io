@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import n from "../../../resources/news/news.module.css";
+import n from "../../../pages.module.css";
 import a from "../academy.module.css";
+import s from "../../../shell.module.css";
 
 /*
  * Request information (sitemap: Enquiry Form → Form Confirmation). No back end yet: submitting shows the
@@ -60,7 +61,7 @@ export function RequestForm({ course }: { course: string }) {
         <span>I agree that Innovation Oasis may contact me about this course.</span>
       </label>
       <div className={a.formEnd}>
-        <button type="submit" className={a.pill}>
+        <button type="submit" className={`${s.btn} ${s.btnPrimary}`}>
           Request information
         </button>
       </div>

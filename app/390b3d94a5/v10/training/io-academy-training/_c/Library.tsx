@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import n from "../../../resources/news/news.module.css";
+import n from "../../../pages.module.css";
 import a from "../academy.module.css";
 import { BASE } from "../../../_lib/site";
 import { type Course, modes, tracks } from "../../../_lib/academy";

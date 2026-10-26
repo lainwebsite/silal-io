@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import n from "../../../resources/news/news.module.css";
+import n from "../../../pages.module.css";
 import a from "../academy.module.css";
-import { NewsMotion } from "../../../resources/news/_c/NewsMotion";
+import { Motion } from "../../../_c/Motion";
 import { ACADEMY } from "../_c/Library";
 import { RequestForm } from "../_c/RequestForm";
-import { Go, Label } from "../../../_c/Brand";
+import { Go, Label, Pill } from "../../../_c/Brand";
 import { BASE } from "../../../_lib/site";
 import { courses, SAMPLE_NOTE } from "../../../_lib/academy";
 
@@ -60,7 +60,7 @@ export default async function Course({ params }: { params: Promise<{ slug: strin
 
   return (
     <div className={n.page}>
-      <NewsMotion />
+      <Motion />
 
       <article>
         <header className={n.head}>
@@ -80,9 +80,7 @@ export default async function Course({ params }: { params: Promise<{ slug: strin
               {c.excerpt}
             </p>
             <div className={a.headActions} data-up>
-              <a href="#request" className={a.pill}>
-                Request information
-              </a>
+              <Pill href="#request">Request information</Pill>
               <Go href={ACADEMY}>All courses</Go>
             </div>
             <dl className={a.facts} data-up>

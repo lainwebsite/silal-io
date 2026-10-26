@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import n from "../../resources/news/news.module.css";
+import n from "../../pages.module.css";
 import a from "./academy.module.css";
-import { NewsMotion } from "../../resources/news/_c/NewsMotion";
+import { Motion } from "../../_c/Motion";
 import { ACADEMY, Library } from "./_c/Library";
 import { Go, Label } from "../../_c/Brand";
 import { BASE, footerLinks } from "../../_lib/site";
@@ -32,7 +32,7 @@ export default function IOAcademy() {
 
   return (
     <div className={n.page}>
-      <NewsMotion />
+      <Motion />
 
       {/* ═══ HEAD ═══ */}
       <section className={n.head} aria-labelledby="academy-h">

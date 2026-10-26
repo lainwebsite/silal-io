@@ -1,5 +1,5 @@
 /* Designer 2 · v6 — IO Academy (library + training detail).
-   Extends ../../resources/news/news.module.css (imported as `n`: wrap, head, tabs, feature, chips, grid, card…).
+   Extends ../../pages.module.css (imported as `n`: wrap, head, tabs, feature, chips, grid, card…).
    Only what the news pages do not already have lives here. Tokens come from ../../shell.module.css. */
 
 /* ═════════ LIBRARY ═════════ */
