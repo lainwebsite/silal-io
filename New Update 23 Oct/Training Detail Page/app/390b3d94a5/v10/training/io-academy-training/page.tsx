@@ -2,26 +2,28 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import n from "../../pages.module.css";
+import s from "../../shell.module.css";
 import a from "./academy.module.css";
 import { Motion } from "../../_c/Motion";
+import { Odometer } from "../../_c/Odometer";
 import { ACADEMY, Library } from "./_c/Library";
-import { Go, Label } from "../../_c/Brand";
+import { Pill } from "../../_c/Brand";
 import { BASE, footerLinks } from "../../_lib/site";
-import { academyCopy, courses, DETAIL_LIVE, SAMPLE_NOTE } from "../../_lib/academy";
+import { P } from "../../_lib/photo";
+import { academyCopy as c, courses, SAMPLE_NOTE } from "../../_lib/academy";
 
 export const metadata: Metadata = {
   title: "IO Academy · Talent & Training · Innovation Oasis",
-  description: academyCopy.intro,
+  description: "Practical training from the people who run Innovation Oasis: short courses online and on a working 34-hectare campus.",
 };
 
 /*
- * Talent & Training → IO Academy Training (sitemap template 11, library view). Built on the News & Media
- * layout (v6 / the /V3 look): display title + intro, section tabs, one feature card with the text on the
- * photo, the filterable three-across archive, a how-it-works strip, and an enquiry band. Courses are
- * SAMPLES (../../_lib/academy.ts).
+ * Talent & Training → IO Academy Training (sitemap template 11, library view), in the new homepage's language:
+ * full-bleed photo hero under a transparent header · intro statement + odometer stats on light grey · the library on
+ * white · a dark photo chapter with hairline rows (the homepage's "Why Here?") · a closing band. Courses are SAMPLES
+ * (../../_lib/academy.ts). Smooth scroll: v10/_c/SmoothScroll.tsx (Lenis, homepage settings).
  */
 export default function IOAcademy() {
-  const featured = courses[0];
   const tab = (label: string, slug: string) => ({ label, href: `${BASE}/training/${slug}` });
   const tabs = [
     tab("Advanced Agritech Academy", "advanced-agritech-academy"),
@@ -34,97 +36,134 @@ export default function IOAcademy() {
     <div className={n.page}>
       <Motion />
 
-      {/* ═══ HEAD ═══ */}
-      <section className={n.head} aria-labelledby="academy-h">
-        <div className={n.wrap}>
-          <Label n="05">{academyCopy.kicker}</Label>
-          <div className={n.headGrid}>
-            <h1 id="academy-h" className={n.title} data-lines>
-              {academyCopy.title}
+      {/* ═══ HERO ═══ */}
+      <section className={a.hero} aria-labelledby="academy-h">
+        <div className={a.heroMedia} data-px>
+          <Image src={P.greenhouseWide} alt="Greenhouses at Innovation Oasis" fill sizes="100vw" preload />
+        </div>
+        <div className={a.heroShade} />
+        <div className={`${s.wrap} ${a.heroInner}`}>
+          <div className={a.heroMain}>
+            <span className={`${a.eyebrow} ${a.eyebrowLight}`} data-up>
+              {c.hero.eyebrow} · Talent &amp; Training
+            </span>
+            <h1 id="academy-h" className={a.heroTitle} data-lines>
+              {c.hero.title}
             </h1>
-            <p className={n.intro} data-up>
-              {academyCopy.intro}
+            <p className={a.heroSub} data-up>
+              {c.hero.sub.map((l) => (
+                <span key={l}>{l}</span>
+              ))}
             </p>
           </div>
-          <nav className={n.tabs} aria-label="Talent & Training" data-up>
-            {tabs.map((t) => (
-              <Link key={t.label} href={t.href} aria-current={t.href === ACADEMY ? "page" : undefined}>
-                {t.label}
-              </Link>
-            ))}
+          <nav className={a.heroAside} aria-label="Talent & Training" data-up>
+            <div className={a.sideNav}>
+              {tabs.map((t, i) => (
+                <Link key={t.label} href={t.href} aria-current={t.href === ACADEMY ? "page" : undefined}>
+                  <b>{String(i + 1).padStart(2, "0")}</b>
+                  {t.label}
+                  <i />
+                </Link>
+              ))}
+            </div>
           </nav>
         </div>
       </section>
 
-      {/* ═══ 01 FEATURED ═══ */}
-      <section className={n.sec} aria-labelledby="featured-h">
-        <div className={n.wrap}>
-          <Label n="01">Featured course</Label>
-          <article className={n.feature} data-wipe>
-            <div className={n.featureImg} data-px>
-              <Image src={featured.src} alt={featured.alt} fill sizes="(max-width: 1440px) 100vw, 1440px" preload />
-            </div>
-            <div className={n.featureShade} />
-            <div className={n.featureIn}>
-              <p className={n.featureMeta}>
-                <span>{featured.mode}</span>
-                <span>{featured.length}</span>
-                <span>{featured.track}</span>
-              </p>
-              <h2 id="featured-h" className={n.featureTitle}>
-                <Link href={DETAIL_LIVE ? `${ACADEMY}/${featured.slug}` : "#"}>{featured.title}</Link>
-              </h2>
-              <p className={n.featureExcerpt}>{featured.excerpt}</p>
-              <Go href={DETAIL_LIVE ? `${ACADEMY}/${featured.slug}` : "#"} dark>
-                View the course
-              </Go>
-            </div>
-          </article>
+      {/* ═══ INTRO + STATS ═══ */}
+      <section className={`${a.section} ${a.light}`} aria-label="About the Academy">
+        <div className={`${s.wrap} ${a.grid12}`}>
+          <p className={a.statement} data-lines>
+            {c.statement}
+          </p>
+          <div className={a.introCols}>
+            <p data-up>{c.introBody}</p>
+            <p data-up>{c.introLead}</p>
+          </div>
+          <ul className={a.stats}>
+            {c.stats.map((x) => (
+              <li key={x.l}>
+                <span className={a.statNum}>
+                  <Odometer value={x.n} />
+                </span>
+                <span className={a.statLabel} data-up>
+                  {x.l}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ═══ 02 LIBRARY ═══ */}
-      <section className={n.sec} aria-labelledby="library-h">
-        <div className={n.wrap}>
-          <Label n="02">The library</Label>
-          <h2 id="library-h" className={n.srOnly}>
-            All courses
-          </h2>
+      {/* ═══ LIBRARY ═══ */}
+      <section className={`${a.section} ${a.white}`} aria-labelledby="library-h">
+        <div className={s.wrap}>
+          <div className={a.headRow}>
+            <span className={a.eyebrow} data-up>
+              The library
+            </span>
+            <i data-rule aria-hidden />
+          </div>
+          <div className={a.libHead}>
+            <h2 id="library-h" className={a.h2} data-lines>
+              {c.library.title}
+            </h2>
+            <p data-up>{c.library.body}</p>
+          </div>
           <Library items={courses} />
           <p className={n.note}>{SAMPLE_NOTE}</p>
         </div>
       </section>
 
-      {/* ═══ 03 HOW IT WORKS ═══ */}
-      <section className={n.sec} aria-labelledby="how-h">
-        <div className={n.wrap}>
-          <Label n="03">How the Academy works</Label>
-          <h2 id="how-h" className={n.h2} data-lines>
-            Learn where the research happens.
-          </h2>
-          <ol className={a.steps} style={{ marginTop: "clamp(36px, 6vh, 64px)" }}>
-            {academyCopy.steps.map((s) => (
-              <li key={s.n} className={a.step} data-up>
-                <span className={a.stepN}>{s.n}</span>
-                <h3 className={a.stepT}>{s.t}</h3>
-                <p className={a.stepD}>{s.d}</p>
-              </li>
-            ))}
-          </ol>
+      {/* ═══ HOW IT WORKS: the dark chapter ═══ */}
+      <section className={a.chapter} aria-labelledby="how-h">
+        <div className={a.chapterImg} data-px>
+          <Image src={P.growthChamber} alt="" fill sizes="100vw" />
+        </div>
+        <div className={a.chapterShade} />
+        <div className={s.wrap}>
+          <div className={a.chapterIn}>
+            <span className={`${a.eyebrow} ${a.eyebrowLight}`} data-up>
+              {c.chapter.eyebrow}
+            </span>
+            <h2 id="how-h" className={a.h2} data-lines>
+              {c.chapter.title}
+            </h2>
+            <p className={a.chapterLead} data-up>
+              {c.chapter.lead}
+            </p>
+            <ol className={a.rows}>
+              {c.steps.map((x) => (
+                <li key={x.n} data-up>
+                  <span>{x.n}</span>
+                  <b>{x.t}</b>
+                  <p>{x.d}</p>
+                </li>
+              ))}
+            </ol>
+            <p className={a.quoteBlue} data-lines>
+              “{c.introLead}”
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ═══ 04 IN-HOUSE ═══ */}
-      <section className={n.media} aria-labelledby="inhouse-h">
-        <div className={n.wrap}>
-          <Label n="04">Training for teams</Label>
-          <div className={n.mediaGrid}>
-            <h2 id="inhouse-h" className={n.h2} data-lines>
-              {academyCopy.inhouse.title}
+      {/* ═══ TRAINING FOR TEAMS ═══ */}
+      <section className={`${a.section} ${a.light}`} aria-labelledby="inhouse-h">
+        <div className={s.wrap}>
+          <div className={a.headRow}>
+            <span className={a.eyebrow} data-up>
+              Training for teams
+            </span>
+            <i data-rule aria-hidden />
+          </div>
+          <div className={a.teamsGrid}>
+            <h2 id="inhouse-h" className={a.h2} data-lines>
+              {c.inhouse.title}
             </h2>
-            <div className={n.mediaSide} data-up>
-              <p className={n.body}>{academyCopy.inhouse.body}</p>
-              <Go href={footerLinks.contact}>{academyCopy.inhouse.cta}</Go>
+            <div className={a.teamsSide} data-up>
+              <p>{c.inhouse.body}</p>
+              <Pill href={footerLinks.contact}>{c.inhouse.cta}</Pill>
             </div>
           </div>
         </div>
