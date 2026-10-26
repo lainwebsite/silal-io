@@ -112,11 +112,11 @@ mapsec = f"""
 # 3D helix = the client's helix_3d.gltf (welded to helix.glb); cards + order of steps = helix flow 01..05 of the client PDFs.
 # Background = the photo of the highlighted card, blurred (one layer per step, cross-faded).
 flows = [  # rung (0 = top), card centre x, image top y, image, title, text
-    (1, 386, 275, "hx_research", "Research &amp; Science", "Driving agricultural progress through research and discovery."),
-    (1, 1037, 275, "hx_innov", "Innovation &amp; Venture Platforms", "Supporting innovation from idea to impact."),
-    (3, 1029, 380, "hx_tech", "Technology &amp; Services", "Solutions designed for real-world challenges."),
-    (2, 400, 327, "hx_centres", "Centres of Excellence", "Advancing agriculture through specialised expertise."),
-    (4, 304, 416, "hx_talent", "Talent &amp; Training", "Empowering the next generation of innovators."),
+    (1, 386, 267, "hx_research", "Research &amp; Science", "Driving agricultural progress through research and discovery."),
+    (2, 1037, 302, "hx_innov", "Innovation &amp; Venture Platforms", "Supporting innovation from idea to impact."),
+    (3, 1029, 342, "hx_tech", "Technology &amp; Services", "Solutions designed for real-world challenges."),
+    (4, 400, 380, "hx_centres", "Centres of Excellence", "Advancing agriculture through specialised expertise."),
+    (5, 304, 415, "hx_talent", "Talent &amp; Training", "Empowering the next generation of innovators."),
 ]
 def card_html(i, r, x, y, im, t, d):
     return f'<figure class="hx_card" data-i="{i}" data-rung="{r}" style="left:{x}px;top:{y}px"><span class="hx_img"><img src="img/{im}.jpg" alt="" loading="lazy"></span><figcaption><b>{t}</b><span>{d}</span></figcaption></figure>'
@@ -204,12 +204,18 @@ b[data-reveal] { font-weight: inherit; }
   .hm_chips li { padding: 5px 9px; font-size: .625rem; }
   .hx_stage { left: 0; top: 0; width: 100%; height: 100%; margin: 0; transform: none; }
   .hx_card { left: 50% !important; top: auto !important; bottom: 6%; width: min(300px, calc(100vw - 40px)); margin-left: calc(min(300px, calc(100vw - 40px)) / -2); }
-  .hx_img { width: 150px; height: 100px; margin-bottom: 10px; }
+  .hx_img { width: 210px; height: 141px; margin-bottom: 10px; }
   .hx_card b { font-size: 16px; }
   .hx_card figcaption span { font-size: 13px; }
   .hx_title { top: 84px; font-size: 13px; }
   .n_frameInner { inset: -26% 0; }
 }
+/* navbar: optical centring, the logo's ink and the link text sat ~1-2px high in the bar */
+.s_logo { padding-top: 0; }
+.s_logoFull > span > span { align-items: center !important; }
+.s_logoFull img:first-child { height: 46px; width: auto; }
+.s_logoFull img:last-child { height: 46px; width: auto; }
+.s_navItem > a { padding-top: 2px; }
 /* journey timeline (unpinned layout): the dots sit on the line */
 @media (max-width: 1000px) { .j_jourLine { inset-inline-start: -32px; } }
 /* --- helix: where do you want to look first? (client PDFs, flows 01-05; 3D from helix_3d.gltf) --- */
@@ -218,7 +224,7 @@ b[data-reveal] { font-weight: inherit; }
 .hx_bg { background: #3DA7CF; } /* intro: Silal blue */
 /* circle mask on the section photo (from the centre, small to large) + parallax zoom; cards enter/exit with a rise + scale in step with it. Driven by scroll, no timed fades. */
 .hx_bgs { z-index: 0; isolation: isolate; }
-.hx_gl { z-index: 2; }
+.hx_gl { z-index: 2; transform: translateY(var(--hy, 0px)); }
 .hx_bgimg { overflow: hidden; clip-path: inset(0 0 0 0); visibility: hidden; will-change: clip-path; }
 .hx_bgin { position: absolute; left: 0; right: 0; top: -12%; bottom: -12%; background-size: cover; background-position: center; will-change: transform; }
 .hx_tint, .hx_gl { position: absolute; inset: 0; }
@@ -229,11 +235,11 @@ b[data-reveal] { font-weight: inherit; }
 .hx_bgimg[data-on] { opacity: 1; transform: scale(1.06); }
 .hx_tint { background: linear-gradient(180deg, rgba(0, 0, 0, .22) 0%, rgba(0, 0, 0, .30) 55%, rgba(0, 0, 0, .42) 100%); }
 .hx_gl canvas { display: block; width: 100%; height: 100%; }
-.hx_stage { position: absolute; left: 50%; top: 50%; width: 1440px; height: 931px; margin: -465.5px 0 0 -720px; transform: scale(var(--hs, 1)); transform-origin: 50% 50%; pointer-events: none; }
+.hx_stage { position: absolute; left: 50%; top: 50%; width: 1440px; height: 931px; margin: -465.5px 0 0 -720px; transform: translateY(var(--hy, 0px)) scale(var(--hs, 1)); transform-origin: 50% 50%; pointer-events: none; }
 /* the title sits below the sticky header (it was hidden behind it on desktop) */
 .hx_title { position: absolute; left: 0; right: 0; top: 104px; z-index: 4; margin: 0; padding-inline: 16px; text-align: center; font-size: 14px; font-weight: 500; text-shadow: 0 1px 10px rgba(0, 0, 0, .3); }
-.hx_card { position: absolute; margin: 0; width: 280px; margin-left: -140px; text-align: center; pointer-events: none; will-change: transform; }
-.hx_img { display: block; width: 190px; height: 128px; margin: 0 auto 14px; border-radius: 14px; overflow: hidden; border: 3px solid rgba(255, 236, 214, .5); box-shadow: 0 18px 40px -18px rgba(40, 14, 0, .6); }
+.hx_card { position: absolute; margin: 0; width: 300px; margin-left: -150px; text-align: center; pointer-events: none; will-change: transform; }
+.hx_img { display: block; width: 260px; height: 175px; margin: 0 auto 14px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .55); box-shadow: 0 18px 40px -18px rgba(40, 14, 0, .6); }
 .hx_img img { width: 100%; height: 100%; object-fit: cover; }
 .hx_card figcaption { display: flex; flex-direction: column; gap: 6px; text-shadow: 0 1px 8px rgba(0, 0, 0, .35); }
 .hx_card b { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
@@ -302,7 +308,17 @@ home_js = r"""
 
   /* ---------- Helix: 3D helix turns with the scroll; one rung + card + blurred photo per step ---------- */
   var hCurtain = $('#helixCurtain'), hSec = $('#helixSec'), cardsEl = $$('.hx_card'), bgsEl = $$('.hx_bgimg'), HX_F = 1.0 * (cardsEl.length + 1), hCur = -2, hxGL = null, hxP = 0, hxE = 0, hxRot = 0;
-  function hxScale() { var s = Math.min(hSec.clientWidth / 1440, hSec.clientHeight / 931); hSec.style.setProperty('--hs', Math.max(0.5, Math.min(1.35, s)).toFixed(3)); }
+  function hxScale() {
+    var w = hSec.clientWidth, hh = hSec.clientHeight, hs = Math.max(0.5, Math.min(1.35, Math.min(w / 1440, hh / 931)));
+    hSec.style.setProperty('--hs', hs.toFixed(3));
+    // desktop: title stays near the top; the helix (+ cards) is centred in the space between the title and the bottom edge
+    var ttl = $('.hx_title'), hy = 0;
+    if (w >= 760) {
+      var tt = 104, tH = 23, inkTop = hh / 2 - 160 * hs, ink = 362 * hs, free0 = tt + tH + 20;
+      hy = free0 + (hh - free0 - ink) / 2 - inkTop; ttl.style.top = tt + 'px';
+    } else ttl.style.top = '';
+    hSec.style.setProperty('--hy', Math.round(hy) + 'px');
+  }
   var HX_WIN = 0.32; // share of each step used by the transition to the next one (the rest is a hold)
   var ease = function (t) { return t * t * (3 - 2 * t); };
   // slot 0 = intro (helix only, no card yet); slots 1..n = the five places
