@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
       { source: "/Homepage-concept-3", destination: "/homepage-concept-3/index.html" },
       { source: "/New-Homepage/V1", destination: "/new-homepage/index.html" },
       { source: "/new-homepage", destination: "/new-homepage/index.html" },
+      { source: "/new-homepage-v2", destination: "/new-homepage-v2/index.html" },                 // team link: newer version (helix rows 3-7, centred helix)
       { source: "/Training-Detail", destination: "/training-detail/index.html" },                // IO Academy training detail page (copy of New Update 23 Oct/Training-Detail/index.html)                       // team link
       { source: "/About/V1", destination: "/V3/about" },
       { source: "/News/V1", destination: "/V3/resources/news" },

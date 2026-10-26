@@ -9,6 +9,7 @@ Design routes live under random folder names so they cannot be guessed. There is
 - https://silal-io.vercel.app/Homepage-concept-1 (= `/homepage-concept-1`, the V3 static page)
 - https://silal-io.vercel.app/Homepage-concept-3
 - https://silal-io.vercel.app/New-Homepage/V1 (new homepage, `public/new-homepage/`; team alias `/new-homepage`)
+- https://silal-io.vercel.app/new-homepage-v2 (new homepage, newer version: 3D helix, text reveal; `public/new-homepage-v2/`, sources in `prototypes/new-homepage/`)
 - https://silal-io.vercel.app/About/V1 (= `/V3/about`)
 - https://silal-io.vercel.app/News/V1 (= `/V3/resources/news`)
 - https://silal-io.vercel.app/News-Detail (= the V3 press release; any article: `/News-Detail/<slug>`)
