@@ -30,6 +30,14 @@ const nextConfig: NextConfig = {
       { source: "/IO-Academy", destination: "/io-academy/index.html" },
     ];
   },
+  // /new-homepage-v2: hashed js/glb files never change (1 year); images and brand files are cached for a day and revalidated in the background
+  async headers() {
+    return [
+      { source: "/new-homepage-v2/assets/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
+      { source: "/new-homepage-v2/img/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }] },
+      { source: "/new-homepage-v2/brand/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }] },
+    ];
+  },
 };
 
 export default nextConfig;

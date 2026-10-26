@@ -30,6 +30,8 @@ New: world dot map (`src/mapdots.json`, from Natural Earth land via `world-atlas
 
 ## Rebuild
 `src/build_about.py` (About page) → `src/build_home.py` (homepage). Paths inside the scripts point at the author's scratch folder; adjust before re-running.
+
+**Optimised site build:** `python3 build_home.py --dist <out dir> <url base>` (e.g. `/new-homepage-v2`) writes the page that is deployed: webp images (q84), minified CSS/JS, `index.html` ~220 KB (was 3.2 MB with the 3D model embedded), the three.js bundle and the helix model as separate hashed files in `assets/` (loaded when idle / when a 3D section gets near), scripts `defer`, hero image preloaded. Same markup and animations as the preview.
 3D bundle: `npx esbuild entry.ts --bundle --minify --format=iife --outfile=site3d.bundle.js` (needs `three@0.186`; `entry.ts` imports `site3d.ts` and `helix3d.ts`).
 
 ## Open items
