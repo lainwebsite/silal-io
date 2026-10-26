@@ -27,13 +27,14 @@ Never copy the v6 header/footer (floating capsules) into these pages. Never inve
 3. **Colours:** IO Blue `#3ca7d2` for rules/icons/large type, `--io-ink #1a6f96` for small blue text and buttons, Charcoal `#595453`, Grey `#7f8284`, Light `#f1f1f1`, white background. Green/orange/pink only as tiny accents. No other colours.
 4. **Shape:** buttons = full pill (`s.btn s.btnPrimary`, height 52px, `s.btnSm` 42px). Images, cards, panels = 6px corners (`--r`). Links = `s.textLink` (blue, sliding arrow, underline).
 5. **Rules:** thin IO-blue 1px lines are the signature: label rule, section dividers, footer top.
-6. **Motion:** nothing fades in on its own. Lines rise through masks, images wipe up and drift, small items rise (`Motion.tsx`, `data-lines` / `data-up` / `data-wipe` / `data-px` / `data-rule`). Everything off under `prefers-reduced-motion`. No opacity keyframes.
-7. **Container:** content max 1920px, side gutter `--gx` (= `--gutter`, 20–64px). Section rhythm `--sp`.
-8. **Logical CSS** (`inset-inline`, `margin-inline`, `border-inline-start`) so an Arabic RTL version can mirror later.
-9. **Photos:** only `public/photos/<folder>/<file>` web copies via `v10/_lib/photo.ts` (`P.*`). Never rename or recompress originals.
-10. **Sample content is marked.** Every course, date, fee, quote is a placeholder and says so on the page (`SAMPLE_NOTE`). No invented people: trainer cards show a role and "name to be confirmed".
-11. Primary labels exactly as `docs/sitemap.md`. Page lives under **Talent & Training** (number label `05`).
-12. Build with `npm run build` before every push. Do not touch `app/V*`, `public/V*`, `proxy.ts`, root layout/page (BRAIN).
+6. **Smooth scroll is mandatory.** `v10/_c/SmoothScroll.tsx` = Lenis with the homepage settings (duration 1.15, ease-out quart, `touchMultiplier 1.4`) on GSAP's ticker; anchors glide via `lenis.scrollTo`; stop it while the mobile menu is open (`lenis()?.stop()`); off under reduced motion. Every new page under `v10` inherits it from the layout, never add a second scroller.
+7. **Motion:** nothing fades in on its own. Lines rise through masks, images wipe up and drift, small items rise (`Motion.tsx`, `data-lines` / `data-up` / `data-wipe` / `data-px` / `data-rule`). Everything off under `prefers-reduced-motion`. No opacity keyframes.
+8. **Container:** content max 1920px, side gutter `--gx` (= `--gutter`, 20–64px). Section rhythm `--sp`.
+9. **Logical CSS** (`inset-inline`, `margin-inline`, `border-inline-start`) so an Arabic RTL version can mirror later.
+10. **Photos:** only `public/photos/<folder>/<file>` web copies via `v10/_lib/photo.ts` (`P.*`). Never rename or recompress originals.
+11. **Sample content is marked.** Every course, date, fee, quote is a placeholder and says so on the page (`SAMPLE_NOTE`). No invented people: trainer cards show a role and "name to be confirmed".
+11. **Labels:** Primary labels exactly as `docs/sitemap.md`. Page lives under **Talent & Training** (number label `05`).
+13. Build with `npm run build` before every push. Do not touch `app/V*`, `public/V*`, `proxy.ts`, root layout/page (BRAIN).
 
 ## Page anatomy
 **Library (IO Academy):** `Label 05 Talent & Training` + display title "IO Academy" + intro → tab capsule (the 4 Talent & Training pages, "IO Academy Training" current) → `01 Featured course` (feature card, text on photo) → `02 The library` (track chips with counts, format select, search, 3-across cards, empty state) → `03 How the Academy works` (4 steps) → `04 Training for teams` (paper band + text link). Cards link to the detail page by slug (`DETAIL_LIVE` flag in `academy.ts`).

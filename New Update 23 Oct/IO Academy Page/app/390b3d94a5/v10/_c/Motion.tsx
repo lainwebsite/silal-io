@@ -11,7 +11,7 @@ const q = <T extends Element = HTMLElement>(s: string, r: ParentNode = document)
 
 /*
  * Motion for the v6 News & Media pages, the About page's grammar (v6):
- *   [data-lines] headings rise line by line · [data-up] items fade up · [data-wipe] rounded image
+ *   [data-lines] headings rise line by line · [data-up] items rise (no fade) · [data-wipe] rounded image
  *   cards open from the bottom, their [data-px] layer drifts · label hairlines draw.
  * Reduced motion: nothing runs.
  */
@@ -38,11 +38,12 @@ export function Motion() {
             }),
           ),
         );
-        gsap.set("main [data-up]", { opacity: 0, y: 26 });
+        // nothing fades (new homepage rule): small items only rise 28px into place
+        gsap.set("main [data-up]", { y: 28 });
         ScrollTrigger.batch("main [data-up]", {
           start: "top 92%",
           once: true,
-          onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 1.2, ease: E, stagger: 0.07, overwrite: true }),
+          onEnter: (b) => gsap.to(b, { y: 0, duration: 1.2, ease: E, stagger: 0.07, overwrite: true }),
         });
         q("main [data-wipe]").forEach((el) =>
           gsap.from(el, { clipPath: "inset(100% 0% 0% 0% round 6px)", duration: 1.5, ease: "expo.inOut", scrollTrigger: { trigger: el, start: "top 92%", once: true } }),

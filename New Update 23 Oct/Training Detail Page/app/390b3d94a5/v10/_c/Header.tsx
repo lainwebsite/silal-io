@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import s from "../shell.module.css";
 import { ACADEMY, nav } from "../_lib/site";
+import { lenis } from "./SmoothScroll";
 
 /* The new homepage's header (prototypes/new-homepage/v2/header.html): utility strip, logo, six categories with
    dropdowns, Enquire pill, and below 1180px the round menu button + full-screen list. White, not over a hero. */
@@ -27,6 +28,8 @@ export function Header() {
   }, []);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) lenis()?.stop();
+    else lenis()?.start();
     const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", k);
     return () => {
