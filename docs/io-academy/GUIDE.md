@@ -34,7 +34,7 @@ Never copy the v6 header/footer (floating capsules) into these pages. Never inve
 10. **Photos:** only `public/photos/<folder>/<file>` web copies via `v10/_lib/photo.ts` (`P.*`). Never rename or recompress originals.
 11. **Sample content is marked.** Every course, date, fee, quote is a placeholder and says so on the page (`SAMPLE_NOTE`). No invented people: trainer cards show a role and "name to be confirmed".
 11. **Labels:** Primary labels exactly as `docs/sitemap.md`. Page lives under **Talent & Training** (number label `05`).
-12. Build with `npm run build` before every push. Do not touch `app/V*`, `public/V*`, `proxy.ts`, root layout/page (BRAIN).
+13. Build with `npm run build` before every push. Do not touch `app/V*`, `public/V*`, `proxy.ts`, root layout/page (BRAIN).
 
 ## Page anatomy
 **Library (IO Academy):** `Label 05 Talent & Training` + display title "IO Academy" + intro → tab capsule (the 4 Talent & Training pages, "IO Academy Training" current) → `01 Featured course` (feature card, text on photo) → `02 The library` (track chips with counts, format select, search, 3-across cards, empty state) → `03 How the Academy works` (4 steps) → `04 Training for teams` (paper band + text link). Cards link to the detail page by slug (`DETAIL_LIVE` flag in `academy.ts`).
