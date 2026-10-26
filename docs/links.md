@@ -34,6 +34,10 @@ Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below kee
 
 ## Designer 2
 
+### v6 — IO Academy (2026-10-26, sample content)
+- IO Academy library: https://silal-io.vercel.app/390b3d94a5/v6/training/io-academy-training
+- Training detail: https://silal-io.vercel.app/390b3d94a5/v6/training/io-academy-training/controlled-environment-agriculture-hightech-greenhouse
+
 ### v9 — v2 About, polished (current)
 - About IO: https://silal-io.vercel.app/390b3d94a5/v9/about
 
