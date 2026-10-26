@@ -12,6 +12,7 @@ Design routes live under random folder names so they cannot be guessed. There is
 - https://silal-io.vercel.app/About/V1 (= `/V3/about`)
 - https://silal-io.vercel.app/News/V1 (= `/V3/resources/news`)
 - https://silal-io.vercel.app/News-Detail (= the V3 press release; any article: `/News-Detail/<slug>`)
+- https://silal-io.vercel.app/io-academy (IO Academy: library in the Content/Media Centre layout + Delphy-style course detail; static page `public/io-academy/index.html`, rewrite in `next.config.ts`, noindex)
 - `/Team/V1`: not built yet, not published.
 
 Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below keep working.

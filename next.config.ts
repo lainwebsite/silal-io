@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
       { source: "/News/V1", destination: "/V3/resources/news" },
       { source: "/News-Detail", destination: "/V3/resources/news/innovation-oasis-officially-opens" },
       { source: "/News-Detail/:slug", destination: "/V3/resources/news/:slug" },
+      // IO Academy (library + course detail, static page in public/io-academy/, 2026-10-26)
+      { source: "/io-academy", destination: "/io-academy/index.html" },
+      { source: "/IO-Academy", destination: "/io-academy/index.html" },
     ];
   },
 };
