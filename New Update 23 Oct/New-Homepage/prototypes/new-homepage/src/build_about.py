@@ -165,7 +165,7 @@ mobile_html = "".join(
 header = f"""
 <header class="s_header" id="hdr" data-scrolled="false" data-overlay="true">
   <div class="s_utility"><div class="s_wrap s_utilityInner">
-    <span>Advancing Agri-food Systems <span class="s_utilitySep">·</span> <span lang="ar">نحو أنظمة زراعة وغذاء متطورة</span></span>
+    <span>Advancing Agri-food Systems</span>
     <span class="s_utilityLinks"><a href="#">Resources</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
   </div></div>
   <div class="s_headerMain"><div class="s_wrap s_headerInner">

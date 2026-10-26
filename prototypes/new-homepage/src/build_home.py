@@ -3,7 +3,7 @@
    - The Site: V1 About D 3D model (SiteModel.tsx ported to a vanilla module, bundled with esbuild)
    - Press feature: V2 news 'Latest release' (its CSS rules, prefixed)
    - World map + helix 'where do you want to look first?': new, from the client's PDFs."""
-import re, json, pathlib, html, math
+import sys, re, json, pathlib, html, math
 
 import build_about as A   # reuses css / header / footer / hero / intro / why / princ / jour / js (side effect: rewrites art/about.html)
 
@@ -286,6 +286,18 @@ home_js = r"""
   }
   renderStop(0);
   sPills.forEach(function (b) { b.addEventListener('click', function () { scrollToPin(sCurtain, +b.dataset.i / (TOUR.length - 1), SITE_F); }); });
+  /* three.js bundle: inlined in the preview, a separate deferred file on the site (loaded when idle or when a 3D section gets near) */
+  var bundleQ = [], bundleLoading = false;
+  function withBundle(cb) {
+    if (window.mountSite) return cb();
+    bundleQ.push(cb);
+    if (bundleLoading || !(window.__IO && window.__IO.bundle)) return;
+    bundleLoading = true;
+    var sc = document.createElement('script'); sc.src = window.__IO.bundle; sc.async = true;
+    sc.onload = function () { var q = bundleQ; bundleQ = []; q.forEach(function (f) { f(); }); };
+    document.head.appendChild(sc);
+  }
+  if (window.__IO && window.__IO.bundle) { var idleLoad = function () { withBundle(function () {}); }; if (document.readyState === 'complete') setTimeout(idleLoad, 1200); else addEventListener('load', function () { setTimeout(idleLoad, 1200); }); }
   function mountSite() {
     if (model || !window.mountSite) return;
     model = window.mountSite({
@@ -296,7 +308,7 @@ home_js = r"""
     });
     if (model) onScroll();
   }
-  if ('IntersectionObserver' in window) { var mo = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { mountSite(); mo.disconnect(); } }, { rootMargin: '900px' }); mo.observe(sCurtain); } else mountSite();
+  if ('IntersectionObserver' in window) { var mo = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { withBundle(mountSite); mo.disconnect(); } }, { rootMargin: '900px' }); mo.observe(sCurtain); } else withBundle(mountSite);
 
   /* ---------- World map: arid dots light up outward from the UAE as the section scrolls in ---------- */
   var mapSec = $('#mapSec'), arid = $$('.hm_a').sort(function (a, b) { return a.dataset.k - b.dataset.k; }), lit = 0;
@@ -309,7 +321,7 @@ home_js = r"""
   }
 
   /* ---------- Helix: 3D helix turns with the scroll; one rung + card + blurred photo per step ---------- */
-  var hCurtain = $('#helixCurtain'), hSec = $('#helixSec'), cardsEl = $$('.hx_card'), bgsEl = $$('.hx_bgimg'), HX_F = 1.0 * (cardsEl.length + 1), hCur = -2, hxGL = null, hxP = 0, hxE = 0, hxRot = 0;
+  var hCurtain = $('#helixCurtain'), hSec = $('#helixSec'), cardsEl = $$('.hx_card'), bgsEl = $$('.hx_bgimg'), HX_F = 1.0 * (cardsEl.length + 1), hCur = -2, hxGL = null, hxLoading = false, hxP = 0, hxE = 0, hxRot = 0;
   function hxScale() {
     var w = hSec.clientWidth, hh = hSec.clientHeight, hs = Math.max(0.5, Math.min(1.35, Math.min(w / 1440, hh / 931)));
     hSec.style.setProperty('--hs', hs.toFixed(3));
@@ -342,12 +354,16 @@ home_js = r"""
   }
   function setHx() { layHx(0.0001); }
   function mountHx() {
-    if (hxGL || !window.mountHelix) return;
-    var b64 = window.__HX_GLB || '', bin = atob(b64), buf = new Uint8Array(bin.length); for (var q = 0; q < bin.length; q++) buf[q] = bin.charCodeAt(q);
-    hxGL = window.mountHelix({ host: $('#hxGL'), data: buf.buffer, onFail: function () {} });
-    if (hxGL) { hxGL.setScroll(hxRot); hxGL.setEnter(hxE); hxGL.highlight(hCur >= 0 ? +cardsEl[hCur].dataset.rung : -1); }
+    if (hxGL || hxLoading || !window.mountHelix) return;
+    var go = function (data) {
+      if (hxGL) return;
+      hxGL = window.mountHelix({ host: $('#hxGL'), data: data, onFail: function () {} });
+      if (hxGL) { hxGL.setScroll(hxRot); hxGL.setEnter(hxE); hxGL.highlight(hCur >= 0 ? +cardsEl[hCur].dataset.rung : -1); }
+    };
+    if (window.__HX_GLB) { var bin = atob(window.__HX_GLB), buf = new Uint8Array(bin.length); for (var q = 0; q < bin.length; q++) buf[q] = bin.charCodeAt(q); go(buf.buffer); }
+    else if (window.__IO && window.__IO.glb) { hxLoading = true; fetch(window.__IO.glb).then(function (r) { return r.arrayBuffer(); }).then(go).catch(function () { hxLoading = false; }); }
   }
-  if ('IntersectionObserver' in window) { var ho = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { mountHx(); ho.disconnect(); } }, { rootMargin: '1200px' }); ho.observe(hCurtain); } else mountHx();
+  if ('IntersectionObserver' in window) { var ho = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { withBundle(mountHx); ho.disconnect(); } }, { rootMargin: '1200px' }); ho.observe(hCurtain); } else withBundle(mountHx);
 
 
   /* ---------- Text reveal (Codegrid "Copy"): lines split in an overflow mask, y 100% -> 0, stagger .1, power3.out ---------- */
@@ -497,3 +513,63 @@ page = f"""<meta charset="utf-8">
 """
 (OUT / "home.html").write_text(page)
 print(len(page) // 1024, "KB", "| arid dots:", n_arid)
+
+
+# ---------------------------------------------------------------- optimised static build for the site (python3 build_home.py --dist <out dir> <url base>)
+# webp images, minified css/js, three.js bundle + helix model as separate hashed files (cached), scripts deferred.
+if "--dist" in sys.argv:
+    import hashlib, re, shutil, subprocess
+    from PIL import Image
+    i = sys.argv.index("--dist"); dist = pathlib.Path(sys.argv[i + 1]); base = sys.argv[i + 2].rstrip("/")
+    esb = str(HERE / "hpb" / "node_modules" / ".bin" / "esbuild")
+    def minify(src, loader):
+        return subprocess.run([esb, "--minify", f"--loader={loader}"], input=src, capture_output=True, text=True, check=True).stdout
+    if dist.exists(): shutil.rmtree(dist)
+    (dist / "img").mkdir(parents=True); (dist / "brand").mkdir(); (dist / "assets").mkdir()
+    for f in (OUT / "img").glob("*.jpg"):
+        if f.stem in ("atrium", "helix_bg"): continue
+        Image.open(f).convert("RGB").save(dist / "img" / (f.stem + ".webp"), "WEBP", quality=84, method=6)
+    for f in (OUT / "brand").glob("*"): shutil.copy(f, dist / "brand" / f.name)
+    def put(name, data, ext):
+        raw = data if isinstance(data, bytes) else data.encode()
+        h = hashlib.md5(raw).hexdigest()[:8]; fn = f"{name}.{h}.{ext}"; (dist / "assets" / fn).write_bytes(raw); return f"{base}/assets/{fn}"
+    glb_url = put("helix", (HERE / "gl" / "helix.glb").read_bytes(), "glb")
+    bundle_url = put("three", minify(bundle, "js"), "js")
+    app_url = put("app", minify(a_js, "js") + ";\n" + minify(home_js, "js"), "js")
+    def paths(t):
+        t = re.sub(r'img/([\w-]+)\.jpg', lambda m: f"{base}/img/{m.group(1)}.webp", t)
+        return re.sub(r'(src="|url\(|url\(")brand/', lambda m: f"{m.group(1)}{base}/brand/", t)
+    body = page[page.index('<div class="s_root"'):page.index('<script src="https://cdn.jsdelivr.net/npm/lenis')]
+    body = paths(body).replace('<img src="', '<img decoding="async" src="')
+    body = body.replace(f'<img decoding="async" src="{base}/img/hero1.webp"', f'<img decoding="async" fetchpriority="high" src="{base}/img/hero1.webp"', 1)
+    css_min = paths(minify(css, "css"))
+    out = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Innovation Oasis</title>
+<link rel="icon" href="/brand/io-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="image" href="{base}/img/hero1.webp" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">
+<style>
+:root{{color-scheme:light}}
+{css_min}
+</style>
+<script>document.documentElement.classList.add("rv");setTimeout(function(){{document.documentElement.classList.remove("rv")}},6000);window.__IO={{glb:"{glb_url}",bundle:"{bundle_url}"}}</script>
+</head>
+<body>
+{body}
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script defer src="{app_url}"></script>
+</body>
+</html>
+"""
+    (dist / "index.html").write_text(out)
+    tot = sum(f.stat().st_size for f in dist.rglob("*") if f.is_file())
+    print("dist:", dist, "| index.html", len(out) // 1024, "KB | total", tot // 1024, "KB")
