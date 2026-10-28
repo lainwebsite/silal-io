@@ -30,6 +30,7 @@ Key: **Primary category page** · *Sub category head* · Sub page · `Template` 
   - Link to: Paid Trials
 
 ### 3. Innovation & Venture Platforms
+(Content + page plan: `content/innovation-venture-platforms.md`.)
 - Farm Innovation Fund
 - Incubation
 - Accelerator

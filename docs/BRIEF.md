@@ -9,6 +9,7 @@ Single source of truth for every Claude chat working on this repo. Update this f
 | `docs/sitemap.md` | **Navigation + page names**, mapped to our 21 templates. Use the 6 menu labels exactly. |
 | `content/about.md` | **Final About IO copy** (client-supplied, use verbatim). |
 | `content/team.md` | **Team status**: who has photos, which files to use, what's missing. |
+| `content/innovation-venture-platforms.md` | **Innovation & Venture Platforms**: everything about the 4 platforms (Farm Innovation Fund, Incubation, Accelerator = Unbreakable Harvest, Agricultural Challenges = Al Miyah) + the plan for the new hub/detail pages in the Silal style. |
 | `public/brand/*.svg` | Real logo: `io-lockup.svg`, `io-lockup-reversed.svg`, `io-mark.svg`. Replace any placeholder logo. |
 | `docs/source/` | Original client PDFs (guidelines, About copy, sitemap). |
 
@@ -107,6 +108,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - [ ] Official logo master files (SVG/AI). Current SVGs are extracted from the guidelines PDF; fine for design, confirm before launch.
 - [ ] **29LT Bukra webfont files (WOFF2) + web licence.** Until then use the stand-in described in `docs/brand.md`.
 - [~] Team headshots: **all 9 received** (CEO Shamal + Ahmed, Ali, Nadia, Sagar, Caitlin, Francisco, Jude, Mohsin), plus Talabi (not in About list: confirm whether to show) and an `Unknown Name/` folder (4 photos, unidentified man, files misnamed `Sagar-4…7`: client to identify). See `content/team.md`. **Still missing: all bios + role titles.** Filename prefixes don't match people; folder = person.
+- [~] Innovation & Venture Platforms: source material received 2026-10-28 (zip: Accelerator, Incubation, Farm Innovation Fund, Al Miyah Challenge, inspo). Summarised in `content/innovation-venture-platforms.md`; still missing listed in its §9.7.
 - [ ] Copy for all other pages (Home, category hubs, details…). Until supplied, use placeholder copy that follows the About page's tone.
 - [ ] Partners: how to display partners & manage partnership enquiries (open question on sitemap).
 - [ ] Confirm contact details (phone in stationery template may be placeholder).
@@ -129,6 +131,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - 2026-10-13: Homepage Concept 3 "From Desert to Discovery" (static HTML prototype from the LAIN Figma, Concept 3 column) added at `/homepage-concept-3`: files in `public/homepage-concept-3/` (images in `media/img/`), one more rewrite in `next.config.ts`, spec in `prototypes/silal-homepage/DESIGN-SPEC-CONCEPT-3.md`, how-to in `prototypes/silal-homepage/ADD-A-CONCEPT.md`. Team link only (noindex, not linked from `/`). Touches no designer, `/V*` or root files.
 - 2026-10-23: `New Update 23 Oct/` (repo root) = copy-only snapshot of the latest client pages (Homepage-concept-1, Homepage-concept-3, New-Homepage [files to come], About, News, News-Detail, Team [not built]). Not deployed (`.vercelignore`), not built (`tsconfig.json` exclude); editing it changes nothing live.
 - 2026-10-23: **Silal Links Tidy Up.** Client links are now `/Homepage-concept-1`, `/Homepage-concept-3`, `/New-Homepage/V1`, `/About/V1` (= V3 About), `/News/V1` (= V3 News), `/News-Detail` (= V3 press release; `/News-Detail/<slug>` for others). `/Team/V1` waits for the Team page. Done with rewrites in `next.config.ts`; the `/V1`, `/V2`, `/V3` links stay as they were. New homepage added at `public/new-homepage/` (sources in `prototypes/new-homepage/v2/`, helix from the client's SVG, no fade animations).
+- 2026-10-28: **Innovation & Venture Platforms source material** (client zip) summarised in `content/innovation-venture-platforms.md`: facts per platform, verbatim Accelerator website copy, conflicts (deadline 3 Jul 2026 used, title CEO, spelling IO), do-not-publish list, and the new-page plan (hub = template 5, 3 × template 7, Agricultural Challenges = template 8) in the homepage style. **The repo is public, so the original zip files are not committed** (Ibex documents are marked proprietary and confidential).
 
 ## Requests (cross-chat)
 _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._
