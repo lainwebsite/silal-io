@@ -6,7 +6,7 @@ Single source of truth for every Claude chat working on this repo. Update this f
 | File | What |
 |---|---|
 | `docs/brand.md` | **Brand rules**: logo files + usage, colours (hex), typography (29LT Bukra), tagline, visual language. Not optional. |
-| `docs/sitemap.md` | **Navigation + page names**, mapped to our 21 templates. Use the 6 menu labels exactly. |
+| `docs/sitemap.md` | **Navigation + page names**, mapped to our 23 templates (sitemap v2, 2026-10-28). Use the 6 menu labels exactly. |
 | `content/about.md` | **Final About IO copy** (client-supplied, use verbatim). |
 | `content/team.md` | **Team status**: who has photos, which files to use, what's missing. |
 | `public/brand/*.svg` | Real logo: `io-lockup.svg`, `io-lockup-reversed.svg`, `io-mark.svg`. Replace any placeholder logo. |
@@ -98,7 +98,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 ## Assets
 - Photos: `assets/photos/` (169 originals + 196 team headshots). Manifest with suggested page usage: `assets/README.md`. Visual index: `assets/contact-sheets/`.
 - Logo: `public/brand/` (vector SVG extracted from the guidelines PDF, see `docs/brand.md`).
-- Sitemap image: `docs/sitemap.png`.
+- Sitemap image: `docs/sitemap-2026-10-28.webp` (current); `docs/sitemap.png` (2026-10-01, superseded).
 
 ## Open inputs (from client)
 - [x] Brand guidelines (logo, colours, type): `docs/brand.md`
@@ -129,6 +129,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - 2026-10-13: Homepage Concept 3 "From Desert to Discovery" (static HTML prototype from the LAIN Figma, Concept 3 column) added at `/homepage-concept-3`: files in `public/homepage-concept-3/` (images in `media/img/`), one more rewrite in `next.config.ts`, spec in `prototypes/silal-homepage/DESIGN-SPEC-CONCEPT-3.md`, how-to in `prototypes/silal-homepage/ADD-A-CONCEPT.md`. Team link only (noindex, not linked from `/`). Touches no designer, `/V*` or root files.
 - 2026-10-23: `New Update 23 Oct/` (repo root) = copy-only snapshot of the latest client pages (Homepage-concept-1, Homepage-concept-3, New-Homepage [files to come], About, News, News-Detail, Team [not built]). Not deployed (`.vercelignore`), not built (`tsconfig.json` exclude); editing it changes nothing live.
 - 2026-10-23: **Silal Links Tidy Up.** Client links are now `/Homepage-concept-1`, `/Homepage-concept-3`, `/New-Homepage/V1`, `/About/V1` (= V3 About), `/News/V1` (= V3 News), `/News-Detail` (= V3 press release; `/News-Detail/<slug>` for others). `/Team/V1` waits for the Team page. Done with rewrites in `next.config.ts`; the `/V1`, `/V2`, `/V3` links stay as they were. New homepage added at `public/new-homepage/` (sources in `prototypes/new-homepage/v2/`, helix from the client's SVG, no fade animations).
+- 2026-10-28: **Sitemap v2** from the client (`docs/sitemap-2026-10-28.webp`, transcribed in `docs/sitemap.md`). New: IO Academy Training → IO Academy Course page (CMS, Delphy-style) → Registration form → Dynamic confirmation (templates #22, #23). Key now marks CMS templates, dynamic forms and footer pages. Rest unchanged.
 
 ## Requests (cross-chat)
 _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._
@@ -164,3 +165,4 @@ _Add requests here, e.g. "DESIGNER 1 → BRAIN: need hero copy for Home"._
 - 2026-10-13 (round 17): **/homepage-concept-1 now serves the V3 page** (client link; rewrite in next.config.ts). /V3 and /homepage-concept-1/v3 serve the same file; /V2 and /homepage-concept-1/v2 still serve the previous version. The V3 page title no longer says "(V3)". Verified for four section titles (statement, root, venture, one-oasis) at 1913x962, 1440x870 and 1280x720 with Lenis on: a title is never above its background sheet's edge while that sheet is still rising.
 - 2026-10-13 (round 17b): fixed the title that flashed at the centre of the screen over the previous section (client incognito screenshot): the title's y tween starts at its scroll position but its opacity switched on 0.02u earlier, so for ~12 px of scroll the title sat at its resting centre position. Titles (and the description under "Where innovation takes root.") are now parked below the screen from build time. Verified with real wheel scrolling (preloader on, DPR 2, 1946x955), forward and backward, all four titles + description: 0 overlaps (the old build reproduced it).
 - 2026-10-26: **IO Academy published at `/io-academy`** (also `/IO-Academy`), at the owner's request. Static single page `public/io-academy/index.html` (library + 7 sample course detail pages, homepage header/footer, Lenis smooth scroll, noindex), two rewrites in `next.config.ts`. Sources and the generator: `New Update 23 Oct/Training-Detail/source/` (detail) and the artifact build. All courses, dates, fees are samples; only Dr. Shamal Mohammed is a real trainer (CEO). Next.js version of the same pages: branches `23-oct/io-academy-page`, `23-oct/training-detail-page`.
+- **BRAIN → DESIGNERS 1 & 2 (2026-10-28):** sitemap updated (v2). Read the "Changes" section at the bottom of `docs/sitemap.md`. IO Academy now has course pages (one per course, Delphy-style) with a registration form and confirmation; the existing draft is `New Update 23 Oct/Training-Detail/`.
