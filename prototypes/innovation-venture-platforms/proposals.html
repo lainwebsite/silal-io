@@ -1,0 +1,302 @@
+<title>IVP Section Proposals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500&display=swap">
+<style>
+/* Live proposals for three Innovation & Venture Platforms sections (N1 nine areas, P1 process, T1 cohort timeline).
+   Same tokens and type scale as the pages; single light theme on purpose (the site is light). */
+:root { color-scheme: light; --io: #3ca7d2; --ink: #1a6f96; --char: #595453; --grey: #7f8284; --grey-ink: #6e7173; --light: #f1f1f1; --line: rgba(89,84,83,.16); --slow: cubic-bezier(0.16,1,0.3,1);
+  --fs-h2: clamp(2rem, 2.45vw, 2.875rem); --fs-h3: clamp(1.375rem, 1.55vw, 1.75rem); --fs-lead: clamp(1.125rem, 1.2vw, 1.3125rem); }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--char); font-family: "Readex Pro", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, ol { margin: 0; } ul, ol { padding: 0; list-style: none; }
+button { font: inherit; }
+.w { max-width: 1440px; margin: 0 auto; padding-left: max(clamp(16px, 4vw, 56px), env(safe-area-inset-left, 0px)); padding-right: max(clamp(16px, 4vw, 56px), env(safe-area-inset-right, 0px)); }
+.lbl { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.top { padding-block: 56px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; border-bottom: 1px solid var(--line); }
+.top h1 { font-size: clamp(2.25rem, 3.9vw, 4.5rem); font-weight: 300; letter-spacing: -.035em; line-height: 1.06; margin-top: 10px; }
+.top p { max-width: 34em; color: var(--grey-ink); line-height: 1.65; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; padding-block: 20px; }
+.toc a { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); font-size: .8125rem; color: var(--char); text-decoration: none; transition: background .3s, color .3s; }
+.toc a:hover { background: var(--char); color: #fff; }
+.prop { padding-block: clamp(64px, 8vw, 120px) 0; scroll-margin-top: 8px; }
+.note { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 28px; padding: 14px 18px; background: var(--light); border-radius: 12px; font-size: .875rem; color: var(--grey-ink); line-height: 1.55; }
+.note b { font-weight: 500; color: #fff; background: var(--char); border-radius: 999px; padding: 3px 11px; font-size: .75rem; letter-spacing: .06em; }
+.head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 20px 48px; align-items: end; margin-bottom: clamp(36px, 4vw, 64px); }
+.head h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; margin-top: 16px; }
+.head p { color: var(--grey-ink); line-height: 1.65; }
+
+/* ---------------- N1 · field cross-section ---------------- */
+.n1Scroll { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.n1Scroll::-webkit-scrollbar { display: none; }
+.n1Art { position: relative; min-width: 880px; }
+.n1Art svg { display: block; width: 100%; height: auto; overflow: visible; }
+.n1Art .ln { fill: none; stroke: #b9bbbc; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; transition: stroke .5s; }
+.n1Art .soil { fill: #b9bbbc; transition: fill .5s; }
+.n1Art g[data-on] .ln { stroke: var(--ink); }
+.n1Art g[data-on] .soil { fill: var(--ink); }
+.n1Art .ground { stroke: var(--char); stroke-width: 1.2; }
+.hot { all: unset; position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; }
+.hot::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 1.5px solid var(--char); transition: background .4s, border-color .4s, transform .5s var(--slow); }
+.hot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--io); opacity: 0; transform: scale(.4); }
+.hot:hover::before { transform: scale(1.25); }
+.hot[aria-selected="true"]::before { background: var(--ink); border-color: var(--ink); transform: scale(1.35); }
+.hot[aria-selected="true"]::after { animation: ping 2.2s ease-out infinite; }
+.hot:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.hot span { position: absolute; left: 50%; top: calc(100% + 4px); transform: translateX(-50%); white-space: nowrap; font-size: .75rem; color: var(--grey-ink); opacity: 0; transition: opacity .3s; pointer-events: none; }
+.hot:hover span, .hot[aria-selected="true"] span { opacity: 1; }
+.hot[aria-selected="true"] span { color: var(--ink); }
+@keyframes ping { 0% { opacity: .8; transform: scale(.4); } 100% { opacity: 0; transform: scale(1.6); } }
+.n1Groups { position: relative; min-width: 880px; height: 44px; margin-top: 8px; }
+.n1Groups div { position: absolute; top: 0; padding-top: 12px; border-top: 1px solid #cfd0d1; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); transition: color .4s, border-color .4s; }
+.n1Groups div[data-on] { color: var(--ink); border-color: var(--ink); }
+.n1Detail { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 16px 48px; align-items: start; margin-top: clamp(28px, 3vw, 48px); padding-top: 28px; border-top: 1px solid var(--line); min-height: 170px; }
+.n1Detail small { display: block; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; }
+.n1Detail h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; color: var(--char); }
+.n1Detail p { font-size: 1.0625rem; line-height: 1.6; color: var(--grey-ink); padding-top: 28px; }
+.mask { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
+.mask > span { display: block; }
+
+/* ---------------- P1 · gantt timeline ---------------- */
+.p1Pin { position: relative; height: 300vh; }
+.p1Stick { position: sticky; top: 0; height: 100vh; min-height: 600px; display: flex; flex-direction: column; justify-content: center; }
+.p1Chart { position: relative; }
+.p1Axis { position: relative; display: grid; grid-template-columns: 180px minmax(0,1fr); margin-bottom: 10px; }
+.p1Months { position: relative; height: 22px; }
+.p1Months span { position: absolute; transform: translateX(-50%); font-size: .75rem; color: var(--grey); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.p1Months b { font-weight: 400; }
+.p1Months span:first-child { transform: none; } .p1Months span:last-child { transform: translateX(-100%); }
+.p1Rows { position: relative; }
+.p1Row { display: grid; grid-template-columns: 180px minmax(0,1fr); align-items: center; height: clamp(58px, 9vh, 76px); border-top: 1px solid var(--line); }
+.p1Row:last-child { border-bottom: 1px solid var(--line); }
+.p1Row h3 { font-size: clamp(1.0625rem, 1.3vw, 1.25rem); font-weight: 400; color: #b4b6b7; transition: color .5s; }
+.p1Row[data-on] h3 { color: var(--char); }
+.p1Track { position: relative; height: 100%; }
+.p1Track::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(20% - 1px), var(--line) calc(20% - 1px) 20%); }
+.p1Bar { position: absolute; top: 50%; height: 12px; margin-top: -6px; border-radius: 999px; background: #e3e4e5; overflow: hidden; }
+.p1Bar i { position: absolute; inset: 0; background: var(--ink); transform: scaleX(var(--f, 0)); transform-origin: left; border-radius: inherit; }
+.p1Row[data-on] .p1Bar i { background: var(--io); }
+.p1Head { position: absolute; top: -32px; bottom: 0; left: 180px; width: 0; pointer-events: none; }
+.p1Head::before { content: ""; position: absolute; top: 26px; bottom: 0; left: 0; width: 1px; background: var(--char); }
+.p1Head em { position: absolute; top: 0; left: 0; transform: translateX(-50%); font-style: normal; font-size: .6875rem; font-weight: 500; letter-spacing: .08em; color: #fff; background: var(--char); border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
+.p1Detail { display: grid; grid-template-columns: 180px minmax(0, 6fr) minmax(0, 5fr); gap: 16px 32px; margin-top: clamp(28px, 4vh, 44px); min-height: 110px; align-items: start; }
+.p1Detail small { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); padding-top: 8px; }
+.p1Detail h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; }
+.p1Detail p { font-size: 1.0625rem; line-height: 1.6; color: var(--grey-ink); padding-top: 6px; }
+.p1Key { margin-top: 18px; font-size: .6875rem; color: #a3a5a6; letter-spacing: .02em; }
+
+/* ---------------- T1 · month ruler ---------------- */
+.t1 { padding: clamp(28px, 3vw, 44px); border: 1px solid var(--line); border-radius: 4px; }
+.t1Top { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+.t1Top strong { display: block; font-size: clamp(2.5rem, 4vw, 3.75rem); font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.t1Top span { font-size: .875rem; color: var(--grey-ink); }
+.t1Rule { position: relative; height: 64px; }
+.t1Base { position: absolute; left: 0; right: 0; top: 30px; height: 2px; background: #e3e4e5; }
+.t1Fill { position: absolute; left: 0; top: 30px; height: 2px; width: 100%; background: var(--ink); transform: scaleX(0); transform-origin: left; }
+.t1Tick { position: absolute; top: 24px; width: 1px; height: 14px; background: #c9cacb; }
+.t1Tick[data-past] { background: var(--ink); }
+.t1Mon { position: absolute; top: 46px; transform: translateX(-50%); font-size: .6875rem; color: var(--grey); letter-spacing: .04em; white-space: nowrap; }
+.t1Mon[data-now] { color: var(--ink); font-weight: 500; }
+.t1Today { position: absolute; top: 31px; left: 0; width: 0; }
+.t1Today i { position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%; background: var(--io); }
+.t1Today i::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid var(--io); animation: ping 2.4s ease-out infinite; }
+.t1Today em { position: absolute; bottom: 14px; transform: translateX(-50%); font-style: normal; font-size: .6875rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+.t1Ends { display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; font-size: .875rem; color: var(--grey-ink); }
+
+.foot { margin-top: clamp(80px, 10vw, 140px); padding-block: 40px 72px; border-top: 1px solid var(--line); color: var(--grey-ink); font-size: .9375rem; line-height: 1.6; }
+@media (max-width: 900px) {
+  .head, .n1Detail { grid-template-columns: minmax(0,1fr); }
+  .n1Detail p { padding-top: 0; }
+  .p1Axis, .p1Row { grid-template-columns: 110px minmax(0,1fr); }
+  .p1Head { left: 110px; }
+  .p1Detail { grid-template-columns: minmax(0,1fr); }
+  .t1Mon:nth-of-type(even) { display: none; }
+  .p1Months b { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; } }
+</style>
+
+<header class="w top">
+  <div><span class="lbl">Innovation &amp; Venture Platforms · for review</span><h1>Section proposals</h1></div>
+  <p>My recommended option for the three sections you flagged, built live with the page’s type and motion. Hover, tap and scroll them. Approve each one (or ask for changes) and I will build it into its page.</p>
+</header>
+<nav class="w toc" aria-label="Proposals"><a href="#n1">N1 · Nine areas (Accelerator)</a><a href="#p1">P1 · The process (Accelerator)</a><a href="#t1">T1 · Cohort timeline (Incubation)</a></nav>
+
+<!-- =================== N1 =================== -->
+<section class="w prop" id="n1">
+  <div class="note"><b>N1</b>Replaces the numbered line. One drawing from the soil to the shelf: each area sits where it happens, so “from the soil to the supply chain” is something you see. Hover or tap a point.</div>
+  <div class="head"><div><span class="lbl">Technologies &amp; approaches we’re prioritizing</span><h2>Nine areas, from the soil to the supply chain.</h2></div><p>Hover or tap a point in the field to read what we look for.</p></div>
+  <div class="n1Scroll"><div class="n1Art" id="n1Art">
+    <svg viewBox="0 0 1200 380" aria-hidden="true">
+      <!-- ground and soil -->
+      <path class="ln ground" pathLength="1" d="M10 300H1190"/>
+      <g data-z="0">
+        <path class="ln" pathLength="1" d="M70 300c0-26 6-44 18-58M88 242c-14-4-24-14-26-28 14 0 24 8 26 28ZM88 260c12-6 22-16 22-30-14 2-22 12-22 30Z"/>
+        <path class="ln" pathLength="1" d="M88 300v30M88 312c-10 8-20 10-32 10M88 318c10 6 20 12 26 22M150 300c0-22 4-36 12-46M162 254c-10-6-16-14-16-24 10 2 16 10 16 24Z"/>
+        <circle class="soil" cx="60" cy="342" r="2"/><circle class="soil" cx="120" cy="352" r="2"/><circle class="soil" cx="170" cy="334" r="2"/><circle class="soil" cx="40" cy="322" r="2"/><circle class="soil" cx="140" cy="368" r="2"/><circle class="soil" cx="96" cy="362" r="1.6"/>
+      </g>
+      <g data-z="1">
+        <path class="ln" pathLength="1" d="M210 300c0-30 4-52 14-68M224 232c-14-8-20-20-18-34 14 4 20 16 18 34ZM224 250c12-8 22-20 22-36-14 4-22 16-22 36ZM224 232c0-10 4-18 10-22"/>
+        <path class="ln" pathLength="1" d="M262 300c0-24 4-42 12-54M274 246c-12-6-18-16-16-28 12 4 18 14 16 28ZM274 262c10-6 18-16 18-28-12 4-18 12-18 28Z"/>
+        <path class="ln" pathLength="1" d="M300 300c0-18 2-30 8-40M308 260c-10-4-14-12-12-22 10 2 14 10 12 22Z"/>
+      </g>
+      <g data-z="2">
+        <path class="ln" pathLength="1" d="M340 300V214c0-46 36-84 84-84s84 38 84 84v86"/>
+        <path class="ln" pathLength="1" d="M372 300v-92c0-30 24-54 52-54s52 24 52 54v92M424 130v170M340 240h168"/>
+        <path class="ln" pathLength="1" d="M386 300v-18M404 300v-24M444 300v-24M462 300v-18"/>
+      </g>
+      <g data-z="3">
+        <path class="ln" pathLength="1" d="M578 300V176M566 176h24M578 176l-8-12h16Z"/>
+        <path class="ln" pathLength="1" d="M594 158c8 6 8 18 0 24M604 150c14 10 14 30 0 40M562 158c-8 6-8 18 0 24M552 150c-14 10-14 30 0 40"/>
+        <path class="ln" pathLength="1" d="M540 300c0-14 4-22 10-28M626 300c0-14-4-22-10-28"/>
+      </g>
+      <g data-z="4">
+        <path class="ln" pathLength="1" d="M650 232l70-26 10 30-70 26ZM684 220l10 28M666 252v48M712 238v62"/>
+        <path class="ln" pathLength="1" d="M660 318h110M770 318v-30M770 288c-8-10-12-18-12-24 0-8 6-14 12-14s12 6 12 14c0 6-4 14-12 24Z"/>
+      </g>
+      <g data-z="5">
+        <path class="ln" pathLength="1" d="M800 252a26 26 0 1 1 6 30M800 252l-4-14M800 252l14-2"/>
+        <path class="ln" pathLength="1" d="M786 300l8-30h40l8 30M800 284h28"/>
+      </g>
+      <g data-z="6">
+        <path class="ln" pathLength="1" d="M878 300v-52h70v52M878 266h70M900 248v-14h26v14"/>
+        <path class="ln" pathLength="1" d="M913 214v-20M903 200l20 0M906 207l14-14M920 207l-14-14"/>
+      </g>
+      <g data-z="7">
+        <path class="ln" pathLength="1" d="M980 120c-16 0-26-10-26-22s10-22 24-22c4-14 16-22 30-22 18 0 30 12 32 28 12 0 22 8 22 20s-10 18-22 18Z"/>
+        <path class="ln" pathLength="1" d="M990 98h14l8-12 10 12h14M1008 140v52M970 192h80"/>
+        <path class="ln" pathLength="1" d="M968 300v-50h62v50M1030 266h26l14 18v16M996 300a10 10 0 1 1 0 .1M1056 300a10 10 0 1 1 0 .1"/>
+      </g>
+      <g data-z="8">
+        <path class="ln" pathLength="1" d="M1100 300V196l44-26 44 26v104M1120 300v-40h48v40"/>
+        <path class="ln" pathLength="1" d="M1122 236v-10M1136 236v-20M1150 236v-14M1164 236v-26M1118 238h52"/>
+      </g>
+    </svg>
+  </div></div>
+  <div class="n1Scroll"><div class="n1Groups" id="n1Groups" aria-hidden="true">
+    <div style="left:0.8%;width:63.2%" data-on>Growing &amp; production</div><div style="left:65%;width:16.5%">Waste</div><div style="left:82.5%;width:16.7%">Supply chain</div>
+  </div></div>
+  <div class="n1Detail" aria-live="polite"><div><small class="mask"><span id="n1Group">Growing &amp; production</span></small><h3 class="mask"><span id="n1Title">Soil &amp; Plant Health Inputs &amp; Amendments</span></h3></div><p class="mask"><span id="n1Text">Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.</span></p></div>
+</section>
+
+<!-- =================== P1 =================== -->
+<section class="prop" id="p1">
+  <div class="w"><div class="note"><b>P1</b>Replaces the giant numeral and list. The four stages are drawn as bars over months, so you see at a glance that validation in the field is the longest part. Scroll through it: the playhead walks the months, bars fill and the stage below changes. Bar lengths are indicative (the source gives only “3 to 5 months” in total); I’d confirm the split with the client before going live.</div></div>
+  <div class="p1Pin" id="p1Pin"><div class="p1Stick"><div class="w" style="width:100%">
+    <div class="head" style="margin-bottom:clamp(28px,4vh,48px)"><div><span class="lbl">The process</span><h2>Stop pitching. Start piloting.</h2></div><p>A structured engagement over 3 to 5 months.</p></div>
+    <div class="p1Chart">
+      <div class="p1Axis"><span></span><div class="p1Months" id="p1Months"></div></div>
+      <div class="p1Rows" id="p1Rows">
+        <div class="p1Row" data-on><h3>Selection</h3><div class="p1Track"><div class="p1Bar" style="left:0;width:10%"><i></i></div></div></div>
+        <div class="p1Row"><h3>Onboarding</h3><div class="p1Track"><div class="p1Bar" style="left:10%;width:12%"><i></i></div></div></div>
+        <div class="p1Row"><h3>Validation</h3><div class="p1Track"><div class="p1Bar" style="left:20%;width:62%"><i></i></div></div></div>
+        <div class="p1Row"><h3>Pathways Forward</h3><div class="p1Track"><div class="p1Bar" style="left:78%;width:22%"><i></i></div></div></div>
+      </div>
+      <div class="p1Head" id="p1Head"><em id="p1HeadLbl">Month 0</em></div>
+    </div>
+    <div class="p1Detail" aria-live="polite"><small class="mask"><span id="p1When">Before the start</span></small><h3 class="mask"><span id="p1Title">Selection</span></h3><p class="mask"><span id="p1Text">Finding the right growth-stage innovators to tackle each challenge area.</span></p></div>
+    <p class="p1Key">Indicative timing. Total engagement 3 to 5 months; bar lengths to be confirmed.</p>
+  </div></div></div>
+</section>
+
+<!-- =================== T1 =================== -->
+<section class="w prop" id="t1">
+  <div class="note"><b>T1</b>Replaces the plain line. A month ruler for the Incubation cohort: the filled part is time already run, “Today” moves by itself, and the days left are counted from today’s date, so it never goes stale.</div>
+  <div class="t1" id="t1Box">
+    <div class="t1Top"><div><span class="lbl">Cohort 1 timeline</span></div><div style="text-align:right"><strong id="t1Days">0</strong><span id="t1DaysLbl">days to close</span></div></div>
+    <div class="t1Rule" id="t1Rule"><div class="t1Base"></div><div class="t1Fill" id="t1Fill"></div><div class="t1Today" id="t1Today"><i></i><em id="t1TodayLbl">Today</em></div></div>
+    <div class="t1Ends"><span>Nov 2025 · Cohort starts</span><span>Nov 2026 · Cohort closes</span></div>
+  </div>
+</section>
+
+<footer class="w foot">Reply with what you approve, for example “N1 P1 T1 ok”, or tell me what to change. Once approved I’ll build N1 and P1 into the Accelerator page and T1 into the Incubation page.</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, fine = matchMedia('(hover: hover) and (pointer: fine)').matches, G = !!(window.gsap && window.ScrollTrigger) && !reduce;
+  if (G) gsap.registerPlugin(ScrollTrigger);
+  // masked swap: old text slides up and out, new text rises in
+  function swap(el, text) { if (el.textContent === text) return; if (!G) { el.textContent = text; return; } gsap.killTweensOf(el); gsap.to(el, { yPercent: -110, duration: 0.3, ease: 'power3.in', onComplete: function () { el.textContent = text; gsap.fromTo(el, { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: 'power3.out' }); } }); }
+
+  /* ---------- N1 ---------- */
+  var AREAS = [
+    ['Growing & production', 'Soil & Plant Health Inputs & Amendments', 'Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.', 'Soil & plant health', 7.4, 88],
+    ['Growing & production', 'Crop Innovation', 'Novel crop varieties, breeding techniques, and seed technologies adapted for heat, water scarcity, and desert-climate growing.', 'Crop innovation', 21.5, 62],
+    ['Growing & production', 'Controlled Environment Agriculture', 'Advanced greenhouse, vertical farming, and indoor cultivation systems that maximize yield while minimizing water and energy inputs.', 'Controlled environment', 35.3, 47],
+    ['Growing & production', 'Precision Agriculture', 'Sensor networks, AI-driven analytics, and data platforms that optimize resource allocation and decision-making at the field level.', 'Precision agriculture', 48.2, 40],
+    ['Growing & production', 'Water & Energy Management Solutions', 'Irrigation efficiency, water recycling, renewable energy integration, and resource monitoring across agricultural operations.', 'Water & energy', 58.5, 60],
+    ['Waste', 'Waste Circularity', 'Technologies and platforms that recover, repurpose, or redistribute agricultural and food waste into valuable inputs.', 'Waste circularity', 68.2, 64],
+    ['Waste', 'Waste Prevention', 'Cold chain optimization, shelf-life extension, and AI-driven supply and demand matching.', 'Waste prevention', 76.1, 56],
+    ['Supply chain', 'Supply Chain Data Platforms', 'Core data infrastructure, IoT-enabled systems, and digital platforms across agricultural value chains.', 'Supply chain data', 84, 22],
+    ['Supply chain', 'Supply Chain Analytics', 'Analytics, AI, and traceability tools that forecast demand and enhance end-to-end supply chain performance.', 'Supply chain analytics', 95.3, 52]];
+  var art = $('#n1Art'), zones = $$('#n1Art g[data-z]'), groups = $$('#n1Groups div'), hots = [], sel = -1, auto = null;
+  AREAS.forEach(function (a, i) {
+    var b = document.createElement('button'); b.className = 'hot'; b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', a[1]);
+    b.style.left = a[4] + '%'; b.style.top = a[5] + '%'; b.innerHTML = '<span>' + a[3] + '</span>';
+    b.addEventListener('mouseenter', function () { if (fine) { stop(); pick(i); } });
+    b.addEventListener('click', function () { stop(); pick(i); });
+    b.addEventListener('focus', function () { stop(); pick(i); });
+    b.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); stop(); pick((i + d + 9) % 9); hots[sel].focus(); });
+    art.appendChild(b); hots.push(b);
+  });
+  function grp(i) { return i < 5 ? 0 : i < 7 ? 1 : 2; }
+  function pick(i) {
+    if (i === sel) return; sel = i;
+    hots.forEach(function (h, k) { h.setAttribute('aria-selected', k === i); h.tabIndex = k === i ? 0 : -1; });
+    zones.forEach(function (z, k) { k === i ? z.setAttribute('data-on', '') : z.removeAttribute('data-on'); });
+    groups.forEach(function (g, k) { k === grp(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'); });
+    swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]);
+  }
+  function stop() { if (auto) { clearInterval(auto); auto = null; } }
+  pick(0);
+  var lines = $$('#n1Art .ln');
+  if (G) {
+    gsap.set(lines, { strokeDasharray: 1, strokeDashoffset: 1 }); gsap.set(hots, { opacity: 0, scale: 0.4 });
+    ScrollTrigger.create({ trigger: art, start: 'top 75%', once: true, onEnter: function () {
+      gsap.to(lines, { strokeDashoffset: 0, duration: 1.6, stagger: 0.05, ease: 'power2.inOut' });
+      gsap.to(hots, { opacity: 1, scale: 1, duration: 0.6, stagger: 0.07, delay: 0.9, ease: 'back.out(2)' });
+      if (!reduce) auto = setInterval(function () { pick((sel + 1) % 9); }, 3800);
+    } });
+  }
+
+  /* ---------- P1 ---------- */
+  var STEPS = [
+    ['Selection', 'Finding the right growth-stage innovators to tackle each challenge area.', 'Before the start'],
+    ['Onboarding', 'Getting your team set up and oriented around the scope, the facilities, and the Silal business units and experts you’ll be working with.', 'Month 0 to 1'],
+    ['Validation', 'Live pilots and proof-of-concept projects in real operating conditions, testing what matters with the people it matters to.', 'Month 1 to 4'],
+    ['Pathways Forward', 'Post-pilot support that leverages the Silal relationship, ecosystem network, and IO platform to convert a successful pilot into scaled commercial agreements.', 'Month 4 to 5 and beyond']];
+  var months = $('#p1Months'); for (var m = 0; m <= 5; m++) months.insertAdjacentHTML('beforeend', '<span style="left:' + (m * 20) + '%"><b>Month </b>' + m + '</span>');
+  var rows = $$('#p1Rows .p1Row'), bars = rows.map(function (r) { return r.querySelector('.p1Bar'); }), head = $('#p1Head'), headLbl = $('#p1HeadLbl'), pk = -1;
+  function spans() { return bars.map(function (b) { return [parseFloat(b.style.left) / 100, parseFloat(b.style.width) / 100]; }); }
+  function p1(p) {
+    var x = p, s = spans(), track = rows[0].querySelector('.p1Track'), w = track.clientWidth;
+    head.style.transform = 'translateX(' + (x * w) + 'px)'; headLbl.textContent = 'Month ' + (x * 5).toFixed(1).replace('.0', '');
+    var k = 0;
+    s.forEach(function (sp, i) { var f = Math.max(0, Math.min(1, (x - sp[0]) / sp[1])); bars[i].firstChild.style.setProperty('--f', f); if (x >= sp[0]) k = i; });
+    if (k !== pk) { pk = k; rows.forEach(function (r, i) { i === k ? r.setAttribute('data-on', '') : r.removeAttribute('data-on'); }); swap($('#p1When'), STEPS[k][2]); swap($('#p1Title'), STEPS[k][0]); swap($('#p1Text'), STEPS[k][1]); }
+  }
+  if (G) ScrollTrigger.create({ trigger: '#p1Pin', start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: function (st) { p1(st.progress); }, onRefresh: function (st) { p1(st.progress); } }); else p1(1);
+  addEventListener('resize', function () { p1(Math.max(0, pk) / 3); });
+
+  /* ---------- T1 ---------- */
+  var start = Date.UTC(2025, 10, 1), end = Date.UTC(2026, 10, 30), now = Date.now(), t = Math.max(0, Math.min(1, (now - start) / (end - start)));
+  var daysLeft = Math.max(0, Math.ceil((end - now) / 864e5)), rule = $('#t1Rule'), MON = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+  MON.forEach(function (mn, i) {
+    var at = (Date.UTC(2025, 10 + i, 1) - start) / (end - start), pct = Math.min(1, at) * 100, isNow = new Date(now).getUTCMonth() === (10 + i) % 12 && new Date(now).getUTCFullYear() === 2025 + Math.floor((10 + i) / 12);
+    rule.insertAdjacentHTML('beforeend', '<i class="t1Tick"' + (at <= t ? ' data-past' : '') + ' style="left:' + pct + '%"></i><span class="t1Mon"' + (isNow ? ' data-now' : '') + ' style="left:' + pct + '%">' + mn + (i === 0 || i === 2 || i === 12 ? ' ' + (i < 2 ? '25' : '26') : '') + '</span>');
+  });
+  var d = new Date(now), lbl = 'Today · ' + d.getUTCDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getUTCMonth()];
+  $('#t1TodayLbl').textContent = t >= 1 ? 'Cohort complete' : lbl; if (t > 0.8) $('#t1TodayLbl').style.transform = 'translateX(-88%)'; // keep the label inside the box near the end $('#t1DaysLbl').textContent = daysLeft === 1 ? 'day to close' : 'days to close';
+  function t1(play) {
+    var todayEl = $('#t1Today');
+    if (!G || !play) { $('#t1Fill').style.transform = 'scaleX(' + t + ')'; todayEl.style.left = (t * 100) + '%'; $('#t1Days').textContent = daysLeft; return; }
+    var o = { v: 0 };
+    gsap.to('#t1Fill', { scaleX: t, duration: 1.8, ease: 'expo.out' });
+    gsap.fromTo(todayEl, { left: '0%' }, { left: (t * 100) + '%', duration: 1.8, ease: 'expo.out' });
+    gsap.to(o, { v: daysLeft, duration: 1.6, ease: 'power3.out', onUpdate: function () { $('#t1Days').textContent = Math.round(o.v); } });
+  }
+  if (G) ScrollTrigger.create({ trigger: '#t1Box', start: 'top 80%', once: true, onEnter: function () { t1(true); } }); else t1(false);
+})();
+</script>
