@@ -458,6 +458,48 @@ a.s_btn, button.s_btn { will-change: transform; }
 .a_hmw { font-size: clamp(1.375rem, 2vw, 2.125rem); font-weight: 300; line-height: 1.3; letter-spacing: -.015em; color: #fff; min-height: 5.2em; }
 .a_hmw span { color: var(--io); }
 /* nine areas: one line from the soil to the supply chain; pick a stop to read it */
+/* ---------------- N1 · 3D field, clay style like the homepage helix and site model ---------------- */
+.n1Stage { display: none; position: relative; height: clamp(340px, 31vw, 500px); background: radial-gradient(120% 90% at 50% 0%, #fbfbfa 0%, #f1f1f1 70%); border-radius: 4px; overflow: hidden; touch-action: pan-y; }
+.n1Stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.n1Hots { position: absolute; inset: 0; pointer-events: none; }
+/* names: small fixed pills, never move or grow; hover/click works on the 3D objects themselves */
+.n1Stage { height: clamp(440px, 40vw, 600px); cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%23ffffff' fill-opacity='.92' stroke='%23595453' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23595453' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grab; }
+.n1Stage.dragging { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%231a6f96' stroke='%231a6f96' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23ffffff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grabbing; }
+.n1Stage.onObj { cursor: pointer; }
+.nm { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+.nm span { position: absolute; left: 0; bottom: 6px; transform: translateX(-50%); white-space: nowrap; font-size: .75rem; font-weight: 500; color: var(--grey-ink); background: rgba(255,255,255,.92); border-radius: 999px; padding: 4px 10px; box-shadow: 0 3px 10px rgba(38,36,35,.08); transition: color .35s, background .35s, opacity .35s; }
+.nm[data-row="1"] span { bottom: 34px; }
+.nm[data-row="1"] i { position: absolute; left: 0; bottom: 6px; width: 1px; height: 28px; background: rgba(89,84,83,.25); }
+.nm[data-on] span { color: #fff; background: var(--io-ink); }
+.nm[data-dim] span { opacity: .45; }
+/* one info card, always in the same corner, so the eye never has to chase it */
+.n1Card { position: absolute; z-index: 4; left: 16px; bottom: 16px; width: min(380px, calc(100% - 32px)); padding: 20px 22px 18px; background: rgba(255,255,255,.94); border-radius: 16px; box-shadow: 0 14px 40px rgba(38,36,35,.12); cursor: default; }
+.n1Card small { display: block; font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--gd, var(--io-ink)); }
+.n1Card h3 { margin-top: 8px; font-size: 1.375rem; font-weight: 300; letter-spacing: -.02em; line-height: 1.2; color: var(--charcoal); }
+.n1Card p { margin-top: 8px; font-size: .9375rem; line-height: 1.55; color: var(--grey-ink); }
+.n1Ctl { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+.n1Ctl button { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: .75rem; font-weight: 500; color: var(--charcoal); transition: background .3s, color .3s, border-color .3s; }
+.n1Ctl button:hover { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
+.n1Ctl button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.n1Ctl .n1Arrow { width: 36px; padding: 0; }
+.n1Ctl .n1Main { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
+.n1Ctl .n1Main:hover { background: var(--charcoal); border-color: var(--charcoal); }
+.n1Ctl em { margin-left: auto; font-style: normal; font-size: .75rem; color: var(--grey); font-variant-numeric: tabular-nums; }
+.n1Groups { position: absolute; z-index: 4; top: 16px; left: 16px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none; }
+.n1Groups span { display: inline-flex; align-items: center; height: 28px; padding: 0 11px; border-radius: 999px; background: rgba(255,255,255,.85); font-size: .6875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); transition: color .4s, background .4s; }
+.n1Groups span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; background: var(--gc); }
+.n1Groups span:nth-child(1), .gTag[data-g="0"] { --gc: #8fb07c; --gd: #5f8a4c; } .n1Groups span:nth-child(2), .gTag[data-g="1"] { --gc: #d0a96f; --gd: #a77b3d; } .n1Groups span:nth-child(3), .gTag[data-g="2"] { --gc: #86aac6; --gd: #4f7ea3; }
+.n1Groups span[data-on] { color: #fff; background: var(--gd); } .n1Groups span[data-on]::before { background: #fff; }
+.gTag { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; z-index: 2; }
+.gTag span { position: absolute; left: 0; top: 6px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: .6875rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--gd); background: rgba(255,255,255,.9); border-radius: 999px; padding: 5px 12px; box-shadow: 0 3px 10px rgba(38,36,35,.06); transition: background .4s, color .4s; }
+.gTag span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gc); }
+.gTag em { font-style: normal; letter-spacing: .04em; text-transform: none; font-weight: 400; color: var(--grey); }
+.gTag[data-on] span { background: var(--gd); color: #fff; } .gTag[data-on] span::before { background: #fff; } .gTag[data-on] em { color: rgba(255,255,255,.8); }
+.n1Stage.zoomed .gTag { opacity: .0; }
+
+.a_n1.is3d .n1Stage { display: block; } .a_n1.is3d .a_chain { display: none; }
+.n1Stage .mask { display: block; overflow: hidden; }
+@media (max-width: 900px) { .n1Stage { height: 640px; } .n1Groups { display: none; } }
 .a_stops { position: relative; display: grid; grid-template-columns: repeat(9, minmax(0,1fr)); }
 .a_line { position: absolute; left: calc(100% / 18); right: calc(100% / 18); top: 23px; height: 1px; background: #d9dadb; }
 .a_line i { position: absolute; inset: 0; background: var(--io-ink); transform: scaleX(var(--p, 0)); transform-origin: left; transition: transform .9s var(--slow); }
@@ -1093,8 +1135,18 @@ a.s_btn, button.s_btn { will-change: transform; }
     </div>
   </div></section>
 
-  <section class="x_sec"><div class="s_wrap">
+  <section class="x_sec"><div class="s_wrap a_n1" id="areasWrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>Technologies &amp; approaches we’re prioritizing</span><h2 class="x_h2" data-reveal>Nine areas, from the soil to the supply chain.</h2></div><p class="x_body" data-reveal>Hover or tap an area to read what we look for.</p></div>
+  <div class="n1Stage" id="n1Stage">
+    <div class="n1Hots" id="n1Hots"></div>
+    <div class="n1Groups" id="n1Groups" aria-hidden="true"><span data-on>Growing &amp; production</span><span>Waste</span><span>Supply chain</span></div>
+    <div class="n1Card" id="n1Card" aria-live="polite">
+      <small class="mask"><span id="n1Group">Growing &amp; production</span></small>
+      <h3 class="mask"><span id="n1Title">Soil &amp; Plant Health Inputs &amp; Amendments</span></h3>
+      <p class="mask"><span id="n1Text">Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.</span></p>
+      <div class="n1Ctl"><button class="n1Arrow" id="n1Prev" type="button" aria-label="Previous area">←</button><button class="n1Arrow" id="n1Next" type="button" aria-label="Next area">→</button><button class="n1Main" id="n1Zoom" type="button">Take a closer look</button><em id="n1Count">1 / 9</em></div>
+    </div>
+      </div>
     <div class="a_chain" id="chain">
       <div class="a_stops" role="tablist" aria-label="Nine priority areas"><div class="a_line" aria-hidden="true"><i id="chainFill"></i></div><button class="a_stop" role="tab" type="button" aria-selected="true" tabindex="0"><b aria-hidden="true"></b><span>Soil &amp; plant health</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Crop innovation</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Controlled environment</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Precision agriculture</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Water &amp; energy</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Waste circularity</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Waste prevention</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Supply chain data</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Supply chain analytics</span></button></div>
       <div class="a_groupsBar" aria-hidden="true"><div style="grid-column:1 / span 5" data-on>Growing &amp; production</div><div style="grid-column:6 / span 2">Waste</div><div style="grid-column:8 / span 2">Supply chain</div></div>
@@ -1453,7 +1505,199 @@ function creta(host) {
   return {};
 }
 
-window.IO3D = { field, creta };
+/* ===== Accelerator, nine areas: three tinted islands of clay scenes; hover = preview, click = fly in ===== */
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+function areas(stage, opts) {
+const AREAS = [
+  ['Growing & production', 'Soil & Plant Health Inputs & Amendments', 'Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.', 'Soil & plant health'],
+  ['Growing & production', 'Crop Innovation', 'Novel crop varieties, breeding techniques, and seed technologies adapted for heat, water scarcity, and desert-climate growing.', 'Crop innovation'],
+  ['Growing & production', 'Controlled Environment Agriculture', 'Advanced greenhouse, vertical farming, and indoor cultivation systems that maximize yield while minimizing water and energy inputs.', 'Controlled environment'],
+  ['Growing & production', 'Precision Agriculture', 'Sensor networks, AI-driven analytics, and data platforms that optimize resource allocation and decision-making at the field level.', 'Precision agriculture'],
+  ['Growing & production', 'Water & Energy Management Solutions', 'Irrigation efficiency, water recycling, renewable energy integration, and resource monitoring across agricultural operations.', 'Water & energy'],
+  ['Waste', 'Waste Circularity', 'Technologies and platforms that recover, repurpose, or redistribute agricultural and food waste into valuable inputs.', 'Waste circularity'],
+  ['Waste', 'Waste Prevention', 'Cold chain optimization, shelf-life extension, and AI-driven supply and demand matching.', 'Waste prevention'],
+  ['Supply chain', 'Supply Chain Data Platforms', 'Core data infrastructure, IoT-enabled systems, and digital platforms across agricultural value chains.', 'Supply chain data'],
+  ['Supply chain', 'Supply Chain Analytics', 'Analytics, AI, and traceability tools that forecast demand and enhance end-to-end supply chain performance.', 'Supply chain analytics']];
+const hotsEl = stage.querySelector('.n1Hots'), groupsEl = [...stage.querySelectorAll('.n1Groups span')], $ = q => stage.querySelector(q), swap = opts.swap;
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { renderer = null; }
+if (!renderer) return null;
+{
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  stage.prepend(renderer.domElement);
+  const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(26, 2, 0.1, 200);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xd9d6d0, 1.7));
+  const sun = new THREE.DirectionalLight(0xffffff, 2.2); sun.position.set(-8, 18, 12); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 10, bottom: -10, near: 1, far: 60 }); sun.shadow.radius = 6; sun.shadow.bias = -0.0004; scene.add(sun);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(120, 60), new THREE.ShadowMaterial({ opacity: 0.08 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -0.36; floor.receiveShadow = true; scene.add(floor);
+
+  // clay palette: base white, quiet grey details, IO blue for the active scene
+  const C = { clay: 0xf6f5f2, soil: 0xd8ccbb, soil2: 0xc4b39c, grey: 0xd9dadb, dark: 0xb9bbbc, blue: 0x3ca7d2, ink: 0x1a6f96, glass: 0xeef6f9 };
+  const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
+  const rbox = (w, h, d, r, m) => { const g = new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)); const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
+  const mesh = (g, m) => { const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
+  const SP = 3.6, GAP = 1.6, grpOf = i => (i < 5 ? 0 : i < 7 ? 1 : 2);
+  const X = i => (i - 4) * SP + (i >= 5 ? GAP : 0) + (i >= 7 ? GAP : 0) - (GAP * 2 + GAP * 4) / 9; // a gap between groups
+  const GRP = [{ tile: 0xe7eee0, island: 0xd3e1c8 }, { tile: 0xf3e9db, island: 0xe7d5bc }, { tile: 0xe3ecf3, island: 0xcbdbe8 }];
+  const scenes = [];
+  function make(i, build) {
+    const g = new THREE.Group(), lift = new THREE.Group(), accents = [], base = mat(C.clay);
+    g.position.x = X(i); g.add(lift);
+    const add = (o, accent) => { lift.add(o); if (accent) accents.push(o); return o; };
+    build({ add, base, mat, rbox, mesh, C });
+    accents.forEach(o => { o.material = o.material.clone(); o.userData.c0 = o.material.color.clone(); });
+    // tile it stands on
+    const tile = rbox(3.1, 0.24, 3.1, 0.12, mat(GRP[grpOf(i)].tile)); tile.position.y = -0.24; g.add(tile);
+    scene.add(g); scenes.push({ g, lift, accents, top: new THREE.Vector3(X(i), 2.6, 0) });
+  }
+  const leaf = (m) => { const l = mesh(new THREE.SphereGeometry(0.22, 18, 12), m); l.scale.set(1, 0.32, 0.55); return l; };
+  const sprout = (add, m, x, z, h, s) => {
+    const st = mesh(new THREE.CylinderGeometry(0.035 * s, 0.045 * s, h, 8), mat(C.dark)); st.position.set(x, h / 2, z); add(st);
+    const l1 = leaf(m); l1.scale.multiplyScalar(s); l1.position.set(x - 0.17 * s, h * 0.82, z); l1.rotation.z = 0.5; add(l1, true);
+    const l2 = leaf(m); l2.scale.multiplyScalar(s); l2.position.set(x + 0.17 * s, h, z); l2.rotation.z = -0.5; add(l2, true);
+  };
+  // 1 soil & plant health: a cut block of soil in layers, roots, a seedling on top
+  make(0, ({ add, mat, rbox, C }) => {
+    const l1 = rbox(2.4, 0.42, 2.0, 0.08, mat(C.soil2)); l1.position.y = 0.21; add(l1);
+    const l2 = rbox(2.4, 0.36, 2.0, 0.08, mat(C.soil)); l2.position.y = 0.6; add(l2);
+    const l3 = rbox(2.4, 0.22, 2.0, 0.08, mat(0xece8e1)); l3.position.y = 0.88; add(l3);
+    for (let k = 0; k < 7; k++) { const p = mesh(new THREE.SphereGeometry(0.06, 10, 8), mat(C.dark)); p.position.set(-0.9 + k * 0.3, 0.32 + (k % 3) * 0.16, 1.0); add(p, true); }
+    sprout(add, mat(C.grey), 0, 0, 0.9, 1.4); scenes.length; // seedling
+  });
+  // 2 crop innovation: rows of young plants
+  make(1, ({ add, mat }) => { for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) sprout((o, a) => { o.position.y += 0; return add(o, a); }, mat(C.grey), -0.8 + c * 0.8, -0.8 + r * 0.8, 0.55 + ((r + c) % 2) * 0.2, 1); });
+  // 3 controlled environment: a greenhouse tunnel with ribs and benches inside
+  make(2, ({ add, mat, rbox, mesh, C }) => {
+    const shell = mesh(new THREE.CylinderGeometry(1.15, 1.15, 2.6, 32, 1, true, 0, Math.PI), mat(C.glass, { transparent: true, opacity: 0.55, side: THREE.DoubleSide, roughness: 0.3 })); shell.rotation.set(0, Math.PI / 2, Math.PI / 2); // tunnel along z, arch up shell.position.y = 0.02; add(shell, true);
+    for (let k = 0; k < 4; k++) { const rib = mesh(new THREE.TorusGeometry(1.15, 0.035, 8, 32, Math.PI), mat(C.clay)); rib.position.set(0, 0.02, -1.2 + k * 0.8); add(rib); }
+    for (let k = 0; k < 2; k++) { const bench = rbox(0.5, 0.3, 2.2, 0.06, mat(C.clay)); bench.position.set(-0.45 + k * 0.9, 0.15, 0); add(bench); for (let j = 0; j < 4; j++) { const b = mesh(new THREE.SphereGeometry(0.12, 12, 8), mat(C.grey)); b.position.set(-0.45 + k * 0.9, 0.38, -0.8 + j * 0.53); add(b, true); } }
+  });
+  // 4 precision agriculture: a sensor mast with signal rings over a small field
+  make(3, ({ add, mat, rbox, mesh, C }) => {
+    for (let r = 0; r < 4; r++) { const row = rbox(2.2, 0.12, 0.28, 0.05, mat(0xe6e2da)); row.position.set(0, 0.06, -0.9 + r * 0.6); add(row); }
+    const pole = mesh(new THREE.CylinderGeometry(0.05, 0.06, 2.0, 10), mat(C.dark)); pole.position.y = 1.0; add(pole);
+    const head = rbox(0.42, 0.26, 0.42, 0.08, mat(C.clay)); head.position.y = 2.05; add(head);
+    for (let k = 0; k < 2; k++) { const ring = mesh(new THREE.TorusGeometry(0.42 + k * 0.28, 0.025, 8, 40), mat(C.grey)); ring.rotation.x = Math.PI / 2; ring.position.y = 2.05; add(ring, true); }
+  });
+  // 5 water & energy: a solar panel and a water tank with a pipe
+  make(4, ({ add, mat, rbox, mesh, C }) => {
+    const panel = rbox(1.5, 0.08, 1.0, 0.04, mat(C.grey)); panel.position.set(-0.45, 1.0, -0.2); panel.rotation.x = -0.6; add(panel, true);
+    const leg = mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.95, 8), mat(C.dark)); leg.position.set(-0.45, 0.47, -0.2); add(leg);
+    const tank = mesh(new THREE.CylinderGeometry(0.45, 0.45, 1.1, 28), mat(C.clay)); tank.position.set(0.75, 0.55, 0.45); add(tank);
+    const lid = mesh(new THREE.SphereGeometry(0.45, 28, 12, 0, Math.PI * 2, 0, Math.PI / 2), mat(C.clay)); lid.position.set(0.75, 1.1, 0.45); add(lid);
+    const pipe = mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.5, 10), mat(C.grey)); pipe.rotation.z = Math.PI / 2; pipe.position.set(0, 0.1, 1.0); add(pipe, true);
+    const drop = mesh(new THREE.SphereGeometry(0.16, 16, 12), mat(C.grey)); drop.scale.set(1, 1.3, 1); drop.position.set(0.75, 1.75, 0.45); add(drop, true);
+  });
+  // 6 waste circularity: a compost bin with a loop arrow above it
+  make(5, ({ add, mat, rbox, mesh, C }) => {
+    const bin = rbox(1.3, 0.9, 1.1, 0.12, mat(C.clay)); bin.position.y = 0.45; add(bin);
+    const fill = rbox(1.1, 0.12, 0.9, 0.05, mat(C.soil2)); fill.position.y = 0.92; add(fill);
+    const loop = mesh(new THREE.TorusGeometry(0.55, 0.06, 10, 48, Math.PI * 1.6), mat(C.grey)); loop.position.y = 1.85; loop.rotation.z = 0.5; add(loop, true);
+    const tip = mesh(new THREE.ConeGeometry(0.14, 0.26, 16), mat(C.grey)); tip.position.set(0.55 * Math.cos(0.5 + Math.PI * 1.6), 1.85 + 0.55 * Math.sin(0.5 + Math.PI * 1.6), 0); tip.rotation.z = 0.5 + Math.PI * 1.6; add(tip, true);
+  });
+  // 7 waste prevention: chilled crates of produce
+  make(6, ({ add, mat, rbox, mesh, C }) => {
+    for (let k = 0; k < 3; k++) { const cr = rbox(1.0, 0.5, 0.8, 0.07, mat(C.clay)); cr.position.set(k === 2 ? 0 : -0.55 + k * 1.1, k === 2 ? 0.75 : 0.25, k === 2 ? 0 : 0.2); add(cr); for (let j = 0; j < 3; j++) { const f = mesh(new THREE.SphereGeometry(0.13, 14, 10), mat(C.grey)); f.position.set(cr.position.x - 0.28 + j * 0.28, cr.position.y + 0.3, cr.position.z); add(f, true); } }
+    const flake = mesh(new THREE.OctahedronGeometry(0.22), mat(C.grey)); flake.position.set(0.85, 1.6, 0); add(flake, true);
+  });
+  // 8 supply chain data: a truck with data cubes floating above
+  make(7, ({ add, mat, rbox, mesh, C }) => {
+    const body = rbox(1.7, 0.9, 0.95, 0.1, mat(C.clay)); body.position.set(-0.25, 0.65, 0); add(body);
+    const cab = rbox(0.7, 0.7, 0.9, 0.12, mat(C.clay)); cab.position.set(0.95, 0.55, 0); add(cab);
+    const win = rbox(0.06, 0.28, 0.7, 0.03, mat(C.grey)); win.position.set(1.3, 0.7, 0); add(win, true);
+    [[-0.8, 0.5], [-0.8, -0.5], [0.95, 0.5], [0.95, -0.5]].forEach(([x, z]) => { const w = mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.14, 20), mat(C.dark)); w.rotation.x = Math.PI / 2; w.position.set(x, 0.2, z); add(w); });
+    for (let k = 0; k < 3; k++) { const c = rbox(0.28, 0.28, 0.28, 0.06, mat(C.grey)); c.position.set(-0.6 + k * 0.6, 1.65 + (k % 2) * 0.25, 0); c.userData.bob = k; add(c, true); }
+  });
+  // 9 supply chain analytics: a warehouse and a bar chart in front of it
+  make(8, ({ add, mat, rbox, mesh, C }) => {
+    const wh = rbox(1.7, 1.1, 1.2, 0.08, mat(C.clay)); wh.position.set(0.25, 0.55, -0.45); add(wh);
+    const sh = new THREE.Shape(); sh.moveTo(-0.9, 0); sh.lineTo(0.9, 0); sh.lineTo(0, 0.5); sh.closePath(); const rg = new THREE.ExtrudeGeometry(sh, { depth: 1.2, bevelEnabled: false }); rg.translate(0, 0, -0.6); const roof = mesh(rg, mat(C.clay)); roof.position.set(0.25, 1.1, -0.45); add(roof);
+    const door = rbox(0.5, 0.6, 0.05, 0.03, mat(C.grey)); door.position.set(0.25, 0.3, 0.17); add(door);
+    [0.45, 0.8, 1.2].forEach((h, k) => { const bar = rbox(0.22, h, 0.22, 0.05, mat(C.grey)); bar.position.set(-1.0 + k * 0.32, h / 2, 0.85); add(bar, true); });
+  });
+
+  // one island per group, tinted, so the three groups read at a glance
+  const ISL = [[0, 4], [5, 6], [7, 8]].map(([a, b], k) => {
+    const cx = (X(a) + X(b)) / 2, w = X(b) - X(a) + 3.9, isl = rbox(w, 0.34, 4.1, 0.2, mat(GRP[k].island)); isl.position.set(cx, -0.5, 0); scene.add(isl);
+    const lab = document.createElement('div'); lab.className = 'gTag'; lab.dataset.g = k; lab.innerHTML = '<span>' + ['Growing &amp; production', 'Waste', 'Supply chain'][k] + '<em>' + (b - a + 1) + ' areas</em></span>'; hotsEl.appendChild(lab);
+    return { pos: new THREE.Vector3(cx, -0.5, 2.3), lab };
+  });
+  // fixed name tags (alternate heights so neighbours never collide)
+  const tags = AREAS.map((a, i) => { const t = document.createElement('div'); t.className = 'nm'; t.dataset.row = i % 2; t.innerHTML = '<i></i><span>' + a[3] + '</span>'; hotsEl.appendChild(t); return t; });
+  // every mesh knows which scene it belongs to, for hover and click straight on the 3D
+  const hitList = []; scenes.forEach((s, i) => s.g.traverse(o => { if (o.isMesh) { o.userData.scene = i; hitList.push(o); } }));
+  let sel = -1, hov = -1, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false, zoom = 0, zoomK = 0;
+  const grp = i => (i < 5 ? 0 : i < 7 ? 1 : 2), card = $('#n1Card'), zoomBtn = $('#n1Zoom');
+  function show(i) {
+    if (i === sel) return; sel = i;
+    tags.forEach((t, k) => k === i ? t.setAttribute('data-on', '') : t.removeAttribute('data-on'));
+    groupsEl.forEach((g, k) => k === grp(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'));
+    scenes.forEach((s, k) => {
+      const on = k === i;
+      if (G) gsap.to(s.lift.position, { y: on ? 0.32 : 0, duration: 0.9, ease: on ? 'back.out(2.2)' : 'power3.out' }); else s.lift.position.y = on ? 0.32 : 0;
+      s.accents.forEach(o => { const to = on ? new THREE.Color(C.blue) : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); });
+    });
+    card.style.setProperty('--gd', ['#5f8a4c', '#a77b3d', '#4f7ea3'][grp(i)]);
+    swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]);
+    $('#n1Count').textContent = (i + 1) + ' / 9';
+    if (zoom || focus) camTX = X(i);
+  }
+  function zoomTo(i) { show(i); camTX = X(i); zoom = 1; stage.classList.add('zoomed'); zoomBtn.textContent = '← All nine areas'; }
+  function zoomOut() { zoom = 0; stage.classList.remove('zoomed'); zoomBtn.textContent = 'Take a closer look'; }
+  zoomBtn.addEventListener('click', () => zoom ? zoomOut() : zoomTo(sel));
+  $('#n1Prev').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 8) % 9));
+  $('#n1Next').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 1) % 9));
+  stage.addEventListener('keydown', e => { if (e.key === 'ArrowRight') $('#n1Next').click(); if (e.key === 'ArrowLeft') $('#n1Prev').click(); if (e.key === 'Escape' && zoom) zoomOut(); });
+  // pointer: hover a scene = preview it; click a scene = fly in; drag empty space = look around
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  function hit(e) { const r = renderer.domElement.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(hitList, false)[0]; return h ? h.object.userData.scene : -1; }
+  let px = null, moved = false;
+  renderer.domElement.addEventListener('pointerdown', e => { px = e.clientX; moved = false; });
+  addEventListener('pointerup', e => { if (px !== null && !moved && e.target === renderer.domElement) { const i = hit(e); if (i >= 0) zoomTo(i); } px = null; dragT = 0; stage.classList.remove('dragging'); });
+  addEventListener('pointermove', e => {
+    if (px !== null) { if (Math.abs(e.clientX - px) > 5) { moved = true; stage.classList.add('dragging'); } dragT = Math.max(-1, Math.min(1, (e.clientX - px) / 300)); return; }
+    if (e.target !== renderer.domElement) { if (hov !== -1) { hov = -1; stage.classList.remove('onObj'); } return; }
+    const i = hit(e); stage.classList.toggle('onObj', i >= 0);
+    if (i !== hov) { hov = i; if (i >= 0 && fine) show(i); }
+  });
+  renderer.domElement.addEventListener('pointerleave', () => { hov = -1; stage.classList.remove('onObj'); });
+
+  // camera: whole strip on wide screens, follow the selected scene on narrow ones or when zoomed
+  const target = new THREE.Vector3(), v = new THREE.Vector3();
+  function resize() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); focus = camera.aspect < 1.5; }
+  addEventListener('resize', resize); resize();
+  let visible = false, intro = { k: 0 };
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) resize(); }, { rootMargin: '200px' }).observe(stage);
+  const clock = new THREE.Clock();
+  function frame() {
+    requestAnimationFrame(frame); if (!visible) return;
+    const tm = clock.getElapsedTime();
+    drag += (dragT - drag) * 0.08;
+    zoomK += (zoom - zoomK) * (reduce ? 1 : 0.05);
+    camX += (((focus || zoom) ? camTX : 0) - camX) * (reduce ? 1 : 0.05);
+    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 22 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 11 : 15;
+    const dist = far + (near - far) * zoomK, ang = 0.62 - zoomK * 0.16, yaw = drag * (0.5 + zoomK * 0.6) + (fine && !zoom ? Math.sin(tm * 0.15) * 0.03 : 0);
+    // objects sit a little above centre so the info card in the lower-left corner never covers them
+    target.set(camX + (focus ? 0 : -zoomK * 1.4), (focus ? -0.4 : -1.8) + zoomK * 2.0, 0);
+    camera.position.set(target.x + Math.sin(yaw) * dist * Math.cos(ang), target.y + Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
+    camera.lookAt(target);
+    scenes.forEach(s => s.lift.children.forEach(o => { if (o.userData.bob !== undefined && !reduce) o.position.y = 1.65 + (o.userData.bob % 2) * 0.25 + Math.sin(tm * 1.6 + o.userData.bob) * 0.06; }));
+    renderer.render(scene, camera);
+    const w = stage.clientWidth, h = stage.clientHeight;
+    ISL.forEach(o => { v.copy(o.pos).project(camera); o.lab.style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * h) + 'px)'; o.lab.toggleAttribute('data-on', grp(sel) === +o.lab.dataset.g); });
+    scenes.forEach((s, i) => { v.copy(s.top); v.y += s.lift.position.y; v.project(camera); const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h; tags[i].style.transform = 'translate(' + x + 'px,' + y + 'px)'; tags[i].style.visibility = x < 30 || x > w - 30 ? 'hidden' : 'visible'; zoom && i !== sel ? tags[i].setAttribute('data-dim', '') : tags[i].removeAttribute('data-dim'); });
+  }
+  show(0); if (focus) camX = camTX; frame(); // phones start on the first scene, no fly-over on load
+  // entrance: scenes rise in one by one; no auto-cycle, the visitor leads
+  scenes.forEach(s => s.g.scale.setScalar(G ? 0.001 : 1));
+  const enter = () => { if (G) { scenes.forEach((s, k) => gsap.to(s.g.scale, { x: 1, y: 1, z: 1, duration: 1, delay: 0.08 * k, ease: 'back.out(1.7)' })); gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out' }); } };
+  if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: stage, start: 'top 75%', once: true, onEnter: enter }); else enter();
+}
+  return {};
+}
+
+window.IO3D = { field, creta, areas };
 dispatchEvent(new Event('io3d'));
 
 </script>
@@ -1895,7 +2139,12 @@ dispatchEvent(new Event('io3d'));
       b.addEventListener('focus', function () { stopAuto(); pickArea(i); });
       b.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0; if (!d) return; e.preventDefault(); stopAuto(); pickArea((i + d + 9) % 9, true); });
     });
+    // 3D nine areas (clay islands) replace the line when WebGL is there
+    var n13d = null;
+    function mountAreas() { if (n13d || !window.IO3D) return; var wrap = $('#areasWrap', view); wrap.classList.add('is3d'); n13d = IO3D.areas($('#n1Stage', view), { swap: swap }); if (n13d) { stopAuto(); if (G) ScrollTrigger.refresh(); } else wrap.classList.remove('is3d'); }
+    mountAreas(); addEventListener('io3d', mountAreas);
     if (G && !reduce) ScrollTrigger.create({ trigger: '#chain', start: 'top 75%', once: true, onEnter: function () {
+      if (n13d) return;
       gsap.from($$('.a_stop b', view), { opacity: 0, y: 16, duration: 0.8, stagger: 0.06, ease: 'expo.out' });
       gsap.from($('.a_line', view), { scaleX: 0, transformOrigin: 'left', duration: 1.4, ease: 'expo.out' });
       auto = setInterval(function () { pickArea((sel + 1) % 9); }, 4000);
