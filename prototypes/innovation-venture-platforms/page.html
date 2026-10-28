@@ -401,6 +401,9 @@ a.s_btn, button.s_btn { will-change: transform; }
 .i_kd li[data-s="now"] p { color: var(--grey-ink); }
 .i_kd .tag { display: inline-flex; align-items: center; height: 24px; margin-left: 10px; padding: 0 10px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: .6875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey-ink); vertical-align: middle; }
 .i_kd li[data-s="now"] .tag { border-color: var(--io-ink); color: var(--io-ink); }
+.i_successSec { background: #595453; }
+.i_successSec .x_statement { color: #fff; } .i_successSec .x_statement b { color: #8fd3f0; }
+.i_successSec .s_textLink, .i_successSec .s_textLink:hover { color: #fff; border-color: rgba(255,255,255,.5); }
 .i_success { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: end; }
 .i_success .x_statement { grid-column: 1 / span 9; }
 .i_success .s_textLink { grid-column: 10 / span 3; justify-self: end; }
@@ -1077,8 +1080,8 @@ a.s_btn, button.s_btn { will-change: transform; }
     </div>
   </div></section>
 
-  <section class="x_sec x_grey"><div class="s_wrap i_success">
-    <p class="x_statement" data-scrub>Success means at least one project becomes <b>jointly-owned IP, a commercial or scaled deployment, or further investment.</b></p>
+  <section class="x_sec i_successSec"><div class="s_wrap i_success">
+    <p class="x_statement" data-scrub data-from="rgba(255,255,255,.28)">Success means at least one project becomes <b>jointly-owned IP, a commercial or scaled deployment, or further investment.</b></p>
     <a href="#" class="s_textLink">Agri Robotics &amp; AI centre <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div></section>
   <a class="x_next" href="#accelerator"><div class="x_nextBg"><img src="{{IMG}}acc_green.webp" alt="" loading="lazy"></div><div class="s_wrap x_nextIn"><span><span class="x_label">Next platform</span>03 / 04</span><strong>Accelerator</strong><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M6 24h34M28 11l13 13-13 13" stroke="currentColor" stroke-width="1.5"/></svg></div></a>
@@ -1792,7 +1795,7 @@ dispatchEvent(new Event('io3d'));
       if (el.__sc) return; el.__sc = 1;
       var split = SplitText.create(el, { type: 'words', aria: 'none' }), words = split.words;
       words.forEach(function (w) { w.__c = getComputedStyle(w).color; });
-      gsap.set(words, { color: '#c6c8c9' });
+      gsap.set(words, { color: el.dataset.from || '#c6c8c9' });
       gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 48%', scrub: 0.6 } })
         .to(words, { color: function (i, w) { return w.__c; }, stagger: 0.08, ease: 'none', duration: 0.4 });
     });
