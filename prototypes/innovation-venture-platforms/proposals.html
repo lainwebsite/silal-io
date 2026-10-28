@@ -25,34 +25,30 @@ button { font: inherit; }
 .head h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; margin-top: 16px; }
 .head p { color: var(--grey-ink); line-height: 1.65; }
 
-/* ---------------- N1 · field cross-section ---------------- */
-.n1Scroll { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-.n1Scroll::-webkit-scrollbar { display: none; }
-.n1Art { position: relative; min-width: 880px; }
-.n1Art svg { display: block; width: 100%; height: auto; overflow: visible; }
-.n1Art .ln { fill: none; stroke: #b9bbbc; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; transition: stroke .5s; }
-.n1Art .soil { fill: #b9bbbc; transition: fill .5s; }
-.n1Art g[data-on] .ln { stroke: var(--ink); }
-.n1Art g[data-on] .soil { fill: var(--ink); }
-.n1Art .ground { stroke: var(--char); stroke-width: 1.2; }
-.hot { all: unset; position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; }
-.hot::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 1.5px solid var(--char); transition: background .4s, border-color .4s, transform .5s var(--slow); }
+/* ---------------- N1 · 3D field, clay style like the homepage helix and site model ---------------- */
+.n1Stage { position: relative; height: clamp(340px, 31vw, 500px); background: radial-gradient(120% 90% at 50% 0%, #fbfbfa 0%, #f1f1f1 70%); border-radius: 4px; overflow: hidden; touch-action: pan-y; }
+.n1Stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.n1Hots { position: absolute; inset: 0; pointer-events: none; }
+.hot { all: unset; pointer-events: auto; position: absolute; left: 0; top: 0; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; will-change: transform; }
+.hot::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 1.5px solid var(--char); box-shadow: 0 2px 8px rgba(38,36,35,.18); transition: background .4s, border-color .4s, transform .5s var(--slow); }
 .hot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--io); opacity: 0; transform: scale(.4); }
 .hot:hover::before { transform: scale(1.25); }
 .hot[aria-selected="true"]::before { background: var(--ink); border-color: var(--ink); transform: scale(1.35); }
 .hot[aria-selected="true"]::after { animation: ping 2.2s ease-out infinite; }
 .hot:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
-.hot span { position: absolute; left: 50%; top: calc(100% + 4px); transform: translateX(-50%); white-space: nowrap; font-size: .75rem; color: var(--grey-ink); opacity: 0; transition: opacity .3s; pointer-events: none; }
+.hot span { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); white-space: nowrap; font-size: .75rem; font-weight: 500; color: var(--char); background: #fff; border-radius: 999px; padding: 4px 10px; box-shadow: 0 4px 14px rgba(38,36,35,.12); opacity: 0; transition: opacity .3s; pointer-events: none; }
 .hot:hover span, .hot[aria-selected="true"] span { opacity: 1; }
-.hot[aria-selected="true"] span { color: var(--ink); }
+.hot[aria-selected="true"] span { color: #fff; background: var(--ink); }
 @keyframes ping { 0% { opacity: .8; transform: scale(.4); } 100% { opacity: 0; transform: scale(1.6); } }
-.n1Groups { position: relative; min-width: 880px; height: 44px; margin-top: 8px; }
-.n1Groups div { position: absolute; top: 0; padding-top: 12px; border-top: 1px solid #cfd0d1; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); transition: color .4s, border-color .4s; }
-.n1Groups div[data-on] { color: var(--ink); border-color: var(--ink); }
-.n1Detail { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 16px 48px; align-items: start; margin-top: clamp(28px, 3vw, 48px); padding-top: 28px; border-top: 1px solid var(--line); min-height: 170px; }
+.n1Hint { position: absolute; left: 20px; bottom: 16px; font-size: .6875rem; color: #a3a5a6; letter-spacing: .02em; pointer-events: none; }
+.n1Groups { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.n1Groups span { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); transition: color .4s, border-color .4s, background .4s; }
+.n1Groups span[data-on] { color: #fff; background: var(--ink); border-color: var(--ink); }
+.n1Detail { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 16px 48px; align-items: start; margin-top: clamp(24px, 3vw, 40px); padding-top: 28px; border-top: 1px solid var(--line); min-height: 170px; }
 .n1Detail small { display: block; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; }
 .n1Detail h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; color: var(--char); }
 .n1Detail p { font-size: 1.0625rem; line-height: 1.6; color: var(--grey-ink); padding-top: 28px; }
+.n1Fallback { position: absolute; inset: 0; display: none; place-items: center; padding: 24px; text-align: center; color: var(--grey-ink); }
 .mask { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
 .mask > span { display: block; }
 
@@ -84,97 +80,72 @@ button { font: inherit; }
 .p1Detail p { font-size: 1.0625rem; line-height: 1.6; color: var(--grey-ink); padding-top: 6px; }
 .p1Key { margin-top: 18px; font-size: .6875rem; color: #a3a5a6; letter-spacing: .02em; }
 
-/* ---------------- T1 · month ruler ---------------- */
+/* ---------------- T1b · month segments ---------------- */
 .t1 { padding: clamp(28px, 3vw, 44px); border: 1px solid var(--line); border-radius: 4px; }
-.t1Top { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-.t1Top strong { display: block; font-size: clamp(2.5rem, 4vw, 3.75rem); font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
-.t1Top span { font-size: .875rem; color: var(--grey-ink); }
-.t1Rule { position: relative; height: 64px; }
-.t1Base { position: absolute; left: 0; right: 0; top: 30px; height: 2px; background: #e3e4e5; }
-.t1Fill { position: absolute; left: 0; top: 30px; height: 2px; width: 100%; background: var(--ink); transform: scaleX(0); transform-origin: left; }
-.t1Tick { position: absolute; top: 24px; width: 1px; height: 14px; background: #c9cacb; }
-.t1Tick[data-past] { background: var(--ink); }
-.t1Mon { position: absolute; top: 46px; transform: translateX(-50%); font-size: .6875rem; color: var(--grey); letter-spacing: .04em; white-space: nowrap; }
-.t1Mon[data-now] { color: var(--ink); font-weight: 500; }
-.t1Today { position: absolute; top: 31px; left: 0; width: 0; }
-.t1Today i { position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%; background: var(--io); }
-.t1Today i::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid var(--io); animation: ping 2.4s ease-out infinite; }
-.t1Today em { position: absolute; bottom: 14px; transform: translateX(-50%); font-style: normal; font-size: .6875rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
-.t1Ends { display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; font-size: .875rem; color: var(--grey-ink); }
+.tTop { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(28px, 3vw, 44px); }
+.tTop h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; margin-top: 10px; }
+.tStats { display: flex; gap: clamp(24px, 3vw, 48px); }
+.tStats div { display: flex; flex-direction: column; gap: 6px; }
+.tStats strong { font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--char); font-variant-numeric: tabular-nums; }
+.tStats strong.hi { color: var(--ink); }
+.tStats span { font-size: .8125rem; color: var(--grey-ink); }
+.segs { display: grid; grid-template-columns: repeat(13, minmax(0,1fr)); gap: 4px; }
+.seg { position: relative; display: flex; flex-direction: column; gap: 10px; }
+.seg i { position: relative; display: block; height: 44px; border-radius: 3px; background: #ececec; overflow: hidden; }
+.seg i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(var(--f, 0)); transform-origin: left; }
+.seg[data-now] i::after { background: var(--io); }
+.seg[data-now] i::before { content: ""; position: absolute; z-index: 1; top: 0; bottom: 0; left: calc(var(--f, 0) * 100%); width: 2px; margin-left: -1px; background: #fff; animation: blink 1.6s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .2; } }
+.seg span { font-size: .6875rem; color: var(--grey); letter-spacing: .04em; white-space: nowrap; }
+.seg[data-now] span { color: var(--ink); font-weight: 500; }
+.seg em { position: absolute; bottom: calc(100% + 8px); left: calc(var(--f, 0) * 100%); transform: translateX(-50%); font-style: normal; font-size: .6875rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+.tEnds { display: flex; justify-content: space-between; gap: 16px; margin-top: 18px; font-size: .8125rem; color: var(--grey-ink); }
+
+/* ---------------- T1c · ring countdown ---------------- */
+.t1c { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 72px); align-items: center; padding: clamp(28px, 3vw, 44px); border: 1px solid var(--line); border-radius: 4px; }
+.ring { position: relative; width: min(100%, 360px); aspect-ratio: 1; justify-self: center; }
+.ring svg { width: 100%; height: 100%; overflow: visible; transform: rotate(-90deg); }
+.ring .track { fill: none; stroke: #ececec; stroke-width: 10; }
+.ring .prog { fill: none; stroke: var(--ink); stroke-width: 10; stroke-linecap: round; }
+.ring .tick { stroke: #c9cacb; stroke-width: 1.2; }
+.ring .tick[data-past] { stroke: var(--ink); }
+.ringIn { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.ringIn strong { font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; letter-spacing: -.05em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.ringIn span { font-size: .875rem; color: var(--grey-ink); margin-top: 8px; }
+.ringIn small { font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); margin-top: 14px; }
+.t1cSide { display: flex; flex-direction: column; gap: 22px; }
+.t1cSide h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; }
+.t1cRows { border-top: 1px solid var(--line); }
+.t1cRows div { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: .9375rem; }
+.t1cRows dt { color: var(--grey-ink); } .t1cRows dd { margin: 0; color: var(--char); }
 
 .foot { margin-top: clamp(80px, 10vw, 140px); padding-block: 40px 72px; border-top: 1px solid var(--line); color: var(--grey-ink); font-size: .9375rem; line-height: 1.6; }
 @media (max-width: 900px) {
-  .head, .n1Detail { grid-template-columns: minmax(0,1fr); }
+  .head, .n1Detail, .t1c { grid-template-columns: minmax(0,1fr); }
   .n1Detail p { padding-top: 0; }
+  .n1Stage { height: 440px; }
   .p1Axis, .p1Row { grid-template-columns: 110px minmax(0,1fr); }
   .p1Head { left: 110px; }
   .p1Detail { grid-template-columns: minmax(0,1fr); }
-  .t1Mon:nth-of-type(even) { display: none; }
   .p1Months b { display: none; }
+  .segs { gap: 2px; } .seg i { height: 34px; } .seg:nth-child(even) span { visibility: hidden; }
+  .tStats strong { font-size: 1.75rem; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; } }
 </style>
 
 <header class="w top">
   <div><span class="lbl">Innovation &amp; Venture Platforms · for review</span><h1>Section proposals</h1></div>
-  <p>My recommended option for the three sections you flagged, built live with the page’s type and motion. Hover, tap and scroll them. Approve each one (or ask for changes) and I will build it into its page.</p>
+  <p>Round 2: N1 is now 3D in the same clay style as the homepage helix and site model, P1 is unchanged, and T1 has two new options. Hover, tap, drag and scroll them, then tell me what to build.</p>
 </header>
-<nav class="w toc" aria-label="Proposals"><a href="#n1">N1 · Nine areas (Accelerator)</a><a href="#p1">P1 · The process (Accelerator)</a><a href="#t1">T1 · Cohort timeline (Incubation)</a></nav>
+<nav class="w toc" aria-label="Proposals"><a href="#n1">N1 · Nine areas, 3D (Accelerator)</a><a href="#p1">P1 · The process (Accelerator)</a><a href="#t1b">T1b · Month segments (Incubation)</a><a href="#t1c">T1c · Countdown ring (Incubation)</a></nav>
 
-<!-- =================== N1 =================== -->
+<!-- =================== N1 (3D) =================== -->
 <section class="w prop" id="n1">
-  <div class="note"><b>N1</b>Replaces the numbered line. One drawing from the soil to the shelf: each area sits where it happens, so “from the soil to the supply chain” is something you see. Hover or tap a point.</div>
+  <div class="note"><b>N1</b>Now 3D, in the homepage’s clay style: white matte objects, soft shadows, IO blue for the active one. Nine small scenes stand on one strip from the soil to the supply chain. Hover or tap a point (or let it cycle); the camera glides to it and the object lifts and turns blue. Drag to look around a little.</div>
   <div class="head"><div><span class="lbl">Technologies &amp; approaches we’re prioritizing</span><h2>Nine areas, from the soil to the supply chain.</h2></div><p>Hover or tap a point in the field to read what we look for.</p></div>
-  <div class="n1Scroll"><div class="n1Art" id="n1Art">
-    <svg viewBox="0 0 1200 380" aria-hidden="true">
-      <!-- ground and soil -->
-      <path class="ln ground" pathLength="1" d="M10 300H1190"/>
-      <g data-z="0">
-        <path class="ln" pathLength="1" d="M70 300c0-26 6-44 18-58M88 242c-14-4-24-14-26-28 14 0 24 8 26 28ZM88 260c12-6 22-16 22-30-14 2-22 12-22 30Z"/>
-        <path class="ln" pathLength="1" d="M88 300v30M88 312c-10 8-20 10-32 10M88 318c10 6 20 12 26 22M150 300c0-22 4-36 12-46M162 254c-10-6-16-14-16-24 10 2 16 10 16 24Z"/>
-        <circle class="soil" cx="60" cy="342" r="2"/><circle class="soil" cx="120" cy="352" r="2"/><circle class="soil" cx="170" cy="334" r="2"/><circle class="soil" cx="40" cy="322" r="2"/><circle class="soil" cx="140" cy="368" r="2"/><circle class="soil" cx="96" cy="362" r="1.6"/>
-      </g>
-      <g data-z="1">
-        <path class="ln" pathLength="1" d="M210 300c0-30 4-52 14-68M224 232c-14-8-20-20-18-34 14 4 20 16 18 34ZM224 250c12-8 22-20 22-36-14 4-22 16-22 36ZM224 232c0-10 4-18 10-22"/>
-        <path class="ln" pathLength="1" d="M262 300c0-24 4-42 12-54M274 246c-12-6-18-16-16-28 12 4 18 14 16 28ZM274 262c10-6 18-16 18-28-12 4-18 12-18 28Z"/>
-        <path class="ln" pathLength="1" d="M300 300c0-18 2-30 8-40M308 260c-10-4-14-12-12-22 10 2 14 10 12 22Z"/>
-      </g>
-      <g data-z="2">
-        <path class="ln" pathLength="1" d="M340 300V214c0-46 36-84 84-84s84 38 84 84v86"/>
-        <path class="ln" pathLength="1" d="M372 300v-92c0-30 24-54 52-54s52 24 52 54v92M424 130v170M340 240h168"/>
-        <path class="ln" pathLength="1" d="M386 300v-18M404 300v-24M444 300v-24M462 300v-18"/>
-      </g>
-      <g data-z="3">
-        <path class="ln" pathLength="1" d="M578 300V176M566 176h24M578 176l-8-12h16Z"/>
-        <path class="ln" pathLength="1" d="M594 158c8 6 8 18 0 24M604 150c14 10 14 30 0 40M562 158c-8 6-8 18 0 24M552 150c-14 10-14 30 0 40"/>
-        <path class="ln" pathLength="1" d="M540 300c0-14 4-22 10-28M626 300c0-14-4-22-10-28"/>
-      </g>
-      <g data-z="4">
-        <path class="ln" pathLength="1" d="M650 232l70-26 10 30-70 26ZM684 220l10 28M666 252v48M712 238v62"/>
-        <path class="ln" pathLength="1" d="M660 318h110M770 318v-30M770 288c-8-10-12-18-12-24 0-8 6-14 12-14s12 6 12 14c0 6-4 14-12 24Z"/>
-      </g>
-      <g data-z="5">
-        <path class="ln" pathLength="1" d="M800 252a26 26 0 1 1 6 30M800 252l-4-14M800 252l14-2"/>
-        <path class="ln" pathLength="1" d="M786 300l8-30h40l8 30M800 284h28"/>
-      </g>
-      <g data-z="6">
-        <path class="ln" pathLength="1" d="M878 300v-52h70v52M878 266h70M900 248v-14h26v14"/>
-        <path class="ln" pathLength="1" d="M913 214v-20M903 200l20 0M906 207l14-14M920 207l-14-14"/>
-      </g>
-      <g data-z="7">
-        <path class="ln" pathLength="1" d="M980 120c-16 0-26-10-26-22s10-22 24-22c4-14 16-22 30-22 18 0 30 12 32 28 12 0 22 8 22 20s-10 18-22 18Z"/>
-        <path class="ln" pathLength="1" d="M990 98h14l8-12 10 12h14M1008 140v52M970 192h80"/>
-        <path class="ln" pathLength="1" d="M968 300v-50h62v50M1030 266h26l14 18v16M996 300a10 10 0 1 1 0 .1M1056 300a10 10 0 1 1 0 .1"/>
-      </g>
-      <g data-z="8">
-        <path class="ln" pathLength="1" d="M1100 300V196l44-26 44 26v104M1120 300v-40h48v40"/>
-        <path class="ln" pathLength="1" d="M1122 236v-10M1136 236v-20M1150 236v-14M1164 236v-26M1118 238h52"/>
-      </g>
-    </svg>
-  </div></div>
-  <div class="n1Scroll"><div class="n1Groups" id="n1Groups" aria-hidden="true">
-    <div style="left:0.8%;width:63.2%" data-on>Growing &amp; production</div><div style="left:65%;width:16.5%">Waste</div><div style="left:82.5%;width:16.7%">Supply chain</div>
-  </div></div>
+  <div class="n1Stage" id="n1Stage"><div class="n1Hots" id="n1Hots"></div><p class="n1Hint">Drag to look around</p><div class="n1Fallback" id="n1Fallback">3D is not available in this browser.</div></div>
+  <div class="n1Groups" id="n1Groups" aria-hidden="true"><span data-on>Growing &amp; production</span><span>Waste</span><span>Supply chain</span></div>
   <div class="n1Detail" aria-live="polite"><div><small class="mask"><span id="n1Group">Growing &amp; production</span></small><h3 class="mask"><span id="n1Title">Soil &amp; Plant Health Inputs &amp; Amendments</span></h3></div><p class="mask"><span id="n1Text">Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.</span></p></div>
 </section>
 
@@ -198,20 +169,33 @@ button { font: inherit; }
   </div></div></div>
 </section>
 
-<!-- =================== T1 =================== -->
-<section class="w prop" id="t1">
-  <div class="note"><b>T1</b>Replaces the plain line. A month ruler for the Incubation cohort: the filled part is time already run, “Today” moves by itself, and the days left are counted from today’s date, so it never goes stale.</div>
-  <div class="t1" id="t1Box">
-    <div class="t1Top"><div><span class="lbl">Cohort 1 timeline</span></div><div style="text-align:right"><strong id="t1Days">0</strong><span id="t1DaysLbl">days to close</span></div></div>
-    <div class="t1Rule" id="t1Rule"><div class="t1Base"></div><div class="t1Fill" id="t1Fill"></div><div class="t1Today" id="t1Today"><i></i><em id="t1TodayLbl">Today</em></div></div>
-    <div class="t1Ends"><span>Nov 2025 · Cohort starts</span><span>Nov 2026 · Cohort closes</span></div>
+<!-- =================== T1b =================== -->
+<section class="w prop" id="t1b">
+  <div class="note"><b>T1b</b>One block per month, Nov 2025 to Nov 2026. Past months fill in one after another when the section appears; the current month fills only as far as today, with a blinking edge. Above it, three plain numbers: which month we are in, how much has run, and days left.</div>
+  <div class="t1" id="t1bBox">
+    <div class="tTop"><div><span class="lbl">Cohort 1 · Agri-Robotics 2026</span><h3>Where the cohort is today.</h3></div>
+      <div class="tStats"><div><strong id="tbMonth">–</strong><span>month of 13</span></div><div><strong id="tbPct">0%</strong><span>of the cohort run</span></div><div><strong class="hi" id="tbDays">0</strong><span>days to close</span></div></div></div>
+    <div class="segs" id="segs"></div>
+    <div class="tEnds"><span>Nov 2025 · Cohort starts</span><span>30 Nov 2026 · Cohort closes</span></div>
   </div>
 </section>
 
-<footer class="w foot">Reply with what you approve, for example “N1 P1 T1 ok”, or tell me what to change. Once approved I’ll build N1 and P1 into the Accelerator page and T1 into the Incubation page.</footer>
+<!-- =================== T1c =================== -->
+<section class="w prop" id="t1c">
+  <div class="note"><b>T1c</b>A countdown ring: 13 month ticks around a circle, the arc fills to today and the centre counts the days left. Facts sit beside it. The most compact option, good if the section should feel like a status card.</div>
+  <div class="t1c" id="t1cBox">
+    <div class="ring"><svg viewBox="0 0 200 200" aria-hidden="true"><circle class="track" cx="100" cy="100" r="88"/><g id="ringTicks"></g><circle class="prog" id="ringProg" cx="100" cy="100" r="88" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+      <div class="ringIn"><strong id="tcDays">0</strong><span>days to close</span><small id="tcPct">0% run</small></div></div>
+    <div class="t1cSide"><span class="lbl">Cohort 1 · Agri-Robotics 2026</span><h3>Final weeks of the first cohort.</h3>
+      <dl class="t1cRows" style="margin:0"><div><dt>Started</dt><dd>November 2025</dd></div><div><dt>Closes</dt><dd>30 November 2026</dd></div><div><dt>Technologies</dt><dd>4</dd></div><div><dt>Goal</dt><dd>Prototypes to market-ready</dd></div></dl></div>
+  </div>
+</section>
+
+<footer class="w foot">Reply with what you approve, for example “N1 P1 T1b ok”, or tell me what to change. Once approved I’ll build N1 and P1 into the Accelerator page and the chosen T1 into the Incubation page.</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }</script>
 <script>
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
@@ -219,47 +203,7 @@ button { font: inherit; }
   if (G) gsap.registerPlugin(ScrollTrigger);
   // masked swap: old text slides up and out, new text rises in
   function swap(el, text) { if (el.textContent === text) return; if (!G) { el.textContent = text; return; } gsap.killTweensOf(el); gsap.to(el, { yPercent: -110, duration: 0.3, ease: 'power3.in', onComplete: function () { el.textContent = text; gsap.fromTo(el, { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: 'power3.out' }); } }); }
-
-  /* ---------- N1 ---------- */
-  var AREAS = [
-    ['Growing & production', 'Soil & Plant Health Inputs & Amendments', 'Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.', 'Soil & plant health', 7.4, 88],
-    ['Growing & production', 'Crop Innovation', 'Novel crop varieties, breeding techniques, and seed technologies adapted for heat, water scarcity, and desert-climate growing.', 'Crop innovation', 21.5, 62],
-    ['Growing & production', 'Controlled Environment Agriculture', 'Advanced greenhouse, vertical farming, and indoor cultivation systems that maximize yield while minimizing water and energy inputs.', 'Controlled environment', 35.3, 47],
-    ['Growing & production', 'Precision Agriculture', 'Sensor networks, AI-driven analytics, and data platforms that optimize resource allocation and decision-making at the field level.', 'Precision agriculture', 48.2, 40],
-    ['Growing & production', 'Water & Energy Management Solutions', 'Irrigation efficiency, water recycling, renewable energy integration, and resource monitoring across agricultural operations.', 'Water & energy', 58.5, 60],
-    ['Waste', 'Waste Circularity', 'Technologies and platforms that recover, repurpose, or redistribute agricultural and food waste into valuable inputs.', 'Waste circularity', 68.2, 64],
-    ['Waste', 'Waste Prevention', 'Cold chain optimization, shelf-life extension, and AI-driven supply and demand matching.', 'Waste prevention', 76.1, 56],
-    ['Supply chain', 'Supply Chain Data Platforms', 'Core data infrastructure, IoT-enabled systems, and digital platforms across agricultural value chains.', 'Supply chain data', 84, 22],
-    ['Supply chain', 'Supply Chain Analytics', 'Analytics, AI, and traceability tools that forecast demand and enhance end-to-end supply chain performance.', 'Supply chain analytics', 95.3, 52]];
-  var art = $('#n1Art'), zones = $$('#n1Art g[data-z]'), groups = $$('#n1Groups div'), hots = [], sel = -1, auto = null;
-  AREAS.forEach(function (a, i) {
-    var b = document.createElement('button'); b.className = 'hot'; b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', a[1]);
-    b.style.left = a[4] + '%'; b.style.top = a[5] + '%'; b.innerHTML = '<span>' + a[3] + '</span>';
-    b.addEventListener('mouseenter', function () { if (fine) { stop(); pick(i); } });
-    b.addEventListener('click', function () { stop(); pick(i); });
-    b.addEventListener('focus', function () { stop(); pick(i); });
-    b.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); stop(); pick((i + d + 9) % 9); hots[sel].focus(); });
-    art.appendChild(b); hots.push(b);
-  });
-  function grp(i) { return i < 5 ? 0 : i < 7 ? 1 : 2; }
-  function pick(i) {
-    if (i === sel) return; sel = i;
-    hots.forEach(function (h, k) { h.setAttribute('aria-selected', k === i); h.tabIndex = k === i ? 0 : -1; });
-    zones.forEach(function (z, k) { k === i ? z.setAttribute('data-on', '') : z.removeAttribute('data-on'); });
-    groups.forEach(function (g, k) { k === grp(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'); });
-    swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]);
-  }
-  function stop() { if (auto) { clearInterval(auto); auto = null; } }
-  pick(0);
-  var lines = $$('#n1Art .ln');
-  if (G) {
-    gsap.set(lines, { strokeDasharray: 1, strokeDashoffset: 1 }); gsap.set(hots, { opacity: 0, scale: 0.4 });
-    ScrollTrigger.create({ trigger: art, start: 'top 75%', once: true, onEnter: function () {
-      gsap.to(lines, { strokeDashoffset: 0, duration: 1.6, stagger: 0.05, ease: 'power2.inOut' });
-      gsap.to(hots, { opacity: 1, scale: 1, duration: 0.6, stagger: 0.07, delay: 0.9, ease: 'back.out(2)' });
-      if (!reduce) auto = setInterval(function () { pick((sel + 1) % 9); }, 3800);
-    } });
-  }
+  window.__swap = swap;
 
   /* ---------- P1 ---------- */
   var STEPS = [
@@ -280,23 +224,201 @@ button { font: inherit; }
   if (G) ScrollTrigger.create({ trigger: '#p1Pin', start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: function (st) { p1(st.progress); }, onRefresh: function (st) { p1(st.progress); } }); else p1(1);
   addEventListener('resize', function () { p1(Math.max(0, pk) / 3); });
 
-  /* ---------- T1 ---------- */
+  /* ---------- shared cohort dates ---------- */
   var start = Date.UTC(2025, 10, 1), end = Date.UTC(2026, 10, 30), now = Date.now(), t = Math.max(0, Math.min(1, (now - start) / (end - start)));
-  var daysLeft = Math.max(0, Math.ceil((end - now) / 864e5)), rule = $('#t1Rule'), MON = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+  var daysLeft = Math.max(0, Math.ceil((end - now) / 864e5)), MON = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+  function count(el, to, suf) { if (!G) { el.textContent = to + (suf || ''); return; } var o = { v: 0 }; gsap.to(o, { v: to, duration: 1.6, ease: 'power3.out', onUpdate: function () { el.textContent = Math.round(o.v) + (suf || ''); } }); }
+
+  /* ---------- T1b: month segments ---------- */
+  var segs = $('#segs'), nowIdx = -1, fills = [];
   MON.forEach(function (mn, i) {
-    var at = (Date.UTC(2025, 10 + i, 1) - start) / (end - start), pct = Math.min(1, at) * 100, isNow = new Date(now).getUTCMonth() === (10 + i) % 12 && new Date(now).getUTCFullYear() === 2025 + Math.floor((10 + i) / 12);
-    rule.insertAdjacentHTML('beforeend', '<i class="t1Tick"' + (at <= t ? ' data-past' : '') + ' style="left:' + pct + '%"></i><span class="t1Mon"' + (isNow ? ' data-now' : '') + ' style="left:' + pct + '%">' + mn + (i === 0 || i === 2 || i === 12 ? ' ' + (i < 2 ? '25' : '26') : '') + '</span>');
+    var a = Date.UTC(2025, 10 + i, 1), b = i === 12 ? end : Date.UTC(2025, 11 + i, 1), f = Math.max(0, Math.min(1, (now - a) / (b - a)));
+    if (now >= a && now < b) nowIdx = i; fills.push(f);
+    segs.insertAdjacentHTML('beforeend', '<div class="seg"' + (now >= a && now < b ? ' data-now' : '') + '><i></i><span>' + mn + (i === 0 ? ' 25' : i === 2 || i === 12 ? ' 26' : '') + '</span>' + (now >= a && now < b ? '<em>Today</em>' : '') + '</div>');
   });
-  var d = new Date(now), lbl = 'Today · ' + d.getUTCDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getUTCMonth()];
-  $('#t1TodayLbl').textContent = t >= 1 ? 'Cohort complete' : lbl; if (t > 0.8) $('#t1TodayLbl').style.transform = 'translateX(-88%)'; // keep the label inside the box near the end $('#t1DaysLbl').textContent = daysLeft === 1 ? 'day to close' : 'days to close';
-  function t1(play) {
-    var todayEl = $('#t1Today');
-    if (!G || !play) { $('#t1Fill').style.transform = 'scaleX(' + t + ')'; todayEl.style.left = (t * 100) + '%'; $('#t1Days').textContent = daysLeft; return; }
-    var o = { v: 0 };
-    gsap.to('#t1Fill', { scaleX: t, duration: 1.8, ease: 'expo.out' });
-    gsap.fromTo(todayEl, { left: '0%' }, { left: (t * 100) + '%', duration: 1.8, ease: 'expo.out' });
-    gsap.to(o, { v: daysLeft, duration: 1.6, ease: 'power3.out', onUpdate: function () { $('#t1Days').textContent = Math.round(o.v); } });
+  var segEls = $$('#segs .seg');
+  function t1b(play) {
+    $('#tbMonth').textContent = nowIdx >= 0 ? nowIdx + 1 : (t >= 1 ? 13 : 0);
+    segEls.forEach(function (s, i) { if (!play) { s.style.setProperty('--f', fills[i]); return; } var o = { v: 0 }; gsap.to(o, { v: fills[i], duration: 0.5, delay: i * 0.08, ease: 'power2.out', onUpdate: function () { s.style.setProperty('--f', o.v); } }); });
+    count($('#tbPct'), Math.round(t * 100), '%'); count($('#tbDays'), daysLeft);
   }
-  if (G) ScrollTrigger.create({ trigger: '#t1Box', start: 'top 80%', once: true, onEnter: function () { t1(true); } }); else t1(false);
+  if (G) ScrollTrigger.create({ trigger: '#t1bBox', start: 'top 80%', once: true, onEnter: function () { t1b(true); } }); else t1b(false);
+
+  /* ---------- T1c: ring ---------- */
+  var ticks = $('#ringTicks');
+  MON.forEach(function (mn, i) { var at = (Date.UTC(2025, 10 + i, 1) - start) / (end - start), ang = at * Math.PI * 2, r1 = 100, r2 = 108; ticks.insertAdjacentHTML('beforeend', '<line class="tick"' + (at <= t ? ' data-past' : '') + ' x1="' + (100 + Math.cos(ang) * r1) + '" y1="' + (100 + Math.sin(ang) * r1) + '" x2="' + (100 + Math.cos(ang) * r2) + '" y2="' + (100 + Math.sin(ang) * r2) + '"/>'); });
+  function t1c(play) { var pr = $('#ringProg'); if (!play) { pr.setAttribute('stroke-dashoffset', 1 - t); } else gsap.to(pr, { attr: { 'stroke-dashoffset': 1 - t }, duration: 1.8, ease: 'expo.out' }); count($('#tcDays'), daysLeft); var pc = $('#tcPct'); if (!play) pc.textContent = Math.round(t * 100) + '% run'; else { var o = { v: 0 }; gsap.to(o, { v: t * 100, duration: 1.6, ease: 'power3.out', onUpdate: function () { pc.textContent = Math.round(o.v) + '% run'; } }); } }
+  if (G) ScrollTrigger.create({ trigger: '#t1cBox', start: 'top 80%', once: true, onEnter: function () { t1c(true); } }); else t1c(false);
 })();
+</script>
+
+<script type="module">
+/* ---------- N1: nine small clay scenes on one strip, soil → supply chain ---------- */
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, fine = matchMedia('(hover: hover) and (pointer: fine)').matches, G = !!window.gsap && !reduce, swap = window.__swap;
+const AREAS = [
+  ['Growing & production', 'Soil & Plant Health Inputs & Amendments', 'Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.', 'Soil & plant health'],
+  ['Growing & production', 'Crop Innovation', 'Novel crop varieties, breeding techniques, and seed technologies adapted for heat, water scarcity, and desert-climate growing.', 'Crop innovation'],
+  ['Growing & production', 'Controlled Environment Agriculture', 'Advanced greenhouse, vertical farming, and indoor cultivation systems that maximize yield while minimizing water and energy inputs.', 'Controlled environment'],
+  ['Growing & production', 'Precision Agriculture', 'Sensor networks, AI-driven analytics, and data platforms that optimize resource allocation and decision-making at the field level.', 'Precision agriculture'],
+  ['Growing & production', 'Water & Energy Management Solutions', 'Irrigation efficiency, water recycling, renewable energy integration, and resource monitoring across agricultural operations.', 'Water & energy'],
+  ['Waste', 'Waste Circularity', 'Technologies and platforms that recover, repurpose, or redistribute agricultural and food waste into valuable inputs.', 'Waste circularity'],
+  ['Waste', 'Waste Prevention', 'Cold chain optimization, shelf-life extension, and AI-driven supply and demand matching.', 'Waste prevention'],
+  ['Supply chain', 'Supply Chain Data Platforms', 'Core data infrastructure, IoT-enabled systems, and digital platforms across agricultural value chains.', 'Supply chain data'],
+  ['Supply chain', 'Supply Chain Analytics', 'Analytics, AI, and traceability tools that forecast demand and enhance end-to-end supply chain performance.', 'Supply chain analytics']];
+const stage = $('#n1Stage'), hotsEl = $('#n1Hots'), groupsEl = $$('#n1Groups span');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { renderer = null; }
+if (!renderer) { $('#n1Fallback').style.display = 'grid'; }
+else {
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  stage.prepend(renderer.domElement);
+  const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(26, 2, 0.1, 200);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xd9d6d0, 1.7));
+  const sun = new THREE.DirectionalLight(0xffffff, 2.2); sun.position.set(-8, 18, 12); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 10, bottom: -10, near: 1, far: 60 }); sun.shadow.radius = 6; sun.shadow.bias = -0.0004; scene.add(sun);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(120, 60), new THREE.ShadowMaterial({ opacity: 0.08 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -0.36; floor.receiveShadow = true; scene.add(floor);
+
+  // clay palette: base white, quiet grey details, IO blue for the active scene
+  const C = { clay: 0xf6f5f2, soil: 0xd8ccbb, soil2: 0xc4b39c, grey: 0xd9dadb, dark: 0xb9bbbc, blue: 0x3ca7d2, ink: 0x1a6f96, glass: 0xeef6f9 };
+  const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
+  const rbox = (w, h, d, r, m) => { const g = new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)); const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
+  const mesh = (g, m) => { const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
+  const SP = 3.6, X = i => (i - 4) * SP;
+  const scenes = [];
+  function make(i, build) {
+    const g = new THREE.Group(), lift = new THREE.Group(), accents = [], base = mat(C.clay);
+    g.position.x = X(i); g.add(lift);
+    const add = (o, accent) => { lift.add(o); if (accent) accents.push(o); return o; };
+    build({ add, base, mat, rbox, mesh, C });
+    accents.forEach(o => { o.material = o.material.clone(); o.userData.c0 = o.material.color.clone(); });
+    // tile it stands on
+    const tile = rbox(3.1, 0.24, 3.1, 0.12, mat(i < 5 ? 0xefede8 : i < 7 ? 0xebebea : 0xeceeef)); tile.position.y = -0.24; g.add(tile);
+    scene.add(g); scenes.push({ g, lift, accents, top: new THREE.Vector3(X(i), 2.6, 0) });
+  }
+  const leaf = (m) => { const l = mesh(new THREE.SphereGeometry(0.22, 18, 12), m); l.scale.set(1, 0.32, 0.55); return l; };
+  const sprout = (add, m, x, z, h, s) => {
+    const st = mesh(new THREE.CylinderGeometry(0.035 * s, 0.045 * s, h, 8), mat(C.dark)); st.position.set(x, h / 2, z); add(st);
+    const l1 = leaf(m); l1.scale.multiplyScalar(s); l1.position.set(x - 0.17 * s, h * 0.82, z); l1.rotation.z = 0.5; add(l1, true);
+    const l2 = leaf(m); l2.scale.multiplyScalar(s); l2.position.set(x + 0.17 * s, h, z); l2.rotation.z = -0.5; add(l2, true);
+  };
+  // 1 soil & plant health: a cut block of soil in layers, roots, a seedling on top
+  make(0, ({ add, mat, rbox, C }) => {
+    const l1 = rbox(2.4, 0.42, 2.0, 0.08, mat(C.soil2)); l1.position.y = 0.21; add(l1);
+    const l2 = rbox(2.4, 0.36, 2.0, 0.08, mat(C.soil)); l2.position.y = 0.6; add(l2);
+    const l3 = rbox(2.4, 0.22, 2.0, 0.08, mat(0xece8e1)); l3.position.y = 0.88; add(l3);
+    for (let k = 0; k < 7; k++) { const p = mesh(new THREE.SphereGeometry(0.06, 10, 8), mat(C.dark)); p.position.set(-0.9 + k * 0.3, 0.32 + (k % 3) * 0.16, 1.0); add(p, true); }
+    sprout(add, mat(C.grey), 0, 0, 0.9, 1.4); scenes.length; // seedling
+  });
+  // 2 crop innovation: rows of young plants
+  make(1, ({ add, mat }) => { for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) sprout((o, a) => { o.position.y += 0; return add(o, a); }, mat(C.grey), -0.8 + c * 0.8, -0.8 + r * 0.8, 0.55 + ((r + c) % 2) * 0.2, 1); });
+  // 3 controlled environment: a greenhouse tunnel with ribs and benches inside
+  make(2, ({ add, mat, rbox, mesh, C }) => {
+    const shell = mesh(new THREE.CylinderGeometry(1.15, 1.15, 2.6, 32, 1, true, 0, Math.PI), mat(C.glass, { transparent: true, opacity: 0.55, side: THREE.DoubleSide, roughness: 0.3 })); shell.rotation.set(0, Math.PI / 2, Math.PI / 2); // tunnel along z, arch up shell.position.y = 0.02; add(shell, true);
+    for (let k = 0; k < 4; k++) { const rib = mesh(new THREE.TorusGeometry(1.15, 0.035, 8, 32, Math.PI), mat(C.clay)); rib.position.set(0, 0.02, -1.2 + k * 0.8); add(rib); }
+    for (let k = 0; k < 2; k++) { const bench = rbox(0.5, 0.3, 2.2, 0.06, mat(C.clay)); bench.position.set(-0.45 + k * 0.9, 0.15, 0); add(bench); for (let j = 0; j < 4; j++) { const b = mesh(new THREE.SphereGeometry(0.12, 12, 8), mat(C.grey)); b.position.set(-0.45 + k * 0.9, 0.38, -0.8 + j * 0.53); add(b, true); } }
+  });
+  // 4 precision agriculture: a sensor mast with signal rings over a small field
+  make(3, ({ add, mat, rbox, mesh, C }) => {
+    for (let r = 0; r < 4; r++) { const row = rbox(2.2, 0.12, 0.28, 0.05, mat(0xe6e2da)); row.position.set(0, 0.06, -0.9 + r * 0.6); add(row); }
+    const pole = mesh(new THREE.CylinderGeometry(0.05, 0.06, 2.0, 10), mat(C.dark)); pole.position.y = 1.0; add(pole);
+    const head = rbox(0.42, 0.26, 0.42, 0.08, mat(C.clay)); head.position.y = 2.05; add(head);
+    for (let k = 0; k < 2; k++) { const ring = mesh(new THREE.TorusGeometry(0.42 + k * 0.28, 0.025, 8, 40), mat(C.grey)); ring.rotation.x = Math.PI / 2; ring.position.y = 2.05; add(ring, true); }
+  });
+  // 5 water & energy: a solar panel and a water tank with a pipe
+  make(4, ({ add, mat, rbox, mesh, C }) => {
+    const panel = rbox(1.5, 0.08, 1.0, 0.04, mat(C.grey)); panel.position.set(-0.45, 1.0, -0.2); panel.rotation.x = -0.6; add(panel, true);
+    const leg = mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.95, 8), mat(C.dark)); leg.position.set(-0.45, 0.47, -0.2); add(leg);
+    const tank = mesh(new THREE.CylinderGeometry(0.45, 0.45, 1.1, 28), mat(C.clay)); tank.position.set(0.75, 0.55, 0.45); add(tank);
+    const lid = mesh(new THREE.SphereGeometry(0.45, 28, 12, 0, Math.PI * 2, 0, Math.PI / 2), mat(C.clay)); lid.position.set(0.75, 1.1, 0.45); add(lid);
+    const pipe = mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.5, 10), mat(C.grey)); pipe.rotation.z = Math.PI / 2; pipe.position.set(0, 0.1, 1.0); add(pipe, true);
+    const drop = mesh(new THREE.SphereGeometry(0.16, 16, 12), mat(C.grey)); drop.scale.set(1, 1.3, 1); drop.position.set(0.75, 1.75, 0.45); add(drop, true);
+  });
+  // 6 waste circularity: a compost bin with a loop arrow above it
+  make(5, ({ add, mat, rbox, mesh, C }) => {
+    const bin = rbox(1.3, 0.9, 1.1, 0.12, mat(C.clay)); bin.position.y = 0.45; add(bin);
+    const fill = rbox(1.1, 0.12, 0.9, 0.05, mat(C.soil2)); fill.position.y = 0.92; add(fill);
+    const loop = mesh(new THREE.TorusGeometry(0.55, 0.06, 10, 48, Math.PI * 1.6), mat(C.grey)); loop.position.y = 1.85; loop.rotation.z = 0.5; add(loop, true);
+    const tip = mesh(new THREE.ConeGeometry(0.14, 0.26, 16), mat(C.grey)); tip.position.set(0.55 * Math.cos(0.5 + Math.PI * 1.6), 1.85 + 0.55 * Math.sin(0.5 + Math.PI * 1.6), 0); tip.rotation.z = 0.5 + Math.PI * 1.6; add(tip, true);
+  });
+  // 7 waste prevention: chilled crates of produce
+  make(6, ({ add, mat, rbox, mesh, C }) => {
+    for (let k = 0; k < 3; k++) { const cr = rbox(1.0, 0.5, 0.8, 0.07, mat(C.clay)); cr.position.set(k === 2 ? 0 : -0.55 + k * 1.1, k === 2 ? 0.75 : 0.25, k === 2 ? 0 : 0.2); add(cr); for (let j = 0; j < 3; j++) { const f = mesh(new THREE.SphereGeometry(0.13, 14, 10), mat(C.grey)); f.position.set(cr.position.x - 0.28 + j * 0.28, cr.position.y + 0.3, cr.position.z); add(f, true); } }
+    const flake = mesh(new THREE.OctahedronGeometry(0.22), mat(C.grey)); flake.position.set(0.85, 1.6, 0); add(flake, true);
+  });
+  // 8 supply chain data: a truck with data cubes floating above
+  make(7, ({ add, mat, rbox, mesh, C }) => {
+    const body = rbox(1.7, 0.9, 0.95, 0.1, mat(C.clay)); body.position.set(-0.25, 0.65, 0); add(body);
+    const cab = rbox(0.7, 0.7, 0.9, 0.12, mat(C.clay)); cab.position.set(0.95, 0.55, 0); add(cab);
+    const win = rbox(0.06, 0.28, 0.7, 0.03, mat(C.grey)); win.position.set(1.3, 0.7, 0); add(win, true);
+    [[-0.8, 0.5], [-0.8, -0.5], [0.95, 0.5], [0.95, -0.5]].forEach(([x, z]) => { const w = mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.14, 20), mat(C.dark)); w.rotation.x = Math.PI / 2; w.position.set(x, 0.2, z); add(w); });
+    for (let k = 0; k < 3; k++) { const c = rbox(0.28, 0.28, 0.28, 0.06, mat(C.grey)); c.position.set(-0.6 + k * 0.6, 1.65 + (k % 2) * 0.25, 0); c.userData.bob = k; add(c, true); }
+  });
+  // 9 supply chain analytics: a warehouse and a bar chart in front of it
+  make(8, ({ add, mat, rbox, mesh, C }) => {
+    const wh = rbox(1.7, 1.1, 1.2, 0.08, mat(C.clay)); wh.position.set(0.25, 0.55, -0.45); add(wh);
+    const sh = new THREE.Shape(); sh.moveTo(-0.9, 0); sh.lineTo(0.9, 0); sh.lineTo(0, 0.5); sh.closePath(); const rg = new THREE.ExtrudeGeometry(sh, { depth: 1.2, bevelEnabled: false }); rg.translate(0, 0, -0.6); const roof = mesh(rg, mat(C.clay)); roof.position.set(0.25, 1.1, -0.45); add(roof);
+    const door = rbox(0.5, 0.6, 0.05, 0.03, mat(C.grey)); door.position.set(0.25, 0.3, 0.17); add(door);
+    [0.45, 0.8, 1.2].forEach((h, k) => { const bar = rbox(0.22, h, 0.22, 0.05, mat(C.grey)); bar.position.set(-1.0 + k * 0.32, h / 2, 0.85); add(bar, true); });
+  });
+
+  // labels / hit targets
+  const hots = AREAS.map((a, i) => { const b = document.createElement('button'); b.className = 'hot'; b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', a[1]); b.innerHTML = '<span>' + a[3] + '</span>'; hotsEl.appendChild(b); return b; });
+  let sel = -1, auto = null, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false;
+  const grp = i => (i < 5 ? 0 : i < 7 ? 1 : 2);
+  function pick(i) {
+    if (i === sel) return; sel = i;
+    hots.forEach((h, k) => { h.setAttribute('aria-selected', k === i); h.tabIndex = k === i ? 0 : -1; });
+    groupsEl.forEach((g, k) => k === grp(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'));
+    scenes.forEach((s, k) => {
+      const on = k === i;
+      if (G) gsap.to(s.lift.position, { y: on ? 0.32 : 0, duration: 0.9, ease: on ? 'back.out(2.2)' : 'power3.out' }); else s.lift.position.y = on ? 0.32 : 0;
+      s.accents.forEach(o => { const to = on ? new THREE.Color(C.blue) : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); });
+    });
+    camTX = X(i);
+    swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]);
+  }
+  const stop = () => { if (auto) { clearInterval(auto); auto = null; } };
+  hots.forEach((b, i) => {
+    b.addEventListener('mouseenter', () => { if (fine) { stop(); pick(i); } });
+    b.addEventListener('click', () => { stop(); pick(i); });
+    b.addEventListener('focus', () => { stop(); pick(i); });
+    b.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); stop(); pick((i + d + 9) % 9); hots[sel].focus(); });
+  });
+  // drag to orbit a little around the strip
+  let px = null;
+  stage.addEventListener('pointerdown', e => { if (e.target.closest('.hot')) return; px = e.clientX; stop(); });
+  addEventListener('pointerup', () => { px = null; dragT = 0; });
+  addEventListener('pointermove', e => { if (px === null) return; dragT = Math.max(-1, Math.min(1, (e.clientX - px) / 300)); });
+
+  // camera: wide view of the whole strip on wide screens, follow the active scene on narrow ones
+  const target = new THREE.Vector3(), v = new THREE.Vector3();
+  function resize() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); focus = camera.aspect < 1.5; }
+  addEventListener('resize', resize); resize();
+  let visible = false, intro = { k: 0 };
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { rootMargin: '200px' }).observe(stage);
+  const clock = new THREE.Clock();
+  function frame() {
+    requestAnimationFrame(frame); if (!visible) return;
+    const dt = Math.min(0.05, clock.getDelta()), tm = clock.elapsedTime;
+    drag += (dragT - drag) * 0.08;
+    camX += ((focus ? camTX : 0) - camX) * (reduce ? 1 : 0.05);
+    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), dist = focus ? 15 : 18.4 / Math.tan(hv) / (1 + intro.k * 0.03), ang = 0.6, yaw = drag * 0.5 + (fine && !focus ? Math.sin(tm * 0.15) * 0.04 : 0);
+    target.set(camX, 0.9, 0);
+    camera.position.set(camX + Math.sin(yaw) * dist * Math.cos(ang), Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
+    camera.lookAt(target);
+    scenes.forEach(s => s.lift.children.forEach(o => { if (o.userData.bob !== undefined && !reduce) o.position.y = 1.65 + (o.userData.bob % 2) * 0.25 + Math.sin(tm * 1.6 + o.userData.bob) * 0.06; }));
+    renderer.render(scene, camera);
+    const w = stage.clientWidth, h = stage.clientHeight;
+    scenes.forEach((s, i) => { v.copy(s.top); v.y += s.lift.position.y; v.project(camera); const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h; hots[i].style.transform = 'translate(' + x + 'px,' + y + 'px)'; hots[i].style.visibility = x < -20 || x > w + 20 ? 'hidden' : 'visible'; });
+  }
+  pick(0); frame();
+  // entrance: scenes rise in one by one, then the cycle starts
+  scenes.forEach(s => s.g.scale.setScalar(G ? 0.001 : 1));
+  const enter = () => { if (G) { scenes.forEach((s, k) => gsap.to(s.g.scale, { x: 1, y: 1, z: 1, duration: 1, delay: 0.08 * k, ease: 'back.out(1.7)' })); gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out' }); } if (!reduce) auto = setInterval(() => pick((sel + 1) % 9), 3800); };
+  if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: stage, start: 'top 75%', once: true, onEnter: enter }); else enter();
+}
 </script>
