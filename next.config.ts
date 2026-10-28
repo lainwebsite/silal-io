@@ -28,9 +28,15 @@ const nextConfig: NextConfig = {
       // IO Academy (library + course detail, static page in public/io-academy/, 2026-10-26)
       { source: "/io-academy", destination: "/io-academy/index.html" },
       { source: "/IO-Academy", destination: "/io-academy/index.html" },
-      // Innovation & Venture Platforms hub (static page in public/innovation-venture-platforms/, built by prototypes/innovation-venture-platforms/build.py, 2026-10-28)
+      // Innovation & Venture Platforms (sitemap category 3): primary category page + 4 sub pages + enquiry form, static files in
+      // public/innovation-venture-platforms/, built by prototypes/innovation-venture-platforms/build.py (2026-10-28)
       { source: "/Innovation-Venture-Platforms", destination: "/innovation-venture-platforms/index.html" },
       { source: "/innovation-venture-platforms", destination: "/innovation-venture-platforms/index.html" },
+      { source: "/Innovation-Venture-Platforms/Farm-Innovation-Fund", destination: "/innovation-venture-platforms/farm-innovation-fund.html" },
+      { source: "/Innovation-Venture-Platforms/Incubation", destination: "/innovation-venture-platforms/incubation.html" },
+      { source: "/Innovation-Venture-Platforms/Accelerator", destination: "/innovation-venture-platforms/accelerator.html" },
+      { source: "/Innovation-Venture-Platforms/Agricultural-Challenges", destination: "/innovation-venture-platforms/agricultural-challenges.html" },
+      { source: "/Innovation-Venture-Platforms/Enquire", destination: "/innovation-venture-platforms/enquire.html" },
     ];
   },
 };
