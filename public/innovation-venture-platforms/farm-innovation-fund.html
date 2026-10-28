@@ -4709,7 +4709,23 @@ a.s_btn, button.s_btn { will-change: transform; }
 /* receive: stacked sticky cards */
 .f_stack { display: flex; flex-direction: column; gap: 0; }
 .f_card { position: sticky; top: calc(var(--hh) + 24px + var(--i) * 18px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: stretch; min-height: clamp(360px, 52vh, 520px); margin-bottom: 4vh; background: var(--light); transform-origin: top center; }
-.f_cardText { grid-column: 1 / span 6; padding: clamp(28px, 3.5vw, 56px); display: flex; flex-direction: column; justify-content: flex-end; gap: 24px; }
+.f_cardText { grid-column: 1 / span 6; padding: clamp(28px, 3.5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.f_cardText .x_label { color: var(--io-ink); display: block; margin-bottom: 14px; }
+/* each card shows what it means: a figure, a checklist, a sequence */
+.f_spec { border-top: 1px solid rgba(89,84,83,.14); padding-top: 22px; }
+.f_specBig { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.f_specBig strong { font-size: clamp(2.5rem, 4vw, 3.75rem); font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--io-ink); }
+.f_specBig span { font-size: .9375rem; color: var(--grey-ink); }
+.f_specRow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.f_specRow span { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; background: #fff; font-size: .8125rem; color: var(--charcoal); }
+.f_check { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 20px; }
+.f_check li { display: flex; align-items: center; gap: 10px; font-size: .9375rem; color: var(--charcoal); }
+.f_check svg { width: 20px; height: 20px; flex: none; padding: 3px; border-radius: 50%; background: var(--io-ink); color: #fff; }
+.f_seq { display: grid; grid-template-columns: repeat(var(--n), minmax(0,1fr)); position: relative; }
+.f_seq::before { content: ""; position: absolute; left: 6px; right: 6px; top: 28px; height: 1px; background: rgba(26,111,150,.35); }
+.f_seq li { position: relative; display: flex; flex-direction: column; gap: 12px; padding-right: 12px; font-size: .875rem; line-height: 1.35; color: var(--charcoal); }
+.f_seq li::before { content: ""; width: 13px; height: 13px; border-radius: 50%; background: #fff; border: 1.5px solid var(--io-ink); box-sizing: border-box; }
+.f_seq li:last-child::before { background: var(--io-ink); }
 .f_cardText b { font-size: clamp(2.5rem, 3.6vw, 3.75rem); font-weight: 300; line-height: 1; letter-spacing: -.06em; color: var(--io-ink); }
 .f_cardText h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.03em; color: var(--charcoal); }
 .f_cardText p { font-size: 1.0625rem; color: var(--grey-ink); max-width: 28em; }
@@ -4790,13 +4806,28 @@ a.s_btn, button.s_btn { will-change: transform; }
 .i_why p { font-size: .9375rem; color: var(--grey-ink); max-width: 28em; transition: color .5s; }
 .i_why li:hover b, .i_why li:hover svg { color: var(--io); }
 .i_why li:hover h3 { color: #fff; } .i_why li:hover p { color: rgba(255,255,255,.75); }
-.i_time { margin-top: clamp(72px, 8vw, 128px); }
-.i_timeBar { position: relative; height: 2px; background: var(--line); margin: 52px 0 16px; }
-.i_timeBar i { position: absolute; inset: 0 auto 0 0; width: calc(var(--t) * 100%); background: var(--io); transform-origin: left; transform: scaleX(var(--g, 0)); transition: transform 1.6s var(--slow); }
-.i_time[data-in] .i_timeBar i { --g: 1; }
-.i_timeBar em { position: absolute; top: -36px; left: calc(var(--t) * 100%); transform: translateX(-50%); font-style: normal; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--io-ink); white-space: nowrap; }
-.i_timeBar em::after { content: ""; position: absolute; left: 50%; top: 24px; width: 11px; height: 11px; margin-left: -5.5px; border-radius: 50%; background: var(--io); animation: ping 2.4s ease-out infinite; }
-.i_timeEnds { display: flex; justify-content: space-between; gap: 16px; font-size: .875rem; color: var(--grey-ink); }
+/* cohort key dates: one vertical line, done → today → next → result */
+.i_time { margin-top: clamp(72px, 8vw, 128px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 72px); align-items: start; padding: clamp(28px, 3vw, 48px); background: var(--light); }
+.i_timeSide { display: flex; flex-direction: column; gap: 18px; }
+.i_timeSide h3 { font-size: var(--fs-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.2; color: var(--charcoal); }
+.i_timeSide p { font-size: .9375rem; color: var(--grey-ink); line-height: 1.6; }
+.i_timeSide p b { font-weight: 400; color: var(--io-ink); }
+.i_kd { position: relative; }
+.i_kd::before { content: ""; position: absolute; left: 15px; top: 16px; bottom: 44px; width: 1px; background: #c9cacb; transform: scaleY(var(--d, 1)); transform-origin: top; }
+.i_kd li { position: relative; display: grid; grid-template-columns: 32px minmax(0,1fr); gap: 20px; padding: 10px 0 26px; }
+.i_kd li:last-child { padding-bottom: 0; }
+.i_kd .n { position: relative; z-index: 1; width: 32px; height: 32px; display: grid; place-items: center; background: var(--light); }
+.i_kd .n i { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #9d9fa1; background: var(--light); }
+.i_kd li[data-s="now"] .n i { border: 2.5px solid var(--charcoal); box-shadow: 0 0 0 6px rgba(60,167,210,.14); }
+.i_kd li[data-s="next"] .n i { border-color: #c9cacb; }
+.i_kd .n svg { width: 24px; height: 24px; color: #9d9fa1; }
+.i_kd h4 { margin: 4px 0 0; font-size: clamp(1.125rem, 1.4vw, 1.375rem); font-weight: 400; color: var(--charcoal); }
+.i_kd li[data-s="now"] h4 { font-weight: 500; }
+.i_kd li[data-s="next"] h4 { color: var(--grey-ink); }
+.i_kd p { margin-top: 4px; font-size: .9375rem; line-height: 1.55; color: #9a9c9e; max-width: 34em; }
+.i_kd li[data-s="now"] p { color: var(--grey-ink); }
+.i_kd .tag { display: inline-flex; align-items: center; height: 24px; margin-left: 10px; padding: 0 10px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: .6875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey-ink); vertical-align: middle; }
+.i_kd li[data-s="now"] .tag { border-color: var(--io-ink); color: var(--io-ink); }
 .i_success { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: end; }
 .i_success .x_statement { grid-column: 1 / span 9; }
 .i_success .s_textLink { grid-column: 10 / span 3; justify-self: end; }
@@ -5129,6 +5160,7 @@ a.s_btn, button.s_btn { will-change: transform; }
   .f_track figure { scroll-snap-align: start; width: 72vw; }
   .f_card { grid-template-columns: 1fr; position: relative; top: auto; }
   .f_card .x_img { min-height: 240px; }
+  .f_check { grid-template-columns: 1fr; } .f_seq { grid-template-columns: 1fr; row-gap: 14px; } .f_seq::before { left: 6px; right: auto; top: 28px; bottom: 6px; width: 1px; height: auto; } .f_seq li { flex-direction: row; align-items: center; }
   .f_value { grid-template-columns: 1fr; row-gap: 24px; }
   .i_hero { grid-template-columns: 1fr; height: auto; max-height: none; }
   .i_heroImg { height: 56vh; order: -1; }
@@ -5157,7 +5189,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 @media (max-width: 600px) {
   /* on phones the breadcrumb keeps only the way back; the page name is the h1 right below */
   .x_crumb i, .x_crumb span { display: none; }
-  .h_now, .k_measure, .f_who, .k_probs, .i_facts { grid-template-columns: minmax(0,1fr); }
+  .h_now, .k_measure, .f_who, .k_probs, .i_facts, .i_time { grid-template-columns: minmax(0,1fr); }
   .k_road { grid-template-columns: 1fr 1fr; }
   .e_form { grid-template-columns: minmax(0,1fr); }
   .k_roles li { grid-template-columns: minmax(0,1fr); gap: 6px; }
@@ -5300,10 +5332,10 @@ a.s_btn, button.s_btn { will-change: transform; }
   <section class="x_sec"><div class="s_wrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>What selected pilot teams receive</span><h2 class="x_h2" data-reveal>A funded, measured on-farm pilot.</h2></div><p class="x_body" data-reveal>From proposal to a pilot with a defined route to adoption.</p></div>
     <ol class="f_stack" id="fifStack">
-      <li class="f_card" style="--i:0"><div class="f_cardText"><div><h3>Pilot funding</h3><p>Up to AED 200,000 per selected pilot in the current cycle.</p></div></div><div class="x_img"><img src="/innovation-venture-platforms/img/area_water.webp" alt="" loading="lazy"></div></li>
-      <li class="f_card" style="--i:1"><div class="f_cardText"><div><h3>Pilot readiness</h3><p>A defined scope, baseline, site, season and resource plan.</p></div></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_soil.webp" alt="" loading="lazy"></div></li>
-      <li class="f_card" style="--i:2"><div class="f_cardText"><div><h3>Delivery discipline</h3><p>Milestones, data logging, success KPIs and review points.</p></div></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="" loading="lazy"></div></li>
-      <li class="f_card" style="--i:3"><div class="f_cardText"><div><h3>Visibility and scale</h3><p>A close-out review, farmer demonstration and adoption pathway.</p></div></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_audience.webp" alt="" loading="lazy"></div></li>
+      <li class="f_card" style="--i:0"><div class="f_cardText"><div><span class="x_label">Funding</span><h3>Pilot funding</h3><p>Each selected pilot is funded to run on a real farm.</p></div><div class="f_spec"><div class="f_specBig"><strong>AED 200K</strong><span>up to, per selected pilot</span></div><div class="f_specRow" data-stagger><span>Current cycle</span><span>5 pilots to fund</span></div></div></div><div class="x_img"><img src="/innovation-venture-platforms/img/area_water.webp" alt="" loading="lazy"></div></li>
+      <li class="f_card" style="--i:1"><div class="f_cardText"><div><span class="x_label">Readiness</span><h3>Pilot readiness</h3><p>Before anything is planted, the pilot is fully defined.</p></div><ul class="f_spec f_check" data-stagger><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Scope</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Baseline</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Site</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Season</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Resource plan</li></ul></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_soil.webp" alt="" loading="lazy"></div></li>
+      <li class="f_card" style="--i:2"><div class="f_cardText"><div><span class="x_label">Delivery</span><h3>Delivery discipline</h3><p>The pilot is run and measured the same way, start to finish.</p></div><ol class="f_spec f_seq" style="--n:4" data-stagger><li>Milestones</li><li>Data logging</li><li>Success KPIs</li><li>Review points</li></ol></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="" loading="lazy"></div></li>
+      <li class="f_card" style="--i:3"><div class="f_cardText"><div><span class="x_label">Scale</span><h3>Visibility and scale</h3><p>Results are shown to other farmers, with a route to adoption.</p></div><ol class="f_spec f_seq" style="--n:3" data-stagger><li>Close-out review</li><li>Farmer demonstration</li><li>Adoption pathway</li></ol></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_audience.webp" alt="" loading="lazy"></div></li>
     </ol>
     <div class="f_value"><div><span class="x_label">Each pilot delivers</span><h3>Farm value</h3><p>Performance, efficiency or profitability measured during the pilot.</p></div><div><span class="x_label">&nbsp;</span><h3>Evidence</h3><p>Comparable data and practical lessons that other farms can use.</p></div><div><span class="x_label">&nbsp;</span><h3>Adoption</h3><p>A clear next step for farmers, funders and implementation partners.</p></div></div>
     <div class="x_row" style="margin-top:clamp(40px,5vw,72px)"><a href="/Innovation-Venture-Platforms/Enquire?platform=fif" class="s_btn s_btnPrimary" data-platform="fif">Apply for funding <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
@@ -5829,8 +5861,18 @@ dispatchEvent(new Event('io3d'));
       swap($('#techName'), T[k].n); swap($('#techText'), T[k].t); swap($('#techK1'), T[k].k1); swap($('#techV1'), T[k].v1); swap($('#techK2'), T[k].k2); swap($('#techV2'), T[k].v2); drawIcon(k);
       if (G) setTimeout(function () { var h1 = specIn.offsetHeight + 2; gsap.fromTo(spec, { height: h0 }, { height: h1, duration: 0.7, ease: 'power3.inOut', onComplete: function () { spec.style.height = ''; } }); }, 360);
     });
-    var tb = $('.i_timeBar', view), a = Date.UTC(2025, 10, 1), b = Date.UTC(2026, 10, 30), t = Math.max(0, Math.min(1, (Date.now() - a) / (b - a)));
-    tb.style.setProperty('--t', t.toFixed(3)); if (t >= 1) $('#incNow').textContent = 'Cohort complete';
+    // cohort key dates: "today" and the days left come from today's date
+    var kEnd = Date.UTC(2026, 10, 30), kNow = Date.now(), kLeft = Math.max(0, Math.ceil((kEnd - kNow) / 864e5)), kd = $('#kd', view), dd = new Date(kNow);
+    $('#kdToday', view).innerHTML = 'Today, ' + dd.getUTCDate() + ' ' + ['January','February','March','April','May','June','July','August','September','October','November','December'][dd.getUTCMonth()] + '<span class="tag">Now</span>';
+    $('#kdDays', view).textContent = kLeft === 1 ? '1 day' : kLeft + ' days';
+    if (kNow >= kEnd) { $$('#kd li', view).forEach(function (li, i) { li.setAttribute('data-s', i < 3 ? 'done' : 'now'); }); $('#kdToday', view).closest('li').style.display = 'none'; $('#kdDays', view).parentNode.textContent = 'Four technologies, one year with Khalifa University. The cohort has closed.'; }
+    if (G) {
+      kd.style.setProperty('--d', 0); gsap.set($$('#kd li', view), { opacity: 0, y: 14 });
+      ScrollTrigger.create({ trigger: kd, start: 'top 80%', once: true, onEnter: function () {
+        var o = { v: 0 }; gsap.to(o, { v: 1, duration: 1.4, ease: 'power2.inOut', onUpdate: function () { kd.style.setProperty('--d', o.v); } });
+        gsap.to($$('#kd li', view), { opacity: 1, y: 0, duration: 0.8, stagger: 0.18, ease: 'power3.out', delay: 0.1 });
+      } });
+    }
   };
 
   INIT.accelerator = function (view) {
