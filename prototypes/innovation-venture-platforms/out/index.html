@@ -4598,18 +4598,25 @@ a.s_btn, button.s_btn { will-change: transform; }
 .f_who p { font-size: .9375rem; color: var(--grey-ink); max-width: 26em; }
 .f_callout { margin-top: clamp(40px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 20px; padding: 22px 26px; background: #fff; border-left: 2px solid var(--io); }
 .f_callout b { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--io-ink); }
-.f_areas { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: repeat(2, clamp(220px, 22vw, 340px)); gap: 6px; }
-.f_area { position: relative; overflow: hidden; color: #fff; }
-.f_area:nth-child(1) { grid-row: span 2; }
-.f_area:nth-child(4) { grid-column: 2 / span 2; }
-.f_area .x_img { position: absolute; inset: 0; }
-.f_area .x_img img { transition: scale 1.4s var(--slow); }
-.f_area:hover .x_img img { scale: 1.05; }
-.f_area::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(14,16,15,.78), rgba(14,16,15,0) 62%); }
-.f_area > div:last-child { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: clamp(18px, 2vw, 28px); display: flex; flex-direction: column; gap: 6px; }
-.f_area h3 { font-size: clamp(1.125rem, 1.6vw, 1.5rem); font-weight: 400; line-height: 1.2; }
-.f_area p { font-size: .875rem; color: rgba(255,255,255,.82); }
-.f_area span { font-size: .75rem; letter-spacing: .14em; color: rgba(255,255,255,.7); }
+.f_areas { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.f_areaTabs { display: flex; flex-direction: column; justify-content: center; padding-right: clamp(24px, 4vw, 64px); }
+.f_areaTab { all: unset; box-sizing: border-box; cursor: pointer; position: relative; display: grid; grid-template-columns: 48px minmax(0,1fr) 16px; gap: 12px; align-items: baseline; padding: clamp(18px, 2.4vh, 26px) 0; border-bottom: 1px solid var(--line); color: #b3b5b6; transition: color .4s; }
+.f_areaTab:first-child { border-top: 1px solid var(--line); }
+.f_areaTab::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--io-ink); transform: scaleX(0); transform-origin: left; transition: transform .9s var(--slow); }
+.f_areaTab b { font-size: .75rem; font-weight: 500; letter-spacing: .14em; color: var(--io-ink); }
+.f_areaTab strong { font-size: clamp(1.25rem, 2vw, 1.875rem); font-weight: 300; letter-spacing: -.02em; line-height: 1.15; transition: transform .7s var(--slow); }
+.f_areaTab .x_arrow { opacity: 0; transform: translateX(-8px); transition: opacity .4s, transform .6s var(--slow); }
+.f_areaTab[aria-selected="true"] { color: var(--charcoal); } .f_areaTab[aria-selected="true"]::after { transform: scaleX(1); } .f_areaTab[aria-selected="true"] strong { transform: translateX(10px); } .f_areaTab[aria-selected="true"] .x_arrow { opacity: 1; transform: none; color: var(--io-ink); }
+.f_areaTab:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.f_areaStage { min-height: clamp(460px, 66vh, 660px); color: #fff; background: #1f1f1e; }
+.f_areaStage > img { clip-path: inset(100% 0 0 0); scale: 1.12; transition: clip-path 1s var(--slow), scale 1.6s var(--slow); }
+.f_areaStage > img.on { clip-path: inset(0); scale: 1; }
+.f_areaStage::after { content: ""; position: absolute; inset: 0; z-index: 50; background: linear-gradient(0deg, rgba(14,16,15,.82), rgba(14,16,15,0) 58%); pointer-events: none; }
+.f_areaCap { position: absolute; z-index: 51; left: 0; right: 0; bottom: 0; padding: clamp(20px, 3vw, 44px); display: flex; flex-direction: column; gap: 14px; }
+.f_areaCap > span { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.f_areaCap p { font-size: clamp(1.125rem, 1.6vw, 1.5rem); font-weight: 300; line-height: 1.35; max-width: 26em; }
+.f_areaChips { display: flex; flex-wrap: wrap; gap: 8px; }
+.f_areaChips i { font-style: normal; display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); font-size: .8125rem; }
 .f_gates { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; align-items: start; }
 .f_gatesSide { grid-column: 1 / span 5; position: sticky; top: calc(var(--hh) + 40px); display: flex; flex-direction: column; gap: 24px; }
 .f_gatesSide .x_img { aspect-ratio: 4 / 3; }
@@ -5038,9 +5045,7 @@ a.s_btn, button.s_btn { will-change: transform; }
   .f_heroFacts { grid-row: 4; }
   .f_tenets { grid-template-columns: 1fr; }
   .f_gatesSide, .i_spec, .a_csStage, .e_side { position: static; }
-  .f_areas { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: 220px; }
-  .f_area:nth-child(1) { grid-column: 1 / -1; grid-row: auto; }
-  .f_area:nth-child(4) { grid-column: auto; }
+  .f_areas { grid-template-columns: minmax(0,1fr); } .f_areaTabs { padding-right: 0; margin-bottom: 24px; } .f_areaStage { min-height: 420px; }
   .f_cohortPin { height: 360vh; }
   .f_cohortStick { min-height: 0; }
   .f_cohortBig strong { font-size: 5.5rem; }
@@ -5079,8 +5084,7 @@ a.s_btn, button.s_btn { will-change: transform; }
   .k_dots { order: 3; }
 }
 @media (max-width: 600px) {
-  .h_now, .k_measure, .f_who, .k_probs, .i_facts, .f_areas { grid-template-columns: minmax(0,1fr); }
-  .f_area { grid-column: auto !important; }
+  .h_now, .k_measure, .f_who, .k_probs, .i_facts { grid-template-columns: minmax(0,1fr); }
   .k_road { grid-template-columns: 1fr 1fr; }
   .e_form { grid-template-columns: minmax(0,1fr); }
   .k_roles li { grid-template-columns: minmax(0,1fr); gap: 6px; }
@@ -5234,10 +5238,8 @@ a.s_btn, button.s_btn { will-change: transform; }
   <section class="x_sec"><div class="s_wrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>Four areas of farm innovation</span><h2 class="x_h2" data-reveal>Where proposals can focus.</h2></div><p class="x_body" data-reveal>Used across the application and evaluation stages.</p></div>
     <div class="f_areas">
-      <div class="f_area"><div class="x_img" data-img><img src="img/area_water.webp" alt="Lettuce in irrigated rows" loading="lazy"></div><div><span>01</span><h3>Water &amp; Irrigation Management</h3><p>Water quality, efficiency, monitoring and reuse</p></div></div>
-      <div class="f_area"><div class="x_img" data-img><img src="img/area_protected.webp" alt="Crop rows inside a greenhouse" loading="lazy"></div><div><span>02</span><h3>Protected Agriculture &amp; Greenhouses</h3><p>Structures, climate control and crop production</p></div></div>
-      <div class="f_area"><div class="x_img" data-img><img src="img/area_organic.webp" alt="Red-leaf seedlings under a grow light" loading="lazy"></div><div><span>03</span><h3>Sustainable &amp; Organic Practices</h3><p>Soils, inputs, biological solutions and circularity</p></div></div>
-      <div class="f_area"><div class="x_img" data-img><img src="img/area_smart.webp" alt="Seedlings under LED growing lights" loading="lazy"></div><div><span>04</span><h3>Smart Farming &amp; Digital Technology</h3><p>Sensors, automation, analytics and farm decisions</p></div></div>
+      <div class="f_areaTabs" role="tablist" aria-label="Four areas of farm innovation" id="areaTabs"><button class="f_areaTab" role="tab" id="fa-0" aria-controls="faStage" aria-selected="true" tabindex="0"><b>01</b><strong>Water &amp; Irrigation Management</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button><button class="f_areaTab" role="tab" id="fa-1" aria-controls="faStage" aria-selected="false" tabindex="-1"><b>02</b><strong>Protected Agriculture &amp; Greenhouses</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button><button class="f_areaTab" role="tab" id="fa-2" aria-controls="faStage" aria-selected="false" tabindex="-1"><b>03</b><strong>Sustainable &amp; Organic Practices</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button><button class="f_areaTab" role="tab" id="fa-3" aria-controls="faStage" aria-selected="false" tabindex="-1"><b>04</b><strong>Smart Farming &amp; Digital Technology</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button></div>
+      <div class="x_img f_areaStage" id="faStage" role="tabpanel" aria-labelledby="fa-0" data-img><img src="img/area_water.webp" alt="Lettuce in irrigated rows" loading="lazy" class="on"><img src="img/area_protected.webp" alt="Crop rows inside a greenhouse" loading="lazy"><img src="img/area_organic.webp" alt="Red-leaf seedlings under a grow light" loading="lazy"><img src="img/area_smart.webp" alt="Seedlings under LED growing lights" loading="lazy"><div class="f_areaCap"><span>What it covers</span><p id="faText">Water quality, efficiency, monitoring and reuse.</p><div class="f_areaChips" id="faChips"><i>Water quality</i><i>Efficiency</i><i>Monitoring</i><i>Reuse</i></div></div></div>
     </div>
   </div></section>
 
@@ -5931,6 +5933,17 @@ a.s_btn, button.s_btn { will-change: transform; }
   };
 
   INIT['farm-innovation-fund'] = function (view) {
+    // four areas: one photo at a time, wiped in from below
+    var AREA = [['Water quality, efficiency, monitoring and reuse.', ['Water quality', 'Efficiency', 'Monitoring', 'Reuse']], ['Structures, climate control and crop production.', ['Structures', 'Climate control', 'Crop production']], ['Soils, inputs, biological solutions and circularity.', ['Soils', 'Inputs', 'Biological solutions', 'Circularity']], ['Sensors, automation, analytics and farm decisions.', ['Sensors', 'Automation', 'Analytics', 'Farm decisions']]];
+    var faImgs = $$('#faStage > img', view), faT;
+    tabsHover($('#areaTabs', view), null, function (k) {
+      faImgs.forEach(function (x) { x.style.zIndex = x.classList.contains('on') ? 1 : 0; }); var im = faImgs[k]; im.classList.remove('on'); im.style.zIndex = 2; void im.offsetWidth; im.classList.add('on');
+      clearTimeout(faT); faT = setTimeout(function () { faImgs.forEach(function (x, i) { if (i !== k) x.classList.remove('on'); }); }, 1000);
+      $('#faStage', view).setAttribute('aria-labelledby', 'fa-' + k);
+      swap($('#faText', view), AREA[k][0]);
+      var chips = $('#faChips', view); chips.innerHTML = AREA[k][1].map(function (t) { return '<i>' + t + '</i>'; }).join('');
+      if (G) gsap.from(chips.children, { y: 12, opacity: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', delay: 0.2 });
+    });
     // gates: the rail fills and each gate lights up as it reaches the middle of the screen
     var gates = $$('.f_gate', view), fill = $('.f_gatesFill', view), now = $('#gateNow');
     if (G) {
