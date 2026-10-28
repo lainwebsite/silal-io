@@ -4556,10 +4556,12 @@ a.s_btn, button.s_btn { will-change: transform; }
 .h_result h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.02em; color: var(--charcoal); }
 .h_result dl { display: grid; grid-template-columns: 90px minmax(0,1fr); gap: 10px 16px; margin: 0; font-size: .875rem; }
 .h_result dt { color: var(--grey); } .h_result dd { margin: 0; color: var(--charcoal); }
+.h_resultBox { overflow: hidden; }
+#pickGo { overflow: hidden; white-space: nowrap; }
+#pickGoText { display: inline-block; }
 .h_swap { display: block; overflow: hidden; }
 .h_ticker { overflow: hidden; border-block: 1px solid var(--line); background: #fff; }
 .h_tickTrack { display: flex; width: max-content; animation: tick 46s linear infinite; }
-.h_ticker:hover .h_tickTrack { animation-play-state: paused; }
 .h_tickTrack span { display: inline-flex; align-items: center; gap: 18px; padding: 24px 30px; font-size: clamp(1.125rem, 1.7vw, 1.625rem); font-weight: 300; color: var(--charcoal); white-space: nowrap; }
 .h_tickTrack b { font-weight: 400; color: var(--io-ink); }
 .h_tickTrack i { width: 6px; height: 6px; border-radius: 50%; background: var(--io); }
@@ -5485,12 +5487,33 @@ a.s_btn, button.s_btn { will-change: transform; }
       var k = o.dataset.pick, p = PICK[k], link = $('#dock a[data-route="' + p.route + '"]');
       imgs.forEach(function (im) { if (im.dataset.k === k) { im.style.zIndex = ++z; im.style.clipPath = 'inset(0 0 100% 0)'; void im.offsetWidth; im.style.clipPath = 'inset(0 0 0 0)'; } });
       swap($('#pickName'), p.name); swap($('#pickWhy'), p.why); swap($('#pickSup'), p.sup); swap($('#pickNow'), p.now);
-      $('#pickGo').setAttribute('href', link ? link.getAttribute('href') : '#' + p.route); $('#pickGoText').textContent = 'Go to ' + p.name.split(' · ')[0];
+      $('#pickGo').setAttribute('href', link ? link.getAttribute('href') : '#' + p.route); goText('Go to ' + p.name.split(' · ')[0]);
     }
     opts.forEach(function (b, k) {
       b.addEventListener('click', function () { if (b.getAttribute('aria-checked') !== 'true') pick(b); });
       b.addEventListener('keydown', function (e) { var d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); var n = opts[(k + d + opts.length) % opts.length]; pick(n); n.focus(); });
     });
+    // marquee: eases to a stop on hover and eases back up on leave
+    var tick = $('.h_ticker', view), tickAnim = $('.h_tickTrack', view).getAnimations ? $('.h_tickTrack', view).getAnimations()[0] : null, rate = { v: 1 };
+    if (tickAnim) {
+      var setRate = function (v, d) { gsap.to(rate, { v: v, duration: d, ease: 'power2.out', overwrite: true, onUpdate: function () { tickAnim.playbackRate = rate.v; } }); };
+      tick.addEventListener('mouseenter', function () { setRate(0, 1.4); });
+      tick.addEventListener('mouseleave', function () { setRate(1, 1.2); });
+    }
+    // the card follows its content height smoothly instead of jumping when the text swaps
+    var box = $('.h_resultBox', view), boxIn = $('.h_resultIn', view), boxH = 0;
+    if (G && window.ResizeObserver) new ResizeObserver(function () { var h = boxIn.offsetHeight; if (!boxH) { boxH = h; return; } if (h === boxH) return; gsap.fromTo(box, { height: boxH }, { height: h, duration: 0.8, ease: 'expo.out', overwrite: true, onComplete: function () { box.style.height = ''; } }); boxH = h; }).observe(boxIn);
+    // the button text slides out, the button eases to its new width, the new text slides in
+    function goText(t) {
+      var a = $('#pickGo'), el = $('#pickGoText');
+      if (!G) { el.textContent = t; return; }
+      gsap.killTweensOf([a, el]);
+      gsap.to(el, { yPercent: -120, duration: 0.3, ease: 'power3.in', onComplete: function () {
+        var w0 = a.offsetWidth; el.textContent = t; var w1 = a.offsetWidth;
+        gsap.fromTo(a, { width: w0 }, { width: w1, duration: 0.7, ease: 'expo.out', clearProps: 'width' });
+        gsap.fromTo(el, { yPercent: 120 }, { yPercent: 0, duration: 0.6, ease: 'power3.out' });
+      } });
+    }
     if (G) gsap.from($$('.h_panel', view), { clipPath: 'inset(100% 0 0 0)', duration: 1.5, stagger: 0.1, ease: 'expo.out', delay: 0.2 });
   };
 
