@@ -15,13 +15,14 @@ HOME = (ROOT / "public/new-homepage-v2/index.html").read_text(encoding="utf8")
 SITE_DIR = ROOT / "public/innovation-venture-platforms"
 
 # route -> (site URL, site file)
+# live URLs (2026-10-28): /innovation&venture and /innovation&venture/<sub page>; "&" is written as &amp; inside href
 PAGES = {
-    "overview": ("/Innovation-Venture-Platforms", "index.html"),
-    "farm-innovation-fund": ("/Innovation-Venture-Platforms/Farm-Innovation-Fund", "farm-innovation-fund.html"),
-    "incubation": ("/Innovation-Venture-Platforms/Incubation", "incubation.html"),
-    "accelerator": ("/Innovation-Venture-Platforms/Accelerator", "accelerator.html"),
-    "agricultural-challenges": ("/Innovation-Venture-Platforms/Agricultural-Challenges", "agricultural-challenges.html"),
-    "enquire": ("/Innovation-Venture-Platforms/Enquire", "enquire.html"),
+    "overview": ("/innovation&venture", "index.html"),
+    "farm-innovation-fund": ("/innovation&venture/farm-innovation-fund", "farm-innovation-fund.html"),
+    "incubation": ("/innovation&venture/incubation", "incubation.html"),
+    "accelerator": ("/innovation&venture/accelerator", "accelerator.html"),
+    "agricultural-challenges": ("/innovation&venture/agricultural-challenges", "agricultural-challenges.html"),
+    "enquire": ("/innovation&venture/enquire", "enquire.html"),
 }
 
 css = re.search(r"<style>(.*?)</style>", HOME, re.S).group(1)
@@ -65,9 +66,9 @@ TITLES = {"overview": "Innovation &amp; Venture Platforms", "farm-innovation-fun
 
 def site_links(html):
     # buttons that preselect a platform: /…/Enquire?platform=fif
-    html = re.sub(r'href="#enquire"([^>]*?)data-platform="(\w+)"', lambda m: f'href="{PAGES["enquire"][0]}?platform={m.group(2)}"{m.group(1)}data-platform="{m.group(2)}"', html)
+    html = re.sub(r'href="#enquire"([^>]*?)data-platform="(\w+)"', lambda m: f'href="{PAGES["enquire"][0].replace("&", "&amp;")}?platform={m.group(2)}"{m.group(1)}data-platform="{m.group(2)}"', html)
     for route, (url, _) in PAGES.items():
-        html = html.replace(f'href="#{route}"', f'href="{url}"')
+        html = html.replace(f'href="#{route}"', f'href="{url.replace("&", "&amp;")}"')
     return html
 
 SITE_DIR.mkdir(parents=True, exist_ok=True)

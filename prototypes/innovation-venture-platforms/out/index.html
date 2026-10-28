@@ -6367,7 +6367,7 @@ dispatchEvent(new Event('io3d'));
     var el = document.getElementById(location.hash.slice(1)); if (el) { if (lenis) lenis.scrollTo(el, { offset: -90 }); else el.scrollIntoView(); }
   });
   // site build: pages are separate files; play the curtain on the way out
-  if (G) $$('a[href^="/Innovation-Venture-Platforms"]').forEach(function (a) {
+  if (G) $$('a[href^="/innovation&venture"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); var href = a.getAttribute('href');
       try { sessionStorage.setItem('ivpCurtain', '1'); } catch (x) {}
