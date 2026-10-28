@@ -4689,7 +4689,8 @@ a.s_btn, button.s_btn { will-change: transform; }
 .f_keyGoal { margin-left: auto; }
 /* innovation day: pinned horizontal gallery, one ratio */
 .f_dayPin { position: relative; }
-.f_dayStick { position: sticky; top: var(--hh); height: calc(100vh - var(--hh)); min-height: 600px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: clamp(28px, 4vh, 48px); }
+/* photos shrink on short screens so the captions stay above the dock */
+.f_dayStick { --fw: max(200px, min(clamp(240px, 24vw, 400px), calc((100svh - var(--hh) - 400px) * .8))); position: sticky; top: var(--hh); height: calc(100vh - var(--hh)); min-height: 600px; padding-bottom: 96px; box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: clamp(28px, 4vh, 48px); }
 .f_dayHead { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; }
 .f_dayHead > div:first-child { display: flex; flex-direction: column; gap: 16px; max-width: 40em; }
 .f_dayNums { display: flex; gap: clamp(24px, 3vw, 56px); }
@@ -4697,10 +4698,10 @@ a.s_btn, button.s_btn { will-change: transform; }
 .f_dayNums strong { font-size: clamp(2.25rem, 3.2vw, 3.25rem); font-weight: 300; line-height: 1; letter-spacing: -.04em; color: var(--io-ink); }
 .f_dayNums span { font-size: .8125rem; color: var(--grey); }
 .f_track { display: flex; gap: clamp(14px, 1.6vw, 24px); padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); will-change: transform; }
-.f_track figure { flex: 0 0 auto; width: clamp(240px, 24vw, 400px); margin: 0; }
+.f_track figure { flex: 0 0 auto; width: var(--fw); margin: 0; }
 .f_track .x_img { aspect-ratio: 4 / 5; }
 .f_track .x_img img { left: -8%; width: 116%; max-width: none; top: 0; height: 100%; }
-.f_trackEnd { flex: 0 0 auto; align-self: flex-start; box-sizing: content-box; width: clamp(240px, 24vw, 400px); aspect-ratio: 4 / 5; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; padding-right: var(--gutter); }
+.f_trackEnd { flex: 0 0 auto; align-self: flex-start; box-sizing: content-box; width: var(--fw); aspect-ratio: 4 / 5; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; padding-right: var(--gutter); }
 /* receive: stacked sticky cards */
 .f_stack { display: flex; flex-direction: column; gap: 0; }
 .f_card { position: sticky; top: calc(var(--hh) + 24px + var(--i) * 18px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: stretch; min-height: clamp(360px, 52vh, 520px); margin-bottom: 4vh; background: var(--light); transform-origin: top center; }
@@ -5195,7 +5196,7 @@ a.s_btn, button.s_btn { will-change: transform; }
   .f_dayPin { height: auto !important; }
   .f_dayStick { position: static; height: auto; min-height: 0; overflow: visible; padding-block: 88px; }
   .f_track { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; padding-right: var(--gutter); transform: none !important; }
-  .f_track figure { scroll-snap-align: start; width: 72vw; }
+  .f_track figure { scroll-snap-align: start; width: 72vw; } .f_dayStick { --fw: 72vw; }
   .f_card { grid-template-columns: 1fr; position: relative; top: auto; }
   .f_card .x_img { min-height: 240px; }
   .f_check { grid-template-columns: 1fr; } .f_seq { grid-template-columns: 1fr; row-gap: 14px; } .f_seq::before { left: 6px; right: auto; top: 28px; bottom: 6px; width: 1px; height: auto; } .f_seq li { flex-direction: row; align-items: center; }
