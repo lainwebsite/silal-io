@@ -4462,7 +4462,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .x_label { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
 .x_statement { font-size: clamp(1.75rem, 3.1vw, 3.25rem); font-weight: 300; line-height: 1.2; letter-spacing: -.025em; color: var(--charcoal); text-wrap: balance; }
 .x_statement b { font-weight: 300; color: var(--io-ink); }
-.x_pill { display: inline-flex; align-items: center; gap: 10px; min-height: 32px; padding: 4px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: .8125rem; color: var(--charcoal); background: #fff; }
+.x_pill { display: inline-flex; align-self: flex-start; width: fit-content; align-items: center; gap: 10px; min-height: 32px; padding: 4px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: .8125rem; color: var(--charcoal); background: #fff; }
 .x_pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--io); box-shadow: 0 0 0 0 rgba(60,167,210,.5); animation: ping 2.4s ease-out infinite; }
 @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(60,167,210,.55); } 70%, 100% { box-shadow: 0 0 0 8px rgba(60,167,210,0); } }
 .x_ink .x_pill, .x_onPhoto .x_pill { background: transparent; border-color: rgba(255,255,255,.35); color: #fff; }
@@ -4650,8 +4650,6 @@ a.s_btn, button.s_btn { will-change: transform; }
 .f_gates { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; align-items: start; }
 .f_gatesSide { grid-column: 1 / span 5; position: sticky; top: calc(var(--hh) + 40px); display: flex; flex-direction: column; gap: 24px; }
 .f_gatesSide .x_img { aspect-ratio: 4 / 3; }
-.f_gatesNow { display: flex; align-items: baseline; gap: 14px; font-size: .8125rem; color: var(--grey); }
-.f_gatesNow strong { font-size: 3rem; font-weight: 300; line-height: 1; color: var(--io-ink); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
 .f_gatesList { grid-column: 7 / span 6; position: relative; padding-block: 8vh 14vh; }
 .f_gatesRail, .f_gatesFill { position: absolute; left: 27px; top: calc(8vh + 28px); bottom: calc(14vh + 28px); width: 1px; background: var(--line); }
 .f_gatesFill { background: var(--io-ink); transform-origin: top; transform: scaleY(0); }
@@ -5478,10 +5476,10 @@ a.s_btn, button.s_btn { will-change: transform; }
       if (G) gsap.from(chips.children, { y: 12, opacity: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', delay: 0.2 });
     });
     // gates: the rail fills and each gate lights up as it reaches the middle of the screen
-    var gates = $$('.f_gate', view), fill = $('.f_gatesFill', view), now = $('#gateNow');
+    var gates = $$('.f_gate', view), fill = $('.f_gatesFill', view);
     if (G) {
       gsap.to(fill, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '#gates', start: 'top 55%', end: 'bottom 60%', scrub: true } });
-      gates.forEach(function (g, i) { ScrollTrigger.create({ trigger: g, start: 'top 58%', end: 'bottom 58%', onToggle: function (s) { if (s.isActive || s.progress === 1) { g.setAttribute('data-on', ''); now.textContent = i + 1; } }, onLeaveBack: function () { g.removeAttribute('data-on'); now.textContent = Math.max(1, i); } }); });
+      gates.forEach(function (g, i) { ScrollTrigger.create({ trigger: g, start: 'top 58%', end: 'bottom 58%', onToggle: function (s) { if (s.isActive || s.progress === 1) g.setAttribute('data-on', ''); }, onLeaveBack: function () { g.removeAttribute('data-on'); } }); });
     } else gates.forEach(function (g) { g.setAttribute('data-on', ''); });
     // cohort: 130 squares, five stages
     var waffle = $('#waffle'), STAGES = [[130, 'Applications submitted'], [68, 'Advanced to Phase 2'], [39, 'Valid Phase 2 proposals'], [10, 'Finalists'], [5, 'Pilots to fund']], sq = [], stage = -1;
