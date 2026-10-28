@@ -28,6 +28,9 @@ const nextConfig: NextConfig = {
       // IO Academy (library + course detail, static page in public/io-academy/, 2026-10-26)
       { source: "/io-academy", destination: "/io-academy/index.html" },
       { source: "/IO-Academy", destination: "/io-academy/index.html" },
+      // Innovation & Venture Platforms hub (static page in public/innovation-venture-platforms/, built by prototypes/innovation-venture-platforms/build.py, 2026-10-28)
+      { source: "/Innovation-Venture-Platforms", destination: "/innovation-venture-platforms/index.html" },
+      { source: "/innovation-venture-platforms", destination: "/innovation-venture-platforms/index.html" },
     ];
   },
 };

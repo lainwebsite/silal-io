@@ -1,0 +1,1017 @@
+<title>Innovation &amp; Venture Platforms</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">
+<style>
+{{SHELL_CSS}}
+</style>
+<style>
+/* Innovation & Venture Platforms — hub page.
+   Shell (header, menu, footer, type, buttons, hero, intro, stats) = the latest homepage (/new-homepage-v2), copied by build.py.
+   Everything below is page-specific, prefixed v_. Brand rules: docs/brand.md. Platform accents are small (dots, rules, rails) only:
+   FIF green · Incubation lime · Accelerator IO blue · Challenges orange. */
+.c_page { --p-fif: var(--green); --p-inc: var(--lime); --p-acc: var(--io); --p-chal: var(--orange); --hdr: 114px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: #fff; }
+.s_root .s_wrap { padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.v_anchor { scroll-margin-top: 90px; }
+.s_root [hidden] { display: none !important; }
+
+/* hero: the four slides are the four platforms; the index links into the page */
+.v_hero .c_heroTitle { max-width: 11em; }
+.v_hero .c_slideNav a { display: grid; grid-template-columns: 28px 1fr; align-items: center; column-gap: 12px; row-gap: 8px; font-size: 0.8125rem; color: rgba(255,255,255,.6); transition: color .5s ease; }
+.v_hero .c_slideNav a[data-on="true"], .v_hero .c_slideNav a:hover { color: #fff; }
+.v_hero .c_slideNav a[data-on="true"] i::after { animation: slideBar 6s linear forwards; }
+.v_heroCrumb { display: flex; gap: 10px; font-size: .8125rem; color: rgba(255,255,255,.75); }
+.v_heroCrumb span[aria-hidden] { opacity: .5; }
+
+/* intro numbers: small unit after the figure */
+.v_unit { font-size: .45em; letter-spacing: 0; margin-left: .18em; color: var(--io); }
+.v_pre { font-size: .45em; letter-spacing: 0; margin-right: .18em; color: var(--io); }
+
+/* section heads */
+.v_head { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 20px; align-items: end; padding-bottom: 28px; margin-bottom: clamp(40px, 4.5vw, 72px); border-bottom: 1px solid var(--line); position: relative; }
+.v_head::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--io); transform: scaleX(var(--rule, 0)); transform-origin: left; transition: transform 1.4s var(--slow); }
+.v_head[data-in] { --rule: 1; }
+.v_headMain { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 18px; }
+.v_headSide { grid-column: 9 / span 4; }
+.v_headSide p { color: var(--grey-ink); font-size: var(--fs-body); line-height: 1.7; }
+.v_dark .v_head { border-color: rgba(255,255,255,.18); }
+.v_dark .v_headSide p { color: rgba(255,255,255,.72); }
+
+/* ladder: one pathway, four ways in */
+.v_ladder { --p: 0; }
+.v_rail { position: relative; height: 1px; background: var(--line); margin: 8px 0 0; }
+.v_rail > i { position: absolute; inset: 0; background: var(--io); transform-origin: left; transform: scaleX(var(--p)); }
+.v_rungs { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: var(--col-gap); }
+.v_rung { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 34px 0 0; min-width: 0; }
+.v_rung::before { content: ""; position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 1px solid var(--line); transition: background .5s, border-color .5s, transform .5s var(--slow); }
+.v_rung[data-on]::before { background: var(--c); border-color: var(--c); transform: scale(1.25); }
+.v_stage { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.v_rung h3 { font-size: var(--fs-h3); font-weight: 400; line-height: 1.2; letter-spacing: -.015em; color: var(--charcoal); }
+.v_rung h3 small { display: block; font-size: .8125rem; font-weight: 500; letter-spacing: .02em; color: var(--io-ink); margin-bottom: 8px; }
+.v_rungLine { font-size: 1.0625rem; font-weight: 300; line-height: 1.45; color: var(--charcoal); min-height: 3em; }
+.v_rungFacts { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.v_rungFacts li { display: grid; grid-template-columns: 82px minmax(0,1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: .875rem; line-height: 1.45; }
+.v_rungFacts span { color: var(--grey); }
+.v_rungFacts b { font-weight: 400; color: var(--charcoal); }
+.v_rung .s_textLink { align-self: flex-start; margin-top: 6px; }
+.v_dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c); margin-right: 8px; vertical-align: 1px; }
+.v_fif { --c: var(--p-fif); } .v_inc { --c: var(--p-inc); } .v_acc { --c: var(--p-acc); } .v_chal { --c: var(--p-chal); }
+.v_ladderAxis { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: var(--col-gap); margin-top: 40px; font-size: .8125rem; color: var(--grey); }
+.v_ladderAxis span { border-top: 1px dashed var(--line); padding-top: 10px; }
+.v_ladderAxis b { font-weight: 500; color: var(--io-ink); }
+
+/* platform chapters */
+.v_chapter { position: relative; }
+.v_chapNum { font-size: clamp(5rem, 11vw, 11rem); font-weight: 300; line-height: .8; letter-spacing: -.05em; color: var(--c); opacity: .9; }
+.v_split { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 48px; align-items: start; }
+.v_splitText { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 26px; }
+.v_splitMedia { grid-column: 7 / span 6; }
+.v_splitText .c_lead { color: var(--charcoal); }
+.v_mediaL { grid-column: 1 / span 6; }
+.v_textR { grid-column: 8 / span 5; }
+.v_facts { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); border-top: 1px solid var(--line); }
+.v_facts div { padding: 16px 16px 16px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.v_facts dt { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); }
+.v_facts dd { margin: 0; font-size: .9375rem; line-height: 1.5; color: var(--charcoal); }
+.v_dark .v_facts, .v_dark .v_facts div { border-color: rgba(255,255,255,.18); }
+.v_dark .v_facts dt { color: rgba(255,255,255,.6); }
+.v_dark .v_facts dd { color: #fff; }
+.v_ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.v_status { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; height: 30px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); font-size: .8125rem; color: var(--charcoal); }
+.v_status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 22%, transparent); }
+.v_dark .v_status { border-color: rgba(255,255,255,.3); color: #fff; }
+
+/* photo frame with crop marks (homepage "Fig." frame) */
+.v_frame { position: relative; overflow: hidden; background: #e3e3e3; aspect-ratio: 4 / 3; }
+.v_frame img { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; will-change: transform; }
+.v_frame::after { content: ""; position: absolute; inset: 14px; pointer-events: none; --c2: rgb(255 255 255 / .85); --l: 14px;
+  background: linear-gradient(var(--c2),var(--c2)) top left / var(--l) 1px, linear-gradient(var(--c2),var(--c2)) top left / 1px var(--l), linear-gradient(var(--c2),var(--c2)) top right / var(--l) 1px, linear-gradient(var(--c2),var(--c2)) top right / 1px var(--l), linear-gradient(var(--c2),var(--c2)) bottom left / var(--l) 1px, linear-gradient(var(--c2),var(--c2)) bottom left / 1px var(--l), linear-gradient(var(--c2),var(--c2)) bottom right / var(--l) 1px, linear-gradient(var(--c2),var(--c2)) bottom right / 1px var(--l); background-repeat: no-repeat; }
+.v_frameTall { aspect-ratio: 4 / 5; }
+.v_frameWide { aspect-ratio: 16 / 9; }
+.v_cap { display: flex; gap: 14px; margin-top: 14px; font-size: .8125rem; color: var(--grey); line-height: 1.5; }
+.v_cap b { font-weight: 500; color: var(--io-ink); letter-spacing: .08em; text-transform: uppercase; font-size: .75rem; white-space: nowrap; }
+.v_dark .v_cap { color: rgba(255,255,255,.65); }
+.v_dark .v_cap b { color: var(--io); }
+
+/* mission line */
+.v_mission { margin: clamp(72px, 8vw, 128px) 0 0; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); }
+.v_mission p { grid-column: 2 / span 9; font-size: clamp(1.75rem, 2.6vw, 2.75rem); font-weight: 300; line-height: 1.25; letter-spacing: -.02em; color: var(--charcoal); }
+.v_mission p b { font-weight: 300; color: var(--io-ink); }
+.v_mission span { grid-column: 1 / span 1; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); padding-top: 14px; }
+
+/* sub blocks inside a chapter */
+.v_block { margin-top: clamp(80px, 9vw, 140px); }
+.v_blockHead { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; }
+.v_blockHead h3 { font-size: var(--fs-h3); font-weight: 400; letter-spacing: -.015em; color: var(--charcoal); }
+.v_blockHead p { font-size: .875rem; color: var(--grey); }
+.v_dark .v_blockHead h3 { color: #fff; }
+.v_dark .v_blockHead p { color: rgba(255,255,255,.6); }
+
+/* four areas: photo tiles */
+.v_areas { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--col-gap); }
+.v_area { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.v_area .v_frame { aspect-ratio: 1 / 1.05; }
+.v_area h4 { font-size: 1.0625rem; font-weight: 500; line-height: 1.3; color: var(--charcoal); padding-top: 14px; border-top: 2px solid var(--c); }
+.v_area p { font-size: .875rem; color: var(--grey-ink); line-height: 1.55; }
+
+/* process stepper */
+.v_steps { --n: 5; display: grid; grid-template-columns: repeat(var(--n), minmax(0,1fr)); column-gap: var(--col-gap); position: relative; }
+.v_steps::before { content: ""; position: absolute; top: 5px; left: 0; right: 0; height: 1px; background: var(--line); }
+.v_steps::after { content: ""; position: absolute; top: 5px; left: 0; right: 0; height: 1px; background: var(--c); transform-origin: left; transform: scaleX(var(--sp, 0)); transition: transform 1.8s var(--slow); }
+.v_steps[data-in] { --sp: 1; }
+.v_steps li { position: relative; padding-top: 34px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.v_steps li::before { content: ""; position: absolute; top: 0; left: 0; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 1px solid var(--c); z-index: 1; }
+.v_steps li:last-child::before { background: var(--c); }
+.v_steps b { font-size: .75rem; font-weight: 500; letter-spacing: .12em; color: var(--io-ink); }
+.v_steps h4 { font-size: 1.0625rem; font-weight: 500; line-height: 1.3; color: var(--charcoal); }
+.v_steps p { font-size: .875rem; color: var(--grey-ink); line-height: 1.55; }
+.v_steps time { font-size: .8125rem; color: var(--grey); }
+.v_steps li[data-mark] h4 { color: var(--io-ink); }
+.v_dark .v_steps::before { background: rgba(255,255,255,.2); }
+.v_dark .v_steps li::before { background: var(--charcoal); }
+.v_dark .v_steps li:last-child::before { background: var(--c); }
+.v_dark .v_steps h4 { color: #fff; }
+.v_dark .v_steps p { color: rgba(255,255,255,.7); }
+.v_dark .v_steps b { color: var(--io); }
+.v_note { margin-top: 28px; font-size: .875rem; color: var(--grey); font-style: italic; }
+.v_dark .v_note { color: rgba(255,255,255,.6); }
+
+/* numbers band */
+.v_numbers { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); column-gap: var(--col-gap); border-top: 1px solid var(--line); }
+.v_numbers li { padding-top: 24px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.v_num { font-size: clamp(2.25rem, 3.4vw, 3.75rem); font-weight: 300; line-height: 1; letter-spacing: -.03em; color: var(--io-ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.v_numLabel { font-size: .8125rem; color: var(--grey); line-height: 1.5; }
+.v_target { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; padding: 18px 22px; background: #fff; border-left: 3px solid var(--c); font-size: .9375rem; }
+.v_target b { font-weight: 500; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--io-ink); }
+
+/* innovation day mosaic */
+.v_mosaic { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); grid-auto-rows: clamp(120px, 12vw, 210px); gap: var(--col-gap); }
+.v_mosaic .v_frame { aspect-ratio: auto; height: 100%; }
+.v_m1 { grid-column: 1 / span 7; grid-row: span 2; }
+.v_m2 { grid-column: 8 / span 5; grid-row: span 1; }
+.v_m3 { grid-column: 8 / span 5; grid-row: span 1; }
+.v_m4 { grid-column: 1 / span 4; grid-row: span 1; }
+.v_m5 { grid-column: 5 / span 3; grid-row: span 1; }
+.v_mText { grid-column: 8 / span 5; grid-row: span 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; }
+.v_mText .v_bigs { display: flex; gap: 40px; }
+.v_mText .v_bigs div { display: flex; flex-direction: column; gap: 4px; }
+.v_mText .v_bigs strong { font-size: clamp(2rem, 2.8vw, 3rem); font-weight: 300; line-height: 1; color: var(--io-ink); letter-spacing: -.03em; }
+.v_mText .v_bigs span { font-size: .8125rem; color: var(--grey); }
+.v_mText p { font-size: .9375rem; color: var(--grey-ink); }
+
+/* numbered list of benefits (2 or 4 columns) */
+.v_list { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; }
+.v_list li { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; position: relative; }
+.v_list li::before { content: ""; position: absolute; top: -1px; left: 0; width: 40px; height: 1px; background: var(--c); }
+.v_list b { font-size: .75rem; font-weight: 500; letter-spacing: .12em; color: var(--io-ink); }
+.v_list h4 { font-size: 1.0625rem; font-weight: 500; line-height: 1.3; color: var(--charcoal); }
+.v_list p { font-size: .9375rem; color: var(--grey-ink); line-height: 1.6; }
+.v_dark .v_list li { border-color: rgba(255,255,255,.18); }
+.v_dark .v_list b { color: var(--io); }
+.v_dark .v_list h4 { color: #fff; }
+.v_dark .v_list p { color: rgba(255,255,255,.72); }
+.v_list3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+/* incubator technologies */
+.v_techs { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--col-gap); }
+.v_tech { background: #fff; padding: 26px 24px 28px; display: flex; flex-direction: column; gap: 12px; min-width: 0; border-top: 3px solid var(--c); }
+.v_tech span { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); }
+.v_tech h4 { font-size: 1.5rem; font-weight: 400; letter-spacing: -.02em; color: var(--charcoal); }
+.v_tech p { font-size: .9375rem; line-height: 1.6; color: var(--grey-ink); }
+.v_tech em { margin-top: auto; padding-top: 10px; font-style: normal; font-size: .8125rem; color: var(--io-ink); border-top: 1px solid var(--line); }
+.v_success { margin-top: clamp(56px, 6vw, 96px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 24px; align-items: center; }
+.v_success p { grid-column: 1 / span 8; font-size: var(--fs-statement); font-weight: 300; line-height: 1.32; letter-spacing: -.015em; color: var(--charcoal); }
+.v_success p b { font-weight: 300; color: var(--io-ink); }
+.v_success .s_textLink { grid-column: 10 / span 3; justify-self: end; }
+
+/* accelerator: dark band */
+.v_dark { background: #2b2928; color: #fff; }
+.v_dark .c_h2, .v_dark .c_lead, .v_dark .c_body { color: #fff; }
+.v_dark .c_body { color: rgba(255,255,255,.78); }
+.v_dark .c_eyebrow { color: var(--io); }
+.v_dark .s_textLink { color: #fff; }
+.v_uh { font-size: clamp(2.75rem, 6.2vw, 7rem); font-weight: 300; line-height: .95; letter-spacing: -.045em; color: #fff; }
+.v_uh i { font-style: normal; color: var(--io); }
+.v_accTop { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; align-items: start; }
+.v_accTop .v_uhWrap { grid-column: 1 / span 8; display: flex; flex-direction: column; gap: 22px; }
+.v_accTop .v_accSide { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 22px; }
+.v_accFacts { margin-top: clamp(56px, 6vw, 96px); display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: var(--col-gap); border-top: 1px solid rgba(255,255,255,.18); }
+.v_accFacts li { padding-top: 22px; display: flex; flex-direction: column; gap: 8px; }
+.v_accFacts strong { font-size: clamp(2.25rem, 3.4vw, 3.75rem); font-weight: 300; line-height: 1; letter-spacing: -.03em; color: #fff; white-space: nowrap; }
+.v_accFacts strong small { font-size: .45em; color: var(--io); letter-spacing: 0; margin-right: .2em; }
+.v_accFacts span { font-size: .8125rem; color: rgba(255,255,255,.62); }
+.v_band { margin-top: clamp(72px, 8vw, 128px); }
+.v_band .v_frame { aspect-ratio: 21 / 8; }
+
+/* challenge statements: tabs */
+.v_cs { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 32px; }
+.v_csTabs { grid-column: 1 / span 5; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,.18); }
+.v_csTabs button { all: unset; cursor: pointer; display: grid; grid-template-columns: 44px minmax(0,1fr) 20px; gap: 12px; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.62); font-size: 1.0625rem; line-height: 1.35; transition: color .4s; position: relative; }
+.v_csTabs button::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--io); transform: scaleX(0); transform-origin: left; transition: transform .7s var(--slow); }
+.v_csTabs button[aria-selected="true"] { color: #fff; }
+.v_csTabs button[aria-selected="true"]::after { transform: scaleX(1); }
+.v_csTabs button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.v_csTabs b { font-size: .75rem; font-weight: 500; letter-spacing: .1em; color: var(--io); }
+.v_csTabs small { font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); display: block; margin-top: 4px; }
+.v_csPanel { grid-column: 7 / span 6; display: grid; grid-template-columns: minmax(0,1fr); gap: 24px; }
+.v_csPanel[hidden] { display: none !important; }
+.v_csPanel .v_frame { aspect-ratio: 16 / 9; }
+.v_hmw { font-size: clamp(1.375rem, 1.9vw, 2rem); font-weight: 300; line-height: 1.3; letter-spacing: -.015em; color: #fff; }
+.v_hmw span { color: var(--io); }
+.v_csPanel .v_tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.v_tags span { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); font-size: .8125rem; color: rgba(255,255,255,.85); }
+
+/* technologies we prioritise: compact index */
+.v_index { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); }
+.v_index li { display: grid; grid-template-columns: 36px minmax(0,1fr); gap: 4px 12px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.14); min-width: 0; }
+.v_index b { font-size: .75rem; font-weight: 500; color: var(--io); padding-top: 3px; }
+.v_index h4 { font-size: 1rem; font-weight: 500; color: #fff; }
+.v_index p { grid-column: 2; font-size: .875rem; line-height: 1.55; color: rgba(255,255,255,.65); }
+
+/* FAQ */
+.v_faq { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); }
+.v_faqList { grid-column: 5 / span 8; border-top: 1px solid rgba(255,255,255,.18); }
+.v_faqSide { grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 16px; }
+.v_faqSide p { font-size: .9375rem; color: rgba(255,255,255,.7); }
+.v_faq details { border-bottom: 1px solid rgba(255,255,255,.18); }
+.v_faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 24px; padding: 22px 0; font-size: 1.125rem; font-weight: 400; color: #fff; }
+.v_faq summary::-webkit-details-marker { display: none; }
+.v_faq summary::after { content: ""; flex: 0 0 14px; height: 14px; margin-top: 6px; background: linear-gradient(var(--io),var(--io)) center / 14px 1px no-repeat, linear-gradient(var(--io),var(--io)) center / 1px 14px no-repeat; transition: transform .4s var(--slow); }
+.v_faq details[open] summary::after { transform: rotate(45deg); }
+.v_faq details p { padding: 0 0 24px; max-width: 44em; font-size: .9375rem; line-height: 1.7; color: rgba(255,255,255,.75); }
+
+/* challenges */
+.v_feature { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; padding: clamp(32px, 4vw, 64px); background: var(--light); }
+.v_featureMain { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 22px; }
+.v_featureSide { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 18px; }
+.v_featureSide .v_frame { aspect-ratio: 4 / 3; }
+.v_feature h3 { font-size: clamp(1.75rem, 2.6vw, 2.75rem); font-weight: 300; line-height: 1.12; letter-spacing: -.025em; color: var(--charcoal); }
+.v_by { font-size: .8125rem; color: var(--grey); }
+.v_by b { font-weight: 500; color: var(--io-ink); }
+.v_quote70 { font-size: var(--fs-statement); font-weight: 300; line-height: 1.32; color: var(--charcoal); }
+.v_quote70 b { font-weight: 300; color: var(--io-ink); }
+.v_feature .v_numbers { grid-column: 1 / -1; grid-template-columns: repeat(6, minmax(0,1fr)); }
+.v_pilots { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+.v_pilots th { text-align: left; font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); padding: 0 16px 12px 0; border-bottom: 1px solid var(--line); }
+.v_pilots td { padding: 18px 16px 18px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--grey-ink); line-height: 1.55; }
+.v_pilots td:first-child { white-space: nowrap; color: var(--grey); font-size: .8125rem; letter-spacing: .06em; text-transform: uppercase; }
+.v_pilots td:nth-child(2) { font-weight: 500; color: var(--charcoal); white-space: nowrap; }
+.v_tableWrap { overflow-x: auto; }
+.v_creta { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 32px; align-items: start; }
+.v_cretaMedia { grid-column: 1 / span 5; }
+.v_cretaText { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 22px; }
+.v_cretaNums { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.v_cretaNums div { padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; }
+.v_cretaNums strong { font-size: clamp(2rem, 3vw, 3.25rem); font-weight: 300; line-height: 1; color: var(--io-ink); letter-spacing: -.03em; }
+.v_cretaNums span { font-size: .8125rem; color: var(--grey); }
+.v_roles { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 28px; }
+.v_roles li { border-top: 1px solid var(--line); padding-top: 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.v_roles span { font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.v_roles h4 { font-size: 1rem; font-weight: 500; line-height: 1.3; color: var(--charcoal); }
+.v_roles p { font-size: .875rem; line-height: 1.55; color: var(--grey-ink); }
+.v_roles li[data-us] { border-top: 3px solid var(--c); }
+.v_roles li[data-us] span { color: var(--io-ink); }
+.v_gallery { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: var(--col-gap); }
+.v_gallery .v_frame { aspect-ratio: auto; }
+.v_g1 { grid-column: 1 / span 6; aspect-ratio: 3 / 2 !important; }
+.v_g2 { grid-column: 7 / span 3; }
+.v_g3 { grid-column: 10 / span 3; }
+.v_gText { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 14px; align-self: end; }
+.v_gallerySub { grid-column: 7 / span 6; display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); }
+.v_gallerySub .v_frame { aspect-ratio: 4 / 3; }
+.v_bridge { margin-top: clamp(64px, 7vw, 112px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 20px; align-items: center; padding: clamp(28px, 3.5vw, 48px) 0; border-top: 1px solid var(--io); border-bottom: 1px solid var(--line); }
+.v_bridge p { grid-column: 1 / span 8; font-size: clamp(1.375rem, 2vw, 2rem); font-weight: 300; line-height: 1.3; letter-spacing: -.015em; color: var(--charcoal); }
+.v_bridge .s_btn { grid-column: 10 / span 3; justify-self: end; }
+
+/* why build here */
+.v_why { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; }
+.v_why li { display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 4px solid var(--io); min-width: 0; }
+.v_why h3 { font-size: 1.25rem; font-weight: 500; line-height: 1.3; color: var(--charcoal); }
+.v_why p { font-size: .9375rem; color: var(--grey-ink); line-height: 1.65; }
+.v_whyWho { margin-top: auto; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8125rem; color: var(--grey); }
+
+/* what we're looking for */
+.v_focus { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.v_focus li { padding: 22px 22px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; min-width: 0; background: #fff; transition: background .4s; }
+.v_focus li:hover { background: #fafafa; }
+.v_focus h4 { font-size: 1.0625rem; font-weight: 500; line-height: 1.3; color: var(--charcoal); }
+.v_focus p { font-size: .875rem; color: var(--grey-ink); line-height: 1.55; }
+.v_focusDots { margin-top: auto; padding-top: 8px; display: flex; gap: 6px; }
+.v_focusDots i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.v_legend { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .8125rem; color: var(--grey-ink); }
+
+/* CEO quote */
+.v_quote { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; align-items: center; }
+.v_quotePic { grid-column: 1 / span 4; }
+.v_quotePic .v_frame { aspect-ratio: 4 / 5; background: #fff; }
+.v_quotePic img { object-position: 50% 22%; }
+.v_quoteText { grid-column: 6 / span 7; display: flex; flex-direction: column; gap: 28px; }
+.v_quoteText blockquote { margin: 0; font-size: clamp(1.75rem, 3vw, 3rem); font-weight: 300; line-height: 1.18; letter-spacing: -.025em; color: var(--charcoal); padding-left: 28px; border-left: 1px solid var(--io); }
+.v_quoteText cite { font-style: normal; display: flex; flex-direction: column; gap: 2px; padding-left: 29px; font-size: .9375rem; color: var(--grey); }
+.v_quoteText cite b { font-weight: 500; color: var(--charcoal); }
+
+/* key dates */
+.v_dates { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: var(--col-gap); border-top: 1px solid var(--line); }
+.v_dates li { padding: 22px 0 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; position: relative; }
+.v_dates li::before { content: ""; position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--c); }
+.v_dates time { font-size: 1.5rem; font-weight: 300; letter-spacing: -.02em; color: var(--io-ink); }
+.v_dates h4 { font-size: 1rem; font-weight: 500; color: var(--charcoal); line-height: 1.35; }
+.v_dates p { font-size: .875rem; color: var(--grey-ink); }
+.v_dates li[data-past] time { color: var(--grey); }
+
+/* enquiry */
+.v_enq { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 48px; align-items: start; }
+.v_enqSide { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 22px; position: sticky; top: 110px; }
+.v_enqSide .c_body { color: var(--grey-ink); }
+.v_enqForm { grid-column: 6 / span 7; display: grid; grid-template-columns: 1fr 1fr; gap: 22px var(--col-gap); background: #fff; padding: clamp(24px, 3.5vw, 48px); border-top: 3px solid var(--io); }
+.v_field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.v_full { grid-column: 1 / -1; }
+.v_field label, .v_legendTitle { font-size: .8125rem; font-weight: 500; color: var(--charcoal); }
+.v_field label i, .v_legendTitle i { font-style: normal; color: var(--io-ink); }
+.v_field input, .v_field select, .v_field textarea { font: inherit; font-size: .9375rem; color: var(--charcoal); background: #fff; border: 1px solid #cfd0d1; border-radius: 0; height: 48px; padding: 0 14px; width: 100%; transition: border-color .3s; }
+.v_field textarea { height: 120px; padding: 12px 14px; resize: vertical; }
+.v_field input:focus, .v_field select:focus, .v_field textarea:focus { outline: none; border-color: var(--io); box-shadow: 0 0 0 3px rgba(60,167,210,.18); }
+.v_field [aria-invalid="true"] { border-color: #c4472b; }
+.v_err { font-size: .75rem; color: #b23c22; min-height: 0; }
+.v_chips { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
+.v_chips legend { padding: 0; margin-bottom: 10px; }
+.v_chips label { cursor: pointer; }
+.v_chips input { position: absolute; opacity: 0; pointer-events: none; }
+.v_chips span { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid #cfd0d1; font-size: .875rem; color: var(--charcoal); transition: border-color .3s, background .3s, color .3s; }
+.v_chips span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--grey)); }
+.v_chips input:checked + span { border-color: var(--io-ink); background: var(--io-ink); color: #fff; }
+.v_chips input:focus-visible + span { outline: 2px solid var(--io); outline-offset: 2px; }
+.v_check { display: flex; gap: 12px; align-items: flex-start; font-size: .8125rem; color: var(--grey-ink); line-height: 1.5; }
+.v_check input { margin-top: 3px; accent-color: var(--io-ink); width: 16px; height: 16px; }
+.v_formFoot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.v_formFoot small { font-size: .75rem; color: var(--grey); }
+.v_done { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; padding: 8px 0; }
+.v_done h3 { font-size: var(--fs-h3); font-weight: 400; color: var(--charcoal); }
+.v_done p { color: var(--grey-ink); }
+
+/* responsive */
+@media (max-width: 1100px) {
+  .v_areas, .v_techs, .v_why, .v_focus, .v_list { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .v_numbers, .v_feature .v_numbers { grid-template-columns: repeat(3, minmax(0,1fr)); row-gap: 28px; }
+  .v_roles { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .v_index { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .v_steps { grid-template-columns: repeat(3, minmax(0,1fr)); row-gap: 36px; }
+  .v_steps::before, .v_steps::after { display: none; }
+}
+@media (max-width: 900px) {
+  .v_headMain, .v_headSide, .v_splitText, .v_splitMedia, .v_accTop .v_uhWrap, .v_accTop .v_accSide, .v_csTabs, .v_csPanel, .v_faqList, .v_faqSide,
+  .v_featureMain, .v_featureSide, .v_cretaMedia, .v_cretaText, .v_quotePic, .v_quoteText, .v_enqSide, .v_enqForm, .v_success p, .v_success .s_textLink,
+  .v_bridge p, .v_bridge .s_btn, .v_mission p, .v_mediaL, .v_textR, .v_mission span, .v_g1, .v_g2, .v_g3, .v_gText, .v_gallerySub { grid-column: 1 / -1; }
+  .v_success .s_textLink, .v_bridge .s_btn { justify-self: start; }
+  .v_rungs, .v_ladderAxis { grid-template-columns: repeat(2, minmax(0,1fr)); row-gap: 40px; }
+  .v_rail { display: none; }
+  .v_rung { padding-top: 22px; border-top: 1px solid var(--line); }
+  .v_rung::before { top: -6px; }
+  .v_ladderAxis { display: none; }
+  .v_accFacts, .v_dates { grid-template-columns: repeat(2, minmax(0,1fr)); row-gap: 28px; }
+  .v_mosaic { grid-auto-rows: 160px; }
+  .v_m1 { grid-column: 1 / -1; } .v_m2, .v_m3 { grid-column: span 6; } .v_m4 { grid-column: span 6; } .v_m5 { grid-column: span 6; } .v_mText { grid-column: 1 / -1; grid-row: auto; }
+  .v_enqSide { position: static; }
+  .v_quotePic { max-width: 360px; }
+}
+@media (max-width: 600px) {
+  .v_areas { grid-template-columns: repeat(2, minmax(0,1fr)); row-gap: 28px; }
+  .v_techs, .v_why, .v_focus, .v_list, .v_list3, .v_rungs, .v_index, .v_roles, .v_accFacts, .v_dates, .v_steps { grid-template-columns: minmax(0,1fr); }
+  .v_numbers, .v_feature .v_numbers { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .v_enqForm { grid-template-columns: minmax(0,1fr); }
+  .v_facts { grid-template-columns: minmax(0,1fr); }
+  .v_mosaic { grid-auto-rows: 120px; }
+  .v_mText .v_bigs { gap: 24px; }
+  .v_feature { padding: 24px 18px; }
+  .v_gallerySub { grid-template-columns: minmax(0,1fr); }
+  .v_uh { font-size: 2.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v_head::after, .v_steps::after, .v_rail > i { transition: none !important; }
+  .v_head { --rule: 1; } .v_steps { --sp: 1; } .v_ladder { --p: 1 !important; }
+}
+</style>
+<script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
+
+<div class="s_root" data-wide data-blue="false">
+{{HEADER}}
+<main><div class="c_page">
+
+<!-- ============ hero: one slide per platform ============ -->
+<section class="c_hero v_hero">
+  <div class="c_heroMedia">
+    <div class="c_slide is-run" data-on><img src="{{IMG}}hero_fif.webp" alt="Farmers on the Innovation Day field tour beside the Innovation Oasis greenhouses"></div>
+    <div class="c_slide"><img src="{{IMG}}hero_inc.webp" alt="An agri-robotics prototype in an Innovation Oasis lab" loading="lazy"></div>
+    <div class="c_slide"><img src="{{IMG}}acc_green.webp" alt="Misting inside a high-tech greenhouse" loading="lazy"></div>
+    <div class="c_slide"><img src="{{IMG}}hero_chal.webp" alt="A startup pitching on stage at the FoodTech Challenge final" loading="lazy"></div>
+  </div>
+  <div class="c_heroShade"></div>
+  <div class="s_wrap c_heroInner">
+    <div class="c_heroMain">
+      <nav class="v_heroCrumb" aria-label="Breadcrumb"><a href="#">Home</a><span aria-hidden="true">/</span><span>Innovation &amp; Venture Platforms</span></nav>
+      <span class="c_eyebrow c_eyebrowLight" data-reveal>Innovation &amp; Venture Platforms</span>
+      <h1 class="c_heroTitle" data-reveal>From idea to impact.</h1>
+      <p class="c_heroSub" data-reveal><span>Four ways in for the people solving food security: fund a farmer’s idea, incubate a prototype, accelerate a proven technology, or prove it in an open challenge.</span><span>Every path runs through Innovation Oasis, Al Ain.</span></p>
+    </div>
+    <div class="c_heroAside"><div class="c_slideNav" id="slideNav">
+      <a href="#fif" data-on="true"><i></i><b>01</b>Farm Innovation Fund</a>
+      <a href="#incubation" data-on="false"><i></i><b>02</b>Incubation</a>
+      <a href="#accelerator" data-on="false"><i></i><b>03</b>Accelerator</a>
+      <a href="#challenges" data-on="false"><i></i><b>04</b>Agricultural Challenges</a>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ intro ============ -->
+<section class="c_section c_intro"><div class="s_wrap c_grid">
+  <p class="c_statement" data-lit data-reveal>The world had innovation. <span class="c_blue">What it lacked was implementation.</span></p>
+  <div class="c_introCols">
+    <p class="c_body" data-reveal>Innovation Oasis connects the whole journey, from a problem on a farm to a technology ready for its first customer. Each platform gives innovators what their stage needs: pilot funding, training, testbeds, farmers in the loop, and Silal’s business units, buyers and supply chain.</p>
+    <div class="c_introRight"><p class="c_lead" data-reveal>If it works here, it can work anywhere.</p><a href="#enquire" class="s_btn s_btnPrimary s_btnSm c_introBtn">Find your platform <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+  <ul class="c_stats">
+    <li><span class="c_statNum"><span data-count="2000" data-sep>2,000</span><span class="v_unit">+</span></span><span class="c_statLabel">farms reached by the Farm Innovation Fund’s first cohort</span></li>
+    <li><span class="c_statNum"><span class="v_pre">AED</span><span data-count="10">10</span><span class="v_unit">M</span></span><span class="c_statLabel">non-dilutive grant pool for growth-stage startups</span></li>
+    <li><span class="c_statNum"><span data-count="846">846</span></span><span class="c_statLabel">teams from 54 countries entered the Al Miyah Challenge</span></li>
+    <li><span class="c_statNum"><span data-count="34">34</span><span class="v_unit">ha</span></span><span class="c_statLabel">of greenhouses, labs and open-field plots to test on</span></li>
+  </ul>
+</div></section>
+
+<!-- ============ the ladder ============ -->
+<section class="c_section c_white v_ladder" id="ladder"><div class="s_wrap">
+  <div class="v_head">
+    <div class="v_headMain"><span class="c_eyebrow" data-reveal>Find your platform</span><h2 class="c_h2" data-reveal>One pathway, four ways in.</h2></div>
+    <div class="v_headSide"><p data-reveal>Start where your idea is today. Each platform adds evidence, and the strongest ideas move up to the next.</p></div>
+  </div>
+  <div class="v_rail" aria-hidden="true"><i></i></div>
+  <ol class="v_rungs">
+    <li class="v_rung v_fif">
+      <span class="v_stage">Stage · A farm idea</span>
+      <h3><small>01</small>Farm Innovation Fund</h3>
+      <p class="v_rungLine">From farm need to field evidence.</p>
+      <ul class="v_rungFacts"><li><span>For</span><b>UAE farmers and farm operators</b></li><li><span>Support</span><b>Up to AED 200,000 per pilot</b></li><li><span>Now</span><b>Cohort 1 · 10 finalists</b></li></ul>
+      <a href="#fif" class="s_textLink">Explore <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </li>
+    <li class="v_rung v_inc">
+      <span class="v_stage">Stage · A lab prototype</span>
+      <h3><small>02</small>Incubation</h3>
+      <p class="v_rungLine">From lab research to market-ready.</p>
+      <ul class="v_rungFacts"><li><span>For</span><b>Early-stage ventures and research teams</b></li><li><span>Support</span><b>Testbeds, farmers, a path to market</b></li><li><span>Now</span><b>Agri-Robotics cohort · 4 technologies</b></li></ul>
+      <a href="#incubation" class="s_textLink">Explore <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </li>
+    <li class="v_rung v_acc">
+      <span class="v_stage">Stage · A proven technology</span>
+      <h3><small>03</small>Accelerator</h3>
+      <p class="v_rungLine">Stop pitching. Start piloting.</p>
+      <ul class="v_rungFacts"><li><span>For</span><b>Series A+ startups, worldwide</b></li><li><span>Support</span><b>AED 10M grant pool, Silal as client</b></li><li><span>Now</span><b>Unbreakable Harvest · cohort 1</b></li></ul>
+      <a href="#accelerator" class="s_textLink">Explore <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </li>
+    <li class="v_rung v_chal">
+      <span class="v_stage">Stage · An open call</span>
+      <h3><small>04</small>Agricultural Challenges</h3>
+      <p class="v_rungLine">Proven on Silal ground.</p>
+      <ul class="v_rungFacts"><li><span>For</span><b>Innovators and researchers worldwide</b></li><li><span>Support</span><b>Trials run and measured at IO</b></li><li><span>Now</span><b>Al Miyah · winners Dec 2026</b></li></ul>
+      <a href="#challenges" class="s_textLink">Explore <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </li>
+  </ol>
+  <div class="v_ladderAxis" aria-hidden="true"><span>Ideas at <b>any stage</b></span><span>Prototype to <b>TRL 6</b></span><span>Deployed tech, <b>TRL 7–8+</b></span><span>Proven, <b>ready to pilot in the UAE</b></span></div>
+</div></section>
+
+<!-- ============ 01 Farm Innovation Fund ============ -->
+<section class="c_section c_white v_chapter v_fif v_anchor" id="fif" style="padding-top:0"><div class="s_wrap">
+  <div class="v_head">
+    <div class="v_headMain"><span class="c_eyebrow" data-reveal><span class="c_eyebrowNum">01</span>&nbsp;Farm Innovation Fund</span><h2 class="c_h2" data-reveal>Farmers drive every stage.</h2></div>
+    <div class="v_headSide"><span class="v_status">Cohort 1 · 10 finalists · 5 pilots to fund</span></div>
+  </div>
+  <div class="v_split">
+    <div class="v_splitText">
+      <p class="c_lead" data-reveal>The Farm Innovation Fund connects real farm problems with a structured path to develop, test and scale practical solutions.</p>
+      <p class="c_body" data-reveal>It is open to farmers and farm operators across the UAE, whatever the maturity of the idea. Early concepts and solutions ready for an on-farm trial can both enter. The programme adapts its support to the evidence, readiness and needs of each proposal, and farmers keep ownership of their ideas at every stage.</p>
+      <dl class="v_facts">
+        <div><dt>Who</dt><dd>UAE farmers and farm operators</dd></div>
+        <div><dt>Ideas</dt><dd>Any stage, from early concept to trial-ready</dd></div>
+        <div><dt>Funding</dt><dd>Up to AED 200,000 per selected pilot</dd></div>
+        <div><dt>This cycle</dt><dd>5 pilots, at least 1 scaled solution</dd></div>
+      </dl>
+      <div class="v_ctas"><a href="#enquire" class="s_btn s_btnPrimary" data-platform="fif">Apply for funding <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+    <figure class="v_splitMedia"><div class="v_frame v_frameTall"><img src="{{IMG}}fif_workshop.webp" alt="Farmers at an Innovation Day workshop in the Innovation Oasis agritech room" loading="lazy" data-par></div><figcaption class="v_cap"><b>Fig. 01</b><span>Innovation Day workshop, Innovation Oasis, Al Ain</span></figcaption></figure>
+  </div>
+
+  <div class="v_mission"><span>Vision</span><p data-reveal>Enable farmers across the UAE to improve <b>farm performance and profitability</b> through on-farm innovation.</p></div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>Four areas of farm innovation</h3><p>Used across application and evaluation</p></div>
+    <ul class="v_areas">
+      <li class="v_area"><div class="v_frame"><img src="{{IMG}}area_protected.webp" alt="Rows of crops inside a greenhouse" loading="lazy"></div><h4>Protected Agriculture &amp; Greenhouses</h4><p>Structures, climate control and crop production.</p></li>
+      <li class="v_area"><div class="v_frame"><img src="{{IMG}}area_organic.webp" alt="Young red-leaf seedlings under a grow light" loading="lazy"></div><h4>Sustainable &amp; Organic Practices</h4><p>Soils, inputs, biological solutions and circularity.</p></li>
+      <li class="v_area"><div class="v_frame"><img src="{{IMG}}area_water.webp" alt="Lettuce growing in irrigated rows" loading="lazy"></div><h4>Water &amp; Irrigation Management</h4><p>Water quality, efficiency, monitoring and reuse.</p></li>
+      <li class="v_area"><div class="v_frame"><img src="{{IMG}}area_smart.webp" alt="Seedlings under LED growing lights" loading="lazy"></div><h4>Smart Farming &amp; Digital Technology</h4><p>Sensors, automation, analytics and farm decisions.</p></li>
+    </ul>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>From farm need to field evidence</h3><p>Five gates, each adding evidence before funding</p></div>
+    <ol class="v_steps" style="--n:5">
+      <li><b>01</b><h4>Discovery &amp; Call</h4><p>Farmers submit a problem and a proposed solution.</p></li>
+      <li><b>02</b><h4>Eligibility</h4><p>The team checks completeness and programme fit.</p></li>
+      <li><b>03</b><h4>Training &amp; Proposal</h4><p>Workshops and mentoring strengthen the pilot design.</p></li>
+      <li><b>04</b><h4>Review &amp; Pitches</h4><p>Experts assess the evidence and finalists present.</p></li>
+      <li><b>05</b><h4>Pilot &amp; Scale</h4><p>Selected teams trial, measure and consider adoption.</p></li>
+    </ol>
+    <p class="v_note">Each gate adds evidence before the programme commits pilot funding and resources.</p>
+  </div>
+</div></section>
+
+<section class="c_section v_fif" style="background:var(--light)"><div class="s_wrap">
+  <div class="v_blockHead"><h3 data-reveal>Cohort 1 at a glance</h3><p>Progress as of 15 September 2026</p></div>
+  <ul class="v_numbers">
+    <li><span class="v_num"><span data-count="2000" data-sep>2,000</span>+</span><span class="v_numLabel">Farms reached</span></li>
+    <li><span class="v_num" data-count="130">130</span><span class="v_numLabel">Applications submitted</span></li>
+    <li><span class="v_num" data-count="68">68</span><span class="v_numLabel">Advanced to Phase 2</span></li>
+    <li><span class="v_num" data-count="39">39</span><span class="v_numLabel">Valid Phase 2 proposals</span></li>
+    <li><span class="v_num" data-count="10">10</span><span class="v_numLabel">Finalists</span></li>
+    <li><span class="v_num" data-count="7">7</span><span class="v_numLabel">Emirates represented</span></li>
+  </ul>
+  <p class="v_target"><b>Current cycle target</b><span>5 pilots leading to at least 1 scaled solution.</span></p>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>Innovation Day: stronger pilot proposals</h3><p>26 July 2026 · Innovation Oasis, Al Ain</p></div>
+    <div class="v_mosaic">
+      <div class="v_frame v_m1"><img src="{{IMG}}fif_group.webp" alt="Innovation Day participants in the Innovation Oasis atrium" loading="lazy"></div>
+      <div class="v_frame v_m2"><img src="{{IMG}}fif_table.webp" alt="Farmers working through a pilot proposal at a workshop table" loading="lazy"></div>
+      <div class="v_frame v_m3"><img src="{{IMG}}fif_soil.webp" alt="Farmers at the soil and water analysis station" loading="lazy"></div>
+      <div class="v_frame v_m4"><img src="{{IMG}}fif_lettuce.webp" alt="Visitors at a hydroponic growing unit" loading="lazy"></div>
+      <div class="v_frame v_m5"><img src="{{IMG}}fif_talk.webp" alt="Two farmers in discussion during mentoring" loading="lazy"></div>
+      <div class="v_mText">
+        <div class="v_bigs"><div><strong>38</strong><span>farmers</span></div><div><strong>3</strong><span>workshops</span></div><div><strong>1</strong><span>full day</span></div></div>
+        <p>A facility tour, workshops and direct mentoring, with Arabic facilitation and practical workbooks.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>What selected pilot teams receive</h3><p>From proposal to a funded, measured on-farm pilot</p></div>
+    <ol class="v_list">
+      <li><b>01</b><h4>Pilot funding</h4><p>Up to AED 200,000 per selected pilot in the current cycle.</p></li>
+      <li><b>02</b><h4>Pilot readiness</h4><p>A defined scope, baseline, site, season and resource plan.</p></li>
+      <li><b>03</b><h4>Delivery discipline</h4><p>Milestones, data logging, success KPIs and review points.</p></li>
+      <li><b>04</b><h4>Visibility and scale</h4><p>A close-out review, farmer demonstration and adoption pathway.</p></li>
+    </ol>
+  </div>
+</div></section>
+
+<!-- ============ 02 Incubation ============ -->
+<section class="c_section c_white v_chapter v_inc v_anchor" id="incubation"><div class="s_wrap">
+  <div class="v_head">
+    <div class="v_headMain"><span class="c_eyebrow" data-reveal><span class="c_eyebrowNum">02</span>&nbsp;Incubation</span><h2 class="c_h2" data-reveal>From lab research to market-ready.</h2></div>
+    <div class="v_headSide"><span class="v_status">Agri-Robotics Cohort 2026 · with Khalifa University</span></div>
+  </div>
+  <div class="v_split">
+    <figure class="v_splitMedia v_mediaL"><div class="v_frame"><img src="{{IMG}}hero_inc.webp" alt="Researchers with an agri-robotics prototype" loading="lazy" data-par></div><figcaption class="v_cap"><b>Fig. 02</b><span>Agri-robotics prototype in an Innovation Oasis lab</span></figcaption></figure>
+    <div class="v_splitText v_textR">
+      <p class="c_lead" data-reveal>The IO Incubator is a platform for early-stage ventures. Its first cohort is a collaboration between Silal and Khalifa University to bring four agricultural technologies to commercial readiness.</p>
+      <p class="c_body" data-reveal>Teams refine their prototypes with open access to greenhouses, open fields, labs and real farm operations, working directly with the farmers who will use them. The aim is to close the gap between research and the market with solutions built for local conditions.</p>
+      <dl class="v_facts">
+        <div><dt>Partner</dt><dd>Khalifa University</dd></div>
+        <div><dt>Cohort</dt><dd>Agri-Robotics 2026</dd></div>
+        <div><dt>Timeline</dt><dd>Nov 2025 – Nov 2026</dd></div>
+        <div><dt>Goal</dt><dd>Prototypes to market-ready, e.g. TRL 6 / CRL 5</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>Cohort 1: four technologies</h3><p>Developed with Khalifa University</p></div>
+    <ul class="v_techs">
+      <li class="v_tech"><span>Post-harvest</span><h4>TouchRIPE</h4><p>A wearable device that assesses fruit firmness without damaging it, using vision-based tactile sensors.</p><em>Objective ripeness, better shelf-life forecasts, less waste</em></li>
+      <li class="v_tech"><span>Greenhouse</span><h4>PollenMatic</h4><p>A compact device for efficient pollination of greenhouse tomatoes, now being validated in real conditions.</p><em>Target: TRL 6 / CRL 5</em></li>
+      <li class="v_tech"><span>Crop health</span><h4>PlantAI</h4><p>An AI mobile app that detects leaf diseases in key UAE crops: tomatoes, cucumbers, capsicum and berries.</p><em>Earlier detection, timely intervention</em></li>
+      <li class="v_tech"><span>Yield</span><h4>AerialYield</h4><p>An autonomous system that estimates yield and analyses fruit ripeness in blueberry cultivation.</p><em>Better forecasts, less labour</em></li>
+    </ul>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>Why incubate at Innovation Oasis</h3></div>
+    <ol class="v_list v_list3">
+      <li><b>01</b><h4>Real testbeds</h4><p>Open access to greenhouses, open fields, labs and real farm operations.</p></li>
+      <li><b>02</b><h4>Farmers in the loop</h4><p>Project teams work directly with end users, so solutions are practical as well as rigorous.</p></li>
+      <li><b>03</b><h4>Built for UAE conditions</h4><p>Designed around local regulatory, environmental and market realities from the start.</p></li>
+    </ol>
+  </div>
+  <div class="v_success"><p data-reveal>Success means at least one project becomes <b>jointly-owned IP, a commercial or scaled deployment, or further investment.</b></p><a href="#" class="s_textLink">Agri Robotics &amp; AI centre <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+</div></section>
+
+<!-- ============ 03 Accelerator (dark) ============ -->
+<section class="c_section v_dark v_chapter v_acc v_anchor" id="accelerator"><div class="s_wrap">
+  <div class="v_head">
+    <div class="v_headMain"><span class="c_eyebrow" data-reveal><span class="c_eyebrowNum">03</span>&nbsp;Accelerator</span></div>
+    <div class="v_headSide"><span class="v_status">Cohort 1 applications closed 3 July 2026</span></div>
+  </div>
+  <div class="v_accTop">
+    <div class="v_uhWrap">
+      <p class="v_uh" data-reveal>Unbreakable <i>Harvest</i></p>
+      <h2 class="c_h2" data-reveal>Fast-track the future of food security.</h2>
+    </div>
+    <div class="v_accSide">
+      <p class="c_lead" data-reveal>The high-velocity growth engine for Series A+ innovators solving the future of food security and resilience.</p>
+      <p class="c_body" data-reveal>Innovation Oasis is committing over AED 10M to advancing food security innovation in the UAE and beyond. Through Unbreakable Harvest, selected startups will receive the funding, infrastructure, and commercial relationships needed to validate in the region and scale.</p>
+      <div class="v_ctas"><a href="https://unbreakableharvest.com/" target="_blank" rel="noopener" class="s_btn s_btnPrimary">unbreakableharvest.com ↗</a><a href="#enquire" class="s_btn s_btnGhostLight" data-platform="acc">Register interest</a></div>
+    </div>
+  </div>
+  <ul class="v_accFacts">
+    <li><strong><small>AED</small>10M</strong><span>non-dilutive grant pool</span></li>
+    <li><strong>3–5</strong><span>months per validation project</span></li>
+    <li><strong>2</strong><span>cohorts a year</span></li>
+    <li><strong>0%</strong><span>equity taken</span></li>
+  </ul>
+
+  <figure class="v_band"><div class="v_frame"><img src="{{IMG}}hero_acc.webp" alt="Greenhouses in the desert haze at Innovation Oasis" loading="lazy" data-par></div><figcaption class="v_cap"><b>Fig. 03</b><span>Pilots run inside Silal’s operating environment, on Innovation Oasis ground.</span></figcaption></figure>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>What startups gain</h3><p>Funding, infrastructure and direct commercial pathways</p></div>
+    <ol class="v_list">
+      <li><b>01</b><h4>Direct Funding</h4><p>Receive an AED 10M non-dilutive grant pool for ~10 startups.</p></li>
+      <li><b>02</b><h4>Localization &amp; Support</h4><p>Gain support with team and technology relocation, plus regional and regulatory concierge services.</p></li>
+      <li><b>03</b><h4>Venture Clienting</h4><p>Access Silal’s business units, buyers, and commercial decision-makers from day one.</p></li>
+      <li><b>04</b><h4>World-Class Infrastructure</h4><p>Test your innovation in the toughest conditions at Innovation Oasis’ 34-hectare, state-of-the-art R&amp;D facility with full technical support.</p></li>
+      <li><b>05</b><h4>Follow-on Investment</h4><p>Access a network of VCs and local corporate partners.</p></li>
+      <li><b>06</b><h4>Post-Pilot Support</h4><p>Navigate streamlined commercial pathways post-program through Silal and our ecosystem partners.</p></li>
+      <li><b>07</b><h4>GCC Market Access</h4><p>Build a long-term presence in the GCC with Silal as a regional commercialization partner.</p></li>
+      <li><b>08</b><h4>Sovereign Visibility</h4><p>Position your innovation at the heart of the UAE National Food Security Strategy 2051.</p></li>
+    </ol>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>Four challenge statements</h3><p>2026 focus missions</p></div>
+    <div class="v_cs">
+      <div class="v_csTabs" role="tablist" aria-label="Challenge statements">
+        <button role="tab" id="cs-t1" aria-controls="cs-p1" aria-selected="true"><b>01</b><span>Open-field Resource Optimization<small>Growing &amp; production</small></span><span aria-hidden="true">→</span></button>
+        <button role="tab" id="cs-t2" aria-controls="cs-p2" aria-selected="false" tabindex="-1"><b>02</b><span>Protected Agriculture Resource Optimization<small>Growing &amp; production</small></span><span aria-hidden="true">→</span></button>
+        <button role="tab" id="cs-t3" aria-controls="cs-p3" aria-selected="false" tabindex="-1"><b>03</b><span>Post-harvest Quality &amp; Shelf Life<small>Supply chain &amp; market access</small></span><span aria-hidden="true">→</span></button>
+        <button role="tab" id="cs-t4" aria-controls="cs-p4" aria-selected="false" tabindex="-1"><b>04</b><span>Supply Chain Visibility<small>Supply chain &amp; market access</small></span><span aria-hidden="true">→</span></button>
+      </div>
+      <div class="v_csPanel" role="tabpanel" id="cs-p1" aria-labelledby="cs-t1"><div class="v_frame"><img src="{{IMG}}cs_open.webp" alt="A farmer in a field of quinoa" loading="lazy"></div><p class="v_hmw"><span>How might we</span> close the yield, cost, and resource-efficiency gaps in UAE open-field agriculture, competing with imports and unlocking new economically viable crop categories?</p><div class="v_tags"><span>Soil &amp; plant health</span><span>Crop innovation</span><span>Precision agriculture</span><span>Water &amp; energy</span></div></div>
+      <div class="v_csPanel" role="tabpanel" id="cs-p2" aria-labelledby="cs-t2" hidden><div class="v_frame"><img src="{{IMG}}acc_green.webp" alt="Misting inside a greenhouse" loading="lazy"></div><p class="v_hmw"><span>How might we</span> reduce the water, energy, and capital intensity of protected agriculture across the UAE, making year-round production commercially viable and unlocking crop categories?</p><div class="v_tags"><span>Controlled environment agriculture</span><span>Water &amp; energy</span><span>Precision agriculture</span></div></div>
+      <div class="v_csPanel" role="tabpanel" id="cs-p3" aria-labelledby="cs-t3" hidden><div class="v_frame"><img src="{{IMG}}cs_post.webp" alt="Racks of harvested produce" loading="lazy"></div><p class="v_hmw"><span>How might we</span> reduce post-harvest losses and extend the shelf life of locally produced crops, ensuring quality and freshness from farm gate to consumer?</p><div class="v_tags"><span>Waste prevention</span><span>Waste circularity</span><span>Cold chain</span></div></div>
+      <div class="v_csPanel" role="tabpanel" id="cs-p4" aria-labelledby="cs-t4" hidden><div class="v_frame"><img src="{{IMG}}cs_supply.webp" alt="The Abu Dhabi skyline across the water" loading="lazy"></div><p class="v_hmw"><span>How might we</span> improve traceability, cold-chain integrity, and demand forecasting across the UAE food supply chain, reducing waste and strengthening farm-to-market connectivity?</p><div class="v_tags"><span>Supply chain data platforms</span><span>Supply chain analytics</span></div></div>
+    </div>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>Technologies &amp; approaches we’re prioritizing</h3></div>
+    <ol class="v_index">
+      <li><b>01</b><h4>Soil &amp; Plant Health Inputs &amp; Amendments</h4><p>Biological and chemical innovations for soil fertility, plant nutrition and crop resilience in arid and saline conditions.</p></li>
+      <li><b>02</b><h4>Crop Innovation</h4><p>Novel varieties, breeding techniques and seed technologies adapted for heat, water scarcity and desert-climate growing.</p></li>
+      <li><b>03</b><h4>Controlled Environment Agriculture</h4><p>Greenhouse, vertical farming and indoor systems that maximize yield with less water and energy.</p></li>
+      <li><b>04</b><h4>Precision Agriculture</h4><p>Sensor networks, AI-driven analytics and data platforms for field-level decisions.</p></li>
+      <li><b>05</b><h4>Water &amp; Energy Management</h4><p>Irrigation efficiency, water recycling, renewable energy and resource monitoring.</p></li>
+      <li><b>06</b><h4>Waste Circularity</h4><p>Recovering, repurposing or redistributing agricultural and food waste into valuable inputs.</p></li>
+      <li><b>07</b><h4>Waste Prevention</h4><p>Cold chain optimization, shelf-life extension and AI-driven supply and demand matching.</p></li>
+      <li><b>08</b><h4>Supply Chain Data Platforms</h4><p>Data infrastructure, IoT systems and digital platforms for transparent value chains.</p></li>
+      <li><b>09</b><h4>Supply Chain Analytics</h4><p>Analytics, AI and traceability tools that forecast demand and optimize end-to-end performance.</p></li>
+    </ol>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>The process</h3><p>From selection to scaled commercial agreements</p></div>
+    <ol class="v_steps" style="--n:4">
+      <li><b>01</b><h4>Selection</h4><p>Finding the right growth-stage innovators to tackle each challenge area.</p></li>
+      <li><b>02</b><h4>Onboarding</h4><p>Getting your team set up and oriented around the scope, the facilities, and the Silal business units and experts you’ll be working with.</p></li>
+      <li><b>03</b><h4>Validation</h4><p>Live pilots and proof-of-concept projects in real operating conditions, testing what matters with the people it matters to.</p></li>
+      <li><b>04</b><h4>Pathways Forward</h4><p>Post-pilot support that converts a successful pilot into scaled commercial agreements.</p></li>
+    </ol>
+  </div>
+
+  <div class="v_block v_faq">
+    <div class="v_faqSide"><h3 class="c_h3" style="color:#fff" data-reveal>Questions founders ask</h3><p>Full answers and the application live on the Unbreakable Harvest website.</p><a href="https://unbreakableharvest.com/" target="_blank" rel="noopener" class="s_textLink">Read all FAQs ↗</a></div>
+    <div class="v_faqList">
+      <details open><summary>Does participation require giving up equity?</summary><p>No. Silal does not take equity as a condition of participation. Selected participants enter into a Participant Agreement with commercial provisions in Silal’s favour, typically a Right of First Refusal on GCC commercial deployment for a defined period post-pilot, revenue participation on partnerships Silal originates, and first-conversation rights on GCC opportunities. Participants retain ownership and global commercial freedom outside the GCC.</p></details>
+      <details><summary>Do startups need to be based in the UAE?</summary><p>No. We prioritize companies committed to building a meaningful presence in the UAE and the broader GCC. Selected startups spend time on-site at Innovation Oasis in Al Ain during the pilot phase, working closely with Silal teams and partners.</p></details>
+      <details><summary>How is this different from other programmes?</summary><p>It is for growth-stage startups with proven technology. Cohorts are small (3 to 5 startups, two cohorts a year), so each startup gets a tailored pilot. Pilots run inside Silal’s actual operating environment with real business units, and successful pilots lead to defined commercial pathways, not just a demo day.</p></details>
+      <details><summary>What is the time commitment?</summary><p>A structured engagement over 3 to 5 months: in-person time plus ongoing collaboration with Silal teams, with time upfront to scope and define the pilot.</p></details>
+      <details><summary>Is a pilot or commercial engagement guaranteed?</summary><p>The platform is designed to enable pilots and commercial opportunities, but outcomes are not guaranteed. Where pilots succeed, Silal works with startups on next steps, including potential commercial agreements or longer-term partnerships.</p></details>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ 04 Agricultural Challenges ============ -->
+<section class="c_section c_white v_chapter v_chal v_anchor" id="challenges"><div class="s_wrap">
+  <div class="v_head">
+    <div class="v_headMain"><span class="c_eyebrow" data-reveal><span class="c_eyebrowNum">04</span>&nbsp;Agricultural Challenges</span><h2 class="c_h2" data-reveal>Proven on Silal ground.</h2></div>
+    <div class="v_headSide"><p data-reveal>Open calls run with partners. Innovation Oasis tests every finalist technology under UAE conditions, so the jury decides on evidence.</p></div>
+  </div>
+
+  <article class="v_feature">
+    <div class="v_featureMain">
+      <span class="v_status">Testing at Innovation Oasis · winners December 2026</span>
+      <h3 data-reveal>Al Miyah Challenge for Agriculture</h3>
+      <p class="v_by">Organised by the <b>Mohamed bin Zayed Water Initiative</b> · Silal as technical partner</p>
+      <p class="v_quote70" data-reveal>Agriculture uses <b>nearly 70% of all water</b> consumed globally. The challenge rewards solutions that cut water use while maintaining or improving yield.</p>
+      <p class="c_body">The inaugural competition of the Mohamed bin Zayed Water Initiative is open to innovators, companies, start-ups and researchers worldwide. Solutions must be proven, ready to pilot in the UAE, and transferable to similar climates in the GCC and Sub-Saharan Africa.</p>
+    </div>
+    <figure class="v_featureSide"><div class="v_frame"><img src="{{IMG}}chal_seed.webp" alt="A seedling growing in dry soil" loading="lazy"></div><figcaption class="v_cap"><b>Fig. 04</b><span>Problem A: sustainable irrigation. Problem B: controlled-environment design, including water for cooling.</span></figcaption></figure>
+    <ul class="v_numbers">
+      <li><span class="v_num" data-count="846">846</span><span class="v_numLabel">Teams registered</span></li>
+      <li><span class="v_num" data-count="54">54</span><span class="v_numLabel">Countries represented</span></li>
+      <li><span class="v_num" data-count="21">21</span><span class="v_numLabel">Qualifying teams from 13 countries</span></li>
+      <li><span class="v_num" data-count="6">6</span><span class="v_numLabel">Finalists in real-world testing</span></li>
+      <li><span class="v_num">AED 8M</span><span class="v_numLabel">Total prize pool</span></li>
+      <li><span class="v_num" data-count="12">12</span><span class="v_numLabel">Months of testing in the UAE</span></li>
+    </ul>
+  </article>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>From 846 entries to six finalists</h3><p>Silal enters at stage 3</p></div>
+    <ol class="v_steps" style="--n:5">
+      <li><b>01</b><time>Apr – Jun 2025</time><h4>Open call</h4><p>846 teams from 54 countries registered before the 30 June 2025 deadline.</p></li>
+      <li><b>02</b><time>Sep 2025</time><h4>Qualifying</h4><p>21 teams from 13 countries selected; pitches and site visits in the UAE and abroad.</p></li>
+      <li data-mark><b>03</b><time>Nov 2025</time><h4>Testing at IO</h4><p>Indoor and outdoor trials begin at Innovation Oasis, Al Ain, for up to 12 months.</p></li>
+      <li><b>04</b><time>Apr 2026</time><h4>Finalists</h4><p>Six confirmed: two from the UAE and one each from Egypt, Brazil, Argentina and India.</p></li>
+      <li><b>05</b><time>Dec 2026</time><h4>Winners</h4><p>Winner and runners-up announced. First place includes further testing and deployment in the UAE.</p></li>
+    </ol>
+    <p class="v_note">Every finalist technology is tested on Silal ground, under UAE conditions, before the jury decides.</p>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>Five field pilots, one protocol</h3><p>Same crops, sites and irrigation baselines, compared like for like</p></div>
+    <div class="v_tableWrap"><table class="v_pilots">
+      <thead><tr><th scope="col">From</th><th scope="col">Finalist</th><th scope="col">Solution under test</th></tr></thead>
+      <tbody>
+        <tr><td>UAE</td><td>Raincatcher</td><td>A material beneath the root zone absorbs irrigation water and releases it back to roots, cutting evaporation and deep-drainage losses.</td></tr>
+        <tr><td>India</td><td>EF Polymer</td><td>A biodegradable superabsorbent polymer made from fruit waste holds water and nutrients in the soil between irrigations.</td></tr>
+        <tr><td>Argentina</td><td>M4LIFE</td><td>Custom microbes help soil retain water and release it gradually, supporting crops under drought and salinity.</td></tr>
+        <tr><td>Brazil</td><td>Krilltech</td><td>A natural bio-stimulant with carbon nanoparticles supports plant water-use efficiency.</td></tr>
+        <tr><td>Egypt</td><td>Agri-Vit</td><td>A foliar biostimulant strengthens plant resilience to heat and salinity, supporting stable yields with less irrigation water.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="v_block v_creta">
+    <figure class="v_cretaMedia"><div class="v_frame v_frameTall"><img src="{{IMG}}acc_green.webp" alt="Inside a greenhouse" loading="lazy" data-par></div><figcaption class="v_cap"><b>Fig. 05</b><span>Benchmarked against a conventional evaporative-cooled greenhouse.</span></figcaption></figure>
+    <div class="v_cretaText">
+      <span class="c_eyebrow">The sixth finalist · CRETA Group, UAE</span>
+      <h3 class="c_h2" data-reveal>A greenhouse cooled by the ground.</h3>
+      <p class="c_body">Hot desert air is drawn through underground channels, where stable soil temperatures pre-condition it before it enters the growing space. A dual-shell “Mother Greenhouse” reduces the heat load with minimal energy and no water spent on evaporative cooling.</p>
+      <div class="v_cretaNums"><div><strong>12–15°C</strong><span>reported temperature reduction in pilot testing</span></div><div><strong>Zero</strong><span>water used for cooling</span></div></div>
+      <p class="c_body">Silal builds and commissions it at Innovation Oasis: groundworks for the air channels, the dual-shell structure, instrumentation for temperature, humidity, energy and water, and a full crop cycle. Operating data is shared with ADAFSA for evaluation under local climatic conditions.</p>
+    </div>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>Partners and roles</h3><p>Silal carries the technical execution of the testing phase</p></div>
+    <ul class="v_roles">
+      <li><span>Organiser</span><h4>Mohamed bin Zayed Water Initiative</h4><p>Designs and runs the challenge, funds the AED 8 million prize and convenes the jury.</p></li>
+      <li><span>Partner</span><h4>Zayed for Good Foundation</h4><p>Strategic partner supporting practical, science-based solutions.</p></li>
+      <li><span>Partner</span><h4>ADAFSA</h4><p>Strategic oversight and technical expertise; evaluation under local climatic conditions.</p></li>
+      <li><span>Partner</span><h4>ASPIRE</h4><p>Innovation acceleration, applying the latest technology in real-world contexts.</p></li>
+      <li data-us><span>Technical partner</span><h4>Silal · Innovation Oasis</h4><p>Hosts and executes the trials: five field pilots and the CRETA greenhouse build.</p></li>
+    </ul>
+  </div>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>FoodTech Challenge</h3><p>Final pitches and awards</p></div>
+    <div class="v_gallery">
+      <div class="v_frame v_g1"><img src="{{IMG}}chal_winners.webp" alt="FoodTech Challenge winners on stage" loading="lazy"></div>
+      <div class="v_gallerySub">
+        <div class="v_frame"><img src="{{IMG}}chal_stage.webp" alt="The FoodTech Challenge main stage" loading="lazy"></div>
+        <div class="v_frame"><img src="{{IMG}}chal_jury.webp" alt="A finalist presenting to the jury" loading="lazy"></div>
+        <p class="v_gText c_body" style="grid-column:1 / -1">Startups building technology for arid-climate agriculture pitched their solutions to a jury of partners and investors, with the winners recognised on the main stage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="v_bridge"><p data-reveal>Running a challenge of your own? Innovation Oasis can design, run and measure the trials, end to end.</p><a href="#" class="s_btn s_btnGhost">Program Management as a Service <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+</div></section>
+
+<!-- ============ why build here ============ -->
+<section class="c_section" style="background:var(--light)"><div class="s_wrap">
+  <div class="v_head">
+    <div class="v_headMain"><span class="c_eyebrow" data-reveal>Why Innovation Oasis</span><h2 class="c_h2" data-reveal>Built for the real world.</h2></div>
+    <div class="v_headSide"><p data-reveal>Heat, water scarcity, salinity. These are not barriers to innovation. They are the benchmark.</p></div>
+  </div>
+  <ul class="v_why">
+    <li><h3>Real conditions</h3><p>34 hectares of greenhouses, nethouses, open-field plots and laboratories in one of the planet’s most demanding growing environments.</p><span class="v_whyWho"><span><i class="v_dot v_fif"></i>FIF</span><span><i class="v_dot v_inc"></i>Incubation</span><span><i class="v_dot v_acc"></i>Accelerator</span><span><i class="v_dot v_chal"></i>Challenges</span></span></li>
+    <li><h3>Real customers</h3><p>Silal’s business units, buyers and supply chain from day one. Silal acts as a venture client, not a bystander.</p><span class="v_whyWho"><span><i class="v_dot v_acc"></i>Accelerator</span><span><i class="v_dot v_inc"></i>Incubation</span></span></li>
+    <li><h3>Real farmers</h3><p>Farmers in the loop at every stage, from 2,000+ farms reached across seven emirates to operators testing prototypes.</p><span class="v_whyWho"><span><i class="v_dot v_fif"></i>FIF</span><span><i class="v_dot v_inc"></i>Incubation</span></span></li>
+    <li><h3>Real pathways</h3><p>Pilot funding, a regulatory concierge with ADIO, follow-on investors and long-term access to GCC markets.</p><span class="v_whyWho"><span><i class="v_dot v_acc"></i>Accelerator</span><span><i class="v_dot v_fif"></i>FIF</span></span></li>
+  </ul>
+
+  <div class="v_block">
+    <div class="v_blockHead"><h3 data-reveal>What we’re looking for</h3><div class="v_legend"><span><i class="v_dot v_fif"></i>Farm Innovation Fund</span><span><i class="v_dot v_inc"></i>Incubation</span><span><i class="v_dot v_acc"></i>Accelerator</span><span><i class="v_dot v_chal"></i>Challenges</span></div></div>
+    <ul class="v_focus">
+      <li><h4>Open-field resource optimisation</h4><p>Yield, cost and resource efficiency in open fields.</p><span class="v_focusDots"><i class="v_fif"></i><i class="v_acc"></i></span></li>
+      <li><h4>Protected agriculture &amp; greenhouses</h4><p>Less water, energy and capital per crop, all year.</p><span class="v_focusDots"><i class="v_fif"></i><i class="v_inc"></i><i class="v_acc"></i><i class="v_chal"></i></span></li>
+      <li><h4>Water &amp; irrigation</h4><p>Efficiency, reuse, quality and monitoring.</p><span class="v_focusDots"><i class="v_fif"></i><i class="v_acc"></i><i class="v_chal"></i></span></li>
+      <li><h4>Soil &amp; plant health</h4><p>Inputs and amendments for arid and saline soils.</p><span class="v_focusDots"><i class="v_fif"></i><i class="v_acc"></i><i class="v_chal"></i></span></li>
+      <li><h4>Smart farming, robotics &amp; AI</h4><p>Sensors, automation, analytics and autonomy.</p><span class="v_focusDots"><i class="v_fif"></i><i class="v_inc"></i><i class="v_acc"></i></span></li>
+      <li><h4>Post-harvest &amp; shelf life</h4><p>Quality and freshness from farm gate to consumer.</p><span class="v_focusDots"><i class="v_inc"></i><i class="v_acc"></i></span></li>
+      <li><h4>Supply-chain visibility &amp; data</h4><p>Traceability, cold chain and demand forecasting.</p><span class="v_focusDots"><i class="v_acc"></i></span></li>
+      <li><h4>Waste circularity</h4><p>Turning by-products into valuable inputs.</p><span class="v_focusDots"><i class="v_fif"></i><i class="v_acc"></i></span></li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- ============ CEO quote ============ -->
+<section class="c_section c_white"><div class="s_wrap v_quote">
+  <figure class="v_quotePic"><div class="v_frame"><img src="{{IMG}}ceo.webp" alt="Dr. Shamal Mohammed, CEO, Innovation Oasis" loading="lazy"></div></figure>
+  <div class="v_quoteText">
+    <span class="c_eyebrow">A word from the CEO</span>
+    <blockquote data-reveal>“Innovation Oasis is where we turn the scarcity of our landscape into the abundance of our future. We are inviting the world’s best innovators to prove it with us.”</blockquote>
+    <cite><b>Dr. Shamal Mohammed</b>Chief Executive Officer, Innovation Oasis</cite>
+  </div>
+</div></section>
+
+<!-- ============ key dates ============ -->
+<section class="c_section" style="background:var(--light);padding-bottom:calc(var(--pad) * .7)"><div class="s_wrap">
+  <div class="v_head">
+    <div class="v_headMain"><span class="c_eyebrow" data-reveal>Key dates</span><h2 class="c_h2" data-reveal>What’s next.</h2></div>
+    <div class="v_headSide"><p data-reveal>Dates for the next calls are announced here and in the newsletter.</p></div>
+  </div>
+  <ol class="v_dates">
+    <li class="v_fif" data-past><time>26 Jul 2026</time><h4>Innovation Day</h4><p>Farm Innovation Fund · 38 farmers, 3 workshops</p></li>
+    <li class="v_acc"><time>Nov 2026</time><h4>Unbreakable Harvest launch event</h4><p>Accelerator · cohort 1 welcome</p></li>
+    <li class="v_chal"><time>Dec 2026</time><h4>Al Miyah winners announced</h4><p>Agricultural Challenges · after 12 months of testing</p></li>
+    <li class="v_acc"><time>Spring 2027</time><h4>First Annual Showcase</h4><p>Accelerator · cohort results</p></li>
+  </ol>
+</div></section>
+
+<!-- ============ enquire ============ -->
+<section class="c_section c_white v_anchor" id="enquire"><div class="s_wrap v_enq">
+  <div class="v_enqSide">
+    <span class="c_eyebrow" data-reveal>Enquire</span>
+    <h2 class="c_h2" data-reveal>Not sure which platform fits?</h2>
+    <p class="c_body" data-reveal>Tell us where your idea is today. The Innovation Oasis team will point you to the right platform, or the next call that suits you.</p>
+    <p class="c_body" style="font-size:.875rem">Innovation Oasis – Silal, Al Ain, United Arab Emirates<br><span lang="ar">واحة الابتكار – سلال، العين، الإمارات العربية المتحدة</span></p>
+  </div>
+  <form class="v_enqForm" id="enqForm" novalidate>
+    <div class="v_field"><label for="f-first">First name <i>*</i></label><input id="f-first" name="first" autocomplete="given-name" required><span class="v_err" id="e-first"></span></div>
+    <div class="v_field"><label for="f-last">Last name <i>*</i></label><input id="f-last" name="last" autocomplete="family-name" required><span class="v_err" id="e-last"></span></div>
+    <div class="v_field"><label for="f-email">Email <i>*</i></label><input id="f-email" name="email" type="email" autocomplete="email" required><span class="v_err" id="e-email"></span></div>
+    <div class="v_field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+971"></div>
+    <div class="v_field"><label for="f-org">Organisation or farm <i>*</i></label><input id="f-org" name="org" autocomplete="organization" required><span class="v_err" id="e-org"></span></div>
+    <div class="v_field"><label for="f-role">I am a <i>*</i></label><select id="f-role" name="role" required><option value="">Select</option><option>Farmer or farm operator</option><option>Startup or scale-up</option><option>Researcher or university</option><option>Investor</option><option>Government or public sector</option><option>Corporate or Silal business unit</option><option>Other</option></select><span class="v_err" id="e-role"></span></div>
+    <fieldset class="v_chips v_full" id="f-platform"><legend class="v_legendTitle">Platform of interest <i>*</i></legend>
+      <label class="v_fif"><input type="radio" name="platform" value="fif" id="p-fif"><span>Farm Innovation Fund</span></label>
+      <label class="v_inc"><input type="radio" name="platform" value="inc" id="p-inc"><span>Incubation</span></label>
+      <label class="v_acc"><input type="radio" name="platform" value="acc" id="p-acc"><span>Accelerator</span></label>
+      <label class="v_chal"><input type="radio" name="platform" value="chal" id="p-chal"><span>Agricultural Challenges</span></label>
+      <label><input type="radio" name="platform" value="unsure" id="p-unsure"><span>Not sure yet</span></label>
+    </fieldset>
+    <span class="v_err v_full" id="e-platform" style="margin-top:-14px"></span>
+    <div class="v_field"><label for="f-stage">Stage of your idea</label><select id="f-stage" name="stage"><option value="">Select</option><option>Idea or farm problem</option><option>Prototype</option><option>Piloting</option><option>Commercial, deployed elsewhere</option></select></div>
+    <div class="v_field"><label for="f-area">Focus area</label><select id="f-area" name="area"><option value="">Select</option><option>Open-field resource optimisation</option><option>Protected agriculture &amp; greenhouses</option><option>Water &amp; irrigation</option><option>Soil &amp; plant health</option><option>Smart farming, robotics &amp; AI</option><option>Post-harvest &amp; shelf life</option><option>Supply-chain visibility &amp; data</option><option>Waste circularity</option><option>Other</option></select></div>
+    <div class="v_field v_full"><label for="f-msg">Message <i>*</i></label><textarea id="f-msg" name="msg" required placeholder="The problem you are solving, and what you need from Innovation Oasis"></textarea><span class="v_err" id="e-msg"></span></div>
+    <label class="v_check v_full"><input type="checkbox" id="f-news" name="news"><span>Send me news about programmes and calls for innovators.</span></label>
+    <label class="v_check v_full"><input type="checkbox" id="f-consent" name="consent" required><span>I agree that Innovation Oasis may store and process my details to answer this enquiry. <i style="font-style:normal;color:var(--io-ink)">*</i></span></label>
+    <span class="v_err v_full" id="e-consent" style="margin-top:-14px"></span>
+    <div class="v_formFoot"><small>Preview form: nothing is sent yet.</small><button type="submit" class="s_btn s_btnPrimary">Send enquiry <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <div class="v_done" id="enqDone" hidden><span class="c_eyebrow">Received</span><h3 id="doneTitle">Thank you.</h3><p id="doneText">The Innovation Oasis team will reply by email.</p><button type="button" class="s_textLink" id="enqAgain" style="background-color:transparent;border:0;cursor:pointer;font:inherit;padding:0 0 4px;align-self:flex-start">Send another enquiry</button></div>
+  </form>
+</div></section>
+
+</div></main>
+{{FOOTER}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $$('a[href="#"]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); }); });
+
+  // smooth scroll (homepage settings)
+  var lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, touchMultiplier: 1.4 }); window.__lenis = lenis;
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+  }
+  function go(id) { var el = document.getElementById(id); if (!el) return; if (lenis) lenis.scrollTo(el, { offset: -80, duration: 1.4 }); else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+
+  // header: transparent over the hero until the page scrolls; mobile menu
+  var hdr = $('#hdr'), open = false, mn = $('#mobileNav');
+  function hs() { var sc = scrollY > 40; hdr.dataset.scrolled = sc; hdr.dataset.overlay = !sc && !open; }
+  addEventListener('scroll', hs, { passive: true }); hs();
+  function setOpen(v) { open = v; if (lenis) { v ? lenis.stop() : lenis.start(); } mn.dataset.open = v; mn.setAttribute('aria-hidden', !v); $('#menuOpen').setAttribute('aria-expanded', v); hs(); }
+  $('#menuOpen').addEventListener('click', function () { setOpen(true); });
+  $('#menuClose').addEventListener('click', function () { setOpen(false); });
+  addEventListener('keydown', function (e) { if (e.key === 'Escape' && open) setOpen(false); });
+  var nl = $('#nl'); if (nl) nl.addEventListener('submit', function (e) { e.preventDefault(); var i = $('#nlEmail'); if (i && i.value) { i.value = ''; i.placeholder = 'Subscribed. Thank you.'; } });
+
+  // in-page links (#fif, #enquire …), incl. the ones in the menu
+  $$('a[href^="#"]').forEach(function (a) {
+    var id = a.getAttribute('href').slice(1); if (!id || !document.getElementById(id)) return;
+    a.addEventListener('click', function (e) {
+      e.preventDefault(); if (open) setOpen(false);
+      var p = a.getAttribute('data-platform'); if (p) { var r = document.getElementById('p-' + p); if (r) r.checked = true; }
+      go(id);
+    });
+  });
+
+  // hero slideshow: one slide per platform
+  var slides = $$('.c_slide'), nav = $$('#slideNav a'), idx = 0, timer;
+  function show(i) {
+    var prev = idx; idx = i;
+    slides.forEach(function (s, k) {
+      if (k === i) { s.classList.remove('is-run'); void s.offsetWidth; s.classList.add('is-run'); s.setAttribute('data-on', ''); }
+      else { s.removeAttribute('data-on'); if (k === prev) setTimeout(function () { if (!s.hasAttribute('data-on')) s.classList.remove('is-run'); }, 1900); }
+    });
+    nav.forEach(function (n, k) { n.dataset.on = k === i; });
+  }
+  function auto() { clearInterval(timer); if (!reduce) timer = setInterval(function () { show((idx + 1) % slides.length); }, 6000); }
+  nav.forEach(function (n, k) { n.addEventListener('mouseenter', function () { if (k !== idx) { show(k); auto(); } }); });
+  auto();
+
+  // counters
+  function fmt(n, sep) { return sep ? n.toLocaleString('en-US') : String(n); }
+  var cio = 'IntersectionObserver' in window && !reduce ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) {
+      if (!en.isIntersecting) return; cio.unobserve(en.target);
+      var el = en.target, to = +el.dataset.count, sep = el.hasAttribute('data-sep'), t0 = performance.now();
+      (function tick(t) { var p = Math.min(1, (t - t0) / 1800); el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 3))), sep); if (p < 1) requestAnimationFrame(tick); })(t0);
+    });
+  }, { threshold: 0.6 }) : null;
+  if (cio) $$('[data-count]').forEach(function (el) { cio.observe(el); });
+
+  // rules and steppers draw when they come into view
+  var dio = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.setAttribute('data-in', ''); dio.unobserve(en.target); } });
+  }, { threshold: 0.3 }) : null;
+  $$('.v_head, .v_steps').forEach(function (el) { if (dio) dio.observe(el); else el.setAttribute('data-in', ''); });
+
+  // ladder: the rail fills with the scroll, one rung lights per quarter
+  var lad = $('#ladder'), rungs = $$('.v_rung'), rail = $('.v_rail');
+  // photos drift a little inside their frame
+  var par = $$('[data-par]');
+  function onScroll() {
+    var vh = innerHeight;
+    if (lad && rail) {
+      var r = rail.getBoundingClientRect(), p = reduce ? 1 : Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (vh * 0.55)));
+      lad.style.setProperty('--p', p.toFixed(3));
+      rungs.forEach(function (g, k) { (p >= k / 4 + 0.02 || p === 1) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'); });
+    }
+    if (!reduce) par.forEach(function (im) { var b = im.parentElement.getBoundingClientRect(); if (b.bottom < -100 || b.top > vh + 100) return; var q = Math.max(-1, Math.min(1, (b.top + b.height / 2 - vh / 2) / (vh / 2 + b.height / 2))); im.style.transform = 'translate3d(0,' + (-q * 5).toFixed(2) + '%,0)'; });
+  }
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
+
+  // challenge statement tabs (arrow keys move between tabs)
+  var tabs = $$('.v_csTabs [role="tab"]');
+  function sel(t) { tabs.forEach(function (b) { var on = b === t; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; document.getElementById(b.getAttribute('aria-controls')).hidden = !on; }); }
+  tabs.forEach(function (b, k) {
+    b.addEventListener('click', function () { sel(b); });
+    b.addEventListener('keydown', function (e) { var d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); var n = tabs[(k + d + tabs.length) % tabs.length]; sel(n); n.focus(); });
+  });
+
+  // enquiry form: validate in the page, show a confirmation (nothing is sent in this preview)
+  var form = $('#enqForm'), done = $('#enqDone');
+  var NAMES = { fif: 'Farm Innovation Fund', inc: 'Incubation', acc: 'Accelerator', chal: 'Agricultural Challenges', unsure: '' };
+  function err(id, msg, field) { var e = document.getElementById('e-' + id); if (e) e.textContent = msg || ''; if (field) field.setAttribute('aria-invalid', msg ? 'true' : 'false'); return !msg; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true, f;
+    [['first', 'Enter your first name.'], ['last', 'Enter your last name.'], ['org', 'Enter your organisation or farm.'], ['msg', 'Tell us briefly what you need.']].forEach(function (x) { f = $('#f-' + x[0]); ok = err(x[0], f.value.trim() ? '' : x[1], f) && ok; });
+    f = $('#f-email'); ok = err('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim()) ? '' : 'Enter an email address like name@company.com.', f) && ok;
+    f = $('#f-role'); ok = err('role', f.value ? '' : 'Choose the option that describes you.', f) && ok;
+    var pl = form.querySelector('input[name="platform"]:checked'); ok = err('platform', pl ? '' : 'Choose a platform, or “Not sure yet”.') && ok;
+    f = $('#f-consent'); ok = err('consent', f.checked ? '' : 'Tick this box so we can answer your enquiry.') && ok;
+    if (!ok) { var first = form.querySelector('[aria-invalid="true"]') || (!pl ? $('#p-fif') : $('#f-consent')); if (first) first.focus(); return; }
+    var name = NAMES[pl.value];
+    $('#doneTitle').textContent = 'Thank you, ' + $('#f-first').value.trim() + '.';
+    $('#doneText').textContent = (name ? 'Your enquiry about the ' + name + ' is ready for the team. ' : 'Your enquiry is ready for the team. ') + 'In this preview nothing is sent; on the live site the Innovation Oasis team replies to ' + $('#f-email').value.trim() + '.';
+    $$('.v_field, .v_chips, .v_check, .v_formFoot, .v_err', form).forEach(function (x) { x.hidden = true; });
+    done.hidden = false;
+  });
+  $('#enqAgain').addEventListener('click', function () { form.reset(); $$('.v_field, .v_chips, .v_check, .v_formFoot, .v_err', form).forEach(function (x) { x.hidden = false; }); $$('.v_err', form).forEach(function (x) { x.textContent = ''; }); done.hidden = true; $('#f-first').focus(); });
+
+  // text reveal (homepage "Copy"): lines rise out of a mask; hero plays on load
+  var RV = !!(window.gsap && window.SplitText && window.ScrollTrigger) && !reduce;
+  if (!RV) { document.documentElement.classList.remove('rv'); return; }
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+  function makeRv(el) {
+    if (el.__rv) return el.__rv;
+    var rv = el.__rv = { lines: [], played: false };
+    SplitText.create(el, { type: 'lines', mask: 'lines', autoSplit: true, aria: 'none', onSplit: function (self) { rv.lines = self.lines; gsap.set(rv.lines, { yPercent: rv.played ? 0 : 100 }); el.style.visibility = 'visible'; } });
+    rv.play = function (d) { if (rv.played) return; rv.played = true; gsap.to(rv.lines, { yPercent: 0, duration: 1, stagger: 0.1, delay: d || 0, ease: 'power3.out' }); };
+    return rv;
+  }
+  var hero = [];
+  $$('[data-reveal]').forEach(function (el) {
+    makeRv(el);
+    if (el.closest('.c_hero')) { hero.push(el); return; }
+    var r = el.getBoundingClientRect();
+    if (r.top < innerHeight * 0.9) { makeRv(el).play(0.1); return; }
+    ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: function () { makeRv(el).play(0); } });
+  });
+  // the footer sits at the very end: play its lines as soon as it enters, it may never reach the trigger line
+  var ft = document.querySelector('.s_footer');
+  if (ft) ScrollTrigger.create({ trigger: ft, start: 'top bottom', once: true, onEnter: function () { $$('[data-reveal]', ft).forEach(function (el, k) { makeRv(el).play(0.1 + k * 0.03); }); } });
+  hero.forEach(function (el, k) { makeRv(el).play(0.25 + k * 0.12); });
+  document.documentElement.classList.remove('rv');
+  if (lenis) lenis.on('scroll', ScrollTrigger.update);
+})();
+</script>

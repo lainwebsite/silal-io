@@ -15,6 +15,7 @@ Design routes live under random folder names so they cannot be guessed. There is
 - https://silal-io.vercel.app/News-Detail (= the V3 press release; any article: `/News-Detail/<slug>`)
 - https://silal-io.vercel.app/io-academy (IO Academy: library in the Content/Media Centre layout + Delphy-style course detail; static page `public/io-academy/index.html`, rewrite in `next.config.ts`, noindex)
 - https://silal-io.vercel.app/Training-Detail (IO Academy training detail, static page `public/training-detail/index.html`, copy of `New Update 23 Oct/Training-Detail/index.html`; re-copy it after regenerating)
+- https://silal-io.vercel.app/Innovation-Venture-Platforms (Innovation & Venture Platforms hub: ladder of the 4 platforms + one chapter each, homepage-v2 navbar/footer; static page `public/innovation-venture-platforms/index.html`, source + build in `prototypes/innovation-venture-platforms/`, noindex). Lives on branch `claude/awesome-fermat-5h3gq0` until merged to `main`.
 - `/Team/V1`: not built yet, not published.
 
 Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below keep working.
