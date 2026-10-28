@@ -29,25 +29,38 @@ button { font: inherit; }
 .n1Stage { position: relative; height: clamp(340px, 31vw, 500px); background: radial-gradient(120% 90% at 50% 0%, #fbfbfa 0%, #f1f1f1 70%); border-radius: 4px; overflow: hidden; touch-action: pan-y; }
 .n1Stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .n1Hots { position: absolute; inset: 0; pointer-events: none; }
-.hot { all: unset; pointer-events: auto; position: absolute; left: 0; top: 0; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; will-change: transform; }
-.hot::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 1.5px solid var(--char); box-shadow: 0 2px 8px rgba(38,36,35,.18); transition: background .4s, border-color .4s, transform .5s var(--slow); }
-.hot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--io); opacity: 0; transform: scale(.4); }
-.hot:hover::before { transform: scale(1.25); }
-.hot[aria-selected="true"]::before { background: var(--ink); border-color: var(--ink); transform: scale(1.35); }
-.hot[aria-selected="true"]::after { animation: ping 2.2s ease-out infinite; }
-.hot:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
-.hot span { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); white-space: nowrap; font-size: .75rem; font-weight: 500; color: var(--char); background: #fff; border-radius: 999px; padding: 4px 10px; box-shadow: 0 4px 14px rgba(38,36,35,.12); opacity: 0; transition: opacity .3s; pointer-events: none; }
-.hot:hover span, .hot[aria-selected="true"] span { opacity: 1; }
-.hot[aria-selected="true"] span { color: #fff; background: var(--ink); }
+/* labels: a name pill on every scene; the active one opens into a card with its description */
+.hot { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; will-change: transform; z-index: 1; }
+.hot[aria-selected="true"] { z-index: 5; }
+.hot .dot { all: unset; pointer-events: auto; cursor: pointer; position: absolute; left: -8px; top: -8px; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; }
+.hot .dot::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 1.5px solid var(--char); box-shadow: 0 2px 8px rgba(38,36,35,.18); transition: background .4s, border-color .4s, transform .5s var(--slow); }
+.hot .dot::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid var(--io); opacity: 0; transform: scale(.4); }
+.hot[aria-selected="true"] .dot::before { background: var(--ink); border-color: var(--ink); transform: scale(1.3); }
+.hot[aria-selected="true"] .dot::after { animation: ping 2.2s ease-out infinite; }
+.hot .dot:focus-visible { outline: 2px solid var(--io); outline-offset: 3px; }
+.hot .stem { position: absolute; left: 0; bottom: 6px; width: 1px; height: var(--stem, 8px); background: rgba(89,84,83,.35); }
+.hot .pop { all: unset; box-sizing: border-box; pointer-events: auto; cursor: pointer; position: absolute; left: 0; bottom: calc(6px + var(--stem, 8px)); width: var(--w0, 120px); transform: translateX(calc(-50% + var(--dx, 0px))); background: #fff; border-radius: 14px; padding: 7px 12px; box-shadow: 0 6px 22px rgba(38,36,35,.13); overflow: hidden; text-align: left; transition: width .55s var(--slow), background .4s, box-shadow .4s; }
+.hot .pop b { display: inline-block; font-size: .75rem; font-weight: 500; color: var(--char); white-space: nowrap; transition: color .4s; }
+.hot .popMore { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--slow); }
+.hot .popMore > div { overflow: hidden; width: 236px; }
+.hot .popMore small { display: block; margin-top: 8px; font-size: .625rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.hot .popMore p { margin-top: 4px; font-size: .8125rem; line-height: 1.5; color: var(--grey-ink); }
+.hot .popMore em { display: inline-flex; align-items: center; gap: 6px; margin: 8px 0 2px; font-style: normal; font-size: .6875rem; font-weight: 500; color: var(--ink); }
+.hot[aria-selected="true"] .pop { width: 260px; box-shadow: 0 12px 34px rgba(38,36,35,.18); }
+.hot[aria-selected="true"] .popMore { grid-template-rows: 1fr; }
+.hot[aria-selected="true"] .pop b { color: var(--ink); }
+/* not enough room above: the card opens below its dot */
+.hot[data-flip] .pop { bottom: auto; top: 14px; } .hot[data-flip] .stem { display: none; }
+.n1Stage.zoomed .hot[aria-selected="true"] .popMore em { display: none; }
 @keyframes ping { 0% { opacity: .8; transform: scale(.4); } 100% { opacity: 0; transform: scale(1.6); } }
-.n1Hint { position: absolute; left: 20px; bottom: 16px; font-size: .6875rem; color: #a3a5a6; letter-spacing: .02em; pointer-events: none; }
+/* drag to look around: the cursor says it, no caption needed */
+.n1Stage { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%23ffffff' fill-opacity='.92' stroke='%23595453' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23595453' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grab; }
+.n1Stage.dragging { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%231a6f96' stroke='%231a6f96' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23ffffff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grabbing; }
+.n1All { position: absolute; z-index: 6; top: 16px; right: 16px; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--char); color: #fff; font-size: .75rem; font-weight: 500; cursor: pointer; opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity .4s, transform .5s var(--slow); }
+.n1Stage.zoomed .n1All { opacity: 1; transform: none; pointer-events: auto; }
 .n1Groups { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .n1Groups span { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); transition: color .4s, border-color .4s, background .4s; }
 .n1Groups span[data-on] { color: #fff; background: var(--ink); border-color: var(--ink); }
-.n1Detail { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 16px 48px; align-items: start; margin-top: clamp(24px, 3vw, 40px); padding-top: 28px; border-top: 1px solid var(--line); min-height: 170px; }
-.n1Detail small { display: block; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; }
-.n1Detail h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; color: var(--char); }
-.n1Detail p { font-size: 1.0625rem; line-height: 1.6; color: var(--grey-ink); padding-top: 28px; }
 .n1Fallback { position: absolute; inset: 0; display: none; place-items: center; padding: 24px; text-align: center; color: var(--grey-ink); }
 .mask { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
 .mask > span { display: block; }
@@ -64,12 +77,12 @@ button { font: inherit; }
 .p1Rows { position: relative; }
 .p1Row { display: grid; grid-template-columns: 180px minmax(0,1fr); align-items: center; height: clamp(58px, 9vh, 76px); border-top: 1px solid var(--line); }
 .p1Row:last-child { border-bottom: 1px solid var(--line); }
-.p1Row h3 { font-size: clamp(1.0625rem, 1.3vw, 1.25rem); font-weight: 400; color: #b4b6b7; transition: color .5s; }
+.p1Row h3 { font-size: clamp(1.0625rem, 1.3vw, 1.25rem); font-weight: 400; color: #b4b6b7; transition: color 1.1s var(--slow); }
 .p1Row[data-on] h3 { color: var(--char); }
 .p1Track { position: relative; height: 100%; }
 .p1Track::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(20% - 1px), var(--line) calc(20% - 1px) 20%); }
 .p1Bar { position: absolute; top: 50%; height: 12px; margin-top: -6px; border-radius: 999px; background: #e3e4e5; overflow: hidden; }
-.p1Bar i { position: absolute; inset: 0; background: var(--ink); transform: scaleX(var(--f, 0)); transform-origin: left; border-radius: inherit; }
+.p1Bar i { position: absolute; inset: 0; background: var(--ink); transform: scaleX(var(--f, 0)); transform-origin: left; border-radius: inherit; transition: background-color 1.1s var(--slow); }
 .p1Row[data-on] .p1Bar i { background: var(--io); }
 .p1Head { position: absolute; top: -32px; bottom: 0; left: 180px; width: 0; pointer-events: none; }
 .p1Head::before { content: ""; position: absolute; top: 26px; bottom: 0; left: 0; width: 1px; background: var(--char); }
@@ -80,56 +93,72 @@ button { font: inherit; }
 .p1Detail p { font-size: 1.0625rem; line-height: 1.6; color: var(--grey-ink); padding-top: 6px; }
 .p1Key { margin-top: 18px; font-size: .6875rem; color: #a3a5a6; letter-spacing: .02em; }
 
-/* ---------------- T1b · month segments ---------------- */
-.t1 { padding: clamp(28px, 3vw, 44px); border: 1px solid var(--line); border-radius: 4px; }
-.tTop { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: clamp(28px, 3vw, 44px); }
-.tTop h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; margin-top: 10px; }
-.tStats { display: flex; gap: clamp(24px, 3vw, 48px); }
-.tStats div { display: flex; flex-direction: column; gap: 6px; }
-.tStats strong { font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--char); font-variant-numeric: tabular-nums; }
-.tStats strong.hi { color: var(--ink); }
-.tStats span { font-size: .8125rem; color: var(--grey-ink); }
-.segs { display: grid; grid-template-columns: repeat(13, minmax(0,1fr)); gap: 4px; }
-.seg { position: relative; display: flex; flex-direction: column; gap: 10px; }
-.seg i { position: relative; display: block; height: 44px; border-radius: 3px; background: #ececec; overflow: hidden; }
-.seg i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(var(--f, 0)); transform-origin: left; }
-.seg[data-now] i::after { background: var(--io); }
-.seg[data-now] i::before { content: ""; position: absolute; z-index: 1; top: 0; bottom: 0; left: calc(var(--f, 0) * 100%); width: 2px; margin-left: -1px; background: #fff; animation: blink 1.6s ease-in-out infinite; }
-@keyframes blink { 50% { opacity: .2; } }
-.seg span { font-size: .6875rem; color: var(--grey); letter-spacing: .04em; white-space: nowrap; }
-.seg[data-now] span { color: var(--ink); font-weight: 500; }
-.seg em { position: absolute; bottom: calc(100% + 8px); left: calc(var(--f, 0) * 100%); transform: translateX(-50%); font-style: normal; font-size: .6875rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
-.tEnds { display: flex; justify-content: space-between; gap: 16px; margin-top: 18px; font-size: .8125rem; color: var(--grey-ink); }
+/* ---------------- T1d · key dates, vertical ---------------- */
+.t1d { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 72px); align-items: start; padding: clamp(28px, 3vw, 48px); background: var(--light); border-radius: 4px; }
+.t1dSide { display: flex; flex-direction: column; gap: 18px; }
+.t1dSide h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; }
+.t1dSide p { font-size: .9375rem; color: var(--grey-ink); line-height: 1.6; }
+.t1dSide p b { font-weight: 400; color: var(--ink); }
+.kd { position: relative; }
+.kd::before { content: ""; position: absolute; left: 15px; top: 16px; bottom: 44px; width: 1px; background: #c9cacb; transform: scaleY(var(--d, 1)); transform-origin: top; }
+.kd li { position: relative; display: grid; grid-template-columns: 32px minmax(0,1fr); gap: 20px; padding: 10px 0 26px; }
+.kd li:last-child { padding-bottom: 0; }
+.kd .n { position: relative; z-index: 1; width: 32px; height: 32px; display: grid; place-items: center; background: var(--light); }
+.kd .n i { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #9d9fa1; background: var(--light); transition: border-color .5s, border-width .5s; }
+.kd li[data-s="now"] .n i { border: 2.5px solid var(--char); box-shadow: 0 0 0 6px rgba(60,167,210,.14); }
+.kd li[data-s="next"] .n i { border-color: #c9cacb; }
+.kd .n svg { width: 24px; height: 24px; color: #9d9fa1; }
+.kd h4 { margin: 4px 0 0; font-size: clamp(1.125rem, 1.4vw, 1.375rem); font-weight: 400; color: var(--char); }
+.kd li[data-s="now"] h4 { font-weight: 500; }
+.kd li[data-s="next"] h4 { color: var(--grey-ink); }
+.kd p { margin-top: 4px; font-size: .9375rem; line-height: 1.55; color: #9a9c9e; max-width: 34em; }
+.kd li[data-s="now"] p { color: var(--grey-ink); }
+.kd .tag { display: inline-flex; align-items: center; height: 24px; margin-left: 10px; padding: 0 10px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: .6875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey-ink); vertical-align: middle; }
+.kd li[data-s="now"] .tag { border-color: var(--ink); color: var(--ink); }
 
-/* ---------------- T1c · ring countdown ---------------- */
-.t1c { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 72px); align-items: center; padding: clamp(28px, 3vw, 44px); border: 1px solid var(--line); border-radius: 4px; }
-.ring { position: relative; width: min(100%, 360px); aspect-ratio: 1; justify-self: center; }
-.ring svg { width: 100%; height: 100%; overflow: visible; transform: rotate(-90deg); }
-.ring .track { fill: none; stroke: #ececec; stroke-width: 10; }
-.ring .prog { fill: none; stroke: var(--ink); stroke-width: 10; stroke-linecap: round; }
-.ring .tick { stroke: #c9cacb; stroke-width: 1.2; }
-.ring .tick[data-past] { stroke: var(--ink); }
-.ringIn { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-.ringIn strong { font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; letter-spacing: -.05em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
-.ringIn span { font-size: .875rem; color: var(--grey-ink); margin-top: 8px; }
-.ringIn small { font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); margin-top: 14px; }
-.t1cSide { display: flex; flex-direction: column; gap: 22px; }
-.t1cSide h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; }
-.t1cRows { border-top: 1px solid var(--line); }
-.t1cRows div { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: .9375rem; }
-.t1cRows dt { color: var(--grey-ink); } .t1cRows dd { margin: 0; color: var(--char); }
+/* ---------------- C3D · cohort field in 3D ---------------- */
+.c3Pin { position: relative; height: 420vh; }
+.c3Stick { position: sticky; top: 0; height: 100vh; min-height: 600px; display: flex; align-items: center; }
+.c3Grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 64px); align-items: center; width: 100%; }
+.c3Text { display: flex; flex-direction: column; gap: 18px; }
+.c3Text h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; }
+.c3Big { font-size: clamp(3.5rem, 6vw, 6rem); font-weight: 300; line-height: 1; letter-spacing: -.05em; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: 8px; }
+.c3Stage { font-size: var(--fs-lead); font-weight: 300; color: var(--char); min-height: 1.4em; }
+.c3Steps { display: flex; gap: 6px; } .c3Steps i { flex: 1; height: 2px; background: var(--line); position: relative; overflow: hidden; }
+.c3Steps i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(var(--f, 0)); transform-origin: left; }
+.c3Side { display: flex; gap: 40px; padding-top: 18px; border-top: 1px solid var(--line); }
+.c3Side div { display: flex; flex-direction: column; gap: 4px; } .c3Side strong { font-size: 1.75rem; font-weight: 300; color: var(--char); } .c3Side span { font-size: .8125rem; color: var(--grey); }
+.c3Gl { position: relative; height: min(70vh, 620px); }
+.c3Gl canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.c3Key { position: absolute; left: 0; right: 0; bottom: 0; display: flex; gap: 8px 20px; flex-wrap: wrap; font-size: .6875rem; color: #a3a5a6; letter-spacing: .02em; }
+.c3Key span { display: inline-flex; align-items: center; gap: 7px; }
+.c3Key i { width: 7px; height: 7px; border-radius: 50%; background: var(--char); opacity: .7; }
+.c3Gl, .crGl { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%23ffffff' fill-opacity='.92' stroke='%23595453' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23595453' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grab; touch-action: pan-y; }
+/* ---------------- CR3D · CRETA greenhouse cutaway ---------------- */
+.crWrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 4vw, 72px); align-items: center; padding: clamp(24px, 3vw, 40px); background: var(--light); border-radius: 4px; }
+.crGl { position: relative; height: clamp(380px, 40vw, 580px); }
+.crGl canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.crLbl { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+.crLbl span { position: absolute; transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; font-size: .75rem; color: var(--char); background: #fff; border-radius: 999px; padding: 5px 11px; box-shadow: 0 4px 14px rgba(38,36,35,.1); }
+.crLbl span b { font-weight: 500; }
+.crLbl[data-tone="hot"] span { color: #b5561a; } .crLbl[data-tone="cool"] span { color: var(--ink); }
+.crLbl i { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--char); box-shadow: 0 0 0 3px #fff; }
+.crLbl[data-tone="hot"] i { background: #e8823a; } .crLbl[data-tone="cool"] i { background: var(--io); }
+.crText { display: flex; flex-direction: column; gap: 18px; }
+.crText h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; }
+.crText p { color: var(--grey-ink); line-height: 1.65; }
+.crNums { display: flex; gap: 32px; padding-block: 18px; border-block: 1px solid var(--line); }
+.crNums div { display: flex; flex-direction: column; gap: 6px; } .crNums strong { font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 300; letter-spacing: -.03em; line-height: 1; color: var(--ink); } .crNums span { font-size: .8125rem; color: var(--grey-ink); }
 
 .foot { margin-top: clamp(80px, 10vw, 140px); padding-block: 40px 72px; border-top: 1px solid var(--line); color: var(--grey-ink); font-size: .9375rem; line-height: 1.6; }
 @media (max-width: 900px) {
-  .head, .n1Detail, .t1c { grid-template-columns: minmax(0,1fr); }
-  .n1Detail p { padding-top: 0; }
+  .head, .t1d, .c3Grid, .crWrap { grid-template-columns: minmax(0,1fr); }
+  .c3Gl { height: 46vh; } .c3Stick { align-items: flex-start; padding-top: 72px; }
   .n1Stage { height: 440px; }
   .p1Axis, .p1Row { grid-template-columns: 110px minmax(0,1fr); }
   .p1Head { left: 110px; }
   .p1Detail { grid-template-columns: minmax(0,1fr); }
   .p1Months b { display: none; }
-  .segs { gap: 2px; } .seg i { height: 34px; } .seg:nth-child(even) span { visibility: hidden; }
-  .tStats strong { font-size: 1.75rem; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; } }
 </style>
@@ -138,15 +167,14 @@ button { font: inherit; }
   <div><span class="lbl">Innovation &amp; Venture Platforms · for review</span><h1>Section proposals</h1></div>
   <p>Round 2: N1 is now 3D in the same clay style as the homepage helix and site model, P1 is unchanged, and T1 has two new options. Hover, tap, drag and scroll them, then tell me what to build.</p>
 </header>
-<nav class="w toc" aria-label="Proposals"><a href="#n1">N1 · Nine areas, 3D (Accelerator)</a><a href="#p1">P1 · The process (Accelerator)</a><a href="#t1b">T1b · Month segments (Incubation)</a><a href="#t1c">T1c · Countdown ring (Incubation)</a></nav>
+<nav class="w toc" aria-label="Proposals"><a href="#n1">N1 · Nine areas, 3D (Accelerator)</a><a href="#p1">P1 · The process (Accelerator)</a><a href="#t1d">T1d · Key dates (Incubation)</a><a href="#c3d">C3D · Cohort field in 3D (Farm Innovation Fund)</a><a href="#cr3d">CR3D · CRETA greenhouse in 3D (Challenges)</a></nav>
 
 <!-- =================== N1 (3D) =================== -->
 <section class="w prop" id="n1">
-  <div class="note"><b>N1</b>Now 3D, in the homepage’s clay style: white matte objects, soft shadows, IO blue for the active one. Nine small scenes stand on one strip from the soil to the supply chain. Hover or tap a point (or let it cycle); the camera glides to it and the object lifts and turns blue. Drag to look around a little.</div>
-  <div class="head"><div><span class="lbl">Technologies &amp; approaches we’re prioritizing</span><h2>Nine areas, from the soil to the supply chain.</h2></div><p>Hover or tap a point in the field to read what we look for.</p></div>
-  <div class="n1Stage" id="n1Stage"><div class="n1Hots" id="n1Hots"></div><p class="n1Hint">Drag to look around</p><div class="n1Fallback" id="n1Fallback">3D is not available in this browser.</div></div>
+  <div class="note"><b>N1</b>Now 3D, in the homepage’s clay style: white matte objects, soft shadows, IO blue for the active one. Nine small scenes stand on one strip from the soil to the supply chain. Every scene carries its name; hover (or let it cycle) and the label opens into a card with the description, right next to the object. Click to zoom in on a scene, drag to look around (the cursor shows it), “All nine areas” zooms back out.</div>
+  <div class="head"><div><span class="lbl">Technologies &amp; approaches we’re prioritizing</span><h2>Nine areas, from the soil to the supply chain.</h2></div><p>Hover a scene to read what we look for; click to take a closer look.</p></div>
+  <div class="n1Stage" id="n1Stage"><div class="n1Hots" id="n1Hots"></div><button class="n1All" id="n1All" type="button">← All nine areas</button><div class="n1Fallback" id="n1Fallback">3D is not available in this browser.</div></div>
   <div class="n1Groups" id="n1Groups" aria-hidden="true"><span data-on>Growing &amp; production</span><span>Waste</span><span>Supply chain</span></div>
-  <div class="n1Detail" aria-live="polite"><div><small class="mask"><span id="n1Group">Growing &amp; production</span></small><h3 class="mask"><span id="n1Title">Soil &amp; Plant Health Inputs &amp; Amendments</span></h3></div><p class="mask"><span id="n1Text">Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.</span></p></div>
 </section>
 
 <!-- =================== P1 =================== -->
@@ -169,29 +197,49 @@ button { font: inherit; }
   </div></div></div>
 </section>
 
-<!-- =================== T1b =================== -->
-<section class="w prop" id="t1b">
-  <div class="note"><b>T1b</b>One block per month, Nov 2025 to Nov 2026. Past months fill in one after another when the section appears; the current month fills only as far as today, with a blinking edge. Above it, three plain numbers: which month we are in, how much has run, and days left.</div>
-  <div class="t1" id="t1bBox">
-    <div class="tTop"><div><span class="lbl">Cohort 1 · Agri-Robotics 2026</span><h3>Where the cohort is today.</h3></div>
-      <div class="tStats"><div><strong id="tbMonth">–</strong><span>month of 13</span></div><div><strong id="tbPct">0%</strong><span>of the cohort run</span></div><div><strong class="hi" id="tbDays">0</strong><span>days to close</span></div></div></div>
-    <div class="segs" id="segs"></div>
-    <div class="tEnds"><span>Nov 2025 · Cohort starts</span><span>30 Nov 2026 · Cohort closes</span></div>
+<!-- =================== T1d =================== -->
+<section class="w prop" id="t1d">
+  <div class="note"><b>T1d</b>Like your reference: four key dates on one vertical line, each with one short line of explanation. Done dates are quiet, today is the bold ring, what is next is light, and the result at the end gets its own small sun mark. The days left are counted from today’s date.</div>
+  <div class="t1d" id="t1dBox">
+    <div class="t1dSide"><span class="lbl">Cohort 1 · Agri-Robotics 2026</span><h3>Where the first cohort stands.</h3><p>Four technologies, one year with Khalifa University. <b id="kdDays">33 days</b> until the cohort closes.</p></div>
+    <ol class="kd" id="kd">
+      <li data-s="done"><span class="n"><i></i></span><div><h4>November 2025<span class="tag">Started</span></h4><p>Four agri-robotics technologies join the incubator, with Khalifa University.</p></div></li>
+      <li data-s="now"><span class="n"><i></i></span><div><h4 id="kdToday">Today</h4><p>Teams refine their prototypes on real farms, greenhouses and labs at Innovation Oasis.</p></div></li>
+      <li data-s="next"><span class="n"><i></i></span><div><h4>November 2026<span class="tag">Closes</span></h4><p>Target: prototypes market-ready, for example TRL 6 / CRL 5.</p></div></li>
+      <li data-s="next"><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg></span><div><h4>After the cohort<span class="tag">Result</span></h4><p>Success is at least one technology turned into jointly owned IP, a scaled deployment or further investment.</p></div></li>
+    </ol>
   </div>
 </section>
 
-<!-- =================== T1c =================== -->
-<section class="w prop" id="t1c">
-  <div class="note"><b>T1c</b>A countdown ring: 13 month ticks around a circle, the arc fills to today and the centre counts the days left. Facts sit beside it. The most compact option, good if the section should feel like a status card.</div>
-  <div class="t1c" id="t1cBox">
-    <div class="ring"><svg viewBox="0 0 200 200" aria-hidden="true"><circle class="track" cx="100" cy="100" r="88"/><g id="ringTicks"></g><circle class="prog" id="ringProg" cx="100" cy="100" r="88" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
-      <div class="ringIn"><strong id="tcDays">0</strong><span>days to close</span><small id="tcPct">0% run</small></div></div>
-    <div class="t1cSide"><span class="lbl">Cohort 1 · Agri-Robotics 2026</span><h3>Final weeks of the first cohort.</h3>
-      <dl class="t1cRows" style="margin:0"><div><dt>Started</dt><dd>November 2025</dd></div><div><dt>Closes</dt><dd>30 November 2026</dd></div><div><dt>Technologies</dt><dd>4</dd></div><div><dt>Goal</dt><dd>Prototypes to market-ready</dd></div></dl></div>
+<!-- =================== C3D =================== -->
+<section class="prop" id="c3d">
+  <div class="w"><div class="note"><b>C3D</b>The Cohort 1 field from the Farm Innovation Fund page, now 3D in the same clay style: 130 seeds in ten furrows on a soil plot. Scroll through it: seeds that do not advance sink into the soil stage by stage (130, 68, 39, 10) and the last five grow into blue sprouts.</div></div>
+  <div class="c3Pin" id="c3Pin"><div class="c3Stick"><div class="w" style="width:100%"><div class="c3Grid">
+    <div class="c3Text">
+      <span class="lbl">Cohort 1 at a glance · 15 Sep 2026</span>
+      <h2>From 130 applications to five funded pilots.</h2>
+      <div class="c3Big" id="c3Num">130</div>
+      <p class="c3Stage mask"><span id="c3Lbl">Applications submitted</span></p>
+      <div class="c3Steps" id="c3Steps"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="c3Side"><div><strong>2,000+</strong><span>farms reached</span></div><div><strong>7</strong><span>emirates represented</span></div></div>
+    </div>
+    <div class="c3Gl" id="c3Gl"><div class="c3Key"><span><i></i>1 application</span><span style="margin-left:auto">Target: at least 1 scaled solution</span></div></div>
+  </div></div></div></div>
+</section>
+
+<!-- =================== CR3D =================== -->
+<section class="w prop" id="cr3d">
+  <div class="note"><b>CR3D</b>The CRETA schematic from the Agricultural Challenges page as a 3D cutaway: a slice of ground with the underground channel, the dual-shell greenhouse on top. Hot air (orange) is drawn in, travels through the channel, cools to blue and rises into the growing space, all the time. Drag to look around.</div>
+  <div class="crWrap">
+    <div class="crGl" id="crGl"></div>
+    <div class="crText"><span class="lbl">Problem statement B · CRETA Group, UAE</span><h2>A greenhouse cooled by the ground.</h2>
+      <p>Hot desert air is drawn through underground channels, where stable soil temperatures pre-condition it before it enters the growing space. The dual-shell structure reduces the heat load with minimal energy demand.</p>
+      <div class="crNums"><div><strong>12–15°C</strong><span>reported reduction in pilot testing</span></div><div><strong>Zero</strong><span>water used for cooling</span></div></div>
+      <p>Silal builds and commissions it at Innovation Oasis, runs a full crop cycle benchmarked against a conventional evaporative-cooled greenhouse, and shares the operating data with ADAFSA.</p></div>
   </div>
 </section>
 
-<footer class="w foot">Reply with what you approve, for example “N1 P1 T1b ok”, or tell me what to change. Once approved I’ll build N1 and P1 into the Accelerator page and the chosen T1 into the Incubation page.</footer>
+<footer class="w foot">Reply with what you approve, for example “N1 T1d C3D CR3D ok”, or tell me what to change. Once approved I’ll build N1 and P1 into the Accelerator page T1d into the Incubation page, C3D into the Farm Innovation Fund page and CR3D into the Agricultural Challenges page. (P1 is already on the Accelerator page.)</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
@@ -224,31 +272,19 @@ button { font: inherit; }
   if (G) ScrollTrigger.create({ trigger: '#p1Pin', start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: function (st) { p1(st.progress); }, onRefresh: function (st) { p1(st.progress); } }); else p1(1);
   addEventListener('resize', function () { p1(Math.max(0, pk) / 3); });
 
-  /* ---------- shared cohort dates ---------- */
-  var start = Date.UTC(2025, 10, 1), end = Date.UTC(2026, 10, 30), now = Date.now(), t = Math.max(0, Math.min(1, (now - start) / (end - start)));
-  var daysLeft = Math.max(0, Math.ceil((end - now) / 864e5)), MON = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
-  function count(el, to, suf) { if (!G) { el.textContent = to + (suf || ''); return; } var o = { v: 0 }; gsap.to(o, { v: to, duration: 1.6, ease: 'power3.out', onUpdate: function () { el.textContent = Math.round(o.v) + (suf || ''); } }); }
-
-  /* ---------- T1b: month segments ---------- */
-  var segs = $('#segs'), nowIdx = -1, fills = [];
-  MON.forEach(function (mn, i) {
-    var a = Date.UTC(2025, 10 + i, 1), b = i === 12 ? end : Date.UTC(2025, 11 + i, 1), f = Math.max(0, Math.min(1, (now - a) / (b - a)));
-    if (now >= a && now < b) nowIdx = i; fills.push(f);
-    segs.insertAdjacentHTML('beforeend', '<div class="seg"' + (now >= a && now < b ? ' data-now' : '') + '><i></i><span>' + mn + (i === 0 ? ' 25' : i === 2 || i === 12 ? ' 26' : '') + '</span>' + (now >= a && now < b ? '<em>Today</em>' : '') + '</div>');
-  });
-  var segEls = $$('#segs .seg');
-  function t1b(play) {
-    $('#tbMonth').textContent = nowIdx >= 0 ? nowIdx + 1 : (t >= 1 ? 13 : 0);
-    segEls.forEach(function (s, i) { if (!play) { s.style.setProperty('--f', fills[i]); return; } var o = { v: 0 }; gsap.to(o, { v: fills[i], duration: 0.5, delay: i * 0.08, ease: 'power2.out', onUpdate: function () { s.style.setProperty('--f', o.v); } }); });
-    count($('#tbPct'), Math.round(t * 100), '%'); count($('#tbDays'), daysLeft);
+  /* ---------- T1d: key dates ---------- */
+  var end = Date.UTC(2026, 10, 30), now = Date.now(), daysLeft = Math.max(0, Math.ceil((end - now) / 864e5)), d = new Date(now);
+  $('#kdToday').innerHTML = 'Today, ' + d.getUTCDate() + ' ' + ['January','February','March','April','May','June','July','August','September','October','November','December'][d.getUTCMonth()] + '<span class="tag">Now</span>';
+  $('#kdDays').textContent = daysLeft === 1 ? '1 day' : daysLeft + ' days';
+  if (now >= end) { $$('#kd li').forEach(function (li, i) { li.setAttribute('data-s', i < 3 ? 'done' : 'now'); }); $('#kdToday').parentNode.parentNode.style.display = 'none'; }
+  if (G) {
+    var kd = $('#kd'); kd.style.setProperty('--d', 0);
+    gsap.set($$('#kd li'), { opacity: 0, y: 14 });
+    ScrollTrigger.create({ trigger: kd, start: 'top 80%', once: true, onEnter: function () {
+      var o = { v: 0 }; gsap.to(o, { v: 1, duration: 1.4, ease: 'power2.inOut', onUpdate: function () { kd.style.setProperty('--d', o.v); } });
+      gsap.to($$('#kd li'), { opacity: 1, y: 0, duration: 0.8, stagger: 0.18, ease: 'power3.out', delay: 0.1 });
+    } });
   }
-  if (G) ScrollTrigger.create({ trigger: '#t1bBox', start: 'top 80%', once: true, onEnter: function () { t1b(true); } }); else t1b(false);
-
-  /* ---------- T1c: ring ---------- */
-  var ticks = $('#ringTicks');
-  MON.forEach(function (mn, i) { var at = (Date.UTC(2025, 10 + i, 1) - start) / (end - start), ang = at * Math.PI * 2, r1 = 100, r2 = 108; ticks.insertAdjacentHTML('beforeend', '<line class="tick"' + (at <= t ? ' data-past' : '') + ' x1="' + (100 + Math.cos(ang) * r1) + '" y1="' + (100 + Math.sin(ang) * r1) + '" x2="' + (100 + Math.cos(ang) * r2) + '" y2="' + (100 + Math.sin(ang) * r2) + '"/>'); });
-  function t1c(play) { var pr = $('#ringProg'); if (!play) { pr.setAttribute('stroke-dashoffset', 1 - t); } else gsap.to(pr, { attr: { 'stroke-dashoffset': 1 - t }, duration: 1.8, ease: 'expo.out' }); count($('#tcDays'), daysLeft); var pc = $('#tcPct'); if (!play) pc.textContent = Math.round(t * 100) + '% run'; else { var o = { v: 0 }; gsap.to(o, { v: t * 100, duration: 1.6, ease: 'power3.out', onUpdate: function () { pc.textContent = Math.round(o.v) + '% run'; } }); } }
-  if (G) ScrollTrigger.create({ trigger: '#t1cBox', start: 'top 80%', once: true, onEnter: function () { t1c(true); } }); else t1c(false);
 })();
 </script>
 
@@ -366,32 +402,46 @@ else {
   });
 
   // labels / hit targets
-  const hots = AREAS.map((a, i) => { const b = document.createElement('button'); b.className = 'hot'; b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', a[1]); b.innerHTML = '<span>' + a[3] + '</span>'; hotsEl.appendChild(b); return b; });
-  let sel = -1, auto = null, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false;
+  const hots = AREAS.map((a, i) => {
+    const h = document.createElement('div'); h.className = 'hot'; h.setAttribute('role', 'presentation'); h.style.setProperty('--stem', (i % 2 ? 40 : 8) + 'px');
+    h.innerHTML = '<i class="stem"></i><button class="dot" type="button" aria-label="' + a[1] + '"></button><button class="pop" type="button" tabindex="-1" aria-hidden="true"><b>' + a[3] + '</b><span class="popMore"><div><small>' + a[0] + '</small><p>' + a[2] + '</p><em>Click to zoom in →</em></div></span></button>';
+    hotsEl.appendChild(h); return h;
+  });
+  const measure = () => hots.forEach(h => h.style.setProperty('--w0', (h.querySelector('b').offsetWidth + 26) + 'px'));
+  measure(); if (document.fonts) document.fonts.ready.then(measure);
+  const pops = hots.map(h => h.querySelector('.pop'));
+  let sel = -1, auto = null, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false, zoom = 0, zoomK = 0;
   const grp = i => (i < 5 ? 0 : i < 7 ? 1 : 2);
   function pick(i) {
     if (i === sel) return; sel = i;
-    hots.forEach((h, k) => { h.setAttribute('aria-selected', k === i); h.tabIndex = k === i ? 0 : -1; });
+    hots.forEach((h, k) => { h.setAttribute('aria-selected', k === i); h.querySelector('.dot').tabIndex = k === i ? 0 : -1; });
     groupsEl.forEach((g, k) => k === grp(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'));
     scenes.forEach((s, k) => {
       const on = k === i;
       if (G) gsap.to(s.lift.position, { y: on ? 0.32 : 0, duration: 0.9, ease: on ? 'back.out(2.2)' : 'power3.out' }); else s.lift.position.y = on ? 0.32 : 0;
       s.accents.forEach(o => { const to = on ? new THREE.Color(C.blue) : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); });
     });
-    camTX = X(i);
-    swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]);
+    if (focus || zoom) camTX = X(i);
   }
+  // click: glide in close to one scene; "All nine areas" glides back out
+  function zoomTo(i) { stop(); pick(i); camTX = X(i); zoom = 1; stage.classList.add('zoomed'); }
+  function zoomOut() { zoom = 0; stage.classList.remove('zoomed'); }
+  $('#n1All').addEventListener('click', zoomOut);
+  addEventListener('keydown', e => { if (e.key === 'Escape' && zoom) zoomOut(); });
   const stop = () => { if (auto) { clearInterval(auto); auto = null; } };
-  hots.forEach((b, i) => {
-    b.addEventListener('mouseenter', () => { if (fine) { stop(); pick(i); } });
-    b.addEventListener('click', () => { stop(); pick(i); });
-    b.addEventListener('focus', () => { stop(); pick(i); });
-    b.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); stop(); pick((i + d + 9) % 9); hots[sel].focus(); });
+  hots.forEach((h, i) => {
+    const dot = h.querySelector('.dot'), pop = h.querySelector('.pop');
+    [dot, pop].forEach(el => {
+      el.addEventListener('mouseenter', () => { if (fine) { stop(); pick(i); } });
+      el.addEventListener('click', () => zoomTo(i));
+    });
+    dot.addEventListener('focus', () => { stop(); pick(i); });
+    dot.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); stop(); pick((i + d + 9) % 9); hots[sel].querySelector('.dot').focus(); });
   });
   // drag to orbit a little around the strip
   let px = null;
-  stage.addEventListener('pointerdown', e => { if (e.target.closest('.hot')) return; px = e.clientX; stop(); });
-  addEventListener('pointerup', () => { px = null; dragT = 0; });
+  stage.addEventListener('pointerdown', e => { if (e.target.closest('.hot, .n1All')) return; px = e.clientX; stop(); stage.classList.add('dragging'); });
+  addEventListener('pointerup', () => { px = null; dragT = 0; stage.classList.remove('dragging'); });
   addEventListener('pointermove', e => { if (px === null) return; dragT = Math.max(-1, Math.min(1, (e.clientX - px) / 300)); });
 
   // camera: wide view of the whole strip on wide screens, follow the active scene on narrow ones
@@ -405,15 +455,24 @@ else {
     requestAnimationFrame(frame); if (!visible) return;
     const dt = Math.min(0.05, clock.getDelta()), tm = clock.elapsedTime;
     drag += (dragT - drag) * 0.08;
-    camX += ((focus ? camTX : 0) - camX) * (reduce ? 1 : 0.05);
-    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), dist = focus ? 15 : 18.4 / Math.tan(hv) / (1 + intro.k * 0.03), ang = 0.6, yaw = drag * 0.5 + (fine && !focus ? Math.sin(tm * 0.15) * 0.04 : 0);
-    target.set(camX, 0.9, 0);
+    zoomK += (zoom - zoomK) * (reduce ? 1 : 0.06);
+    camX += (((focus || zoom) ? camTX : 0) - camX) * (reduce ? 1 : 0.06);
+    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 18.4 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 10 : 11.5;
+    const dist = far + (near - far) * zoomK, ang = 0.6 - zoomK * 0.14, yaw = drag * (0.5 + zoomK * 0.5) + (fine && !focus && !zoom ? Math.sin(tm * 0.15) * 0.04 : 0);
+    target.set(camX, focus ? 0.9 : 1.7 - zoomK * 0.4, 0); // objects sit low in the frame, leaving room for the cards
     camera.position.set(camX + Math.sin(yaw) * dist * Math.cos(ang), Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
     camera.lookAt(target);
     scenes.forEach(s => s.lift.children.forEach(o => { if (o.userData.bob !== undefined && !reduce) o.position.y = 1.65 + (o.userData.bob % 2) * 0.25 + Math.sin(tm * 1.6 + o.userData.bob) * 0.06; }));
     renderer.render(scene, camera);
     const w = stage.clientWidth, h = stage.clientHeight;
-    scenes.forEach((s, i) => { v.copy(s.top); v.y += s.lift.position.y; v.project(camera); const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h; hots[i].style.transform = 'translate(' + x + 'px,' + y + 'px)'; hots[i].style.visibility = x < -20 || x > w + 20 ? 'hidden' : 'visible'; });
+    scenes.forEach((s, i) => {
+      v.copy(s.top); v.y += s.lift.position.y; v.project(camera);
+      const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h, open = i === sel, half = open ? 130 : (parseFloat(hots[i].style.getPropertyValue('--w0')) || 120) / 2;
+      hots[i].style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      hots[i].style.setProperty('--dx', (Math.max(half + 10, Math.min(w - half - 10, x)) - x) + 'px'); // keep cards inside the stage
+      hots[i].style.visibility = x < -20 || x > w + 20 ? 'hidden' : 'visible';
+      if (open) { const stem = i % 2 ? 40 : 8; (y - stem - 6 - pops[i].offsetHeight < 8) ? hots[i].setAttribute('data-flip', '') : hots[i].removeAttribute('data-flip'); } else hots[i].removeAttribute('data-flip');
+    });
   }
   pick(0); frame();
   // entrance: scenes rise in one by one, then the cycle starts
@@ -421,4 +480,126 @@ else {
   const enter = () => { if (G) { scenes.forEach((s, k) => gsap.to(s.g.scale, { x: 1, y: 1, z: 1, duration: 1, delay: 0.08 * k, ease: 'back.out(1.7)' })); gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out' }); } if (!reduce) auto = setInterval(() => pick((sel + 1) % 9), 3800); };
   if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: stage, start: 'top 75%', once: true, onEnter: enter }); else enter();
 }
+</script>
+
+<script type="module">
+/* ---------- C3D and CR3D: two more clay scenes ---------- */
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+const $ = (q, r) => (r || document).querySelector(q), $$ = (q, r) => [...(r || document).querySelectorAll(q)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, G = !!window.gsap && !reduce, swap = window.__swap;
+const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
+const shade = m => { m.castShadow = m.receiveShadow = true; return m; };
+const rbox = (w, h, d, r, m) => shade(new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)), m));
+const mesh = (g, m) => shade(new THREE.Mesh(g, m));
+// one renderer + lights + soft shadow floor per stage, render only while visible, drag = look around
+function stageGL(host, opts) {
+  let r; try { r = new THREE.WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { return null; }
+  r.setPixelRatio(Math.min(2, devicePixelRatio)); r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap; r.outputColorSpace = THREE.SRGBColorSpace; r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
+  host.prepend(r.domElement);
+  const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(opts.fov || 30, 1, 0.1, 200);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xd9d6d0, 1.7));
+  const sun = new THREE.DirectionalLight(0xffffff, 2.2); sun.position.set(-8, 18, 12); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -14, right: 14, top: 14, bottom: -14, near: 1, far: 60 }); sun.shadow.radius = 6; sun.shadow.bias = -0.0004; scene.add(sun);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.ShadowMaterial({ opacity: 0.08 })); floor.rotation.x = -Math.PI / 2; floor.position.y = opts.floorY || 0; floor.receiveShadow = true; scene.add(floor);
+  const st = { r, scene, cam, yaw: 0, yawT: 0, visible: false, size() { const w = host.clientWidth, h = host.clientHeight; r.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); } };
+  st.size(); addEventListener('resize', st.size);
+  new IntersectionObserver(es => { st.visible = es[0].isIntersecting; }, { rootMargin: '200px' }).observe(host);
+  let px = null;
+  host.addEventListener('pointerdown', e => { px = e.clientX; });
+  addEventListener('pointerup', () => { px = null; st.yawT = 0; });
+  addEventListener('pointermove', e => { if (px !== null) st.yawT = Math.max(-1, Math.min(1, (e.clientX - px) / 280)); });
+  return st;
+}
+
+/* ===== C3D: 130 seeds on a soil plot; scroll drops them stage by stage; the last five sprout ===== */
+(function () {
+  const host = $('#c3Gl'); const S = stageGL(host, { fov: 28, floorY: -0.5 }); if (!S) return;
+  const { scene, cam } = S;
+  const plot = rbox(14, 0.9, 9.4, 0.3, mat(0xe7dfd3)); plot.position.y = -0.45; scene.add(plot);
+  const ROWS = 10, COLS = 13, seeds = [], pos = [];
+  for (let r = 0; r < ROWS; r++) {
+    const z = -3.9 + r * (7.8 / 9), ridge = rbox(12.6, 0.22, 0.42, 0.1, mat(0xddd2c2)); ridge.position.set(0, 0.06, z); scene.add(ridge);
+    for (let c = 0; c < COLS; c++) { const x = -5.7 + c * (11.4 / 12); const m = mesh(new THREE.SphereGeometry(0.15, 16, 12), mat(0x7d7774)); m.position.set(x, 0.32, z); scene.add(m); seeds.push(m); pos.push([r, c]); }
+  }
+  // the five pilots sit spread across the front; everything else drops out in a fixed shuffled order (same as the 2D field)
+  const PILOTS = [[5, 2], [8, 5], [6, 8], [9, 10], [7, 12]], rank = [], rest = []; let sd = 7; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  pos.forEach((p, i) => { const k = PILOTS.findIndex(q => q[0] === p[0] && q[1] === p[1]); if (k >= 0) rank[i] = k; else rest.push(i); });
+  for (let n = rest.length - 1; n > 0; n--) { const m = Math.floor(rnd() * (n + 1)); [rest[n], rest[m]] = [rest[m], rest[n]]; }
+  rest.forEach((i, k) => { rank[i] = 5 + k; });
+  // sprouts for the five pilots, hidden until the last stage
+  const sprouts = PILOTS.map(q => {
+    const s = seeds[q[0] * COLS + q[1]], g = new THREE.Group(), leafM = mat(0x3ca7d2), stemM = mat(0x1a6f96);
+    const stem = mesh(new THREE.CylinderGeometry(0.04, 0.06, 1.0, 10), stemM); stem.position.y = 0.5; g.add(stem);
+    [[-1, 0.62, 0.55], [1, 0.9, -0.55]].forEach(([sx, y, rz]) => { const l = mesh(new THREE.SphereGeometry(0.3, 20, 14), leafM); l.scale.set(1, 0.3, 0.55); l.position.set(sx * 0.24, y, 0); l.rotation.z = rz; g.add(l); });
+    g.position.set(s.position.x, 0.3, s.position.z); g.scale.set(0.001, 0.001, 0.001); scene.add(g); return g;
+  });
+  const STAGES = [[130, 'Applications submitted'], [68, 'Advanced to Phase 2'], [39, 'Valid Phase 2 proposals'], [10, 'Finalists'], [5, 'Pilots to fund']];
+  const num = $('#c3Num'), lbl = $('#c3Lbl'), steps = $$('#c3Steps i'), cnt = { v: 130 }, soilC = new THREE.Color(0xd8ccbb), seedC = new THREE.Color(0x7d7774), pilotC = new THREE.Color(0x1a6f96);
+  let stage = -1;
+  function setStage(k) {
+    if (k === stage) return; stage = k;
+    seeds.forEach((s, i) => {
+      const on = rank[i] < STAGES[k][0], to = on ? (k === 4 ? pilotC : seedC) : soilC;
+      if (G) { gsap.to(s.position, { y: on ? 0.32 : 0.02, duration: 0.8, ease: 'power3.out', delay: on ? 0 : Math.random() * 0.25 }); gsap.to(s.scale, { x: on ? 1 : 0.55, y: on ? 1 : 0.55, z: on ? 1 : 0.55, duration: 0.8, ease: 'power3.out' }); gsap.to(s.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.7 }); }
+      else { s.position.y = on ? 0.32 : 0.02; s.scale.setScalar(on ? 1 : 0.55); s.material.color.copy(to); }
+    });
+    sprouts.forEach((g, j) => { const v = k === 4 ? 1 : 0.001; if (G) gsap.to(g.scale, { x: v, y: v, z: v, duration: 1.1, delay: k === 4 ? 0.15 * j : 0, ease: k === 4 ? 'back.out(1.8)' : 'power2.in' }); else g.scale.setScalar(v); });
+    if (G) gsap.to(cnt, { v: STAGES[k][0], duration: 0.8, ease: 'power3.out', onUpdate: () => { num.textContent = Math.round(cnt.v); } }); else num.textContent = STAGES[k][0];
+    swap(lbl, STAGES[k][1]);
+  }
+  setStage(0);
+  if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: '#c3Pin', start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: st => { const f = st.progress * 5; setStage(Math.min(4, Math.floor(f))); steps.forEach((el, i) => el.style.setProperty('--f', Math.max(0, Math.min(1, f - i)))); } });
+  else setStage(4);
+  const clock = new THREE.Clock(), tgt = new THREE.Vector3(0, 0, 0.4);
+  (function loop() { requestAnimationFrame(loop); if (!S.visible) return; const t = clock.getElapsedTime();
+    S.yaw += (S.yawT - S.yaw) * 0.08; const yaw = S.yaw * 0.7 + (reduce ? 0 : Math.sin(t * 0.18) * 0.06), d = cam.aspect < 1 ? 38 : 30, a = 0.8;
+    cam.position.set(Math.sin(yaw) * d * Math.cos(a), Math.sin(a) * d, Math.cos(yaw) * d * Math.cos(a)); cam.lookAt(tgt);
+    sprouts.forEach((g, j) => { if (!reduce && g.scale.x > 0.5) g.rotation.z = Math.sin(t * 1.4 + j) * 0.05; });
+    S.r.render(scene, cam); })();
+})();
+
+/* ===== CR3D: CRETA cutaway — hot air in, through the ground, cool air up into the greenhouse ===== */
+(function () {
+  const host = $('#crGl'); const S = stageGL(host, { fov: 30, floorY: -3.2 }); if (!S) return;
+  const { scene, cam } = S;
+  // a slice of ground (cut face at z = 0.6) and its soil layers
+  const soil = rbox(13, 3, 5.4, 0.18, mat(0xe7dccd)); soil.position.set(0, -1.5, -2.1); scene.add(soil);
+  const deep = rbox(13.02, 1.1, 5.42, 0.12, mat(0xddcfbd)); deep.position.set(0, -2.45, -2.1); scene.add(deep);
+  // the channel: in at the stack, down, along under the ground, up into the greenhouse
+  const path = new THREE.CurvePath();
+  const P = (x, y) => new THREE.Vector3(x, y, 0.62);
+  [[P(-4.6, 2.0), P(-4.6, -1.8)], [P(-4.6, -1.8), P(1.6, -1.8)], [P(1.6, -1.8), P(1.6, 0.3)]].forEach(([a, b]) => path.add(new THREE.LineCurve3(a, b)));
+  const tube = mesh(new THREE.TubeGeometry(path, 160, 0.26, 18, false), mat(0xf4efe8)); scene.add(tube);
+  const stack = mesh(new THREE.CylinderGeometry(0.34, 0.34, 1.9, 24, 1, true), mat(0xf6f5f2, { side: THREE.DoubleSide })); stack.position.set(-4.6, 0.95, 0.62); scene.add(stack);
+  const hood = mesh(new THREE.ConeGeometry(0.6, 0.45, 24), mat(0xf6f5f2)); hood.position.set(-4.6, 2.25, 0.62); scene.add(hood);
+  // dual-shell greenhouse: outer clay frame + glass, inner blue glass shell, plants inside
+  const house = (w, h, eave, depth) => { const s = new THREE.Shape(); s.moveTo(-w / 2, 0); s.lineTo(w / 2, 0); s.lineTo(w / 2, eave); s.lineTo(0, h); s.lineTo(-w / 2, eave); s.closePath(); const g = new THREE.ExtrudeGeometry(s, { depth, bevelEnabled: false }); g.translate(0, 0, -depth / 2); return g; };
+  const outerG = house(4.4, 4.0, 2.6, 3.6), innerG = house(3.5, 3.3, 2.1, 3.0);
+  const outer = new THREE.Mesh(outerG, mat(0xffffff, { transparent: true, opacity: 0.32, roughness: 0.2, depthWrite: false })); outer.position.set(1.6, 0, -1.2); scene.add(outer);
+  const outerE = new THREE.LineSegments(new THREE.EdgesGeometry(outerG), new THREE.LineBasicMaterial({ color: 0x595453 })); outerE.position.copy(outer.position); scene.add(outerE);
+  const inner = new THREE.Mesh(innerG, mat(0x3ca7d2, { transparent: true, opacity: 0.12, roughness: 0.2, depthWrite: false })); inner.position.set(1.6, 0.02, -1.2); scene.add(inner);
+  const innerE = new THREE.LineSegments(new THREE.EdgesGeometry(innerG), new THREE.LineDashedMaterial({ color: 0x3ca7d2, dashSize: 0.18, gapSize: 0.12 })); innerE.position.copy(inner.position); innerE.computeLineDistances(); scene.add(innerE);
+  for (let r = 0; r < 2; r++) for (let c = 0; c < 4; c++) { const b = mesh(new THREE.SphereGeometry(0.2, 14, 10), mat(0xd9dadb)); b.scale.set(1, 0.7, 1); b.position.set(0.95 + r * 1.3, 0.18, -2.4 + c * 0.75); scene.add(b); }
+  // sun with slowly turning rays
+  const sunG = new THREE.Group(); sunG.position.set(-4.4, 4.6, -1.6); scene.add(sunG);
+  sunG.add(new THREE.Mesh(new THREE.SphereGeometry(0.55, 28, 20), new THREE.MeshBasicMaterial({ color: 0xf2a33a })));
+  for (let k = 0; k < 10; k++) { const ray = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.32, 0.06), new THREE.MeshBasicMaterial({ color: 0xf2a33a })); const a = k / 10 * Math.PI * 2; ray.position.set(Math.cos(a) * 0.95, Math.sin(a) * 0.95, 0); ray.rotation.z = a - Math.PI / 2; sunG.add(ray); }
+  // air: particles travel the channel, warm orange → cool blue, then rise and fade inside
+  const hot = new THREE.Color(0xe8823a), cool = new THREE.Color(0x3ca7d2), N = 46, parts = [];
+  for (let k = 0; k < N; k++) { const m = new THREE.Mesh(new THREE.SphereGeometry(0.09, 10, 8), new THREE.MeshBasicMaterial({ color: hot, transparent: true })); m.userData.o = k / N; scene.add(m); parts.push(m); }
+  // labels pinned to the model
+  const L = [['Hot desert air in', new THREE.Vector3(-4.6, 2.6, 0.62), 'hot'], ['Underground channel: stable soil temperature pre-conditions the air', new THREE.Vector3(-1.5, -1.6, 0.9), ''], ['Dual-shell “Mother Greenhouse”', new THREE.Vector3(1.6, 4.05, 0.6), ''], ['Growing space', new THREE.Vector3(1.6, 1.6, 0.6), 'cool'], ['No water spent on cooling', new THREE.Vector3(5.2, 0.05, 0.4), '']];
+  const lbls = L.map(([t, , tone]) => { const d = document.createElement('div'); d.className = 'crLbl'; if (tone) d.dataset.tone = tone; d.innerHTML = '<i></i><span>' + t + '</span>'; host.appendChild(d); return d; });
+  const v = new THREE.Vector3(), tgt = new THREE.Vector3(0.4, 0.4, -0.6), clock = new THREE.Clock();
+  (function loop() { requestAnimationFrame(loop); if (!S.visible) return; const t = clock.getElapsedTime();
+    S.yaw += (S.yawT - S.yaw) * 0.08; const yaw = -0.42 + S.yaw * 0.8 + (reduce ? 0 : Math.sin(t * 0.2) * 0.05), d = cam.aspect < 1 ? 34 : 24, a = 0.32;
+    cam.position.set(tgt.x + Math.sin(yaw) * d * Math.cos(a), tgt.y + Math.sin(a) * d, tgt.z + Math.cos(yaw) * d * Math.cos(a)); cam.lookAt(tgt);
+    sunG.rotation.z = reduce ? 0 : t * 0.2;
+    parts.forEach(m => { const u = reduce ? m.userData.o : (m.userData.o + t * 0.07) % 1;
+      if (u < 0.82) { const q = u / 0.82; m.position.copy(path.getPointAt(q)); m.material.color.copy(hot).lerp(cool, Math.min(1, Math.max(0, (q - 0.15) / 0.6))); m.material.opacity = 1; }
+      else { const q = (u - 0.82) / 0.18; m.position.set(1.6 + Math.sin(m.userData.o * 40) * 1.1 * q, 0.3 + q * 2.4, 0.62 - q * 1.6); m.material.color.copy(cool); m.material.opacity = 1 - q; } });
+    S.r.render(scene, cam);
+    const w = host.clientWidth, h = host.clientHeight;
+    L.forEach((l, i) => { v.copy(l[1]).project(cam); lbls[i].style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * h) + 'px)'; }); })();
+})();
 </script>
