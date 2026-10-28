@@ -29,38 +29,32 @@ button { font: inherit; }
 .n1Stage { position: relative; height: clamp(340px, 31vw, 500px); background: radial-gradient(120% 90% at 50% 0%, #fbfbfa 0%, #f1f1f1 70%); border-radius: 4px; overflow: hidden; touch-action: pan-y; }
 .n1Stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .n1Hots { position: absolute; inset: 0; pointer-events: none; }
-/* labels: a name pill on every scene; the active one opens into a card with its description */
-.hot { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; will-change: transform; z-index: 1; }
-.hot[aria-selected="true"] { z-index: 5; }
-.hot .dot { all: unset; pointer-events: auto; cursor: pointer; position: absolute; left: -8px; top: -8px; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; }
-.hot .dot::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 1.5px solid var(--char); box-shadow: 0 2px 8px rgba(38,36,35,.18); transition: background .4s, border-color .4s, transform .5s var(--slow); }
-.hot .dot::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid var(--io); opacity: 0; transform: scale(.4); }
-.hot[aria-selected="true"] .dot::before { background: var(--ink); border-color: var(--ink); transform: scale(1.3); }
-.hot[aria-selected="true"] .dot::after { animation: ping 2.2s ease-out infinite; }
-.hot .dot:focus-visible { outline: 2px solid var(--io); outline-offset: 3px; }
-.hot .stem { position: absolute; left: 0; bottom: 6px; width: 1px; height: var(--stem, 8px); background: rgba(89,84,83,.35); }
-.hot .pop { all: unset; box-sizing: border-box; pointer-events: auto; cursor: pointer; position: absolute; left: 0; bottom: calc(6px + var(--stem, 8px)); width: var(--w0, 120px); transform: translateX(calc(-50% + var(--dx, 0px))); background: #fff; border-radius: 14px; padding: 7px 12px; box-shadow: 0 6px 22px rgba(38,36,35,.13); overflow: hidden; text-align: left; transition: width .55s var(--slow), background .4s, box-shadow .4s; }
-.hot .pop b { display: inline-block; font-size: .75rem; font-weight: 500; color: var(--char); white-space: nowrap; transition: color .4s; }
-.hot .popMore { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--slow); }
-.hot .popMore > div { overflow: hidden; width: 236px; }
-.hot .popMore small { display: block; margin-top: 8px; font-size: .625rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
-.hot .popMore p { margin-top: 4px; font-size: .8125rem; line-height: 1.5; color: var(--grey-ink); }
-.hot .popMore em { display: inline-flex; align-items: center; gap: 6px; margin: 8px 0 2px; font-style: normal; font-size: .6875rem; font-weight: 500; color: var(--ink); }
-.hot[aria-selected="true"] .pop { width: 260px; box-shadow: 0 12px 34px rgba(38,36,35,.18); }
-.hot[aria-selected="true"] .popMore { grid-template-rows: 1fr; }
-.hot[aria-selected="true"] .pop b { color: var(--ink); }
-/* not enough room above: the card opens below its dot */
-.hot[data-flip] .pop { bottom: auto; top: 14px; } .hot[data-flip] .stem { display: none; }
-.n1Stage.zoomed .hot[aria-selected="true"] .popMore em { display: none; }
-@keyframes ping { 0% { opacity: .8; transform: scale(.4); } 100% { opacity: 0; transform: scale(1.6); } }
-/* drag to look around: the cursor says it, no caption needed */
-.n1Stage { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%23ffffff' fill-opacity='.92' stroke='%23595453' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23595453' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grab; }
+/* names: small fixed pills, never move or grow; hover/click works on the 3D objects themselves */
+.n1Stage { height: clamp(440px, 40vw, 600px); cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%23ffffff' fill-opacity='.92' stroke='%23595453' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23595453' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grab; }
 .n1Stage.dragging { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%231a6f96' stroke='%231a6f96' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23ffffff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grabbing; }
-.n1All { position: absolute; z-index: 6; top: 16px; right: 16px; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--char); color: #fff; font-size: .75rem; font-weight: 500; cursor: pointer; opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity .4s, transform .5s var(--slow); }
-.n1Stage.zoomed .n1All { opacity: 1; transform: none; pointer-events: auto; }
-.n1Groups { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.n1Groups span { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); transition: color .4s, border-color .4s, background .4s; }
-.n1Groups span[data-on] { color: #fff; background: var(--ink); border-color: var(--ink); }
+.n1Stage.onObj { cursor: pointer; }
+.nm { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+.nm span { position: absolute; left: 0; bottom: 6px; transform: translateX(-50%); white-space: nowrap; font-size: .75rem; font-weight: 500; color: var(--grey-ink); background: rgba(255,255,255,.92); border-radius: 999px; padding: 4px 10px; box-shadow: 0 3px 10px rgba(38,36,35,.08); transition: color .35s, background .35s, opacity .35s; }
+.nm[data-row="1"] span { bottom: 34px; }
+.nm[data-row="1"] i { position: absolute; left: 0; bottom: 6px; width: 1px; height: 28px; background: rgba(89,84,83,.25); }
+.nm[data-on] span { color: #fff; background: var(--ink); }
+.nm[data-dim] span { opacity: .45; }
+/* one info card, always in the same corner, so the eye never has to chase it */
+.n1Card { position: absolute; z-index: 4; left: 16px; bottom: 16px; width: min(380px, calc(100% - 32px)); padding: 20px 22px 18px; background: rgba(255,255,255,.94); border-radius: 16px; box-shadow: 0 14px 40px rgba(38,36,35,.12); cursor: default; }
+.n1Card small { display: block; font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.n1Card h3 { margin-top: 8px; font-size: 1.375rem; font-weight: 300; letter-spacing: -.02em; line-height: 1.2; color: var(--char); }
+.n1Card p { margin-top: 8px; font-size: .9375rem; line-height: 1.55; color: var(--grey-ink); }
+.n1Ctl { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+.n1Ctl button { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: .75rem; font-weight: 500; color: var(--char); transition: background .3s, color .3s, border-color .3s; }
+.n1Ctl button:hover { background: var(--char); color: #fff; border-color: var(--char); }
+.n1Ctl button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.n1Ctl .n1Arrow { width: 36px; padding: 0; }
+.n1Ctl .n1Main { background: var(--ink); border-color: var(--ink); color: #fff; }
+.n1Ctl .n1Main:hover { background: var(--char); border-color: var(--char); }
+.n1Ctl em { margin-left: auto; font-style: normal; font-size: .75rem; color: var(--grey); font-variant-numeric: tabular-nums; }
+.n1Groups { position: absolute; z-index: 4; top: 16px; left: 16px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none; }
+.n1Groups span { display: inline-flex; align-items: center; height: 28px; padding: 0 11px; border-radius: 999px; background: rgba(255,255,255,.85); font-size: .6875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); transition: color .4s, background .4s; }
+.n1Groups span[data-on] { color: #fff; background: var(--ink); }
 .n1Fallback { position: absolute; inset: 0; display: none; place-items: center; padding: 24px; text-align: center; color: var(--grey-ink); }
 .mask { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
 .mask > span { display: block; }
@@ -154,7 +148,7 @@ button { font: inherit; }
 @media (max-width: 900px) {
   .head, .t1d, .c3Grid, .crWrap { grid-template-columns: minmax(0,1fr); }
   .c3Gl { height: 46vh; } .c3Stick { align-items: flex-start; padding-top: 72px; }
-  .n1Stage { height: 440px; }
+  .n1Stage { height: 640px; } .n1Groups { display: none; }
   .p1Axis, .p1Row { grid-template-columns: 110px minmax(0,1fr); }
   .p1Head { left: 110px; }
   .p1Detail { grid-template-columns: minmax(0,1fr); }
@@ -171,10 +165,19 @@ button { font: inherit; }
 
 <!-- =================== N1 (3D) =================== -->
 <section class="w prop" id="n1">
-  <div class="note"><b>N1</b>Now 3D, in the homepage’s clay style: white matte objects, soft shadows, IO blue for the active one. Nine small scenes stand on one strip from the soil to the supply chain. Every scene carries its name; hover (or let it cycle) and the label opens into a card with the description, right next to the object. Click to zoom in on a scene, drag to look around (the cursor shows it), “All nine areas” zooms back out.</div>
-  <div class="head"><div><span class="lbl">Technologies &amp; approaches we’re prioritizing</span><h2>Nine areas, from the soil to the supply chain.</h2></div><p>Hover a scene to read what we look for; click to take a closer look.</p></div>
-  <div class="n1Stage" id="n1Stage"><div class="n1Hots" id="n1Hots"></div><button class="n1All" id="n1All" type="button">← All nine areas</button><div class="n1Fallback" id="n1Fallback">3D is not available in this browser.</div></div>
-  <div class="n1Groups" id="n1Groups" aria-hidden="true"><span data-on>Growing &amp; production</span><span>Waste</span><span>Supply chain</span></div>
+  <div class="note"><b>N1</b>Now 3D, in the homepage’s clay style: white matte objects, soft shadows, IO blue for the active one. Nine small scenes stand on one strip from the soil to the supply chain. Every scene carries a fixed name tag. Hover a scene itself and the info card in the corner updates (it never moves, so nothing jumps). Click a scene or “Take a closer look” to fly in; the arrows walk to the next scene up close, “All nine areas” flies back out. Drag empty space to look around (the cursor shows it).</div>
+  <div class="head"><div><span class="lbl">Technologies &amp; approaches we’re prioritizing</span><h2>Nine areas, from the soil to the supply chain.</h2></div><p>Hover a scene to read what we look for; click it to take a closer look.</p></div>
+  <div class="n1Stage" id="n1Stage">
+    <div class="n1Hots" id="n1Hots"></div>
+    <div class="n1Groups" id="n1Groups" aria-hidden="true"><span data-on>Growing &amp; production</span><span>Waste</span><span>Supply chain</span></div>
+    <div class="n1Card" id="n1Card" aria-live="polite">
+      <small class="mask"><span id="n1Group">Growing &amp; production</span></small>
+      <h3 class="mask"><span id="n1Title">Soil &amp; Plant Health Inputs &amp; Amendments</span></h3>
+      <p class="mask"><span id="n1Text">Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.</span></p>
+      <div class="n1Ctl"><button class="n1Arrow" id="n1Prev" type="button" aria-label="Previous area">←</button><button class="n1Arrow" id="n1Next" type="button" aria-label="Next area">→</button><button class="n1Main" id="n1Zoom" type="button">Take a closer look</button><em id="n1Count">1 / 9</em></div>
+    </div>
+    <div class="n1Fallback" id="n1Fallback">3D is not available in this browser.</div>
+  </div>
 </section>
 
 <!-- =================== P1 =================== -->
@@ -401,50 +404,46 @@ else {
     [0.45, 0.8, 1.2].forEach((h, k) => { const bar = rbox(0.22, h, 0.22, 0.05, mat(C.grey)); bar.position.set(-1.0 + k * 0.32, h / 2, 0.85); add(bar, true); });
   });
 
-  // labels / hit targets
-  const hots = AREAS.map((a, i) => {
-    const h = document.createElement('div'); h.className = 'hot'; h.setAttribute('role', 'presentation'); h.style.setProperty('--stem', (i % 2 ? 40 : 8) + 'px');
-    h.innerHTML = '<i class="stem"></i><button class="dot" type="button" aria-label="' + a[1] + '"></button><button class="pop" type="button" tabindex="-1" aria-hidden="true"><b>' + a[3] + '</b><span class="popMore"><div><small>' + a[0] + '</small><p>' + a[2] + '</p><em>Click to zoom in →</em></div></span></button>';
-    hotsEl.appendChild(h); return h;
-  });
-  const measure = () => hots.forEach(h => h.style.setProperty('--w0', (h.querySelector('b').offsetWidth + 26) + 'px'));
-  measure(); if (document.fonts) document.fonts.ready.then(measure);
-  const pops = hots.map(h => h.querySelector('.pop'));
-  let sel = -1, auto = null, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false, zoom = 0, zoomK = 0;
-  const grp = i => (i < 5 ? 0 : i < 7 ? 1 : 2);
-  function pick(i) {
+  // fixed name tags (alternate heights so neighbours never collide)
+  const tags = AREAS.map((a, i) => { const t = document.createElement('div'); t.className = 'nm'; t.dataset.row = i % 2; t.innerHTML = '<i></i><span>' + a[3] + '</span>'; hotsEl.appendChild(t); return t; });
+  // every mesh knows which scene it belongs to, for hover and click straight on the 3D
+  const hitList = []; scenes.forEach((s, i) => s.g.traverse(o => { if (o.isMesh) { o.userData.scene = i; hitList.push(o); } }));
+  let sel = -1, hov = -1, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false, zoom = 0, zoomK = 0;
+  const grp = i => (i < 5 ? 0 : i < 7 ? 1 : 2), card = $('#n1Card'), zoomBtn = $('#n1Zoom');
+  function show(i) {
     if (i === sel) return; sel = i;
-    hots.forEach((h, k) => { h.setAttribute('aria-selected', k === i); h.querySelector('.dot').tabIndex = k === i ? 0 : -1; });
+    tags.forEach((t, k) => k === i ? t.setAttribute('data-on', '') : t.removeAttribute('data-on'));
     groupsEl.forEach((g, k) => k === grp(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'));
     scenes.forEach((s, k) => {
       const on = k === i;
       if (G) gsap.to(s.lift.position, { y: on ? 0.32 : 0, duration: 0.9, ease: on ? 'back.out(2.2)' : 'power3.out' }); else s.lift.position.y = on ? 0.32 : 0;
       s.accents.forEach(o => { const to = on ? new THREE.Color(C.blue) : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); });
     });
-    if (focus || zoom) camTX = X(i);
+    swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]);
+    $('#n1Count').textContent = (i + 1) + ' / 9';
+    if (zoom || focus) camTX = X(i);
   }
-  // click: glide in close to one scene; "All nine areas" glides back out
-  function zoomTo(i) { stop(); pick(i); camTX = X(i); zoom = 1; stage.classList.add('zoomed'); }
-  function zoomOut() { zoom = 0; stage.classList.remove('zoomed'); }
-  $('#n1All').addEventListener('click', zoomOut);
-  addEventListener('keydown', e => { if (e.key === 'Escape' && zoom) zoomOut(); });
-  const stop = () => { if (auto) { clearInterval(auto); auto = null; } };
-  hots.forEach((h, i) => {
-    const dot = h.querySelector('.dot'), pop = h.querySelector('.pop');
-    [dot, pop].forEach(el => {
-      el.addEventListener('mouseenter', () => { if (fine) { stop(); pick(i); } });
-      el.addEventListener('click', () => zoomTo(i));
-    });
-    dot.addEventListener('focus', () => { stop(); pick(i); });
-    dot.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); stop(); pick((i + d + 9) % 9); hots[sel].querySelector('.dot').focus(); });
+  function zoomTo(i) { show(i); camTX = X(i); zoom = 1; stage.classList.add('zoomed'); zoomBtn.textContent = '← All nine areas'; }
+  function zoomOut() { zoom = 0; stage.classList.remove('zoomed'); zoomBtn.textContent = 'Take a closer look'; }
+  zoomBtn.addEventListener('click', () => zoom ? zoomOut() : zoomTo(sel));
+  $('#n1Prev').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 8) % 9));
+  $('#n1Next').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 1) % 9));
+  stage.addEventListener('keydown', e => { if (e.key === 'ArrowRight') $('#n1Next').click(); if (e.key === 'ArrowLeft') $('#n1Prev').click(); if (e.key === 'Escape' && zoom) zoomOut(); });
+  // pointer: hover a scene = preview it; click a scene = fly in; drag empty space = look around
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  function hit(e) { const r = renderer.domElement.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(hitList, false)[0]; return h ? h.object.userData.scene : -1; }
+  let px = null, moved = false;
+  renderer.domElement.addEventListener('pointerdown', e => { px = e.clientX; moved = false; });
+  addEventListener('pointerup', e => { if (px !== null && !moved && e.target === renderer.domElement) { const i = hit(e); if (i >= 0) zoomTo(i); } px = null; dragT = 0; stage.classList.remove('dragging'); });
+  addEventListener('pointermove', e => {
+    if (px !== null) { if (Math.abs(e.clientX - px) > 5) { moved = true; stage.classList.add('dragging'); } dragT = Math.max(-1, Math.min(1, (e.clientX - px) / 300)); return; }
+    if (e.target !== renderer.domElement) { if (hov !== -1) { hov = -1; stage.classList.remove('onObj'); } return; }
+    const i = hit(e); stage.classList.toggle('onObj', i >= 0);
+    if (i !== hov) { hov = i; if (i >= 0 && fine) show(i); }
   });
-  // drag to orbit a little around the strip
-  let px = null;
-  stage.addEventListener('pointerdown', e => { if (e.target.closest('.hot, .n1All')) return; px = e.clientX; stop(); stage.classList.add('dragging'); });
-  addEventListener('pointerup', () => { px = null; dragT = 0; stage.classList.remove('dragging'); });
-  addEventListener('pointermove', e => { if (px === null) return; dragT = Math.max(-1, Math.min(1, (e.clientX - px) / 300)); });
+  renderer.domElement.addEventListener('pointerleave', () => { hov = -1; stage.classList.remove('onObj'); });
 
-  // camera: wide view of the whole strip on wide screens, follow the active scene on narrow ones
+  // camera: whole strip on wide screens, follow the selected scene on narrow ones or when zoomed
   const target = new THREE.Vector3(), v = new THREE.Vector3();
   function resize() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); focus = camera.aspect < 1.5; }
   addEventListener('resize', resize); resize();
@@ -453,31 +452,25 @@ else {
   const clock = new THREE.Clock();
   function frame() {
     requestAnimationFrame(frame); if (!visible) return;
-    const dt = Math.min(0.05, clock.getDelta()), tm = clock.elapsedTime;
+    const tm = clock.getElapsedTime();
     drag += (dragT - drag) * 0.08;
-    zoomK += (zoom - zoomK) * (reduce ? 1 : 0.06);
-    camX += (((focus || zoom) ? camTX : 0) - camX) * (reduce ? 1 : 0.06);
-    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 18.4 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 10 : 11.5;
-    const dist = far + (near - far) * zoomK, ang = 0.6 - zoomK * 0.14, yaw = drag * (0.5 + zoomK * 0.5) + (fine && !focus && !zoom ? Math.sin(tm * 0.15) * 0.04 : 0);
-    target.set(camX, focus ? 0.9 : 1.7 - zoomK * 0.4, 0); // objects sit low in the frame, leaving room for the cards
-    camera.position.set(camX + Math.sin(yaw) * dist * Math.cos(ang), Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
+    zoomK += (zoom - zoomK) * (reduce ? 1 : 0.05);
+    camX += (((focus || zoom) ? camTX : 0) - camX) * (reduce ? 1 : 0.05);
+    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 18.4 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 11 : 15;
+    const dist = far + (near - far) * zoomK, ang = 0.62 - zoomK * 0.16, yaw = drag * (0.5 + zoomK * 0.6) + (fine && !zoom ? Math.sin(tm * 0.15) * 0.03 : 0);
+    // objects sit a little above centre so the info card in the lower-left corner never covers them
+    target.set(camX + (focus ? 0 : -zoomK * 1.4), (focus ? -0.4 : -0.9) + zoomK * 1.1, 0);
+    camera.position.set(target.x + Math.sin(yaw) * dist * Math.cos(ang), target.y + Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
     camera.lookAt(target);
     scenes.forEach(s => s.lift.children.forEach(o => { if (o.userData.bob !== undefined && !reduce) o.position.y = 1.65 + (o.userData.bob % 2) * 0.25 + Math.sin(tm * 1.6 + o.userData.bob) * 0.06; }));
     renderer.render(scene, camera);
     const w = stage.clientWidth, h = stage.clientHeight;
-    scenes.forEach((s, i) => {
-      v.copy(s.top); v.y += s.lift.position.y; v.project(camera);
-      const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h, open = i === sel, half = open ? 130 : (parseFloat(hots[i].style.getPropertyValue('--w0')) || 120) / 2;
-      hots[i].style.transform = 'translate(' + x + 'px,' + y + 'px)';
-      hots[i].style.setProperty('--dx', (Math.max(half + 10, Math.min(w - half - 10, x)) - x) + 'px'); // keep cards inside the stage
-      hots[i].style.visibility = x < -20 || x > w + 20 ? 'hidden' : 'visible';
-      if (open) { const stem = i % 2 ? 40 : 8; (y - stem - 6 - pops[i].offsetHeight < 8) ? hots[i].setAttribute('data-flip', '') : hots[i].removeAttribute('data-flip'); } else hots[i].removeAttribute('data-flip');
-    });
+    scenes.forEach((s, i) => { v.copy(s.top); v.y += s.lift.position.y; v.project(camera); const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h; tags[i].style.transform = 'translate(' + x + 'px,' + y + 'px)'; tags[i].style.visibility = x < 30 || x > w - 30 ? 'hidden' : 'visible'; zoom && i !== sel ? tags[i].setAttribute('data-dim', '') : tags[i].removeAttribute('data-dim'); });
   }
-  pick(0); frame();
-  // entrance: scenes rise in one by one, then the cycle starts
+  show(0); if (focus) camX = camTX; frame(); // phones start on the first scene, no fly-over on load
+  // entrance: scenes rise in one by one; no auto-cycle, the visitor leads
   scenes.forEach(s => s.g.scale.setScalar(G ? 0.001 : 1));
-  const enter = () => { if (G) { scenes.forEach((s, k) => gsap.to(s.g.scale, { x: 1, y: 1, z: 1, duration: 1, delay: 0.08 * k, ease: 'back.out(1.7)' })); gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out' }); } if (!reduce) auto = setInterval(() => pick((sel + 1) % 9), 3800); };
+  const enter = () => { if (G) { scenes.forEach((s, k) => gsap.to(s.g.scale, { x: 1, y: 1, z: 1, duration: 1, delay: 0.08 * k, ease: 'back.out(1.7)' })); gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out' }); } };
   if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: stage, start: 'top 75%', once: true, onEnter: enter }); else enter();
 }
 </script>
