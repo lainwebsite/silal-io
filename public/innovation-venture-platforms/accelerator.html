@@ -5644,11 +5644,16 @@ a.s_btn, button.s_btn { will-change: transform; }
     var pin = $('#dayPin'), track = $('#dayTrack'), figs = $$('.f_track .x_img img', view);
     function size() { if (mobile() || !G) { pin.style.height = ''; return; } pin.style.height = (track.scrollWidth - innerWidth + innerHeight * 1.2) + 'px'; }
     size(); addEventListener('resize', size);
-    if (G) ScrollTrigger.create({ trigger: pin, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true, onRefresh: size, onUpdate: function (s) {
-      if (mobile()) return; var dist = track.scrollWidth - innerWidth + parseFloat(getComputedStyle(track).paddingLeft);
-      gsap.set(track, { x: -dist * s.progress });
-      figs.forEach(function (im, k) { gsap.set(im, { xPercent: Math.max(-6, Math.min(6, (s.progress * figs.length - k) * -3)) }); }); // ±6% stays inside the 8% bleed, so no edge shows
-    } });
+    // the sideways move starts while the section is still rising (top 65%), eases in and out, and is
+    // smoothed by quickTo, so the path from vertical to horizontal is a curve rather than an "L" corner
+    if (G) {
+      var toX = gsap.quickTo(track, 'x', { duration: 0.9, ease: 'power3.out' }), easeIO = gsap.parseEase('sine.inOut');
+      ScrollTrigger.create({ trigger: pin, start: 'top 65%', end: 'bottom bottom', invalidateOnRefresh: true, onRefresh: size, onUpdate: function (s) {
+        if (mobile()) return; var dist = track.scrollWidth - innerWidth + parseFloat(getComputedStyle(track).paddingLeft), e = easeIO(s.progress);
+        toX(-dist * e);
+        figs.forEach(function (im, k) { gsap.set(im, { xPercent: Math.max(-6, Math.min(6, (e * figs.length - k) * -3)) }); }); // ±6% stays inside the 8% bleed, so no edge shows
+      } });
+    }
     // receive: stacked cards shrink a little as the next one arrives
     if (G && !mobile()) $$('.f_card', view).forEach(function (c, i, all) {
       if (i === all.length - 1) return;
