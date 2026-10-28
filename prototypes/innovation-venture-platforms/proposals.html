@@ -41,7 +41,7 @@ button { font: inherit; }
 .nm[data-dim] span { opacity: .45; }
 /* one info card, always in the same corner, so the eye never has to chase it */
 .n1Card { position: absolute; z-index: 4; left: 16px; bottom: 16px; width: min(380px, calc(100% - 32px)); padding: 20px 22px 18px; background: rgba(255,255,255,.94); border-radius: 16px; box-shadow: 0 14px 40px rgba(38,36,35,.12); cursor: default; }
-.n1Card small { display: block; font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.n1Card small { display: block; font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--gd, var(--ink)); }
 .n1Card h3 { margin-top: 8px; font-size: 1.375rem; font-weight: 300; letter-spacing: -.02em; line-height: 1.2; color: var(--char); }
 .n1Card p { margin-top: 8px; font-size: .9375rem; line-height: 1.55; color: var(--grey-ink); }
 .n1Ctl { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
@@ -54,7 +54,15 @@ button { font: inherit; }
 .n1Ctl em { margin-left: auto; font-style: normal; font-size: .75rem; color: var(--grey); font-variant-numeric: tabular-nums; }
 .n1Groups { position: absolute; z-index: 4; top: 16px; left: 16px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none; }
 .n1Groups span { display: inline-flex; align-items: center; height: 28px; padding: 0 11px; border-radius: 999px; background: rgba(255,255,255,.85); font-size: .6875rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); transition: color .4s, background .4s; }
-.n1Groups span[data-on] { color: #fff; background: var(--ink); }
+.n1Groups span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; background: var(--gc); }
+.n1Groups span:nth-child(1), .gTag[data-g="0"] { --gc: #8fb07c; --gd: #5f8a4c; } .n1Groups span:nth-child(2), .gTag[data-g="1"] { --gc: #d0a96f; --gd: #a77b3d; } .n1Groups span:nth-child(3), .gTag[data-g="2"] { --gc: #86aac6; --gd: #4f7ea3; }
+.n1Groups span[data-on] { color: #fff; background: var(--gd); } .n1Groups span[data-on]::before { background: #fff; }
+.gTag { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; z-index: 2; }
+.gTag span { position: absolute; left: 0; top: 6px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: .6875rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--gd); background: rgba(255,255,255,.9); border-radius: 999px; padding: 5px 12px; box-shadow: 0 3px 10px rgba(38,36,35,.06); transition: background .4s, color .4s; }
+.gTag span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gc); }
+.gTag em { font-style: normal; letter-spacing: .04em; text-transform: none; font-weight: 400; color: var(--grey); }
+.gTag[data-on] span { background: var(--gd); color: #fff; } .gTag[data-on] span::before { background: #fff; } .gTag[data-on] em { color: rgba(255,255,255,.8); }
+.n1Stage.zoomed .gTag { opacity: .0; }
 .n1Fallback { position: absolute; inset: 0; display: none; place-items: center; padding: 24px; text-align: center; color: var(--grey-ink); }
 .mask { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
 .mask > span { display: block; }
@@ -326,7 +334,9 @@ else {
   const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
   const rbox = (w, h, d, r, m) => { const g = new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)); const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
   const mesh = (g, m) => { const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
-  const SP = 3.6, X = i => (i - 4) * SP;
+  const SP = 3.6, GAP = 1.6, grpOf = i => (i < 5 ? 0 : i < 7 ? 1 : 2);
+  const X = i => (i - 4) * SP + (i >= 5 ? GAP : 0) + (i >= 7 ? GAP : 0) - (GAP * 2 + GAP * 4) / 9; // a gap between groups
+  const GRP = [{ tile: 0xe7eee0, island: 0xd3e1c8 }, { tile: 0xf3e9db, island: 0xe7d5bc }, { tile: 0xe3ecf3, island: 0xcbdbe8 }];
   const scenes = [];
   function make(i, build) {
     const g = new THREE.Group(), lift = new THREE.Group(), accents = [], base = mat(C.clay);
@@ -335,7 +345,7 @@ else {
     build({ add, base, mat, rbox, mesh, C });
     accents.forEach(o => { o.material = o.material.clone(); o.userData.c0 = o.material.color.clone(); });
     // tile it stands on
-    const tile = rbox(3.1, 0.24, 3.1, 0.12, mat(i < 5 ? 0xefede8 : i < 7 ? 0xebebea : 0xeceeef)); tile.position.y = -0.24; g.add(tile);
+    const tile = rbox(3.1, 0.24, 3.1, 0.12, mat(GRP[grpOf(i)].tile)); tile.position.y = -0.24; g.add(tile);
     scene.add(g); scenes.push({ g, lift, accents, top: new THREE.Vector3(X(i), 2.6, 0) });
   }
   const leaf = (m) => { const l = mesh(new THREE.SphereGeometry(0.22, 18, 12), m); l.scale.set(1, 0.32, 0.55); return l; };
@@ -404,6 +414,12 @@ else {
     [0.45, 0.8, 1.2].forEach((h, k) => { const bar = rbox(0.22, h, 0.22, 0.05, mat(C.grey)); bar.position.set(-1.0 + k * 0.32, h / 2, 0.85); add(bar, true); });
   });
 
+  // one island per group, tinted, so the three groups read at a glance
+  const ISL = [[0, 4], [5, 6], [7, 8]].map(([a, b], k) => {
+    const cx = (X(a) + X(b)) / 2, w = X(b) - X(a) + 3.9, isl = rbox(w, 0.34, 4.1, 0.2, mat(GRP[k].island)); isl.position.set(cx, -0.5, 0); scene.add(isl);
+    const lab = document.createElement('div'); lab.className = 'gTag'; lab.dataset.g = k; lab.innerHTML = '<span>' + ['Growing &amp; production', 'Waste', 'Supply chain'][k] + '<em>' + (b - a + 1) + ' areas</em></span>'; hotsEl.appendChild(lab);
+    return { pos: new THREE.Vector3(cx, -0.5, 2.3), lab };
+  });
   // fixed name tags (alternate heights so neighbours never collide)
   const tags = AREAS.map((a, i) => { const t = document.createElement('div'); t.className = 'nm'; t.dataset.row = i % 2; t.innerHTML = '<i></i><span>' + a[3] + '</span>'; hotsEl.appendChild(t); return t; });
   // every mesh knows which scene it belongs to, for hover and click straight on the 3D
@@ -419,6 +435,7 @@ else {
       if (G) gsap.to(s.lift.position, { y: on ? 0.32 : 0, duration: 0.9, ease: on ? 'back.out(2.2)' : 'power3.out' }); else s.lift.position.y = on ? 0.32 : 0;
       s.accents.forEach(o => { const to = on ? new THREE.Color(C.blue) : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); });
     });
+    card.style.setProperty('--gd', ['#5f8a4c', '#a77b3d', '#4f7ea3'][grp(i)]);
     swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]);
     $('#n1Count').textContent = (i + 1) + ' / 9';
     if (zoom || focus) camTX = X(i);
@@ -456,15 +473,16 @@ else {
     drag += (dragT - drag) * 0.08;
     zoomK += (zoom - zoomK) * (reduce ? 1 : 0.05);
     camX += (((focus || zoom) ? camTX : 0) - camX) * (reduce ? 1 : 0.05);
-    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 18.4 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 11 : 15;
+    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 22 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 11 : 15;
     const dist = far + (near - far) * zoomK, ang = 0.62 - zoomK * 0.16, yaw = drag * (0.5 + zoomK * 0.6) + (fine && !zoom ? Math.sin(tm * 0.15) * 0.03 : 0);
     // objects sit a little above centre so the info card in the lower-left corner never covers them
-    target.set(camX + (focus ? 0 : -zoomK * 1.4), (focus ? -0.4 : -0.9) + zoomK * 1.1, 0);
+    target.set(camX + (focus ? 0 : -zoomK * 1.4), (focus ? -0.4 : -1.8) + zoomK * 2.0, 0);
     camera.position.set(target.x + Math.sin(yaw) * dist * Math.cos(ang), target.y + Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
     camera.lookAt(target);
     scenes.forEach(s => s.lift.children.forEach(o => { if (o.userData.bob !== undefined && !reduce) o.position.y = 1.65 + (o.userData.bob % 2) * 0.25 + Math.sin(tm * 1.6 + o.userData.bob) * 0.06; }));
     renderer.render(scene, camera);
     const w = stage.clientWidth, h = stage.clientHeight;
+    ISL.forEach(o => { v.copy(o.pos).project(camera); o.lab.style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * h) + 'px)'; o.lab.toggleAttribute('data-on', grp(sel) === +o.lab.dataset.g); });
     scenes.forEach((s, i) => { v.copy(s.top); v.y += s.lift.position.y; v.project(camera); const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h; tags[i].style.transform = 'translate(' + x + 'px,' + y + 'px)'; tags[i].style.visibility = x < 30 || x > w - 30 ? 'hidden' : 'visible'; zoom && i !== sel ? tags[i].setAttribute('data-dim', '') : tags[i].removeAttribute('data-dim'); });
   }
   show(0); if (focus) camX = camTX; frame(); // phones start on the first scene, no fly-over on load
