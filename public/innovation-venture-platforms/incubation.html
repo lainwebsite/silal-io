@@ -4507,7 +4507,8 @@ a.s_btn, button.s_btn { will-change: transform; }
 .x_curtain span { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.8); font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
 
 /* ---------- next page ---------- */
-.x_next { position: relative; display: block; overflow: hidden; background: #fff; border-top: 1px solid var(--line); color: var(--charcoal); }
+.x_next { position: relative; display: block; overflow: hidden; background: #fff; color: var(--charcoal); }
+.x_next::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); }
 .x_nextIn { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: end; padding-block: clamp(64px, 8vw, 128px); transition: color .6s var(--slow); }
 .x_nextIn > span:first-child { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 10px; font-size: .8125rem; color: var(--grey); transition: color .6s; }
 .x_nextIn strong { grid-column: 5 / span 7; font-size: var(--fs-display); font-weight: 300; line-height: 1.06; letter-spacing: -.035em; }
@@ -4526,7 +4527,8 @@ a.s_btn, button.s_btn { will-change: transform; }
 .h_title { grid-column: 1 / span 8; display: flex; flex-direction: column; gap: 22px; }
 .h_title h1 { font-size: var(--fs-display); font-weight: 300; line-height: 1.06; letter-spacing: -.035em; color: var(--charcoal); }
 .h_title h1 span { color: var(--io-ink); }
-.h_aside { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 18px; }
+.h_aside { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 14px; }
+.h_aside p { font-size: 1rem; }
 /* hub panels: at rest only number + title; hover opens one panel to a square and reveals its text.
    The title is locked to the width of a narrow panel, so it never re-wraps while panels resize. */
 .h_panels { --h: min(clamp(460px, 68vh, 700px), 42vw); --pad: 24px; container-type: inline-size; display: flex; gap: 6px; height: var(--h); }
@@ -4628,8 +4630,10 @@ a.s_btn, button.s_btn { will-change: transform; }
 .f_callout { margin-top: clamp(40px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 20px; padding: 22px 26px; background: #fff; border-left: 2px solid var(--io); }
 .f_callout b { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--io-ink); }
 .f_areas { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-.f_areaTabs { display: flex; flex-direction: column; justify-content: center; padding-right: clamp(24px, 4vw, 64px); }
-.f_areaTab { all: unset; box-sizing: border-box; cursor: pointer; position: relative; display: grid; grid-template-columns: minmax(0,1fr) 16px; gap: 12px; align-items: baseline; padding: clamp(18px, 2.4vh, 26px) 0; border-bottom: 1px solid var(--line); color: #b3b5b6; transition: color .4s; }
+.f_areaSide { display: flex; flex-direction: column; justify-content: flex-end; gap: clamp(32px, 3.4vw, 56px); padding-right: clamp(24px, 4vw, 64px); }
+.f_areaHead { display: flex; flex-direction: column; gap: 16px; }
+.f_areaTabs { display: flex; flex-direction: column; }
+.f_areaTab { all: unset; box-sizing: border-box; cursor: pointer; position: relative; display: grid; grid-template-columns: minmax(0,1fr) 16px; gap: 12px; align-items: baseline; padding: clamp(14px, 1.8vh, 20px) 0; border-bottom: 1px solid var(--line); color: #b3b5b6; transition: color .4s; }
 .f_areaTab:first-child { border-top: 1px solid var(--line); }
 .f_areaTab::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--io-ink); transform: scaleX(0); transform-origin: left; transition: transform .9s var(--slow); }
 .f_areaTab b { font-size: .75rem; font-weight: 500; letter-spacing: .14em; color: var(--io-ink); }
@@ -4647,7 +4651,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 .f_areaChips { display: flex; flex-wrap: wrap; gap: 8px; }
 .f_areaChips i { font-style: normal; display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); font-size: .8125rem; }
 .f_gates { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; align-items: start; }
-.f_gatesSide { grid-column: 1 / span 5; position: sticky; top: calc(var(--hh) + 40px); display: flex; flex-direction: column; gap: 24px; }
+.f_gatesSide { grid-column: 1 / span 5; position: sticky; top: var(--hh); min-height: calc(100svh - var(--hh)); padding-block: 32px; display: flex; flex-direction: column; justify-content: safe center; gap: 24px; }
 .f_gatesSide .x_img { aspect-ratio: 4 / 3; }
 .f_gateImgs > img { clip-path: inset(100% 0 0 0); transition: clip-path 1s var(--slow); }
 .f_gateImgs > img.on { clip-path: inset(0); }
@@ -4705,7 +4709,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 .f_track figure { flex: 0 0 auto; width: clamp(240px, 24vw, 400px); margin: 0; }
 .f_track .x_img { aspect-ratio: 4 / 5; }
 .f_track .x_img img { left: -8%; width: 116%; max-width: none; top: 0; height: 100%; }
-.f_trackEnd { flex: 0 0 auto; width: clamp(240px, 24vw, 400px); display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; padding-right: var(--gutter); }
+.f_trackEnd { flex: 0 0 auto; align-self: flex-start; box-sizing: content-box; width: clamp(240px, 24vw, 400px); aspect-ratio: 4 / 5; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; padding-right: var(--gutter); }
 /* receive: stacked sticky cards */
 .f_stack { display: flex; flex-direction: column; gap: 0; }
 .f_card { position: sticky; top: calc(var(--hh) + 24px + var(--i) * 18px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: stretch; min-height: clamp(360px, 52vh, 520px); margin-bottom: 4vh; background: var(--light); transform-origin: top center; }
@@ -4853,7 +4857,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 .a_figs small { font-size: .42em; color: var(--io); margin-right: .2em; letter-spacing: 0; }
 .a_figs li > span { font-size: .8125rem; color: rgba(255,255,255,.6); }
 .a_band { height: clamp(320px, 46vw, 680px); color: #fff; }
-.a_band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(38,36,35,.55) 0%, rgba(38,36,35,0) 22%, rgba(14,16,15,0) 55%, rgba(14,16,15,.72) 100%); pointer-events: none; }
+.a_band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(38,36,35,.18) 0%, rgba(38,36,35,0) 16%, rgba(14,16,15,0) 62%, rgba(14,16,15,.48) 100%); pointer-events: none; }
 .a_bandCap { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding-bottom: clamp(24px, 3vw, 44px); display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
 .a_bandCap p { font-size: var(--fs-lead); font-weight: 300; line-height: 1.45; max-width: 30em; }
 .a_bandCap .x_label { color: rgba(255,255,255,.7); }
@@ -4887,7 +4891,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 .a_csImgs { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #1a1918; }
 .a_csImgs img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: inset(0 0 100% 0); transform: scale(1.12); transition: clip-path 1s var(--slow), transform 1.4s var(--slow); }
 .a_csImgs img[data-on] { clip-path: inset(0 0 0 0); transform: scale(1); z-index: 1; }
-.a_hmw { font-size: clamp(1.375rem, 2vw, 2.125rem); font-weight: 300; line-height: 1.3; letter-spacing: -.015em; color: #fff; min-height: 5.2em; }
+.a_hmw { font-size: clamp(1.125rem, 1.45vw, 1.5rem); font-weight: 300; line-height: 1.4; letter-spacing: -.015em; color: #fff; min-height: 5.2em; }
 .a_hmw span { color: var(--io); }
 /* nine areas: one line from the soil to the supply chain; pick a stop to read it */
 /* ---------------- N1 · 3D field, clay style like the homepage helix and site model ---------------- */
@@ -5192,7 +5196,8 @@ a.s_btn, button.s_btn { will-change: transform; }
   .f_heroFacts { grid-row: 4; }
   .f_tenets { grid-template-columns: 1fr; }
   .f_gatesSide, .i_spec, .a_csStage, .e_side { position: static; }
-  .f_areas { grid-template-columns: minmax(0,1fr); } .f_areaTabs { padding-right: 0; margin-bottom: 24px; } .f_areaStage { min-height: 420px; }
+  .f_gatesSide { min-height: 0; padding-block: 0; }
+  .f_areas { grid-template-columns: minmax(0,1fr); } .f_areaSide { padding-right: 0; margin-bottom: 24px; gap: 32px; } .f_areaStage { min-height: 420px; }
   .f_cohortPin { height: 360vh; }
   .f_cohortStick { min-height: 0; }
   .f_cohortBig strong { font-size: 3.5rem; }
@@ -5319,7 +5324,7 @@ a.s_btn, button.s_btn { will-change: transform; }
   </div></section>
 
   <section class="x_sec x_ink"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Cohort 1</span><h2 class="x_h2" data-reveal>Four technologies, built with Khalifa University.</h2></div><p class="x_body" data-reveal>Hover a technology to see what it does.</p></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Cohort 1</span><h2 class="x_h2" data-reveal>Four technologies, built with Khalifa University.</h2></div></div>
     <div class="i_techs">
       <div class="i_techList" role="tablist" aria-label="Cohort 1 technologies" id="techList">
         <button role="tab" aria-selected="true" data-t="0"><strong>TouchRIPE</strong><small>Post-harvest</small></button>
@@ -5745,9 +5750,13 @@ dispatchEvent(new Event('io3d'));
   function onScrollUI() {
     hdr.dataset.scrolled = scrollY > 40; hdr.dataset.overlay = 'false';
     var ft = $('.s_footer'), nearEnd = ft && ft.getBoundingClientRect().top < innerHeight * 0.9;
-    setDock(scrollY > innerHeight * 0.6 && !nearEnd && !open);
+    setDock(scrollY > innerHeight * 0.6 && !nearEnd && !open && !idle);
   }
-  addEventListener('scroll', onScrollUI, { passive: true }); onScrollUI();
+  // the dock hides when the reader stops scrolling and comes back on the next scroll; it stays while hovered or focused
+  var idle = false, idleT = 0;
+  function waitIdle() { clearTimeout(idleT); idleT = setTimeout(function () { if (dock.matches(':hover') || dock.contains(document.activeElement)) return; idle = true; onScrollUI(); }, 1800); }
+  addEventListener('scroll', function () { idle = false; onScrollUI(); waitIdle(); }, { passive: true }); onScrollUI(); waitIdle();
+  dock.addEventListener('mouseleave', waitIdle); dock.addEventListener('focusout', waitIdle);
   function setOpen(v) { open = v; if (lenis) { v ? lenis.stop() : lenis.start(); } mn.dataset.open = v; mn.setAttribute('aria-hidden', !v); $('#menuOpen').setAttribute('aria-expanded', v); onScrollUI(); }
   $('#menuOpen').addEventListener('click', function () { setOpen(true); });
   $('#menuClose').addEventListener('click', function () { setOpen(false); });
@@ -5986,10 +5995,26 @@ dispatchEvent(new Event('io3d'));
     // gates: the rail fills and each gate lights up as it reaches the middle of the screen
     var gates = $$('.f_gate', view), fill = $('.f_gatesFill', view), gImgs = $$('#gateImgs > img', view), gNow = 0, gZ = 1;
     // the photo follows the furthest gate that is lit
-    function gateImg() { var k = 0; gates.forEach(function (g, i) { if (g.hasAttribute('data-on')) k = i; }); if (k === gNow) return; gNow = k; var im = gImgs[k]; im.classList.remove('on'); im.style.zIndex = ++gZ; void im.offsetWidth; im.classList.add('on'); }
+    // it slides in the scroll direction and pushes the old photo out the other way
+    function gateImg() {
+      var k = 0; gates.forEach(function (g, i) { if (g.hasAttribute('data-on')) k = i; }); if (k === gNow) return;
+      var dir = k > gNow ? 1 : -1, prev = gImgs[gNow], im = gImgs[k]; gNow = k; im.style.zIndex = ++gZ;
+      if (!G) { im.classList.remove('on'); void im.offsetWidth; im.classList.add('on'); return; }
+      gsap.killTweensOf([im, prev], 'clipPath,xPercent,scale');
+      gsap.fromTo(im, { clipPath: dir > 0 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)', xPercent: 24 * dir, scale: 1.08 }, { clipPath: 'inset(0% 0% 0% 0%)', xPercent: 0, scale: 1, duration: 1.2, ease: 'expo.out' });
+      gsap.fromTo(prev, { xPercent: 0 }, { xPercent: -16 * dir, duration: 1.2, ease: 'expo.out', onComplete: function () { gsap.set(prev, { xPercent: 0 }); } });
+    }
     if (G) {
-      gsap.to(fill, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '#gates', start: 'top 55%', end: 'bottom 60%', scrub: true } });
-      gates.forEach(function (g, i) { ScrollTrigger.create({ trigger: g, start: 'top 58%', end: 'bottom 58%', onToggle: function (s) { if (s.isActive || s.progress === 1) g.setAttribute('data-on', ''); gateImg(); }, onLeaveBack: function () { g.removeAttribute('data-on'); gateImg(); } }); });
+      // a gate lights only once the filled line reaches its dot
+      var rail = $('.f_gatesRail', view), dotY = [];
+      function measure() { dotY = gates.map(function (g) { var n = $('.f_gateN', g); return g.offsetTop + n.offsetTop + n.offsetHeight / 2; }); }
+      function light(p) {
+        var tip = rail.offsetTop + p * rail.offsetHeight, ch = false;
+        gates.forEach(function (g, i) { var on = p > 0.001 && tip >= dotY[i] - 1; if (on !== g.hasAttribute('data-on')) { if (on) g.setAttribute('data-on', ''); else g.removeAttribute('data-on'); ch = true; } });
+        if (ch) gateImg();
+      }
+      gImgs.forEach(function (im) { im.style.transition = 'none'; gsap.set(im, { clipPath: im.classList.contains('on') ? 'inset(0% 0% 0% 0%)' : 'inset(0% 0% 0% 100%)' }); });
+      gsap.to(fill, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '#gates', start: 'top 55%', end: 'bottom 60%', scrub: true, onRefresh: function (s) { measure(); light(s.progress); }, onUpdate: function (s) { light(s.progress); } } });
     } else gates.forEach(function (g) { g.setAttribute('data-on', ''); });
     // cohort: a field of 130 seeds in 10 furrows, drawn in perspective; seeds drop out stage by stage and the last 5 sprout
     var field = $('#field'), STAGES = [[130, 'Applications submitted'], [68, 'Advanced to Phase 2'], [39, 'Valid Phase 2 proposals'], [10, 'Finalists'], [5, 'Pilots to fund']], stage = -1;
