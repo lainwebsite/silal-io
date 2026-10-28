@@ -4469,6 +4469,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .x_head > div:first-child { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 18px; }
 .x_head > :nth-child(2) { grid-column: 9 / span 4; }
 .x_crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: .8125rem; color: var(--grey); }
+.x_index { white-space: nowrap; flex: none; }
 .x_crumb a { transition: color .3s; } .x_crumb a:hover { color: var(--io-ink); }
 .x_crumb i { width: 18px; height: 1px; background: currentColor; opacity: .5; }
 .x_index { font-size: .8125rem; color: var(--grey); font-variant-numeric: tabular-nums; letter-spacing: .06em; }
@@ -4488,7 +4489,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 .x_dock a[aria-current="page"] { background: var(--charcoal); color: #fff; }
 .x_dock a[aria-current="page"] b { color: var(--io); }
 .x_dockHome { padding: 0 12px 0 10px !important; }
-.x_dockHome img { width: 22px; height: auto; }
+.x_dockHome img { width: 22px; max-width: none; flex: none; height: auto; }
 .x_dockSep { width: 1px; height: 22px; background: var(--line); margin: 0 4px; }
 
 /* ---------- page curtain between pages ---------- */
@@ -4785,8 +4786,9 @@ a.s_btn, button.s_btn { will-change: transform; }
 .i_success .s_textLink { grid-column: 10 / span 3; justify-self: end; }
 
 /* =========================== ACCELERATOR =========================== */
-.a_hero { position: relative; overflow: hidden; min-height: max(calc(100svh - var(--hdr)), 640px); display: flex; flex-direction: column; justify-content: space-between; padding: clamp(28px, 3vw, 40px) 0 clamp(48px, 5vw, 80px); }
-.a_heroTop { display: flex; justify-content: space-between; gap: 16px; position: relative; }
+/* hero takes ~80% of the first screen so the greenhouse photo below already shows */
+.a_hero { position: relative; overflow: hidden; min-height: max(calc((100svh - var(--hdr)) * .8), 560px); display: flex; flex-direction: column; justify-content: space-between; padding: clamp(28px, 3vw, 40px) 0 clamp(48px, 5vw, 80px); }
+.a_heroTop { display: flex; justify-content: space-between; gap: 16px; position: relative; margin-bottom: clamp(40px, 6vh, 72px); }
 .a_heroGrid { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; align-items: end; margin-top: auto; }
 .a_heroMain { grid-column: 1 / span 8; display: flex; flex-direction: column; gap: 28px; }
 .a_hero h1 { font-size: var(--fs-display); font-weight: 300; line-height: 1.06; letter-spacing: -.035em; color: #fff; }
@@ -4798,7 +4800,11 @@ a.s_btn, button.s_btn { will-change: transform; }
 .a_figs strong { font-size: clamp(2.25rem, 3.2vw, 3.5rem); font-weight: 300; line-height: 1; letter-spacing: -.04em; color: #fff; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .a_figs small { font-size: .42em; color: var(--io); margin-right: .2em; letter-spacing: 0; }
 .a_figs li > span { font-size: .8125rem; color: rgba(255,255,255,.6); }
-.a_band { height: clamp(300px, 46vw, 680px); }
+.a_band { height: clamp(320px, 46vw, 680px); color: #fff; }
+.a_band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(38,36,35,.55) 0%, rgba(38,36,35,0) 22%, rgba(14,16,15,0) 55%, rgba(14,16,15,.72) 100%); pointer-events: none; }
+.a_bandCap { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding-bottom: clamp(24px, 3vw, 44px); display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+.a_bandCap p { font-size: var(--fs-lead); font-weight: 300; line-height: 1.45; max-width: 30em; }
+.a_bandCap .x_label { color: rgba(255,255,255,.7); }
 .a_band img { top: -12%; height: 124%; }
 /* benefits: hover list with a photo that follows the cursor */
 .a_list { border-top: 1px solid var(--line); position: relative; }
@@ -5111,6 +5117,8 @@ a.s_btn, button.s_btn { will-change: transform; }
   .k_dots { order: 3; }
 }
 @media (max-width: 600px) {
+  /* on phones the breadcrumb keeps only the way back; the page name is the h1 right below */
+  .x_crumb i, .x_crumb span { display: none; }
   .h_now, .k_measure, .f_who, .k_probs, .i_facts { grid-template-columns: minmax(0,1fr); }
   .k_road { grid-template-columns: 1fr 1fr; }
   .e_form { grid-template-columns: minmax(0,1fr); }
@@ -5434,7 +5442,7 @@ a.s_btn, button.s_btn { will-change: transform; }
       </ul>
     </div>
   </section>
-  <div class="x_img a_band" data-band><img src="img/hero_acc.webp" alt="Greenhouses in the desert haze at Innovation Oasis" loading="lazy"></div>
+  <div class="x_img a_band" data-band><img src="img/hero_acc.webp" alt="Greenhouses in the desert haze at Innovation Oasis" loading="lazy"><div class="s_wrap a_bandCap"><p data-reveal>Pilots run on Innovation Oasis ground in Al Ain: 34 hectares of greenhouses, labs and open-field plots, inside Silal’s real operations.</p><span class="x_label">Innovation Oasis · Al Ain</span></div></div>
 
   <section class="x_sec" id="accGain"><div class="s_wrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>What startups gain</span><h2 class="x_h2" data-reveal>Funding, infrastructure and direct commercial pathways.</h2></div><p class="x_body" data-reveal>Launched in 2026 by Innovation Oasis (part of UAE-based Silal), for growth-stage startups with proven solutions.</p></div>
