@@ -42,6 +42,7 @@ Previous version: `docs/source/Silail_-_IO.pdf` / `docs/sitemap.png` (2026-10-01
   - → Link to: Paid Trials
 
 ### 3. Innovation & Venture Platforms
+(Content + page plan: `content/innovation-venture-platforms.md`.)
 - Farm Innovation Fund
 - Incubation
 - Accelerator

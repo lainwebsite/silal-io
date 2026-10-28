@@ -15,6 +15,13 @@ Design routes live under random folder names so they cannot be guessed. There is
 - https://silal-io.vercel.app/News-Detail (= the V3 press release; any article: `/News-Detail/<slug>`)
 - https://silal-io.vercel.app/io-academy (IO Academy: library in the Content/Media Centre layout + Delphy-style course detail; static page `public/io-academy/index.html`, rewrite in `next.config.ts`, noindex)
 - https://silal-io.vercel.app/Training-Detail (IO Academy training detail, static page `public/training-detail/index.html`, copy of `New Update 23 Oct/Training-Detail/index.html`; re-copy it after regenerating)
+- Innovation & Venture Platforms (sitemap v2 category 3; static files `public/innovation-venture-platforms/*.html`, source + build in `prototypes/innovation-venture-platforms/`, noindex; live on `main` since 2026-10-28). The old `/Innovation-Venture-Platforms/...` links redirect here:
+  - https://silal-io.vercel.app/innovation&venture (primary category page / Section Hub)
+  - https://silal-io.vercel.app/innovation&venture/farm-innovation-fund
+  - https://silal-io.vercel.app/innovation&venture/incubation
+  - https://silal-io.vercel.app/innovation&venture/accelerator
+  - https://silal-io.vercel.app/innovation&venture/agricultural-challenges (cross-link to Program Management as a Service, not built yet)
+  - https://silal-io.vercel.app/innovation&venture/enquire (form preview, `?platform=fif|inc|acc|chal` preselects)
 - `/Team/V1`: not built yet, not published.
 
 Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below keep working.

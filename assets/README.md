@@ -94,6 +94,22 @@ Source folders: `New Folder With Items` 1–4 (merged).
 
 Suggested pages: Venture Programme detail, News / Media detail, Agricultural Challenges, Resources hub.
 
+## Farm Innovation Fund Photos
+
+68 photos (`DSC00415`–`DSC00626`, 1920×1280), Farm Innovation Fund **Innovation Day, 26 July 2026** at Innovation Oasis: farmers in the agritech room, group shot in the atrium, lab and soil & water tours, field tour under blue tents by the greenhouses, robotics lab, workshop tables.
+
+| Use | Picks |
+|---|---|
+| Field tour by the greenhouses | `DSC00540`, `DSC00541`, `DSC00539` (greenhouses only) |
+| Workshop in the agritech room | `DSC00424`, `DSC00426`, `DSC00567`–`DSC00584` |
+| Group (atrium) | `DSC00432`, `DSC00433` |
+| Lab / soil & water tour | `DSC00468`, `DSC00469`, `DSC00475`–`DSC00514`, `DSC00552`, `DSC00554` |
+| Robotics lab | `DSC00548`, `DSC00549` |
+| Mentoring tables | `DSC00587`, `DSC00588`, `DSC00594`, `DSC00596` |
+| Speakers | `DSC00418`–`DSC00421`, `DSC00562`, `DSC00563`, `DSC00574` |
+
+Suggested pages: Venture Programme detail (Farm Innovation Fund), Innovation & Venture Platforms hub, News / Media detail.
+
 ## iO Team Headshot & Bios
 
 196 headshots, kept in the client's per-person folders: `iO Team Headshot & Bios/<Name>/<original filename>`. Shot in the IO atrium (white columns, planters, wood benches). Originals 2000×3000 portrait, plus some 2000×1333 landscape wides.
