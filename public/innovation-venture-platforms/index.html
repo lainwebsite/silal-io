@@ -4487,13 +4487,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 a.s_btn, button.s_btn { will-change: transform; }
 
 /* ---------- category dock: the category's pages, floating, only after the hero (replaces the bar under the header) ---------- */
-.x_dock { position: fixed; z-index: 45; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 120%) scale(.9); opacity: 0; visibility: hidden; display: flex; align-items: center; gap: 2px; padding: 5px; border-radius: 999px; background: rgba(255,255,255,.86); backdrop-filter: saturate(1.4) blur(16px); -webkit-backdrop-filter: saturate(1.4) blur(16px); box-shadow: 0 10px 40px rgba(38,36,35,.14), inset 0 0 0 1px rgba(89,84,83,.1); transition: transform .7s cubic-bezier(.5,0,.75,0), opacity .45s ease .2s, visibility 0s linear .7s; max-width: calc(100vw - 32px); }
-.x_dock[data-show="true"] { transform: translate(-50%, 0) scale(1); opacity: 1; visibility: visible; transition: transform 1s var(--slow), opacity .5s ease, visibility 0s; }
-/* items rise in one after another on enter and drop together on exit */
-.x_dock > * { opacity: 0; transform: translateY(10px); transition: opacity .25s ease, transform .4s ease; }
-.x_dock[data-show="true"] > * { opacity: 1; transform: none; transition: opacity .5s ease, transform .8s var(--slow), color .35s, background .35s; }
-.x_dock[data-show="true"] > :nth-child(2) { transition-delay: .06s; } .x_dock[data-show="true"] > :nth-child(3) { transition-delay: .12s; } .x_dock[data-show="true"] > :nth-child(4) { transition-delay: .18s; } .x_dock[data-show="true"] > :nth-child(5) { transition-delay: .24s; } .x_dock[data-show="true"] > :nth-child(6) { transition-delay: .3s; }
-.x_dock a { position: relative; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 999px; font-size: .8125rem; color: var(--grey-ink); white-space: nowrap; }
+.x_dock { position: fixed; z-index: 45; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); opacity: 0; visibility: hidden; max-width: calc(100vw - 32px); filter: drop-shadow(0 10px 28px rgba(38,36,35,.16)); }
+.x_dock[data-show="true"] { opacity: 1; visibility: visible; }
+/* the pill: opens from a small capsule in the middle to full width, then its items fade up (GSAP, see setDock) */
+.x_dockIn { display: flex; align-items: center; gap: 2px; padding: 5px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px rgba(89,84,83,.1); }
+.x_dock a { position: relative; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 999px; font-size: .8125rem; color: var(--grey-ink); white-space: nowrap; transition: color .35s, background .35s; }
 .x_dock a b { font-weight: 500; font-size: .6875rem; letter-spacing: .08em; color: var(--io-ink); transition: color .35s; }
 .x_dock a:hover { color: var(--charcoal); background: rgba(89,84,83,.07); }
 .x_dock a[aria-current="page"] { background: var(--charcoal); color: #fff; }
@@ -5129,7 +5127,7 @@ a.s_btn, button.s_btn { will-change: transform; }
   .k_roles li p { grid-column: auto; }
   .a_figs li + li { padding-left: 0; border-left: 0; }
   .a_figs { grid-template-columns: 1fr 1fr; column-gap: 16px; }
-  .x_dock { padding: 4px; } .x_dock a { padding: 0 11px; height: 36px; } .x_dockHome { display: none !important; } .x_dockSep { display: none; }
+  .x_dockIn { padding: 4px; } .x_dock a { padding: 0 11px; height: 36px; } .x_dockHome { display: none !important; } .x_dockSep { display: none; }
   .f_dayNums strong { font-size: 2.25rem; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -5252,13 +5250,13 @@ a.s_btn, button.s_btn { will-change: transform; }
   </div>
   <div class="s_wrap s_footerBottom"><span data-reveal>© 2026 Silal. All rights reserved.</span><nav aria-label="Legal"><a href="#"><span data-reveal>Terms of Use</span></a><a href="#"><span data-reveal>Privacy</span></a><a href="#"><span data-reveal>Design system</span></a></nav></div>
 </footer>
-<nav class="x_dock" id="dock" aria-label="Innovation &amp; Venture Platforms pages" data-show="false">
+<nav class="x_dock" id="dock" aria-label="Innovation &amp; Venture Platforms pages" data-show="false"><div class="x_dockIn" id="dockIn">
   <a href="/Innovation-Venture-Platforms" data-route="overview" class="x_dockHome" title="Innovation &amp; Venture Platforms"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="Overview"></a><span class="x_dockSep" aria-hidden="true"></span>
   <a href="/Innovation-Venture-Platforms/Farm-Innovation-Fund" data-route="farm-innovation-fund"><b>01</b><span>Farm Innovation Fund</span></a>
   <a href="/Innovation-Venture-Platforms/Incubation" data-route="incubation"><b>02</b><span>Incubation</span></a>
   <a href="/Innovation-Venture-Platforms/Accelerator" data-route="accelerator"><b>03</b><span>Accelerator</span></a>
   <a href="/Innovation-Venture-Platforms/Agricultural-Challenges" data-route="agricultural-challenges"><b>04</b><span>Challenges</span></a>
-</nav>
+</div></nav>
 <div class="x_curtain" id="curtain" aria-hidden="true"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt=""><span id="curtainLabel"></span></div>
 </div>
 
@@ -5287,10 +5285,29 @@ a.s_btn, button.s_btn { will-change: transform; }
 
   /* ---------- header, menu, newsletter (homepage behaviour) ---------- */
   var hdr = $('#hdr'), open = false, mn = $('#mobileNav'), dock = $('#dock');
+  // dock: enter = rise + fade, capsule opens to full width, items fade up one by one; exit = the reverse
+  var dockIn = $('#dockIn'), dockTl = null;
+  function setDock(v) {
+    if (dock.dataset.show === String(v)) return; dock.dataset.show = v;
+    if (!G) return;
+    if (!dock.__x) { gsap.set(dock, { xPercent: -50, x: 0 }); dock.__x = 1; } // keep centring in % so width changes stay centred
+    var kids = dockIn.children, closed = 'inset(0% 40% 0% 40% round 999px)', openC = 'inset(0% 0% 0% 0% round 999px)';
+    if (dockTl) dockTl.kill();
+    if (v) dockTl = gsap.timeline()
+      .set(dock, { visibility: 'visible' })
+      .fromTo(dock, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
+      .fromTo(dockIn, { clipPath: closed }, { clipPath: openC, duration: 0.9, ease: 'expo.inOut' }, 0.1)
+      .fromTo(kids, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power3.out' }, 0.45);
+    else dockTl = gsap.timeline()
+      .to(kids, { opacity: 0, y: -6, duration: 0.25, stagger: 0.02, ease: 'power2.in' })
+      .fromTo(dockIn, { clipPath: openC }, { clipPath: closed, duration: 0.6, ease: 'expo.inOut', immediateRender: false }, 0.1)
+      .to(dock, { opacity: 0, y: 28, duration: 0.4, ease: 'power2.in' }, 0.45)
+      .set(dock, { visibility: 'hidden' });
+  }
   function onScrollUI() {
     hdr.dataset.scrolled = scrollY > 40; hdr.dataset.overlay = 'false';
     var ft = $('.s_footer'), nearEnd = ft && ft.getBoundingClientRect().top < innerHeight * 0.9;
-    dock.dataset.show = (scrollY > innerHeight * 0.6 && !nearEnd && !open) ? 'true' : 'false';
+    setDock(scrollY > innerHeight * 0.6 && !nearEnd && !open);
   }
   addEventListener('scroll', onScrollUI, { passive: true }); onScrollUI();
   function setOpen(v) { open = v; if (lenis) { v ? lenis.stop() : lenis.start(); } mn.dataset.open = v; mn.setAttribute('aria-hidden', !v); $('#menuOpen').setAttribute('aria-expanded', v); onScrollUI(); }
