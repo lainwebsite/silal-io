@@ -4705,19 +4705,25 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* cohort: pinned; one centred column — heading, the 3D field, then the count — read top to bottom as one story */
 .f_cohortPin { height: 420vh; position: relative; }
 .f_cohortStick { position: sticky; top: var(--hh); height: calc(100vh - var(--hh)); min-height: 600px; }
-.f_cohortGrid { height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; padding-block: clamp(40px, 6vh, 72px) 92px; box-sizing: border-box; }
-.f_cohortHead { align-items: center; max-width: 34em; }
-.f_cohortFoot { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; width: min(100%, 820px); }
-.f_cohortNow { display: inline-flex; align-items: baseline; gap: 14px; will-change: transform; }
-.f_cohortNow strong { position: relative; display: inline-block; overflow: hidden; padding-block: .06em; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 300; line-height: 1; letter-spacing: -.05em; color: var(--io-ink); font-variant-numeric: tabular-nums; }
-.f_cohortNow strong span { display: block; white-space: nowrap; }
-.f_cohortStage { font-size: var(--fs-lead); font-weight: 300; color: var(--charcoal); white-space: nowrap; text-align: left; }
-.f_cohortSteps { position: relative; display: flex; gap: 6px; width: 100%; }
-.f_cohortSteps i { flex: 1; height: 2px; background: var(--line); position: relative; overflow: hidden; }
-.f_cohortSteps i::after { content: ""; position: absolute; inset: 0; background: var(--io-ink); transform: scaleX(var(--f, 0)); transform-origin: left; }
-.f_cohortMeta { align-self: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; font-size: var(--t-small); color: var(--grey); }
+.f_cohortGrid { height: 100%; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: center; padding-block: clamp(24px, 4vh, 48px); box-sizing: border-box; }
+.f_cohortL { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: var(--blk); }
+.f_cohortHead { max-width: 30em; }
+/* the count rolls inside a fixed box: both numbers sit at the same place, nothing jumps or gets clipped */
+.f_cohortNow { display: flex; align-items: baseline; gap: 14px; }
+.f_cohortNow strong { position: relative; display: block; flex: none; overflow: hidden; height: 1.08em; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 300; line-height: 1; letter-spacing: -.05em; color: var(--io-ink); font-variant-numeric: tabular-nums; }
+.f_cohortNow strong span, .f_cohortStage span { position: absolute; left: 0; top: 0; white-space: nowrap; will-change: transform; }
+.f_cohortNow strong span { top: .04em; }
+.f_cohortStage { position: relative; flex: 1; min-width: 0; height: 1.5em; overflow: hidden; font-size: var(--fs-lead); font-weight: 300; line-height: 1.4; color: var(--charcoal); }
+.f_cohortList { border-top: 1px solid var(--line); }
+.f_cohortList li { position: relative; display: grid; grid-template-columns: 4.5ch minmax(0,1fr); gap: 14px; align-items: baseline; padding: 10px 0 10px 18px; border-bottom: 1px solid var(--line); color: #b4b6b7; transition: color .5s; }
+.f_cohortList li::before { content: ""; position: absolute; left: 0; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--io-ink); transform: scale(0); transition: transform .5s var(--slow); }
+.f_cohortList b { font-size: var(--t-h4); font-weight: 300; font-variant-numeric: tabular-nums; }
+.f_cohortList span { font-size: var(--fs-body); }
+.f_cohortList li[data-past] { color: var(--grey); }
+.f_cohortList li[data-on] { color: var(--charcoal); } .f_cohortList li[data-on] b { color: var(--io-ink); } .f_cohortList li[data-on]::before { transform: scale(1); }
+.f_cohortMeta { display: flex; flex-wrap: wrap; gap: 6px 24px; font-size: var(--t-small); color: var(--grey); }
 .f_cohortMeta b { font-weight: 400; color: var(--charcoal); }
-.f_field { position: relative; flex: 1 1 auto; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; margin: 8px 0 16px; }
+.f_field { grid-column: 7 / span 6; position: relative; height: calc(100% - 16px); min-height: 360px; display: flex; align-items: center; justify-content: center; }
 .f_field svg { display: block; width: auto; height: 100%; max-width: 100%; max-height: 420px; overflow: visible; }
 .f_furrow { fill: none; stroke: rgba(89,84,83,.14); stroke-width: 1; }
 .f_seed { fill: #cfd0d1; transform-box: fill-box; transform-origin: 50% 50%; transform: translateY(3px) scale(.62); opacity: .5; transition: fill .6s var(--slow), transform .8s var(--slow), opacity .6s; }
@@ -4877,6 +4883,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a_heroMain { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: var(--stack); }
 .a_hero h1 { font-size: var(--fs-display); font-weight: 300; line-height: 1.06; letter-spacing: -.035em; color: var(--charcoal); }
 .a_hero h1 .a_l2 { display: block; color: var(--io-ink); }
+.a_heroSide .x_row { margin-top: calc(var(--blk) - var(--stack)); gap: 14px 28px; }
 .a_heroSide { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: var(--stack); align-items: flex-start; }
 .a_figs { position: relative; margin-top: var(--head); display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 1px solid var(--line); }
 .a_figs li { padding: 24px calc(var(--col-gap) / 2) 0 0; display: flex; flex-direction: column; gap: 8px; }
@@ -4904,9 +4911,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a_gainMedia img.on { clip-path: inset(0); }
 .a_list { grid-column: 7 / span 6; border-top: 1px solid var(--line); padding-bottom: 22vh; }
 .a_item { display: grid; grid-template-columns: minmax(0,1fr); gap: 10px; padding: clamp(24px, 3vw, 40px) 0; border-bottom: 1px solid var(--line); }
-.a_item h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; color: var(--grey); transition: color .6s, transform .8s var(--slow); }
+.a_item h3::before { content: ""; position: absolute; left: -18px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--io-ink); transform: scale(0); transition: transform .6s var(--slow); }
+.a_item[data-on] h3::before { transform: scale(1); }
+.a_item h3 { position: relative; font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; color: var(--grey); transition: color .6s, transform .8s var(--slow); }
 .a_item p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); max-width: 32em; }
-.a_item[data-on] h3 { color: var(--io-ink); transform: translateX(12px); }
+.a_item[data-on] h3 { color: var(--io-ink); transform: translateX(20px); }
 /* challenge statements: hover */
 .a_cs { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 32px; align-items: start; }
 .a_csSide { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: var(--head); }
@@ -5088,19 +5097,29 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .k_bList li[data-on] { color: var(--charcoal); } .k_bList li[data-on] em { color: var(--io-ink); } .k_bList li[data-on] span { max-height: 9em; color: var(--grey-ink); }
 .crLbl[data-on] span { background: var(--io-ink); color: #fff; } .crLbl[data-on] i { background: var(--io); }
 @media (max-width: 900px) { .k_bPin { height: auto; margin-top: 0; } .k_bStick { position: static; height: auto; min-height: 0; display: block; padding-top: 24px; } .k_bViz, .k_bList { grid-column: 1 / -1; } .k_bStage { height: 56vh; } .k_bList li { color: var(--charcoal); } .k_bList li span { max-height: 9em; color: var(--grey-ink); } }
-/* funnel: three circles to scale (846, 21, 6), each drawn as a dial: wedges for who went on, an outer arc for that share, a turning hub */
+/* funnel: one dial, pinned; it steps 846 → 21 → 6 as you scroll; wedges sweep in one after another, the outer arc draws the share that went on */
+.k_funSec { padding-block: 0 var(--sec); }
+.k_fPin { position: relative; height: 280vh; }
+.k_fStick { position: sticky; top: var(--hh); height: calc(100vh - var(--hh)); min-height: 600px; display: flex; align-items: center; }
 .k_funnel { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: center; }
-.k_funnelViz { grid-column: 1 / span 7; }
+.k_funnelViz { grid-column: 1 / span 6; position: relative; display: flex; flex-direction: column; align-items: center; }
+.k_funDial { position: relative; width: min(100%, calc(100svh - var(--hh) - 190px)); }
 .k_funnelViz svg { width: 100%; height: auto; display: block; overflow: visible; }
 .k_funnelViz text { font-family: "Readex Pro", Arial, sans-serif; }
-.k_seg { stroke: #fff; stroke-width: 1.2; vector-effect: non-scaling-stroke; transform-box: view-box; transition: transform .7s var(--slow); }
-.k_dial:hover .k_seg[data-pop] { transform: scale(1.045); }
-.k_hub { transform-box: fill-box; transform-origin: center; animation: kspin 28s linear infinite; }
+.k_seg { stroke: #fff; stroke-width: 2; }
+.k_hub { transform-box: view-box; transform-origin: 300px 300px; animation: kspin 30s linear infinite; }
 @keyframes kspin { to { transform: rotate(360deg); } }
-.k_funKey { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 20px; font-size: var(--t-small); color: var(--grey-ink); }
+.k_funCenter { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 36%; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; pointer-events: none; }
+.k_funNum { position: relative; display: block; width: 100%; height: 1.08em; overflow: hidden; font-size: clamp(2.5rem, 4.4vw, 4.25rem); font-weight: 300; line-height: 1; letter-spacing: -.05em; color: var(--io-ink); font-variant-numeric: tabular-nums; }
+.k_funLab { position: relative; display: block; width: 100%; height: 1.5em; overflow: hidden; font-size: var(--fs-body); color: var(--grey-ink); }
+.k_funNum span, .k_funLab span { position: absolute; left: 0; right: 0; top: .04em; text-align: center; white-space: nowrap; }
+.k_funSteps { display: flex; gap: 6px; margin-top: 18px; }
+.k_funSteps li { display: inline-flex; align-items: baseline; gap: 6px; height: 34px; padding: 0 14px; border-radius: 999px; background: #fff; font-size: var(--t-small); color: var(--grey); align-items: center; transition: background .4s, color .4s; }
+.k_funSteps b { font-weight: 400; color: var(--charcoal); transition: color .4s; }
+.k_funSteps li[data-on] { background: var(--io-ink); color: #fff; } .k_funSteps li[data-on] b { color: #fff; }
+.k_funKey { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-top: 14px; font-size: var(--t-small); color: var(--grey-ink); }
 .k_funKey span { display: inline-flex; align-items: center; gap: 8px; } .k_funKey i { width: 10px; height: 10px; border-radius: 50%; }
-.k_funMob { display: none; }
-.k_funnelText { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: var(--stack); }
+.k_funnelText { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: var(--stack); }
 .k_funnelNums { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); margin-top: calc(var(--blk) - var(--stack)); }
 .k_funnelNums div { padding: 16px 12px 16px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; }
 .k_funnelNums strong { font-size: var(--t-h3); font-weight: 300; line-height: 1; color: var(--io-ink); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
@@ -5162,6 +5181,16 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* partners: who does what, read left to right as one chain — organiser, partners, then Silal running the trials */
 .k_chain { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 48px; padding-top: 40px; }
 .k_chain::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; height: 1px; background: var(--line); }
+/* partners (F3): Silal at work on one large photo, the organiser and partners as a quiet list beside it */
+.k_f3 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: stretch; }
+.k_f3Ph { grid-column: 1 / span 6; min-height: clamp(420px, 40vw, 600px); color: #fff; }
+.k_f3Ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,16,15,.62), rgba(14,16,15,0) 55%); pointer-events: none; }
+.k_f3Cap { position: absolute; z-index: 2; left: clamp(20px, 2.4vw, 36px); right: clamp(20px, 2.4vw, 36px); bottom: clamp(20px, 2.4vw, 36px); display: flex; flex-direction: column; gap: 10px; }
+.k_f3Cap .x_label { color: rgba(255,255,255,.85); } .k_f3Cap strong { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; } .k_f3Cap p { font-size: var(--fs-body); line-height: 1.55; opacity: .92; max-width: 30em; }
+.k_f3List { grid-column: 7 / span 6; display: flex; flex-direction: column; justify-content: flex-end; border-top: 1px solid var(--line); }
+.k_f3List li { display: flex; flex-direction: column; gap: 6px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.k_f3List .x_label { color: var(--grey); } .k_f3List strong { font-size: var(--t-h4); font-weight: 400; color: var(--charcoal); } .k_f3List p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); }
+@media (max-width: 900px) { .k_f3Ph, .k_f3List { grid-column: 1 / -1; } .k_f3Ph { min-height: 380px; } }
 .k_tier { position: relative; display: flex; flex-direction: column; gap: 14px; }
 .k_tier::before { content: ""; position: absolute; top: -40px; left: 0; width: 13px; height: 13px; border-radius: 50%; background: #fff; border: 1.5px solid var(--io-ink); box-sizing: border-box; }
 .k_tier .x_label { color: var(--grey); }
@@ -5253,7 +5282,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .f_areaSide, .f_areaStage { grid-column: 1 / -1; } .f_areaSide { margin-bottom: 24px; gap: 32px; } .f_areaStage { min-height: 420px; }
   .f_cohortPin { height: 360vh; }
   .f_cohortStick { min-height: 560px; }
-  .f_cohortStage { white-space: normal; }
+  .f_cohortGrid { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding-block: 20px 72px; } .f_cohortL { gap: 16px; } .f_cohortList { display: none; } .f_field { height: auto; flex: 1; min-height: 240px; }
   .f_dayPin { height: auto !important; }
   .f_dayStick { position: static; height: auto; min-height: 0; overflow: visible; padding-block: var(--sec); }
   .f_track { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; padding-right: var(--gutter); transform: none !important; }
@@ -5284,7 +5313,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .a_powerCol:nth-of-type(2), .a_powerCol:nth-of-type(3) { grid-column: 1 / -1; }
   .a_quote .x_img, .a_quote > div:last-child { grid-row: auto; }
   .k_slides { aspect-ratio: 4 / 5; } .k_capt { font-size: var(--t-h4); }
-  .k_funnelViz svg text { display: none; } .k_funMob { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 16px; font-size: var(--fs-body); color: var(--charcoal); } .k_funMob b { font-weight: 300; font-size: var(--t-h3); color: var(--io-ink); margin-right: 6px; }
+  .k_fPin { height: auto; } .k_fStick { position: static; height: auto; min-height: 0; display: block; padding-top: var(--sec); } .k_funDial { width: 100%; }
 }
 @media (max-width: 600px) {
   /* on phones the breadcrumb keeps only the way back; the page name is the h1 right below */
@@ -5549,13 +5578,20 @@ function stageGL(host, opts) {
 /* ===== Farm Innovation Fund cohort: 130 seeds on a soil plot; setStage(k) drops them; the last five sprout.
    No dragging: setProgress(p) moves the camera with the scroll, from a high wide view down to the five pilots ===== */
 function field(host) {
-  const S = stageGL(host, { fov: 28, floorY: -0.5, drag: false }); if (!S) return null;
+  const S = stageGL(host, { fov: 28, floorY: -2.3, drag: false }); if (!S) return null;
   const { scene, cam } = S;
-  const plot = rbox(14, 0.9, 9.4, 0.3, mat(0xe7dfd3)); plot.position.y = -0.45; scene.add(plot);
+  // depth: a real slab of soil in two layers, cut square at the front, with the homepage contour sand on top
+  scene.traverse(o => { if (o.isHemisphereLight) o.intensity = 1.55; if (o.isDirectionalLight) { o.intensity = 2.3; o.position.set(-9, 13, 10); } });
+  const plot = rbox(14, 1.3, 9.4, 0.22, mat(0xe2d6c5)); plot.position.y = -0.65; scene.add(plot);
+  const under = rbox(14, 0.95, 9.4, 0.22, mat(0xcbb79c)); under.position.y = -1.78; scene.add(under);
+  const sandT = contourTex('#e8ddcd', 'rgba(140,118,92,.2)', 29); sandT.repeat.set(1.4, 0.95);
+  const top = new THREE.Mesh(new THREE.PlaneGeometry(13.7, 9.1), new THREE.MeshStandardMaterial({ map: sandT, roughness: 1 })); top.rotation.x = -Math.PI / 2; top.position.y = 0.004; top.receiveShadow = true; scene.add(top);
   const ROWS = 10, COLS = 13, seeds = [], pos = [];
+  // furrows: rounded ridges of soil that catch the light and throw soft shadows between them
+  const ridgeG = new THREE.CylinderGeometry(0.3, 0.3, 12.6, 24); ridgeG.rotateZ(Math.PI / 2); // lower half sits inside the slab
   for (let r = 0; r < ROWS; r++) {
-    const z = -3.9 + r * (7.8 / 9), ridge = rbox(12.6, 0.22, 0.42, 0.1, mat(0xddd2c2)); ridge.position.set(0, 0.06, z); scene.add(ridge);
-    for (let c = 0; c < COLS; c++) { const m = mesh(new THREE.SphereGeometry(0.15, 16, 12), mat(0x7d7774)); m.position.set(-5.7 + c * (11.4 / 12), 0.32, z); scene.add(m); seeds.push(m); pos.push([r, c]); }
+    const z = -3.9 + r * (7.8 / 9), ridge = mesh(ridgeG, mat(0xd9ccb9)); ridge.scale.set(1, 0.75, 1); ridge.position.set(0, 0, z); scene.add(ridge);
+    for (let c = 0; c < COLS; c++) { const m = mesh(new THREE.SphereGeometry(0.15, 18, 14), mat(0x7d7774)); m.position.set(-5.7 + c * (11.4 / 12), 0.32, z); scene.add(m); seeds.push(m); pos.push([r, c]); }
   }
   // same order as the 2D field: five pilots spread across the front, the rest drop out in a fixed shuffled order
   const PILOTS = [[5, 2], [8, 5], [6, 8], [9, 10], [7, 12]], rank = [], rest = []; let sd = 7; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
@@ -5580,19 +5616,21 @@ function field(host) {
     sprouts.forEach((g, j) => { const v = k === 4 ? 1 : 0.001; if (G) gsap.to(g.scale, { x: v, y: v, z: v, duration: 1.1, delay: k === 4 ? 0.15 * j : 0, ease: k === 4 ? 'back.out(1.8)' : 'power2.in' }); else g.scale.setScalar(v); });
   }
   const clock = new THREE.Clock(), tgt = new THREE.Vector3(0, 0, 0.4), lerp = THREE.MathUtils.lerp, pv = new THREE.Vector3();
-  const CORNERS = []; [-7, 7].forEach(x => [-4.7, 4.7].forEach(z => [-0.9, 1.2].forEach(y => CORNERS.push(new THREE.Vector3(x, y, z)))));
+  const CORNERS = []; [-7, 7].forEach(x => [-4.7, 4.7].forEach(z => [-2.3, 1.2].forEach(y => CORNERS.push(new THREE.Vector3(x, y, z)))));
   let prog = 0, pk = 0;
   function setProgress(p) { prog = Math.max(0, Math.min(1, p)); }
   (function loop() { requestAnimationFrame(loop); if (!S.visible) return; const t = clock.getElapsedTime();
     pk += (prog - pk) * (reduce ? 1 : 0.06); const e = pk * pk * (3 - 2 * pk);
     // start high and square to the furrows, end lower and turned, closer to the front rows where the pilots are
-    const yaw = lerp(-0.45, 0.4, e) + (reduce ? 0 : Math.sin(t * 0.18) * 0.02), a = lerp(0.98, 0.58, e), fit = cam.aspect < 2.2 ? 2.2 / Math.max(0.6, cam.aspect) : 1, d = lerp(21, 16.5, e) * Math.min(fit, 2.6);
-    tgt.set(lerp(0, 0.4, e), 0, lerp(0.2, 1.0, e));
+    // a lower, three-quarter view so the slab shows its thickness; start wider, end lower and turned towards the pilots
+    const yaw = lerp(-0.5, 0.42, e) + (reduce ? 0 : Math.sin(t * 0.18) * 0.02), a = lerp(0.8, 0.5, e), d = lerp(21, 17, e);
+    tgt.set(lerp(0, 0.4, e), -0.4, lerp(0.2, 0.9, e));
+    // fit both ways: the whole slab fills about 92% of the frame at any size, never cut
     let dd = d;
-    for (let it = 0; it < 6; it++) {
-      cam.position.set(tgt.x + Math.sin(yaw) * dd * Math.cos(a), Math.sin(a) * dd, tgt.z + Math.cos(yaw) * dd * Math.cos(a)); cam.lookAt(tgt); cam.updateMatrixWorld();
+    for (let it = 0; it < 8; it++) {
+      cam.position.set(tgt.x + Math.sin(yaw) * dd * Math.cos(a), tgt.y + Math.sin(a) * dd, tgt.z + Math.cos(yaw) * dd * Math.cos(a)); cam.lookAt(tgt); cam.updateMatrixWorld();
       let m = 0; CORNERS.forEach(c => { pv.copy(c).project(cam); m = Math.max(m, Math.abs(pv.x), Math.abs(pv.y)); });
-      if (m <= 0.94) break; dd *= m / 0.9;
+      if (Math.abs(m - 0.92) < 0.01) break; dd *= m / 0.92;
     }
     sprouts.forEach((g, j) => { if (!reduce && g.scale.x > 0.5) g.rotation.z = Math.sin(t * 1.4 + j) * 0.05; });
     S.r.render(scene, cam); })();
@@ -6291,32 +6329,32 @@ dispatchEvent(new Event('io3d'));
       svg += '<g class="f_sprout" style="--d:' + (j * 0.12) + 's"><path pathLength="1" d="' + d + '"/></g>'; });
     field.innerHTML = '<svg viewBox="0 0 600 380" aria-hidden="true">' + svg + '</svg><div class="x_gl" id="fieldGl" aria-hidden="true"></div>';
     seeds = $$('.f_seed', field);
-    var num = $('#cohortNum'), lab = $('#cohortStage'), steps = $$('#cohortSteps i'), prevK = 0, nowEl = $('.f_cohortNow', view), nowT = 0;
-    // the number rolls: the old one leaves upward, the new one rises from below (reversed when scrolling back)
+    var num = $('#cohortNum'), lab = $('#cohortStage'), cli = $$('#cohortList li', view), prevK = 0;
+    // the number box is as wide as the wider of the two numbers while they roll, then eases to the new one: nothing is clipped, the label follows
+    function sizeNum() { num.style.width = num.lastElementChild.offsetWidth + 'px'; }
+    sizeNum(); addEventListener('resize', sizeNum); if (document.fonts) document.fonts.ready.then(sizeNum);
+    // a roll: the old line leaves (up when going forward, down when going back), the new one comes in from the other side;
+    // every change first finishes the one before, so fast scrolling never stacks lines
     function roll(el, text, dir) {
-      if (el.__t === undefined) el.__t = el.textContent;
-      if (el.__t === text) return; el.__t = text;
-      if (!G) { el.textContent = text; return; }
-      if (!el.__r) { el.__r = 1; el.innerHTML = '<span>' + el.textContent + '</span>'; }
-      var old = el.lastElementChild, nu = document.createElement('span'); nu.textContent = text; el.appendChild(nu);
-      $$('span', el).forEach(function (s) { if (s !== nu && s !== old) s.remove(); });
-      gsap.killTweensOf(old); old.style.position = 'absolute'; old.style.left = '0'; old.style.top = '0';
-      gsap.to(old, { yPercent: -105 * dir, duration: 0.5, ease: 'power3.in', onComplete: function () { old.remove(); } });
-      gsap.fromTo(nu, { yPercent: 105 * dir }, { yPercent: 0, duration: 0.8, ease: 'power3.out', delay: 0.12 });
+      var cur = el.lastElementChild; if (cur.textContent === text && el.children.length === 1) return;
+      if (!G) { el.innerHTML = '<span>' + text + '</span>'; return; }
+      $$('span', el).forEach(function (s) { gsap.killTweensOf(s); if (s !== cur) s.remove(); });
+      var nu = document.createElement('span'); nu.textContent = text; el.appendChild(nu);
+      if (el === num) { gsap.killTweensOf(num); num.style.width = Math.max(cur.offsetWidth, nu.offsetWidth) + 'px'; }
+      gsap.to(cur, { yPercent: -120 * dir, duration: 0.45, ease: 'power3.in', onComplete: function () { cur.remove(); } });
+      gsap.fromTo(nu, { yPercent: 120 * dir }, { yPercent: 0, duration: 0.75, ease: 'power3.out', delay: 0.1, onComplete: function () { if (el === num) gsap.to(num, { width: nu.offsetWidth, duration: 0.5, ease: 'power3.inOut' }); } });
     }
     function setStage(k) {
-      if (k === stage) return; stage = k; field.dataset.stage = k; if (f3) f3.setStage(k);
+      if (k === stage) return; var dir = k >= prevK ? 1 : -1; stage = k; prevK = k; field.dataset.stage = k; if (f3) f3.setStage(k);
       seeds.forEach(function (el, i) { rank[i] < STAGES[k][0] ? el.setAttribute('data-on', '') : el.removeAttribute('data-on'); });
-      roll(num, String(STAGES[k][0]), k >= prevK ? 1 : -1); prevK = k;
-      swap(lab, STAGES[k][1]);
-      // the count moves to sit over its step: centred on it, kept inside the bar at both ends
-      clearTimeout(nowT); nowT = setTimeout(function () { var seg = steps[k], bar = seg.parentNode, w = nowEl.offsetWidth, x = Math.max(0, Math.min(bar.offsetWidth - w, seg.offsetLeft + seg.offsetWidth / 2 - w / 2)); if (G) gsap.to(nowEl, { x: x, duration: 0.9, ease: 'power3.out' }); else nowEl.style.transform = 'translateX(' + x + 'px)'; }, 380);
+      roll(num, String(STAGES[k][0]), dir); roll(lab, STAGES[k][1], dir);
+      cli.forEach(function (li, i) { li.toggleAttribute('data-on', i === k); li.toggleAttribute('data-past', i < k); });
     }
     // 3D field (clay, like the homepage) replaces the SVG when WebGL is there
     var f3 = null;
     function mountField() { if (f3 || !window.IO3D) return; f3 = IO3D.field($('#fieldGl', view)); if (f3) { field.classList.add('is3d'); f3.setStage(Math.max(0, stage)); } }
     mountField(); addEventListener('io3d', mountField);
-    pinProgress($('#cohortPin'), function (p) { var f = p * 5; setStage(Math.min(4, Math.floor(f))); if (f3 && f3.setProgress) f3.setProgress(p); steps.forEach(function (st, i) { st.style.setProperty('--f', Math.max(0, Math.min(1, f - i))); }); });
+    pinProgress($('#cohortPin'), function (p) { setStage(Math.min(4, Math.floor(p * 5))); if (f3 && f3.setProgress) f3.setProgress(p); });
     setStage(0);
     // innovation day: vertical scroll moves the gallery sideways; photos drift inside their frames
     var pin = $('#dayPin'), track = $('#dayTrack'), figs = $$('.f_track .x_img img', view);
@@ -6493,47 +6531,49 @@ dispatchEvent(new Event('io3d'));
     mountSoil(); addEventListener('io3d', mountSoil);
     if (mobile()) { if (G) ScrollTrigger.create({ trigger: '#b1Gl', start: 'top 80%', end: 'bottom 20%', scrub: true, onUpdate: function (s) { bProg(s.progress); } }); else bProg(0.5); }
     else pinProgress($('#b1Pin', view), bProg);
-    // funnel: each circle becomes a dial; wedges sweep in once, the outer arc draws the share that went on, numbers count up
-    var NS = 'http://www.w3.org/2000/svg', fv = $('#funnelViz', view);
-    var DIALS = [
-      { cx: 190, cy: 270, r: 170, arc: 21 / 846, segs: [[6, '#1a6f96', 1], [15, '#8fd3f0', 0.96], [825, '#e3f2f9', 0.86]] },
-      { cx: 420, cy: 270, r: 26.8, arc: 6 / 21, segs: [[6, '#1a6f96', 1], [15, '#8fd3f0', 0.88]] },
-      { cx: 545, cy: 270, r: 14.3, arc: 1, segs: [[1, '#1a6f96', 1], [1, '#22799f', 0.9], [1, '#2a86b0', 1], [1, '#3796bf', 0.9], [1, '#46a3cb', 1], [1, '#5bb0d4', 0.9]] }];
-    function wedge(cx, cy, r, a0, a1) {
+    // funnel: one dial; at each stage the dark wedge is the share that went on; wedges sweep in one after another
+    var NS = 'http://www.w3.org/2000/svg', segG = $('#funSegs', view), labG = $('#funLabels', view), fArc = $('#funArc', view), fNum = $('#funNum', view), fLab = $('#funLab', view), fSt = $$('#funSteps li', view);
+    var FUN = [
+      { n: '846', l: 'teams registered', arc: 21 / 846, segs: [[21, '#1a6f96', 1], [825, '#dfeef5', 0.9]] },
+      { n: '21', l: 'qualified', arc: 6 / 21, segs: [[6, '#1a6f96', 1], [15, '#8fd3f0', 0.9]] },
+      { n: '6', l: 'finalists', arc: 1, segs: [[1, '#1a6f96', 1], [1, '#22799f', 0.9], [1, '#2a86b0', 1], [1, '#3796bf', 0.9], [1, '#46a3cb', 1], [1, '#5bb0d4', 0.9]], labs: ['UAE', 'UAE', 'Egypt', 'Brazil', 'Argentina', 'India'] }];
+    var R0 = 112, R1 = 236, fk = -1, fTl = null;
+    // a ring wedge from angle a0 to a1 (clockwise from 12 o'clock), inner radius R0, outer radius ro
+    function ringW(a0, a1, ro) {
       if (a1 - a0 < 1e-4) return '';
-      if (a1 - a0 > Math.PI * 2 - 1e-3) return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + 2 * r + ' 0a' + r + ' ' + r + ' 0 1 0 ' + -2 * r + ' 0Z';
-      var x0 = cx + r * Math.sin(a0), y0 = cy - r * Math.cos(a0), x1 = cx + r * Math.sin(a1), y1 = cy - r * Math.cos(a1);
-      return 'M' + cx + ' ' + cy + 'L' + x0.toFixed(2) + ' ' + y0.toFixed(2) + 'A' + r + ' ' + r + ' 0 ' + (a1 - a0 > Math.PI ? 1 : 0) + ' 1 ' + x1.toFixed(2) + ' ' + y1.toFixed(2) + 'Z';
+      a1 = Math.min(a1, a0 + Math.PI * 2 - 1e-3);
+      var p = function (r, a) { return (300 + r * Math.sin(a)).toFixed(2) + ' ' + (300 - r * Math.cos(a)).toFixed(2); }, lg = a1 - a0 > Math.PI ? 1 : 0;
+      return 'M' + p(ro, a0) + 'A' + ro + ' ' + ro + ' 0 ' + lg + ' 1 ' + p(ro, a1) + 'L' + p(R0, a1) + 'A' + R0 + ' ' + R0 + ' 0 ' + lg + ' 0 ' + p(R0, a0) + 'Z';
     }
-    function el(n, at) { var x = document.createElementNS(NS, n); for (var k in at) x.setAttribute(k, at[k]); return x; }
-    var dialState = DIALS.map(function (d, di) {
-      var g = $('.k_dial[data-k="' + di + '"]', fv), tot = d.segs.reduce(function (s, x) { return s + x[0]; }, 0), a = 0;
-      var segs = d.segs.map(function (s) { var p = el('path', { class: 'k_seg', fill: s[1] }); if (s[2] === 1 || d.segs.length > 2 && s[0] < tot / 2) p.setAttribute('data-pop', ''); p.style.transformOrigin = d.cx + 'px ' + d.cy + 'px'; g.appendChild(p); var o = { a0: a, a1: a + s[0] / tot * Math.PI * 2, rr: d.r * s[2] * 0.9 }; a = o.a1; return { p: p, o: o }; });
-      // outer ring and its arc, a little outside the circle; the hub: a dot and a three-quarter ring that keeps turning
-      var R = d.r * 1.08 + 2.5, ring = el('circle', { cx: d.cx, cy: d.cy, r: R, fill: 'none', stroke: 'rgba(26,111,150,.18)', 'vector-effect': 'non-scaling-stroke' }), arc = el('path', { fill: 'none', stroke: '#1a6f96', 'stroke-width': 1.6, 'stroke-linecap': 'round', 'vector-effect': 'non-scaling-stroke' });
-      g.appendChild(ring); g.appendChild(arc);
-      var hub = el('g', { class: 'k_hub' }), hr = Math.max(1.6, d.r * 0.05);
-      hub.appendChild(el('circle', { cx: d.cx, cy: d.cy, r: hr, fill: '#1a6f96' }));
-      if (d.r > 20) hub.appendChild(el('path', { d: 'M' + d.cx + ' ' + (d.cy - hr * 2.6) + 'A' + hr * 2.6 + ' ' + hr * 2.6 + ' 0 1 1 ' + (d.cx - hr * 2.6) + ' ' + d.cy, fill: 'none', stroke: '#1a6f96', 'stroke-width': 1.2, 'vector-effect': 'non-scaling-stroke' }));
-      g.appendChild(hub);
-      return { d: d, segs: segs, arc: arc, R: R };
-    });
-    function drawDials(q) {
-      dialState.forEach(function (s, di) {
-        var f = Math.max(0, Math.min(1, q * 1.6 - di * 0.3)), e = 1 - Math.pow(1 - f, 3);
-        s.segs.forEach(function (w) { w.p.setAttribute('d', wedge(s.d.cx, s.d.cy, w.o.rr, w.o.a0 * e, w.o.a1 * e)); });
-        var aa = Math.min(s.d.arc * Math.PI * 2 * e, Math.PI * 2 - 1e-3), x1 = s.d.cx + s.R * Math.sin(aa), y1 = s.d.cy - s.R * Math.cos(aa);
-        s.arc.setAttribute('d', aa < 1e-3 ? '' : 'M' + s.d.cx + ' ' + (s.d.cy - s.R) + 'A' + s.R + ' ' + s.R + ' 0 ' + (aa > Math.PI ? 1 : 0) + ' 1 ' + x1.toFixed(2) + ' ' + y1.toFixed(2));
-      });
+    function arcD(a) { a = Math.min(a, Math.PI * 2 - 1e-3); if (a < 1e-3) return ''; var x = 300 + 262 * Math.sin(a), y = 300 - 262 * Math.cos(a); return 'M300 38A262 262 0 ' + (a > Math.PI ? 1 : 0) + ' 1 ' + x.toFixed(2) + ' ' + y.toFixed(2); }
+    function rollT(el, text, dir) {
+      var cur = el.lastElementChild; if (cur.textContent === text && el.children.length === 1) return;
+      if (!G) { el.innerHTML = '<span>' + text + '</span>'; return; }
+      $$('span', el).forEach(function (s) { gsap.killTweensOf(s); if (s !== cur) s.remove(); });
+      var nu = document.createElement('span'); nu.textContent = text; el.appendChild(nu);
+      gsap.to(cur, { yPercent: -120 * dir, duration: 0.45, ease: 'power3.in', onComplete: function () { cur.remove(); } });
+      gsap.fromTo(nu, { yPercent: 120 * dir }, { yPercent: 0, duration: 0.75, ease: 'power3.out', delay: 0.1 });
     }
-    if (G) {
-      drawDials(0);
-      gsap.from($$('.k_dial', view), { scale: 0, transformOrigin: 'center', duration: 1.4, stagger: 0.25, ease: 'expo.out', scrollTrigger: { trigger: fv, start: 'top 75%', once: true } });
-      var dq = { q: 0 }; ScrollTrigger.create({ trigger: fv, start: 'top 75%', once: true, onEnter: function () {
-        gsap.to(dq, { q: 1, duration: 2.6, delay: 0.5, ease: 'power2.inOut', onUpdate: function () { drawDials(dq.q); } });
-        [['#fun846', 846], ['#fun21', 21], ['#fun6', 6]].forEach(function (n, i) { var o = { v: 0 }, el2 = $(n[0], view); gsap.to(o, { v: n[1], duration: 2, delay: i * 0.25, ease: 'power3.out', onUpdate: function () { el2.textContent = Math.round(o.v); } }); });
-      } });
-    } else drawDials(1);
+    function funStage(k) {
+      if (k === fk) return; var dir = k >= fk ? 1 : -1, s = FUN[k]; fk = k;
+      fSt.forEach(function (li, i) { li.toggleAttribute('data-on', i === k); });
+      rollT(fNum, s.n, dir); rollT(fLab, s.l, dir);
+      if (fTl) fTl.kill(); segG.innerHTML = ''; labG.innerHTML = '';
+      var tot = s.segs.reduce(function (a, x) { return a + x[0]; }, 0), a = 0;
+      var W = s.segs.map(function (x) { var p = document.createElementNS(NS, 'path'); p.setAttribute('class', 'k_seg'); p.setAttribute('fill', x[1]); segG.appendChild(p); var o = { a0: a, a1: a + x[0] / tot * Math.PI * 2, ro: R0 + (R1 - R0) * x[2], q: 0 }; a = o.a1; return { p: p, o: o }; });
+      if (s.labs) s.labs.forEach(function (n, i) { var w = W[i].o, m = (w.a0 + w.a1) / 2, tx = document.createElementNS(NS, 'text'); tx.setAttribute('x', (300 + 288 * Math.sin(m)).toFixed(1)); tx.setAttribute('y', (305 - 288 * Math.cos(m)).toFixed(1)); tx.setAttribute('text-anchor', Math.sin(m) > 0.2 ? 'start' : Math.sin(m) < -0.2 ? 'end' : 'middle'); tx.textContent = n; labG.appendChild(tx); });
+      function draw() { W.forEach(function (w) { w.p.setAttribute('d', ringW(w.o.a0, w.o.a0 + (w.o.a1 - w.o.a0) * w.o.q, w.o.ro)); }); }
+      var arcO = { a: 0 };
+      if (!G) { W.forEach(function (w) { w.o.q = 1; }); draw(); fArc.setAttribute('d', arcD(s.arc * Math.PI * 2)); return; }
+      // like the inspiration: each wedge sweeps open in turn, then the outer arc runs round to the share that went on
+      fTl = gsap.timeline({ onUpdate: draw });
+      W.forEach(function (w, i) { fTl.to(w.o, { q: 1, duration: s.segs.length > 2 ? 0.35 : 0.9, ease: 'power2.out' }, i * (s.segs.length > 2 ? 0.16 : 0.45)); });
+      fTl.fromTo(arcO, { a: 0 }, { a: s.arc * Math.PI * 2, duration: 1.1, ease: 'power3.inOut', onUpdate: function () { fArc.setAttribute('d', arcD(arcO.a)); } }, 0.2);
+      if (s.labs) fTl.from(labG.children, { opacity: 0, duration: 0.5, stagger: 0.12 }, 0.4);
+      gsap.fromTo(segG, { scale: 0.94, transformOrigin: '300px 300px' }, { scale: 1, duration: 1.2, ease: 'expo.out' });
+    }
+    if (mobile() || !G) { $('#funPin', view).style.height = 'auto'; funStage(0); if (G) ScrollTrigger.create({ trigger: '#funnelViz', start: 'top 60%', end: 'bottom 30%', onUpdate: function (st) { funStage(st.progress < 0.34 ? 0 : st.progress < 0.67 ? 1 : 2); } }); }
+    else { var fStarted = false; pinProgress($('#funPin', view), function (p) { if (!fStarted && p <= 0) return; fStarted = true; funStage(p < 0.34 ? 0 : p < 0.67 ? 1 : 2); }); ScrollTrigger.create({ trigger: '#funPin', start: 'top 70%', once: true, onEnter: function () { fStarted = true; funStage(0); } }); }
     // timeline: "now" sits at today's date between the stops around it; stops after today stay open
     var road = $('#road', view), rli = $$('#road li', view);
     function roadNow() {
