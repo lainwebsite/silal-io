@@ -4866,6 +4866,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* official mark file, untouched: on the IO blue its blue shapes vanish and only the white helix shows, cropped on the right */
 .i_successMark { position: absolute; right: -14%; top: 50%; height: 190%; translate: 0 -50%; opacity: .28; pointer-events: none; user-select: none; }
 @media (max-width: 900px) { .i_successMark { height: 130%; right: -40%; opacity: .22; } }
+/* 3D helix (homepage model) replaces the flat one once it has loaded */
+.i_successGl { position: absolute; right: -4%; top: -45%; width: min(30%, 460px); height: 190%; opacity: 0; transition: opacity 1.4s; pointer-events: none; }
+.i_successGl canvas { display: block; width: 100%; height: 100%; }
+.i_successSec.is3d .i_successGl { opacity: .55; } .i_successSec.is3d .i_successMark { opacity: 0; transition: opacity 1s; }
+@media (max-width: 900px) { .i_successGl { right: -30%; width: 70%; top: -30%; height: 160%; } .i_successSec.is3d .i_successGl { opacity: .28; } }
 .i_successSec .x_statement { color: #fff; } .i_successSec .x_statement b { color: #0f3f57; }
 .i_successSec .s_textLink, .i_successSec .s_textLink:hover { color: #fff; border-color: rgba(255,255,255,.6); }
 .i_success { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: end; }
@@ -4931,8 +4936,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .n1Stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .n1Hots { position: absolute; inset: 0; pointer-events: none; }
 /* names: small fixed pills, never move or grow; hover/click works on the 3D objects themselves */
-.n1Stage { height: clamp(440px, 40vw, 600px); cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%23ffffff' fill-opacity='.92' stroke='%23595453' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23595453' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grab; }
-.n1Stage.dragging { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='20' fill='%231a6f96' stroke='%231a6f96' stroke-width='1.2'/%3E%3Cpath d='M12 22h20M12 22l4-4M12 22l4 4M32 22l-4-4M32 22l-4 4' stroke='%23ffffff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 22 22, grabbing; }
+.n1Stage { height: clamp(440px, 40vw, 600px); }
 .n1Stage.onObj { cursor: pointer; }
 .nm { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
 .nm span { position: absolute; left: 0; bottom: 6px; transform: translateX(-50%); white-space: nowrap; font-size: var(--t-label); font-weight: 500; color: var(--grey-ink); background: rgba(255,255,255,.92); border-radius: 999px; padding: 4px 10px; box-shadow: 0 1px 4px rgba(38,36,35,.06); transition: color .35s, background .35s, opacity .35s; }
@@ -5774,19 +5778,19 @@ if (!renderer) return null;
   $('#n1Prev').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 8) % 9));
   $('#n1Next').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 1) % 9));
   stage.addEventListener('keydown', e => { if (e.key === 'ArrowRight') $('#n1Next').click(); if (e.key === 'ArrowLeft') $('#n1Prev').click(); if (e.key === 'Escape' && zoom) zoomOut(); });
-  // pointer: hover a scene = preview it; click a scene = fly in; drag empty space = look around
+  // pointer: hover a scene = preview it; click a scene = fly in; no dragging: while the pointer is over the model the camera leans a little towards it
   const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
   function hit(e) { const r = renderer.domElement.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(hitList, false)[0]; return h ? h.object.userData.scene : -1; }
-  let px = null, moved = false;
-  renderer.domElement.addEventListener('pointerdown', e => { px = e.clientX; moved = false; });
-  addEventListener('pointerup', e => { if (px !== null && !moved && e.target === renderer.domElement) { const i = hit(e); if (i >= 0) zoomTo(i); } px = null; dragT = 0; stage.classList.remove('dragging'); });
+  let px = null, py = 0, pit = 0, pitT = 0;
+  renderer.domElement.addEventListener('pointerdown', e => { px = e.clientX; py = e.clientY; });
+  addEventListener('pointerup', e => { if (px !== null && Math.hypot(e.clientX - px, e.clientY - py) < 8 && e.target === renderer.domElement) { const i = hit(e); if (i >= 0) zoomTo(i); } px = null; });
   addEventListener('pointermove', e => {
-    if (px !== null) { if (Math.abs(e.clientX - px) > 5) { moved = true; stage.classList.add('dragging'); } dragT = Math.max(-1, Math.min(1, (e.clientX - px) / 300)); return; }
     if (e.target !== renderer.domElement) { if (hov !== -1) { hov = -1; stage.classList.remove('onObj'); } return; }
+    if (fine) { const r = renderer.domElement.getBoundingClientRect(); dragT = ((e.clientX - r.left) / r.width - 0.5) * 0.5; pitT = ((e.clientY - r.top) / r.height - 0.5) * 2; }
     const i = hit(e); stage.classList.toggle('onObj', i >= 0);
     if (i !== hov) { hov = i; if (i >= 0 && fine) show(i); }
   });
-  renderer.domElement.addEventListener('pointerleave', () => { hov = -1; stage.classList.remove('onObj'); });
+  renderer.domElement.addEventListener('pointerleave', () => { hov = -1; dragT = 0; pitT = 0; stage.classList.remove('onObj'); });
 
   // camera: whole strip on wide screens, follow the selected scene on narrow ones or when zoomed
   const target = new THREE.Vector3(), v = new THREE.Vector3();
@@ -5798,11 +5802,11 @@ if (!renderer) return null;
   function frame() {
     requestAnimationFrame(frame); if (!visible) return;
     const tm = clock.getElapsedTime();
-    drag += (dragT - drag) * 0.08;
+    drag += (dragT - drag) * 0.05; pit += (pitT - pit) * 0.05;
     zoomK += (zoom - zoomK) * (reduce ? 1 : 0.05);
     camX += (((focus || zoom) ? camTX : 0) - camX) * (reduce ? 1 : 0.05);
     const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 22 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 11 : 15;
-    const dist = far + (near - far) * zoomK, ang = 0.62 - zoomK * 0.16, yaw = drag * (0.5 + zoomK * 0.6) + (fine && !zoom ? Math.sin(tm * 0.15) * 0.03 : 0);
+    const dist = far + (near - far) * zoomK, ang = 0.62 - zoomK * 0.16 + pit * 0.05, yaw = drag * (0.5 + zoomK * 0.6);
     // objects sit a little above centre so the info card in the lower-left corner never covers them
     target.set(camX + (focus ? 0 : -zoomK * 1.4), (focus ? -0.4 : -1.8) + zoomK * 2.0, 0);
     camera.position.set(target.x + Math.sin(yaw) * dist * Math.cos(ang), target.y + Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
@@ -5822,7 +5826,47 @@ if (!renderer) return null;
   return {};
 }
 
-window.IO3D = { field, creta, areas };
+/* ===== Incubation success band: the homepage IO helix (same model); its nine levels turn one after another with the scroll ===== */
+function helix(host) {
+  if (!host) return null;
+  let r; try { r = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' }); } catch (e) { return null; }
+  r.setPixelRatio(Math.min(2, devicePixelRatio)); r.setClearColor(0, 0); r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05; r.outputColorSpace = THREE.SRGBColorSpace;
+  host.appendChild(r.domElement);
+  const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(30, 1, 0.1, 400), root = new THREE.Group(); scene.add(root);
+  const key = new THREE.DirectionalLight(0xfff1dc, 2.2); key.position.set(-6, 9, 12); scene.add(key, new THREE.AmbientLight(0xffe9d0, 0.5));
+  const T = 9, uAng = { value: new Float32Array(T) }, api = { p: 0, e: 0, ready: false, onReady: null };
+  function size() { const w = host.clientWidth || 1, h = host.clientHeight || 1; r.setSize(w, h, false); cam.aspect = w / h; cam.position.set(0, 0, 10.24 * 0.52 / Math.tan(THREE.MathUtils.degToRad(15))); cam.lookAt(0, 0, 0); cam.updateProjectionMatrix(); }
+  size(); new ResizeObserver(size).observe(host);
+  let vis = false; new IntersectionObserver(es => { vis = es[0].isIntersecting; }, { rootMargin: '200px' }).observe(host);
+  Promise.all([import('three/addons/loaders/GLTFLoader.js'), import('three/addons/environments/RoomEnvironment.js')]).then(([{ GLTFLoader }, { RoomEnvironment }]) => {
+    const pm = new THREE.PMREMGenerator(r); scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; pm.dispose();
+    const bin = atob(window.__HX_GLB), buf = new Uint8Array(bin.length); for (let q = 0; q < bin.length; q++) buf[q] = bin.charCodeAt(q);
+    new GLTFLoader().parse(buf.buffer, '', g => {
+      g.scene.traverse(o => { if (!o.isMesh) return; const m = o.material; m.side = THREE.DoubleSide;
+        // each level turns about the helix axis by its own angle; colour kept a soft white, as on the homepage before a level is picked
+        m.onBeforeCompile = s => { s.uniforms.uAng = uAng;
+          s.vertexShader = s.vertexShader.replace('#include <common>', '#include <common>\nattribute float _tier;\nuniform float uAng[9];')
+            .replace('#include <beginnormal_vertex>', '#include <beginnormal_vertex>\nfloat ta_ = uAng[int(_tier + 0.5)]; float tc_ = cos(ta_); float ts_ = sin(ta_);\nobjectNormal = vec3(tc_ * objectNormal.x + ts_ * objectNormal.z, objectNormal.y, -ts_ * objectNormal.x + tc_ * objectNormal.z);')
+            .replace('#include <begin_vertex>', '#include <begin_vertex>\ntransformed = vec3(tc_ * transformed.x + ts_ * transformed.z, transformed.y, -ts_ * transformed.x + tc_ * transformed.z);');
+          s.fragmentShader = s.fragmentShader.replace('#include <dithering_fragment>', '#include <dithering_fragment>\nfloat lum_ = dot(gl_FragColor.rgb, vec3(0.299, 0.587, 0.114));\ngl_FragColor.rgb = vec3(clamp(0.66 + 0.42 * lum_, 0.0, 1.0));'); };
+        m.needsUpdate = true; });
+      root.add(g.scene); api.ready = true; if (api.onReady) api.onReady();
+    }, () => {});
+  });
+  const ease = s => s * s * s * (s * (s * 6 - 15) + 10), span = 1 / (1 + 0.28);
+  let M = 0, E = 0, last = performance.now();
+  (function frame() {
+    requestAnimationFrame(frame); const now = performance.now(), dt = Math.min((now - last) / 1000, 0.05); last = now;
+    if (!vis || !api.ready) return;
+    M += (api.p - M) * (reduce ? 1 : 1 - Math.exp(-dt * 3.2)); E += (api.e - E) * (reduce ? 1 : 1 - Math.exp(-dt * 5));
+    for (let j = 0; j < T; j++) { const st = j / (T - 1) * (1 - span), b = Math.max(0, Math.min(1, (M - st) / span)), en = Math.max(0, Math.min(1, E * 1.6 - j * 0.075)); uAng.value[j] = ease(b) * Math.PI * 2 - (1 - ease(en)) * Math.PI * 0.9; }
+    const q = 1 - Math.pow(1 - E, 3); root.scale.setScalar(0.6 + 0.4 * q); root.position.y = (1 - q) * -0.9 + (reduce ? 0 : Math.sin(now / 1600) * 0.06);
+    r.render(scene, cam);
+  })();
+  return { setScroll(p) { api.p = p; }, setEnter(v) { api.e = Math.max(0, Math.min(1, v)); }, set onReady(f) { api.onReady = f; if (api.ready) f(); } };
+}
+
+window.IO3D = { field, creta, areas, helix };
 dispatchEvent(new Event('io3d'));
 
 </script>
@@ -6232,6 +6276,18 @@ dispatchEvent(new Event('io3d'));
         gsap.set(marker, { x: from + (to - from) * s.progress - 6 });
       } });
     }
+    // success band: the homepage helix, loaded only when the band comes near; its levels turn with the scroll
+    var sBand = $('.i_successSec', view), sHost = $('#succHelix', view), sHx = null, sP = 0, sE = 0;
+    function mountSucc() {
+      if (sHx || !window.IO3D || !IO3D.helix || !window.__HX_GLB) return;
+      sHx = IO3D.helix(sHost); if (!sHx) return; sHx.setScroll(sP); sHx.setEnter(sE); sHx.onReady = function () { sBand.classList.add('is3d'); };
+    }
+    function loadSucc() { if (window.__HX_GLB) { mountSucc(); return; } var sc = document.createElement('script'); sc.src = sHost.dataset.src; sc.onload = mountSucc; document.head.appendChild(sc); }
+    addEventListener('io3d', mountSucc);
+    if ('IntersectionObserver' in window) { var sIo = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { loadSucc(); sIo.disconnect(); } }, { rootMargin: '900px' }); sIo.observe(sBand); }
+    if (G) { ScrollTrigger.create({ trigger: sBand, start: 'top bottom', end: 'bottom top', onUpdate: function (s) { sP = s.progress; if (sHx) sHx.setScroll(sP); } });
+      ScrollTrigger.create({ trigger: sBand, start: 'top 85%', once: true, onEnter: function () { sE = 1; if (sHx) sHx.setEnter(1); } }); }
+    else { sE = 1; }
     // technologies: the second column drifts at its own pace while the section passes
     if (G && !mobile()) gsap.fromTo($('#techs [data-lag]', view), { y: 80 }, { y: -80, ease: 'none', scrollTrigger: { trigger: '#techs', start: 'top bottom', end: 'bottom top', scrub: true } });
     // cohort key dates: "today" and the days left come from today's date
