@@ -4518,20 +4518,19 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .x_curtain img { width: 64px; height: auto; opacity: 0; }
 .x_curtain span { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.8); font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
 
-/* ---------- next page ---------- */
-.x_next { position: relative; display: block; overflow: hidden; background: #fff; color: var(--charcoal); }
+/* ---------- next page (A4): the next page's photo on the wide side (1–7), its name and button on the narrow side (9–12) ---------- */
+.x_next { position: relative; display: block; color: var(--charcoal); background: #fff; }
 .x_next::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); }
-.x_nextIn { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: end; padding-block: clamp(64px, 8vw, 128px); transition: color .6s var(--slow); }
-.x_nextIn > span:first-child { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 10px; font-size: var(--t-small); color: var(--grey); transition: color .6s; }
-.x_nextIn strong { grid-column: 5 / span 7; font-size: var(--fs-display); font-weight: 300; line-height: 1.06; letter-spacing: -.035em; }
-.x_nextIn svg { grid-column: 12; justify-self: end; width: clamp(36px, 4vw, 64px); height: auto; transition: transform .8s var(--slow); }
-.x_nextBg { position: absolute; inset: 0; z-index: 1; clip-path: inset(100% 0 0 0); transition: clip-path 1s var(--slow); }
-.x_nextBg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.15); transition: transform 1.4s var(--slow); }
-.x_nextBg::after { content: ""; position: absolute; inset: 0; background: rgba(20,22,21,.38); }
-.x_next:hover .x_nextBg, .x_next:focus-visible .x_nextBg { clip-path: inset(0 0 0 0); }
-.x_next:hover .x_nextBg img { transform: scale(1); }
-.x_next:hover .x_nextIn, .x_next:hover .x_nextIn > span:first-child { color: #fff; }
-.x_next:hover .x_nextIn svg { transform: translateX(10px) rotate(-45deg); }
+.x_nextIn { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: end; padding-block: var(--head); }
+.x_nextPh { grid-column: 1 / span 7; aspect-ratio: 16 / 9; }
+.x_nextPh img { scale: 1.1; transition: scale 1.4s var(--slow); }
+.x_next:hover .x_nextPh img { scale: 1; }
+.x_nextText { grid-column: 9 / span 4; display: flex; flex-direction: column; align-items: flex-start; gap: var(--stack); }
+.x_nextText strong { font-size: var(--fs-display); font-weight: 300; line-height: 1.04; letter-spacing: -.035em; transition: color .5s, transform .9s var(--slow); }
+.x_nextText p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); }
+.x_nextText .s_btn { margin-top: calc(var(--blk) - var(--stack)); }
+.x_next:hover .x_nextText strong { color: var(--io-ink); transform: translateX(10px); }
+.x_next:hover .x_nextText .s_btnPrimary { background: var(--charcoal); }
 
 /* =========================== OVERVIEW · primary category page =========================== */
 .h_top { padding: clamp(40px, 5vw, 80px) 0 var(--head); }
@@ -4600,9 +4599,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .h_swap { display: block; overflow: hidden; }
 .h_ticker { overflow: hidden; border-block: 1px solid var(--line); background: #fff; }
 .h_tickTrack { display: flex; width: max-content; animation: tick 46s linear infinite; }
-.h_tickTrack span { display: inline-flex; align-items: center; gap: 18px; padding: 24px 30px; font-size: clamp(1.125rem, 1.7vw, 1.625rem); font-weight: 300; color: var(--charcoal); white-space: nowrap; }
+.h_tickTrack span { display: inline-flex; align-items: center; gap: 18px; padding: 24px 30px; font-size: clamp(1.125rem, 1.7vw, 1.625rem); font-weight: 300; color: var(--charcoal); white-space: nowrap; transition: color .4s, opacity .4s; }
+.h_ticker:hover .h_tickTrack span { opacity: .45; } .h_ticker .h_tickTrack span:hover { opacity: 1; color: var(--io-ink); }
 .h_tickTrack b { font-weight: 300; color: var(--io-ink); }
-.h_tickTrack i { width: 6px; height: 6px; border-radius: 50%; background: var(--io); }
+.h_tickTrack i { width: 6px; height: 6px; border-radius: 50%; background: var(--io); transition: transform .5s var(--slow); }
+.h_tickTrack span:hover i { transform: scale(1.8); }
 @keyframes tick { to { transform: translateX(-50%); } }
 .h_now { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); grid-template-rows: auto auto auto auto; column-gap: var(--col-gap); row-gap: 0; }
 .h_card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 14px; min-width: 0; align-content: start; }
@@ -4647,18 +4648,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .f_heroFacts dd { margin: 0; font-size: var(--fs-body); color: #fff; }
 .f_heroFacts strong { font-size: clamp(1.75rem, 2.4vw, 2.5rem); font-weight: 300; letter-spacing: -.03em; display: block; line-height: 1; }
 .f_vision { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: start; }
+.f_vision > .c_eyebrow { grid-column: 1 / -1; }
 .f_visionSide { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: var(--blk); }
-.f_visionSide .c_eyebrow { line-height: 1.3; padding-top: .7em; }
 .f_visionImg { width: min(100%, 340px); aspect-ratio: 4 / 5; }
 .f_visionMain { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: var(--head); }
 .f_tenets { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: var(--col-gap); }
 .f_tenets li { padding: 20px 0; border-top: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); }
 .f_who { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 36px; }
 .f_who li { display: flex; flex-direction: column; gap: 12px; }
-.f_who .x_img { aspect-ratio: 4 / 3; margin-bottom: 8px; }
+.f_who .x_img { aspect-ratio: 4 / 5; margin-bottom: 8px; }
 .f_who h3 { font-size: var(--t-h4); font-weight: 400; color: var(--charcoal); }
 .f_who p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); max-width: 26em; }
-.f_callout { margin-top: var(--head); display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 20px; padding: 22px 26px; background: #fff; border-left: 2px solid var(--io); font-size: var(--fs-body); }
+.f_callout { margin-top: var(--head); width: fit-content; max-width: 100%; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 20px; padding: 22px 26px; background: #fff; border-left: 2px solid var(--io); font-size: var(--fs-body); }
 .f_callout b { font-size: var(--t-label); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--io-ink); }
 .f_areas { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); }
 .f_areaSide { grid-column: 1 / span 5; display: flex; flex-direction: column; justify-content: space-between; gap: var(--head); }
@@ -4704,14 +4705,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .f_cohortStick { position: sticky; top: var(--hh); height: calc(100vh - var(--hh)); min-height: 600px; }
 .f_cohortGrid { height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; padding-block: clamp(40px, 6vh, 72px) 92px; box-sizing: border-box; }
 .f_cohortHead { align-items: center; max-width: 34em; }
-.f_cohortFoot { display: flex; flex-direction: column; align-items: center; gap: 14px; width: min(100%, 560px); }
-.f_cohortNow { display: flex; align-items: baseline; justify-content: center; gap: 16px; }
-.f_cohortNow strong { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 300; line-height: 1; letter-spacing: -.05em; color: var(--io-ink); font-variant-numeric: tabular-nums; min-width: 2.2ch; text-align: right; }
-.f_cohortStage { font-size: var(--fs-lead); font-weight: 300; color: var(--charcoal); min-width: 13em; text-align: left; }
-.f_cohortSteps { display: flex; gap: 6px; width: 100%; }
+.f_cohortFoot { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; width: min(100%, 820px); }
+.f_cohortNow { display: inline-flex; align-items: baseline; gap: 14px; will-change: transform; }
+.f_cohortNow strong { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 300; line-height: 1; letter-spacing: -.05em; color: var(--io-ink); font-variant-numeric: tabular-nums; }
+.f_cohortStage { font-size: var(--fs-lead); font-weight: 300; color: var(--charcoal); white-space: nowrap; text-align: left; }
+.f_cohortSteps { position: relative; display: flex; gap: 6px; width: 100%; }
 .f_cohortSteps i { flex: 1; height: 2px; background: var(--line); position: relative; overflow: hidden; }
 .f_cohortSteps i::after { content: ""; position: absolute; inset: 0; background: var(--io-ink); transform: scaleX(var(--f, 0)); transform-origin: left; }
-.f_cohortMeta { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; font-size: var(--t-small); color: var(--grey); }
+.f_cohortMeta { align-self: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 24px; font-size: var(--t-small); color: var(--grey); }
 .f_cohortMeta b { font-weight: 400; color: var(--charcoal); }
 .f_field { position: relative; flex: 1 1 auto; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; margin: 8px 0 16px; }
 .f_field svg { display: block; width: auto; height: 100%; max-width: 100%; max-height: 420px; overflow: visible; }
@@ -4814,27 +4815,19 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .i_bands b { display: block; font-weight: 400; color: var(--charcoal); }
 .i_marker { position: relative; height: 2px; margin: 0 0 14px; background: var(--line); }
 .i_marker i { position: absolute; left: 0; top: -5px; width: 12px; height: 12px; border-radius: 50%; background: var(--io); box-shadow: 0 0 0 6px rgba(60,167,210,.18); transform: translateX(calc(var(--m, 0) * 1px)); }
-/* technologies: hover list + spec card */
-.i_techs { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 32px; align-items: stretch; }
-.i_techList { grid-column: 1 / span 5; display: flex; flex-direction: column; justify-content: stretch; border-top: 1px solid rgba(255,255,255,.16); }
-.i_techList button { all: unset; box-sizing: border-box; cursor: pointer; position: relative; flex: 1 1 auto; align-content: center; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 14px; align-items: baseline; padding: clamp(18px, 2.4vw, 30px) 0; border-bottom: 1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.4); transition: color .4s; }
-.i_techList button::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--io); transform: scaleX(0); transform-origin: left; transition: transform .8s var(--slow); }
-.i_techList button strong { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.035em; line-height: 1; transition: transform .7s var(--slow); }
-.i_techList button small { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
-.i_techList button[aria-selected="true"] { color: #fff; }
-.i_techList button[aria-selected="true"]::after { transform: scaleX(1); }
-.i_techList button[aria-selected="true"] strong { transform: translateX(14px); }
-.i_techList button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
-.i_spec { grid-column: 7 / span 6; display: flex; border: 1px solid rgba(255,255,255,.24); overflow: hidden; }
-.i_specIn { flex: 1; padding: clamp(24px, 3vw, 44px); display: flex; flex-direction: column; gap: var(--stack); }
-.i_spec dl { margin-top: auto !important; }
-.i_spec svg.i_icon { width: 64px; height: 64px; color: var(--io); }
-.i_spec h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.035em; color: #fff; }
-.i_spec p { font-size: var(--fs-body); line-height: 1.7; color: rgba(255,255,255,.85); }
-.i_spec dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.18); }
-.i_spec dl div { padding: 16px 16px 0 0; display: flex; flex-direction: column; gap: 4px; }
-.i_spec dt { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.6); }
-.i_spec dd { margin: 0; font-size: var(--fs-body); color: #fff; }
+/* technologies: four white cards, two per row; the right column sits lower and moves at a different speed (parallax) */
+.i_techs { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: start; }
+.i_col { display: flex; flex-direction: column; gap: var(--col-gap); }
+.i_col:first-child { grid-column: 1 / span 6; } .i_col:last-child { grid-column: 7 / span 6; margin-top: clamp(80px, 12vw, 200px); }
+.i_card { display: flex; flex-direction: column; gap: 14px; min-height: clamp(360px, 30vw, 440px); padding: clamp(28px, 3vw, 44px); background: #fff; color: var(--charcoal); }
+.i_card .i_icon { width: 56px; height: 56px; color: var(--io-ink); margin-bottom: 18px; }
+.i_card .x_label { color: var(--io-ink); }
+.i_card h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; color: var(--charcoal); }
+.i_card p { font-size: var(--fs-body); line-height: 1.7; color: var(--grey-ink); }
+.i_card dl { margin: auto 0 0; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.i_card dl div { padding: 16px 16px 0 0; display: flex; flex-direction: column; gap: 4px; }
+.i_card dt { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.i_card dd { margin: 0; font-size: var(--fs-body); color: var(--charcoal); }
 .i_why { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 48px; }
 .i_why li { display: flex; flex-direction: column; gap: 12px; }
 .i_why .x_img { aspect-ratio: 4 / 3; margin-bottom: 8px; }
@@ -4844,6 +4837,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .i_time { margin-top: var(--sec); padding-top: var(--blk); border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: start; }
 .i_timeSide { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: var(--stack); }
 .i_kd { grid-column: 7 / span 6; }
+.i_timeImg { grid-column: 9 / span 4; aspect-ratio: 4 / 3; margin-top: var(--blk); }
 .i_timeSide h3 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.02em; line-height: 1.2; color: var(--charcoal); }
 .i_timeSide p { font-size: var(--fs-body); color: var(--grey-ink); line-height: 1.7; }
 .i_timeSide p b { font-weight: 400; color: var(--io-ink); }
@@ -4901,7 +4895,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a_gainMedia { --mh: min(64svh, 680px); grid-column: 1 / span 5; position: sticky; top: calc(var(--hh) + (100svh - var(--hh) - var(--mh)) / 2); height: var(--mh); }
 .a_gainMedia img { clip-path: inset(0 0 0 100%); }
 .a_gainMedia img.on { clip-path: inset(0); }
-.a_list { grid-column: 7 / span 6; border-top: 1px solid var(--line); }
+.a_list { grid-column: 7 / span 6; border-top: 1px solid var(--line); padding-bottom: 22vh; }
 .a_item { display: grid; grid-template-columns: minmax(0,1fr); gap: 10px; padding: clamp(24px, 3vw, 40px) 0; border-bottom: 1px solid var(--line); }
 .a_item h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; color: var(--grey); transition: color .6s, transform .8s var(--slow); }
 .a_item p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); max-width: 32em; }
@@ -5015,9 +5009,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a_powerCol:nth-of-type(2) { grid-column: 1 / span 5; } .a_powerCol:nth-of-type(3) { grid-column: 7 / span 6; }
 .a_powerCol img { height: 52px; width: auto; align-self: flex-start; }
 .a_quote { grid-column: 1 / -1; margin: var(--head) 0 0; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: end; padding-top: var(--blk); border-top: 1px solid var(--line); }
-.a_quote .x_img { grid-column: 9 / span 4; grid-row: 1; aspect-ratio: 4 / 5; background: #eee; }
-.a_quote .x_img img { object-position: 50% 20%; }
-.a_quote > div:last-child { grid-column: 1 / span 7; grid-row: 1; display: flex; flex-direction: column; gap: var(--stack); }
+.a_quote .x_img { grid-column: 7 / span 6; grid-row: 1; aspect-ratio: 4 / 3; background: #eee; }
+.a_quote .x_img img { object-position: 50% 22%; }
+.a_quote > div:last-child { grid-column: 1 / span 5; grid-row: 1; display: flex; flex-direction: column; gap: var(--stack); }
 .a_quote blockquote { margin: 0; font-size: var(--fs-statement); font-weight: 300; line-height: 1.18; letter-spacing: -.025em; color: var(--charcoal); }
 .a_quote cite { font-style: normal; font-size: var(--fs-body); color: var(--grey); }
 .a_quote cite b { font-weight: 400; color: var(--charcoal); }
@@ -5039,28 +5033,32 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a_faqA p { padding: 0 0 26px; max-width: 44em; font-size: var(--fs-body); line-height: 1.7; color: rgba(255,255,255,.85); }
 
 /* =========================== AGRICULTURAL CHALLENGES =========================== */
-.k_top { padding: clamp(28px, 3vw, 40px) 0 clamp(36px, 4vw, 56px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: end; }
+.k_top { padding: clamp(28px, 3vw, 40px) 0 var(--head); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: start; }
 .k_top > .k_topBar { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 16px; margin-bottom: clamp(24px, 4vw, 72px); }
 .k_top > .k_title { grid-column: 1 / span 8; }
 .k_top h1 { font-size: var(--fs-display); font-weight: 300; line-height: 1.06; letter-spacing: -.035em; color: var(--charcoal); }
 .k_top h1 span { display: block; color: var(--io-ink); }
-.k_top > .k_side { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.k_top > .k_side { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: var(--blk); align-items: flex-start; padding-top: .55em; }
+.k_top .k_side .x_lead { font-size: var(--fs-body); font-weight: 400; line-height: 1.7; }
 .k_pano { height: clamp(320px, 54vw, 760px); }
 .k_pano img { top: -14%; height: 128%; object-position: 50% 40%; }
-.k_case { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--head); align-items: start; }
-.k_case > .x_head { grid-column: 1 / -1; margin-bottom: 0; }
-.k_caseOrg { gap: 16px; align-items: flex-start; }
-.k_case .x_statement { grid-column: 1 / span 7; }
-.k_caseSide { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 14px; }
-.k_probs { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); }
-.k_prob { display: flex; flex-direction: column; gap: 12px; padding-top: 22px; border-top: 1px solid var(--io); }
-.k_prob:first-child { grid-column: 1 / span 5; } .k_prob:last-child { grid-column: 7 / span 6; }
-.k_prob .x_label { color: var(--io-ink); }
-.k_prob h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; color: var(--charcoal); }
-.k_prob p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); max-width: 32em; }
-.k_cats { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-top: var(--blk); border-top: 1px solid var(--line); }
-.k_cats span { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); font-size: var(--t-small); color: var(--grey-ink); }
-.k_cats .x_label { border: 0; padding: 0; margin-right: 8px; height: auto; }
+/* Al Miyah (E1): one message, three facts, then the two problem statements as doors to their sections further down */
+.k_case > .x_head { margin-bottom: 0; }
+.k_facts { margin-top: var(--head); display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); border-top: 1px solid var(--line); }
+.k_facts div { padding-top: 22px; display: flex; flex-direction: column; gap: 8px; }
+.k_facts strong { font-size: var(--t-num); font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--io-ink); }
+.k_facts span { font-size: var(--fs-body); line-height: 1.55; color: var(--grey-ink); max-width: 22em; }
+.k_doors { margin-top: var(--head); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 16px; }
+.k_door { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 48px; min-height: clamp(320px, 30vw, 440px); padding: clamp(24px, 3vw, 40px); color: #fff; isolation: isolate; }
+.k_door:first-child { grid-column: 1 / span 6; } .k_door:last-child { grid-column: 7 / span 6; }
+.k_door .x_img { position: absolute; inset: 0; z-index: -1; }
+.k_door .x_img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,16,15,.58), rgba(14,16,15,.04) 68%); }
+.k_door .x_img img { scale: 1.06; transition: scale 1.2s var(--slow); } .k_door:hover .x_img img { scale: 1; }
+.k_door .x_label { color: rgba(255,255,255,.9); }
+.k_door h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; }
+.k_door p { margin-top: 8px; font-size: var(--fs-body); line-height: 1.55; opacity: .92; max-width: 28em; }
+.k_door .s_btn { margin-top: var(--stack); }
+.k_door:hover .s_btnPrimary { background: var(--charcoal); }
 /* funnel: pinned; concentric circles to scale (one dot per team). Scrolling zooms from 846 registered into 21 qualified, then into the 6 finalists */
 .k_fPin { position: relative; height: 300vh; }
 .k_fStick { position: sticky; top: var(--hh); height: calc(100vh - var(--hh)); min-height: 600px; display: flex; align-items: center; }
@@ -5207,23 +5205,23 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 }
 @media (max-width: 900px) {
   .x_head > div:first-child, .x_head > :nth-child(2), .h_title, .h_aside, .h_finderQ, .h_result, .x_cboxMain, .x_cboxList, .x_cbox .s_btn, .f_heroMain, .f_heroFacts, .f_visionSide, .f_visionMain, .f_gatesSide, .f_gatesList,
-  .f_valueHead, .f_valueList, .i_intro .x_statement, .i_introBody, .i_techList, .i_spec, .i_timeSide, .i_kd, .i_success .x_statement, .i_success .s_textLink, .a_heroMain, .a_heroSide,
-  .a_csSide, .a_csStage, .a_detailNum, .a_detailHead, .a_detailText, .a_powerCol, .a_quote .x_img, .a_quote > div:last-child, .a_faqSide, .a_faqList, .k_top > .k_title, .k_top > .k_side, .k_meas > .x_img, .k_measure, .k_case .x_statement, .k_caseSide, .k_prob:first-child, .k_prob:last-child,
-  .k_funnelViz, .k_funnelText, .k_cretaViz, .k_cretaText, .e_side, .e_form, .x_nextIn > span:first-child, .x_nextIn strong { grid-column: 1 / -1; }
-  .x_nextIn svg { grid-column: 1; justify-self: start; margin-top: 16px; }
+  .f_valueHead, .f_valueList, .i_intro .x_statement, .i_introBody, .i_col:first-child, .i_col:last-child, .i_timeSide, .i_kd, .i_timeImg, .i_success .x_statement, .i_success .s_textLink, .a_heroMain, .a_heroSide,
+  .a_csSide, .a_csStage, .a_detailNum, .a_detailHead, .a_detailText, .a_powerCol, .a_quote .x_img, .a_quote > div:last-child, .a_faqSide, .a_faqList, .k_top > .k_title, .k_top > .k_side, .k_meas > .x_img, .k_measure, .k_door:first-child, .k_door:last-child,
+  .k_funnelViz, .k_funnelText, .k_cretaViz, .k_cretaText, .e_side, .e_form, .x_nextPh, .x_nextText { grid-column: 1 / -1; }
   .h_panels { flex-direction: column; height: auto; }
   .h_panel h2 { width: auto; }
   .h_panel { flex: none !important; height: 280px; }
   .f_heroIn { grid-template-rows: auto 1fr auto auto; row-gap: 28px; }
   .f_heroFacts { grid-row: 4; }
   .f_tenets { grid-template-columns: 1fr; }
-  .f_gatesSide, .i_spec, .a_csStage, .e_side, .k_meas > .x_img { position: static; }
+  .i_col:last-child { margin-top: 0; }
+  .f_gatesSide, .a_csStage, .e_side, .k_meas > .x_img { position: static; }
   .k_meas > .x_img { aspect-ratio: 4 / 3; }
   .f_gatesSide { min-height: 0; padding-block: 0; }
   .f_areaSide, .f_areaStage { grid-column: 1 / -1; } .f_areaSide { margin-bottom: 24px; gap: 32px; } .f_areaStage { min-height: 420px; }
   .f_cohortPin { height: 360vh; }
   .f_cohortStick { min-height: 560px; }
-  .f_cohortStage { min-width: 0; }
+  .f_cohortStage { white-space: normal; }
   .f_dayPin { height: auto !important; }
   .f_dayStick { position: static; height: auto; min-height: 0; overflow: visible; padding-block: var(--sec); }
   .f_track { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; padding-right: var(--gutter); transform: none !important; }
@@ -5241,7 +5239,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .i_why { grid-template-columns: 1fr; }
   .a_figs { grid-template-columns: 1fr 1fr; row-gap: 24px; }
   .a_figs li:nth-child(3) { padding-left: 0; border-left: 0; }
-  .a_gainMedia { display: none; } .a_list { grid-column: 1 / -1; } .a_item h3 { color: var(--charcoal); }
+  .a_gainMedia { display: none; } .a_list { grid-column: 1 / -1; padding-bottom: 0; } .a_item h3 { color: var(--charcoal); }
   .a_stops { grid-template-columns: repeat(3, minmax(0,1fr)); row-gap: 28px; } .a_line, .a_groupsBar { display: none; }
   .a_detailText { padding-top: 0; }
   .a_gAxis, .a_gRow { grid-template-columns: 110px minmax(0,1fr); }
@@ -5257,7 +5255,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 600px) {
   /* on phones the breadcrumb keeps only the way back; the page name is the h1 right below */
   .x_crumb i, .x_crumb span { display: none; }
-  .h_now, .f_who, .k_probs, .i_facts, .i_time { grid-template-columns: minmax(0,1fr); }
+  .h_now, .f_who, .k_facts, .i_facts, .i_time { grid-template-columns: minmax(0,1fr); }
   .k_road { grid-template-columns: 1fr 1fr; }
   .e_form { grid-template-columns: minmax(0,1fr); }
   .a_figs li + li { padding-left: 0; border-left: 0; }
@@ -5320,7 +5318,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   </section>
 
   <section class="x_sec"><div class="s_wrap f_vision">
-    <div class="f_visionSide"><span class="c_eyebrow">Farmers drive every stage</span><div class="x_img x_corners f_visionImg" data-img><img src="/innovation-venture-platforms/img/fif_listen.webp" alt="A farmer listening at a Farm Innovation Fund workshop" loading="lazy"></div></div>
+    <span class="c_eyebrow">Farmers drive every stage</span>
+    <div class="f_visionSide"><div class="x_img x_corners f_visionImg" data-img><img src="/innovation-venture-platforms/img/fif_listen.webp" alt="A farmer listening at a Farm Innovation Fund workshop" loading="lazy"></div></div>
     <div class="f_visionMain"><p class="x_statement" data-scrub>Enable farmers across the UAE to improve <b>farm performance and profitability</b> through on-farm innovation.</p>
     <ul class="f_tenets">
       <li><span>Real farm problems, with a structured path to develop, test and scale solutions.</span></li>
@@ -5403,7 +5402,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="f_value"><div class="f_valueHead x_stack"><span class="c_eyebrow">Each pilot delivers</span></div><div class="f_valueList"><div><h3>Farm value</h3><p>Performance, efficiency or profitability measured during the pilot.</p></div><div><h3>Evidence</h3><p>Comparable data and practical lessons that other farms can use.</p></div><div><h3>Adoption</h3><p>A clear next step for farmers, funders and implementation partners.</p></div></div></div>
     <div class="x_row" style="margin-top:var(--head)"><a href="/innovation&amp;venture/enquire?platform=fif" class="s_btn s_btnPrimary s_btnSm" data-platform="fif">Apply for funding <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div></section>
-  <a class="x_next" href="/innovation&amp;venture/incubation"><div class="x_nextBg"><img src="/innovation-venture-platforms/img/inc_robot.webp" alt="" loading="lazy"></div><div class="s_wrap x_nextIn"><span><span class="x_label">Next platform</span></span><strong>Incubation</strong><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M6 24h34M28 11l13 13-13 13" stroke="currentColor" stroke-width="1.5"/></svg></div></a>
+  <a class="x_next" href="/innovation&amp;venture/incubation"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/inc_robot.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Next platform · For researchers</span><strong>Incubation</strong><p>From lab research to market-ready, with Khalifa University.</p><span class="s_btn s_btnPrimary s_btnSm">Go to Incubation <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
 </div>
 
 </div></main>
@@ -5538,15 +5537,21 @@ function field(host) {
     });
     sprouts.forEach((g, j) => { const v = k === 4 ? 1 : 0.001; if (G) gsap.to(g.scale, { x: v, y: v, z: v, duration: 1.1, delay: k === 4 ? 0.15 * j : 0, ease: k === 4 ? 'back.out(1.8)' : 'power2.in' }); else g.scale.setScalar(v); });
   }
-  const clock = new THREE.Clock(), tgt = new THREE.Vector3(0, 0, 0.4), lerp = THREE.MathUtils.lerp;
+  const clock = new THREE.Clock(), tgt = new THREE.Vector3(0, 0, 0.4), lerp = THREE.MathUtils.lerp, pv = new THREE.Vector3();
+  const CORNERS = []; [-7, 7].forEach(x => [-4.7, 4.7].forEach(z => [-0.9, 1.2].forEach(y => CORNERS.push(new THREE.Vector3(x, y, z)))));
   let prog = 0, pk = 0;
   function setProgress(p) { prog = Math.max(0, Math.min(1, p)); }
   (function loop() { requestAnimationFrame(loop); if (!S.visible) return; const t = clock.getElapsedTime();
     pk += (prog - pk) * (reduce ? 1 : 0.06); const e = pk * pk * (3 - 2 * pk);
     // start high and square to the furrows, end lower and turned, closer to the front rows where the pilots are
     const yaw = lerp(-0.45, 0.4, e) + (reduce ? 0 : Math.sin(t * 0.18) * 0.02), a = lerp(0.98, 0.58, e), fit = cam.aspect < 2.2 ? 2.2 / Math.max(0.6, cam.aspect) : 1, d = lerp(21, 16.5, e) * Math.min(fit, 2.6);
-    tgt.set(lerp(0, 0.6, e), 0, lerp(0.2, 1.6, e));
-    cam.position.set(tgt.x + Math.sin(yaw) * d * Math.cos(a), Math.sin(a) * d, tgt.z + Math.cos(yaw) * d * Math.cos(a)); cam.lookAt(tgt);
+    tgt.set(lerp(0, 0.4, e), 0, lerp(0.2, 1.0, e));
+    let dd = d;
+    for (let it = 0; it < 6; it++) {
+      cam.position.set(tgt.x + Math.sin(yaw) * dd * Math.cos(a), Math.sin(a) * dd, tgt.z + Math.cos(yaw) * dd * Math.cos(a)); cam.lookAt(tgt); cam.updateMatrixWorld();
+      let m = 0; CORNERS.forEach(c => { pv.copy(c).project(cam); m = Math.max(m, Math.abs(pv.x), Math.abs(pv.y)); });
+      if (m <= 0.94) break; dd *= m / 0.9;
+    }
     sprouts.forEach((g, j) => { if (!reduce && g.scale.x > 0.5) g.rotation.z = Math.sin(t * 1.4 + j) * 0.05; });
     S.r.render(scene, cam); })();
   return { setStage, setProgress };
@@ -5554,18 +5559,17 @@ function field(host) {
 
 /* ===== Agricultural Challenges, CRETA: cutaway — hot air in, through the ground, cool air up into the greenhouse ===== */
 function creta(host) {
-  const S = stageGL(host, { fov: 30, floorY: -3.2 }); if (!S) return null;
+  // no dragging: the camera leans a little towards the pointer instead
+  const S = stageGL(host, { fov: 30, floorY: -3.2, drag: false }); if (!S) return null;
   const { scene, cam } = S;
-  const soil = rbox(13, 3, 5.4, 0.18, mat(0xe7dccd)); soil.position.set(0, -1.5, -2.1); scene.add(soil);
+  // one wide slab of ground, cut open along the front: no gaps anywhere around the scene
+  const soil = rbox(90, 3, 40, 0.18, mat(0xe7dccd)); soil.position.set(0, -1.5, 0.6 - 20); scene.add(soil);
   // desert surface: the homepage contour-line sand on top of the block and stretching away behind it
-  const sandT = contourTex('#e6dccd', 'rgba(140,118,92,.24)', 41); sandT.repeat.set(1.6, 0.66);
-  const top = new THREE.Mesh(new THREE.PlaneGeometry(12.7, 5.1), new THREE.MeshStandardMaterial({ map: sandT, roughness: 1 })); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.006, -2.1); top.receiveShadow = true; scene.add(top);
-  const farT = sandT.clone(); farT.needsUpdate = true; farT.repeat.set(6, 3);
+  const sandT = contourTex('#e6dccd', 'rgba(140,118,92,.24)', 41); sandT.repeat.set(9, 4);
+  const top = new THREE.Mesh(new THREE.PlaneGeometry(89.6, 39.6), new THREE.MeshStandardMaterial({ map: sandT, roughness: 1 })); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.006, 0.6 - 20); top.receiveShadow = true; scene.add(top);
   // desert all round the cutaway, as on the homepage: sand behind and to both sides, fading into the sand-coloured background
-  const sandM = new THREE.MeshStandardMaterial({ map: farT, roughness: 1 }), sandAt = (w, d, x, z) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), sandM); m.rotation.x = -Math.PI / 2; m.position.set(x, -0.02, z); m.receiveShadow = true; scene.add(m); };
-  sandAt(140, 60, 0, -34.8); sandAt(60, 30, -36.5, 10); sandAt(60, 30, 36.5, 10);
   scene.fog = new THREE.Fog(0xe6dccd, 34, 90);
-  const deep = rbox(13.02, 1.1, 5.42, 0.12, mat(0xddcfbd)); deep.position.set(0, -2.45, -2.1); scene.add(deep);
+  const deep = rbox(90.02, 1.1, 40.02, 0.12, mat(0xddcfbd)); deep.position.set(0, -2.45, 0.6 - 20); scene.add(deep);
   const path = new THREE.CurvePath(), P = (x, y) => new THREE.Vector3(x, y, 0.62);
   [[P(-4.6, 2.0), P(-4.6, -1.8)], [P(-4.6, -1.8), P(1.6, -1.8)], [P(1.6, -1.8), P(1.6, 0.3)]].forEach(([a, b]) => path.add(new THREE.LineCurve3(a, b)));
   const tubeG = new THREE.TubeGeometry(path, 160, 0.26, 18, false), uv = tubeG.attributes.uv, col = new Float32Array(uv.count * 3), cA = new THREE.Color(0xf4b63f), cM = new THREE.Color(0xf6e3b4), cB = new THREE.Color(0x8fd3f0), cc = new THREE.Color();
@@ -5593,8 +5597,10 @@ function creta(host) {
   const L = [['Hot desert air in', new THREE.Vector3(-4.6, 2.6, 0.62), 'hot'], ['Underground channel: stable soil temperature pre-conditions the air', new THREE.Vector3(-1.5, -1.6, 0.9), ''], ['Dual-shell “Mother Greenhouse”', new THREE.Vector3(1.6, 4.05, 0.6), ''], ['Growing space', new THREE.Vector3(1.6, 1.6, 0.6), 'cool'], ['No water spent on cooling', new THREE.Vector3(5.2, 0.05, 0.4), '']];
   const lbls = L.map(([t, , tone], i) => { const d = document.createElement('div'); d.className = 'crLbl'; if (tone) d.dataset.tone = tone; if (i === 1 || i === 4) d.dataset.m = 'long'; /* long labels hide on phones */ d.innerHTML = '<i></i><span>' + t + '</span>'; host.appendChild(d); return d; });
   const v = new THREE.Vector3(), tgt = new THREE.Vector3(0.4, 0.4, -0.6), clock = new THREE.Clock();
+  S.pit = 0; S.pitT = 0;
+  if (fine) { host.addEventListener('pointermove', e => { const r = host.getBoundingClientRect(); S.yawT = ((e.clientX - r.left) / r.width - 0.5) * 2; S.pitT = ((e.clientY - r.top) / r.height - 0.5) * 2; }); host.addEventListener('pointerleave', () => { S.yawT = 0; S.pitT = 0; }); }
   (function loop() { requestAnimationFrame(loop); if (!S.visible) return; const t = clock.getElapsedTime();
-    S.yaw += (S.yawT - S.yaw) * 0.08; const yaw = -0.42 + S.yaw * 0.8 + (reduce ? 0 : Math.sin(t * 0.2) * 0.05), d = cam.aspect < 1.3 ? 25 / Math.min(1, cam.aspect) : 24, a = 0.32;
+    S.yaw += (S.yawT - S.yaw) * 0.05; S.pit += (S.pitT - S.pit) * 0.05; const yaw = -0.42 + S.yaw * 0.16 + (reduce ? 0 : Math.sin(t * 0.2) * 0.03), d = cam.aspect < 1.3 ? 25 / Math.min(1, cam.aspect) : 24, a = 0.32 + S.pit * 0.06;
     cam.position.set(tgt.x + Math.sin(yaw) * d * Math.cos(a), tgt.y + Math.sin(a) * d, tgt.z + Math.cos(yaw) * d * Math.cos(a)); cam.lookAt(tgt);
     sunG.rotation.z = reduce ? 0 : t * 0.2; heatU.t.value = reduce ? 0 : t;
     parts.forEach(m => { const u = reduce ? m.userData.o : (m.userData.o + t * 0.07) % 1;
@@ -6072,8 +6078,12 @@ dispatchEvent(new Event('io3d'));
     var tick = $('.h_ticker', view), tickAnim = $('.h_tickTrack', view).getAnimations ? $('.h_tickTrack', view).getAnimations()[0] : null, rate = { v: 1 };
     if (tickAnim) {
       var setRate = function (v, d) { gsap.to(rate, { v: v, duration: d, ease: 'power2.out', overwrite: true, onUpdate: function () { tickAnim.playbackRate = rate.v; } }); };
-      tick.addEventListener('mouseenter', function () { setRate(0, 1.4); });
-      tick.addEventListener('mouseleave', function () { setRate(1, 1.2); });
+      // the band runs with the scroll: scrolling up turns it back, scrolling down sends it forward; hover eases it to a stop
+      var tDir = 1, tHov = false;
+      tick.addEventListener('mouseenter', function () { tHov = true; setRate(0, 1.4); });
+      tick.addEventListener('mouseleave', function () { tHov = false; setRate(tDir, 1.2); });
+      var lastY = scrollY;
+      addEventListener('scroll', function () { var d = scrollY > lastY ? 1 : scrollY < lastY ? -1 : 0; lastY = scrollY; if (!d || d === tDir) return; tDir = d; if (!tHov) setRate(tDir, 0.9); }, { passive: true });
     }
     // the card follows its content height smoothly instead of jumping when the text swaps
     var box = $('.h_resultBox', view), boxIn = $('.h_resultIn', view), boxH = 0;
@@ -6129,7 +6139,8 @@ dispatchEvent(new Event('io3d'));
       gImgs.forEach(function (im) { im.style.transition = 'none'; gsap.set(im, { clipPath: im.classList.contains('on') ? 'inset(0% 0% 0% 0%)' : 'inset(0% 0% 0% 100%)' }); });
       // the fill's tip is the middle line of the screen: it runs from the first dot to the last
       measure();
-      gsap.to(fill, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '#gates', start: function () { measure(); return 'top+=' + dotY[0] + ' 50%'; }, end: function () { return 'top+=' + dotY[dotY.length - 1] + ' 50%'; }, scrub: true, invalidateOnRefresh: true, onRefresh: function (s) { light(s.progress); }, onUpdate: function (s) { light(s.progress); } } });
+      // starts once the section has fully arrived under the header (a little past it), ends when the last gate reaches the middle
+      gsap.to(fill, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '#fif-process', start: function () { measure(); return 'top ' + Math.round(78 - innerHeight * 0.05) + 'px'; }, endTrigger: '#gates', end: function () { return 'top+=' + dotY[dotY.length - 1] + ' 50%'; }, scrub: true, invalidateOnRefresh: true, onRefresh: function (s) { light(s.progress); }, onUpdate: function (s) { light(s.progress); } } });
     } else gates.forEach(function (g) { g.setAttribute('data-on', ''); });
     // cohort: a field of 130 seeds in 10 furrows, drawn in perspective; seeds drop out stage by stage and the last 5 sprout
     var field = $('#field'), STAGES = [[130, 'Applications submitted'], [68, 'Advanced to Phase 2'], [39, 'Valid Phase 2 proposals'], [10, 'Finalists'], [5, 'Pilots to fund']], stage = -1;
@@ -6152,12 +6163,14 @@ dispatchEvent(new Event('io3d'));
       svg += '<g class="f_sprout" style="--d:' + (j * 0.12) + 's"><path pathLength="1" d="' + d + '"/></g>'; });
     field.innerHTML = '<svg viewBox="0 0 600 380" aria-hidden="true">' + svg + '</svg><div class="x_gl" id="fieldGl" aria-hidden="true"></div>';
     seeds = $$('.f_seed', field);
-    var num = $('#cohortNum'), lab = $('#cohortStage'), steps = $$('#cohortSteps i'), cnt = { v: 130 };
+    var num = $('#cohortNum'), lab = $('#cohortStage'), steps = $$('#cohortSteps i'), cnt = { v: 130 }, nowEl = $('.f_cohortNow', view), nowT = 0;
     function setStage(k) {
       if (k === stage) return; stage = k; field.dataset.stage = k; if (f3) f3.setStage(k);
       seeds.forEach(function (el, i) { rank[i] < STAGES[k][0] ? el.setAttribute('data-on', '') : el.removeAttribute('data-on'); });
       if (G) gsap.to(cnt, { v: STAGES[k][0], duration: 0.8, ease: 'power3.out', onUpdate: function () { num.textContent = Math.round(cnt.v); } }); else num.textContent = STAGES[k][0];
       swap(lab, STAGES[k][1]);
+      // the count moves to sit over its step: centred on it, kept inside the bar at both ends
+      clearTimeout(nowT); nowT = setTimeout(function () { var seg = steps[k], bar = seg.parentNode, w = nowEl.offsetWidth, x = Math.max(0, Math.min(bar.offsetWidth - w, seg.offsetLeft + seg.offsetWidth / 2 - w / 2)); if (G) gsap.to(nowEl, { x: x, duration: 0.9, ease: 'power3.out' }); else nowEl.style.transform = 'translateX(' + x + 'px)'; }, 380);
     }
     // 3D field (clay, like the homepage) replaces the SVG when WebGL is there
     var f3 = null;
@@ -6191,19 +6204,8 @@ dispatchEvent(new Event('io3d'));
         gsap.set(marker, { x: from + (to - from) * s.progress - 6 });
       } });
     }
-    // technologies: hover picks, the card swaps only its text and resizes to it
-    var T = [
-      { n: 'TouchRIPE', t: 'A wearable device that assesses fruit firmness without damaging it, using vision-based tactile sensors. It answers market demand for objective ripeness evaluation and better shelf-life forecasting.', k1: 'Aim', v1: 'Less food waste, higher marketable yields', k2: 'Market', v2: 'Fruit quality and post-harvest management', icon: '<circle cx="36" cy="38" r="14"/><path d="M36 24c0-6 3-9 8-10"/><path d="M10 28c4-2 8-2 12 0l5 4M8 36h13"/>' },
-      { n: 'PollenMatic', t: 'A compact, versatile device for efficient pollination in greenhouse tomato cultivation. The project refines the prototype and validates its performance in real-world conditions.', k1: 'Target', v1: 'TRL 6 / CRL 5', k2: 'Aim', v2: 'Cost-effective, user-friendly artificial pollination', icon: '<circle cx="32" cy="27" r="6"/><path d="M32 15V9M32 39v15M20 27h-6M50 27h-6M23.5 18.5l-4-4M44.5 18.5l4-4M23.5 35.5l-4 4M44.5 35.5l4 4"/><path d="M32 54c-8 0-12-4-12-10"/>' },
-      { n: 'PlantAI', t: 'An AI-powered mobile app that detects leaf diseases across key UAE crops: tomatoes, cucumbers, capsicum and berries. The project validates accuracy across diverse field environments.', k1: 'Aim', v1: 'Earlier detection, timely intervention', k2: 'Next', v2: 'Readiness for commercial deployment', icon: '<rect x="18" y="6" width="28" height="52" rx="4"/><path d="M32 44c-8-4-8-15 0-22 8 7 8 18 0 22zM32 44V28"/>' },
-      { n: 'AerialYield', t: 'An autonomous system for yield estimation and fruit ripeness analysis in blueberry cultivation, advanced through real-world data collection, field trials and end-user validation.', k1: 'Aim', v1: 'Better yield forecasts, less labour', k2: 'Crop', v2: 'Blueberries', icon: '<rect x="24" y="22" width="16" height="10" rx="2"/><path d="M24 24H10M40 24h14M10 20v8M54 20v8M32 32v6"/><circle cx="26" cy="50" r="4"/><circle cx="36" cy="52" r="4"/><circle cx="32" cy="44" r="3"/>' }
-    ];
-    var icon = $('#techIcon'), spec = $('#techSpec'), specIn = $('.i_specIn', spec);
-    function drawIcon(k) { icon.innerHTML = T[k].icon; if (!G) return; $$('path, circle, rect', icon).forEach(function (p) { var L = p.getTotalLength(); gsap.fromTo(p, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' }); }); }
-    drawIcon(0);
-    tabsHover($('#techList'), 't', function (k) {
-      swap($('#techName'), T[k].n); swap($('#techText'), T[k].t); swap($('#techK1'), T[k].k1); swap($('#techV1'), T[k].v1); swap($('#techK2'), T[k].k2); swap($('#techV2'), T[k].v2); drawIcon(k);
-    });
+    // technologies: the second column drifts at its own pace while the section passes
+    if (G && !mobile()) gsap.fromTo($('#techs [data-lag]', view), { y: 80 }, { y: -80, ease: 'none', scrollTrigger: { trigger: '#techs', start: 'top bottom', end: 'bottom top', scrub: true } });
     // cohort key dates: "today" and the days left come from today's date
     var kEnd = Date.UTC(2026, 10, 30), kNow = Date.now(), kLeft = Math.max(0, Math.ceil((kEnd - kNow) / 864e5)), kd = $('#kd', view), dd = new Date(kNow);
     $('#kdToday', view).innerHTML = 'Today, ' + dd.getUTCDate() + ' ' + ['January','February','March','April','May','June','July','August','September','October','November','December'][dd.getUTCMonth()] + '<span class="tag">Now</span>';
@@ -6235,7 +6237,7 @@ dispatchEvent(new Event('io3d'));
     }
     if (G) {
       aImgs.forEach(function (im, i) { im.style.transition = 'none'; gsap.set(im, { clipPath: i === 0 ? 'inset(0% 0% 0% 0%)' : 'inset(0% 0% 0% 100%)' }); });
-      items.forEach(function (it, i) { ScrollTrigger.create({ trigger: it, start: 'top 50%', end: 'bottom 50%', onToggle: function (s) { if (s.isActive) accPick(i); } }); });
+      items.forEach(function (it, i) { ScrollTrigger.create({ trigger: it, start: 'top 62%', end: 'bottom 62%', onToggle: function (s) { if (s.isActive) accPick(i); } }); });
     }
     // challenge statements: hover picks, photo wipes, text swaps
     var CS = ['close the yield, cost, and resource-efficiency gaps in UAE open-field agriculture, competing with imports and unlocking new economically viable crop categories?',
