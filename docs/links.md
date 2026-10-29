@@ -22,6 +22,13 @@ Design routes live under random folder names so they cannot be guessed. There is
   - https://silal-io.vercel.app/innovation&venture/accelerator
   - https://silal-io.vercel.app/innovation&venture/agricultural-challenges (cross-link to Program Management as a Service, not built yet)
   - https://silal-io.vercel.app/innovation&venture/enquire (form preview, `?platform=fif|inc|acc|chal` preselects)
+- Innovation & Venture Platforms **v2** (2026-10-29, review rounds 3–10; static files `public/innovation-venture-platforms-v2/*.html`, same source and build, shares `img/` and `brand/` with the v1 folder; the v1 links above stay as they were):
+  - https://silal-io.vercel.app/innovation&venture-v2
+  - https://silal-io.vercel.app/innovation&venture-v2/farm-innovation-fund
+  - https://silal-io.vercel.app/innovation&venture-v2/incubation
+  - https://silal-io.vercel.app/innovation&venture-v2/accelerator
+  - https://silal-io.vercel.app/innovation&venture-v2/agricultural-challenges
+  - https://silal-io.vercel.app/innovation&venture-v2/enquire
 - `/Team/V1`: not built yet, not published.
 
 Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below keep working.

@@ -4,7 +4,7 @@ Primary category page + 4 sub pages + the enquiry form, from one source (page.ht
 Shell (CSS, header, footer) is taken from the latest homepage, public/new-homepage-v2/index.html,
 so the navbar and footer stay identical to it. Writes:
   out/index.html                                  artifact: one file, pages switched by hash (#incubation …)
-  ../../public/innovation-venture-platforms/*.html site: one real HTML file per page (rewrites in next.config.ts)
+  ../../public/innovation-venture-platforms-v2/*.html site: one real HTML file per page (rewrites in next.config.ts)
 Run: python3 build.py
 """
 import re, pathlib
@@ -12,17 +12,19 @@ import re, pathlib
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 HOME = (ROOT / "public/new-homepage-v2/index.html").read_text(encoding="utf8")
-SITE_DIR = ROOT / "public/innovation-venture-platforms"
+# v2 (2026-10-29): the reworked pages go live on their own URLs, /innovation&venture-v2/...; the 2026-10-28 version stays on
+# /innovation&venture/... (its HTML in public/innovation-venture-platforms/ is no longer rebuilt). Both share img/ and brand/ there.
+SITE_DIR = ROOT / "public/innovation-venture-platforms-v2"
 
 # route -> (site URL, site file)
-# live URLs (2026-10-28): /innovation&venture and /innovation&venture/<sub page>; "&" is written as &amp; inside href
+# live URLs (v2, 2026-10-29): /innovation&venture-v2 and /innovation&venture-v2/<sub page>; "&" is written as &amp; inside href
 PAGES = {
-    "overview": ("/innovation&venture", "index.html"),
-    "farm-innovation-fund": ("/innovation&venture/farm-innovation-fund", "farm-innovation-fund.html"),
-    "incubation": ("/innovation&venture/incubation", "incubation.html"),
-    "accelerator": ("/innovation&venture/accelerator", "accelerator.html"),
-    "agricultural-challenges": ("/innovation&venture/agricultural-challenges", "agricultural-challenges.html"),
-    "enquire": ("/innovation&venture/enquire", "enquire.html"),
+    "overview": ("/innovation&venture-v2", "index.html"),
+    "farm-innovation-fund": ("/innovation&venture-v2/farm-innovation-fund", "farm-innovation-fund.html"),
+    "incubation": ("/innovation&venture-v2/incubation", "incubation.html"),
+    "accelerator": ("/innovation&venture-v2/accelerator", "accelerator.html"),
+    "agricultural-challenges": ("/innovation&venture-v2/agricultural-challenges", "agricultural-challenges.html"),
+    "enquire": ("/innovation&venture-v2/enquire", "enquire.html"),
 }
 
 css = re.search(r"<style>(.*?)</style>", HOME, re.S).group(1)
