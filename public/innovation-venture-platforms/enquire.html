@@ -4452,8 +4452,8 @@ b[data-reveal] { font-weight: inherit; }
    grid     12 columns; columns start on lines 1, 7 or 9: wide 1–8, left 1–5, half 1–6, right 7–12, narrow 9–12 */
 .c_page { --hdr: 114px; --hh: 78px; background: #fff;
   --sec: clamp(88px, 10vw, 160px); --head: clamp(48px, 5vw, 80px); --stack: 20px; --blk: 32px;
-  --t-h3: clamp(1.5rem, 2.2vw, 2.25rem); --t-h4: 1.25rem; --t-num: clamp(2.25rem, 3.2vw, 3.5rem); --t-small: .875rem; --t-label: .75rem;
-  --ink-bg: #595453; --io-on-dark: #8fd3f0; }
+  --t-h3: clamp(1.25rem, 1.6vw, 1.625rem); --t-h4: 1.25rem; --t-num: clamp(2.25rem, 3.2vw, 3.5rem); --t-small: .875rem; --t-label: .75rem;
+  --ink-bg: #1a6f96; --io-on-dark: #bfe6f6; }
 .s_root [hidden] { display: none !important; }
 html:not(.rv) [data-reveal]:not([data-rv]) { visibility: visible; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: #fff; }
@@ -4495,7 +4495,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .x_index b { font-weight: 500; color: var(--io-ink); }
 .x_onPhoto .x_crumb, .x_onPhoto .x_index { color: rgba(255,255,255,.75); }
 .x_onPhoto .x_index b { color: #fff; }
-a.s_btn, button.s_btn { will-change: transform; }
+/* two button types only (homepage): the blue pill, and the round blue arrow */
+.x_round { width: 42px; padding: 0; justify-content: center; flex: none; }
+.x_onPhoto .s_textLink { color: #fff; }
 
 /* ---------- category dock: the category's pages, floating, only after the hero (replaces the bar under the header) ---------- */
 .x_dock { position: fixed; z-index: 45; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); opacity: 0; visibility: hidden; max-width: calc(100vw - 32px); filter: drop-shadow(0 10px 28px rgba(38,36,35,.16)); }
@@ -4582,14 +4584,14 @@ a.s_btn, button.s_btn { will-change: transform; }
 .h_opt[aria-checked="true"] { color: var(--charcoal); padding-left: 12px; }
 .h_opt[aria-checked="true"]::after { transform: scaleX(1); }
 /* idle: the chosen option's line fills as a timer, then the next option is chosen */
-.h_opts[data-auto] .h_opt[aria-checked="true"]::after { animation: kbar var(--autoT, 5s) linear forwards; transform: scaleX(0); }
+.h_opts[data-auto] .h_opt[aria-checked="true"]::after, [role="tablist"][data-auto] [role="tab"][aria-selected="true"]::after { animation: kbar var(--autoT, 5s) linear forwards; transform: scaleX(0); }
 .h_opt[aria-checked="true"] svg { opacity: 1; transform: none; }
 .h_opt:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
 .h_result { grid-column: 7 / span 6; background: var(--light); display: flex; flex-direction: column; }
 .h_result .x_img { aspect-ratio: 16 / 10; }
 .h_resultImgs img { transition: clip-path 1s var(--slow); }
 .h_resultIn { padding: clamp(22px, 2.6vw, 36px); display: flex; flex-direction: column; gap: 16px; }
-.h_result h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.02em; color: var(--charcoal); }
+.h_result h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; color: var(--charcoal); }
 .h_result dl { display: grid; grid-template-columns: 90px minmax(0,1fr); gap: 10px 16px; margin: 0; font-size: var(--t-small); }
 .h_result dt { color: var(--grey); } .h_result dd { margin: 0; color: var(--charcoal); }
 .h_resultBox { overflow: hidden; }
@@ -4624,7 +4626,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 .x_cboxList a { transition: padding .5s var(--slow); } .x_cboxList a:hover { padding-left: 10px; }
 .x_cboxList span { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.65); }
 .x_cbox .s_btn { grid-column: 1 / span 6; justify-self: start; background: #fff; color: var(--io-ink) !important; position: relative; }
-.x_cbox .s_btn:hover { background: var(--light); }
+.x_cbox .s_btn:hover { background: var(--charcoal); color: #fff !important; }
 .x_cboxMark { position: absolute; right: -40px; bottom: -70px; height: 340px; opacity: .1; pointer-events: none; }
 
 /* =========================== FARM INNOVATION FUND =========================== */
@@ -4860,9 +4862,9 @@ a.s_btn, button.s_btn { will-change: transform; }
 .i_kd li[data-s="now"] p { color: var(--grey-ink); }
 .i_kd .tag { display: inline-flex; align-items: center; height: 24px; margin-left: 10px; padding: 0 10px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: var(--t-label); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey-ink); vertical-align: middle; }
 .i_kd li[data-s="now"] .tag { border-color: var(--io-ink); color: var(--io-ink); }
-.i_successSec { background: #595453; }
-.i_successSec .x_statement { color: #fff; } .i_successSec .x_statement b { color: #8fd3f0; }
-.i_successSec .s_textLink, .i_successSec .s_textLink:hover { color: #fff; border-color: rgba(255,255,255,.5); }
+.i_successSec { background: var(--io); }
+.i_successSec .x_statement { color: #fff; } .i_successSec .x_statement b { color: #0f3f57; }
+.i_successSec .s_textLink, .i_successSec .s_textLink:hover { color: #fff; border-color: rgba(255,255,255,.6); }
 .i_success { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: end; }
 .i_success .x_statement { grid-column: 1 / span 8; }
 .i_success .s_textLink { grid-column: 9 / span 4; justify-self: start; }
@@ -4941,12 +4943,6 @@ a.s_btn, button.s_btn { will-change: transform; }
 .n1Card h3 { margin-top: 8px; font-size: var(--t-h4); font-weight: 300; letter-spacing: -.02em; line-height: 1.2; color: var(--charcoal); }
 .n1Card p { margin-top: 8px; font-size: var(--fs-body); line-height: 1.55; color: var(--grey-ink); }
 .n1Ctl { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
-.n1Ctl button { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #d6d7d8; font-size: var(--t-label); font-weight: 500; color: var(--charcoal); transition: background .3s, color .3s, border-color .3s; }
-.n1Ctl button:hover { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
-.n1Ctl button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
-.n1Ctl .n1Arrow { width: 36px; padding: 0; }
-.n1Ctl .n1Main { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
-.n1Ctl .n1Main:hover { background: var(--charcoal); border-color: var(--charcoal); }
 .n1Ctl em { margin-left: auto; font-style: normal; font-size: var(--t-label); color: var(--grey); font-variant-numeric: tabular-nums; }
 .n1Groups { position: absolute; z-index: 4; top: 16px; left: 16px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none; }
 .n1Groups span { display: inline-flex; align-items: center; height: 28px; padding: 0 11px; border-radius: 999px; background: rgba(255,255,255,.85); font-size: var(--t-label); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); transition: color .4s, background .4s; }
@@ -4983,7 +4979,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 .a_detailNum { grid-column: 1 / span 2; font-size: clamp(3rem, 4.6vw, 4.5rem); font-weight: 300; line-height: 1; letter-spacing: -.06em; color: var(--io-ink); font-variant-numeric: tabular-nums; }
 .a_detailHead { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 14px; }
 .a_detailHead small { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); }
-.a_detailHead h3 { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; line-height: 1.08; letter-spacing: -.03em; color: var(--charcoal); }
+.a_detailHead h3 { font-size: var(--t-h3); font-weight: 300; line-height: 1.08; letter-spacing: -.03em; color: var(--charcoal); }
 .a_detailText { grid-column: 9 / span 4; padding-top: 30px; font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); }
 /* process: pinned */
 /* process: four stages as bars over months; scrolling walks a playhead along them */
@@ -5114,7 +5110,7 @@ a.s_btn, button.s_btn { will-change: transform; }
 .x_gl canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .f_field.is3d svg, .k_cretaViz.is3d svg { display: none; }
 .f_field.is3d .x_gl { display: block; position: absolute; inset: 0; cursor: default; }
-.k_cretaViz.is3d .x_gl { display: block; height: clamp(380px, 40vw, 580px); background: linear-gradient(90deg, rgba(246,196,92,0) 0%, rgba(246,196,92,.28) 30%, rgba(252,236,200,.25) 52%, rgba(191,227,242,.55) 78%, rgba(143,211,240,.75) 100%); }
+.k_cretaViz.is3d .x_gl { display: block; height: clamp(380px, 40vw, 580px); background: #e6dccd; }
 .crLbl { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
 .crLbl span { position: absolute; transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; font-size: var(--t-label); color: var(--charcoal); background: #fff; border-radius: 999px; padding: 5px 11px; box-shadow: 0 1px 4px rgba(38,36,35,.06); }
 .crLbl[data-tone="hot"] span { color: #b5561a; } .crLbl[data-tone="cool"] span { color: var(--io-ink); }
@@ -5161,9 +5157,6 @@ a.s_btn, button.s_btn { will-change: transform; }
 .k_slideUI { position: absolute; z-index: 3; left: clamp(24px, 3vw, 48px); right: clamp(24px, 3vw, 48px); bottom: clamp(24px, 3vw, 44px); display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 24px; row-gap: 20px; align-items: end; }
 .k_capt { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.15; color: #fff; max-width: 22em; }
 .k_nav { display: flex; gap: 8px; }
-.k_nav button { all: unset; cursor: pointer; width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(255,255,255,.55); display: grid; place-items: center; color: #fff; transition: background .4s, color .4s, border-color .4s; }
-.k_nav button:hover { background: #fff; color: var(--charcoal); border-color: #fff; }
-.k_nav button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
 .k_dots { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .k_dots i { height: 2px; background: rgba(255,255,255,.35); position: relative; overflow: hidden; }
 .k_dots i::after { content: ""; position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
@@ -5258,7 +5251,7 @@ a.s_btn, button.s_btn { will-change: transform; }
   .a_quote .x_img { max-width: 220px; }
   .a_powerCol:nth-of-type(2), .a_powerCol:nth-of-type(3) { grid-column: 1 / -1; }
   .a_quote .x_img, .a_quote > div:last-child { grid-row: auto; }
-  .k_slides { aspect-ratio: 4 / 5; } .k_capt { font-size: var(--t-h4); } .k_nav button { width: 44px; height: 44px; }
+  .k_slides { aspect-ratio: 4 / 5; } .k_capt { font-size: var(--t-h4); }
   .k_fPin { height: auto !important; } .k_fStick { position: static; height: auto; min-height: 0; padding-block: var(--sec) var(--head); }
 }
 @media (max-width: 600px) {
@@ -5337,7 +5330,7 @@ a.s_btn, button.s_btn { will-change: transform; }
       <label class="e_check e_full"><input type="checkbox" id="f-news" name="news"><span>Send me news about programmes and calls for innovators.</span></label>
       <label class="e_check e_full"><input type="checkbox" id="f-consent" name="consent" required><span>I agree that Innovation Oasis may store and process my details to answer this enquiry. *</span></label>
       <span class="e_err e_full" id="e-consent"></span>
-      <div class="e_foot"><small>Preview form: nothing is sent yet.</small><button type="submit" class="s_btn s_btnPrimary">Send enquiry <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <div class="e_foot"><small>Preview form: nothing is sent yet.</small><button type="submit" class="s_btn s_btnPrimary s_btnSm">Send enquiry <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
       <div class="e_done" id="enqDone" hidden><span class="c_eyebrow">Received</span><h2 id="doneTitle">Thank you.</h2><p id="doneText">The Innovation Oasis team will reply by email.</p><a href="/innovation&amp;venture" class="s_textLink" style="align-self:flex-start">Back to Innovation &amp; Venture Platforms</a></div>
     </form>
   </section>
@@ -5498,13 +5491,17 @@ function creta(host) {
   const sandT = contourTex('#e6dccd', 'rgba(140,118,92,.24)', 41); sandT.repeat.set(1.6, 0.66);
   const top = new THREE.Mesh(new THREE.PlaneGeometry(12.7, 5.1), new THREE.MeshStandardMaterial({ map: sandT, roughness: 1 })); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.006, -2.1); top.receiveShadow = true; scene.add(top);
   const farT = sandT.clone(); farT.needsUpdate = true; farT.repeat.set(6, 3);
-  // the far sand fades out into the page (alpha falls off with distance) instead of ending at a hard edge
-  const fadeC = document.createElement('canvas'); fadeC.width = 4; fadeC.height = 256; const fg = fadeC.getContext('2d'), gr = fg.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, '#000'); gr.addColorStop(0.55, '#000'); gr.addColorStop(1, '#fff'); fg.fillStyle = gr; fg.fillRect(0, 0, 4, 256);
-  const far = new THREE.Mesh(new THREE.PlaneGeometry(90, 40), new THREE.MeshStandardMaterial({ map: farT, alphaMap: new THREE.CanvasTexture(fadeC), roughness: 1, transparent: true, depthWrite: false })); far.rotation.x = -Math.PI / 2; far.position.set(0, -0.02, -24.8); far.receiveShadow = true; scene.add(far);
+  // desert all round the cutaway, as on the homepage: sand behind and to both sides, fading into the sand-coloured background
+  const sandM = new THREE.MeshStandardMaterial({ map: farT, roughness: 1 }), sandAt = (w, d, x, z) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), sandM); m.rotation.x = -Math.PI / 2; m.position.set(x, -0.02, z); m.receiveShadow = true; scene.add(m); };
+  sandAt(140, 60, 0, -34.8); sandAt(60, 30, -36.5, 10); sandAt(60, 30, 36.5, 10);
+  scene.fog = new THREE.Fog(0xe6dccd, 34, 90);
   const deep = rbox(13.02, 1.1, 5.42, 0.12, mat(0xddcfbd)); deep.position.set(0, -2.45, -2.1); scene.add(deep);
   const path = new THREE.CurvePath(), P = (x, y) => new THREE.Vector3(x, y, 0.62);
   [[P(-4.6, 2.0), P(-4.6, -1.8)], [P(-4.6, -1.8), P(1.6, -1.8)], [P(1.6, -1.8), P(1.6, 0.3)]].forEach(([a, b]) => path.add(new THREE.LineCurve3(a, b)));
-  scene.add(mesh(new THREE.TubeGeometry(path, 160, 0.26, 18, false), mat(0xf4efe8)));
+  const tubeG = new THREE.TubeGeometry(path, 160, 0.26, 18, false), uv = tubeG.attributes.uv, col = new Float32Array(uv.count * 3), cA = new THREE.Color(0xf4b63f), cM = new THREE.Color(0xf6e3b4), cB = new THREE.Color(0x8fd3f0), cc = new THREE.Color();
+  for (let k = 0; k < uv.count; k++) { const u = uv.getX(k); u < 0.5 ? cc.copy(cA).lerp(cM, u / 0.5) : cc.copy(cM).lerp(cB, (u - 0.5) / 0.5); col.set([cc.r, cc.g, cc.b], k * 3); }
+  tubeG.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  scene.add(mesh(tubeG, mat(0xffffff, { vertexColors: true })));
   const stack = mesh(new THREE.CylinderGeometry(0.34, 0.34, 1.9, 24, 1, true), mat(0xf6f5f2, { side: THREE.DoubleSide })); stack.position.set(-4.6, 0.95, 0.62); scene.add(stack);
   const hood = mesh(new THREE.ConeGeometry(0.6, 0.45, 24), mat(0xf6f5f2)); hood.position.set(-4.6, 2.25, 0.62); scene.add(hood);
   const house = (w, h, eave, depth) => { const s = new THREE.Shape(); s.moveTo(-w / 2, 0); s.lineTo(w / 2, 0); s.lineTo(w / 2, eave); s.lineTo(0, h); s.lineTo(-w / 2, eave); s.closePath(); const g = new THREE.ExtrudeGeometry(s, { depth, bevelEnabled: false }); g.translate(0, 0, -depth / 2); return g; };
@@ -5794,12 +5791,6 @@ dispatchEvent(new Event('io3d'));
   addEventListener('keydown', function (e) { if (e.key === 'Escape' && open) setOpen(false); });
   var nl = $('#nl'); if (nl) nl.addEventListener('submit', function (e) { e.preventDefault(); var i = $('#nlEmail'); if (i && i.value) { i.value = ''; i.placeholder = 'Subscribed. Thank you.'; } });
 
-  /* ---------- magnetic buttons ---------- */
-  if (G && fine) $$('.s_btn, .k_nav button').forEach(function (b) {
-    b.addEventListener('mousemove', function (e) { var r = b.getBoundingClientRect(); gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * 0.22, y: (e.clientY - r.top - r.height / 2) * 0.3, duration: 0.5, ease: 'power3.out' }); });
-    b.addEventListener('mouseleave', function () { gsap.to(b, { x: 0, y: 0, duration: 0.9, ease: 'elastic.out(1, 0.4)' }); });
-  });
-
   /* ---------- shared motion: line reveals, scrubbed statements, photo masks + drift, counters ---------- */
   // masks clip at the line box; give them room so ascenders and descenders (g, p, y) are never cut
   function roomy(masks) { (masks || []).forEach(function (m) { m.style.padding = '.08em 0 .16em'; m.style.margin = '-.08em 0 -.16em'; }); }
@@ -5953,6 +5944,13 @@ dispatchEvent(new Event('io3d'));
   function tabsHover(list, attr, onPick) {
     var bs = $$('[role="tab"]', list), idx = 0;
     function pick(k, focus) { if (k === idx && !focus) return; idx = k; bs.forEach(function (b, i) { b.setAttribute('aria-selected', i === k); b.tabIndex = i === k ? 0 : -1; }); onPick(k); if (focus) bs[k].focus(); }
+    // idle: while on screen and not pointed at, the next item is picked every 5 s; the selected line fills as a timer
+    var box = list.closest('section') || list, AUTO = 5000, aT = 0, inView = false, held = false;
+    function stop() { clearTimeout(aT); list.removeAttribute('data-auto'); }
+    function run() { stop(); if (reduce || !inView || held) return; void list.offsetWidth; list.setAttribute('data-auto', ''); aT = setTimeout(function () { pick((idx + 1) % bs.length); run(); }, AUTO); }
+    box.addEventListener('mouseenter', function () { held = true; stop(); }); box.addEventListener('mouseleave', function () { held = false; run(); });
+    box.addEventListener('focusin', function () { held = true; stop(); }); box.addEventListener('focusout', function () { held = false; run(); });
+    if (window.IntersectionObserver) new IntersectionObserver(function (es) { inView = es[0].isIntersecting; inView ? run() : stop(); }, { threshold: 0.35 }).observe(list);
     bs.forEach(function (b, k) {
       b.addEventListener('mouseenter', function () { if (fine) pick(k); });
       b.addEventListener('click', function () { pick(k); });
@@ -6261,6 +6259,14 @@ dispatchEvent(new Event('io3d'));
       var k = p < 0.3 ? 0 : p < 0.72 ? 1 : 2; if (k !== fk) { fk = k; fst.forEach(function (li, i) { i === k ? li.setAttribute('data-on', '') : li.removeAttribute('data-on'); }); }
     }
     if (mobile()) { $('#funPin', view).style.height = 'auto'; funnel(0); fst.forEach(function (li) { li.setAttribute('data-on', ''); }); } else pinProgress($('#funPin', view), funnel);
+    // timeline: "now" sits at today's date between the stops around it; stops after today stay open
+    var road = $('#road', view), rli = $$('#road li', view);
+    function roadNow() {
+      var now = Date.now(), W = road.clientWidth, x = 0;
+      rli.forEach(function (li, i) { var t = Date.parse(li.dataset.t); li.toggleAttribute('data-done', t <= now); if (t <= now) { var nx = rli[i + 1]; if (nx) { var t2 = Date.parse(nx.dataset.t), f = Math.min(1, (now - t) / (t2 - t)); x = 6 + li.offsetLeft + (nx.offsetLeft - li.offsetLeft) * f; } else x = 6 + li.offsetLeft; } });
+      road.style.setProperty('--now', (x / W * 100).toFixed(2) + '%');
+    }
+    roadNow(); addEventListener('resize', roadNow);
     // FoodTech slider
     var slides = $$('.k_slides img', view), dots = $$('#slideDots i'), caps = ['Winners recognised on the main stage', 'A finalist presenting to the jury', 'The FoodTech Challenge main stage', 'The winners line-up'], si = 0, timer;
     function to(k) {

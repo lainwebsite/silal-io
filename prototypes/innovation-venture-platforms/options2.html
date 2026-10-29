@@ -1,0 +1,544 @@
+<meta charset="utf-8">
+<title>IVP Options Round 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500&display=swap">
+<style>
+
+/* Round 3 options: the "next page" link (same idea, three layouts) and "Five field pilots, one protocol" (three iterations).
+   Same tokens, weights (300 / 400 / 500) and 12-column grid as the pages. Light only, like the site. */
+:root { color-scheme: light; --io: #3ca7d2; --ink: #1a6f96; --char: #595453; --grey: #7f8284; --grey-ink: #6e7173; --light: #f1f1f1; --line: rgba(89,84,83,.16); --slow: cubic-bezier(0.16,1,0.3,1);
+  --fs-display: clamp(2.5rem, 3.9vw, 4.5rem); --fs-h2: clamp(2rem, 2.45vw, 2.875rem); --t-h3: clamp(1.5rem, 2.2vw, 2.25rem); --fs-lead: clamp(1.125rem, 1.2vw, 1.3125rem); --gap: clamp(16px, 1.8vw, 32px); --g: clamp(16px, 4vw, 56px); }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--char); font-family: "Readex Pro", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, ol { margin: 0; } ul, ol { padding: 0; list-style: none; } a { color: inherit; text-decoration: none; }
+.w { max-width: 1440px; margin: 0 auto; padding-inline: max(var(--g), env(safe-area-inset-left, 0px)) max(var(--g), env(safe-area-inset-right, 0px)); }
+.g12 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); }
+.lbl { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.top { padding-block: 56px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; border-bottom: 1px solid var(--line); }
+.top h1 { font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.06; margin-top: 12px; }
+.top p { max-width: 34em; color: var(--grey-ink); line-height: 1.7; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; padding-block: 20px; }
+.toc a { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); font-size: .875rem; transition: background .3s, color .3s; }
+.toc a:hover { background: var(--char); color: #fff; }
+.part { padding-block: clamp(64px, 8vw, 120px) 0; }
+.part > .w > h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; margin: 12px 0 8px; }
+.part > .w > p { color: var(--grey-ink); line-height: 1.7; max-width: 40em; }
+.opt { margin-top: clamp(48px, 6vw, 88px); }
+.tag { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 20px; padding: 14px 18px; background: var(--light); border-radius: 12px; font-size: .875rem; line-height: 1.55; color: var(--grey-ink); }
+.tag b { font-weight: 500; color: #fff; background: var(--char); border-radius: 999px; padding: 3px 11px; font-size: .75rem; letter-spacing: .06em; }
+.tag strong { font-weight: 400; color: var(--char); }
+.ph { position: relative; overflow: hidden; background: #ddd; }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.arw { width: clamp(36px, 4vw, 56px); height: auto; transition: transform .8s var(--slow); }
+
+
+/* ---------- A1 split: text on the left, the next page's photo on the right; hover pushes the photo open ---------- */
+.a1 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: stretch; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: clamp(40px, 5vw, 72px); }
+.a1Text { grid-column: 1 / span 6; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.a1Text strong { font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.04; display: block; margin-top: 16px; transition: color .5s; }
+.a1Text p { font-size: var(--fs-lead); font-weight: 300; line-height: 1.5; max-width: 24em; color: var(--grey-ink); }
+.a1Go { display: flex; align-items: center; gap: 16px; font-size: .875rem; font-weight: 500; color: var(--ink); }
+.a1Go i { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; transition: background .5s, color .5s, transform .8s var(--slow); }
+.a1 .ph { grid-column: 7 / span 6; aspect-ratio: 16 / 10; clip-path: inset(6% 0 6% 14%); transition: clip-path 1.1s var(--slow); }
+.a1 .ph img { scale: 1.1; transition: scale 1.4s var(--slow); }
+.a1:hover .ph { clip-path: inset(0 0 0 0); } .a1:hover .ph img { scale: 1; }
+.a1:hover .a1Text strong { color: var(--ink); } .a1:hover .a1Go i { background: var(--ink); color: #fff; transform: translateX(8px); }
+
+
+/* ---------- A4 photo leads: photo 1–7, text 9–12; hover slides the photo and the name ---------- */
+.a4 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: end; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: clamp(40px, 5vw, 72px); }
+.a4 .ph { grid-column: 1 / span 7; aspect-ratio: 16 / 9; }
+.a4 .ph img { scale: 1.12; transition: scale 1.4s var(--slow), transform 1.4s var(--slow); }
+.a4:hover .ph img { scale: 1; }
+.a4Text { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 20px; }
+.a4Text strong { font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.04; transition: color .5s, transform .9s var(--slow); }
+.a4:hover .a4Text strong { color: var(--ink); transform: translateX(10px); }
+.a4Text p { font-size: 1rem; line-height: 1.6; color: var(--grey-ink); }
+/* ---------- A5 split with the path: where you are among the four platforms ---------- */
+.a5 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 32px; align-items: stretch; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: clamp(40px, 5vw, 72px); }
+.a5Text { grid-column: 1 / span 6; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.a5Text strong { display: block; margin-top: 16px; font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.04; }
+.a5 .ph { grid-column: 7 / span 6; aspect-ratio: 16 / 10; }
+.a5 .ph img { scale: 1.08; transition: scale 1.4s var(--slow); } .a5:hover .ph img { scale: 1; }
+.path { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 6px; }
+.path span { display: flex; flex-direction: column; gap: 10px; font-size: .875rem; color: var(--grey); }
+.path span::before { content: ""; height: 2px; background: var(--line); }
+.path span[data-done]::before { background: var(--char); } .path span[data-done] { color: var(--char); }
+.path span[data-next]::before { background: var(--ink); transform-origin: left; animation: grow 2.4s var(--slow) infinite alternate; } .path span[data-next] { color: var(--ink); }
+@keyframes grow { from { transform: scaleX(.2); } to { transform: scaleX(1); } }
+.a5:hover .a1Go i { background: var(--ink); color: #fff; transform: translateX(8px); }
+/* ---------- A6 split, scroll-led: the photo opens and the name rises as the block scrolls into view ---------- */
+.a6 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: center; padding-block: clamp(40px, 5vw, 72px); border-top: 1px solid var(--line); }
+.a6Text { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 20px; }
+.a6Text strong { font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.04; display: block; overflow: hidden; }
+.a6Text strong span { display: block; }
+.a6Text p { font-size: 1rem; line-height: 1.6; color: var(--grey-ink); max-width: 24em; }
+.a6 .ph { grid-column: 7 / span 6; aspect-ratio: 4 / 3; }
+.a6:hover .a1Go i { background: var(--ink); color: #fff; transform: translateX(8px); }
+/* ---------- B: five field pilots ---------- */
+.bHead { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 20px; align-items: end; margin-bottom: clamp(32px, 4vw, 56px); }
+.bHead > div { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 20px; }
+.bHead h3 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; }
+.bHead p { grid-column: 9 / span 4; color: var(--grey-ink); line-height: 1.7; }
+.bPin { position: relative; height: 340vh; }
+.bStick { position: sticky; top: 0; height: 100vh; min-height: 600px; display: flex; align-items: center; }
+.bGrid { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 24px; align-items: center; }
+.bStage { grid-column: 1 / span 7; position: relative; height: min(76vh, 680px); border-radius: 4px; overflow: hidden; background: #e8e1d6; }
+.bStage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bList { grid-column: 9 / span 4; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.bList li { display: grid; grid-template-columns: 96px minmax(0,1fr); gap: 4px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); color: #b4b6b7; transition: color .6s; }
+.bList em { grid-row: span 2; font-style: normal; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding-top: 6px; }
+.bList b { font-size: 1.25rem; font-weight: 400; }
+.bList span { font-size: 1rem; line-height: 1.5; max-height: 0; overflow: hidden; transition: max-height .8s var(--slow); }
+.bList small { display: block; margin-bottom: 4px; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.bList li[data-on] { color: var(--char); } .bList li[data-on] em { color: var(--ink); } .bList li[data-on] span { max-height: 8em; color: var(--grey-ink); }
+.lab { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+.lab span { position: absolute; transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; font-size: .75rem; font-weight: 500; color: var(--char); background: #fff; border-radius: 999px; padding: 5px 11px; transition: background .4s, color .4s; }
+.lab i { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--char); box-shadow: 0 0 0 3px #fff; transition: background .4s; }
+.lab[data-on] span { background: var(--ink); color: #fff; } .lab[data-on] i { background: var(--io); }
+
+.bNote { margin-top: 14px; font-size: .875rem; color: var(--grey-ink); }
+/* ---------- C · TRL ---------- */
+.trlHead { margin-bottom: clamp(32px, 4vw, 56px); display: flex; flex-direction: column; gap: 20px; max-width: 46em; }
+.trlHead h3 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; }
+.trlHead p { color: var(--grey-ink); line-height: 1.7; }
+/* C1 vertical ruler, pinned: a marker climbs 1 → 9 with the scroll */
+.c1Pin { position: relative; height: 280vh; }
+.c1Stick { position: sticky; top: 0; height: 100vh; min-height: 600px; display: flex; align-items: center; }
+.c1 { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: center; }
+.c1Rule { grid-column: 1 / span 5; position: relative; height: min(70vh, 620px); display: flex; flex-direction: column-reverse; justify-content: space-between; padding-left: 120px; }
+.c1Rule::before { content: ""; position: absolute; left: 96px; top: 8px; bottom: 8px; width: 1px; background: var(--line); }
+.c1Rule i { position: absolute; left: 96px; bottom: 8px; width: 1px; height: calc((100% - 16px) * var(--p, 0)); background: var(--ink); }
+.c1Rule li { position: relative; display: flex; align-items: baseline; gap: 16px; color: #c2c4c5; transition: color .5s; }
+.c1Rule li b { font-size: 1.25rem; font-weight: 300; width: 1.5ch; }
+.c1Rule li span { font-size: .875rem; opacity: 0; transition: opacity .5s; }
+.c1Rule li[data-on] { color: var(--char); } .c1Rule li[data-on] span { opacity: 1; } .c1Rule li[data-past] { color: var(--grey); }
+.c1Band { position: absolute; left: 0; width: 80px; border-right: 1px solid var(--ink); font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); display: flex; align-items: center; padding-right: 10px; justify-content: flex-end; text-align: right; }
+.c1Band[data-k="acc"] { border-color: var(--char); color: var(--char); }
+.c1Text { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 20px; }
+.c1Text strong { font-size: clamp(5rem, 12vw, 10rem); font-weight: 300; line-height: .9; letter-spacing: -.06em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.c1Text h4 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; }
+.c1Text p { color: var(--grey-ink); line-height: 1.7; max-width: 30em; }
+/* C2 3D steps */
+.c2 { position: relative; height: min(70vh, 620px); border-radius: 4px; overflow: hidden; background: #e8e1d6; }
+.c2 canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.c2Pin { position: relative; height: 260vh; } .c2Stick { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; }
+.c2Cap { position: absolute; left: 24px; bottom: 24px; z-index: 3; width: min(360px, calc(100% - 48px)); padding: 18px 20px; background: rgba(255,255,255,.96); border-radius: 16px; }
+.c2Cap small { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.c2Cap h4 { margin-top: 6px; font-size: 1.25rem; font-weight: 300; }
+/* C3 one line, two brackets, the level reads below */
+.c3Track { position: relative; display: grid; grid-template-columns: repeat(9, minmax(0,1fr)); border-top: 1px solid var(--line); padding-top: 28px; }
+.c3Track button { all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 10px; position: relative; padding-right: 8px; }
+.c3Track button::before { content: ""; position: absolute; top: -34px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 1px solid #c2c4c5; transition: background .4s, border-color .4s, transform .5s var(--slow); }
+.c3Track button b { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1; letter-spacing: -.04em; color: #c2c4c5; transition: color .4s; }
+.c3Track button[data-in] b { color: var(--char); } .c3Track button[data-in]::before { border-color: var(--ink); }
+.c3Track button[aria-selected="true"] b { color: var(--ink); } .c3Track button[aria-selected="true"]::before { background: var(--ink); border-color: var(--ink); transform: scale(1.3); }
+.c3Brk { display: grid; grid-template-columns: repeat(9, minmax(0,1fr)); margin-bottom: 44px; }
+.c3Brk div { padding-bottom: 10px; border-bottom: 1px solid var(--ink); font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); position: relative; }
+.c3Brk div::before, .c3Brk div::after { content: ""; position: absolute; bottom: -1px; width: 1px; height: 8px; background: currentColor; } .c3Brk div::before { left: 0; } .c3Brk div::after { right: 8px; }
+.c3Brk div:nth-child(1) { grid-column: 3 / span 4; } .c3Brk div:nth-child(2) { grid-column: 7 / span 3; color: var(--char); border-color: var(--char); }
+.c3Read { margin-top: 36px; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); min-height: 4.5em; }
+.c3Read h4 { grid-column: 1 / span 6; font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; }
+.c3Read p { grid-column: 7 / span 6; color: var(--grey-ink); line-height: 1.7; }
+/* ---------- D · funnel, calmer ---------- */
+.dRow { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--gap); align-items: end; border-top: 1px solid var(--line); }
+.dRow div { display: flex; flex-direction: column; gap: 12px; padding-top: 28px; }
+.dRow strong { font-size: clamp(4rem, 9vw, 8.5rem); font-weight: 300; line-height: .9; letter-spacing: -.06em; color: var(--char); font-variant-numeric: tabular-nums; }
+.dRow div:last-child strong { color: var(--ink); }
+.dRow span { color: var(--grey-ink); }
+.dRow svg { width: 100%; height: 160px; display: block; margin-bottom: 24px; }
+.dRing { fill: none; stroke: var(--ink); stroke-width: 1; }
+.d2 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: center; }
+.d2 svg { grid-column: 1 / span 6; width: 100%; height: auto; }
+.d2 ol { grid-column: 7 / span 6; border-top: 1px solid var(--line); }
+.d2 li { display: grid; grid-template-columns: 120px 1fr; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.d2 li strong { font-size: clamp(2.25rem, 3.2vw, 3.5rem); font-weight: 300; letter-spacing: -.04em; color: var(--ink); }
+.d3 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: center; }
+.d3Field { grid-column: 1 / span 7; display: grid; grid-template-columns: repeat(47, 1fr); gap: 3px; }
+.d3Field i { aspect-ratio: 1; border-radius: 50%; background: var(--char); opacity: .85; transition: opacity 1s, background 1s, transform 1s var(--slow); }
+.d3Field i[data-out] { opacity: .12; } .d3Field i[data-fin] { background: var(--ink); opacity: 1; transform: scale(1.6); }
+.d3Text { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 14px; }
+.d3Text strong { font-size: clamp(4rem, 8vw, 7rem); font-weight: 300; letter-spacing: -.06em; line-height: .9; color: var(--ink); font-variant-numeric: tabular-nums; }
+/* ---------- E · Al Miyah ---------- */
+.ana { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 24px; padding: clamp(24px, 3vw, 40px); background: var(--light); border-radius: 12px; }
+.ana > div { grid-column: span 4; display: flex; flex-direction: column; gap: 10px; }
+.ana h4 { font-size: 1.25rem; font-weight: 400; } .ana p, .ana li { font-size: .9375rem; line-height: 1.6; color: var(--grey-ink); } .ana ol { list-style: decimal; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.e1Top { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 24px; align-items: end; }
+.e1Top > div { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 20px; }
+.e1Top h3 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; }
+.e1Top p { grid-column: 9 / span 4; color: var(--grey-ink); line-height: 1.7; }
+.e1Facts { margin-top: clamp(40px, 5vw, 72px); display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--gap); border-top: 1px solid var(--line); }
+.e1Facts div { padding-top: 22px; display: flex; flex-direction: column; gap: 8px; }
+.e1Facts strong { font-size: clamp(2.25rem, 3.2vw, 3.5rem); font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--ink); }
+.e1Facts span { color: var(--grey-ink); }
+.e1Tiles { margin-top: clamp(40px, 5vw, 72px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 16px; }
+.e1Tiles a { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 48px; min-height: 300px; padding: 28px; color: #fff; isolation: isolate; }
+.e1Tiles a:first-child { grid-column: 1 / span 6; } .e1Tiles a:last-child { grid-column: 7 / span 6; }
+.e1Tiles .ph { position: absolute; inset: 0; z-index: -1; } .e1Tiles .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,16,15,.6), rgba(14,16,15,.05) 70%); }
+.e1Tiles .ph img { scale: 1.06; transition: scale 1.2s var(--slow); } .e1Tiles a:hover .ph img { scale: 1; }
+.e1Tiles .lbl { color: rgba(255,255,255,.85); }
+.e1Tiles h4 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; } .e1Tiles p { margin-top: 8px; opacity: .9; line-height: 1.55; max-width: 28em; }
+.e1Tiles .go { display: inline-flex; align-items: center; gap: 10px; font-size: .875rem; font-weight: 500; }
+.e2 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: start; }
+.e2Side { grid-column: 1 / span 5; position: sticky; top: 32px; display: flex; flex-direction: column; gap: 20px; }
+.e2Side h3 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; }
+.e2Side p { color: var(--grey-ink); line-height: 1.7; }
+.e2Flow { grid-column: 7 / span 6; display: flex; flex-direction: column; }
+.e2Flow > div { padding: 28px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.e2Flow h4 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.2; }
+.e2Flow p { color: var(--grey-ink); line-height: 1.7; }
+.e2Flow strong { font-weight: 300; color: var(--ink); }
+.e2Flow .ph { aspect-ratio: 16 / 9; margin-top: 8px; }
+/* ---------- F · partners ---------- */
+.f1 { border-top: 1px solid var(--line); }
+.f1 li { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: baseline; padding: clamp(22px, 2.6vw, 34px) 0; border-bottom: 1px solid var(--line); transition: padding .6s var(--slow); }
+.f1 li > span { grid-column: 1 / span 4; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.f1 li > div { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 6px; }
+.f1 li strong { font-size: clamp(1.5rem, 2.6vw, 2.5rem); font-weight: 300; letter-spacing: -.03em; line-height: 1.12; }
+.f1 li p { color: var(--grey-ink); line-height: 1.6; max-width: 34em; }
+.f1 li[data-us] { border-bottom-color: var(--ink); } .f1 li[data-us] > span, .f1 li[data-us] strong { color: var(--ink); }
+.f1 li[data-us] img { height: 40px; width: auto; margin-top: 10px; align-self: flex-start; }
+.f2 { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: center; }
+.f2 svg { grid-column: 1 / span 7; width: 100%; height: auto; overflow: visible; }
+.f2 svg text { font-family: "Readex Pro", Arial, sans-serif; }
+.f2Side { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 16px; }
+.f2Side h4 { font-size: var(--t-h3); font-weight: 300; } .f2Side p { color: var(--grey-ink); line-height: 1.7; }
+.f2Side small { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.f2 .node circle { transition: fill .4s, stroke .4s; } .f2 .node { cursor: pointer; } .f2 .node[data-on] circle { fill: var(--ink); stroke: var(--ink); } .f2 .node[data-on] text { fill: #fff; }
+.f3 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 24px; align-items: stretch; }
+.f3 .ph { grid-column: 1 / span 6; min-height: 520px; color: #fff; }
+.f3 .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,16,15,.62), rgba(14,16,15,0) 55%); }
+.f3Cap { position: absolute; z-index: 2; left: 28px; right: 28px; bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+.f3Cap .lbl { color: rgba(255,255,255,.85); } .f3Cap strong { font-size: var(--t-h3); font-weight: 300; } .f3Cap p { opacity: .9; line-height: 1.55; max-width: 30em; }
+.f3 ul { grid-column: 7 / span 6; display: flex; flex-direction: column; justify-content: flex-end; border-top: 1px solid var(--line); }
+.f3 li { display: flex; flex-direction: column; gap: 6px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.f3 li span { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.f3 li strong { font-size: 1.25rem; font-weight: 400; } .f3 li p { color: var(--grey-ink); line-height: 1.6; }
+@media (max-width: 900px) {
+  .a4 .ph, .a4Text, .a5Text, .a5 .ph, .a6Text, .a6 .ph, .c1Rule, .c1Text, .c3Read h4, .c3Read p, .d2 svg, .d2 ol, .d3Field, .d3Text, .ana > div, .e1Top > div, .e1Top p, .e1Tiles a:first-child, .e1Tiles a:last-child, .e2Side, .e2Flow, .f1 li > span, .f1 li > div, .f2 svg, .f2Side, .f3 .ph, .f3 ul, .a1Text, .a1 .ph, .bStage, .bList { grid-column: 1 / -1; }
+  .a4, .a6 { row-gap: 24px; } .c1Pin, .c2Pin, .bPin { height: auto; } .c1Stick, .c2Stick, .bStick { position: static; height: auto; display: block; } .bStage { height: 60vh; }
+  .c3Track b { font-size: 1.5rem !important; } .dRow { grid-template-columns: 1fr; } .e1Facts { grid-template-columns: 1fr; } .e2Side { position: static; } .f3 .ph { min-height: 380px; }
+}
+</style>
+
+<div class="w top">
+  <div><span class="lbl">Innovation &amp; Venture Platforms · round 4</span><h1>Options to pick from.</h1></div>
+  <p>Six sections asked for options. Everything is live: hover, scroll, wait. Tell me one code per section (for example “A5, B4, C3, D1, E1, F1”).</p>
+</div>
+<div class="w toc"><a href="#a">A · Next page link</a><a href="#b">B · Five field pilots</a><a href="#c">C · Where incubation sits</a><a href="#d">D · Funnel</a><a href="#e">E · Al Miyah</a><a href="#f">F · Partners</a></div>
+
+<!-- ============================== A ============================== -->
+<section class="part" id="a"><div class="w">
+  <span class="lbl">A · The link to the next page</span>
+  <h2>A1, and three more built on it.</h2>
+  <p>A1 is kept for comparison. The new ones keep its split and calm, and change one thing each.</p>
+  <div class="opt"><p class="tag"><b>A1</b><strong>Split (kept).</strong> Text left, photo right, photo opens on hover.</p>
+    <a class="a1" href="#a"><div class="a1Text"><div><span class="lbl">Next platform · For researchers</span><strong>Incubation</strong></div><p>From lab research to market-ready, with Khalifa University.</p><span class="a1Go"><i><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Go to Incubation</span></div><div class="ph"><img src="img/inc_robot.webp" alt=""></div></a></div>
+  <div class="opt"><p class="tag"><b>A4</b><strong>Photo leads.</strong> The photo takes the wide side (1–7), the name sits on the narrow side (9–12) at the bottom. The picture invites the click; the text confirms it.</p>
+    <a class="a4" href="#a"><div class="ph"><img src="img/inc_robot.webp" alt=""></div><div class="a4Text"><span class="lbl">Next platform · For researchers</span><strong>Incubation</strong><p>From lab research to market-ready, with Khalifa University.</p><span class="a1Go"><i><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Go to Incubation</span></div></a></div>
+  <div class="opt"><p class="tag"><b>A5</b><strong>Split with the path (recommended).</strong> A1 plus a quiet four-step path under the name: the platform you just read is done, the next one is pulsing blue. Visitors see where they are in the four platforms.</p>
+    <a class="a5" href="#a"><div class="a5Text"><div><span class="lbl">Next platform · For researchers</span><strong>Incubation</strong></div><div class="path"><span data-done>Farm Innovation Fund</span><span data-next>Incubation</span><span>Accelerator</span><span>Agricultural Challenges</span></div><span class="a1Go"><i><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></i>From lab research to market-ready, with Khalifa University.</span></div><div class="ph"><img src="img/inc_robot.webp" alt=""></div></a></div>
+  <div class="opt"><p class="tag"><b>A6</b><strong>Split, led by the scroll.</strong> Same split, but the motion comes from the scroll: as the block comes up, the photo opens from a narrow slit to its frame and the name rises line by line. Hover only moves the arrow.</p>
+    <a class="a6" href="#a" id="a6"><div class="a6Text"><span class="lbl">Next platform · For researchers</span><strong><span>Incubation</span></strong><p>From lab research to market-ready, with Khalifa University.</p><span class="a1Go"><i><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Go to Incubation</span></div><div class="ph"><img src="img/inc_robot.webp" alt=""></div></a></div>
+</div></section>
+
+<!-- ============================== B ============================== -->
+<section class="part" id="b"><div class="w">
+  <span class="lbl">B · Five field pilots, one protocol</span>
+  <h2>B1 corrected, and two more advanced.</h2>
+  <p>Facts from the source only. Each finalist is tested in its own plot under the same protocol; Krilltech’s application method is not stated, so it now lights the whole plant instead of one spot.</p>
+  <div class="opt"><p class="tag"><b>B1</b><strong>Soil profile (corrected).</strong> Kept as you liked it, now with the note below and Krilltech on the whole plant.</p></div>
+</div>
+  <div class="bPin" id="b1Pin"><div class="bStick"><div class="w" style="width:100%"><div class="bGrid"><div style="grid-column:1 / span 7"><div class="bStage" id="b1" style="grid-column:auto"></div><p class="bNote">Each finalist is tested in its own plot. Shown together here to compare where each solution works.</p></div><ol class="bList" id="b1List"></ol></div></div></div></div>
+<div class="w">
+  <div class="opt"><p class="tag"><b>B4</b><strong>Five plots, each cut open (recommended).</strong> The real set-up: five plots side by side, same crop rows, each cut open at the front. The camera walks along them; in each plot you see where that finalist’s solution sits in the soil or on the plant. Accurate and the most advanced.</p></div>
+</div>
+  <div class="bPin" id="b4Pin"><div class="bStick"><div class="w" style="width:100%"><div class="bGrid"><div class="bStage" id="b4"></div><ol class="bList" id="b4List"></ol></div></div></div></div>
+<div class="w">
+  <div class="opt"><p class="tag"><b>B5</b><strong>One plot, five tests.</strong> One plot on a slow turntable. As you scroll, the plot swaps from one finalist’s solution to the next, everything else stays the same: the crop, the soil, the sensor. That is literally “one protocol”.</p></div>
+</div>
+  <div class="bPin" id="b5Pin"><div class="bStick"><div class="w" style="width:100%"><div class="bGrid"><div class="bStage" id="b5"></div><ol class="bList" id="b5List"></ol></div></div></div></div>
+
+<!-- ============================== C ============================== -->
+<section class="part" id="c"><div class="w">
+  <span class="lbl">C · Where incubation sits</span>
+  <h2>Nine readiness levels, three ways.</h2>
+  <p>Same content as the page: TRL 1–9 with their names; Incubation covers 3 to 6, the Accelerator takes 7 to 9.</p>
+  <div class="opt"><p class="tag"><b>C1</b><strong>Climbing ruler.</strong> A vertical ruler from 1 at the bottom to 9 at the top. The section holds while you scroll and a blue line climbs it; the current level shows very large on the right with its name and which platform it belongs to.</p></div>
+</div>
+  <div class="c1Pin" id="c1Pin"><div class="c1Stick"><div class="w" style="width:100%"><div class="c1">
+    <ol class="c1Rule" id="c1Rule"><i></i></ol>
+    <div class="c1Text"><span class="lbl" id="c1Band">Before incubation</span><strong id="c1Num">1</strong><h4 id="c1Name">Basic principles observed</h4><p>Technology readiness levels (TRL) measure how close an idea is to real use.</p></div>
+  </div></div></div></div>
+<div class="w">
+  <div class="opt"><p class="tag"><b>C2</b><strong>3D staircase.</strong> Nine clay steps on the contour sand, the homepage style. Steps 3–6 are IO blue (Incubation), 7–9 charcoal (Accelerator). The camera climbs the stairs with the scroll; a card in the corner names the step you are on.</p></div>
+</div>
+  <div class="c2Pin" id="c2Pin"><div class="c2Stick"><div class="w" style="width:100%"><div class="c2" id="c2"><div class="c2Cap"><small id="c2Band">Before incubation</small><h4 id="c2Name">1 · Basic principles observed</h4></div></div></div></div></div>
+<div class="w">
+  <div class="opt"><p class="tag"><b>C3</b><strong>One line (lightest).</strong> The nine levels as large numbers on one line, two brackets above for Incubation and Accelerator. The levels take turns on their own; hover one to read it. Calm and very clear.</p>
+    <div class="c3Brk"><div>Incubation · 3 to 6</div><div>Accelerator · 7 to 9</div></div>
+    <div class="c3Track" id="c3" role="tablist"></div>
+    <div class="c3Read"><h4 id="c3Name">Experimental proof of concept</h4><p id="c3Text">Incubation starts here: lab research towards validation in real conditions, e.g. TRL 6 / CRL 5.</p></div>
+  </div>
+</div></section>
+
+<!-- ============================== D ============================== -->
+<section class="part" id="d"><div class="w">
+  <span class="lbl">D · From 846 entries to six finalists</span>
+  <h2>Calmer versions of the funnel.</h2>
+  <p>No zoom, no flying dots. Each one plays once, gently, when it comes into view.</p>
+  <div class="opt" id="d1o"><p class="tag"><b>D1</b><strong>Three numbers (recommended).</strong> Three large figures on one line, each with its circle drawn to scale above it. The circles draw themselves in and the numbers count up once. Typographic and premium.</p>
+    <div class="dRow" id="d1"><div><svg viewBox="0 0 300 160"><circle class="dRing" cx="150" cy="80" r="76" stroke-opacity=".35"/></svg><strong data-to="846">846</strong><span>teams registered from 54 countries</span></div><div><svg viewBox="0 0 300 160"><circle class="dRing" cx="150" cy="80" r="12" stroke-opacity=".7"/></svg><strong data-to="21">21</strong><span>qualified, from 13 countries</span></div><div><svg viewBox="0 0 300 160"><circle class="dRing" cx="150" cy="80" r="6.4" fill="#1a6f96"/></svg><strong data-to="6">6</strong><span>finalists under test at Innovation Oasis</span></div></div></div>
+  <div class="opt"><p class="tag"><b>D2</b><strong>Concentric rings, drawn.</strong> The three circles to scale, nested, drawn as thin lines one after another from the outside in, with the counts beside them. No dots, no zoom.</p>
+    <div class="d2" id="d2"><svg viewBox="0 0 600 600"><circle class="dRing" cx="300" cy="300" r="280" stroke-opacity=".35"/><circle class="dRing" cx="300" cy="300" r="44.1" stroke-opacity=".7"/><circle class="dRing" cx="300" cy="300" r="23.6" fill="#1a6f96" fill-opacity="0"/></svg><ol><li><strong>846</strong><span>teams registered from 54 countries</span></li><li><strong>21</strong><span>qualified, from 13 countries</span></li><li><strong>6</strong><span>finalists under test at Innovation Oasis</span></li></ol></div></div>
+  <div class="opt"><p class="tag"><b>D3</b><strong>One field of dots, filtered.</strong> 846 dots in a quiet grid. Nothing moves: as you scroll, the dots that did not qualify fade, then all but six; the six turn blue. The number beside it follows.</p>
+    <div class="d3" id="d3"><div class="d3Field" id="d3Field"></div><div class="d3Text"><span class="lbl" id="d3Lbl">Registered</span><strong id="d3Num">846</strong><p id="d3Txt" style="color:var(--grey-ink);line-height:1.7">teams from 54 countries</p></div></div></div>
+</div></section>
+
+<!-- ============================== E ============================== -->
+<section class="part" id="e"><div class="w">
+  <span class="lbl">E · Al Miyah Challenge for Agriculture</span>
+  <h2>Why it doesn’t work yet, and two ways it can.</h2>
+  <div class="opt"><div class="ana">
+    <div><h4>What goes wrong now</h4><p>Nine pieces compete in one view: label, title, organiser, status pill, statement, two paragraphs, prize, two problem statements and five category chips. Nothing says which to read first, so a first-time visitor reads none of it.</p></div>
+    <div><h4>What a visitor needs, in order</h4><ol><li>What is this? A water challenge.</li><li>Who runs it and what is at stake? MBZ Water Initiative, AED 8M, 846 teams.</li><li>What is Silal’s part? It tests the finalists.</li><li>What is being tested? Two problems, each shown further down the page.</li></ol></div>
+    <div><h4>So the fix is</h4><p>One message, three facts, then the two problems as doors to the sections that already explain them (the five pilots and CRETA). The long paragraph and the categories become secondary or move down. Both options below follow this order.</p></div>
+  </div></div>
+  <div class="opt"><p class="tag"><b>E1</b><strong>Message, facts, two doors (recommended).</strong> Title and one line; three facts in large figures; then Problem A and B as two photo tiles that jump to their sections further down.</p>
+    <div class="e1Top"><div><span class="lbl">Featured challenge · winners December 2026</span><h3>Al Miyah Challenge for Agriculture</h3></div><p>Agriculture uses nearly 70% of all water consumed globally. The challenge rewards solutions that cut water use while maintaining or improving yield.</p></div>
+    <div class="e1Facts"><div><strong>AED 8M</strong><span>prize pool, about AED 4M for first place</span></div><div><strong>846</strong><span>teams from 54 countries registered</span></div><div><strong>Silal</strong><span>technical partner: tests every finalist in Al Ain</span></div></div>
+    <div class="e1Tiles"><a href="#e"><div class="ph"><img src="img/chal_seed.webp" alt=""></div><span class="lbl">Problem statement A</span><div><h4>Sustainable irrigation</h4><p>Improving sustainable irrigation practices and reducing overall water consumption in agriculture.</p><span class="go">See the five field pilots →</span></div></a><a href="#e"><div class="ph"><img src="img/area_protected.webp" alt=""></div><span class="lbl">Problem statement B</span><div><h4>Controlled-environment design</h4><p>Optimising greenhouse and net house designs, including water used for cooling.</p><span class="go">See the CRETA greenhouse →</span></div></a></div>
+  </div>
+  <div class="opt"><p class="tag"><b>E2</b><strong>Fixed intro, flowing story.</strong> Title and organiser stay fixed on the left; on the right the story reads top to bottom in four short blocks: the problem, the prize and reach, Silal’s role, the two problem statements.</p>
+    <div class="e2"><div class="e2Side"><span class="lbl">Featured challenge</span><h3>Al Miyah Challenge for Agriculture</h3><p>Organised by the Mohamed bin Zayed Water Initiative, with Silal as technical partner. Winners December 2026.</p></div>
+      <div class="e2Flow">
+        <div><span class="lbl">The problem</span><h4>Agriculture uses <strong>nearly 70% of all water</strong> consumed globally.</h4><p>The challenge rewards solutions that cut water use while maintaining or improving yield.</p></div>
+        <div><span class="lbl">The challenge</span><h4><strong>AED 8 million</strong> prize pool, open worldwide.</h4><p>Solutions must be proven and ready to be piloted in the UAE, with results that transfer to similar climates in the GCC and Sub-Saharan Africa.</p></div>
+        <div><span class="lbl">Silal’s role</span><h4>Every finalist is tested at Innovation Oasis.</h4><div class="ph"><img src="img/chal_seed.webp" alt=""></div></div>
+        <div><span class="lbl">Two problem statements</span><h4>Sustainable irrigation · Controlled-environment design</h4><p>Reducing water used for irrigation, and in greenhouse and net house designs, including for cooling.</p></div>
+      </div></div>
+  </div>
+</div></section>
+
+<!-- ============================== F ============================== -->
+<section class="part" id="f"><div class="w">
+  <span class="lbl">F · Partners and roles</span>
+  <h2>Silal carries the technical execution of the testing phase.</h2>
+  <div class="opt"><p class="tag"><b>F1</b><strong>Credits (recommended).</strong> Like the credits of a film: the role on the left (1–4), the name large on the right (7–12). Silal is the last line, in IO blue with the wordmark. Clean, typographic, no boxes.</p>
+    <ol class="f1"><li><span>Organiser</span><div><strong>Mohamed bin Zayed Water Initiative</strong><p>Designs and runs the challenge, funds the AED 8 million prize and convenes the jury.</p></div></li><li><span>Strategic partners</span><div><strong>Zayed for Good Foundation · ADAFSA · ASPIRE</strong><p>Practical, science-based solutions; strategic oversight and evaluation under local conditions; innovation acceleration.</p></div></li><li data-us><span>Technical partner</span><div><strong>Silal · Innovation Oasis</strong><p>Hosts and executes the trials: five field pilots and the CRETA greenhouse build.</p><img src="brand/io-wordmark-endorsed.svg" alt="Innovation Oasis, part of Silal"></div></li></ol></div>
+  <div class="opt"><p class="tag"><b>F2</b><strong>Map of who does what.</strong> A small diagram: the organiser at the top, three partners around it, all lines running down to Silal, where the trials happen. Hover a name to read its role on the right.</p>
+    <div class="f2" id="f2"><svg viewBox="0 0 640 420">
+      <g stroke="#c9cacb" fill="none"><path d="M320 70 L320 330M140 200 L320 330M500 200 L320 330M320 70 L140 200M320 70 L500 200"/></g>
+      <g class="node" data-k="0"><circle cx="320" cy="70" r="46" fill="#fff" stroke="#595453"/><text x="320" y="66" text-anchor="middle" font-size="12" fill="#595453">MBZ Water</text><text x="320" y="82" text-anchor="middle" font-size="12" fill="#595453">Initiative</text></g>
+      <g class="node" data-k="1"><circle cx="140" cy="200" r="40" fill="#fff" stroke="#7f8284"/><text x="140" y="198" text-anchor="middle" font-size="11" fill="#595453">Zayed for Good</text><text x="140" y="212" text-anchor="middle" font-size="11" fill="#595453">Foundation</text></g>
+      <g class="node" data-k="2"><circle cx="320" cy="200" r="34" fill="#fff" stroke="#7f8284"/><text x="320" y="204" text-anchor="middle" font-size="12" fill="#595453">ADAFSA</text></g>
+      <g class="node" data-k="3"><circle cx="500" cy="200" r="34" fill="#fff" stroke="#7f8284"/><text x="500" y="204" text-anchor="middle" font-size="12" fill="#595453">ASPIRE</text></g>
+      <g class="node" data-k="4" data-on><circle cx="320" cy="330" r="62" fill="#fff" stroke="#1a6f96" stroke-width="1.5"/><text x="320" y="326" text-anchor="middle" font-size="13" fill="#595453">Silal ·</text><text x="320" y="344" text-anchor="middle" font-size="13" fill="#595453">Innovation Oasis</text></g>
+    </svg><div class="f2Side"><small id="f2Role">Technical partner</small><h4 id="f2Name">Silal · Innovation Oasis</h4><p id="f2Text">Hosts and executes the trials: five field pilots and the CRETA greenhouse build.</p></div></div></div>
+  <div class="opt"><p class="tag"><b>F3</b><strong>Silal at work.</strong> A large photo of the trials with Silal’s role written on it; the organiser and partners as a short, quiet list beside it. Puts people and place first.</p>
+    <div class="f3"><div class="ph"><img src="img/inc_pots.webp" alt=""><div class="f3Cap"><span class="lbl">Technical partner</span><strong>Silal · Innovation Oasis</strong><p>Hosts and executes the trials: five field pilots and the CRETA greenhouse build.</p></div></div>
+      <ul><li><span>Organiser</span><strong>Mohamed bin Zayed Water Initiative</strong><p>Designs and runs the challenge, funds the AED 8 million prize and convenes the jury.</p></li><li><span>Partner</span><strong>Zayed for Good Foundation</strong><p>Strategic partner supporting practical, science-based solutions.</p></li><li><span>Partner</span><strong>ADAFSA</strong><p>Strategic oversight and technical expertise; supports evaluation under local climatic conditions.</p></li><li><span>Partner</span><strong>ASPIRE</strong><p>Innovation acceleration, applying the latest technology and research in real-world contexts.</p></li></ul></div></div>
+</div></section>
+
+<div class="w foot">All copy comes from the current pages and the client sources. Nothing here is published to the site until you pick.</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+window.PILOTS = [
+  { c: 'UAE', n: 'Raincatcher', z: 'Below the root zone', t: 'A material placed beneath the root zone absorbs irrigation water and releases it back to roots, cutting evaporation and deep-drainage losses.' },
+  { c: 'India', n: 'EF Polymer', z: 'Mixed into the soil', t: 'A biodegradable superabsorbent polymer made from fruit waste is mixed into the soil to hold water and nutrients between irrigations.' },
+  { c: 'Argentina', n: 'M4LIFE', z: 'Microbes in the soil', t: 'Custom microbes help soil retain water and release it gradually, supporting crops under drought and salinity.' },
+  { c: 'Brazil', n: 'Krilltech', z: 'The whole plant', t: 'A natural bio-stimulant with carbon nanoparticles supports plant water-use efficiency.' },
+  { c: 'Egypt', n: 'Agri-Vit', z: 'On the leaves', t: 'A foliar biostimulant strengthens plant resilience to heat and salinity, supporting stable yields with less irrigation water.' }];
+window.TRL = ['Basic principles observed', 'Technology concept formulated', 'Experimental proof of concept', 'Validated in the lab', 'Validated in a relevant environment', 'Demonstrated in a relevant environment', 'Prototype in an operational environment', 'System complete and qualified', 'Proven in operational environment'];
+window.bandOf = function (i) { return i < 2 ? 'Before incubation' : i < 6 ? 'Incubation · TRL 3 to 6' : 'Accelerator · TRL 7 to 9'; };
+(function () {
+  var G = !!window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches; if (G) gsap.registerPlugin(ScrollTrigger);
+  var $ = function (s) { return document.querySelector(s); }, $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+  function list(id, order) { var ol = document.getElementById(id); ol.innerHTML = order.map(function (i) { var p = PILOTS[i]; return '<li data-k="' + i + '"><em>' + p.c + '</em><b>' + p.n + '</b><span><small>' + p.z + '</small>' + p.t + '</span></li>'; }).join(''); return [].slice.call(ol.children); }
+  window.__lists = { b1: list('b1List', [4, 3, 2, 1, 0]), b4: list('b4List', [0, 1, 2, 3, 4]), b5: list('b5List', [0, 1, 2, 3, 4]) };
+  window.__scrub = function (pin, fn) { if (G) ScrollTrigger.create({ trigger: pin, start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: function (s) { fn(s.progress); }, onRefresh: function (s) { fn(s.progress); } }); else fn(0.5); };
+  // A6: the photo opens from a slit and the name rises as the block scrolls in
+  if (G) { var a6 = $('#a6'); gsap.fromTo(a6.querySelector('.ph'), { clipPath: 'inset(0% 46% 0% 46%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: a6, start: 'top 90%', end: 'center 55%', scrub: 0.6 } }); gsap.fromTo(a6.querySelector('strong span'), { yPercent: 110 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: a6, start: 'top 85%', end: 'center 60%', scrub: 0.6 } }); }
+  // C1: ruler
+  var rule = $('#c1Rule'); rule.insertAdjacentHTML('beforeend', TRL.map(function (n, i) { return '<li data-i="' + i + '"><b>' + (i + 1) + '</b><span>' + n + '</span></li>'; }).join('') + '<span class="c1Band" style="bottom:calc(8px + (100% - 16px) * 2 / 8 - 10px);height:calc((100% - 16px) * 3 / 8 + 20px)">Incubation</span><span class="c1Band" data-k="acc" style="bottom:calc(8px + (100% - 16px) * 6 / 8 - 10px);height:calc((100% - 16px) * 2 / 8 + 20px)">Accelerator</span>');
+  var rli = $$('#c1Rule li'), ck = -1;
+  __scrub($('#c1Pin'), function (p) { rule.querySelector('i').style.setProperty('--p', p); var k = Math.min(8, Math.round(p * 8)); if (k === ck) return; ck = k; rli.forEach(function (li, i) { li.toggleAttribute('data-on', i === k); li.toggleAttribute('data-past', i < k); }); $('#c1Num').textContent = k + 1; $('#c1Name').textContent = TRL[k]; $('#c1Band').textContent = bandOf(k); });
+  // C3: one line, idle turns, hover to read
+  var c3 = $('#c3'); c3.innerHTML = TRL.map(function (n, i) { return '<button role="tab" aria-selected="' + (i === 2) + '"' + (i >= 2 ? ' data-in' : '') + '><b>' + (i + 1) + '</b></button>'; }).join('');
+  var cb = $$('#c3 button'), ci = 2, cT = 0, held = false;
+  function c3pick(k) { ci = k; cb.forEach(function (b, i) { b.setAttribute('aria-selected', i === k); }); $('#c3Name').textContent = (k + 1) + ' · ' + TRL[k]; $('#c3Text').textContent = k < 2 ? 'Before incubation: research and early concepts.' : k < 6 ? 'Incubation: lab research towards validation in real conditions, e.g. TRL 6 / CRL 5.' : 'Accelerator · Unbreakable Harvest: deployed technologies, TRL 7–8+.'; }
+  function c3run() { clearTimeout(cT); if (held) return; cT = setTimeout(function () { c3pick((ci + 1) % 9); c3run(); }, 2600); }
+  cb.forEach(function (b, i) { b.addEventListener('mouseenter', function () { held = true; clearTimeout(cT); c3pick(i); }); });
+  c3.addEventListener('mouseleave', function () { held = false; c3run(); }); c3pick(2); c3run();
+  // D1: rings draw, numbers count once
+  function draw(circles, d) { circles.forEach(function (c, i) { var L = 2 * Math.PI * c.r.baseVal.value; c.style.strokeDasharray = L; c.style.strokeDashoffset = L; if (G) gsap.to(c, { strokeDashoffset: 0, duration: 1.6, delay: (d || 0) + i * 0.35, ease: 'power2.inOut', scrollTrigger: { trigger: c.ownerSVGElement, start: 'top 80%', once: true } }); else c.style.strokeDashoffset = 0; }); }
+  draw($$('#d1 circle')); $$('#d1 strong').forEach(function (s, i) { var o = { v: 0 }, to = +s.dataset.to; if (G) gsap.to(o, { v: to, duration: 1.8, delay: i * 0.35, ease: 'power3.out', scrollTrigger: { trigger: '#d1', start: 'top 80%', once: true }, onUpdate: function () { s.textContent = Math.round(o.v); } }); });
+  // D2
+  draw($$('#d2 circle')); if (G) { gsap.to('#d2 circle:last-child', { fillOpacity: 1, duration: 0.8, delay: 1.8, scrollTrigger: { trigger: '#d2', start: 'top 80%', once: true } }); gsap.from('#d2 li', { opacity: 0, y: 12, duration: 0.8, stagger: 0.35, ease: 'power3.out', scrollTrigger: { trigger: '#d2', start: 'top 80%', once: true } }); }
+  // D3: field filtered by scroll, nothing moves
+  var f = $('#d3Field'), dots = ''; for (var i = 0; i < 846; i++) dots += '<i></i>'; f.innerHTML = dots;
+  var ds = $$('#d3Field i'), keep21 = [], keep6 = [], sd = 5; function rnd() { sd = (sd * 16807) % 2147483647; return sd / 2147483647; }
+  var idx = ds.map(function (_, i) { return i; }).sort(function () { return rnd() - 0.5; }); keep21 = idx.slice(0, 21); keep6 = keep21.slice(0, 6);
+  var dk = -1; function d3(k) { if (k === dk) return; dk = k; ds.forEach(function (d, i) { d.toggleAttribute('data-out', k >= 1 && keep21.indexOf(i) < 0 || k >= 2 && keep6.indexOf(i) < 0); d.toggleAttribute('data-fin', k >= 2 && keep6.indexOf(i) >= 0); }); $('#d3Num').textContent = [846, 21, 6][k]; $('#d3Lbl').textContent = ['Registered', 'Qualified', 'Finalists'][k]; $('#d3Txt').textContent = ['teams from 54 countries', 'teams from 13 countries', 'under test at Innovation Oasis'][k]; }
+  d3(0); if (G) ScrollTrigger.create({ trigger: '#d3', start: 'top 70%', end: 'bottom 30%', onUpdate: function (s) { d3(s.progress < 0.35 ? 0 : s.progress < 0.7 ? 1 : 2); } });
+  // F2: hover a node
+  var ROLES = [['Organiser', 'Mohamed bin Zayed Water Initiative', 'Designs and runs the challenge, funds the AED 8 million prize and convenes the jury.'], ['Partner', 'Zayed for Good Foundation', 'Strategic partner supporting practical, science-based solutions.'], ['Partner', 'ADAFSA', 'Strategic oversight and technical expertise; supports evaluation under local climatic conditions.'], ['Partner', 'ASPIRE', 'Innovation acceleration, applying the latest technology and research in real-world contexts.'], ['Technical partner', 'Silal · Innovation Oasis', 'Hosts and executes the trials: five field pilots and the CRETA greenhouse build.']];
+  $$('#f2 .node').forEach(function (n) { n.addEventListener('mouseenter', function () { $$('#f2 .node').forEach(function (m) { m.toggleAttribute('data-on', m === n); }); var r = ROLES[+n.dataset.k]; $('#f2Role').textContent = r[0]; $('#f2Name').textContent = r[1]; $('#f2Text').textContent = r[2]; }); });
+})();
+</script>
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }</script>
+<script type="module">
+
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, G = !!window.gsap && !reduce;
+const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
+const sh = m => { m.castShadow = m.receiveShadow = true; return m; };
+const rbox = (w, h, d, r, m) => sh(new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)), m));
+const mesh = (g, m) => sh(new THREE.Mesh(g, m));
+const lerp = THREE.MathUtils.lerp;
+function contourTex(bg, line, seed) {
+  const N = 1024, cv = document.createElement('canvas'); cv.width = cv.height = N; const g = cv.getContext('2d'); g.fillStyle = bg; g.fillRect(0, 0, N, N);
+  let sd = seed || 11; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647, B = []; for (let k = 0; k < 7; k++) B.push([rnd(), rnd(), 0.1 + rnd() * 0.14, 0.5 + rnd() * 0.6]);
+  const R = 160, F = new Float32Array((R + 1) * (R + 1));
+  for (let j = 0; j <= R; j++) for (let i = 0; i <= R; i++) { const x = i / R, y = j / R; let v = 0; B.forEach(([bx, by, s, a]) => { let dx = Math.abs(x - bx), dy = Math.abs(y - by); dx = Math.min(dx, 1 - dx); dy = Math.min(dy, 1 - dy); v += a * Math.exp(-(dx * dx + dy * dy) / (2 * s * s)); }); F[j * (R + 1) + i] = v; }
+  const c = N / R, P = (i, j) => F[j * (R + 1) + i]; g.strokeStyle = line; g.lineWidth = 1.5;
+  for (let L = 0.06; L < 2.4; L += 0.085) { g.beginPath(); for (let j = 0; j < R; j++) for (let i = 0; i < R; i++) { const a = P(i, j), b = P(i + 1, j), d = P(i + 1, j + 1), e = P(i, j + 1), pts = []; const cut = (p, q, x1, y1, x2, y2) => { const t = (L - p) / (q - p); pts.push([(x1 + (x2 - x1) * t) * c, (y1 + (y2 - y1) * t) * c]); }; if ((a < L) !== (b < L)) cut(a, b, i, j, i + 1, j); if ((b < L) !== (d < L)) cut(b, d, i + 1, j, i + 1, j + 1); if ((d < L) !== (e < L)) cut(d, e, i + 1, j + 1, i, j + 1); if ((e < L) !== (a < L)) cut(e, a, i, j + 1, i, j); for (let k = 0; k + 1 < pts.length; k += 2) { g.moveTo(...pts[k]); g.lineTo(...pts[k + 1]); } } g.stroke(); }
+  const tx = new THREE.CanvasTexture(cv); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.colorSpace = THREE.SRGBColorSpace; return tx;
+}
+function stage(host, fov) {
+  const r = new THREE.WebGLRenderer({ antialias: true, alpha: true }); r.setPixelRatio(Math.min(2, devicePixelRatio)); r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap; r.outputColorSpace = THREE.SRGBColorSpace; r.toneMapping = THREE.ACESFilmicToneMapping; host.prepend(r.domElement);
+  const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(fov, 1, 0.1, 200);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xe0d8cc, 2.1));
+  const sun = new THREE.DirectionalLight(0xffffff, 1.5); sun.position.set(-8, 18, 12); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: 1, far: 70 }); sun.shadow.radius = 10; scene.add(sun);
+  const S = { r, scene, cam, vis: false, w: 1, h: 1, size() { S.w = host.clientWidth; S.h = host.clientHeight; r.setSize(S.w, S.h, false); cam.aspect = S.w / S.h; cam.updateProjectionMatrix(); } };
+  S.size(); addEventListener('resize', S.size); new IntersectionObserver(es => { S.vis = es[0].isIntersecting; if (S.vis) S.size(); }, { rootMargin: '200px' }).observe(host);
+  return S;
+}
+function labels(host, names) { return names.map(n => { const d = document.createElement('div'); d.className = 'lab'; d.innerHTML = '<i></i><span>' + n + '</span>'; host.appendChild(d); return d; }); }
+const v = new THREE.Vector3();
+function place(S, pts, labs) { pts.forEach((p, i) => { v.copy(p).project(S.cam); labs[i].style.transform = 'translate(' + ((v.x + 1) / 2 * S.w) + 'px,' + ((1 - v.y) / 2 * S.h) + 'px)'; }); }
+function scrub(pin, fn) { if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: pin, start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: s => fn(s.progress), onRefresh: s => fn(s.progress) }); else fn(0.5); }
+function mark(list, k) { list.forEach(li => li.toggleAttribute('data-on', +li.dataset.k === k)); }
+
+
+/* ===== B1: one plant, its soil cut open in layers; the camera goes from the leaves down below the roots ===== */
+(function () {
+  const host = document.getElementById('b1'); let S; try { S = stage(host, 30); } catch (e) { return; }
+  const { scene, cam } = S, sand = contourTex('#e4dacb', 'rgba(140,118,92,.22)', 7); sand.repeat.set(1.2, 0.8);
+  // the soil is cut open at z = 0.5: everything inside the ground sits just in front of the cut face, like a section drawing
+  const W = 9, D = 4.5, FZ = 0.5;
+  const layer = (y, h, c) => { const m = rbox(W, h, D, 0.12, mat(c)); m.position.set(0, y, FZ - D / 2); scene.add(m); return m; };
+  const deep = layer(-3.35, 1.3, 0xcbb79c), roots = layer(-1.35, 2.7, 0xdccbb3);
+  const top = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.2, D - 0.2), mat(0xffffff, { map: sand })); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.006, FZ - D / 2); top.receiveShadow = true; scene.add(top);
+  // the Raincatcher layer: a pale band under the root zone; EF polymer: beads in the soil; microbes: tiny dots around the roots
+  const band = rbox(W + 0.02, 0.22, D + 0.02, 0.05, mat(0xf6f5f2)); band.position.set(0, -2.72, FZ - D / 2); scene.add(band);
+  const blue = new THREE.Color(0x3ca7d2), grey = new THREE.Color(0xd9dadb), parts = { 0: [band], 1: [], 2: [], 3: [], 4: [] };
+  for (let k = 0; k < 26; k++) { const b = mesh(new THREE.SphereGeometry(0.11, 12, 10), mat(0xf6f5f2)); b.position.set(-3.8 + Math.random() * 7.6, -0.35 - Math.random() * 2.1, FZ + 0.05); scene.add(b); parts[1].push(b); }
+  for (let k = 0; k < 60; k++) { const b = mesh(new THREE.SphereGeometry(0.045, 8, 6), mat(0x9d8f7d)); const a = Math.random() * 6.28, rr = 0.3 + Math.random() * 1.2; b.position.set(Math.cos(a) * rr * 1.4, -0.3 - Math.random() * 2.0, FZ + 0.04); scene.add(b); parts[2].push(b); }
+  // roots
+  const rootM = mat(0xb9a88f), rootList = [];
+  [[0.9, -1.9, 0.4], [-1.0, -1.7, 0.2], [0.3, -2.3, 0.9], [-0.4, -2.2, -0.5], [1.4, -1.2, -0.6], [-1.5, -1.1, 0.8]].forEach(([x, y, z]) => { const c = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0, FZ + 0.08), new THREE.Vector3(x * 0.4, y * 0.45, FZ + 0.08), new THREE.Vector3(x, y, FZ + 0.08)]); const rt = mesh(new THREE.TubeGeometry(c, 24, 0.05, 8), rootM.clone()); scene.add(rt); rootList.push(rt); });
+  // plant: stem and leaves
+  const stem = mesh(new THREE.CylinderGeometry(0.07, 0.1, 2.6, 12), mat(0xd9dadb)); stem.position.set(0, 1.3, 0.6); scene.add(stem); parts[3].push(stem);
+  [[-0.55, 1.2, 0.6], [0.6, 1.7, -0.6], [-0.5, 2.2, 0.5], [0.45, 2.6, -0.4]].forEach(([x, y, r]) => { const l = mesh(new THREE.SphereGeometry(0.5, 20, 14), mat(0xd9dadb)); l.scale.set(1, 0.22, 0.5); l.position.set(x, y, 0.6); l.rotation.z = r; scene.add(l); parts[4].push(l); });
+  const L = labels(host, PILOTS.map(p => p.n)), P = [new THREE.Vector3(3.4, -2.72, FZ + 0.1), new THREE.Vector3(-2.8, -1.0, FZ + 0.1), new THREE.Vector3(1.3, -1.6, FZ + 0.1), new THREE.Vector3(0.15, 0.9, 0.7), new THREE.Vector3(-0.6, 2.25, 0.8)];
+  parts[3].push(...parts[4], ...rootList);
+  const uniq = [...new Set(Object.values(parts).flat())]; uniq.forEach(o => { o.material = o.material.clone(); o.userData.c0 = o.material.color.clone(); });
+  let on = -1, prog = 0, pk = 0; const list = window.__lists.b1;
+  function light(k) { if (k === on) return; on = k; mark(list, k); L.forEach((l, i) => l.toggleAttribute('data-on', i === k)); uniq.forEach(o => { const to = parts[k].includes(o) ? blue : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); }); }
+  scrub(document.getElementById('b1Pin'), p => { prog = p; light(4 - Math.min(4, Math.floor(p * 5))); });
+  const tgt = new THREE.Vector3(), clock = new THREE.Clock();
+  (function loop() { requestAnimationFrame(loop); if (!S.vis) return; const t = clock.getElapsedTime(); pk += (prog - pk) * 0.07;
+    const fit = S.cam.aspect < 1.1 ? 1.5 : 1, y = lerp(1.8, -2.4, pk), yaw = lerp(-0.55, 0.35, pk) + (reduce ? 0 : Math.sin(t * 0.2) * 0.02), d = 15 * fit;
+    tgt.set(0, y, 0.4); cam.position.set(Math.sin(yaw) * d, y + 1.6, Math.cos(yaw) * d); cam.lookAt(tgt);
+    parts[4].forEach((l, i) => { if (!reduce) l.rotation.x = Math.sin(t * 1.2 + i) * 0.06; });
+    S.r.render(scene, cam); place(S, P, L); })();
+})();
+
+
+/* ===== B4: five plots side by side, each cut open at the front; each shows its own finalist's solution ===== */
+(function () {
+  const host = document.getElementById('b4'); let S; try { S = stage(host, 28); } catch (e) { return; }
+  const { scene, cam } = S, sand = contourTex('#ddd3c5', 'rgba(140,118,92,.22)', 23); sand.repeat.set(5, 2.5);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(140, 70), new THREE.MeshStandardMaterial({ map: sand, roughness: 1 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -2.2; floor.receiveShadow = true; scene.add(floor);
+  scene.fog = new THREE.Fog(0xe8e1d6, 30, 70);
+  const SP = 4.6, blue = new THREE.Color(0x3ca7d2), plots = [];
+  const plant = (g, x, z, s) => { const st = mesh(new THREE.CylinderGeometry(0.035 * s, 0.05 * s, 0.9 * s, 8), mat(0xd9dadb)); st.position.set(x, 0.45 * s, z); g.add(st); const ls = []; [[-1, 0.55], [1, 0.8]].forEach(([d, y]) => { const l = mesh(new THREE.SphereGeometry(0.26 * s, 14, 10), mat(0xd9dadb)); l.scale.set(1, 0.25, 0.55); l.position.set(x + d * 0.2 * s, y * s, z); l.rotation.z = -d * 0.5; g.add(l); ls.push(l); }); return { st, ls }; };
+  for (let i = 0; i < 5; i++) {
+    const g = new THREE.Group(); g.position.x = (i - 2) * SP; scene.add(g);
+    const soil = rbox(3.8, 1.9, 2.4, 0.1, mat(0xdccbb3)); soil.position.set(0, -0.95, -0.6); g.add(soil);
+    const top = new THREE.Mesh(new THREE.PlaneGeometry(3.7, 2.3), new THREE.MeshStandardMaterial({ map: sand, roughness: 1 })); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.004, -0.6); top.receiveShadow = true; g.add(top);
+    const parts = [], ps = [];
+    for (let c = 0; c < 3; c++) ps.push(plant(g, -1.1 + c * 1.1, 0.25, 1));
+    // roots on the cut face
+    ps.forEach(p => { const x = p.st.position.x; [[-0.35, -0.9], [0.3, -1.0], [0, -1.2]].forEach(([dx, y]) => { const cv = new THREE.CatmullRomCurve3([new THREE.Vector3(x, 0, 0.62), new THREE.Vector3(x + dx * 0.5, y * 0.5, 0.62), new THREE.Vector3(x + dx, y, 0.62)]); g.add(mesh(new THREE.TubeGeometry(cv, 16, 0.025, 6), mat(0xb9a88f))); }); });
+    if (i === 0) { const band = rbox(3.82, 0.16, 2.42, 0.04, mat(0xf6f5f2)); band.position.set(0, -1.45, -0.6); g.add(band); parts.push(band); }
+    if (i === 1) for (let k = 0; k < 18; k++) { const b = mesh(new THREE.SphereGeometry(0.07, 10, 8), mat(0xf6f5f2)); b.position.set(-1.7 + Math.random() * 3.4, -0.15 - Math.random() * 1.05, 0.64); g.add(b); parts.push(b); }
+    if (i === 2) for (let k = 0; k < 40; k++) { const b = mesh(new THREE.SphereGeometry(0.03, 6, 5), mat(0x9d8f7d)); b.position.set(-1.6 + Math.random() * 3.2, -0.1 - Math.random() * 1.2, 0.63); g.add(b); parts.push(b); }
+    if (i === 3) ps.forEach(p => { parts.push(p.st, ...p.ls); });
+    if (i === 4) ps.forEach(p => { parts.push(...p.ls); });
+    parts.forEach(o => { o.material = o.material.clone(); o.userData.c0 = o.material.color.clone(); });
+    plots.push({ g, parts, top: new THREE.Vector3((i - 2) * SP, 1.4, 0.3) });
+  }
+  const L = labels(host, PILOTS.map(p => p.n + ' · ' + p.c)); let on = -1, prog = 0, pk = 0; const list = window.__lists.b4;
+  function light(k) { if (k === on) return; on = k; mark(list, k); L.forEach((l, i) => l.toggleAttribute('data-on', i === k)); plots.forEach((p, i) => p.parts.forEach(o => { const to = i === k ? blue : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); })); }
+  scrub(document.getElementById('b4Pin'), p => { prog = p; light(Math.min(4, Math.floor(p * 5))); });
+  const tgt = new THREE.Vector3(), clock = new THREE.Clock();
+  (function loop() { requestAnimationFrame(loop); if (!S.vis) return; const t = clock.getElapsedTime(); pk += (prog - pk) * 0.07;
+    const x = lerp(-2 * SP, 2 * SP, pk), fit = S.cam.aspect < 1.1 ? 1.6 : 1, d = 11 * fit, yaw = -0.3 + (reduce ? 0 : Math.sin(t * 0.2) * 0.02), a = 0.3;
+    tgt.set(x, -0.4, 0); cam.position.set(x + Math.sin(yaw) * d * Math.cos(a), -0.4 + Math.sin(a) * d, Math.cos(yaw) * d * Math.cos(a)); cam.lookAt(tgt);
+    S.r.render(scene, cam); place(S, plots.map(p => p.top), L); })();
+})();
+/* ===== B5: one plot on a turntable; the scroll swaps which finalist's solution is in it ===== */
+(function () {
+  const host = document.getElementById('b5'); let S; try { S = stage(host, 28); } catch (e) { return; }
+  const { scene, cam } = S, sand = contourTex('#ddd3c5', 'rgba(140,118,92,.22)', 23); sand.repeat.set(5, 2.5);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(140, 70), new THREE.MeshStandardMaterial({ map: sand, roughness: 1 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -2.3; floor.receiveShadow = true; scene.add(floor);
+  scene.fog = new THREE.Fog(0xe8e1d6, 24, 60);
+  const turn = new THREE.Group(); scene.add(turn);
+  const soil = rbox(5, 2, 3.2, 0.12, mat(0xdccbb3)); soil.position.set(0, -1, -0.6); turn.add(soil);
+  const top = new THREE.Mesh(new THREE.PlaneGeometry(4.9, 3.1), new THREE.MeshStandardMaterial({ map: sand, roughness: 1 })); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.004, -0.6); turn.add(top);
+  const post = mesh(new THREE.CylinderGeometry(0.04, 0.05, 1.5, 8), mat(0xb9bbbc)); post.position.set(2.1, 0.75, -1.8); turn.add(post);
+  const head = rbox(0.34, 0.22, 0.34, 0.06, mat(0xf6f5f2)); head.position.set(2.1, 1.55, -1.8); turn.add(head);
+  const leaves = [], stems = [];
+  [-1.4, 0, 1.4].forEach(x => { const st = mesh(new THREE.CylinderGeometry(0.05, 0.07, 1.4, 10), mat(0xd9dadb)); st.position.set(x, 0.7, 1.0 - 0.0); turn.add(st); stems.push(st); [[-1, 0.8], [1, 1.2]].forEach(([d, y]) => { const l = mesh(new THREE.SphereGeometry(0.38, 16, 12), mat(0xd9dadb)); l.scale.set(1, 0.25, 0.55); l.position.set(x + d * 0.3, y, 1.0); l.rotation.z = -d * 0.5; turn.add(l); leaves.push(l); }); });
+  const band = rbox(5.02, 0.18, 3.22, 0.04, mat(0x3ca7d2)); band.position.set(0, -1.55, -0.6); turn.add(band);
+  const beads = [], mics = [];
+  for (let k = 0; k < 30; k++) { const b = mesh(new THREE.SphereGeometry(0.08, 10, 8), mat(0x3ca7d2)); b.position.set(-2.3 + Math.random() * 4.6, -0.15 - Math.random() * 1.2, 1.02); turn.add(b); beads.push(b); }
+  for (let k = 0; k < 70; k++) { const b = mesh(new THREE.SphereGeometry(0.035, 6, 5), mat(0x3ca7d2)); b.position.set(-2.2 + Math.random() * 4.4, -0.1 - Math.random() * 1.3, 1.01); turn.add(b); mics.push(b); }
+  const sets = [[band], beads, mics, [...stems, ...leaves], leaves];
+  const all = [band, ...beads, ...mics]; all.forEach(o => o.scale.setScalar(0.001));
+  [...stems, ...leaves].forEach(o => { o.material = o.material.clone(); });
+  const blue = new THREE.Color(0x3ca7d2), grey = new THREE.Color(0xd9dadb); let on = -1, prog = 0, pk = 0; const list = window.__lists.b5;
+  function show(k) { if (k === on) return; on = k; mark(list, k);
+    all.forEach(o => { const v = sets[k].includes(o) ? 1 : 0.001; if (G) gsap.to(o.scale, { x: v, y: v, z: v, duration: 0.7, ease: v > 0.5 ? 'back.out(2)' : 'power2.in' }); else o.scale.setScalar(v); });
+    [...stems, ...leaves].forEach(o => { const to = sets[k].includes(o) ? blue : grey; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); }); }
+  scrub(document.getElementById('b5Pin'), p => { prog = p; show(Math.min(4, Math.floor(p * 5))); });
+  const clock = new THREE.Clock(), tgt = new THREE.Vector3(0, -0.2, 0.2);
+  (function loop() { requestAnimationFrame(loop); if (!S.vis) return; const t = clock.getElapsedTime(); pk += (prog - pk) * 0.07;
+    turn.rotation.y = lerp(-0.5, 0.5, pk) + (reduce ? 0 : Math.sin(t * 0.25) * 0.04); const fit = S.cam.aspect < 1.1 ? 1.6 : 1, d = 12 * fit, a = 0.36;
+    cam.position.set(0, -0.2 + Math.sin(a) * d, Math.cos(a) * d); cam.lookAt(tgt); S.r.render(scene, cam); })();
+})();
+/* ===== C2: nine clay steps on the sand; the camera climbs with the scroll ===== */
+(function () {
+  const host = document.getElementById('c2'); let S; try { S = stage(host, 30); } catch (e) { return; }
+  const { scene, cam } = S, sand = contourTex('#ddd3c5', 'rgba(140,118,92,.22)', 31); sand.repeat.set(5, 2.5);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(140, 70), new THREE.MeshStandardMaterial({ map: sand, roughness: 1 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+  scene.fog = new THREE.Fog(0xe8e1d6, 28, 70);
+  const steps = [];
+  for (let i = 0; i < 9; i++) { const h = 0.35 + i * 0.42, c = i < 2 ? 0xf6f5f2 : i < 6 ? 0x3ca7d2 : 0x8a8584; const m = rbox(1.5, h, 2.4, 0.08, mat(c)); m.position.set((i - 4) * 1.6, h / 2, 0); m.userData.h = h; scene.add(m); steps.push(m); }
+  steps.forEach(s => { s.material = s.material.clone(); s.userData.c0 = s.material.color.clone(); });
+  const L = labels(host, window.TRL.map((n, i) => String(i + 1)));
+  let on = -1, prog = 0, pk = 0;
+  function light(k) { if (k === on) return; on = k; document.getElementById('c2Band').textContent = bandOf(k); document.getElementById('c2Name').textContent = (k + 1) + ' · ' + TRL[k]; L.forEach((l, i) => l.toggleAttribute('data-on', i === k)); steps.forEach((s, i) => { if (G) gsap.to(s.position, { z: i === k ? 0.5 : 0, duration: 0.7, ease: 'power3.out' }); }); }
+  scrub(document.getElementById('c2Pin'), p => { prog = p; light(Math.min(8, Math.round(p * 8))); });
+  const tgt = new THREE.Vector3(), clock = new THREE.Clock();
+  (function loop() { requestAnimationFrame(loop); if (!S.vis) return; const t = clock.getElapsedTime(); pk += (prog - pk) * 0.07;
+    const x = lerp(-5.5, 5.5, pk), y = lerp(0.6, 3.2, pk), fit = S.cam.aspect < 1.1 ? 1.7 : 1, d = 14 * fit, yaw = -0.55 + (reduce ? 0 : Math.sin(t * 0.2) * 0.02), a = 0.38;
+    tgt.set(x, y, 0); cam.position.set(x + Math.sin(yaw) * d * Math.cos(a), y + Math.sin(a) * d, Math.cos(yaw) * d * Math.cos(a)); cam.lookAt(tgt);
+    S.r.render(scene, cam); place(S, steps.map(s => new THREE.Vector3(s.position.x, s.userData.h + 0.3, s.position.z)), L); })();
+})();
+</script>
