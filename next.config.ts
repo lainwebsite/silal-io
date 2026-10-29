@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
       // some apps send the "&" encoded; send those to the plain URL
       { source: "/innovation%26venture", destination: "/innovation&venture", permanent: false },
       { source: "/innovation%26venture/:sub", destination: "/innovation&venture/:sub", permanent: false },
+      { source: "/innovation%26venture-v2", destination: "/innovation&venture-v2", permanent: false },
+      { source: "/innovation%26venture-v2/:sub", destination: "/innovation&venture-v2/:sub", permanent: false },
       { source: "/Innovation-Venture-Platforms", destination: "/innovation&venture", permanent: false },
       { source: "/innovation-venture-platforms", destination: "/innovation&venture", permanent: false },
       { source: "/Innovation-Venture-Platforms/Farm-Innovation-Fund", destination: "/innovation&venture/farm-innovation-fund", permanent: false },
@@ -51,6 +53,13 @@ const nextConfig: NextConfig = {
       { source: "/innovation&venture/accelerator", destination: "/innovation-venture-platforms/accelerator.html" },
       { source: "/innovation&venture/agricultural-challenges", destination: "/innovation-venture-platforms/agricultural-challenges.html" },
       { source: "/innovation&venture/enquire", destination: "/innovation-venture-platforms/enquire.html" },
+      // v2 (2026-10-29): the reworked pages, side by side with the 2026-10-28 version above; files in public/innovation-venture-platforms-v2/
+      { source: "/innovation&venture-v2", destination: "/innovation-venture-platforms-v2/index.html" },
+      { source: "/innovation&venture-v2/farm-innovation-fund", destination: "/innovation-venture-platforms-v2/farm-innovation-fund.html" },
+      { source: "/innovation&venture-v2/incubation", destination: "/innovation-venture-platforms-v2/incubation.html" },
+      { source: "/innovation&venture-v2/accelerator", destination: "/innovation-venture-platforms-v2/accelerator.html" },
+      { source: "/innovation&venture-v2/agricultural-challenges", destination: "/innovation-venture-platforms-v2/agricultural-challenges.html" },
+      { source: "/innovation&venture-v2/enquire", destination: "/innovation-venture-platforms-v2/enquire.html" },
     ];
   },
 };

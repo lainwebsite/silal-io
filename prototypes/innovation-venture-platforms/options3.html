@@ -1,0 +1,103 @@
+<meta charset="utf-8">
+<title>IVP Options Round 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500&display=swap">
+<style>
+
+/* Round 3 options: the "next page" link (same idea, three layouts) and "Five field pilots, one protocol" (three iterations).
+   Same tokens, weights (300 / 400 / 500) and 12-column grid as the pages. Light only, like the site. */
+:root { color-scheme: light; --io: #3ca7d2; --ink: #1a6f96; --char: #595453; --grey: #7f8284; --grey-ink: #6e7173; --light: #f1f1f1; --line: rgba(89,84,83,.16); --slow: cubic-bezier(0.16,1,0.3,1);
+  --fs-display: clamp(2.5rem, 3.9vw, 4.5rem); --fs-h2: clamp(2rem, 2.45vw, 2.875rem); --t-h3: clamp(1.5rem, 2.2vw, 2.25rem); --fs-lead: clamp(1.125rem, 1.2vw, 1.3125rem); --gap: clamp(16px, 1.8vw, 32px); --g: clamp(16px, 4vw, 56px); }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--char); font-family: "Readex Pro", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, ol { margin: 0; } ul, ol { padding: 0; list-style: none; } a { color: inherit; text-decoration: none; }
+.w { max-width: 1440px; margin: 0 auto; padding-inline: max(var(--g), env(safe-area-inset-left, 0px)) max(var(--g), env(safe-area-inset-right, 0px)); }
+.g12 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); }
+.lbl { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.top { padding-block: 56px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; border-bottom: 1px solid var(--line); }
+.top h1 { font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.06; margin-top: 12px; }
+.top p { max-width: 34em; color: var(--grey-ink); line-height: 1.7; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; padding-block: 20px; }
+.toc a { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); font-size: .875rem; transition: background .3s, color .3s; }
+.toc a:hover { background: var(--char); color: #fff; }
+.part { padding-block: clamp(64px, 8vw, 120px) 0; }
+.part > .w > h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; margin: 12px 0 8px; }
+.part > .w > p { color: var(--grey-ink); line-height: 1.7; max-width: 40em; }
+.opt { margin-top: clamp(48px, 6vw, 88px); }
+.tag { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 20px; padding: 14px 18px; background: var(--light); border-radius: 12px; font-size: .875rem; line-height: 1.55; color: var(--grey-ink); }
+.tag b { font-weight: 500; color: #fff; background: var(--char); border-radius: 999px; padding: 3px 11px; font-size: .75rem; letter-spacing: .06em; }
+.tag strong { font-weight: 400; color: var(--char); }
+.ph { position: relative; overflow: hidden; background: #ddd; }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.arw { width: clamp(36px, 4vw, 56px); height: auto; transition: transform .8s var(--slow); }
+
+
+.head2 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 20px; align-items: end; margin-bottom: clamp(32px, 4vw, 56px); }
+.head2 > div { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 20px; } .head2 h3 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; }
+.head2 p { grid-column: 9 / span 4; color: var(--grey-ink); line-height: 1.7; }
+/* C4 ladder: nine rows, read like a scale from the top; each row says which platform it belongs to */
+.c4 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: start; }
+.c4 ol { grid-column: 1 / -1; display: flex; flex-direction: column-reverse; border-bottom: 1px solid var(--line); }
+.c4 li { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: baseline; padding: 16px 0; border-top: 1px solid var(--line); overflow: hidden; }
+.c4 li::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--light); transform: scaleX(0); transform-origin: left; transition: transform 1s var(--slow); }
+.c4 li[data-b="inc"]::before { background: #e3f2f9; } .c4 li[data-b="acc"]::before { background: #ecebea; }
+.c4 li[data-in]::before { transform: scaleX(1); }
+.c4 li b { grid-column: 1 / span 1; font-size: 1.75rem; font-weight: 300; letter-spacing: -.03em; padding-left: 12px; color: var(--grey); }
+.c4 li span { grid-column: 2 / span 6; font-size: 1.125rem; font-weight: 300; }
+.c4 li em { grid-column: 9 / span 4; font-style: normal; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.c4 li[data-b="inc"] b, .c4 li[data-b="inc"] em { color: var(--ink); } .c4 li[data-b="acc"] b, .c4 li[data-b="acc"] em { color: var(--char); }
+/* C5 three photo chapters: before, incubation, accelerator */
+.c5 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 24px; align-items: start; }
+.c5 article { display: flex; flex-direction: column; gap: 14px; }
+.c5 article:nth-child(1) { grid-column: 1 / span 3; margin-top: 120px; } .c5 article:nth-child(2) { grid-column: 4 / span 5; } .c5 article:nth-child(3) { grid-column: 9 / span 4; margin-top: 60px; }
+.c5 .ph { aspect-ratio: 4 / 5; } .c5 article:nth-child(2) .ph { aspect-ratio: 4 / 4.4; }
+.c5 .lvl { font-size: clamp(2rem, 3.6vw, 3.5rem); font-weight: 300; letter-spacing: -.04em; line-height: 1; color: var(--grey); }
+.c5 article:nth-child(2) .lvl { color: var(--ink); } .c5 article:nth-child(3) .lvl { color: var(--char); }
+.c5 h4 { font-size: 1.375rem; font-weight: 300; } .c5 ul { display: flex; flex-direction: column; gap: 4px; font-size: .9375rem; color: var(--grey-ink); }
+/* C6 where is your technology? a slider from 1 to 9 answers with the platform */
+.c6 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 32px; align-items: center; padding: clamp(28px, 4vw, 56px); background: var(--light); }
+.c6L { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: 24px; }
+.c6L label { font-size: 1.25rem; font-weight: 300; }
+.c6 input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 2px; background: linear-gradient(90deg, #c2c4c5 0 22.2%, var(--io) 22.2% 66.6%, var(--char) 66.6% 100%); outline: none; }
+.c6 input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); cursor: grab; }
+.c6 input[type=range]::-moz-range-thumb { width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); cursor: grab; }
+.c6Ticks { display: grid; grid-template-columns: repeat(9, 1fr); font-size: .875rem; color: var(--grey); } .c6Ticks span:nth-child(n+3):nth-child(-n+6) { color: var(--ink); }
+.c6R { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: 12px; }
+.c6R strong { font-size: clamp(4rem, 8vw, 7rem); font-weight: 300; line-height: .9; letter-spacing: -.06em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.c6R h4 { font-size: 1.375rem; font-weight: 300; } .c6R p { color: var(--grey-ink); line-height: 1.6; }
+.c6R a { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 20px; border-radius: 999px; background: var(--ink); color: #fff; font-size: .9375rem; font-weight: 500; }
+@media (max-width: 900px) { .c5 article:nth-child(n), .c6L, .c6R, .head2 > div, .head2 p { grid-column: 1 / -1; margin-top: 0; } .c4 li span { grid-column: 2 / span 11; } .c4 li em { grid-column: 2 / span 11; } }
+</style>
+<div class="w top"><div><span class="lbl">Incubation · round 5</span><h1>Where incubation sits, again.</h1></div><p>Three new directions for the readiness levels, next to the earlier C1–C3. Pick one code, or tell me which part of a previous one you liked.</p></div>
+<section class="part"><div class="w">
+  <div class="opt"><p class="tag"><b>C4</b><strong>Readiness ladder.</strong> Nine full-width rows, 1 at the bottom to 9 at the top, each named in full and tagged with its platform. Rows fill with a pale tint as they scroll in (light blue for Incubation, light grey for Accelerator). The most legible: everything is visible, nothing to hover.</p>
+    <div class="head2"><div><span class="lbl">Where incubation sits</span><h3>Nine steps of technology readiness. Incubation climbs from 3 to 6.</h3></div><p>Technology readiness levels (TRL) measure how close an idea is to real use.</p></div>
+    <div class="c4"><ol id="c4"><li data-b="pre"><b>1</b><span>Basic principles observed</span><em></em></li><li data-b="pre"><b>2</b><span>Technology concept formulated</span><em></em></li><li data-b="inc"><b>3</b><span>Experimental proof of concept</span><em>Incubation</em></li><li data-b="inc"><b>4</b><span>Validated in the lab</span><em>Incubation</em></li><li data-b="inc"><b>5</b><span>Validated in a relevant environment</span><em>Incubation</em></li><li data-b="inc"><b>6</b><span>Demonstrated in a relevant environment</span><em>Incubation</em></li><li data-b="acc"><b>7</b><span>Prototype in an operational environment</span><em>Accelerator</em></li><li data-b="acc"><b>8</b><span>System complete and qualified</span><em>Accelerator</em></li><li data-b="acc"><b>9</b><span>Proven in operational environment</span><em>Accelerator</em></li></ol></div></div>
+  <div class="opt"><p class="tag"><b>C5</b><strong>Three photo chapters.</strong> The scale told as three stages with photos, staggered like an editorial spread: before incubation (TRL 1–2), Incubation (TRL 3–6, the biggest), Accelerator (TRL 7–9). Human and calm; the levels are listed under each photo.</p>
+    <div class="head2"><div><span class="lbl">Where incubation sits</span><h3>From a lab idea to a proven system.</h3></div><p>Technology readiness levels (TRL) measure how close an idea is to real use.</p></div>
+    <div class="c5">
+      <article><div class="ph"><img src="img/inc_chamber.webp" alt=""></div><span class="lvl">TRL 1–2</span><h4>Before incubation</h4><ul><li>1 · Basic principles observed</li><li>2 · Technology concept formulated</li></ul></article>
+      <article><div class="ph"><img src="img/inc_robot.webp" alt=""></div><span class="lvl">TRL 3–6</span><h4>Incubation, with Khalifa University</h4><ul><li>3 · Experimental proof of concept</li><li>4 · Validated in the lab</li><li>5 · Validated in a relevant environment</li><li>6 · Demonstrated in a relevant environment</li></ul></article>
+      <article><div class="ph"><img src="img/hero_acc.webp" alt=""></div><span class="lvl">TRL 7–9</span><h4>Accelerator · Unbreakable Harvest</h4><ul><li>7 · Prototype in an operational environment</li><li>8 · System complete and qualified</li><li>9 · Proven in operational environment</li></ul></article>
+    </div></div>
+  <div class="opt"><p class="tag"><b>C6</b><strong>Where is your technology?</strong> The scale becomes a tool: slide to the level of your idea and the panel tells you the level’s name and which platform fits, with a button to go there. Same facts, but it answers the visitor’s real question.</p>
+    <div class="head2"><div><span class="lbl">Where incubation sits</span><h3>Where is your technology today?</h3></div><p>Technology readiness levels (TRL) measure how close an idea is to real use. Incubation takes ideas from 3 to 6.</p></div>
+    <div class="c6"><div class="c6L"><label for="c6r">Slide to your readiness level</label><input type="range" id="c6r" min="1" max="9" value="4"><div class="c6Ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>
+      <div class="c6R"><span class="lbl" id="c6b">Incubation · TRL 3 to 6</span><strong id="c6n">4</strong><h4 id="c6t">Validated in the lab</h4><p id="c6p">Incubation takes lab research towards validation in real conditions, with Khalifa University.</p><a id="c6a" href="#">Go to Incubation →</a></div></div></div>
+</div></section>
+<div class="w foot">Same content as the page: TRL 1–9 and their names; Incubation 3 to 6, Accelerator 7 to 9.</div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var TRL = ["Basic principles observed", "Technology concept formulated", "Experimental proof of concept", "Validated in the lab", "Validated in a relevant environment", "Demonstrated in a relevant environment", "Prototype in an operational environment", "System complete and qualified", "Proven in operational environment"], G = !!window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches; if (G) gsap.registerPlugin(ScrollTrigger);
+  [].slice.call(document.querySelectorAll('#c4 li')).forEach(function (li, i) { if (G) ScrollTrigger.create({ trigger: li, start: 'top 85%', once: true, onEnter: function () { setTimeout(function () { li.setAttribute('data-in', ''); }, (8 - i) * 0); } }); else li.setAttribute('data-in', ''); });
+  if (G) gsap.from('.c5 article', { y: 60, opacity: 0, duration: 1.2, stagger: 0.15, ease: 'expo.out', scrollTrigger: { trigger: '.c5', start: 'top 80%', once: true } });
+  var r = document.getElementById('c6r');
+  function upd() { var k = +r.value - 1; document.getElementById('c6n').textContent = k + 1; document.getElementById('c6t').textContent = TRL[k];
+    var pre = k < 2, inc = k >= 2 && k < 6; document.getElementById('c6b').textContent = pre ? 'Before incubation · TRL 1 to 2' : inc ? 'Incubation · TRL 3 to 6' : 'Accelerator · TRL 7 to 9';
+    document.getElementById('c6p').textContent = pre ? 'Before incubation: basic research and early concepts. The Innovation Oasis team can point you to the right next step.' : inc ? 'Incubation takes lab research towards validation in real conditions, with Khalifa University.' : 'Deployed technologies, TRL 7–8+: the Accelerator, Unbreakable Harvest.';
+    document.getElementById('c6a').textContent = (pre ? 'Enquire' : inc ? 'Go to Incubation' : 'Go to Accelerator') + ' →'; }
+  r.addEventListener('input', upd); upd();
+})();
+</script>

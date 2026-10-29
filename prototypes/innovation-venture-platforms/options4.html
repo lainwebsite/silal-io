@@ -1,0 +1,426 @@
+<meta charset="utf-8">
+<title>IVP Options Round 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500&display=swap">
+<style>
+/* Round 6 options: the FIF cohort section (G1–G3), the Al Miyah funnel (D4–D6), the IO mark on the Incubation success band (H1–H2).
+   Same tokens, weights (300 / 400 / 500) and 12-column grid as the pages. Light only, like the site. */
+:root { color-scheme: light; --io: #3ca7d2; --ink: #1a6f96; --char: #595453; --grey: #7f8284; --grey-ink: #6e7173; --light: #f1f1f1; --line: rgba(89,84,83,.16); --slow: cubic-bezier(0.16,1,0.3,1);
+  --fs-display: clamp(2.5rem, 3.9vw, 4.5rem); --fs-h2: clamp(2rem, 2.45vw, 2.875rem); --fs-statement: clamp(1.5rem, 1.9vw, 2.125rem); --fs-lead: clamp(1.125rem, 1.2vw, 1.3125rem); --gap: clamp(16px, 1.8vw, 32px); --g: clamp(16px, 4vw, 56px); }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--char); font-family: "Readex Pro", Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4, p, ul, ol { margin: 0; } ul, ol { padding: 0; list-style: none; } a { color: inherit; text-decoration: none; }
+.w { max-width: 1440px; margin: 0 auto; padding-inline: max(var(--g), env(safe-area-inset-left, 0px)) max(var(--g), env(safe-area-inset-right, 0px)); }
+.lbl { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.top { padding-block: 56px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; border-bottom: 1px solid var(--line); }
+.top h1 { font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.06; margin-top: 12px; }
+.top p { max-width: 34em; color: var(--grey-ink); line-height: 1.7; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; padding-block: 20px; }
+.toc a { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); font-size: .875rem; transition: background .3s, color .3s; }
+.toc a:hover { background: var(--char); color: #fff; }
+.part { padding-block: clamp(64px, 8vw, 120px) 0; }
+.part > .w > h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; margin: 12px 0 8px; }
+.part > .w > p { color: var(--grey-ink); line-height: 1.7; max-width: 44em; }
+.opt { margin-top: clamp(48px, 6vw, 88px); }
+.tag { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 20px; padding: 14px 18px; background: var(--light); border-radius: 12px; font-size: .875rem; line-height: 1.55; color: var(--grey-ink); }
+.tag b { font-weight: 500; color: #fff; background: var(--char); border-radius: 999px; padding: 3px 11px; font-size: .75rem; letter-spacing: .06em; }
+.tag strong { font-weight: 400; color: var(--char); }
+.foot { padding-block: 64px; color: var(--grey); font-size: .875rem; }
+.ph { position: relative; overflow: hidden; background: #ddd; }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.eb { display: inline-flex; align-items: center; gap: 12px; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.eb::before { content: ""; width: 20px; height: 1px; background: currentColor; }
+.h2 { font-size: var(--fs-h2); font-weight: 300; line-height: 1.1; letter-spacing: -.025em; color: var(--char); text-wrap: balance; }
+.grey { background: var(--light); }
+/* a pinned demo: the frame stays on screen while the page scrolls through it */
+.pin { position: relative; }
+.stick { position: sticky; top: 0; height: 100vh; min-height: 620px; overflow: hidden; }
+.roll { position: relative; display: inline-block; overflow: hidden; vertical-align: bottom; padding-block: .06em; }
+.roll > span { display: block; white-space: nowrap; }
+.steps { display: flex; gap: 6px; width: 100%; } .steps i { flex: 1; height: 2px; background: var(--line); position: relative; overflow: hidden; }
+.steps i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(var(--f, 0)); transform-origin: left; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 24px; font-size: .875rem; color: var(--grey); } .meta b { font-weight: 400; color: var(--char); }
+
+/* ---------- G1 the field regroups ---------- */
+.g1 .stick { display: flex; flex-direction: column; align-items: center; padding-block: clamp(40px, 7vh, 80px) 64px; text-align: center; }
+.g1Head { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 34em; }
+.g1Head .h2 .wd { display: inline-block; overflow: hidden; vertical-align: bottom; } .g1Head .h2 .wd > span { display: inline-block; }
+.g1F { position: relative; flex: 1; width: min(100%, 980px); margin-block: 24px; }
+.g1F i { position: absolute; left: 0; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #a9abac; overflow: hidden; will-change: transform; }
+.g1F[data-k="3"] i[data-p], .g1F[data-k="4"] i[data-p] { background: var(--char); }
+.g1F i { transition: background .6s; }
+.g1F i img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s; }
+.g1F[data-k="4"] i img { opacity: 1; }
+.g1F b { position: absolute; left: 0; top: 0; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); white-space: nowrap; opacity: 0; transition: opacity .6s; }
+.g1F[data-k="4"] b { opacity: 1; transition-delay: .5s; }
+.g1Foot { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; width: min(100%, 820px); }
+.now { display: inline-flex; align-items: baseline; gap: 14px; text-align: left; }
+.now strong { font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 300; line-height: 1; letter-spacing: -.05em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.now p { font-size: var(--fs-lead); font-weight: 300; color: var(--char); }
+
+/* ---------- G2 split: stage list beside a field that zooms in ---------- */
+.g2 .stick { display: flex; align-items: center; }
+.g2In { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: center; }
+.g2L { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 20px; }
+.g2List { margin-top: 12px; border-top: 1px solid var(--line); }
+.g2List li { display: grid; grid-template-columns: 5.5ch 1fr; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); color: #b4b6b7; transition: color .6s; }
+.g2List li strong { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; transition: color .6s; }
+.g2List li span { font-size: 1.0625rem; }
+.g2List li[data-on] { color: var(--char); } .g2List li[data-on] strong { color: var(--ink); }
+.g2List li[data-past] { color: var(--grey); } .g2List li[data-past] strong { color: var(--grey); }
+.g2R { grid-column: 7 / span 6; position: relative; aspect-ratio: 1 / 1; max-height: 78vh; justify-self: stretch; background: #fff; border-radius: 4px; overflow: hidden; }
+.g2R svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.g2R circle { fill: var(--char); transition: fill .7s, r .7s; }
+.g2R circle[data-out] { fill: #dfe0e1; }
+.g2R circle[data-fin] { fill: var(--ink); }
+.g2Cap { position: absolute; left: 20px; bottom: 16px; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+
+/* ---------- G3 one number in a ring, then the five pilots ---------- */
+.g3 .stick { display: flex; flex-direction: column; justify-content: center; }
+.g3Head { position: absolute; left: 0; right: 0; top: clamp(40px, 7vh, 72px); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; z-index: 2; }
+.g3Stage { position: relative; width: 100%; height: 100%; }
+.g3Ring { --rs: min(54vh, 500px); position: absolute; left: 50%; top: 55%; width: var(--rs); height: var(--rs); margin: calc(var(--rs) / -2) 0 0 calc(var(--rs) / -2); will-change: transform; }
+.g3Ring i { position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--char); }
+.g3Ring i[data-p] { background: var(--ink); }
+.g3Num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; }
+.odo { display: inline-flex; align-items: flex-start; font-size: clamp(5rem, 12vh, 9rem); font-weight: 300; letter-spacing: -.05em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; overflow: hidden; height: 1em; padding-bottom: 0; }
+.odo span { display: flex; flex-direction: column; overflow: hidden; } .odo span b { display: block; height: 1em; font-weight: 300; text-align: center; }
+.odo span.z { width: 0; transition: width .6s var(--slow); } .odo span:not(.z) { width: .62em; transition: width .6s var(--slow); }
+.g3Lab { font-size: var(--fs-lead); font-weight: 300; }
+.g3Cards { position: absolute; right: var(--g); top: 50%; translate: 0 -40%; width: min(46%, 600px); display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; pointer-events: none; }
+.g3Cards figure { margin: 0; display: flex; flex-direction: column; gap: 10px; opacity: 0; }
+.g3Cards .ph { aspect-ratio: 3 / 5; }
+.g3Cards figcaption { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
+.g3Foot { position: absolute; left: 50%; bottom: 40px; translate: -50% 0; width: min(100% - 2 * var(--g), 820px); display: flex; flex-direction: column; gap: 14px; }
+
+/* ---------- D4 entries converge on Al Ain ---------- */
+.d4 .stick { display: flex; align-items: center; }
+.d4In { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: center; }
+.d4L { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 20px; position: relative; z-index: 2; }
+.d4Big { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 16px; }
+.d4Big strong { font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; letter-spacing: -.05em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.d4Big p { font-size: var(--fs-lead); font-weight: 300; }
+.d4R { grid-column: 5 / span 8; position: relative; height: 78vh; }
+.d4R svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.d4R circle { fill: var(--char); transition: opacity .9s; }
+.d4R circle[data-out] { opacity: .08; }
+.d4R circle[data-fin] { fill: var(--ink); }
+.d4R text { font-family: "Readex Pro", Arial, sans-serif; font-size: 13px; fill: var(--char); opacity: 0; transition: opacity .6s; }
+.d4R[data-k="2"] text { opacity: 1; transition-delay: .6s; }
+.d4Pin { opacity: 0; transition: opacity .6s; } .d4R[data-k="1"] .d4Pin, .d4R[data-k="2"] .d4Pin { opacity: 1; }
+.d4Pin text { opacity: 1 !important; font-size: 12px; font-weight: 500; letter-spacing: .12em; fill: var(--ink); }
+
+/* ---------- D5 one bar to scale ---------- */
+.d5 .stick { display: flex; flex-direction: column; justify-content: center; gap: clamp(28px, 5vh, 56px); }
+.d5Top { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: end; }
+.d5Top > div { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 20px; }
+.d5Top p { grid-column: 9 / span 4; color: var(--grey-ink); line-height: 1.7; }
+.d5Num { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+.d5Num .odo { font-size: clamp(6rem, 16vw, 14rem); }
+.d5Num p { font-size: var(--fs-lead); font-weight: 300; max-width: 16em; }
+.d5Bar { position: relative; height: 72px; }
+.d5Bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; }
+.d5Bar .all { width: 100%; background: #dcdedf; transform-origin: left; }
+.d5Bar .cur { width: 100%; background: var(--ink); transform-origin: left; }
+.d5Ticks { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--gap); border-top: 1px solid var(--line); }
+.d5Ticks li { padding-top: 16px; display: flex; flex-direction: column; gap: 6px; color: #b4b6b7; transition: color .6s; }
+.d5Ticks li strong { font-size: clamp(1.5rem, 2.2vw, 2.25rem); font-weight: 300; letter-spacing: -.03em; line-height: 1; }
+.d5Ticks li[data-on] { color: var(--char); } .d5Ticks li[data-on] strong { color: var(--ink); }
+.d5Fin { display: flex; flex-wrap: wrap; gap: 8px; min-height: 36px; }
+.d5Fin span { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: .875rem; opacity: 0; transform: translateY(12px); }
+
+/* ---------- D6 three chapters, sideways ---------- */
+.d6 .stick { display: flex; flex-direction: column; justify-content: center; gap: 28px; }
+.d6Head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+.d6Track { display: flex; gap: var(--gap); padding-left: var(--g); will-change: transform; }
+.d6Ch { flex: none; width: min(78vw, 1040px); height: 62vh; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: stretch; background: #fff; }
+.d6Ch .ph { grid-column: 1 / span 7; }
+.d6Ch .ph img { scale: 1.12; }
+.d6Txt { grid-column: 8 / span 5; padding: clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 36px) clamp(24px, 3vw, 40px) 0; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+.d6Txt strong { font-size: clamp(4rem, 8vw, 7.5rem); font-weight: 300; letter-spacing: -.05em; line-height: .9; color: var(--ink); }
+.d6Txt p { font-size: var(--fs-lead); font-weight: 300; }
+.d6Dots { display: grid; gap: 3px; }
+.d6Dots i { aspect-ratio: 1; border-radius: 50%; background: var(--char); }
+.d6Ch:nth-child(1) .d6Dots { grid-template-columns: repeat(47, 1fr); gap: 2px; }
+.d6Ch:nth-child(2) .d6Dots { grid-template-columns: repeat(11, 1fr); gap: 8px; max-width: 260px; }
+.d6Ch:nth-child(3) .d6Dots { grid-template-columns: repeat(3, 1fr); gap: 10px 14px; }
+.d6Ch:nth-child(3) .d6Dots i { aspect-ratio: auto; border-radius: 999px; background: var(--light); color: var(--char); font-style: normal; font-size: .8125rem; padding: 8px 12px; text-align: center; }
+.d6Bar { height: 2px; background: var(--line); margin-inline: var(--g); } .d6Bar i { display: block; height: 100%; background: var(--ink); transform-origin: left; transform: scaleX(0); }
+
+/* ---------- H the IO mark on the success band ---------- */
+.hBand { position: relative; overflow: hidden; background: var(--io); padding-block: clamp(88px, 10vw, 160px); }
+.hBand .w { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 28px; align-items: end; }
+.hBand p { grid-column: 1 / span 8; font-size: var(--fs-statement); font-weight: 300; line-height: 1.18; letter-spacing: -.025em; color: #fff; } .hBand p b { font-weight: 300; color: #0f3f57; }
+.hBand a { grid-column: 9 / span 4; justify-self: start; color: #fff; border-bottom: 1px solid rgba(255,255,255,.6); padding-bottom: 4px; font-size: 1rem; }
+.hMark { position: absolute; pointer-events: none; user-select: none; }
+.h1m { right: -6%; bottom: -38%; height: 150%; opacity: .14; }
+.h2m { right: -14%; top: 50%; height: 190%; translate: 0 -50%; opacity: .28; }
+
+@media (max-width: 600px) { .g1F b { display: none; } }
+@media (max-width: 900px) {
+  .g2L, .g2R, .d4L, .d4R, .d5Top > div, .d5Top p, .d6Ch .ph, .d6Txt { grid-column: 1 / -1; }
+  .g2 .stick, .d4 .stick { align-items: flex-start; padding-top: 32px; }
+  .g2In, .d4In { row-gap: 20px; } .g2R { aspect-ratio: 4 / 3; } .g2List li { padding: 8px 0; } .d4R { height: 46vh; }
+  .g3Cards { left: var(--g); right: var(--g); width: auto; top: auto; bottom: 150px; translate: none; } .g3Cards .ph { aspect-ratio: 3 / 4; }
+  .d6Ch { width: 84vw; height: 70vh; grid-template-rows: 44% 1fr; } .d6Txt { padding: 16px; }
+  .hBand p, .hBand a { grid-column: 1 / -1; } .h2m { height: 120%; right: -40%; }
+}
+</style>
+
+<div class="w top"><div><span class="lbl">Innovation &amp; Venture Platforms · round 6</span><h1>Three sections, more ways.</h1></div><p>Working options for the Farm Innovation Fund cohort, the Al Miyah funnel and the IO mark on the Incubation success band. Scroll through each one; pick one code per section.</p></div>
+<nav class="w toc"><a href="#g">G · FIF cohort</a><a href="#d">D · Al Miyah funnel</a><a href="#h">H · IO mark</a></nav>
+
+<!-- ======================= G cohort ======================= -->
+<section class="part" id="g"><div class="w"><span class="lbl">Farm Innovation Fund</span><h2>From 130 applications to five funded pilots.</h2><p>Three directions, each with an entrance and a layout that changes as the stages pass. Same numbers as the page: 130 applications, 68 advanced to Phase 2, 39 valid Phase 2 proposals, 10 finalists, 5 pilots to fund. The number now rolls up in all three, as asked.</p></div>
+
+  <div class="opt"><div class="w"><div class="tag"><b>G1</b><strong>The field regroups (recommended).</strong> The heading rises word by word and 130 dots drop into a field. At each stage the dots that drop out shrink away and the rest close ranks into a smaller, tighter field. At the last stage the five pilots become five round photos.</div></div>
+    <div class="pin g1 grey" id="g1" style="height:420vh"><div class="stick w">
+      <div class="g1Head"><span class="eb">Cohort 1 at a glance · 15 Sep 2026</span><h2 class="h2" id="g1H">From 130 applications to five funded pilots.</h2></div>
+      <div class="g1F" id="g1F" data-k="0"></div>
+      <div class="g1Foot"><div class="now"><strong class="roll" id="g1N"><span>130</span></strong><p class="roll" id="g1L"><span>Applications submitted</span></p></div><div class="steps" id="g1S"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="meta"><span><b>2,000+</b> farms reached</span><span><b>7</b> emirates represented</span><span>Target: at least 1 scaled solution</span></div></div>
+    </div></div>
+  </div>
+
+  <div class="opt"><div class="w"><div class="tag"><b>G2</b><strong>Split: the stages as a list.</strong> The section opens with the field rising in from below. The heading and the five stages sit on the left like the process gates, and the active stage is lit in blue. On the right, the dots that drop out stay as pale ghosts while the camera zooms into those that remain, ending on five blue pilots.</div></div>
+    <div class="pin g2 grey" id="g2" style="height:420vh"><div class="stick w">
+      <div class="g2In">
+        <div class="g2L"><span class="eb">Cohort 1 at a glance · 15 Sep 2026</span><h2 class="h2">From 130 applications to five funded pilots.</h2>
+          <ol class="g2List" id="g2List"><li data-on><strong>130</strong><span>Applications submitted</span></li><li><strong>68</strong><span>Advanced to Phase 2</span></li><li><strong>39</strong><span>Valid Phase 2 proposals</span></li><li><strong>10</strong><span>Finalists</span></li><li><strong>5</strong><span>Pilots to fund</span></li></ol>
+          <div class="meta"><span><b>2,000+</b> farms reached</span><span><b>7</b> emirates represented</span></div></div>
+        <div class="g2R" id="g2R"><svg viewBox="0 0 600 600" aria-hidden="true"><g id="g2G"></g></svg><span class="g2Cap">One dot per application</span></div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="opt"><div class="w"><div class="tag"><b>G3</b><strong>One number in a ring.</strong> A big number rolls in, digit by digit, inside a ring of 130 dots. Each stage the dropped dots fall away and the ring closes up. At the last stage the layout changes: the ring moves aside and five photo cards come in for the five pilots, up to AED 200K each.</div></div>
+    <div class="pin g3 grey" id="g3" style="height:420vh"><div class="stick">
+      <div class="g3Head w"><span class="eb">Cohort 1 at a glance · 15 Sep 2026</span><h2 class="h2">From 130 applications to five funded pilots.</h2></div>
+      <div class="g3Stage">
+        <div class="g3Ring" id="g3Ring"><div class="g3Num"><span class="odo" id="g3N"></span><p class="g3Lab roll" id="g3L"><span>Applications submitted</span></p></div></div>
+        <div class="g3Cards" id="g3Cards">
+          <figure><div class="ph"><img src="img/fif_lettuce.webp" alt=""></div><figcaption>Pilot 1</figcaption></figure>
+          <figure><div class="ph"><img src="img/fif_soil.webp" alt=""></div><figcaption>Pilot 2</figcaption></figure>
+          <figure><div class="ph"><img src="img/area_water.webp" alt=""></div><figcaption>Pilot 3</figcaption></figure>
+          <figure><div class="ph"><img src="img/fif_greenh.webp" alt=""></div><figcaption>Pilot 4</figcaption></figure>
+          <figure><div class="ph"><img src="img/area_organic.webp" alt=""></div><figcaption>Pilot 5</figcaption></figure>
+        </div>
+      </div>
+      <div class="g3Foot"><div class="steps" id="g3S"><i></i><i></i><i></i><i></i><i></i></div><div class="meta"><span><b>2,000+</b> farms reached</span><span><b>7</b> emirates represented</span><span>Five pilots may receive up to AED 200,000 each</span></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ======================= D funnel ======================= -->
+<section class="part" id="d"><div class="w"><span class="lbl">Agricultural Challenges · Al Miyah</span><h2>Each stage narrows the field on evidence.</h2><p>Three new directions, next to the earlier D1–D3 (still on the round 4 board). Same facts as the page: 846 teams from 54 countries, 21 qualified from 13 countries, 6 finalists (two from the UAE and one each from Egypt, Brazil, Argentina and India) under test at Innovation Oasis.</p></div>
+
+  <div class="opt"><div class="w"><div class="tag"><b>D4</b><strong>From the world to Al Ain (recommended).</strong> 846 dots fly in, scattered like entries from many countries. The ones that do not qualify fade, and the 21 that do glide in around Innovation Oasis. Then the 6 finalists line up, each labelled with its country. The number and stage on the left follow.</div></div>
+    <div class="pin d4 grey" id="d4" style="height:360vh"><div class="stick w">
+      <div class="d4In">
+        <div class="d4L"><span class="eb">From 846 entries to six finalists</span><h2 class="h2">Each stage narrows the field on evidence.</h2>
+          <div class="d4Big"><strong class="roll" id="d4N"><span>846</span></strong><p class="roll" id="d4L"><span>teams registered from 54 countries</span></p></div>
+          <div class="steps" id="d4S"><i></i><i></i><i></i></div>
+          <div class="meta"><span><b>AED 8M</b> total prize pool</span><span><b>12</b> months of testing in the UAE</span></div></div>
+        <div class="d4R" id="d4R" data-k="0"><svg viewBox="0 0 800 600" aria-hidden="true"><g id="d4G"></g><g class="d4Pin"><circle cx="400" cy="300" r="5" fill="none" stroke="#1a6f96" style="fill:none;stroke:#1a6f96"/><text x="400" y="272" text-anchor="middle">INNOVATION OASIS, AL AIN</text></g></svg></div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="opt"><div class="w"><div class="tag"><b>D5</b><strong>One bar, to scale.</strong> A very large number rolls digit by digit (846, 21, 6), and below it one blue bar shrinks to scale: 21 is about one in 40 of the entries, 6 about one in 141. The pale bar behind it keeps the full 846 in view. At the end the six finalists' countries come in as chips.</div></div>
+    <div class="pin d5 grey" id="d5" style="height:360vh"><div class="stick w">
+      <div class="d5Top"><div><span class="eb">From 846 entries to six finalists</span><h2 class="h2">Each stage narrows the field on evidence.</h2></div><p>Circle areas are replaced by one bar drawn to scale, so the drop from 846 to 6 reads at a glance.</p></div>
+      <div class="d5Num"><span class="odo" id="d5N"></span><p class="roll" id="d5L"><span>teams registered from 54 countries</span></p></div>
+      <div class="d5Bar"><i class="all"></i><i class="cur" id="d5Cur"></i></div>
+      <ol class="d5Ticks" id="d5T"><li data-on><strong>846</strong><span>registered</span></li><li><strong>21</strong><span>qualified · about 1 in 40</span></li><li><strong>6</strong><span>finalists · about 1 in 141</span></li></ol>
+      <div class="d5Fin" id="d5Fin"><span>UAE</span><span>UAE</span><span>Egypt</span><span>Brazil</span><span>Argentina</span><span>India</span></div>
+    </div></div>
+  </div>
+
+  <div class="opt"><div class="w"><div class="tag"><b>D6</b><strong>Three chapters, sideways.</strong> The section pins and scrolling moves sideways through three photo chapters: 846 registered (a dense field of dots), 21 qualified, 6 finalists (with their countries). Each photo drifts inside its frame, and a thin line shows how far along you are.</div></div>
+    <div class="pin d6 grey" id="d6" style="height:320vh"><div class="stick">
+      <div class="w d6Head"><div style="display:flex;flex-direction:column;gap:16px"><span class="eb">From 846 entries to six finalists</span><h2 class="h2">Each stage narrows the field on evidence.</h2></div><div class="meta"><span><b>AED 8M</b> total prize pool</span><span><b>12</b> months of testing in the UAE</span></div></div>
+      <div class="d6Track" id="d6Track">
+        <article class="d6Ch"><div class="ph"><img src="img/chal_line.webp" alt=""></div><div class="d6Txt"><span class="lbl">Open call · Apr – Jun 2025</span><div><strong>846</strong><p>teams registered from 54 countries</p></div><div class="d6Dots" id="d6D1"></div></div></article>
+        <article class="d6Ch"><div class="ph"><img src="img/chal_jury.webp" alt=""></div><div class="d6Txt"><span class="lbl">Qualifying · Sep 2025</span><div><strong>21</strong><p>qualified, from 13 countries</p></div><div class="d6Dots" id="d6D2"></div></div></article>
+        <article class="d6Ch"><div class="ph"><img src="img/chal_stage.webp" alt=""></div><div class="d6Txt"><span class="lbl">Finalists · Apr 2026</span><div><strong>6</strong><p>finalists under test at Innovation Oasis</p></div><div class="d6Dots"><i>UAE</i><i>UAE</i><i>Egypt</i><i>Brazil</i><i>Argentina</i><i>India</i></div></div></article>
+      </div>
+      <div class="d6Bar"><i id="d6Bar"></i></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ======================= H IO mark ======================= -->
+<section class="part" id="h"><div class="w"><span class="lbl">Incubation · success band</span><h2>A subtle IO mark behind the statement.</h2><p>Both use the official mark files unchanged (no redrawing): H1 is the single-colour white version for IO Blue, H2 is the colour mark, whose blue shapes disappear into the IO Blue so only the white helix shows. The page now has H2.</p></div>
+  <div class="opt"><div class="w"><div class="tag"><b>H1</b><strong>The whole mark, as a silhouette.</strong> The white IO mark ("i" and circle), large, cropped at the bottom right, at low opacity.</div></div>
+    <div class="hBand"><img class="hMark h1m" src="brand/io-mark-white-on-blue.svg" alt=""><div class="w"><p>Success means at least one project becomes <b>jointly-owned IP, a commercial or scaled deployment, or further investment.</b></p><a href="#">Agri Robotics &amp; AI centre →</a></div></div>
+  </div>
+  <div class="opt"><div class="w"><div class="tag"><b>H2</b><strong>Only the helix (on the page now).</strong> The helix inside the circle, large and cropped on the right edge; the rest of the mark melts into the blue.</div></div>
+    <div class="hBand"><img class="hMark h2m" src="brand/io-mark.svg" alt=""><div class="w"><p>Success means at least one project becomes <b>jointly-owned IP, a commercial or scaled deployment, or further investment.</b></p><a href="#">Agri Robotics &amp; AI centre →</a></div></div>
+  </div>
+</section>
+<div class="w foot">All numbers and labels come from the pages. Photos are from the shared Innovation Oasis set; the pilot cards in G3 show programme photos, not selected pilots.</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var G = !!window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches; if (G) gsap.registerPlugin(ScrollTrigger);
+  function $(s, c) { return (c || document).querySelector(s); } function $$(s, c) { return [].slice.call((c || document).querySelectorAll(s)); }
+  function pin(el, fn) { if (G) ScrollTrigger.create({ trigger: el, start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: function (s) { fn(s.progress); }, onRefresh: function (s) { fn(s.progress); } }); else fn(1); }
+  function once(el, fn) { if (G) ScrollTrigger.create({ trigger: el, start: 'top 70%', once: true, onEnter: fn }); else fn(); }
+  // a line of text rolls: the old one leaves upward, the new one rises from below (reversed when scrolling back)
+  function roll(el, text, dir) {
+    var cur = el.lastElementChild; if (cur.textContent === text) return;
+    if (!G) { cur.textContent = text; return; }
+    var nu = document.createElement('span'); nu.textContent = text; el.appendChild(nu);
+    $$('span', el).forEach(function (s) { if (s !== nu && s !== cur) s.remove(); });
+    gsap.killTweensOf(cur); cur.style.width = cur.offsetWidth + 'px'; cur.style.position = 'absolute'; cur.style.left = '0'; cur.style.top = '.06em';
+    gsap.to(cur, { yPercent: -110 * dir, duration: 0.5, ease: 'power3.in', onComplete: function () { cur.remove(); } });
+    gsap.fromTo(nu, { yPercent: 110 * dir }, { yPercent: 0, duration: 0.8, ease: 'power3.out', delay: 0.12 });
+  }
+  // odometer: each digit is a strip (blank, 0–9) that slides to its value; unused leading digits fold away
+  function odo(el, n) {
+    el.innerHTML = ''; for (var i = 0; i < n; i++) { var s = document.createElement('span'); s.innerHTML = '<b></b>' + '0123456789'.split('').map(function (d) { return '<b>' + d + '</b>'; }).join(''); el.appendChild(s); }
+    return function (v, dur) { var str = String(v), pad = n - str.length; $$('span', el).forEach(function (s, i) { var k = i < pad ? 0 : +str[i - pad] + 1; s.classList.toggle('z', i < pad); if (G) gsap.to(s, { yPercent: -k * (100 / 11), duration: dur == null ? 1 : dur, ease: 'power3.inOut', delay: (n - i) * 0.06, overwrite: true }); else s.style.transform = 'translateY(' + (-k * 100 / 11) + '%)'; }); };
+  }
+  function rand(seed) { return function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }; }
+  var COH = [[130, 'Applications submitted'], [68, 'Advanced to Phase 2'], [39, 'Valid Phase 2 proposals'], [10, 'Finalists'], [5, 'Pilots to fund']];
+  function steps(list, f) { list.forEach(function (st, i) { st.style.setProperty('--f', Math.max(0, Math.min(1, f - i))); }); }
+
+  /* ---------- G1 ---------- */
+  (function () {
+    var F = $('#g1F'), N = $('#g1N'), L = $('#g1L'), S = $$('#g1S i'), H = $('#g1H'), k0 = -1, r = rand(11), order = [], dots = [];
+    var PH = ['fif_lettuce', 'fif_soil', 'area_water', 'fif_greenh', 'area_organic'];
+    for (var i = 0; i < 130; i++) { var d = document.createElement('i'); if (i < 5) { d.setAttribute('data-p', ''); d.innerHTML = '<img src="img/' + PH[i] + '.webp" alt="">'; } F.appendChild(d); dots.push(d); order.push(i); }
+    for (var j = 5; j < 130; j++) { var m = 5 + Math.floor(r() * (130 - 5)), t = order[j]; order[j] = order[m]; order[m] = t; } // pilots first, the rest shuffled
+    var rank = []; order.forEach(function (di, k) { rank[di] = k; });
+    var CAP = [22, 30, 40, 64, 150], COLS = [13, 10, 8, 5, 5];
+    var lbls = PH.map(function (_, i) { var b = document.createElement('b'); b.textContent = 'Pilot ' + (i + 1); F.appendChild(b); return b; });
+    function layout(k, first) {
+      var n = COH[k][0], W = F.clientWidth, Hh = F.clientHeight - (k === 4 ? 30 : 0), cols = Math.min(COLS[k], n), rows = Math.ceil(n / cols);
+      var s = Math.min(CAP[k], W / (cols * 1.6), Hh / (rows * 1.6)), gap = s * (k === 4 ? .25 : .6), tw = cols * s + (cols - 1) * gap, th = rows * s + (rows - 1) * gap, x0 = (W - tw) / 2, y0 = (Hh - th) / 2;
+      F.dataset.k = k;
+      dots.forEach(function (d, di) {
+        var q = rank[di], on = q < n, c = q % cols, rr = Math.floor(q / cols);
+        var x = on ? x0 + c * (s + gap) : null, y = on ? y0 + rr * (s + gap) : null;
+        if (!G) { d.style.cssText = on ? 'transform:translate(' + x + 'px,' + y + 'px);width:' + s + 'px;height:' + s + 'px' : 'opacity:0'; return; }
+        if (on) gsap.to(d, { x: x, y: y, width: s, height: s, opacity: 1, scale: 1, duration: first ? 0 : 1.1, ease: 'expo.inOut', delay: first ? 0 : (q % 13) * 0.012, overwrite: first ? false : true });
+        else gsap.to(d, { scale: 0, opacity: 0, duration: 0.5, ease: 'power2.in', overwrite: true });
+      });
+      lbls.forEach(function (b, i) { var x = x0 + i * (s + gap) + s / 2; b.style.transform = 'translate(' + x + 'px,' + (y0 + s + 14) + 'px) translateX(-50%)'; });
+    }
+    function stage(k) { if (k === k0) return; var dir = k >= k0 ? 1 : -1, first = k0 < 0; k0 = k; layout(k, first); roll(N, String(COH[k][0]), dir); roll(L, COH[k][1], dir); }
+    // entrance: the heading rises word by word, the dots drop in with a wave
+    H.innerHTML = H.textContent.split(' ').map(function (w) { return '<span class="wd"><span>' + w + '</span></span>'; }).join(' ');
+    stage(0);
+    if (G) { gsap.set($$('.wd > span', H), { yPercent: 110 }); gsap.set(dots, { opacity: 0 });
+      once($('#g1'), function () { gsap.to($$('.wd > span', H), { yPercent: 0, duration: 1.1, stagger: 0.06, ease: 'expo.out' });
+        dots.forEach(function (d, di) { var q = rank[di]; if (q >= COH[k0][0]) return; gsap.fromTo(d, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2.5)', delay: 0.3 + (q % 13) * 0.03 + Math.floor(q / 13) * 0.05 }); }); }); }
+    pin($('#g1'), function (p) { var f = p * 5; stage(Math.min(4, Math.floor(f))); steps(S, f); });
+    addEventListener('resize', function () { if (k0 >= 0) layout(k0, true); });
+  })();
+
+  /* ---------- G2 ---------- */
+  (function () {
+    var g = $('#g2G'), li = $$('#g2List li'), k0 = -1, r = rand(5), pts = [], svg = '';
+    for (var row = 0; row < 10; row++) for (var c = 0; c < 13; c++) pts.push([60 + c * 40 + (r() - .5) * 10, 110 + row * 42 + (r() - .5) * 10]);
+    // what stays is a cluster around a focus point, so the zoom has somewhere to go
+    var fx = 360, fy = 330, rank = pts.map(function (p, i) { return [Math.hypot(p[0] - fx, p[1] - fy) + r() * 70, i]; }).sort(function (a, b) { return a[0] - b[0]; });
+    var rk = []; rank.forEach(function (a, k) { rk[a[1]] = k; });
+    pts.forEach(function (p) { svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="5"/>'; }); g.innerHTML = svg;
+    var cs = $$('circle', g);
+    function stage(k) {
+      if (k === k0) return; k0 = k; var n = COH[k][0], minx = 1e9, miny = 1e9, maxx = -1e9, maxy = -1e9;
+      cs.forEach(function (el, i) { var on = rk[i] < n; on ? el.removeAttribute('data-out') : el.setAttribute('data-out', ''); k === 4 && on ? el.setAttribute('data-fin', '') : el.removeAttribute('data-fin');
+        if (on) { minx = Math.min(minx, pts[i][0]); maxx = Math.max(maxx, pts[i][0]); miny = Math.min(miny, pts[i][1]); maxy = Math.max(maxy, pts[i][1]); } });
+      li.forEach(function (l, i) { i === k ? l.setAttribute('data-on', '') : l.removeAttribute('data-on'); i < k ? l.setAttribute('data-past', '') : l.removeAttribute('data-past'); });
+      // zoom so what remains fills about 70% of the frame
+      var span = Math.max(maxx - minx, maxy - miny, 60), sc = Math.min(2.4, 420 / span), cx = (minx + maxx) / 2, cy = (miny + maxy) / 2;
+      if (G) gsap.to(g, { attr: { transform: 'translate(' + (300 - cx * sc) + ' ' + (300 - cy * sc) + ') scale(' + sc + ')' }, duration: 1.3, ease: 'expo.inOut' });
+      else g.setAttribute('transform', 'translate(' + (300 - cx * sc) + ' ' + (300 - cy * sc) + ') scale(' + sc + ')');
+    }
+    stage(0);
+    if (G) { gsap.set('#g2R', { clipPath: 'inset(100% 0% 0% 0%)' }); gsap.set(li, { x: -24, opacity: 0 });
+      once($('#g2'), function () { gsap.to('#g2R', { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.out' }); gsap.from(cs, { attr: { r: 0 }, duration: 0.8, stagger: { each: 0.004, from: 'center' }, ease: 'back.out(3)', delay: 0.3 }); gsap.to(li, { x: 0, opacity: 1, duration: 0.9, stagger: 0.08, ease: 'expo.out', delay: 0.2 }); }); }
+    pin($('#g2'), function (p) { stage(Math.min(4, Math.floor(p * 5))); });
+  })();
+
+  /* ---------- G3 ---------- */
+  (function () {
+    var ring = $('#g3Ring'), L = $('#g3L'), S = $$('#g3S i'), cards = $$('#g3Cards figure'), set = odo($('#g3N'), 3), k0 = -1, r = rand(3), dots = [], rank = [];
+    for (var i = 0; i < 130; i++) { var d = document.createElement('i'); if (i < 5) d.setAttribute('data-p', ''); ring.appendChild(d); dots.push(d); }
+    var order = dots.map(function (_, i) { return i; }); for (var j = 5; j < 130; j++) { var m = 5 + Math.floor(r() * 125), t = order[j]; order[j] = order[m]; order[m] = t; } order.forEach(function (di, k) { rank[di] = k; });
+    function place(k, first) {
+      var n = COH[k][0], R = ring.clientWidth / 2 * (k === 4 ? .62 : .5 + .5 * Math.sqrt(n / 130)), sz = k >= 3 ? 14 : 8;
+      // keep the survivors in their order around the circle, evenly spaced
+      var on = dots.filter(function (_, di) { return rank[di] < n; }).sort(function (a, b) { return dots.indexOf(a) - dots.indexOf(b); });
+      dots.forEach(function (d) { var idx = on.indexOf(d);
+        if (idx < 0) { if (G) gsap.to(d, { y: '+=' + (80 + Math.random() * 80), opacity: 0, duration: 0.7, ease: 'power2.in' }); else d.style.opacity = 0; return; }
+        var a = idx / on.length * Math.PI * 2 - Math.PI / 2, x = Math.cos(a) * R, y = Math.sin(a) * R;
+        if (G) gsap.to(d, { x: x, y: y, width: sz, height: sz, marginLeft: -sz / 2, marginTop: -sz / 2, opacity: 1, duration: first ? 0 : 1.2, ease: 'expo.inOut' }); else d.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      });
+      // the last stage changes the layout: the ring moves aside, five cards come in
+      var mob = innerWidth < 900;
+      if (G) { gsap.to(ring, { xPercent: k === 4 ? (mob ? 0 : -38) : 0, yPercent: k === 4 && mob ? -18 : 0, scale: k === 4 ? (mob ? .7 : .86) : 1, duration: 1.3, ease: 'expo.inOut' });
+        gsap.to(cards, { opacity: k === 4 ? 1 : 0, y: k === 4 ? 0 : 40, duration: k === 4 ? 1 : .4, stagger: k === 4 ? .08 : 0, ease: 'expo.out', delay: k === 4 ? .4 : 0 }); }
+      else cards.forEach(function (c) { c.style.opacity = k === 4 ? 1 : 0; });
+    }
+    function stage(k) { if (k === k0) return; var dir = k >= k0 ? 1 : -1, first = k0 < 0; k0 = k; place(k, first); set(COH[k][0], first ? 0 : 1); roll(L, COH[k][1], dir); }
+    stage(0);
+    if (G) { gsap.set(dots, { scale: 0 }); set(0, 0); once($('#g3'), function () { set(COH[k0][0], 1.6); gsap.to(dots, { scale: 1, duration: 0.6, stagger: { each: 0.008 }, ease: 'back.out(3)' }); }); }
+    pin($('#g3'), function (p) { var f = p * 5; stage(Math.min(4, Math.floor(f))); steps(S, f); });
+  })();
+
+  /* ---------- D4 ---------- */
+  (function () {
+    var R = $('#d4R'), g = $('#d4G'), N = $('#d4N'), L = $('#d4L'), S = $$('#d4S i'), k0 = -1, r = rand(17), svg = '', pts = [];
+    var STG = [[846, 'teams registered from 54 countries'], [21, 'qualified, from 13 countries'], [6, 'finalists under test at Innovation Oasis']];
+    // 54 loose clusters for 54 countries, sizes uneven
+    var cl = []; for (var c = 0; c < 54; c++) cl.push([40 + r() * 720, 40 + r() * 520, 6 + r() * 34]);
+    for (var i = 0; i < 846; i++) { var q = cl[Math.floor(Math.pow(r(), 1.6) * 54)], a = r() * Math.PI * 2, d = Math.sqrt(r()) * q[2]; pts.push([q[0] + Math.cos(a) * d, q[1] + Math.sin(a) * d]); svg += '<circle r="2.2" cx="' + pts[i][0].toFixed(1) + '" cy="' + pts[i][1].toFixed(1) + '"/>'; }
+    g.innerHTML = svg; var cs = $$('circle', g);
+    var FIN = ['UAE', 'UAE', 'Egypt', 'Brazil', 'Argentina', 'India'];
+    FIN.forEach(function (n, i) { var t = document.createElementNS('http://www.w3.org/2000/svg', 'text'); t.setAttribute('x', 400 + (i - 2.5) * 110); t.setAttribute('y', 352); t.setAttribute('text-anchor', 'middle'); t.textContent = n; g.appendChild(t); });
+    function stage(k) {
+      if (k === k0) return; var dir = k >= k0 ? 1 : -1; k0 = k; R.dataset.k = k;
+      cs.forEach(function (el, i) { var on = i < STG[k][0]; on ? el.removeAttribute('data-out') : el.setAttribute('data-out', ''); k === 2 && on ? el.setAttribute('data-fin', '') : el.removeAttribute('data-fin');
+        var tx = pts[i][0], ty = pts[i][1], rr = 2.2;
+        if (k >= 1 && i < 21) { var a = i / 21 * Math.PI * 2; tx = 400 + Math.cos(a) * 78; ty = 300 + Math.sin(a) * 78; rr = 5; }
+        if (k === 2 && i < 6) { tx = 400 + (i - 2.5) * 110; ty = 320; rr = 11; }
+        if (i < 21) { if (G) gsap.to(el, { attr: { cx: tx, cy: ty, r: rr }, duration: 1.3, ease: 'expo.inOut', delay: i * 0.02 }); else { el.setAttribute('cx', tx); el.setAttribute('cy', ty); el.setAttribute('r', rr); } }
+      });
+      roll(N, String(STG[k][0]), dir); roll(L, STG[k][1], dir);
+    }
+    stage(0);
+    // entrance: the whole field flies in from a wider view, so it never fights the stage moves
+    if (G) { gsap.set(g, { opacity: 0 }); once($('#d4'), function () { gsap.fromTo(g, { scale: 1.8, opacity: 0, svgOrigin: '400 300' }, { scale: 1, opacity: 1, svgOrigin: '400 300', duration: 1.8, ease: 'expo.out' }); }); }
+    pin($('#d4'), function (p) { var f = p * 3; stage(Math.min(2, Math.floor(f))); steps(S, f); });
+  })();
+
+  /* ---------- D5 ---------- */
+  (function () {
+    var set = odo($('#d5N'), 3), L = $('#d5L'), cur = $('#d5Cur'), T = $$('#d5T li'), fin = $$('#d5Fin span'), k0 = -1;
+    var STG = [[846, 'teams registered from 54 countries'], [21, 'qualified, from 13 countries'], [6, 'finalists under test at Innovation Oasis']];
+    function stage(k) {
+      if (k === k0) return; var dir = k >= k0 ? 1 : -1, first = k0 < 0; k0 = k; set(STG[k][0], first ? 0 : 1); roll(L, STG[k][1], dir);
+      T.forEach(function (t, i) { i <= k ? t.setAttribute('data-on', '') : t.removeAttribute('data-on'); });
+      var w = Math.max(STG[k][0] / 846, 0.004);
+      if (G) { gsap.to(cur, { scaleX: w, duration: 1.4, ease: 'expo.inOut' }); gsap.to(fin, { opacity: k === 2 ? 1 : 0, y: k === 2 ? 0 : 12, duration: .7, stagger: k === 2 ? .07 : 0, ease: 'expo.out', delay: k === 2 ? .6 : 0 }); }
+      else { cur.style.transform = 'scaleX(' + w + ')'; fin.forEach(function (f) { f.style.opacity = k === 2 ? 1 : 0; }); }
+    }
+    stage(0);
+    if (G) { gsap.set(cur, { scaleX: 0 }); set(0, 0); once($('#d5'), function () { set(STG[k0][0], 1.6); gsap.to(cur, { scaleX: Math.max(STG[k0][0] / 846, 0.004), duration: 1.6, ease: 'expo.out' }); }); }
+    pin($('#d5'), function (p) { stage(Math.min(2, Math.floor(p * 3))); });
+  })();
+
+  /* ---------- D6 ---------- */
+  (function () {
+    var tr = $('#d6Track'), bar = $('#d6Bar'), imgs = $$('.d6Ch .ph img');
+    var d1 = $('#d6D1'), d2 = $('#d6D2'); d1.innerHTML = new Array(847).join('<i></i>'); d2.innerHTML = new Array(22).join('<i></i>');
+    pin($('#d6'), function (p) {
+      var dist = Math.max(0, tr.scrollWidth - innerWidth + parseFloat(getComputedStyle(tr).paddingLeft) * 2), e = p < .08 ? 0 : p > .92 ? 1 : (p - .08) / .84;
+      e = e * e * (3 - 2 * e); if (G) { gsap.set(tr, { x: -dist * e }); gsap.set(bar, { scaleX: p }); imgs.forEach(function (im, i) { gsap.set(im, { xPercent: Math.max(-5, Math.min(5, (e * 2 - i) * -5)) }); }); }
+    });
+  })();
+})();
+</script>
