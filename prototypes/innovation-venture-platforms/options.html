@@ -1,0 +1,312 @@
+<meta charset="utf-8">
+<title>IVP Options Round 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500&display=swap">
+<style>
+/* Round 3 options: the "next page" link (same idea, three layouts) and "Five field pilots, one protocol" (three iterations).
+   Same tokens, weights (300 / 400 / 500) and 12-column grid as the pages. Light only, like the site. */
+:root { color-scheme: light; --io: #3ca7d2; --ink: #1a6f96; --char: #595453; --grey: #7f8284; --grey-ink: #6e7173; --light: #f1f1f1; --line: rgba(89,84,83,.16); --slow: cubic-bezier(0.16,1,0.3,1);
+  --fs-display: clamp(2.5rem, 3.9vw, 4.5rem); --fs-h2: clamp(2rem, 2.45vw, 2.875rem); --t-h3: clamp(1.5rem, 2.2vw, 2.25rem); --fs-lead: clamp(1.125rem, 1.2vw, 1.3125rem); --gap: clamp(16px, 1.8vw, 32px); --g: clamp(16px, 4vw, 56px); }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--char); font-family: "Readex Pro", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, ol { margin: 0; } ul, ol { padding: 0; list-style: none; } a { color: inherit; text-decoration: none; }
+.w { max-width: 1440px; margin: 0 auto; padding-inline: max(var(--g), env(safe-area-inset-left, 0px)) max(var(--g), env(safe-area-inset-right, 0px)); }
+.g12 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); }
+.lbl { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.top { padding-block: 56px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; border-bottom: 1px solid var(--line); }
+.top h1 { font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.06; margin-top: 12px; }
+.top p { max-width: 34em; color: var(--grey-ink); line-height: 1.7; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; padding-block: 20px; }
+.toc a { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); font-size: .875rem; transition: background .3s, color .3s; }
+.toc a:hover { background: var(--char); color: #fff; }
+.part { padding-block: clamp(64px, 8vw, 120px) 0; }
+.part > .w > h2 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; margin: 12px 0 8px; }
+.part > .w > p { color: var(--grey-ink); line-height: 1.7; max-width: 40em; }
+.opt { margin-top: clamp(48px, 6vw, 88px); }
+.tag { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 20px; padding: 14px 18px; background: var(--light); border-radius: 12px; font-size: .875rem; line-height: 1.55; color: var(--grey-ink); }
+.tag b { font-weight: 500; color: #fff; background: var(--char); border-radius: 999px; padding: 3px 11px; font-size: .75rem; letter-spacing: .06em; }
+.tag strong { font-weight: 400; color: var(--char); }
+.ph { position: relative; overflow: hidden; background: #ddd; }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.arw { width: clamp(36px, 4vw, 56px); height: auto; transition: transform .8s var(--slow); }
+
+/* ---------- A1 split: text on the left, the next page's photo on the right; hover pushes the photo open ---------- */
+.a1 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); align-items: stretch; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: clamp(40px, 5vw, 72px); }
+.a1Text { grid-column: 1 / span 6; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.a1Text strong { font-size: var(--fs-display); font-weight: 300; letter-spacing: -.035em; line-height: 1.04; display: block; margin-top: 16px; transition: color .5s; }
+.a1Text p { font-size: var(--fs-lead); font-weight: 300; line-height: 1.5; max-width: 24em; color: var(--grey-ink); }
+.a1Go { display: flex; align-items: center; gap: 16px; font-size: .875rem; font-weight: 500; color: var(--ink); }
+.a1Go i { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; transition: background .5s, color .5s, transform .8s var(--slow); }
+.a1 .ph { grid-column: 7 / span 6; aspect-ratio: 16 / 10; clip-path: inset(6% 0 6% 14%); transition: clip-path 1.1s var(--slow); }
+.a1 .ph img { scale: 1.1; transition: scale 1.4s var(--slow); }
+.a1:hover .ph { clip-path: inset(0 0 0 0); } .a1:hover .ph img { scale: 1; }
+.a1:hover .a1Text strong { color: var(--ink); } .a1:hover .a1Go i { background: var(--ink); color: #fff; transform: translateX(8px); }
+
+/* ---------- A2 strip: a wide band of the next page's photo; the name sits large on it ---------- */
+.a2 { position: relative; display: block; height: clamp(360px, 52vh, 560px); overflow: hidden; color: #fff; }
+.a2 .ph { position: absolute; inset: -8% 0; }
+.a2 .ph img { scale: 1.12; transition: scale 1.6s var(--slow); }
+.a2:hover .ph img { scale: 1.02; }
+.a2::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,16,15,.55) 0%, rgba(14,16,15,.08) 55%, rgba(14,16,15,.18) 100%); }
+.a2In { position: absolute; z-index: 2; inset: clamp(24px, 3vw, 48px) 0; display: flex; flex-direction: column; justify-content: space-between; }
+.a2In .lbl { color: rgba(255,255,255,.85); }
+.a2Row { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+.a2Row strong { font-size: clamp(3rem, 7.5vw, 8rem); font-weight: 300; letter-spacing: -.045em; line-height: .95; }
+.a2Row span { display: block; margin-top: 14px; font-size: var(--fs-lead); font-weight: 300; color: rgba(255,255,255,.9); }
+.a2:hover .arw { transform: translateX(12px) rotate(-45deg); }
+
+/* ---------- A3 pair: back and next together; hover fills a card with its photo ---------- */
+.a3 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 16px; }
+.a3 a { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: clamp(240px, 26vw, 340px); padding: clamp(24px, 3vw, 40px); background: var(--light); isolation: isolate; }
+.a3 a:first-child { grid-column: 1 / span 5; } .a3 a:last-child { grid-column: 7 / span 6; background: var(--ink); color: #fff; }
+.a3 .ph { position: absolute; inset: 0; z-index: -1; clip-path: inset(100% 0 0 0); transition: clip-path 1s var(--slow); }
+.a3 .ph::after { content: ""; position: absolute; inset: 0; background: rgba(14,16,15,.38); }
+.a3 a:hover .ph { clip-path: inset(0); } .a3 a:hover { color: #fff; } .a3 a:hover .lbl { color: rgba(255,255,255,.85); }
+.a3 a:last-child .lbl { color: rgba(255,255,255,.8); }
+.a3 strong { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; display: block; margin-top: 12px; }
+.a3 a:last-child strong { font-size: var(--fs-display); letter-spacing: -.035em; }
+.a3 p { font-size: 1rem; line-height: 1.6; opacity: .85; max-width: 26em; }
+.a3Foot { display: flex; justify-content: space-between; align-items: end; gap: 16px; }
+.a3 a:first-child .arw { transform: scaleX(-1); } .a3 a:first-child:hover .arw { transform: scaleX(-1) translateX(10px); }
+.a3 a:last-child:hover .arw { transform: translateX(10px); }
+
+/* ---------- B: five field pilots ---------- */
+.bHead { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 20px; align-items: end; margin-bottom: clamp(32px, 4vw, 56px); }
+.bHead > div { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 20px; }
+.bHead h3 { font-size: var(--fs-h2); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; }
+.bHead p { grid-column: 9 / span 4; color: var(--grey-ink); line-height: 1.7; }
+.bPin { position: relative; height: 340vh; }
+.bStick { position: sticky; top: 0; height: 100vh; min-height: 600px; display: flex; align-items: center; }
+.bGrid { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 24px; align-items: center; }
+.bStage { grid-column: 1 / span 7; position: relative; height: min(76vh, 680px); border-radius: 4px; overflow: hidden; background: #e8e1d6; }
+.bStage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bList { grid-column: 9 / span 4; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.bList li { display: grid; grid-template-columns: 96px minmax(0,1fr); gap: 4px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); color: #b4b6b7; transition: color .6s; }
+.bList em { grid-row: span 2; font-style: normal; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding-top: 6px; }
+.bList b { font-size: 1.25rem; font-weight: 400; }
+.bList span { font-size: 1rem; line-height: 1.5; max-height: 0; overflow: hidden; transition: max-height .8s var(--slow); }
+.bList small { display: block; margin-bottom: 4px; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.bList li[data-on] { color: var(--char); } .bList li[data-on] em { color: var(--ink); } .bList li[data-on] span { max-height: 8em; color: var(--grey-ink); }
+.lab { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+.lab span { position: absolute; transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; font-size: .75rem; font-weight: 500; color: var(--char); background: #fff; border-radius: 999px; padding: 5px 11px; transition: background .4s, color .4s; }
+.lab i { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: var(--char); box-shadow: 0 0 0 3px #fff; transition: background .4s; }
+.lab[data-on] span { background: var(--ink); color: #fff; } .lab[data-on] i { background: var(--io); }
+/* B3 */
+.b3 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--gap); row-gap: 32px; align-items: start; }
+.b3 svg { grid-column: 1 / span 6; width: 100%; height: auto; display: block; position: sticky; top: 40px; }
+.b3 ol { grid-column: 7 / span 6; border-top: 1px solid var(--line); }
+.b3 li { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 6px 20px; padding: 22px 0; border-bottom: 1px solid var(--line); cursor: default; transition: background .4s; }
+.b3 li em { grid-row: span 3; font-style: normal; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); padding-top: 8px; }
+.b3 li b { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; color: var(--char); }
+.b3 li small { font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.b3 li span { font-size: 1rem; line-height: 1.6; color: var(--grey-ink); }
+.b3 li[data-on] b { color: var(--ink); }
+.zone { transition: fill-opacity .5s, stroke-opacity .5s; fill-opacity: .0; stroke-opacity: .0; }
+.zone[data-on] { fill-opacity: .22; stroke-opacity: 1; }
+.foot { padding-block: 96px 64px; color: var(--grey-ink); font-size: .875rem; }
+@media (max-width: 900px) {
+  .a1Text, .a1 .ph, .a3 a:first-child, .a3 a:last-child, .bHead > div, .bHead p, .bStage, .bList, .b3 svg, .b3 ol { grid-column: 1 / -1; }
+  .a1 { row-gap: 28px; } .a1 .ph { clip-path: none; }
+  .bPin { height: auto; } .bStick { position: static; height: auto; display: block; } .bStage { height: 60vh; }
+  .bList span { max-height: none; } .bList li { color: var(--char); }
+  .b3 svg { position: static; }
+}
+</style>
+
+<div class="w top">
+  <div><span class="lbl">Innovation &amp; Venture Platforms · round 3</span><h1>Options to pick from.</h1></div>
+  <p>Two sections asked for options. Each option is live: hover the links, scroll through the pilots. Tell me which one to build (for example “A2 and B1”).</p>
+</div>
+<div class="w toc"><a href="#a">A · Next page link</a><a href="#b">B · Five field pilots</a></div>
+
+<!-- ======================================================= A · NEXT PAGE ======================================================= -->
+<section class="part" id="a"><div class="w">
+  <span class="lbl">A · The link to the next page</span>
+  <h2>Same idea, three layouts.</h2>
+  <p>Shown with the Farm Innovation Fund page leading to Incubation. Each page gets its own next platform, the last one leads back to all four.</p>
+
+  <div class="opt" id="a1o"><p class="tag"><b>A1</b><strong>Split.</strong> Text on the left (1–6), the next page’s photo on the right (7–12). On hover the photo opens to its full frame and the arrow moves. Reads as a preview of the next page.</p>
+    <a class="a1" href="#a1o"><div class="a1Text"><div><span class="lbl">Next platform · For researchers</span><strong>Incubation</strong></div><p>From lab research to market-ready, with Khalifa University.</p><span class="a1Go"><i><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Go to Incubation</span></div><div class="ph"><img src="img/inc_robot.webp" alt=""></div></a>
+  </div>
+
+  <div class="opt" id="a2o"><p class="tag"><b>A2</b><strong>Photo strip.</strong> A wide band of the next page’s photo with its name very large on it. The photo drifts with the scroll and eases back on hover. The strongest “turn the page” moment.</p></div>
+</div>
+  <a class="a2" href="#a2o"><div class="ph" data-drift><img src="img/inc_robot.webp" alt=""></div><div class="w a2In"><span class="lbl">Next platform · For researchers</span><div class="a2Row"><div><strong>Incubation</strong><span>From lab research to market-ready, with Khalifa University.</span></div><svg class="arw" viewBox="0 0 48 48" fill="none"><path d="M6 24h34M28 11l13 13-13 13" stroke="currentColor" stroke-width="1.5"/></svg></div></div></a>
+<div class="w">
+  <div class="opt" id="a3o"><p class="tag"><b>A3</b><strong>Back and next.</strong> Two cards on the page grid: the page before (1–5, quiet) and the next one (7–12, IO blue, large). Hover fills a card with its photo. Easiest to move both ways through the four platforms.</p>
+    <div class="a3">
+      <a href="#a3o"><div class="ph"><img src="img/fif_tour.webp" alt=""></div><div><span class="lbl">Back to</span><strong>All four platforms</strong></div><div class="a3Foot"><p>Innovation &amp; Venture Platforms</p><svg class="arw" viewBox="0 0 48 48" fill="none"><path d="M6 24h34M28 11l13 13-13 13" stroke="currentColor" stroke-width="1.5"/></svg></div></a>
+      <a href="#a3o"><div class="ph"><img src="img/inc_robot.webp" alt=""></div><div><span class="lbl">Next platform · For researchers</span><strong>Incubation</strong></div><div class="a3Foot"><p>From lab research to market-ready, with Khalifa University.</p><svg class="arw" viewBox="0 0 48 48" fill="none"><path d="M6 24h34M28 11l13 13-13 13" stroke="currentColor" stroke-width="1.5"/></svg></div></a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ======================================================= B · FIVE FIELD PILOTS ======================================================= -->
+<section class="part" id="b"><div class="w">
+  <span class="lbl">B · Five field pilots, one protocol</span>
+  <h2>From a table to something you see.</h2>
+  <p>The five finalists work at different places in the plant and the soil: on the leaves, in the plant, in the root zone and below it. All three options use that, from the source text only.</p>
+
+  <div class="opt" id="b1o"><p class="tag"><b>B1</b><strong>3D soil profile (recommended).</strong> A clay cutaway of one plant and its soil, in the homepage style. Scrolling moves the camera from the leaves down below the roots; each finalist lights up where its solution works, with its text on the right.</p>
+    <div class="bHead"><div><span class="lbl">Problem statement A</span><h3>Five field pilots, one protocol.</h3></div><p>The same crops, sites and irrigation baselines, so water savings and yield are compared like for like.</p></div>
+  </div>
+</div>
+  <div class="bPin" id="b1Pin"><div class="bStick"><div class="w" style="width:100%"><div class="bGrid">
+    <div class="bStage" id="b1"></div>
+    <ol class="bList" id="b1List"></ol>
+  </div></div></div></div>
+<div class="w">
+  <div class="opt" id="b2o"><p class="tag"><b>B2</b><strong>3D trial plots.</strong> Five clay plots side by side on the contour sand, one per finalist, all with the same crop rows (the “one protocol”). Scrolling walks the camera along them; the plot under test rises and turns blue.</p></div>
+</div>
+  <div class="bPin" id="b2Pin"><div class="bStick"><div class="w" style="width:100%"><div class="bGrid">
+    <div class="bStage" id="b2"></div>
+    <ol class="bList" id="b2List"></ol>
+  </div></div></div></div>
+<div class="w">
+  <div class="opt" id="b3o"><p class="tag"><b>B3</b><strong>Drawn profile.</strong> The same idea in 2D: a line drawing of a plant and its soil next to the five finalists. Hover or scroll a finalist and its zone lights up. Lightest to load.</p>
+    <div class="b3">
+      <svg viewBox="0 0 560 620" id="b3svg" role="img" aria-label="Where each solution works: leaves, plant, root zone and below the root zone">
+        <rect x="0" y="0" width="560" height="250" fill="#fff"/><rect x="0" y="250" width="560" height="370" fill="#efe7dc"/>
+        <path d="M0 250h560" stroke="#c9b9a3"/>
+        <path d="M0 470h560" stroke="#c9b9a3" stroke-dasharray="4 5"/>
+        <text x="16" y="490" font-family="Readex Pro, Arial" font-size="12" fill="#8c7f70">below the root zone</text>
+        <text x="16" y="272" font-family="Readex Pro, Arial" font-size="12" fill="#8c7f70">root zone</text>
+        <g fill="none" stroke="#595453" stroke-width="1.4" stroke-linecap="round">
+          <path d="M280 250V120"/><path d="M280 170c-40-6-70-30-78-64 36 2 66 24 78 64zM280 140c38-8 64-34 70-66-34 4-62 28-70 66zM280 120c-10-30-2-60 18-80 10 28 4 58-18 80z"/>
+          <path d="M280 250c0 40-6 80-30 120M280 250c4 50 20 90 50 120M280 250c-20 30-50 60-90 76M280 250c24 26 60 50 104 60M250 370c-10 20-30 34-50 40M330 370c12 22 30 34 54 38"/>
+        </g>
+        <rect class="zone" data-z="4" x="190" y="30" width="180" height="120" rx="14" fill="#3ca7d2" stroke="#1a6f96"/>
+        <rect class="zone" data-z="3" x="250" y="110" width="60" height="150" rx="14" fill="#3ca7d2" stroke="#1a6f96"/>
+        <rect class="zone" data-z="1" x="150" y="262" width="260" height="190" rx="14" fill="#3ca7d2" stroke="#1a6f96"/>
+        <rect class="zone" data-z="2" x="180" y="300" width="200" height="130" rx="60" fill="#3ca7d2" stroke="#1a6f96" stroke-dasharray="4 4"/>
+        <rect class="zone" data-z="0" x="40" y="482" width="480" height="90" rx="14" fill="#3ca7d2" stroke="#1a6f96"/>
+      </svg>
+      <ol id="b3List"></ol>
+    </div>
+  </div>
+</div></section>
+
+<div class="w foot">Facts are from the challenge brief only: where each finalist’s solution acts is taken from its one-line description on the page. Nothing here is published until you pick.</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+// shared finalist data (order = depth, deepest first) and the board's 2D bits
+window.PILOTS = [
+  { c: 'UAE', n: 'Raincatcher', z: 'Below the root zone', t: 'A material placed beneath the root zone absorbs irrigation water and releases it back to roots, cutting evaporation and deep-drainage losses.' },
+  { c: 'India', n: 'EF Polymer', z: 'In the root zone', t: 'A biodegradable superabsorbent polymer made from fruit waste is mixed into the soil to hold water and nutrients between irrigations.' },
+  { c: 'Argentina', n: 'M4LIFE', z: 'Soil microbes', t: 'Custom microbes help soil retain water and release it gradually, supporting crops under drought and salinity.' },
+  { c: 'Brazil', n: 'Krilltech', z: 'The plant', t: 'A natural bio-stimulant with carbon nanoparticles supports plant water-use efficiency.' },
+  { c: 'Egypt', n: 'Agri-Vit', z: 'On the leaves', t: 'A foliar biostimulant strengthens plant resilience to heat and salinity, supporting stable yields with less irrigation water.' }];
+(function () {
+  var G = !!window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (G) gsap.registerPlugin(ScrollTrigger);
+  function list(id, order) { var ol = document.getElementById(id); ol.innerHTML = order.map(function (i) { var p = PILOTS[i]; return '<li data-k="' + i + '"><em>' + p.c + '</em><b>' + p.n + '</b><span><small>' + p.z + '</small>' + p.t + '</span></li>'; }).join(''); return [].slice.call(ol.children); }
+  window.__lists = { b1: list('b1List', [4, 3, 2, 1, 0]), b2: list('b2List', [0, 1, 2, 3, 4]) };
+  // B3: list + zones
+  var ol = document.getElementById('b3List'); ol.innerHTML = [4, 3, 2, 1, 0].map(function (i) { var p = PILOTS[i]; return '<li data-k="' + i + '"><em>' + p.c + '</em><small>' + p.z + '</small><b>' + p.n + '</b><span>' + p.t + '</span></li>'; }).join('');
+  var lis = [].slice.call(ol.children), zones = [].slice.call(document.querySelectorAll('#b3svg .zone'));
+  function on3(k) { lis.forEach(function (li) { li.toggleAttribute('data-on', +li.dataset.k === k); }); zones.forEach(function (z) { z.toggleAttribute('data-on', +z.dataset.z === k); }); }
+  lis.forEach(function (li) { li.addEventListener('mouseenter', function () { on3(+li.dataset.k); }); if (G) ScrollTrigger.create({ trigger: li, start: 'top 55%', end: 'bottom 55%', onToggle: function (s) { if (s.isActive) on3(+li.dataset.k); } }); });
+  on3(4);
+  // A2: the strip's photo drifts with the scroll
+  if (G) document.querySelectorAll('[data-drift] img').forEach(function (im) { gsap.fromTo(im, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: im.closest('.a2'), start: 'top bottom', end: 'bottom top', scrub: true } }); });
+})();
+</script>
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, G = !!window.gsap && !reduce;
+const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
+const sh = m => { m.castShadow = m.receiveShadow = true; return m; };
+const rbox = (w, h, d, r, m) => sh(new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)), m));
+const mesh = (g, m) => sh(new THREE.Mesh(g, m));
+const lerp = THREE.MathUtils.lerp;
+function contourTex(bg, line, seed) {
+  const N = 1024, cv = document.createElement('canvas'); cv.width = cv.height = N; const g = cv.getContext('2d'); g.fillStyle = bg; g.fillRect(0, 0, N, N);
+  let sd = seed || 11; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647, B = []; for (let k = 0; k < 7; k++) B.push([rnd(), rnd(), 0.1 + rnd() * 0.14, 0.5 + rnd() * 0.6]);
+  const R = 160, F = new Float32Array((R + 1) * (R + 1));
+  for (let j = 0; j <= R; j++) for (let i = 0; i <= R; i++) { const x = i / R, y = j / R; let v = 0; B.forEach(([bx, by, s, a]) => { let dx = Math.abs(x - bx), dy = Math.abs(y - by); dx = Math.min(dx, 1 - dx); dy = Math.min(dy, 1 - dy); v += a * Math.exp(-(dx * dx + dy * dy) / (2 * s * s)); }); F[j * (R + 1) + i] = v; }
+  const c = N / R, P = (i, j) => F[j * (R + 1) + i]; g.strokeStyle = line; g.lineWidth = 1.5;
+  for (let L = 0.06; L < 2.4; L += 0.085) { g.beginPath(); for (let j = 0; j < R; j++) for (let i = 0; i < R; i++) { const a = P(i, j), b = P(i + 1, j), d = P(i + 1, j + 1), e = P(i, j + 1), pts = []; const cut = (p, q, x1, y1, x2, y2) => { const t = (L - p) / (q - p); pts.push([(x1 + (x2 - x1) * t) * c, (y1 + (y2 - y1) * t) * c]); }; if ((a < L) !== (b < L)) cut(a, b, i, j, i + 1, j); if ((b < L) !== (d < L)) cut(b, d, i + 1, j, i + 1, j + 1); if ((d < L) !== (e < L)) cut(d, e, i + 1, j + 1, i, j + 1); if ((e < L) !== (a < L)) cut(e, a, i, j + 1, i, j); for (let k = 0; k + 1 < pts.length; k += 2) { g.moveTo(...pts[k]); g.lineTo(...pts[k + 1]); } } g.stroke(); }
+  const tx = new THREE.CanvasTexture(cv); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.colorSpace = THREE.SRGBColorSpace; return tx;
+}
+function stage(host, fov) {
+  const r = new THREE.WebGLRenderer({ antialias: true, alpha: true }); r.setPixelRatio(Math.min(2, devicePixelRatio)); r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap; r.outputColorSpace = THREE.SRGBColorSpace; r.toneMapping = THREE.ACESFilmicToneMapping; host.prepend(r.domElement);
+  const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(fov, 1, 0.1, 200);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xe0d8cc, 2.1));
+  const sun = new THREE.DirectionalLight(0xffffff, 1.5); sun.position.set(-8, 18, 12); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: 1, far: 70 }); sun.shadow.radius = 10; scene.add(sun);
+  const S = { r, scene, cam, vis: false, w: 1, h: 1, size() { S.w = host.clientWidth; S.h = host.clientHeight; r.setSize(S.w, S.h, false); cam.aspect = S.w / S.h; cam.updateProjectionMatrix(); } };
+  S.size(); addEventListener('resize', S.size); new IntersectionObserver(es => { S.vis = es[0].isIntersecting; if (S.vis) S.size(); }, { rootMargin: '200px' }).observe(host);
+  return S;
+}
+function labels(host, names) { return names.map(n => { const d = document.createElement('div'); d.className = 'lab'; d.innerHTML = '<i></i><span>' + n + '</span>'; host.appendChild(d); return d; }); }
+const v = new THREE.Vector3();
+function place(S, pts, labs) { pts.forEach((p, i) => { v.copy(p).project(S.cam); labs[i].style.transform = 'translate(' + ((v.x + 1) / 2 * S.w) + 'px,' + ((1 - v.y) / 2 * S.h) + 'px)'; }); }
+function scrub(pin, fn) { if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: pin, start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: s => fn(s.progress), onRefresh: s => fn(s.progress) }); else fn(0.5); }
+function mark(list, k) { list.forEach(li => li.toggleAttribute('data-on', +li.dataset.k === k)); }
+
+/* ===== B1: one plant, its soil cut open in layers; the camera goes from the leaves down below the roots ===== */
+(function () {
+  const host = document.getElementById('b1'); let S; try { S = stage(host, 30); } catch (e) { return; }
+  const { scene, cam } = S, sand = contourTex('#e4dacb', 'rgba(140,118,92,.22)', 7); sand.repeat.set(1.2, 0.8);
+  // the soil is cut open at z = 0.5: everything inside the ground sits just in front of the cut face, like a section drawing
+  const W = 9, D = 4.5, FZ = 0.5;
+  const layer = (y, h, c) => { const m = rbox(W, h, D, 0.12, mat(c)); m.position.set(0, y, FZ - D / 2); scene.add(m); return m; };
+  const deep = layer(-3.35, 1.3, 0xcbb79c), roots = layer(-1.35, 2.7, 0xdccbb3);
+  const top = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.2, D - 0.2), mat(0xffffff, { map: sand })); top.rotation.x = -Math.PI / 2; top.position.set(0, 0.006, FZ - D / 2); top.receiveShadow = true; scene.add(top);
+  // the Raincatcher layer: a pale band under the root zone; EF polymer: beads in the soil; microbes: tiny dots around the roots
+  const band = rbox(W + 0.02, 0.22, D + 0.02, 0.05, mat(0xf6f5f2)); band.position.set(0, -2.72, FZ - D / 2); scene.add(band);
+  const blue = new THREE.Color(0x3ca7d2), grey = new THREE.Color(0xd9dadb), parts = { 0: [band], 1: [], 2: [], 3: [], 4: [] };
+  for (let k = 0; k < 26; k++) { const b = mesh(new THREE.SphereGeometry(0.11, 12, 10), mat(0xf6f5f2)); b.position.set(-3.8 + Math.random() * 7.6, -0.35 - Math.random() * 2.1, FZ + 0.05); scene.add(b); parts[1].push(b); }
+  for (let k = 0; k < 60; k++) { const b = mesh(new THREE.SphereGeometry(0.045, 8, 6), mat(0x9d8f7d)); const a = Math.random() * 6.28, rr = 0.3 + Math.random() * 1.2; b.position.set(Math.cos(a) * rr * 1.4, -0.3 - Math.random() * 2.0, FZ + 0.04); scene.add(b); parts[2].push(b); }
+  // roots
+  const rootM = mat(0xb9a88f);
+  [[0.9, -1.9, 0.4], [-1.0, -1.7, 0.2], [0.3, -2.3, 0.9], [-0.4, -2.2, -0.5], [1.4, -1.2, -0.6], [-1.5, -1.1, 0.8]].forEach(([x, y, z]) => { const c = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0, FZ + 0.08), new THREE.Vector3(x * 0.4, y * 0.45, FZ + 0.08), new THREE.Vector3(x, y, FZ + 0.08)]); scene.add(mesh(new THREE.TubeGeometry(c, 24, 0.05, 8), rootM)); });
+  // plant: stem and leaves
+  const stem = mesh(new THREE.CylinderGeometry(0.07, 0.1, 2.6, 12), mat(0xd9dadb)); stem.position.set(0, 1.3, 0.6); scene.add(stem); parts[3].push(stem);
+  [[-0.55, 1.2, 0.6], [0.6, 1.7, -0.6], [-0.5, 2.2, 0.5], [0.45, 2.6, -0.4]].forEach(([x, y, r]) => { const l = mesh(new THREE.SphereGeometry(0.5, 20, 14), mat(0xd9dadb)); l.scale.set(1, 0.22, 0.5); l.position.set(x, y, 0.6); l.rotation.z = r; scene.add(l); parts[4].push(l); });
+  const L = labels(host, PILOTS.map(p => p.n)), P = [new THREE.Vector3(3.4, -2.72, FZ + 0.1), new THREE.Vector3(-2.8, -1.0, FZ + 0.1), new THREE.Vector3(1.3, -1.6, FZ + 0.1), new THREE.Vector3(0.15, 0.9, 0.7), new THREE.Vector3(-0.6, 2.25, 0.8)];
+  Object.values(parts).flat().forEach(o => { o.material = o.material.clone(); o.userData.c0 = o.material.color.clone(); });
+  let on = -1, prog = 0, pk = 0; const list = window.__lists.b1;
+  function light(k) { if (k === on) return; on = k; mark(list, k); L.forEach((l, i) => l.toggleAttribute('data-on', i === k)); Object.entries(parts).forEach(([i, os]) => os.forEach(o => { const to = +i === k ? blue : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); })); }
+  scrub(document.getElementById('b1Pin'), p => { prog = p; light(4 - Math.min(4, Math.floor(p * 5))); });
+  const tgt = new THREE.Vector3(), clock = new THREE.Clock();
+  (function loop() { requestAnimationFrame(loop); if (!S.vis) return; const t = clock.getElapsedTime(); pk += (prog - pk) * 0.07;
+    const fit = S.cam.aspect < 1.1 ? 1.5 : 1, y = lerp(1.8, -2.4, pk), yaw = lerp(-0.55, 0.35, pk) + (reduce ? 0 : Math.sin(t * 0.2) * 0.02), d = 15 * fit;
+    tgt.set(0, y, 0.4); cam.position.set(Math.sin(yaw) * d, y + 1.6, Math.cos(yaw) * d); cam.lookAt(tgt);
+    parts[4].forEach((l, i) => { if (!reduce) l.rotation.x = Math.sin(t * 1.2 + i) * 0.06; });
+    S.r.render(scene, cam); place(S, P, L); })();
+})();
+
+/* ===== B2: five identical trial plots on the contour sand; the camera walks along them ===== */
+(function () {
+  const host = document.getElementById('b2'); let S; try { S = stage(host, 28); } catch (e) { return; }
+  const { scene, cam } = S, sand = contourTex('#ddd3c5', 'rgba(140,118,92,.22)', 23); sand.repeat.set(5, 2.5);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(140, 70), new THREE.MeshStandardMaterial({ map: sand, roughness: 1 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -0.3; floor.receiveShadow = true; scene.add(floor);
+  scene.fog = new THREE.Fog(0xe8e1d6, 30, 62);
+  const SP = 4.4, plots = [], blue = new THREE.Color(0x3ca7d2), grey = new THREE.Color(0xd9dadb);
+  for (let i = 0; i < 5; i++) {
+    const g = new THREE.Group(), lift = new THREE.Group(); g.position.x = (i - 2) * SP; g.add(lift); scene.add(g);
+    const bed = rbox(3.6, 0.5, 3.6, 0.14, mat(0xe3d6c2)); bed.position.y = -0.05; lift.add(bed);
+    const crops = [];
+    for (let r = 0; r < 4; r++) { const ridge = rbox(3.2, 0.14, 0.34, 0.06, mat(0xd6c6ae)); ridge.position.set(0, 0.26, -1.2 + r * 0.8); lift.add(ridge);
+      for (let c = 0; c < 4; c++) { const p = mesh(new THREE.SphereGeometry(0.2, 14, 10), mat(0xd9dadb)); p.scale.set(1, 0.75, 1); p.position.set(-1.2 + c * 0.8, 0.5, -1.2 + r * 0.8); lift.add(p); crops.push(p); } }
+    const post = mesh(new THREE.CylinderGeometry(0.04, 0.05, 1.4, 8), mat(0xb9bbbc)); post.position.set(1.55, 0.9, 1.55); lift.add(post);
+    const head = rbox(0.3, 0.2, 0.3, 0.06, mat(0xf6f5f2)); head.position.set(1.55, 1.65, 1.55); lift.add(head);
+    plots.push({ lift, crops, top: new THREE.Vector3((i - 2) * SP, 1.9, 0) });
+  }
+  const L = labels(host, PILOTS.map(p => p.n + ' · ' + p.c));
+  let on = -1, prog = 0, pk = 0; const list = window.__lists.b2;
+  function light(k) { if (k === on) return; on = k; mark(list, k); L.forEach((l, i) => l.toggleAttribute('data-on', i === k));
+    plots.forEach((p, i) => { const up = i === k; if (G) gsap.to(p.lift.position, { y: up ? 0.35 : 0, duration: 0.9, ease: up ? 'back.out(2)' : 'power3.out' }); p.crops.forEach(c => { const to = up ? blue : grey; if (G) gsap.to(c.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else c.material.color.copy(to); }); }); }
+  plots.forEach(p => p.crops.forEach(c => { c.material = c.material.clone(); }));
+  scrub(document.getElementById('b2Pin'), p => { prog = p; light(Math.min(4, Math.floor(p * 5))); });
+  const tgt = new THREE.Vector3(), clock = new THREE.Clock();
+  (function loop() { requestAnimationFrame(loop); if (!S.vis) return; const t = clock.getElapsedTime(); pk += (prog - pk) * 0.07;
+    const x = lerp(-2 * SP, 2 * SP, pk), fit = S.cam.aspect < 1.1 ? 1.6 : 1, d = 17 * fit, yaw = -0.35 + (reduce ? 0 : Math.sin(t * 0.2) * 0.02), a = 0.62;
+    tgt.set(x, 0, 0); cam.position.set(x + Math.sin(yaw) * d * Math.cos(a), Math.sin(a) * d, Math.cos(yaw) * d * Math.cos(a)); cam.lookAt(tgt);
+    S.r.render(scene, cam); place(S, plots.map(p => v.clone().copy(p.top).setY(p.top.y + p.lift.position.y)), L); })();
+})();
+</script>
