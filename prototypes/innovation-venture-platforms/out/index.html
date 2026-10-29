@@ -4699,19 +4699,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .f_cohortGrid { height: 100%; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: center; padding-block: clamp(24px, 4vh, 48px); box-sizing: border-box; }
 .f_cohortL { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: var(--blk); }
 .f_cohortHead { max-width: 30em; }
-/* the count rolls inside a fixed box: both numbers sit at the same place, nothing jumps or gets clipped */
-.f_cohortNow { display: flex; align-items: baseline; gap: 14px; }
-.f_cohortNow strong { position: relative; display: block; flex: none; overflow: hidden; height: 1.08em; font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 300; line-height: 1; letter-spacing: -.05em; color: var(--io-ink); font-variant-numeric: tabular-nums; }
-.f_cohortNow strong span, .f_cohortStage span { position: absolute; left: 0; top: 0; white-space: nowrap; will-change: transform; }
-.f_cohortNow strong span { top: .04em; }
-.f_cohortStage { position: relative; flex: 1; min-width: 0; height: 1.5em; overflow: hidden; font-size: var(--fs-lead); font-weight: 300; line-height: 1.4; color: var(--charcoal); }
-.f_cohortList { border-top: 1px solid var(--line); }
+.f_cohortList { position: relative; border-top: 1px solid var(--line); }
+.f_cohortRail, .f_cohortFill { position: absolute; left: 4px; width: 1px; background: #d6d7d8; z-index: 0; }
+.f_cohortFill { background: var(--io-ink); transform-origin: top; transform: scaleY(0); }
 .f_cohortList li { position: relative; display: grid; grid-template-columns: 4.5ch minmax(0,1fr); gap: 14px; align-items: baseline; padding: 10px 0 10px 18px; border-bottom: 1px solid var(--line); color: #b4b6b7; transition: color .5s; }
-.f_cohortList li::before { content: ""; position: absolute; left: 0; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--io-ink); transform: scale(0); transition: transform .5s var(--slow); }
+.f_cohortList li::before { content: ""; position: absolute; z-index: 1; left: 0; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; box-sizing: border-box; border-radius: 50%; background: #fff; border: 1px solid #c9cacb; transition: background .5s, border-color .5s, transform .5s var(--slow); }
 .f_cohortList b { font-size: var(--t-h4); font-weight: 300; font-variant-numeric: tabular-nums; }
 .f_cohortList span { font-size: var(--fs-body); }
 .f_cohortList li[data-past] { color: var(--grey); }
-.f_cohortList li[data-on] { color: var(--charcoal); } .f_cohortList li[data-on] b { color: var(--io-ink); } .f_cohortList li[data-on]::before { transform: scale(1); }
+.f_cohortList li[data-on] { color: var(--charcoal); } .f_cohortList li[data-on] b { color: var(--io-ink); } .f_cohortList li[data-past]::before { background: var(--io-ink); border-color: var(--io-ink); } .f_cohortList li[data-on]::before { background: var(--io-ink); border-color: var(--io-ink); transform: scale(1.35); box-shadow: 0 0 0 5px rgba(26,111,150,.12); }
 .f_cohortMeta { display: flex; flex-wrap: wrap; gap: 6px 24px; font-size: var(--t-small); color: var(--grey); }
 .f_cohortMeta b { font-weight: 400; color: var(--charcoal); }
 .f_field { grid-column: 7 / span 6; position: relative; height: calc(100% - 16px); min-height: 360px; display: flex; align-items: center; justify-content: center; }
@@ -5148,6 +5144,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .x_gl canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .f_field.is3d svg, .k_cretaViz.is3d svg { display: none; }
 .f_field.is3d .x_gl { display: block; position: absolute; inset: 0; cursor: default; }
+.f_field.is3d { background: #e6dccd; }
 .k_cretaViz.is3d .x_gl { display: block; height: clamp(380px, 40vw, 580px); background: #e6dccd; }
 .crLbl { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
 .crLbl span { position: absolute; transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; font-size: var(--t-label); color: var(--charcoal); background: #fff; border-radius: 999px; padding: 5px 11px; box-shadow: 0 1px 4px rgba(38,36,35,.06); }
@@ -5164,7 +5161,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .k_cretaNums span { font-size: var(--t-small); color: var(--grey); }
 .k_meas { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: start; }
 .k_meas > .x_img { grid-column: 1 / span 5; aspect-ratio: 4 / 5; position: sticky; top: calc(var(--hh) + 32px); }
-.k_measure { grid-column: 7 / span 6; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.k_measPh > img { clip-path: inset(0 0 0 100%); transition: clip-path 1.1s var(--slow); } .k_measPh > img.on { clip-path: inset(0); }
+.k_measR { grid-column: 7 / span 6; }
+.k_parts { margin-top: var(--sec); display: flex; flex-direction: column; gap: var(--head); }
+.k_partPh { display: none; aspect-ratio: 4 / 3; }
+.k_f3List li[data-us] { padding: 22px 24px; background: var(--light); border-bottom: 0; } .k_f3List li[data-us] .x_label, .k_f3List li[data-us] strong { color: var(--io-ink); }
+.k_measure { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
 .k_measure li { display: grid; grid-template-columns: 48px minmax(0,1fr); column-gap: 24px; row-gap: 8px; padding: clamp(24px, 3vw, 36px) 0; border-bottom: 1px solid var(--line); }
 .k_measure svg { grid-row: span 2; width: 48px; height: 48px; color: var(--io-ink); }
 .k_measure h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; color: var(--charcoal); }
@@ -5172,16 +5174,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* partners: who does what, read left to right as one chain — organiser, partners, then Silal running the trials */
 .k_chain { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 48px; padding-top: 40px; }
 .k_chain::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; height: 1px; background: var(--line); }
-/* partners (F3): Silal at work on one large photo, the organiser and partners as a quiet list beside it */
-.k_f3 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: stretch; }
-.k_f3Ph { grid-column: 1 / span 6; min-height: clamp(420px, 40vw, 600px); color: #fff; }
-.k_f3Ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,16,15,.62), rgba(14,16,15,0) 55%); pointer-events: none; }
-.k_f3Cap { position: absolute; z-index: 2; left: clamp(20px, 2.4vw, 36px); right: clamp(20px, 2.4vw, 36px); bottom: clamp(20px, 2.4vw, 36px); display: flex; flex-direction: column; gap: 10px; }
-.k_f3Cap .x_label { color: rgba(255,255,255,.85); } .k_f3Cap strong { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; } .k_f3Cap p { font-size: var(--fs-body); line-height: 1.55; opacity: .92; max-width: 30em; }
+/* partners: a quiet list, Silal first */
 .k_f3List { grid-column: 7 / span 6; display: flex; flex-direction: column; justify-content: flex-end; border-top: 1px solid var(--line); }
 .k_f3List li { display: flex; flex-direction: column; gap: 6px; padding: 22px 0; border-bottom: 1px solid var(--line); }
 .k_f3List .x_label { color: var(--grey); } .k_f3List strong { font-size: var(--t-h4); font-weight: 400; color: var(--charcoal); } .k_f3List p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); }
-@media (max-width: 900px) { .k_f3Ph, .k_f3List { grid-column: 1 / -1; } .k_f3Ph { min-height: 380px; } }
 .k_tier { position: relative; display: flex; flex-direction: column; gap: 14px; }
 .k_tier::before { content: ""; position: absolute; top: -40px; left: 0; width: 13px; height: 13px; border-radius: 50%; background: #fff; border: 1.5px solid var(--io-ink); box-sizing: border-box; }
 .k_tier .x_label { color: var(--grey); }
@@ -5266,14 +5262,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .f_tenets { grid-template-columns: 1fr; }
   .i_col:last-child { margin-top: 0; }
   .f_gatesSide, .a_csStage, .e_side, .k_meas > .x_img { position: static; }
-  .k_meas > .x_img { aspect-ratio: 4 / 3; }
+  .k_meas > .x_img { aspect-ratio: 4 / 3; } .k_measR { grid-column: 1 / -1; } .k_partPh { display: block; }
   .f_gatesSide { height: auto; padding-block: 0; }
   .f_gatesSide .x_img { flex: none; max-height: none; aspect-ratio: 4 / 3; }
   .f_gatesList { --gt: 8vh; --gb: 8vh; }
   .f_areaSide, .f_areaStage { grid-column: 1 / -1; } .f_areaSide { margin-bottom: 24px; gap: 32px; } .f_areaStage { min-height: 420px; }
   .f_cohortPin { height: 360vh; }
   .f_cohortStick { min-height: 560px; }
-  .f_cohortGrid { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding-block: 20px 72px; } .f_cohortL { gap: 16px; } .f_cohortList { display: none; } .f_field { height: auto; flex: 1; min-height: 240px; }
+  .f_cohortGrid { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding-block: 20px 72px; } .f_cohortL { gap: 14px; } .f_cohortList li { padding-block: 6px; } .f_field { height: auto; flex: 1; min-height: 240px; }
   .f_dayPin { height: auto !important; }
   .f_dayStick { position: static; height: auto; min-height: 0; overflow: visible; padding-block: var(--sec); }
   .f_track { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; padding-right: var(--gutter); transform: none !important; }
@@ -5489,8 +5485,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <section class="f_cohort"><div class="f_cohortPin" id="cohortPin"><div class="f_cohortStick"><div class="s_wrap f_cohortGrid">
     <div class="f_cohortL">
       <div class="x_stack f_cohortHead"><span class="c_eyebrow">Cohort 1 at a glance · 15 Sep 2026</span><h2 class="x_h2">From 130 applications to five funded pilots.</h2></div>
-      <div class="f_cohortNow"><strong id="cohortNum"><span>130</span></strong><p class="f_cohortStage" id="cohortStage"><span>Applications submitted</span></p></div>
-      <ol class="f_cohortList" id="cohortList"><li data-on><b>130</b><span>Applications submitted</span></li><li><b>68</b><span>Advanced to Phase 2</span></li><li><b>39</b><span>Valid Phase 2 proposals</span></li><li><b>10</b><span>Finalists</span></li><li><b>5</b><span>Pilots to fund</span></li></ol>
+      <ol class="f_cohortList" id="cohortList"><i class="f_cohortRail" aria-hidden="true"></i><i class="f_cohortFill" aria-hidden="true"></i><li data-on><b>130</b><span>Applications submitted</span></li><li><b>68</b><span>Advanced to Phase 2</span></li><li><b>39</b><span>Valid Phase 2 proposals</span></li><li><b>10</b><span>Finalists</span></li><li><b>5</b><span>Pilots to fund</span></li></ol>
       <div class="f_cohortMeta"><span><b>2,000+</b> farms reached</span><span><b>7</b> emirates represented</span><span>Target: at least 1 scaled solution</span><span class="f_fieldKey"><span><i class="f_keySeed" aria-hidden="true"></i>1 application</span><span><svg class="f_keySprout" viewBox="0 0 12 14" aria-hidden="true"><path d="M6 13V5M6 8C3 6 2 4 2.5 2.5 4.5 3 5.6 5 6 8ZM6 6c1-2.6 3-3.8 4.5-3.6C10.6 4.2 8.8 5.6 6 6Z"/></svg>funded pilot</span></span></div>
     </div>
     <div class="f_field" id="field" data-stage="0" role="img" aria-label="130 applications; 68 advanced to Phase 2; 39 valid Phase 2 proposals; 10 finalists; 5 pilots to fund"></div>
@@ -5755,7 +5750,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           <g id="funSegs"></g>
           <circle cx="300" cy="300" r="104" fill="#fff"/>
           <g class="k_hub"><path d="M300 192a108 108 0 1 1 -108 108" fill="none" stroke="#1a6f96" stroke-width="1.4"/><circle cx="300" cy="192" r="3.5" fill="#1a6f96"/></g>
-          <g id="funLabels" font-size="15" fill="#595453"></g>
         </svg>
         <div class="k_funCenter"><strong class="k_funNum" id="funNum"><span>846</span></strong><p class="k_funLab" id="funLab"><span>teams registered</span></p></div></div>
         <ol class="k_funSteps" id="funSteps"><li data-on><b>846</b>registered</li><li><b>21</b>qualified</li><li><b>6</b>finalists</li></ol>
@@ -5834,25 +5828,26 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <section class="x_sec"><div class="s_wrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>What the testing phase measures</span><h2 class="x_h2" data-reveal>Less water, same or better yield, ready to scale.</h2></div></div>
-    <div class="k_meas">
-      <div class="x_img x_corners" data-img><img src="img/inc_pots.webp" alt="Young plants in instrumented pots at Innovation Oasis" loading="lazy"></div>
+    <div class="k_meas" id="kMeas">
+      <div class="x_img x_corners k_measPh" id="measImgs" data-img><img src="img/inc_pots.webp" alt="Young plants in instrumented pots at Innovation Oasis" class="on" loading="lazy"><img src="img/fif_greenh.webp" alt="Greenhouses in the desert at Innovation Oasis" loading="lazy"></div>
+      <div class="k_measR">
     <ul class="k_measure">
         <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" data-draw><path d="M24 6c8 11 13 18 13 25a13 13 0 0 1-26 0c0-7 5-14 13-25z"/><path d="M17 31a7 7 0 0 0 7 7"/></svg><h3>Water use</h3><p>Irrigation volume per crop cycle and per kilogram of produce, against an untreated control.</p></li>
         <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" data-draw><path d="M24 42V20M24 26c-8 0-12-6-12-12 8 0 12 5 12 12zM24 22c0-7 4-12 12-12 0 7-4 12-12 12z"/><path d="M10 42h28"/></svg><h3>Yield and quality</h3><p>Harvested weight, marketable grade and crop health under heat and salinity.</p></li>
         <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" data-draw><circle cx="24" cy="26" r="15"/><path d="M24 26l7-7M24 8V5M18 5h12"/></svg><h3>Operating performance</h3><p>Energy demand, labour and input cost; for the greenhouse, conditions through the summer peak.</p></li>
         <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" data-draw><path d="M6 40h36M10 40V30h7v10M21 40V22h7v18M32 40V12h7v28"/></svg><h3>Scalability</h3><p>Cost per hectare, ease of adoption on UAE farms and transfer to similar climates.</p></li>
       </ul>
-    </div>
-    <div style="margin-top:var(--sec)">
-      <div class="x_head"><div><span class="c_eyebrow" data-reveal>Partners and roles</span><h2 class="x_h2" data-reveal>Silal carries the technical execution of the testing phase.</h2></div></div>
-      <div class="k_f3">
-        <div class="x_img k_f3Ph" data-img><img src="img/inc_pots.webp" alt="Young plants in instrumented pots at Innovation Oasis" loading="lazy"><div class="k_f3Cap"><span class="x_label">Technical partner</span><strong>Silal · Innovation Oasis</strong><p>Hosts and executes the trials: five field pilots and the CRETA greenhouse build.</p></div></div>
-        <ul class="k_f3List" data-stagger>
+        <div class="k_parts" id="kParts">
+          <div class="x_stack"><span class="c_eyebrow" data-reveal>Partners and roles</span><h2 class="x_h2" data-reveal>Silal carries the technical execution of the testing phase.</h2></div>
+          <div class="x_img k_partPh" data-img><img src="img/fif_greenh.webp" alt="Greenhouses in the desert at Innovation Oasis" loading="lazy"></div>
+          <ul class="k_f3List" data-stagger>
+          <li data-us><span class="x_label">Technical partner</span><strong>Silal · Innovation Oasis</strong><p>Hosts and executes the trials: five field pilots and the CRETA greenhouse build.</p></li>
           <li><span class="x_label">Organiser</span><strong>Mohamed bin Zayed Water Initiative</strong><p>Designs and runs the challenge, funds the AED 8 million prize and convenes the jury.</p></li>
           <li><span class="x_label">Partner</span><strong>Zayed for Good Foundation</strong><p>Strategic partner supporting practical, science-based solutions.</p></li>
           <li><span class="x_label">Partner</span><strong>ADAFSA</strong><p>Strategic oversight and technical expertise; supports evaluation under local climatic conditions.</p></li>
           <li><span class="x_label">Partner</span><strong>ASPIRE</strong><p>Innovation acceleration, applying the latest technology and research in real-world contexts.</p></li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   </div></section>
@@ -6023,13 +6018,18 @@ function field(host) {
   scene.traverse(o => { if (o.isHemisphereLight) o.intensity = 1.55; if (o.isDirectionalLight) { o.intensity = 2.3; o.position.set(-9, 13, 10); } });
   const plot = rbox(14, 1.3, 9.4, 0.22, mat(0xe2d6c5)); plot.position.y = -0.65; scene.add(plot);
   const under = rbox(14, 0.95, 9.4, 0.22, mat(0xcbb79c)); under.position.y = -1.78; scene.add(under);
-  const sandT = contourTex('#e8ddcd', 'rgba(140,118,92,.2)', 29); sandT.repeat.set(1.4, 0.95);
+  const sandT = contourTex('#e8ddcd', 'rgba(140,118,92,.32)', 29); sandT.repeat.set(1.4, 0.95);
+  // desert all round: the contour sand stretches away from the slab and fades into the sand-coloured background
+  const desT = contourTex('#e6dccd', 'rgba(140,118,92,.24)', 41); desT.repeat.set(10, 10);
+  const desert = new THREE.Mesh(new THREE.PlaneGeometry(160, 160), new THREE.MeshStandardMaterial({ map: desT, roughness: 1 })); desert.rotation.x = -Math.PI / 2; desert.position.y = -2.31; desert.receiveShadow = true; scene.add(desert);
+  scene.fog = new THREE.Fog(0xe6dccd, 30, 75);
+  const ridgeT = contourTex('#d9ccb9', 'rgba(140,118,92,.22)', 13); ridgeT.repeat.set(6, 0.5);
   const top = new THREE.Mesh(new THREE.PlaneGeometry(13.7, 9.1), new THREE.MeshStandardMaterial({ map: sandT, roughness: 1 })); top.rotation.x = -Math.PI / 2; top.position.y = 0.004; top.receiveShadow = true; scene.add(top);
   const ROWS = 10, COLS = 13, seeds = [], pos = [];
   // furrows: rounded ridges of soil that catch the light and throw soft shadows between them
   const ridgeG = new THREE.CylinderGeometry(0.3, 0.3, 12.6, 24); ridgeG.rotateZ(Math.PI / 2); // lower half sits inside the slab
   for (let r = 0; r < ROWS; r++) {
-    const z = -3.9 + r * (7.8 / 9), ridge = mesh(ridgeG, mat(0xd9ccb9)); ridge.scale.set(1, 0.75, 1); ridge.position.set(0, 0, z); scene.add(ridge);
+    const z = -3.9 + r * (7.8 / 9), ridge = mesh(ridgeG, mat(0xffffff, { map: ridgeT })); ridge.scale.set(1, 0.75, 1); ridge.position.set(0, 0, z); scene.add(ridge);
     for (let c = 0; c < COLS; c++) { const m = mesh(new THREE.SphereGeometry(0.15, 18, 14), mat(0x7d7774)); m.position.set(-5.7 + c * (11.4 / 12), 0.32, z); scene.add(m); seeds.push(m); pos.push([r, c]); }
   }
   // same order as the 2D field: five pilots spread across the front, the rest drop out in a fixed shuffled order
@@ -6768,32 +6768,20 @@ dispatchEvent(new Event('io3d'));
       svg += '<g class="f_sprout" style="--d:' + (j * 0.12) + 's"><path pathLength="1" d="' + d + '"/></g>'; });
     field.innerHTML = '<svg viewBox="0 0 600 380" aria-hidden="true">' + svg + '</svg><div class="x_gl" id="fieldGl" aria-hidden="true"></div>';
     seeds = $$('.f_seed', field);
-    var num = $('#cohortNum'), lab = $('#cohortStage'), cli = $$('#cohortList li', view), prevK = 0;
-    // the number box is as wide as the wider of the two numbers while they roll, then eases to the new one: nothing is clipped, the label follows
-    function sizeNum() { num.style.width = num.lastElementChild.offsetWidth + 'px'; }
-    sizeNum(); addEventListener('resize', sizeNum); if (document.fonts) document.fonts.ready.then(sizeNum);
-    // a roll: the old line leaves (up when going forward, down when going back), the new one comes in from the other side;
-    // every change first finishes the one before, so fast scrolling never stacks lines
-    function roll(el, text, dir) {
-      var cur = el.lastElementChild; if (cur.textContent === text && el.children.length === 1) return;
-      if (!G) { el.innerHTML = '<span>' + text + '</span>'; return; }
-      $$('span', el).forEach(function (s) { gsap.killTweensOf(s); if (s !== cur) s.remove(); });
-      var nu = document.createElement('span'); nu.textContent = text; el.appendChild(nu);
-      if (el === num) { gsap.killTweensOf(num); num.style.width = Math.max(cur.offsetWidth, nu.offsetWidth) + 'px'; }
-      gsap.to(cur, { yPercent: -120 * dir, duration: 0.45, ease: 'power3.in', onComplete: function () { cur.remove(); } });
-      gsap.fromTo(nu, { yPercent: 120 * dir }, { yPercent: 0, duration: 0.75, ease: 'power3.out', delay: 0.1, onComplete: function () { if (el === num) gsap.to(num, { width: nu.offsetWidth, duration: 0.5, ease: 'power3.inOut' }); } });
-    }
+    var cli = $$('#cohortList li', view), cRail = $('.f_cohortRail', view), cFill = $('.f_cohortFill', view), cY = [];
+    // timeline: the rail runs from the first bullet to the last; the blue line fills down with the scroll
+    function cMeasure() { cY = cli.map(function (li) { return li.offsetTop + li.offsetHeight / 2; }); if (!cY.length) return; [cRail, cFill].forEach(function (el) { el.style.top = cY[0] + 'px'; el.style.height = (cY[cY.length - 1] - cY[0]) + 'px'; }); }
+    cMeasure(); addEventListener('resize', cMeasure); if (document.fonts) document.fonts.ready.then(cMeasure);
     function setStage(k) {
-      if (k === stage) return; var dir = k >= prevK ? 1 : -1; stage = k; prevK = k; field.dataset.stage = k; if (f3) f3.setStage(k);
+      if (k === stage) return; stage = k; field.dataset.stage = k; if (f3) f3.setStage(k);
       seeds.forEach(function (el, i) { rank[i] < STAGES[k][0] ? el.setAttribute('data-on', '') : el.removeAttribute('data-on'); });
-      roll(num, String(STAGES[k][0]), dir); roll(lab, STAGES[k][1], dir);
       cli.forEach(function (li, i) { li.toggleAttribute('data-on', i === k); li.toggleAttribute('data-past', i < k); });
     }
     // 3D field (clay, like the homepage) replaces the SVG when WebGL is there
     var f3 = null;
     function mountField() { if (f3 || !window.IO3D) return; f3 = IO3D.field($('#fieldGl', view)); if (f3) { field.classList.add('is3d'); f3.setStage(Math.max(0, stage)); } }
     mountField(); addEventListener('io3d', mountField);
-    pinProgress($('#cohortPin'), function (p) { setStage(Math.min(4, Math.floor(p * 5))); if (f3 && f3.setProgress) f3.setProgress(p); });
+    pinProgress($('#cohortPin'), function (p) { var k = Math.min(4, Math.floor(p * 5)); setStage(k); if (f3 && f3.setProgress) f3.setProgress(p); cFill.style.transform = 'scaleY(' + Math.min(1, Math.max(0, p * 5 - 0.5) / 4).toFixed(4) + ')'; });
     setStage(0);
     // innovation day: vertical scroll moves the gallery sideways; photos drift inside their frames
     var pin = $('#dayPin'), track = $('#dayTrack'), figs = $$('.f_track .x_img img', view);
@@ -6959,6 +6947,9 @@ dispatchEvent(new Event('io3d'));
       $$('.k_draw', view).forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = p.getAttribute('stroke-dasharray') ? p.getAttribute('stroke-dasharray') : L; if (!p.getAttribute('stroke-dasharray')) gsap.fromTo(p, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut', scrollTrigger: { trigger: '#creta', start: 'top 75%', once: true } }); });
       gsap.to('.k_sun', { rotate: 360, transformOrigin: '70px 62px', duration: 40, repeat: -1, ease: 'none' });
     }
+    // measures + partners: the sticky photo changes only when the copy turns to the partners
+    var mImgs = $$('#measImgs > img', view);
+    if (G && !mobile()) ScrollTrigger.create({ trigger: '#kParts', start: 'top 62%', onEnter: function () { mImgs[1].classList.add('on'); }, onLeaveBack: function () { mImgs[1].classList.remove('on'); } });
     // five field pilots: the list is built from the table (one source); B1 soil profile in 3D, the table stays when there is no WebGL
     var fp = $('#fieldPilots', view), ZONE = ['Below the root zone', 'Mixed into the soil', 'Microbes in the soil', 'The whole plant', 'On the leaves'];
     var pRows = $$('#pilots tbody tr', view).map(function (tr, i) { var td = tr.children; return { c: td[0].textContent, n: td[1].textContent, t: td[2].textContent, z: ZONE[i] }; });
@@ -6971,12 +6962,14 @@ dispatchEvent(new Event('io3d'));
     if (mobile()) { if (G) ScrollTrigger.create({ trigger: '#b1Gl', start: 'top 80%', end: 'bottom 20%', scrub: true, onUpdate: function (s) { bProg(s.progress); } }); else bProg(0.5); }
     else pinProgress($('#b1Pin', view), bProg);
     // funnel: one dial; at each stage the dark wedge is the share that went on; wedges sweep in one after another
-    var NS = 'http://www.w3.org/2000/svg', segG = $('#funSegs', view), labG = $('#funLabels', view), fArc = $('#funArc', view), fNum = $('#funNum', view), fLab = $('#funLab', view), fSt = $$('#funSteps li', view);
-    var FUN = [
-      { n: '846', l: 'teams registered', arc: 21 / 846, segs: [[21, '#1a6f96', 1], [825, '#dfeef5', 0.9]] },
-      { n: '21', l: 'qualified', arc: 6 / 21, segs: [[6, '#1a6f96', 1], [15, '#8fd3f0', 0.9]] },
-      { n: '6', l: 'finalists', arc: 1, segs: [[1, '#1a6f96', 1], [1, '#22799f', 0.9], [1, '#2a86b0', 1], [1, '#3796bf', 0.9], [1, '#46a3cb', 1], [1, '#5bb0d4', 0.9]], labs: ['UAE', 'UAE', 'Egypt', 'Brazil', 'Argentina', 'India'] }];
-    var R0 = 112, R1 = 236, fk = -1, fTl = null;
+    var NS = 'http://www.w3.org/2000/svg', segG = $('#funSegs', view), fArc = $('#funArc', view), fNum = $('#funNum', view), fLab = $('#funLab', view), fSt = $$('#funSteps li', view);
+    // three key states of the same seven wedges (six for those who went on, one for the rest); scrolling blends between them
+    var SH = ['#1a6f96', '#22799f', '#2a86b0', '#3796bf', '#46a3cb', '#5bb0d4'], DK = ['#1a6f96', '#1a6f96', '#1a6f96', '#1a6f96', '#1a6f96', '#1a6f96'];
+    var KS = [
+      { on: 21 / 846, rest: '#dfeef5', cols: DK, rad: [1, 1, 1, 1, 1, 1], gap: 0, n: 846, l: 'teams registered' },
+      { on: 6 / 21, rest: '#8fd3f0', cols: DK, rad: [1, 1, 1, 1, 1, 1], gap: 0, n: 21, l: 'qualified' },
+      { on: 1, rest: '#8fd3f0', cols: SH, rad: [1, 0.9, 1, 0.9, 1, 0.9], gap: 2, n: 6, l: 'finalists' }];
+    var R0 = 112, R1 = 236, intro = { q: 0 }, fpos = 0, fLabK = 0, lerp = function (a, b, f) { return a + (b - a) * f; }, mix = gsap.utils ? gsap.utils.interpolate : null;
     // a ring wedge from angle a0 to a1 (clockwise from 12 o'clock), inner radius R0, outer radius ro
     function ringW(a0, a1, ro) {
       if (a1 - a0 < 1e-4) return '';
@@ -6985,34 +6978,31 @@ dispatchEvent(new Event('io3d'));
       return 'M' + p(ro, a0) + 'A' + ro + ' ' + ro + ' 0 ' + lg + ' 1 ' + p(ro, a1) + 'L' + p(R0, a1) + 'A' + R0 + ' ' + R0 + ' 0 ' + lg + ' 0 ' + p(R0, a0) + 'Z';
     }
     function arcD(a) { a = Math.min(a, Math.PI * 2 - 1e-3); if (a < 1e-3) return ''; var x = 300 + 262 * Math.sin(a), y = 300 - 262 * Math.cos(a); return 'M300 38A262 262 0 ' + (a > Math.PI ? 1 : 0) + ' 1 ' + x.toFixed(2) + ' ' + y.toFixed(2); }
-    function rollT(el, text, dir) {
-      var cur = el.lastElementChild; if (cur.textContent === text && el.children.length === 1) return;
-      if (!G) { el.innerHTML = '<span>' + text + '</span>'; return; }
-      $$('span', el).forEach(function (s) { gsap.killTweensOf(s); if (s !== cur) s.remove(); });
-      var nu = document.createElement('span'); nu.textContent = text; el.appendChild(nu);
-      gsap.to(cur, { yPercent: -120 * dir, duration: 0.45, ease: 'power3.in', onComplete: function () { cur.remove(); } });
-      gsap.fromTo(nu, { yPercent: 120 * dir }, { yPercent: 0, duration: 0.75, ease: 'power3.out', delay: 0.1 });
+    var wp = []; for (var w = 0; w < 7; w++) { var pe = document.createElementNS(NS, 'path'); pe.setAttribute('class', 'k_seg'); segG.appendChild(pe); wp.push(pe); }
+    var ease = function (x) { return x * x * (3 - 2 * x); };
+    // where the scroll is: hold 846, blend to 21, hold, blend to 6, hold
+    function at(p) { var S = [[0.22, 0.42], [0.58, 0.78]]; if (p < S[0][0]) return [0, 0]; if (p < S[0][1]) return [0, ease((p - S[0][0]) / (S[0][1] - S[0][0]))]; if (p < S[1][0]) return [1, 0]; if (p < S[1][1]) return [1, ease((p - S[1][0]) / (S[1][1] - S[1][0]))]; return [2, 0]; }
+    function render() {
+      var s = at(fpos), A = KS[s[0]], B = KS[Math.min(2, s[0] + 1)], f = s[1], q = intro.q, TAU = Math.PI * 2;
+      var on = lerp(A.on, B.on, f), a = 0, gap = lerp(A.gap, B.gap, f);
+      for (var k = 0; k < 6; k++) { var sw = on / 6 * TAU * q, ro = R0 + (R1 - R0) * lerp(A.rad[k], B.rad[k], f); wp[k].setAttribute('d', ringW(a, a + sw + (gap < 0.3 && k < 5 && sw > 0 ? 0.004 : 0), ro)); /* a hair of overlap while they read as one wedge: no seams */ wp[k].setAttribute('fill', mix ? mix(A.cols[k], B.cols[k], f) : A.cols[k]); wp[k].style.strokeWidth = gap; a += sw; }
+      wp[6].setAttribute('d', ringW(a, a + (1 - on) * TAU * q, R0 + (R1 - R0) * 0.9)); wp[6].setAttribute('fill', mix ? mix(A.rest, B.rest, f) : A.rest); wp[6].style.strokeWidth = 2;
+      fArc.setAttribute('d', arcD(on * TAU * q));
+      // the count glides between the stages (in proportion, so 846 → 21 does not rush), the label changes halfway
+      var n = Math.round(Math.exp(lerp(Math.log(A.n), Math.log(B.n), f)) * q + (1 - q) * 0); fNum.firstElementChild.textContent = q < 1 ? Math.round(A.n * q) : n;
+      var lk = f < 0.5 ? s[0] : Math.min(2, s[0] + 1);
+      if (lk !== fLabK) { fLabK = lk; var sp = fLab.firstElementChild; sp.textContent = KS[lk].l; if (G) gsap.fromTo(sp, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', overwrite: true }); }
+      fSt.forEach(function (li, i) { li.toggleAttribute('data-on', i === lk); });
     }
-    function funStage(k) {
-      if (k === fk) return; var dir = k >= fk ? 1 : -1, s = FUN[k]; fk = k;
-      fSt.forEach(function (li, i) { li.toggleAttribute('data-on', i === k); });
-      rollT(fNum, s.n, dir); rollT(fLab, s.l, dir);
-      if (fTl) fTl.kill(); segG.innerHTML = ''; labG.innerHTML = '';
-      var tot = s.segs.reduce(function (a, x) { return a + x[0]; }, 0), a = 0;
-      var W = s.segs.map(function (x) { var p = document.createElementNS(NS, 'path'); p.setAttribute('class', 'k_seg'); p.setAttribute('fill', x[1]); segG.appendChild(p); var o = { a0: a, a1: a + x[0] / tot * Math.PI * 2, ro: R0 + (R1 - R0) * x[2], q: 0 }; a = o.a1; return { p: p, o: o }; });
-      if (s.labs) s.labs.forEach(function (n, i) { var w = W[i].o, m = (w.a0 + w.a1) / 2, tx = document.createElementNS(NS, 'text'); tx.setAttribute('x', (300 + 288 * Math.sin(m)).toFixed(1)); tx.setAttribute('y', (305 - 288 * Math.cos(m)).toFixed(1)); tx.setAttribute('text-anchor', Math.sin(m) > 0.2 ? 'start' : Math.sin(m) < -0.2 ? 'end' : 'middle'); tx.textContent = n; labG.appendChild(tx); });
-      function draw() { W.forEach(function (w) { w.p.setAttribute('d', ringW(w.o.a0, w.o.a0 + (w.o.a1 - w.o.a0) * w.o.q, w.o.ro)); }); }
-      var arcO = { a: 0 };
-      if (!G) { W.forEach(function (w) { w.o.q = 1; }); draw(); fArc.setAttribute('d', arcD(s.arc * Math.PI * 2)); return; }
-      // like the inspiration: each wedge sweeps open in turn, then the outer arc runs round to the share that went on
-      fTl = gsap.timeline({ onUpdate: draw });
-      W.forEach(function (w, i) { fTl.to(w.o, { q: 1, duration: s.segs.length > 2 ? 0.35 : 0.9, ease: 'power2.out' }, i * (s.segs.length > 2 ? 0.16 : 0.45)); });
-      fTl.fromTo(arcO, { a: 0 }, { a: s.arc * Math.PI * 2, duration: 1.1, ease: 'power3.inOut', onUpdate: function () { fArc.setAttribute('d', arcD(arcO.a)); } }, 0.2);
-      if (s.labs) fTl.from(labG.children, { opacity: 0, duration: 0.5, stagger: 0.12 }, 0.4);
-      gsap.fromTo(segG, { scale: 0.94, transformOrigin: '300px 300px' }, { scale: 1, duration: 1.2, ease: 'expo.out' });
+    if (!G) { intro.q = 1; fpos = 0; render(); }
+    else {
+      render();
+      // entrance: the wedges sweep open once, the arc runs round, the count climbs to 846
+      ScrollTrigger.create({ trigger: '#funnelViz', start: 'top 75%', once: true, onEnter: function () { gsap.to(intro, { q: 1, duration: 1.8, ease: 'power2.inOut', onUpdate: render }); } });
+      if (mobile()) { $('#funPin', view).style.height = 'auto'; ScrollTrigger.create({ trigger: '#funnelViz', start: 'top 55%', end: 'bottom 25%', scrub: 0.6, onUpdate: function (st) { fpos = st.progress; render(); } }); }
+      // the scroll is smoothed a little so the blend glides, never snaps
+      else { var fpT = { v: 0 }; pinProgress($('#funPin', view), function (p) { gsap.to(fpT, { v: p, duration: 0.6, ease: 'power2.out', overwrite: true, onUpdate: function () { fpos = fpT.v; render(); } }); }); }
     }
-    if (mobile() || !G) { $('#funPin', view).style.height = 'auto'; funStage(0); if (G) ScrollTrigger.create({ trigger: '#funnelViz', start: 'top 60%', end: 'bottom 30%', onUpdate: function (st) { funStage(st.progress < 0.34 ? 0 : st.progress < 0.67 ? 1 : 2); } }); }
-    else { var fStarted = false; pinProgress($('#funPin', view), function (p) { if (!fStarted && p <= 0) return; fStarted = true; funStage(p < 0.34 ? 0 : p < 0.67 ? 1 : 2); }); ScrollTrigger.create({ trigger: '#funPin', start: 'top 70%', once: true, onEnter: function () { fStarted = true; funStage(0); } }); }
     // timeline: "now" sits at today's date between the stops around it; stops after today stay open
     var road = $('#road', view), rli = $$('#road li', view);
     function roadNow() {
