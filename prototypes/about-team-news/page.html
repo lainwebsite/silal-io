@@ -99,6 +99,16 @@
 .n2_card[hidden], .n2_grid[hidden], .n2_empty[hidden], .n2_loadRow[hidden] { display: none; }
 /* media band: label without its rule, "Contact us →" as a text link (PDF) */
 .n3_media .s3_labelRule, .n3_media .s3_goO { display: none; }
+/* label and breadcrumb on one line, breadcrumb to the right, the label's rule under both (comment 2026-10-30) */
+.n3_head > .n3_wrap { display: grid; grid-template-columns: minmax(0, 1fr); }
+.n3_head > .n3_wrap > * { grid-column: 1; }
+.n3_head .s3_label, .n3_head .n3_crumbs { grid-row: 1; }
+.n3_head .n3_crumbs { justify-self: end; align-self: start; align-items: baseline; margin: 0; padding: 0; line-height: var(--x-labelLh, 19px); position: relative; z-index: 1; }
+/* phones: the longer news breadcrumb would run into its label, so it goes back under it there */
+@media (max-width: 560px) {
+  :not(.x_bio) > .n3_head .s3_label, :not(.x_bio) > .n3_head .n3_crumbs { grid-row: auto; }
+  :not(.x_bio) > .n3_head .n3_crumbs { justify-self: start; margin-top: 12px; }
+}
 .n3_media .s3_go { color: var(--io-ink); }
 .n3_media .s3_goText::after { content: "\2192"; margin-left: 10px; }
 </style>

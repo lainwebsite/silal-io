@@ -93,8 +93,17 @@ CSS = """
 .x_mPanel { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: min(360px, 26vw); color: #fff; pointer-events: auto; }
 /* no text shadows in this section (comment 2026-10-30): legibility comes from the darker photo side only */
 .hx_card figcaption, .hx_title, .x_mPanel { text-shadow: none !important; }
-.x_mPanel[data-side="right"] { right: max(64px, 7vw); }
-.x_mPanel[data-side="left"] { left: max(64px, 7vw); }
+/* balance (comment 2026-10-30): card and text sit the same distance from the helix axis, both centred on the helix's
+   middle. --hxg = gap from the axis to the inner edge, in helix-stage px (the stage scales by --hs, so does the gap) */
+#helixSec { --hxg: 190px; }
+.x_mPanel { top: calc(50% + var(--hy, 0px)); }
+.x_mPanel[data-side="right"] { left: calc(50% + var(--hxg) * var(--hs, 1)); }
+.x_mPanel[data-side="left"] { right: calc(50% + var(--hxg) * var(--hs, 1)); }
+@media (min-width: 761px) {
+  .hx_card { top: 50% !important; translate: 0 -50%; }
+  .hx_bgimg:has(.x_mPanel[data-side="left"]) .hx_card { left: calc(50% + var(--hxg) + 150px) !important; }
+  .hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_card { left: calc(50% - var(--hxg) - 150px) !important; }
+}
 /* no box (comment 2026-10-30): plain text on the photo like the card captions; the photo darkens a little on the panel's side */
 .hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_tint { background: linear-gradient(270deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
 .hx_bgimg:has(.x_mPanel[data-side="left"]) .hx_tint { background: linear-gradient(90deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
