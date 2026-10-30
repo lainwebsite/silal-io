@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">
+<style>
+{{SHELL_CSS}}
+</style>
+<style>
+/* sections taken from V2 (archive) and V3 (media band, press release): their CSS-module rules, renamed by capture.py */
+{{PAGE_CSS}}
+</style>
+<style>
+/* ---- glue: the borrowed sections inside the homepage shell (client PDFs, 2026-10-30) ---- */
+.c2_root { --font-d2-brand: "Readex Pro", system-ui, sans-serif; background: transparent; }
+.s3_root { --font-d6: "Readex Pro", system-ui, sans-serif; background: transparent; min-height: 0; }
+/* About: the story opens the page right under the header; labels carry no numbers (PDF) */
+.x_about .c_story { padding-top: clamp(40px, 4vw, 64px); }
+/* Team: white page; "Our Team" heading, then the label and two text columns (PDF) */
+.x_team .c_section { background: #fff; padding-top: clamp(40px, 4vw, 64px); }
+.x_team .c_teamHead { display: block; }
+.x_team .c_teamHead .c_h2 { margin-bottom: clamp(20px, 2vw, 32px); }
+.x_teamCols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--col-gap, 48px); }
+.x_teamCols .c_mini { grid-column: 1 / -1; }
+.x_teamCols .c_body { margin: 0; }
+@media (max-width: 760px) { .x_teamCols { grid-template-columns: minmax(0, 1fr); row-gap: 16px; } }
+/* News: the archive label has no number or count (PDF) */
+.x_news .n2_sec { padding-top: clamp(64px, 7vw, 112px); }
+.x_news .n2_rowNum, .x_news .n2_rowEnd { display: none; }
+.x_news .n2_row { padding-bottom: 16px; border-bottom: 1px solid var(--io); }
+.n2_card[hidden], .n2_grid[hidden], .n2_empty[hidden], .n2_loadRow[hidden] { display: none; }
+/* media band: label without its rule, "Contact us →" as a text link (PDF) */
+.n3_media .s3_labelRule, .n3_media .s3_goO { display: none; }
+.n3_media .s3_go { color: var(--io-ink); }
+.n3_media .s3_goText::after { content: "\2192"; margin-left: 10px; }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
+
+<div class="s_root" data-wide data-blue="false">
+{{HEADER}}
+<main>
+{{BODY}}
+</main>
+{{FOOTER}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var G = !!(window.gsap && window.ScrollTrigger && window.SplitText) && !reduce;
+  $$('a[href="#"]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); }); });
+  if (G) gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  /* ---------- smooth scroll (homepage settings), on the GSAP ticker so ScrollTrigger and Lenis share one clock ---------- */
+  var lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new Lenis({ duration: 1.15, easing: function (t) { return 1 - Math.pow(1 - t, 4); }, touchMultiplier: 1.4 }); window.__lenis = lenis;
+    if (G) { lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(function (t) { lenis.raf(t * 1000); }); gsap.ticker.lagSmoothing(0); }
+    else (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+  }
+
+  /* ---------- header, menu, newsletter (homepage behaviour; these pages have no photo hero, so no overlay) ---------- */
+  var hdr = $('#hdr'), open = false, mn = $('#mobileNav');
+  function hs() { hdr.dataset.scrolled = scrollY > 40; hdr.dataset.overlay = false; }
+  addEventListener('scroll', hs, { passive: true }); hs();
+  function setOpen(v) { open = v; if (lenis) { v ? lenis.stop() : lenis.start(); } mn.dataset.open = v; mn.setAttribute('aria-hidden', !v); $('#menuOpen').setAttribute('aria-expanded', v); }
+  $('#menuOpen').addEventListener('click', function () { setOpen(true); });
+  $('#menuClose').addEventListener('click', function () { setOpen(false); });
+  addEventListener('keydown', function (e) { if (e.key === 'Escape' && open) setOpen(false); });
+  var nl = $('#nl'); if (nl) nl.addEventListener('submit', function (e) { e.preventDefault(); var i = $('#nlEmail'); if (i && i.value) { i.value = ''; i.placeholder = 'Subscribed. Thank you.'; } });
+
+  /* ---------- the news archive (V2 Archive.tsx, same rules): category, year, words, six at a time ---------- */
+  var arc = $('[data-archive]');
+  if (arc) {
+    var cards = $$('.n2_card', arc), chips = $$('.n2_chip', arc), sel = $('select', arc), q = $('input[type="search"]', arc);
+    var count = $('.n2_count', arc), more = $('.n2_loadRow', arc), empty = $('.n2_empty', arc), grid = $('.n2_grid', arc), PAGE = 6, shown = PAGE, cat = 'All';
+    function render(anim) {
+      var words = q.value.trim().toLowerCase(), yr = sel.value, list = cards.filter(function (c) {
+        return (cat === 'All' || c.dataset.cat === cat) && (yr === 'All years' || c.dataset.year === yr) && (!words || c.dataset.text.indexOf(words) > -1);
+      });
+      cards.forEach(function (c) { c.hidden = true; });
+      list.slice(0, shown).forEach(function (c, i) { c.hidden = false; c.querySelector('.n2_meta span').textContent = String(i + 1).padStart(2, '0'); });
+      count.textContent = 'Showing ' + Math.min(shown, list.length) + ' of ' + list.length + ' ' + (list.length === 1 ? 'release' : 'releases');
+      more.hidden = shown >= list.length; empty.hidden = !!list.length; grid.hidden = !list.length;
+      if (anim && G) { gsap.fromTo(list.slice(0, shown), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.05, overwrite: true }); ScrollTrigger.refresh(); }
+    }
+    chips.forEach(function (b) { b.addEventListener('click', function () { cat = b.dataset.cat; chips.forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); shown = PAGE; render(true); }); });
+    sel.addEventListener('change', function () { shown = PAGE; render(true); });
+    q.addEventListener('input', function () { shown = PAGE; render(true); });
+    $('.n2_load', arc).addEventListener('click', function () { shown += PAGE; render(true); });
+    $('.n2_reset', arc).addEventListener('click', function () { cat = 'All'; sel.value = 'All years'; q.value = ''; chips.forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.cat === 'All'); }); shown = PAGE; render(true); });
+    render(false);
+  }
+
+  if (!G) return;
+  /* ---------- motion (homepage language): line reveals, photo masks + drift, staggers, drawn rules ---------- */
+  function roomy(masks) { (masks || []).forEach(function (m) { m.style.padding = '.08em 0 .16em'; m.style.margin = '-.08em 0 -.16em'; }); }
+  function init() {
+    var k = 0;
+    $$('[data-reveal]').forEach(function (el) {
+      var lines = [], played = false;
+      SplitText.create(el, { type: 'lines', mask: 'lines', autoSplit: true, aria: 'none', onSplit: function (self) { roomy(self.masks); lines = self.lines; gsap.set(lines, { yPercent: played ? 0 : 135 }); el.style.visibility = 'visible'; } });
+      el.setAttribute('data-rv', '');
+      var play = function (d) { if (played) return; played = true; gsap.to(lines, { yPercent: 0, duration: 1.1, stagger: 0.1, delay: d || 0, ease: 'power3.out' }); };
+      if (el.getBoundingClientRect().top < innerHeight * 0.92) play(0.15 + (k++) * 0.08);
+      else ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: function () { play(0); } });
+    });
+    $$('[data-img]').forEach(function (box) {
+      gsap.fromTo(box, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: box, start: 'top 88%', once: true } });
+    });
+    $$('[data-parallax]').forEach(function (el) {
+      var amt = +(el.dataset.parallax || 8);
+      gsap.fromTo(el, { yPercent: -amt }, { yPercent: amt, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+    $$('[data-stagger]').forEach(function (list) {
+      gsap.from(list.children, { yPercent: 18, clipPath: 'inset(0 0 100% 0)', duration: 1.2, stagger: 0.12, ease: 'expo.out', scrollTrigger: { trigger: list, start: 'top 85%', once: true } });
+    });
+    // About-D: the IO-blue hairline under each section label draws in; the story's sticky column shows reading progress
+    $$('.c_headRow').forEach(function (el) { gsap.fromTo(el, { '--rule': 0 }, { '--rule': 1, duration: 1.6, ease: 'expo.inOut', scrollTrigger: { trigger: el, start: 'top 88%' } }); });
+    var story = $('.c_story');
+    if (story) gsap.fromTo($('.c_storyBar'), { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: story, start: 'top 30%', end: 'bottom 70%', scrub: true } });
+  }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(init, 60); });
+})();
+</script>
+</body>
+</html>
