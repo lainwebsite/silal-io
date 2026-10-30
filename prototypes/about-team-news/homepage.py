@@ -63,7 +63,7 @@ OLD = [("Research &amp; Science", "Driving agricultural progress through researc
 i0 = h.index('<section class="hx c_curtainStick"')
 for i, ((ob, os_), (name, head, body, q, out, cta, href)) in enumerate(zip(OLD, METHOD)):
     sub(f'<b data-reveal data-rvg="hxc">{ob}</b><span data-reveal data-rvg="hxc">{os_}</span>',
-        f'<b data-reveal data-rvg="hxc">{i + 1}. {name}</b>')  # the card names the step; the panel carries the rest (no line twice)
+        f'<b data-reveal data-rvg="hxc">{name}</b>')  # no step number (comment 2026-10-30); the card names the step; the panel carries the rest (no line twice)
     # the panel sits on the side away from the card (cards left of the helix -> panel right)
     card = h.index(f'<figure class="hx_card" data-i="{i}"', i0)
     left = int(h[h.index("left:", card) + 5:h.index("px", h.index("left:", card))])
@@ -71,7 +71,7 @@ for i, ((ob, os_), (name, head, body, q, out, cta, href)) in enumerate(zip(OLD, 
     # every line enters with the homepage's line reveal (group "hxc", the card's own) each time the step changes
     rv = 'data-reveal data-rvg="hxc"'
     paras = "".join(f"<p {rv}>{p}</p>" for p in body) + (f'<p class="x_mQ" {rv}>{q}</p>' if q else "")
-    panel = (f'<div class="x_mPanel" data-side="{side}"><p class="x_mNum" aria-hidden="true" {rv}>{i + 1}. {name}</p><h3 {rv}>{head}</h3>{paras}'
+    panel = (f'<div class="x_mPanel" data-side="{side}"><p class="x_mNum" aria-hidden="true" {rv}>{name}</p><h3 {rv}>{head}</h3>{paras}'
              f'<p class="x_mOut" {rv}>{out}</p><p class="x_mCta" {rv}><a class="x_mLink" href="{href}">{cta} <span aria-hidden="true">&rarr;</span></a></p></div>')
     end = h.index("</div></div>", card) + len("</div>")  # closes .hx_stage of this layer
     h = h[:end] + panel + h[end:]
@@ -95,14 +95,17 @@ CSS = """
 .hx_card figcaption, .hx_title, .x_mPanel { text-shadow: none !important; }
 /* balance (comment 2026-10-30): card and text sit the same distance from the helix axis, both centred on the helix's
    middle. --hxg = gap from the axis to the inner edge, in helix-stage px (the stage scales by --hs, so does the gap) */
-#helixSec { --hxg: 190px; }
-.x_mPanel { top: calc(50% + var(--hy, 0px)); }
-.x_mPanel[data-side="right"] { left: calc(50% + var(--hxg) * var(--hs, 1)); }
-.x_mPanel[data-side="left"] { right: calc(50% + var(--hxg) * var(--hs, 1)); }
+/* second pass (comment 2026-10-30): each side sits in the middle of the space between the helix's edge and the page
+   gutter, so it is as far from the helix as from the edge. --hxk = half the helix's width in stage px */
+/* the photo layer is drawn at scale(1.06) around the centre, so the offset is divided by that to land where meant */
+#helixSec { --hxk: 115px; --hxm: calc((25vw + var(--hxk) * var(--hs, 1) / 2 - var(--gutter, 4vw) / 2) / 1.06); }
+.x_mPanel { top: calc(50% + var(--hy, 0px)); transform: translate(-50%, -50%); right: auto !important; }
+.x_mPanel[data-side="right"] { left: calc(50% + var(--hxm)); }
+.x_mPanel[data-side="left"] { left: calc(50% - var(--hxm)); }
 @media (min-width: 761px) {
   .hx_card { top: 50% !important; translate: 0 -50%; }
-  .hx_bgimg:has(.x_mPanel[data-side="left"]) .hx_card { left: calc(50% + var(--hxg) + 150px) !important; }
-  .hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_card { left: calc(50% - var(--hxg) - 150px) !important; }
+  .hx_bgimg:has(.x_mPanel[data-side="left"]) .hx_card { left: calc(50% + var(--hxm) / var(--hs, 1)) !important; }
+  .hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_card { left: calc(50% - var(--hxm) / var(--hs, 1)) !important; }
 }
 /* no box (comment 2026-10-30): plain text on the photo like the card captions; the photo darkens a little on the panel's side */
 .hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_tint { background: linear-gradient(270deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
