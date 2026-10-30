@@ -4737,10 +4737,10 @@ b[data-reveal] { font-weight: inherit; }
 .n3_head > .n3_wrap > * { grid-column: 1; }
 .n3_head .s3_label, .n3_head .n3_crumbs { grid-row: 1; }
 .n3_head .n3_crumbs { justify-self: end; align-self: start; align-items: baseline; margin: 0; padding: 0; line-height: var(--x-labelLh, 19px); position: relative; z-index: 1; }
-/* phones: the longer news breadcrumb would run into its label, so it goes back under it there */
+/* phones: a long breadcrumb (news, or a long name like Dr. Shamal Mohammed) would run into its label, so it goes back under it */
 @media (max-width: 560px) {
-  :not(.x_bio) > .n3_head .s3_label, :not(.x_bio) > .n3_head .n3_crumbs { grid-row: auto; }
-  :not(.x_bio) > .n3_head .n3_crumbs { justify-self: start; margin-top: 12px; }
+  .n3_head .s3_label, .n3_head .n3_crumbs { grid-row: auto; }
+  .n3_head .n3_crumbs { justify-self: start; margin-top: 12px; }
 }
 .n3_media .s3_go { color: var(--io-ink); }
 .n3_media .s3_goText::after { content: "\2192"; margin-left: 10px; }
