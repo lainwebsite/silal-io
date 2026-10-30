@@ -64,15 +64,18 @@ i0 = h.index('<section class="hx c_curtainStick"')
 for i, ((ob, os_), (name, head, body, q, out, cta, href)) in enumerate(zip(OLD, METHOD)):
     sub(f'<b data-reveal data-rvg="hxc">{ob}</b><span data-reveal data-rvg="hxc">{os_}</span>',
         f'<b data-reveal data-rvg="hxc">{name}</b>')  # no step number (comment 2026-10-30); the card names the step; the panel carries the rest (no line twice)
-    # the panel sits on the side away from the card (cards left of the helix -> panel right)
+    # one box per step (comment 2026-10-30, reference: white box with the photo on top): it takes the card's place on the
+    # card's side of the helix and carries the photo, the step name, the copy, the line it ends on and a button
     card = h.index(f'<figure class="hx_card" data-i="{i}"', i0)
     left = int(h[h.index("left:", card) + 5:h.index("px", h.index("left:", card))])
-    side = "right" if left < 720 else "left"
+    side = "left" if left < 720 else "right"
+    img = h[h.index('<img src="', card) + 10:h.index('"', h.index('<img src="', card) + 10)]
     # every line enters with the homepage's line reveal (group "hxc", the card's own) each time the step changes
     rv = 'data-reveal data-rvg="hxc"'
     paras = "".join(f"<p {rv}>{p}</p>" for p in body) + (f'<p class="x_mQ" {rv}>{q}</p>' if q else "")
-    panel = (f'<div class="x_mPanel" data-side="{side}"><p class="x_mNum" aria-hidden="true" {rv}>{name}</p><h3 {rv}>{head}</h3>{paras}'
-             f'<p class="x_mOut" {rv}>{out}</p><p class="x_mCta" {rv}><a class="x_mLink" href="{href}">{cta} <span aria-hidden="true">&rarr;</span></a></p></div>')
+    panel = (f'<div class="x_mPanel" data-side="{side}"><span class="x_mImg"><img src="{img}" alt="" loading="lazy"></span>'
+             f'<div class="x_mBody"><h3 {rv}>{name}</h3>{paras}'
+             f'<p class="x_mOut" {rv}>{out}</p><p class="x_mCta"><a class="s_btn s_btnPrimary s_btnSm x_mBtn" href="{href}">{cta}</a></p></div></div>')
     end = h.index("</div></div>", card) + len("</div>")  # closes .hx_stage of this layer
     h = h[:end] + panel + h[end:]
 # the step's card and panel text replay their line reveal on every step change (also when scrolling back up)
@@ -88,45 +91,40 @@ CSS = """
 /* ---- review copy, comments 2026-10-30 ---- */
 /* Our Journey now lives on the About page (below Principles) */
 #jCurtain { display: none !important; }
-/* The Innovation Oasis Method: one panel per helix step, on the side away from the card */
+/* The Innovation Oasis Method: one white box per helix step (comment 2026-10-30, reference: photo on top, step name,
+   copy, the line it ends on in blue, a button). The box replaces the floating card; the helix stays in the middle */
 .hx_gl { pointer-events: none; }
-.x_mPanel { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: min(360px, 26vw); color: #fff; pointer-events: auto; }
-/* no text shadows in this section (comment 2026-10-30): legibility comes from the darker photo side only */
-.hx_card figcaption, .hx_title, .x_mPanel { text-shadow: none !important; }
-/* balance (comment 2026-10-30): card and text sit the same distance from the helix axis, both centred on the helix's
-   middle. --hxg = gap from the axis to the inner edge, in helix-stage px (the stage scales by --hs, so does the gap) */
-/* second pass (comment 2026-10-30): each side sits in the middle of the space between the helix's edge and the page
-   gutter, so it is as far from the helix as from the edge. --hxk = half the helix's width in stage px */
-/* the photo layer is drawn at scale(1.06) around the centre, so the offset is divided by that to land where meant */
+.hx_card { display: none !important; }
+.hx_card figcaption, .hx_title { text-shadow: none !important; }
+/* placed in the middle of the space between the helix's edge and the page gutter, centred on the helix's middle.
+   --hxk = half the helix's width in stage px; the photo layer is drawn at scale(1.06), so the offset is divided by that */
 #helixSec { --hxk: 115px; --hxm: calc((25vw + var(--hxk) * var(--hs, 1) / 2 - var(--gutter, 4vw) / 2) / 1.06); }
-.x_mPanel { top: calc(50% + var(--hy, 0px)); transform: translate(-50%, -50%); right: auto !important; }
+.x_mPanel { position: absolute; z-index: 3; top: calc(50% + var(--hy, 0px)); transform: translate(-50%, -50%) scale(calc(1 / 1.06));
+  width: min(400px, 28vw); max-height: calc(100% - 180px); display: flex; flex-direction: column; overflow: hidden;
+  background: #fff; color: var(--charcoal, #4a4a4a); pointer-events: auto; }
 .x_mPanel[data-side="right"] { left: calc(50% + var(--hxm)); }
 .x_mPanel[data-side="left"] { left: calc(50% - var(--hxm)); }
-@media (min-width: 761px) {
-  .hx_card { top: 50% !important; translate: 0 -50%; }
-  .hx_bgimg:has(.x_mPanel[data-side="left"]) .hx_card { left: calc(50% + var(--hxm) / var(--hs, 1)) !important; }
-  .hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_card { left: calc(50% - var(--hxm) / var(--hs, 1)) !important; }
+.x_mImg { display: block; flex: 0 1 auto; height: clamp(120px, 26vh, 236px); min-height: 0; border-bottom: 3px solid var(--io, #3aa8db); }
+.x_mImg img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.x_mBody { padding: clamp(18px, 2.6vh, 26px) clamp(20px, 1.8vw, 26px) clamp(20px, 2.8vh, 26px); }
+.x_mPanel h3 { margin: 0 0 12px; font-size: clamp(1.375rem, 1.9vw, 1.75rem); font-weight: 300; line-height: 1.15; letter-spacing: -.01em; color: var(--charcoal, #4a4a4a); }
+.x_mPanel p { margin: 0 0 8px; font-size: .875rem; line-height: 1.65; color: var(--grey-ink, #5f5f5f); }
+.x_mPanel .x_mQ { font-weight: 500; color: var(--charcoal, #4a4a4a); }
+.x_mPanel .x_mOut { margin: 12px 0 16px; font-size: .9375rem; font-weight: 500; color: var(--io-ink, #1b6f96); }
+.x_mCta { margin: 0 !important; }
+.x_mBtn { width: auto; height: auto !important; min-height: 0 !important; font-size: .8125rem; padding: 8px 14px !important; }
+@media (max-height: 760px) and (min-width: 761px) {
+  .x_mPanel p { font-size: .8125rem; line-height: 1.55; margin-bottom: 6px; }
+  .x_mPanel .x_mOut { margin: 8px 0 12px; }
 }
-/* no box (comment 2026-10-30): plain text on the photo like the card captions; the photo darkens a little on the panel's side */
-.hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_tint { background: linear-gradient(270deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
-.hx_bgimg:has(.x_mPanel[data-side="left"]) .hx_tint { background: linear-gradient(90deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
-/* the step name is on the card next to the helix; the panel repeats it only on phones, where the card is hidden */
-.x_mNum { display: none; margin: 0 0 10px; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
-.x_mPanel h3 { margin: 0 0 14px; font-size: clamp(1.5rem, 2vw, 2rem); font-weight: 300; line-height: 1.15; letter-spacing: -.01em; }
-.x_mPanel p { margin: 0 0 10px; font-size: .875rem; line-height: 1.6; color: rgba(255, 255, 255, .9); }
-.x_mPanel .x_mQ { font-size: 1rem; line-height: 1.45; font-weight: 500; color: #fff; }
-.x_mPanel .x_mOut { margin: 16px 0 14px; font-size: .9375rem; font-weight: 500; color: #fff; }
-.x_mCta { margin: 0; }
-.x_mLink { display: inline-flex; gap: 10px; align-items: center; font-size: .8125rem; font-weight: 500; color: #fff; padding-bottom: 3px; border-bottom: 1px solid rgba(255, 255, 255, .6); }
-.x_mLink:hover { border-bottom-color: #fff; }
 @media (max-width: 760px) {
-  .hx_card { display: none; }
-  .x_mNum { display: block; }
-  .x_mPanel { top: auto; bottom: 20px; left: 20px !important; right: 20px !important; width: auto; transform: none; }
-  .hx_bgimg .hx_tint { background: linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .15) 60%) !important; }
-  .x_mPanel h3 { font-size: 1.375rem; margin-bottom: 10px; }
-  .x_mPanel p { font-size: .8125rem; margin-bottom: 8px; }
-  .x_mPanel .x_mOut { margin: 10px 0 8px; }
+  /* the photo layer is scaled 1.06 around its centre: these numbers land the box 20px from the screen's sides and bottom */
+  .x_mPanel { top: auto; bottom: calc(19px + 2.83%); left: 50% !important; width: calc(100vw - 40px); transform: translateX(-50%) scale(calc(1 / 1.06)); transform-origin: 50% 100%; max-height: calc(100% - 180px); }
+  .x_mImg { display: none; }
+  .x_mBody { padding: 18px 18px 20px; overflow: auto; }
+  .x_mPanel h3 { font-size: 1.25rem; margin-bottom: 8px; }
+  .x_mPanel p { font-size: .8125rem; margin-bottom: 6px; }
+  .x_mPanel .x_mOut { margin: 8px 0 12px; }
 }
 """
 last = h.rindex("</style>", 0, h.index('<header class="s_header"'))
