@@ -68,11 +68,18 @@ for i, ((ob, os_), (name, head, body, q, out, cta, href)) in enumerate(zip(OLD, 
     card = h.index(f'<figure class="hx_card" data-i="{i}"', i0)
     left = int(h[h.index("left:", card) + 5:h.index("px", h.index("left:", card))])
     side = "right" if left < 720 else "left"
-    paras = "".join(f"<p>{p}</p>" for p in body) + (f'<p class="x_mQ">{q}</p>' if q else "")
-    panel = (f'<div class="x_mPanel" data-side="{side}"><p class="x_mNum" aria-hidden="true">{i + 1}. {name}</p><h3>{head}</h3>{paras}'
-             f'<p class="x_mOut">{out}</p><a class="x_mLink" href="{href}">{cta} <span aria-hidden="true">&rarr;</span></a></div>')
+    # every line enters with the homepage's line reveal (group "hxc", the card's own) each time the step changes
+    rv = 'data-reveal data-rvg="hxc"'
+    paras = "".join(f"<p {rv}>{p}</p>" for p in body) + (f'<p class="x_mQ" {rv}>{q}</p>' if q else "")
+    panel = (f'<div class="x_mPanel" data-side="{side}"><p class="x_mNum" aria-hidden="true" {rv}>{i + 1}. {name}</p><h3 {rv}>{head}</h3>{paras}'
+             f'<p class="x_mOut" {rv}>{out}</p><p class="x_mCta" {rv}><a class="x_mLink" href="{href}">{cta} <span aria-hidden="true">&rarr;</span></a></p></div>')
     end = h.index("</div></div>", card) + len("</div>")  # closes .hx_stage of this layer
     h = h[:end] + panel + h[end:]
+# the step's card and panel text replay their line reveal on every step change (also when scrolling back up)
+sub("function hxCardText(c) { if (!RV.ok || !hxArmed) return; playAll($$('[data-rvg=\"hxc\"]', c), 0.05); }",
+    "function hxCardText(c) { if (!RV.ok || !hxArmed) return; var L = c.closest('.hx_bgimg') || c;"
+    " $$('[data-rvg=\"hxc\"]', L).forEach(function (el, k) { var rv = makeRv(el); if (rv.tw) rv.tw.kill(); rv.played = false;"
+    " if (rv.lines.length) gsap.set(rv.lines, { yPercent: 100 }); rv.play(0.05 + k * 0.07); }); }")
 sub('aria-label="Where do you want to look first?"', 'aria-label="The Innovation Oasis Method"')
 sub('<p class="hx_title" data-reveal data-rvg="helix">This is Innovation Oasis. Where do you want to look first?</p>',
     '<p class="hx_title" data-reveal data-rvg="helix">The Innovation Oasis Method</p>')
@@ -97,6 +104,7 @@ CSS = """
 .x_mPanel p { margin: 0 0 10px; font-size: .875rem; line-height: 1.6; color: rgba(255, 255, 255, .9); }
 .x_mPanel .x_mQ { font-size: 1rem; line-height: 1.45; font-weight: 500; color: #fff; }
 .x_mPanel .x_mOut { margin: 16px 0 14px; font-size: .9375rem; font-weight: 500; color: #fff; }
+.x_mCta { margin: 0; }
 .x_mLink { display: inline-flex; gap: 10px; align-items: center; font-size: .8125rem; font-weight: 500; color: #fff; padding-bottom: 3px; border-bottom: 1px solid rgba(255, 255, 255, .6); }
 .x_mLink:hover { border-bottom-color: #fff; }
 @media (max-width: 760px) {

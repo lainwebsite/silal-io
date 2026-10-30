@@ -81,6 +81,14 @@ journey = re.sub(r'<span id="jHead">.*?</span></span></p>', "</p>", journey, cou
 journey = journey.replace('<span id="jTag">Milestone</span></p>', '<span id="jTag">Milestone</span><span id="jCount">01 / 08</span></p>', 1)
 journey = journey.replace('<li class="j_jourStep" data-step', '<li class="j_jourStep" tabindex="0" role="button" data-step')
 journey = journey.replace(' c_curtainStick" id="journey"', '" id="journey"', 1)
+# visible controls to jump along the timeline (comment 2026-10-30): one button per milestone + previous / next
+years = re.findall(r'<p class="j_jourWhen">(.*?)</p>', journey)
+arrow = lambda d, path: (f'<button type="button" class="x_jArrow" data-dir="{d}" aria-label="{"Previous" if d < 0 else "Next"} milestone">'
+                         f'<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="{path}" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>')
+jnav = ('<span class="x_jNav" role="group" aria-label="Jump to a milestone"><span class="x_jYears">'
+        + "".join(f'<button type="button" class="x_jYear">{y}</button>' for y in years) + "</span>"
+        + arrow(-1, "M12 8H4M7.5 4.5L4 8l3.5 3.5") + arrow(1, "M4 8h8M8.5 4.5L12 8l-3.5 3.5") + "</span>")
+journey = re.sub(r'(<p class="j_head">.*?</span>)(</p>)', lambda m: m.group(1) + jnav + m.group(2), journey, count=1, flags=re.S)
 about = "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
 # Principles: no underline below its label (comment 2026-10-30) = the homepage's own Principles variant, c_noRule
 about += no_num(part("v1-principles.html")).replace('<div class="c_headRow">', '<div class="c_headRow c_noRule">', 1)

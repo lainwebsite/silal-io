@@ -30,6 +30,16 @@
 .x_jour .j_jourFrames { order: -1; }
 .x_jour .j_jourStep:focus-visible { outline: 2px solid var(--io); outline-offset: 6px; }
 #jCount { color: var(--grey-ink, #6e7173); font-variant-numeric: tabular-nums; }
+.x_jour .j_head { align-items: center; }
+.x_jNav { display: flex; align-items: center; gap: 12px; color: var(--grey); }
+.x_jYears { display: flex; flex-wrap: wrap; gap: 2px 18px; margin-right: 10px; }
+.x_jYear { font: inherit; font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); background: none; border: 0; border-bottom: 1px solid transparent; padding: 6px 0; cursor: pointer; transition: color .3s, border-color .3s; }
+.x_jYear:hover { color: var(--charcoal); }
+.x_jYear[aria-current="true"] { color: var(--io-ink); border-bottom-color: var(--io); }
+.x_jArrow { flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(89, 84, 83, .3); background: transparent; color: var(--charcoal); display: grid; place-items: center; cursor: pointer; transition: border-color .3s, color .3s, opacity .3s; }
+.x_jArrow:hover:not(:disabled) { border-color: var(--io); color: var(--io-ink); }
+.x_jArrow:disabled { opacity: .35; cursor: default; }
+@media (max-width: 999px) { .x_jour .j_head { flex-wrap: wrap; gap: 12px; } .x_jYears { display: none; } }
 @media (min-width: 1000px) {
   /* everything sized from the viewport height, so the pinned journey fits one screen at 720px and at 1080px alike */
   .x_jour[data-on="true"] > .j_journey { position: sticky; top: 0; height: var(--sh); padding: calc(64px + 2.5vh) 0 2.5vh; display: flex; flex-direction: column; justify-content: center; overflow: clip; }
@@ -49,7 +59,7 @@
   .x_jour .j_jourLine > i { inset: -0.5px 0; transform: scaleX(0); transform-origin: left; }
   .x_jour .j_jourStep { width: clamp(340px, 34.7vw, 680px); min-height: 0; padding: 5vh 48px 0 2px; justify-content: flex-start; gap: 1.4vh; opacity: .3; }
   .x_jour .j_jourStep[data-on] { opacity: 1; }
-  .x_jour .j_jourStep::before { top: 0; inset-inline-start: 0; transform: translateY(-50%); }
+  .x_jour .j_jourStep::before { top: 0; inset-inline-start: 0; }  /* the homepage rule already centres it (translate: 0 -50%) */
   .x_jour .j_jourTitle { font-size: clamp(22px, min(2.4vw, 3.8vh), 44px); }
   .x_jour .j_jourText { font-size: clamp(13px, 1.8vh, 16px); line-height: 1.55; max-width: 46ch; }
 }
@@ -153,6 +163,7 @@
   if (jw) {
     var jl = $('#jList', jw), steps = $$('.j_jourStep', jw), frames = $$('.j_jourFrame', jw), fill = $('#jLine', jw);
     var odoT = $('#odoT', jw), odoO = $('#odoO', jw), jTag = $('#jTag', jw), jCount = $('#jCount', jw), n = steps.length;
+    var jYears = $$('.x_jYear', jw), jArrows = $$('.x_jArrow', jw);
     var jOn = false, jDist = 0, jLen = 0, jCur = -1, pad = function (v) { return (v < 10 ? '0' : '') + v; };
     function jSet(c) {
       if (c === jCur) return; jCur = c;
@@ -162,6 +173,8 @@
       if (odoT && y.length === 4) { odoT.style.transform = 'translateY(' + (-+y[2]) + 'em)'; odoO.style.transform = 'translateY(' + (-+y[3]) + 'em)'; }
       if (jTag) jTag.textContent = steps[c].dataset.tag || 'Milestone';
       if (jCount) jCount.textContent = pad(c + 1) + ' / ' + pad(n);
+      jYears.forEach(function (b, i) { b.setAttribute('aria-current', i === c); });
+      if (jArrows.length) { jArrows[0].disabled = c === 0; jArrows[1].disabled = c === n - 1; }
     }
     function jSetup() {
       jOn = !reduce && innerWidth >= 1000 && innerHeight >= 600;
@@ -193,6 +206,8 @@
       s.addEventListener('click', function () { jGo(i); });
       s.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jGo(i); } if (e.key === 'ArrowRight') jGo(i + 1); if (e.key === 'ArrowLeft') jGo(i - 1); });
     });
+    jYears.forEach(function (b, i) { b.addEventListener('click', function () { jGo(i); }); });
+    jArrows.forEach(function (b) { b.addEventListener('click', function () { jGo(jCur + +b.dataset.dir); }); });
     addEventListener('scroll', jUpd, { passive: true }); addEventListener('resize', jSetup);
     jSetup(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(jSetup);
   }
