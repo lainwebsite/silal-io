@@ -45,23 +45,25 @@
   .x_jour[data-on="true"] > .j_journey { position: sticky; top: 0; height: var(--sh); padding: calc(64px + 2.5vh) 0 2.5vh; display: flex; flex-direction: column; justify-content: center; overflow: clip; }
   .x_jour .j_jour { width: 100%; min-width: 0; }
   .x_jour .j_head { padding-top: 2vh; border-top: 1px solid var(--io); margin-bottom: 2.4vh; }
-  .x_jour .j_jourGrid { display: block; }
-  .x_jour .j_jourStage { display: block; }
-  .x_jour .j_jourStick { position: static; height: auto; width: min(444px, 31vw); gap: 1.2vh; }
-  .x_jour .j_jourFrames { flex: none; height: 27vh; aspect-ratio: auto; min-height: 0; }
+  /* two columns (comment 2026-10-30, the right side felt empty): photo, milestone and year on the left; the line with
+     its dots and the milestones moving left to right fill the right, top-aligned with the photo */
+  .x_jour .j_jourGrid { display: grid; grid-template-columns: min(444px, 31vw) minmax(0, 1fr); column-gap: clamp(40px, 4.5vw, 88px); align-items: start; }
+  .x_jour .j_jourStage { display: block; grid-column: 1; grid-row: 1; min-width: 0; }
+  .x_jour .j_jourStick { position: static; height: auto; width: 100%; gap: 1.4vh; }
+  .x_jour .j_jourFrames { flex: none; height: 38vh; aspect-ratio: auto; min-height: 0; }
   .x_jour .j_jourTicks, .x_jour .j_jourMobileImg { display: none; }
   .x_jour .j_jourTag { padding-block-start: 1.2vh; }
   .x_jour .j_odo { font-size: clamp(44px, min(5.4vw, 7.4vh), 96px); }
-  .x_jour .j_jourSteps { grid-column: auto; padding: 0; margin: 2.6vh 0 0; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .x_jour .j_jourSteps { grid-column: 2; grid-row: 1; padding: 0; margin: 0; overflow: clip; overflow-clip-margin: 16px; -webkit-mask-image: none; mask-image: none; }
   .x_jour #jList { position: relative; width: max-content; will-change: transform; }
   .x_jour .j_jourSteps ol { display: flex; margin: 0; padding: 0; list-style: none; }
   .x_jour .j_jourLine { inset: 0 0 auto 0; width: auto; height: 1px; top: 0; }
   .x_jour .j_jourLine > i { inset: -0.5px 0; transform: scaleX(0); transform-origin: left; }
-  .x_jour .j_jourStep { width: clamp(340px, 34.7vw, 680px); min-height: 0; padding: 5vh 48px 0 2px; justify-content: flex-start; gap: 1.4vh; opacity: .3; }
+  .x_jour .j_jourStep { width: clamp(300px, 27vw, 520px); min-height: 0; padding: 5vh 48px 0 2px; justify-content: flex-start; gap: 1.6vh; opacity: .3; }
   .x_jour .j_jourStep[data-on] { opacity: 1; }
   .x_jour .j_jourStep::before { top: 0; inset-inline-start: 0; }  /* the homepage rule already centres it (translate: 0 -50%) */
-  .x_jour .j_jourTitle { font-size: clamp(22px, min(2.4vw, 3.8vh), 44px); }
-  .x_jour .j_jourText { font-size: clamp(13px, 1.8vh, 16px); line-height: 1.55; max-width: 46ch; }
+  .x_jour .j_jourTitle { font-size: clamp(24px, min(2.6vw, 4.4vh), 48px); }
+  .x_jour .j_jourText { font-size: clamp(13px, 1.9vh, 17px); line-height: 1.6; max-width: 42ch; }
 }
 }
 /* Team: white page; "Our Team" heading, then the label and two text columns (PDF) */
