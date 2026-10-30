@@ -17,3 +17,6 @@ Header, menu and footer: `public/new-homepage-v2/index.html` (identical to the n
 3. `python3 build.py` writes `out/` (one HTML file per page plus the photos it uses; brand files come from `public/new-homepage-v2/brand/`).
 
 `out/` is not committed. Not live on the site yet: no rewrites in `next.config.ts`.
+
+## Review artifact (one website)
+`homepage.py <homepage.html> <out>` and `academy.py <public/io-academy/index.html> <out>` make the review copies of the homepage and IO Academy with the 2026-10-30 comments. Put them next to `out/`, the IVP pages and Training Detail, then `site.py <dir>` joins everything into one site: navbar, mega menu, mobile menu and footer link to the pages that exist (others stay `#`), the section's menu item is active, and the artifact's `index.html` opens the homepage full screen (no review switcher; `#about`, `#news-…` reopen a page).

@@ -21,6 +21,9 @@ def sub(old, new, count=1):
     h = h.replace(old, new, count)
 
 
+# ---- the site's front page
+sub('<title>IO Homepage</title>', '<title>Innovation Oasis · Advancing Agri-food Systems</title>')
+
 # ---- links to the new pages
 sub('<a href="#" class="s_logo"', '<a href="new-homepage.html" class="s_logo"')
 sub('<a href="#" data-active="true">About IO</a>', '<a href="about.html" data-active="true">About IO</a>')
