@@ -31,23 +31,28 @@
 .x_jour .j_jourStep:focus-visible { outline: 2px solid var(--io); outline-offset: 6px; }
 #jCount { color: var(--grey-ink, #6e7173); font-variant-numeric: tabular-nums; }
 @media (min-width: 1000px) {
-  .x_jour[data-on="true"] > .j_journey { position: sticky; top: 0; height: var(--sh); padding: 72px 0 0; display: flex; flex-direction: column; justify-content: center; overflow: clip; }
-  .x_jour .j_head { padding-top: clamp(20px, 2.4vh, 32px); border-top: 1px solid var(--io); margin-bottom: clamp(18px, 3vh, 40px); }
+  /* everything sized from the viewport height, so the pinned journey fits one screen at 720px and at 1080px alike */
+  .x_jour[data-on="true"] > .j_journey { position: sticky; top: 0; height: var(--sh); padding: calc(64px + 2.5vh) 0 2.5vh; display: flex; flex-direction: column; justify-content: center; overflow: clip; }
+  .x_jour .j_jour { width: 100%; min-width: 0; }
+  .x_jour .j_head { padding-top: 2vh; border-top: 1px solid var(--io); margin-bottom: 2.4vh; }
   .x_jour .j_jourGrid { display: block; }
   .x_jour .j_jourStage { display: block; }
-  .x_jour .j_jourStick { position: static; height: auto; width: min(444px, 31vw); gap: clamp(10px, 1.6vh, 18px); }
-  .x_jour .j_jourFrames { flex: none; aspect-ratio: 444 / 390; max-height: 31vh; min-height: 0; }
+  .x_jour .j_jourStick { position: static; height: auto; width: min(444px, 31vw); gap: 1.2vh; }
+  .x_jour .j_jourFrames { flex: none; height: 27vh; aspect-ratio: auto; min-height: 0; }
   .x_jour .j_jourTicks, .x_jour .j_jourMobileImg { display: none; }
-  .x_jour .j_odo { font-size: clamp(52px, min(5.4vw, 8vh), 96px); }
-  .x_jour .j_jourSteps { grid-column: auto; padding: 0; margin: clamp(14px, 2.6vh, 32px) 0 0; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .x_jour .j_jourTag { padding-block-start: 1.2vh; }
+  .x_jour .j_odo { font-size: clamp(44px, min(5.4vw, 7.4vh), 96px); }
+  .x_jour .j_jourSteps { grid-column: auto; padding: 0; margin: 2.6vh 0 0; overflow: visible; -webkit-mask-image: none; mask-image: none; }
   .x_jour #jList { position: relative; width: max-content; will-change: transform; }
   .x_jour .j_jourSteps ol { display: flex; margin: 0; padding: 0; list-style: none; }
   .x_jour .j_jourLine { inset: 0 0 auto 0; width: auto; height: 1px; top: 0; }
   .x_jour .j_jourLine > i { inset: -0.5px 0; transform: scaleX(0); transform-origin: left; }
-  .x_jour .j_jourStep { width: clamp(360px, 34.7vw, 700px); min-height: 0; padding: clamp(56px, 8vh, 96px) 48px 0 2px; justify-content: flex-start; gap: 18px; opacity: .3; }
+  .x_jour .j_jourStep { width: clamp(340px, 34.7vw, 680px); min-height: 0; padding: 5vh 48px 0 2px; justify-content: flex-start; gap: 1.4vh; opacity: .3; }
   .x_jour .j_jourStep[data-on] { opacity: 1; }
   .x_jour .j_jourStep::before { top: 0; inset-inline-start: 0; transform: translateY(-50%); }
-  .x_jour .j_jourTitle { font-size: clamp(28px, 2.4vw, 44px); }
+  .x_jour .j_jourTitle { font-size: clamp(22px, min(2.4vw, 3.8vh), 44px); }
+  .x_jour .j_jourText { font-size: clamp(13px, 1.8vh, 16px); line-height: 1.55; max-width: 46ch; }
+}
 }
 /* Team: white page; "Our Team" heading, then the label and two text columns (PDF) */
 .x_team .c_section { background: #fff; padding-top: clamp(40px, 4vw, 64px); }
