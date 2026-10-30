@@ -8,10 +8,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // some apps send the "&" encoded; send those to the plain URL
-      // the whole review site as one website (homepage, About, Team + profiles, News + releases, IVP, IO Academy, Training
-      // Detail; 2026-10-30): static files in public/full-site/, made by prototypes/about-team-news/publish.py. A redirect,
-      // not a rewrite, so the pages' relative links (about.html, team-ali.html, ...) resolve inside the folder
-      { source: "/full-site", destination: "/full-site/index.html", permanent: false },
+      // the whole review site (2026-10-30): clean addresses, the old .html ones go there (rewrites below serve the files)
+      { source: "/full-site/index.html", destination: "/full-site", permanent: false },
+      { source: "/full-site/:page([a-z0-9-]+)\\.html", destination: "/full-site/:page", permanent: false },
       { source: "/innovation%26venture", destination: "/innovation&venture", permanent: false },
       { source: "/innovation%26venture/:sub", destination: "/innovation&venture/:sub", permanent: false },
       { source: "/innovation%26venture-v2", destination: "/innovation&venture-v2", permanent: false },
@@ -45,6 +44,11 @@ const nextConfig: NextConfig = {
       { source: "/News/V1", destination: "/V3/resources/news" },
       { source: "/News-Detail", destination: "/V3/resources/news/innovation-oasis-officially-opens" },
       { source: "/News-Detail/:slug", destination: "/V3/resources/news/:slug" },
+      // the whole review site as one website (homepage, About, Team + profiles, News + releases, IVP, IO Academy, Training
+      // Detail; 2026-10-30): static files in public/full-site/, made by prototypes/about-team-news/publish.py. Clean
+      // addresses: /full-site = the homepage, /full-site/<page> = <page>.html (the pages link with these absolute paths)
+      { source: "/full-site", destination: "/full-site/index.html" },
+      { source: "/full-site/:page([a-z0-9-]+)", destination: "/full-site/:page.html" },
       // IO Academy (library + course detail, static page in public/io-academy/, 2026-10-26)
       { source: "/io-academy", destination: "/io-academy/index.html" },
       { source: "/IO-Academy", destination: "/io-academy/index.html" },
