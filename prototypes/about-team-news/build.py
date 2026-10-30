@@ -154,7 +154,7 @@ for i, p in enumerate(members):
             f'</div></article>'  # no previous / next row (comment 2026-10-30); "More of the team" below links on
             f'<section aria-labelledby="rel-h" class="n3_sec"><div class="n3_wrap"><p class="s3_label"><span class="s3_labelN">+</span><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p>'
             f'<div class="n3_relHead"><h2 class="n3_h2" data-reveal id="rel-h">More of the team</h2><a class="s3_go" href="{URL["team"]}"><span class="s3_goText">The whole team</span>{go_svg}</a></div>'
-            f'<ul class="n3_grid">{cards}</ul></div></section>')
+            f'<ul class="n3_grid x_relTeam">{cards}</ul></div></section>')
     page(f'team-{p["slug"]}.html', f'{html.escape(p["name"])} · Our People · Innovation Oasis', v3wrap(body + media), v3css)
 
 # ---------------------------------------------------------------- News: the archive (V2) with all its releases + media band

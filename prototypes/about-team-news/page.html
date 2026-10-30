@@ -80,6 +80,11 @@
 /* profile page (press-release template): portrait in the aside, quote in the text column */
 .x_bioImg { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r, 6px); margin-bottom: 8px; }
 .x_bioImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+/* bio column: rows sit at the top instead of spreading over the aside's height (comment 2026-10-30) */
+.n3_article { align-content: start; }
+/* More of the team: portrait like the team page cards (4:5, comment 2026-10-30) */
+.x_relTeam .n3_cardImg { aspect-ratio: 4 / 5; }
+.x_relTeam .n3_cardImg img { object-position: 50% 50%; }
 /* every team photo centred top to bottom (comment 2026-10-30) */
 .x_team .c_teamImg img { object-position: 50% 50%; }
 .n3_bioQuote { font-size: var(--t-lead, 22px); line-height: 1.35; color: var(--io-ink); margin: 1.4em 0; }
