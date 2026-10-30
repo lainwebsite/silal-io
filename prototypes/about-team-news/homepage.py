@@ -25,7 +25,7 @@ def sub(old, new, count=1):
 sub('<title>IO Homepage</title>', '<title>Innovation Oasis · Advancing Agri-food Systems</title>')
 
 # ---- links to the new pages
-sub('<a href="#" class="s_logo"', '<a href="new-homepage.html" class="s_logo"')
+sub('<a href="#" class="s_logo"', '<a href="index.html" class="s_logo"')
 sub('<a href="#" data-active="true">About IO</a>', '<a href="about.html" data-active="true">About IO</a>')
 sub('<a href="#" class="s_textLink">About IO', '<a href="about.html" class="s_textLink">About IO')
 sub('<li><a href="#">Our Story</a></li>', '<li><a href="about.html">Our Story</a></li>', 2)

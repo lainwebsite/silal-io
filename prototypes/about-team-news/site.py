@@ -11,7 +11,23 @@ Run: python3 site.py <bundle dir>
 import html, json, pathlib, re, sys
 
 B = pathlib.Path(sys.argv[1])
-HOME = "new-homepage.html"
+HOME = "index.html"
+
+# Every page is a page of the artifact itself, not a frame inside one, so comments anchor to the element clicked
+# (comment 2026-10-30). The homepage becomes the artifact's own index.html: the publish wraps that file in its own
+# document skeleton, so the copy keeps only what sits inside <body>.
+hp = B / "new-homepage.html"
+if hp.exists():
+    t = hp.read_text(encoding="utf8")
+    if "<body>" in t[:3000]:
+        t = t[t.index("<body>", 0, 3000) + len("<body>"):]
+    t = re.sub(r"</body>\s*</html>\s*$", "", t)
+    (B / "index.html").write_text(t, encoding="utf8")
+    hp.unlink()
+for f in B.glob("*.html"):
+    t = f.read_text(encoding="utf8")
+    if "new-homepage.html" in t:
+        f.write_text(t.replace('"new-homepage.html"', '"index.html"').replace("'new-homepage.html'", "'index.html'"), encoding="utf8")
 LINKS = {
     "Home": HOME,
     "About IO": "about.html", "Our Story": "about.html", "Team & CEO Message": "team.html",
@@ -51,8 +67,6 @@ SCRIPT = """<script>
 """ % (json.dumps(LINKS), json.dumps(HOME))
 
 for f in sorted(B.glob("*.html")):
-    if f.name == "index.html":
-        continue
     s = f.read_text(encoding="utf8")
     n = 0
 

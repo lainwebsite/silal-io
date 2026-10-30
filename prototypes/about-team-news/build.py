@@ -16,7 +16,7 @@ DATA = json.loads((PARTS / "data.json").read_text(encoding="utf8"))
 part = lambda name: (PARTS / name).read_text(encoding="utf8")
 
 # page -> file (artifact: every page is a file next to the others)
-URL = {"home": "new-homepage.html", "about": "about.html", "team": "team.html", "news": "news.html"}
+URL = {"home": "index.html", "about": "about.html", "team": "team.html", "news": "news.html"}
 detail_url = lambda slug: f"news-{slug}.html"
 
 # ---------------------------------------------------------------- shell
