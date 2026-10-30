@@ -82,16 +82,16 @@ for i, ((ob, os_), (name, head, body, q, out, cta, href)) in enumerate(zip(OLD, 
 sub("function hxCardText(c) { if (!RV.ok || !hxArmed) return; playAll($$('[data-rvg=\"hxc\"]', c), 0.05); }",
     "function hxCardText(c) { var L = c.closest('.hx_bgimg') || c;"
     # only the current step's box shows (the next layer's circle no longer uncovers its box early); it enters each time
-    # (comment 2026-10-30): the box rises in, the photo opens from the top and settles from a slight zoom, then the lines
+    # (comment 2026-10-30, kept quick so it can be read at once): the box rises in, the photo opens from the top and settles from a slight zoom, then the lines
     " $$('.x_mPanel').forEach(function (b) { b.classList.toggle('x_on', L.contains(b)); });"
     " if (!RV.ok || !hxArmed) return;"
     " var B = L.querySelector('.x_mPanel'), E = 'cubic-bezier(.16,1,.3,1)';"
-    " if (B && B.animate) { B.animate([{ opacity: 0, translate: '0 72px' }, { opacity: 1, translate: '0 0' }], { duration: 1100, easing: 'cubic-bezier(.33,1,.68,1)', fill: 'backwards' });"
+    " if (B && B.animate) { B.animate([{ opacity: 0, translate: '0 40px' }, { opacity: 1, translate: '0 0' }], { duration: 550, easing: 'cubic-bezier(.33,1,.68,1)', fill: 'backwards' });"
     " var I = B.querySelector('.x_mImg'), G = B.querySelector('.x_mImg img');"
-    " if (I) I.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)' }], { duration: 1100, delay: 150, easing: 'cubic-bezier(.76,0,.24,1)', fill: 'backwards' });"
-    " if (G) G.animate([{ transform: 'scale(1.18)' }, { transform: 'scale(1)' }], { duration: 1500, delay: 150, easing: E, fill: 'backwards' }); }"
+    " if (I) I.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)' }], { duration: 600, delay: 50, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'backwards' });"
+    " if (G) G.animate([{ transform: 'scale(1.18)' }, { transform: 'scale(1)' }], { duration: 900, delay: 50, easing: E, fill: 'backwards' }); }"
     " $$('[data-rvg=\"hxc\"]', L).forEach(function (el, k) { var rv = makeRv(el); if (rv.tw) rv.tw.kill(); rv.played = false;"
-    " if (rv.lines.length) gsap.set(rv.lines, { yPercent: 100 }); rv.play(0.3 + k * 0.07); }); }")
+    " rv.played = true; if (rv.lines.length) { gsap.set(rv.lines, { yPercent: 100 }); rv.tw = gsap.to(rv.lines, { yPercent: 0, duration: 0.5, stagger: 0.03, delay: 0.08 + k * 0.025, ease: 'power3.out' }); } }); }")
 sub('aria-label="Where do you want to look first?"', 'aria-label="The Innovation Oasis Method"')
 sub('<p class="hx_title" data-reveal data-rvg="helix">This is Innovation Oasis. Where do you want to look first?</p>',
     '<p class="hx_title" data-reveal data-rvg="helix">The Innovation Oasis Method</p>')
