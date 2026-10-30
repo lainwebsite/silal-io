@@ -89,7 +89,7 @@ def motion(html):
 # ---------------------------------------------------------------- V1 About-D
 V1MAP = {"about-d": "c_", "v1": "s_"}
 v1 = BeautifulSoup(renamer(get("/V1"), V1MAP), "lxml")
-for name, marker in [("story", "Our Story"), ("people", "Our People"), ("mission", "Our Mission"), ("principles", "The Principles That Guide Us")]:
+for name, marker in [("story", "Our Story"), ("people", "Our People"), ("mission", "Our Mission"), ("principles", "The Principles That Guide Us"), ("journey", "Our Journey")]:
     (PARTS / f"v1-{name}.html").write_text(motion(str(section(v1, marker))), encoding="utf8")
 
 # ---------------------------------------------------------------- V2 archive

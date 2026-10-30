@@ -44,6 +44,8 @@ def page(fname, title, body, page_css=""):
     out = TEMPLATE.replace("{{TITLE}}", title).replace("{{SHELL_CSS}}", css).replace("{{PAGE_CSS}}", page_css)
     out = out.replace("{{HEADER}}", header).replace("{{FOOTER}}", footer).replace("{{BODY}}", body)
     out = out.replace("/new-homepage-v2/brand/", "brand/")
+    # client comment 2026-10-30: no numbers in section labels on any page (02 Our People, 03 Media enquiries, PR, +)
+    out = re.sub(r'<span class="(c_eyebrowNum|s3_labelN|n2_rowNum)">[^<]*</span>', "", out)
     # every root-relative asset becomes relative to the page; remember it to copy
     for m in re.findall(r'(?:src|href)="/((?:photos|V1|V3|brand)/[^"]+)"', out):
         used.add(html.unescape(m))
@@ -70,21 +72,82 @@ v3wrap = lambda inner: f'<div class="{" ".join(c for c in DATA["root3"] if c.sta
 media = v3_links(part("v3-media.html"))
 v2css, v3css = part("v2.css"), part("v3.css")
 
-# ---------------------------------------------------------------- About: Our Story, Our Mission, Principles (V1 About-D)
+# ---------------------------------------------------------------- About: Our Story, Our Mission, Principles, Our Journey (V1 About-D)
+# Journey (moved here from the homepage, comment 2026-10-30): V1's horizontal track, plus a row of milestone buttons and
+# arrows so a reader can jump along the timeline instead of only scrolling through it.
+journey = no_num(part("v1-journey.html"))
+years = re.findall(r'<span class="c_jWhen">(.*?)</span>', journey)
+arrow = lambda d, path: (f'<button type="button" class="x_jArrow" data-dir="{d}" aria-label="{"Previous" if d < 0 else "Next"} milestone">'
+                         f'<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="{path}" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>')
+nav = ('<div class="s_wrap x_jNav">' + arrow(-1, "M12 8H4M7.5 4.5L4 8l3.5 3.5")
+       + '<ol class="x_jYears" aria-label="Milestones">' + "".join(f'<li><button type="button" class="x_jYear">{y}</button></li>' for y in years) + "</ol>"
+       + arrow(1, "M4 8h8M8.5 4.5L12 8l-3.5 3.5") + "</div>")
+journey = journey.replace('<div class="s_wrap c_jViewport">', nav + '<div class="s_wrap c_jViewport">', 1)
 about = "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission", "principles"))
+about += f'<div class="x_jour" id="xJour" data-on="false">{journey}</div>'
 page(URL["about"], "About IO · Innovation Oasis", f'<div class="c_page x_about">{about}</div>')
 
 # ---------------------------------------------------------------- Team: Our People (V1 About-D) + media band (V3)
-people = part("v1-people.html")
-m = re.search(r'<div class="c_teamHead">(.*?)</div>\s*<ul class="c_team"', people, re.S)
+people = part("v1-people.html").replace("Dr. Mohammed joined Silal", "Dr. Shamal joined Silal")  # PDF + comment 2026-10-30
+m =re.search(r'<div class="c_teamHead">(.*?)</div>\s*<ul class="c_team"', people, re.S)
 head = m.group(1)
 title = re.search(r"<h3[^>]*>.*?</h3>", head, re.S).group(0)
 intro = re.search(r'<p class="c_lead"[^>]*>(.*?)</p>', head, re.S).group(1)
 label = re.search(r'<span class="c_mini">.*?</span>', head, re.S).group(0)
 text = re.search(r'<p class="c_body">(.*?)</p>', head, re.S).group(1)
-new_head = f'{title}<div class="x_teamCols" data-stagger>{label}<p class="c_body">{text}</p><p class="c_body">{intro}</p></div>'
+# client comment: the "Team members" text was odd as a label + two columns; keep one brief subtitle under "Our Team"
+new_head = f'{title}<p class="c_lead x_teamSub" data-reveal>{intro.rstrip(".")}.</p>'
 people = people[:m.start(1)] + new_head + people[m.end(1):]
+
+# ---- every person gets a profile page (client comment), cross-linked from the team grid, the leadership block and each other
+slugify = lambda name: re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+CEO = "Dr. Shamal Mohammed"
+leader_text = re.search(r'<div class="c_leaderText">.*?<p class="c_body"[^>]*>(.*?)</p>', people, re.S).group(1)
+leader_src = re.search(r'<div class="c_leaderImg">.*?src="([^"]+)"', people, re.S).group(1)
+members = [{"name": CEO, "src": leader_src, "role": "Chief Executive Officer"}]
+members += [{"name": n, "src": s, "role": None} for s, n in re.findall(r'<li><span class="c_teamImg"><img[^>]*src="([^"]+)"[^>]*/></span><span class="c_teamName">([^<]+)</span></li>', people)]
+for p in members:
+    p["slug"] = slugify(p["name"])
+people = re.sub(r'<li><span class="c_teamImg">(.*?)</span><span class="c_teamName">([^<]+)</span></li>',
+                lambda m: f'<li><a class="x_teamLink" href="team-{slugify(m.group(2))}.html"><span class="c_teamImg">{m.group(1)}</span><span class="c_teamName">{m.group(2)}</span></a></li>', people)
+people = people.replace("</blockquote>", f'</blockquote><a class="x_bioLink" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile <span aria-hidden="true">&rarr;</span></a>', 1)
 page(URL["team"], "Team &amp; CEO Message · Innovation Oasis", f'<div class="c_page x_team">{people}</div>{v3wrap(media)}', v3css)
+
+# the profile uses the press-release template (V3 detail): label, breadcrumb, title + lead, facts card in the aside,
+# text column with the About box, previous / next, then three more people as related cards
+d0 = json.loads((PARTS / "detail" / f"{DATA['slugs'][0]}.html").read_text(encoding="utf8"))["html"]
+boiler = re.search(r'<div class="n3_boiler">.*?</div>', d0, re.S).group(0)
+share = re.search(r'<p class="n3_shareLabel">.*?</ul>', d0, re.S).group(0)
+go_svg = re.search(r'<span aria-hidden="true" class="s3_goO">.*?</span>', d0, re.S).group(0)
+for i, p in enumerate(members):
+    first = p["name"].replace("Dr. ", "Dr ").split(" ")[0] if p["name"] != CEO else "Dr. Shamal"
+    url = f'https://silal-io.vercel.app/team/{p["slug"]}'
+    sh = re.sub(r'https%3A%2F%2Fsilal-io\.vercel\.app%2F[^"&]*', urllib.parse.quote(url, safe=""), share)
+    sh = re.sub(r'(subject=|text=)[^"&]*', lambda m: m.group(1) + urllib.parse.quote(p["name"] + " · Innovation Oasis"), sh)
+    if p["name"] == CEO:
+        text = (f'<p>{leader_text.replace(" — described above — ", " ")}</p><p class="n3_bioQuote">&ldquo;If it works here, it can work anywhere.&rdquo;</p>')
+        note = "Profile text from the About page. Full bio to be supplied by Innovation Oasis."
+    else:
+        text = f'<p>{first} is part of the small, hands-on team behind every laboratory, trial and partnership at Innovation Oasis.</p>'
+        note = "Sample profile shown for layout. Role and bio to be supplied by Innovation Oasis."
+    role = p["role"] or "Role to be confirmed"
+    prev_, next_ = members[i - 1], members[(i + 1) % len(members)]
+    others = [members[(i + k) % len(members)] for k in (1, 2, 3)]
+    cards = "".join(f'<li><a class="n3_card" href="team-{o["slug"]}.html"><div class="n3_cardImg"><img alt="{html.escape(o["name"])}" decoding="async" loading="lazy" src="{o["src"]}" '
+                    'style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 25%"/>'
+                    f'<span class="n3_cardTag">Our People</span></div><p class="n3_cardDate">{o["role"] or "Innovation Oasis"}</p><h3 class="n3_cardTitle">{o["name"]}</h3></a></li>' for o in others)
+    body = (f'<article class="x_bio"><header class="n3_head"><div class="n3_wrap"><p class="s3_label"><span class="s3_labelN">02</span><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p>'
+            f'<nav aria-label="Breadcrumb" class="n3_crumbs"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><a href="{URL["team"]}">Team</a><span aria-hidden="true">/</span><span aria-current="page">{p["name"]}</span></nav>'
+            f'<h1 class="n3_articleTitle" data-reveal>{p["name"]}</h1><p class="n3_articleLead">{role}, Innovation Oasis</p></div></header>'
+            f'<div class="n3_wrap"><div class="n3_articleGrid"><aside class="n3_aside"><div class="x_bioImg"><img alt="{html.escape(p["name"])}" src="{p["src"]}"/></div>'
+            f'<dl class="n3_metaCard"><div><dt>Role</dt><dd>{role}</dd></div><div><dt>Team</dt><dd>Innovation Oasis</dd></div><div><dt>Location</dt><dd>Al Ain, UAE</dd></div></dl>{sh}</aside>'
+            f'<div class="n3_article">{text}{boiler}<p class="n3_note">{note}</p></div></div>'
+            f'<nav aria-label="More people" class="n3_pager"><a class="n3_pagerLink" href="team-{prev_["slug"]}.html"><small>Previous</small>{prev_["name"]}</a>'
+            f'<a class="n3_pagerLink n3_pagerNext" href="team-{next_["slug"]}.html"><small>Next</small>{next_["name"]}</a></nav></div></article>'
+            f'<section aria-labelledby="rel-h" class="n3_sec"><div class="n3_wrap"><p class="s3_label"><span class="s3_labelN">+</span><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p>'
+            f'<div class="n3_relHead"><h2 class="n3_h2" data-reveal id="rel-h">More of the team</h2><a class="s3_go" href="{URL["team"]}"><span class="s3_goText">The whole team</span>{go_svg}</a></div>'
+            f'<ul class="n3_grid">{cards}</ul></div></section>')
+    page(f'team-{p["slug"]}.html', f'{html.escape(p["name"])} · Our People · Innovation Oasis', v3wrap(body + media), v3css)
 
 # ---------------------------------------------------------------- News: the archive (V2) with all its releases + media band
 MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
@@ -109,7 +172,9 @@ page(URL["news"], "Press Releases · News &amp; Media · Innovation Oasis", f'<d
 # ---------------------------------------------------------------- News detail: the V3 press release, every release
 for slug in DATA["slugs"]:
     d = json.loads((PARTS / "detail" / f"{slug}.html").read_text(encoding="utf8"))
-    page(detail_url(slug), f'{html.escape(d["title"])} · Innovation Oasis', v3wrap(v3_links(d["html"]) + media), v3css)
+    # client comment: the "Media enquiries" strip inside the article repeated the band at the end of the page
+    art = re.sub(r'<div class="n3_enquiry">.*?</a></div>', "", d["html"], count=1, flags=re.S)
+    page(detail_url(slug), f'{html.escape(d["title"])} · Innovation Oasis', v3wrap(v3_links(art) + media), v3css)
 
 # ---------------------------------------------------------------- images
 n = 0
