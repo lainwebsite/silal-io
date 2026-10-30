@@ -83,7 +83,9 @@ nav = ('<div class="s_wrap x_jNav">' + arrow(-1, "M12 8H4M7.5 4.5L4 8l3.5 3.5")
        + '<ol class="x_jYears" aria-label="Milestones">' + "".join(f'<li><button type="button" class="x_jYear">{y}</button></li>' for y in years) + "</ol>"
        + arrow(1, "M4 8h8M8.5 4.5L12 8l-3.5 3.5") + "</div>")
 journey = journey.replace('<div class="s_wrap c_jViewport">', nav + '<div class="s_wrap c_jViewport">', 1)
-about = "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission", "principles"))
+about = "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
+# Principles: no underline below its label (comment 2026-10-30) = the homepage's own Principles variant, c_noRule
+about += no_num(part("v1-principles.html")).replace('<div class="c_headRow">', '<div class="c_headRow c_noRule">', 1)
 about += f'<div class="x_jour" id="xJour" data-on="false">{journey}</div>'
 page(URL["about"], "About IO · Innovation Oasis", f'<div class="c_page x_about">{about}</div>')
 
