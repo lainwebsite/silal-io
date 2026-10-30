@@ -168,7 +168,7 @@ for n, r in enumerate(items, 1):
         f'<li class="n2_card" data-cat="{r["category"]}" data-year="{r["date"][:4]}" data-text="{words}">'
         f'<a class="n2_cardLink" href="{detail_url(r["slug"])}"><div class="n2_cardImg"><img alt="{html.escape(r.get("alt", ""))}" decoding="async" loading="lazy" src="{r["src"]}" '
         'style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover"/><span aria-hidden="true" class="n2_corners"></span></div>'
-        f'<p class="n2_meta"><span>{n:02d}</span><time datetime="{r["date"]}">{fmt(r["date"])}</time><span class="n2_metaCat">{r["category"]}</span></p>'
+        f'<p class="n2_meta"><time datetime="{r["date"]}">{fmt(r["date"])}</time><span class="n2_metaCat">{r["category"]}</span></p>'
         f'<h3 class="n2_cardTitle">{r["title"]}</h3><p class="n2_cardExcerpt">{r["excerpt"]}</p><span class="n2_more">Read more</span></a></li>')
 arc = part("v2-archive.html")
 arc = re.sub(r'<ul class="n2_grid">.*?</ul>', '<ul class="n2_grid">' + "".join(cards) + "</ul>"
