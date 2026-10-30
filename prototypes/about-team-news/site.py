@@ -84,6 +84,10 @@ for f in sorted(B.glob("*.html")):
     # "Our Story" opened the same page as "About IO" right below it in the menu (comment 2026-10-30): one entry is enough
     s = s.replace('<li><a href="about.html">Our Story</a></li>', "")
     s = s.replace('["Our Story","Team & CEO Message","Virtual Tour \u2197"]', '["Team & CEO Message","Virtual Tour \u2197"]')
+    # mega menu: the category's own page link first, above its description and sub pages (comment 2026-10-30)
+    s = re.sub(r'(<div class="s_dropdownInner">)(<p>.*?</p><ul>.*?</ul>)(<a [^>]*class="s_textLink"[^>]*>.*?</a>)(</div>)', r"\1\3\2\4", s, flags=re.S)
+    # same for the menus IO Academy and Training Detail build in script
+    s = re.sub(r"""(<div class="dropdownInner">)(<p>'\+esc\(g\[1\]\)\+'</p><ul>.*?</ul>)(<a href="#top" class="textLink">'\+esc\(g\[0\]\)\+" "\+AR\+'</a>)(</div>)""", r"\1\3\2\4", s, count=1, flags=re.S)
     # active main-menu item = the page's own section (none on the homepage and the news pages)
     sec = next((v for k, v in SECTION.items() if f.name.startswith(k)), None)
     # only in the links themselves: the CSS selectors that style the active item carry the same text

@@ -83,8 +83,9 @@ CSS = """
 #jCurtain { display: none !important; }
 /* The Innovation Oasis Method: one panel per helix step, on the side away from the card */
 .hx_gl { pointer-events: none; }
-.x_mPanel { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: min(360px, 26vw); color: #fff; pointer-events: auto;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, .35); }
+.x_mPanel { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: min(360px, 26vw); color: #fff; pointer-events: auto; }
+/* no text shadows in this section (comment 2026-10-30): legibility comes from the darker photo side only */
+.hx_card figcaption, .hx_title, .x_mPanel { text-shadow: none !important; }
 .x_mPanel[data-side="right"] { right: max(64px, 7vw); }
 .x_mPanel[data-side="left"] { left: max(64px, 7vw); }
 /* no box (comment 2026-10-30): plain text on the photo like the card captions; the photo darkens a little on the panel's side */
