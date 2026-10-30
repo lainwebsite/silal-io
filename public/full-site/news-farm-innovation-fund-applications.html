@@ -4841,7 +4841,7 @@ b[data-reveal] { font-weight: inherit; }
         return (cat === 'All' || c.dataset.cat === cat) && (yr === 'All years' || c.dataset.year === yr) && (!words || c.dataset.text.indexOf(words) > -1);
       });
       cards.forEach(function (c) { c.hidden = true; });
-      list.slice(0, shown).forEach(function (c, i) { c.hidden = false; c.querySelector('.n2_meta span').textContent = String(i + 1).padStart(2, '0'); });
+      list.slice(0, shown).forEach(function (c, i) { c.hidden = false; });
       count.textContent = 'Showing ' + Math.min(shown, list.length) + ' of ' + list.length + ' ' + (list.length === 1 ? 'release' : 'releases');
       more.hidden = shown >= list.length; empty.hidden = !!list.length; grid.hidden = !list.length;
       if (anim && G) { gsap.fromTo(list.slice(0, shown), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.05, overwrite: true }); ScrollTrigger.refresh(); }
