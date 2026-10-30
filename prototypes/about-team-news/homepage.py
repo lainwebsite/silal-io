@@ -63,19 +63,19 @@ OLD = [("Research &amp; Science", "Driving agricultural progress through researc
 i0 = h.index('<section class="hx c_curtainStick"')
 for i, ((ob, os_), (name, head, body, q, out, cta, href)) in enumerate(zip(OLD, METHOD)):
     sub(f'<b data-reveal data-rvg="hxc">{ob}</b><span data-reveal data-rvg="hxc">{os_}</span>',
-        f'<b data-reveal data-rvg="hxc">{i + 1:02d} · {name}</b><span data-reveal data-rvg="hxc">{head}</span>')
+        f'<b data-reveal data-rvg="hxc">{i + 1}. {name}</b>')  # the card names the step; the panel carries the rest (no line twice)
     # the panel sits on the side away from the card (cards left of the helix -> panel right)
     card = h.index(f'<figure class="hx_card" data-i="{i}"', i0)
     left = int(h[h.index("left:", card) + 5:h.index("px", h.index("left:", card))])
     side = "right" if left < 720 else "left"
     paras = "".join(f"<p>{p}</p>" for p in body) + (f'<p class="x_mQ">{q}</p>' if q else "")
-    panel = (f'<div class="x_mPanel" data-side="{side}"><p class="x_mNum">{i + 1:02d} / 05 · {name}</p><h3>{head}</h3>{paras}'
+    panel = (f'<div class="x_mPanel" data-side="{side}"><p class="x_mNum" aria-hidden="true">{i + 1}. {name}</p><h3>{head}</h3>{paras}'
              f'<p class="x_mOut">{out}</p><a class="x_mLink" href="{href}">{cta} <span aria-hidden="true">&rarr;</span></a></div>')
     end = h.index("</div></div>", card) + len("</div>")  # closes .hx_stage of this layer
     h = h[:end] + panel + h[end:]
 sub('aria-label="Where do you want to look first?"', 'aria-label="The Innovation Oasis Method"')
 sub('<p class="hx_title" data-reveal data-rvg="helix">This is Innovation Oasis. Where do you want to look first?</p>',
-    '<p class="hx_title" data-reveal data-rvg="helix">The Innovation Oasis Method: from a question to the next generation.</p>')
+    '<p class="hx_title" data-reveal data-rvg="helix">The Innovation Oasis Method</p>')
 
 CSS = """
 /* ---- review copy, comments 2026-10-30 ---- */
@@ -91,15 +91,17 @@ CSS = """
 /* no box (comment 2026-10-30): plain text on the photo like the card captions; the photo darkens a little on the panel's side */
 .hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_tint { background: linear-gradient(270deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
 .hx_bgimg:has(.x_mPanel[data-side="left"]) .hx_tint { background: linear-gradient(90deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
-.x_mNum { margin: 0 0 12px; font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .8); }
+/* the step name is on the card next to the helix; the panel repeats it only on phones, where the card is hidden */
+.x_mNum { display: none; margin: 0 0 10px; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
 .x_mPanel h3 { margin: 0 0 14px; font-size: clamp(1.5rem, 2vw, 2rem); font-weight: 300; line-height: 1.15; letter-spacing: -.01em; }
 .x_mPanel p { margin: 0 0 10px; font-size: .875rem; line-height: 1.6; color: rgba(255, 255, 255, .9); }
-.x_mPanel .x_mQ { font-size: 1rem; line-height: 1.45; color: #fff; }
+.x_mPanel .x_mQ { font-size: 1rem; line-height: 1.45; font-weight: 500; color: #fff; }
 .x_mPanel .x_mOut { margin: 16px 0 14px; font-size: .9375rem; font-weight: 500; color: #fff; }
 .x_mLink { display: inline-flex; gap: 10px; align-items: center; font-size: .8125rem; font-weight: 500; color: #fff; padding-bottom: 3px; border-bottom: 1px solid rgba(255, 255, 255, .6); }
 .x_mLink:hover { border-bottom-color: #fff; }
 @media (max-width: 760px) {
   .hx_card { display: none; }
+  .x_mNum { display: block; }
   .x_mPanel { top: auto; bottom: 20px; left: 20px !important; right: 20px !important; width: auto; transform: none; }
   .hx_bgimg .hx_tint { background: linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .15) 60%) !important; }
   .x_mPanel h3 { font-size: 1.375rem; margin-bottom: 10px; }
