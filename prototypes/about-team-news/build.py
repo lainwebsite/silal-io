@@ -96,7 +96,8 @@ about += f'<div class="x_jour" id="xJour" data-on="false">{journey}</div>'
 page(URL["about"], "About IO · Innovation Oasis", f'<div class="c_page x_about">{about}</div>')
 
 # ---------------------------------------------------------------- Team: Our People (V1 About-D) + media band (V3)
-people = part("v1-people.html").replace("Dr. Mohammed joined Silal", "Dr. Shamal joined Silal")  # PDF + comment 2026-10-30
+people = (part("v1-people.html").replace("Dr. Mohammed joined Silal", "Dr. Shamal joined Silal")  # PDF + comment 2026-10-30
+          .replace(" — described above — ", " "))  # on its own page the story it pointed to is not above
 m =re.search(r'<div class="c_teamHead">(.*?)</div>\s*<ul class="c_team"', people, re.S)
 head = m.group(1)
 title = re.search(r"<h3[^>]*>.*?</h3>", head, re.S).group(0)
