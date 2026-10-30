@@ -83,23 +83,27 @@ CSS = """
 #jCurtain { display: none !important; }
 /* The Innovation Oasis Method: one panel per helix step, on the side away from the card */
 .hx_gl { pointer-events: none; }
-.x_mPanel { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: min(420px, 31vw); padding: 28px 30px 30px; color: #fff; pointer-events: auto;
-  background: rgba(26, 24, 23, .42); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-radius: 4px; }
-.x_mPanel[data-side="right"] { right: max(48px, 4vw); }
-.x_mPanel[data-side="left"] { left: max(48px, 4vw); }
-.x_mNum { margin: 0 0 14px; font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: #bfe6f6; }
-.x_mPanel h3 { margin: 0 0 16px; font-size: clamp(1.5rem, 2.1vw, 2.125rem); font-weight: 300; line-height: 1.15; letter-spacing: -.01em; }
-.x_mPanel p { margin: 0 0 12px; font-size: .875rem; line-height: 1.6; color: rgba(255, 255, 255, .88); }
-.x_mPanel .x_mQ { font-size: 1.0625rem; line-height: 1.4; color: #fff; }
-.x_mPanel .x_mOut { margin: 20px 0 18px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .35); font-size: 1rem; font-weight: 500; color: #fff; }
-.x_mLink { display: inline-flex; gap: 10px; align-items: center; font-size: .875rem; font-weight: 500; color: #fff; padding-bottom: 4px; border-bottom: 1px solid rgba(255, 255, 255, .6); }
+.x_mPanel { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: min(360px, 26vw); color: #fff; pointer-events: auto;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .35); }
+.x_mPanel[data-side="right"] { right: max(64px, 7vw); }
+.x_mPanel[data-side="left"] { left: max(64px, 7vw); }
+/* no box (comment 2026-10-30): plain text on the photo like the card captions; the photo darkens a little on the panel's side */
+.hx_bgimg:has(.x_mPanel[data-side="right"]) .hx_tint { background: linear-gradient(270deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
+.hx_bgimg:has(.x_mPanel[data-side="left"]) .hx_tint { background: linear-gradient(90deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, .12) 100%); }
+.x_mNum { margin: 0 0 12px; font-size: .6875rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .8); }
+.x_mPanel h3 { margin: 0 0 14px; font-size: clamp(1.5rem, 2vw, 2rem); font-weight: 300; line-height: 1.15; letter-spacing: -.01em; }
+.x_mPanel p { margin: 0 0 10px; font-size: .875rem; line-height: 1.6; color: rgba(255, 255, 255, .9); }
+.x_mPanel .x_mQ { font-size: 1rem; line-height: 1.45; color: #fff; }
+.x_mPanel .x_mOut { margin: 16px 0 14px; font-size: .9375rem; font-weight: 500; color: #fff; }
+.x_mLink { display: inline-flex; gap: 10px; align-items: center; font-size: .8125rem; font-weight: 500; color: #fff; padding-bottom: 3px; border-bottom: 1px solid rgba(255, 255, 255, .6); }
 .x_mLink:hover { border-bottom-color: #fff; }
 @media (max-width: 760px) {
   .hx_card { display: none; }
-  .x_mPanel { top: auto; bottom: 16px; left: 16px !important; right: 16px !important; width: auto; transform: none; padding: 18px 18px 20px; }
+  .x_mPanel { top: auto; bottom: 20px; left: 20px !important; right: 20px !important; width: auto; transform: none; }
+  .hx_bgimg .hx_tint { background: linear-gradient(0deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .15) 60%) !important; }
   .x_mPanel h3 { font-size: 1.375rem; margin-bottom: 10px; }
   .x_mPanel p { font-size: .8125rem; margin-bottom: 8px; }
-  .x_mPanel .x_mOut { margin: 12px 0 10px; padding-top: 10px; }
+  .x_mPanel .x_mOut { margin: 10px 0 8px; }
 }
 """
 last = h.rindex("</style>", 0, h.index('<header class="s_header"'))
