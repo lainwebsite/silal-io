@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // some apps send the "&" encoded; send those to the plain URL
+      // the whole review site as one website (homepage, About, Team + profiles, News + releases, IVP, IO Academy, Training
+      // Detail; 2026-10-30): static files in public/full-site/, made by prototypes/about-team-news/publish.py. A redirect,
+      // not a rewrite, so the pages' relative links (about.html, team-ali.html, ...) resolve inside the folder
+      { source: "/full-site", destination: "/full-site/index.html", permanent: false },
       { source: "/innovation%26venture", destination: "/innovation&venture", permanent: false },
       { source: "/innovation%26venture/:sub", destination: "/innovation&venture/:sub", permanent: false },
       { source: "/innovation%26venture-v2", destination: "/innovation&venture-v2", permanent: false },

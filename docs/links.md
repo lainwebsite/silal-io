@@ -29,6 +29,7 @@ Design routes live under random folder names so they cannot be guessed. There is
   - https://silal-io.vercel.app/innovation&venture-v2/accelerator
   - https://silal-io.vercel.app/innovation&venture-v2/agricultural-challenges
   - https://silal-io.vercel.app/innovation&venture-v2/enquire
+- https://silal-io.vercel.app/full-site (2026-10-30): the whole review site as one website: homepage (Method helix boxes), About IO, Team + profile pages, News + releases, IVP, IO Academy, Training Detail. Static files `public/full-site/` (noindex), built by `prototypes/about-team-news/` (`build.py`, `homepage.py`, `site.py`, then `publish.py`).
 - `/Team/V1`: not built yet, not published.
 
 Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below keep working.
