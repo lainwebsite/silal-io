@@ -73,7 +73,10 @@
 .x_teamSub { max-width: 52ch; margin: 0; }
 /* team grid and leadership open the profile pages */
 .x_teamLink { display: flex; flex-direction: column; gap: 14px; color: inherit; }
-.x_bioLink { display: inline-flex; gap: 10px; margin-top: 28px; font-size: .875rem; font-weight: 500; color: var(--io-ink); padding-bottom: 4px; border-bottom: 1px solid currentColor; }
+.x_bioBtn { margin-top: 32px; align-self: flex-start; width: auto; }
+/* press-release / profile template: its top padding made room for V3's floating header; this header is sticky and
+   already takes its space, so only the section gap stays (comment 2026-10-30: too much white space on top) */
+.s3_root .n3_head { padding-top: clamp(36px, 5.5vh, 64px); }
 /* profile page (press-release template): portrait in the aside, quote in the text column */
 .x_bioImg { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r, 6px); margin-bottom: 8px; }
 .x_bioImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }

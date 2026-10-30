@@ -118,7 +118,9 @@ for p in members:
     p["slug"] = slugify(p["name"])
 people = re.sub(r'<li><span class="c_teamImg">(.*?)</span><span class="c_teamName">([^<]+)</span></li>',
                 lambda m: f'<li><a class="x_teamLink" href="team-{slugify(m.group(2))}.html"><span class="c_teamImg">{m.group(1)}</span><span class="c_teamName">{m.group(2)}</span></a></li>', people)
-people = people.replace("</blockquote>", f'</blockquote><a class="x_bioLink" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile <span aria-hidden="true">&rarr;</span></a>', 1)
+# the site's primary pill button, the same as Enquire (comment 2026-10-30: no underlined text link here)
+arrow_svg = re.search(r'<a href="#" class="s_btn s_btnPrimary s_btnSm">Enquire (<svg.*?</svg>)', header, re.S).group(1)
+people = people.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
 page(URL["team"], "Team &amp; CEO Message · Innovation Oasis", f'<div class="c_page x_team">{people}</div>{v3wrap(media)}', v3css)
 
 # the profile uses the press-release template (V3 detail): label, breadcrumb, title + lead, facts card in the aside,
@@ -139,7 +141,6 @@ for i, p in enumerate(members):
         text = f'<p>{first} is part of the small, hands-on team behind every laboratory, trial and partnership at Innovation Oasis.</p>'
         note = "Sample profile shown for layout. Role and bio to be supplied by Innovation Oasis."
     role = p["role"] or "Role to be confirmed"
-    prev_, next_ = members[i - 1], members[(i + 1) % len(members)]
     others = [members[(i + k) % len(members)] for k in (1, 2, 3)]
     cards = "".join(f'<li><a class="n3_card" href="team-{o["slug"]}.html"><div class="n3_cardImg"><img alt="{html.escape(o["name"])}" decoding="async" loading="lazy" src="{o["src"]}" '
                     'style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 50%"/>'
@@ -150,8 +151,7 @@ for i, p in enumerate(members):
             f'<div class="n3_wrap"><div class="n3_articleGrid"><aside class="n3_aside"><div class="x_bioImg"><img alt="{html.escape(p["name"])}" src="{p["src"]}"/></div>'
             f'<dl class="n3_metaCard"><div><dt>Role</dt><dd>{role}</dd></div><div><dt>Team</dt><dd>Innovation Oasis</dd></div><div><dt>Location</dt><dd>Al Ain, UAE</dd></div></dl>{sh}</aside>'
             f'<div class="n3_article">{text}{boiler}<p class="n3_note">{note}</p></div></div>'
-            f'<nav aria-label="More people" class="n3_pager"><a class="n3_pagerLink" href="team-{prev_["slug"]}.html"><small>Previous</small>{prev_["name"]}</a>'
-            f'<a class="n3_pagerLink n3_pagerNext" href="team-{next_["slug"]}.html"><small>Next</small>{next_["name"]}</a></nav></div></article>'
+            f'</div></article>'  # no previous / next row (comment 2026-10-30); "More of the team" below links on
             f'<section aria-labelledby="rel-h" class="n3_sec"><div class="n3_wrap"><p class="s3_label"><span class="s3_labelN">+</span><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p>'
             f'<div class="n3_relHead"><h2 class="n3_h2" data-reveal id="rel-h">More of the team</h2><a class="s3_go" href="{URL["team"]}"><span class="s3_goText">The whole team</span>{go_svg}</a></div>'
             f'<ul class="n3_grid">{cards}</ul></div></section>')
