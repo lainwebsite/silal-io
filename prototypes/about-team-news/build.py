@@ -47,9 +47,9 @@ def page(fname, title, body, page_css=""):
     # client comment 2026-10-30: no numbers in section labels on any page (02 Our People, 03 Media enquiries, PR, +)
     out = re.sub(r'<span class="(c_eyebrowNum|s3_labelN|n2_rowNum)">[^<]*</span>', "", out)
     # every root-relative asset becomes relative to the page; remember it to copy
-    for m in re.findall(r'(?:src|href)="/((?:photos|V1|V3|brand)/[^"]+)"', out):
+    for m in re.findall(r'(?:src|href)="/((?:photos|V1|V3|brand|new-homepage-v2)/[^"]+)"', out):
         used.add(html.unescape(m))
-    out = re.sub(r'((?:src|href)=")/((?:photos|V1|V3|brand)/)', r"\1\2", out)
+    out = re.sub(r'((?:src|href)=")/((?:photos|V1|V3|brand|new-homepage-v2/img)/)', r"\1\2", out)
     (OUT / fname).write_text(out, encoding="utf8")
     print(fname, len(out))
 
@@ -73,16 +73,14 @@ media = v3_links(part("v3-media.html"))
 v2css, v3css = part("v2.css"), part("v3.css")
 
 # ---------------------------------------------------------------- About: Our Story, Our Mission, Principles, Our Journey (V1 About-D)
-# Journey (moved here from the homepage, comment 2026-10-30): V1's horizontal track, plus a row of milestone buttons and
-# arrows so a reader can jump along the timeline instead of only scrolling through it.
-journey = no_num(part("v1-journey.html"))
-years = re.findall(r'<span class="c_jWhen">(.*?)</span>', journey)
-arrow = lambda d, path: (f'<button type="button" class="x_jArrow" data-dir="{d}" aria-label="{"Previous" if d < 0 else "Next"} milestone">'
-                         f'<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="{path}" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>')
-nav = ('<div class="s_wrap x_jNav">' + arrow(-1, "M12 8H4M7.5 4.5L4 8l3.5 3.5")
-       + '<ol class="x_jYears" aria-label="Milestones">' + "".join(f'<li><button type="button" class="x_jYear">{y}</button></li>' for y in years) + "</ol>"
-       + arrow(1, "M4 8h8M8.5 4.5L12 8l-3.5 3.5") + "</div>")
-journey = journey.replace('<div class="s_wrap c_jViewport">', nav + '<div class="s_wrap c_jViewport">', 1)
+# Journey (moved here from the homepage, comments 2026-10-30): the homepage's own journey (milestone tag + counter,
+# odometer year, one photo per milestone, step list) laid out left to right as in the client's frame; each milestone
+# and its dot is clickable so a reader can jump along the timeline.
+i0 = HOME.index('<section class="j_journey'); journey = HOME[i0:HOME.index("</section>", i0) + len("</section>")]
+journey = re.sub(r'<span id="jHead">.*?</span></span></p>', "</p>", journey, count=1, flags=re.S)
+journey = journey.replace('<span id="jTag">Milestone</span></p>', '<span id="jTag">Milestone</span><span id="jCount">01 / 08</span></p>', 1)
+journey = journey.replace('<li class="j_jourStep" data-step', '<li class="j_jourStep" tabindex="0" role="button" data-step')
+journey = journey.replace(' c_curtainStick" id="journey"', '" id="journey"', 1)
 about = "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
 # Principles: no underline below its label (comment 2026-10-30) = the homepage's own Principles variant, c_noRule
 about += no_num(part("v1-principles.html")).replace('<div class="c_headRow">', '<div class="c_headRow c_noRule">', 1)
@@ -136,7 +134,7 @@ for i, p in enumerate(members):
     prev_, next_ = members[i - 1], members[(i + 1) % len(members)]
     others = [members[(i + k) % len(members)] for k in (1, 2, 3)]
     cards = "".join(f'<li><a class="n3_card" href="team-{o["slug"]}.html"><div class="n3_cardImg"><img alt="{html.escape(o["name"])}" decoding="async" loading="lazy" src="{o["src"]}" '
-                    'style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 25%"/>'
+                    'style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 50%"/>'
                     f'<span class="n3_cardTag">Our People</span></div><p class="n3_cardDate">{o["role"] or "Innovation Oasis"}</p><h3 class="n3_cardTitle">{o["name"]}</h3></a></li>' for o in others)
     body = (f'<article class="x_bio"><header class="n3_head"><div class="n3_wrap"><p class="s3_label"><span class="s3_labelN">02</span><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p>'
             f'<nav aria-label="Breadcrumb" class="n3_crumbs"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><a href="{URL["team"]}">Team</a><span aria-hidden="true">/</span><span aria-current="page">{p["name"]}</span></nav>'

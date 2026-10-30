@@ -19,20 +19,36 @@
 .s3_root { --font-d6: "Readex Pro", system-ui, sans-serif; background: transparent; min-height: 0; }
 /* About: the story opens the page right under the header; labels carry no numbers (PDF) */
 .x_about .c_story { padding-top: clamp(40px, 4vw, 64px); }
-/* About: Our Journey runs left to right while it is pinned; the milestone row jumps along it */
+/* About: Our Journey = the homepage's journey laid out left to right (client frame 2026-10-30): photo, milestone
+   counter and odometer year on the left; below, a line with one dot per milestone and the milestones side by side.
+   While pinned, scrolling moves along the line; clicking a milestone jumps to it. */
 .x_jour { --sh: max(100svh, 680px); position: relative; }
 .x_jour[data-on="true"] { height: calc(var(--sh) + var(--len, 0px)); }
-.x_jour[data-on="true"] > .c_journey { position: sticky; top: 0; height: var(--sh); padding: 0; display: flex; flex-direction: column; justify-content: center; }
-.x_jour[data-on="true"] .c_jTrack { flex-direction: row; width: max-content; will-change: transform; }
-.x_jNav { display: flex; align-items: center; gap: 16px; margin-bottom: clamp(28px, 3vw, 48px); }
-.x_jYears { display: flex; flex-wrap: wrap; gap: 4px 24px; flex: 1; list-style: none; margin: 0; padding: 0; }
-.x_jYear { font: inherit; font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); background: none; border: 0; border-bottom: 1px solid transparent; padding: 8px 0; cursor: pointer; transition: color .3s, border-color .3s; }
-.x_jYear:hover { color: var(--charcoal); }
-.x_jYear[aria-current="true"] { color: var(--io-ink); border-bottom-color: var(--io); }
-.x_jArrow { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(89, 84, 83, .3); background: #fff; color: var(--charcoal); display: grid; place-items: center; cursor: pointer; transition: border-color .3s, color .3s; }
-.x_jArrow:hover:not(:disabled) { border-color: var(--io); color: var(--io-ink); }
-.x_jArrow:disabled { opacity: .35; cursor: default; }
-@media (max-width: 760px) { .x_jYears { gap: 2px 16px; } .x_jArrow { display: none; } }
+.x_jour .j_jourStep { cursor: pointer; }
+/* clip, not hidden: a focused milestone must not scroll the pinned section sideways */
+.x_jour .j_journey, .x_jour .j_jour { overflow: clip; }
+.x_jour .j_jourFrames { order: -1; }
+.x_jour .j_jourStep:focus-visible { outline: 2px solid var(--io); outline-offset: 6px; }
+#jCount { color: var(--grey-ink, #6e7173); font-variant-numeric: tabular-nums; }
+@media (min-width: 1000px) {
+  .x_jour[data-on="true"] > .j_journey { position: sticky; top: 0; height: var(--sh); padding: 72px 0 0; display: flex; flex-direction: column; justify-content: center; overflow: clip; }
+  .x_jour .j_head { padding-top: clamp(20px, 2.4vh, 32px); border-top: 1px solid var(--io); margin-bottom: clamp(18px, 3vh, 40px); }
+  .x_jour .j_jourGrid { display: block; }
+  .x_jour .j_jourStage { display: block; }
+  .x_jour .j_jourStick { position: static; height: auto; width: min(444px, 31vw); gap: clamp(10px, 1.6vh, 18px); }
+  .x_jour .j_jourFrames { flex: none; aspect-ratio: 444 / 390; max-height: 31vh; min-height: 0; }
+  .x_jour .j_jourTicks, .x_jour .j_jourMobileImg { display: none; }
+  .x_jour .j_odo { font-size: clamp(52px, min(5.4vw, 8vh), 96px); }
+  .x_jour .j_jourSteps { grid-column: auto; padding: 0; margin: clamp(14px, 2.6vh, 32px) 0 0; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .x_jour #jList { position: relative; width: max-content; will-change: transform; }
+  .x_jour .j_jourSteps ol { display: flex; margin: 0; padding: 0; list-style: none; }
+  .x_jour .j_jourLine { inset: 0 0 auto 0; width: auto; height: 1px; top: 0; }
+  .x_jour .j_jourLine > i { inset: -0.5px 0; transform: scaleX(0); transform-origin: left; }
+  .x_jour .j_jourStep { width: clamp(360px, 34.7vw, 700px); min-height: 0; padding: clamp(56px, 8vh, 96px) 48px 0 2px; justify-content: flex-start; gap: 18px; opacity: .3; }
+  .x_jour .j_jourStep[data-on] { opacity: 1; }
+  .x_jour .j_jourStep::before { top: 0; inset-inline-start: 0; transform: translateY(-50%); }
+  .x_jour .j_jourTitle { font-size: clamp(28px, 2.4vw, 44px); }
+}
 /* Team: white page; "Our Team" heading, then the label and two text columns (PDF) */
 .x_team .c_section { background: #fff; padding-top: clamp(40px, 4vw, 64px); }
 .x_team .c_teamHead { display: block; }
@@ -43,7 +59,9 @@
 .x_bioLink { display: inline-flex; gap: 10px; margin-top: 28px; font-size: .875rem; font-weight: 500; color: var(--io-ink); padding-bottom: 4px; border-bottom: 1px solid currentColor; }
 /* profile page (press-release template): portrait in the aside, quote in the text column */
 .x_bioImg { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r, 6px); margin-bottom: 8px; }
-.x_bioImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.x_bioImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+/* every team photo centred top to bottom (comment 2026-10-30) */
+.x_team .c_teamImg img { object-position: 50% 50%; }
 .n3_bioQuote { font-size: var(--t-lead, 22px); line-height: 1.35; color: var(--io-ink); margin: 1.4em 0; }
 .x_teamCols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--col-gap, 48px); }
 .x_teamCols .c_mini { grid-column: 1 / -1; }
@@ -124,41 +142,52 @@
     render(false);
   }
 
-  /* ---------- About · Our Journey: pinned, the track moves left to right with the scroll (wide screens); every milestone
-     has a button (and prev/next arrows) that scrolls to it, so the reader can jump along the timeline ---------- */
+  /* ---------- About · Our Journey (homepage markup, horizontal): pinned on wide screens, the milestones move left to
+     right with the scroll; every milestone (and its dot) is a button that jumps to it ---------- */
   var jw = $('#xJour');
   if (jw) {
-    var jt = $('.c_jTrack', jw), jvp = jt.parentElement, jl = $$('.c_jTrack > li', jw), jy = $$('.x_jYear', jw), ja = $$('.x_jArrow', jw), jb = $('.c_jBar', jw);
-    var jOn = false, jDist = 0, jLen = 0, jCur = -1, jn = jl.length;
+    var jl = $('#jList', jw), steps = $$('.j_jourStep', jw), frames = $$('.j_jourFrame', jw), fill = $('#jLine', jw);
+    var odoT = $('#odoT', jw), odoO = $('#odoO', jw), jTag = $('#jTag', jw), jCount = $('#jCount', jw), n = steps.length;
+    var jOn = false, jDist = 0, jLen = 0, jCur = -1, pad = function (v) { return (v < 10 ? '0' : '') + v; };
+    function jSet(c) {
+      if (c === jCur) return; jCur = c;
+      steps.forEach(function (s, i) { if (i === c) s.setAttribute('data-on', ''); else s.removeAttribute('data-on'); s.setAttribute('aria-current', i === c); });
+      frames.forEach(function (f, i) { if (i === c) f.setAttribute('data-on', ''); else f.removeAttribute('data-on'); if (i < c) f.setAttribute('data-past', ''); else f.removeAttribute('data-past'); });
+      var y = steps[c].dataset.year || '';
+      if (odoT && y.length === 4) { odoT.style.transform = 'translateY(' + (-+y[2]) + 'em)'; odoO.style.transform = 'translateY(' + (-+y[3]) + 'em)'; }
+      if (jTag) jTag.textContent = steps[c].dataset.tag || 'Milestone';
+      if (jCount) jCount.textContent = pad(c + 1) + ' / ' + pad(n);
+    }
     function jSetup() {
       jOn = !reduce && innerWidth >= 1000 && innerHeight >= 600;
-      jw.dataset.on = jOn; jt.style.transform = '';
-      var cs = getComputedStyle(jvp), inner = jvp.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      jDist = jOn ? Math.max(0, jt.scrollWidth - inner) : 0;
-      jLen = Math.round(jDist * 1.2); jw.style.setProperty('--len', jLen + 'px');
+      jw.dataset.on = jOn; jl.style.transform = ''; if (fill) fill.style.transform = '';
+      jDist = jOn ? Math.max(0, steps[n - 1].offsetLeft - steps[0].offsetLeft) : 0;
+      jLen = Math.round(jDist * 1.1); jw.style.setProperty('--len', jLen + 'px');
       jCur = -1; jUpd();
     }
-    // each milestone owns an equal share of the pinned scroll, so every button has its own stop
-    function jY(i) { return jw.getBoundingClientRect().top + scrollY + (jn > 1 ? i / (jn - 1) : 0) * jLen; }
     function jUpd() {
-      var cur = 0;
+      var c = 0;
       if (jOn && jLen) {
         var p = Math.max(0, Math.min(1, -jw.getBoundingClientRect().top / jLen));
-        jt.style.transform = 'translate3d(' + (-p * jDist).toFixed(1) + 'px,0,0)';
-        if (jb) jb.style.transform = 'scaleX(' + p + ')';
-        cur = Math.round(p * (jn - 1));
-      } else jl.forEach(function (li, i) { if (li.getBoundingClientRect().top < innerHeight * 0.5) cur = i; });
-      if (cur === jCur) return; jCur = cur;
-      jy.forEach(function (b, i) { b.setAttribute('aria-current', i === cur); });
-      if (ja.length) { ja[0].disabled = cur === 0; ja[1].disabled = cur === jn - 1; }
+        jl.style.transform = 'translate3d(' + (-p * jDist).toFixed(1) + 'px,0,0)';
+        if (fill) fill.style.transform = 'scaleX(' + p + ')';
+        c = Math.round(p * (n - 1));
+      } else {
+        steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < innerHeight * 0.55) c = i; });
+        if (fill) fill.style.transform = 'scaleY(' + (n > 1 ? c / (n - 1) : 0) + ')';
+      }
+      jSet(c);
     }
     function jGo(i) {
-      i = Math.max(0, Math.min(jn - 1, i));
-      var y = jOn ? jY(i) + 2 : jl[i].getBoundingClientRect().top + scrollY - 120;
+      i = Math.max(0, Math.min(n - 1, i));
+      var y = jOn ? jw.getBoundingClientRect().top + scrollY + (n > 1 ? i / (n - 1) : 0) * jLen + 2 : steps[i].getBoundingClientRect().top + scrollY - 140;
       if (lenis) lenis.scrollTo(y, { duration: 1.2 }); else scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
     }
-    jy.forEach(function (b, i) { b.addEventListener('click', function () { jGo(i); }); });
-    ja.forEach(function (b) { b.addEventListener('click', function () { jGo(jCur + +b.dataset.dir); }); });
+    steps.forEach(function (s, i) {
+      s.setAttribute('aria-label', 'Go to ' + s.querySelector('.j_jourWhen').textContent + ': ' + s.querySelector('.j_jourTitle').textContent);
+      s.addEventListener('click', function () { jGo(i); });
+      s.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jGo(i); } if (e.key === 'ArrowRight') jGo(i + 1); if (e.key === 'ArrowLeft') jGo(i - 1); });
+    });
     addEventListener('scroll', jUpd, { passive: true }); addEventListener('resize', jSetup);
     jSetup(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(jSetup);
   }

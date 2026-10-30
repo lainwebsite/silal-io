@@ -81,9 +81,13 @@ for f in sorted(B.glob("*.html")):
         n += 1
         return f'<a {m.group(1)}href="{to}"{m.group(2)}>{m.group(3)}</a>'
     s = re.sub(r'<a ([^>]*?)href="#"([^>]*)>(.*?)</a>', link, s, flags=re.S)
+    # "Our Story" opened the same page as "About IO" right below it in the menu (comment 2026-10-30): one entry is enough
+    s = s.replace('<li><a href="about.html">Our Story</a></li>', "")
+    s = s.replace('["Our Story","Team & CEO Message","Virtual Tour \u2197"]', '["Team & CEO Message","Virtual Tour \u2197"]')
     # active main-menu item = the page's own section (none on the homepage and the news pages)
     sec = next((v for k, v in SECTION.items() if f.name.startswith(k)), None)
-    s = s.replace('data-active="true"', 'data-active="false"')
+    # only in the links themselves: the CSS selectors that style the active item carry the same text
+    s = re.sub(r'(<a\b[^>]*?)data-active="true"', r'\1data-active="false"', s)
     if sec:
         s = re.sub(r'(<li class="s_navItem"><a [^>]*?)data-active="false"([^>]*>' + re.escape(html.escape(sec, quote=False)) + "</a>)",
                    r'\1data-active="true"\2', s, count=1)
