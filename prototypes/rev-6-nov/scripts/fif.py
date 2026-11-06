@@ -135,6 +135,7 @@ cohort = f'''<section class="x_sec rv_cohort"><div class="s_wrap">
     <div class="rv_two"><div><span class="c_eyebrow" data-reveal>Cohort 1 at a glance · 2026</span><h2 class="x_h2" data-reveal>Farmer-led ideas from across the UAE</h2></div><div><p class="x_body" data-reveal>The first cycle in figures, from outreach to the final pitch. Funded projects and projects in progress will be added as they are confirmed.</p></div></div>
     <div class="rv_cohGrid"><ol class="rv_funnel">{fun}</ol>
     <ul class="rv_side"><li><b>7</b><span>Emirates represented</span><p>Applications came from all seven Emirates, giving the first cycle nationwide representation.</p></li><li><b>17</b><span>Expert reviewers engaged</span><p>Agricultural, scientific, technical, operational and commercial specialists contributed to proposal evaluation.</p></li></ul></div>
+    <div class="rv_impact"><div><span class="x_label">Impact · end of Cycle 1</span><p>Outcome metrics are added here as projects report verified results.</p></div><ul><li><b>—</b><span>Water saved</span></li><li><b>—</b><span>Yield increase</span></li><li><b>—</b><span>Input and cost savings</span></li><li><b>—</b><span>Solutions adopted</span></li></ul></div>
     <p class="rv_note">Cohort 1, 2026. Funnel bars use a log scale so every stage stays readable.</p>
   </div></section>'''
 

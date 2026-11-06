@@ -1,0 +1,761 @@
+Incubation Page
+
+The page should communicate that:
+
+1.  Incubation translates promising research, intellectual property and early technologies into practical opportunities.
+
+2.  It is not open-ended research funding or a conventional startup accelerator.
+
+3.  Each project follows a tailored sequence of experiments, not a fixed linear roadmap.
+
+4.  IO tests technical, user, operational and commercial assumptions together.
+
+5.  Learning, including negative evidence, informs whether a project should continue, pivot or stop.
+
+6.  Successful projects may progress toward deployment, licensing, co-development, venture creation or another value pathway.
+
+7.  The Khalifa University cohort is an important example, but it should not define the entire incubation offer.
+
+1. Hero
+
+RESEARCH TRANSLATION AND TECHNOLOGY INCUBATION
+
+Turning promising research into pathways to value
+
+IO Incubation helps researchers, universities and technology teams translate promising research, intellectual property and early-stage technologies into solutions with practical and commercial potential.
+
+Through focused experimentation, real-world validation and customer discovery, IO helps teams resolve critical uncertainties, refine their solutions and determine the strongest route forward.
+
+Primary CTA
+
+Discuss an incubation opportunity
+
+Secondary CTA
+
+Explore how incubation works
+
+2. What Incubation Means at IO
+
+OUR MODEL
+
+Not open-ended research. Not a conventional accelerator.
+
+IO Incubation is a tech translation model for determining the fastest credible pathway from research or prototype to first user.
+
+Each project is structured as a sequence of focused experiments. Rather than committing immediately to a long development roadmap, IO and the project team identify the most consequential uncertainty, design the smallest credible test to resolve it and use the evidence to determine what happens next.
+
+Three defining principles
+
+Start with the problem
+
+Projects must address an evidenced and strategically relevant need, with a defined user, customer or problem owner.
+
+Invest in learning
+
+Every activity should generate evidence that reduces uncertainty or unlocks a specific next decision.
+
+Follow the evidence
+
+Projects may continue, pivot or stop. Negative results are valuable when they prevent unnecessary development or reveal a stronger route forward.
+
+Incubation is successful when it produces faster, data-driven decision making, not simply when a project completes its original roadmap.
+
+(This section should replace the current cohort-specific introductory panel near the top of the page.)
+
+3. Who Incubation Is For
+
+WHO IT IS FOR
+
+Promising opportunities that need focused validation
+
+IO Incubation supports researchers, universities, scientific teams, technology developers and early-stage ventures with promising solutions that require further evidence before they can progress.
+
+Suitable opportunities may begin as research, intellectual property, an early prototype or an early-stage venture proposition. What matters is that the opportunity addresses a clearly defined agrifood need and can benefit from focused technical, user, operational or commercial validation.
+
+Research teams and universities
+
+Translate scientific research, intellectual property or laboratory findings into a defined product, service, capability or commercial application.
+
+Early-stage ventures
+
+Test the critical assumptions behind an emerging venture, strengthen the product and value proposition, and generate the evidence needed to identify a credible route toward customers, partnerships or further investment.
+
+Technology developers
+
+Validate an early prototype, adapt an existing solution for agrifood or UAE conditions, or resolve critical technical, operational and market uncertainties.
+
+Collaborative teams
+
+Bring together research, engineering, agronomy, product, commercial and industry expertise to develop and validate a shared opportunity.
+
+Entry Profile
+
+Incubation is most relevant where:
+
+-   The opportunity addresses a clearly evidenced agrifood problem
+
+-   The intended user, customer or problem owner can be identified
+
+-   An early solution, prototype, research output or technical asset already exists
+
+-   Important technical, customer, operational or commercial assumptions remain unvalidated
+
+-   A focused experiment could resolve a critical uncertainty or unlock a defined next step
+
+-   The core team has the capability and commitment to participate in the validation process
+
+-   IO can provide meaningful access to expertise, facilities, data, users, operating environments or commercial relationships
+
+-   There is an initial hypothesis for how the opportunity could ultimately create value
+
+Incubation is very selective. Opportunities are assessed based on the importance of the problem, strength of existing evidence, team capability, potential value and fit with IO’s capabilities.
+
+4. Where Incubation Sits
+
+MEASURING READINESS
+
+From early proof of concept to real-world validation
+
+Technology Readiness Levels, or TRLs, show how far a technology has progressed from an initial idea toward proven operational use.
+
+IO Incubation typically supports technologies between TRL 3 and TRL 6, helping teams move from experimental proof of concept toward validation in relevant conditions.
+
+Technology Readiness Levels
+
+-   TRL 1–2: Early research and technology concept
+
+-   TRL 3: Experimental proof of concept
+
+-   TRL 4: Technology validated in the laboratory
+
+-   TRL 5: Technology validated in a relevant environment
+
+-   TRL 6: Technology demonstrated in a relevant environment
+
+-   TRL 7: Prototype demonstrated in an operational environment
+
+-   TRL 8–9: Complete solution proven through operational use
+
+IO Incubation
+
+Typically TRL 3–6
+
+For research, prototypes and early-stage ventures that still require focused technical, user or commercial validation.
+
+Acceleration
+
+Typically TRL 7 and above
+
+For mature technologies ready for operational validation, localization and commercial engagement.
+
+These ranges are indicative. The right pathway also depends on the evidence available and the questions that still need to be answered.
+
+Design Direction
+
+Retain the existing nine-step staircase design
+
+Adoption Readiness
+
+BEYOND THE TECHNOLOGY
+
+Is the solution ready to be adopted?
+
+Technical maturity alone does not determine whether a solution will succeed. IO also considers Adoption Readiness Level, or ARL, to understand whether a solution can create value and work in practice.
+
+Value Proposition
+
+Does the solution offer a meaningful advantage?
+
+-   Functional performance
+
+-   Delivered cost
+
+-   Ease of use
+
+Market Acceptance
+
+Is there a clear customer need and a receptive market?
+
+-   Strength of demand
+
+-   Market opportunity
+
+-   Position in the value chain
+
+Resource Maturity
+
+Can the solution be produced, delivered and supported?
+
+-   Infrastructure
+
+-   Manufacturing and supply
+
+-   Skills and workforce
+
+License to Operate
+
+Can the solution navigate the requirements for implementation?
+
+-   Regulation and approvals
+
+-   Environmental and safety requirements
+
+-   Policy and user acceptance
+
+Choosing the Right Next Step
+
+VALIDATION PATHWAY
+
+TRL and ARL determine what should happen next
+
+IO considers technology and adoption readiness together to determine the most appropriate validation activity.
+
+  -------------------------------------------------------------------------------------------------
+  Technology Readiness   Adoption Readiness   Likely Next Step
+  ---------------------- -------------------- -----------------------------------------------------
+  Low                    Low                  Further research or laboratory testing
+
+  Moderate to high       Low                  Proof of concept focused on customer need and value
+
+  Low to moderate        Moderate to high     Technical proof of concept
+
+  Moderate               Moderate             Pilot in a relevant environment
+
+  High                   Moderate to high     Operational pilot or demonstration
+
+  High                   High                 Commercial deployment or scaled rollout
+  -------------------------------------------------------------------------------------------------
+
+Closing Copy
+
+Projects do not all enter Incubation at the same point or follow the same route.
+
+IO identifies the most important technical or adoption question and designs the next experiment around it. The evidence then determines whether the project should continue, pivot, progress to a larger pilot or conclude.
+
+Design Direction
+
+Retain the two-axis readiness matrix, but simplify the zones to:
+
+-   Research
+
+-   Proof of Concept
+
+-   Pilot
+
+-   Operational Demonstration
+
+-   Commercial Deployment
+
+The matrix should visually connect the readiness section to the following How Incubation Works section.
+
+[][][]
+
+5. How Incubation Works
+
+THE INCUBATION JOURNEY
+
+Evidence first. Investment follows.
+
+Each incubation project follows a tailored sequence of learning cycles. The scope, timeline and support model depend on the opportunity, the evidence already available and the most consequential uncertainties.
+
+01. Frame the opportunity
+
+Define:
+
+-   The problem
+
+-   The intended user or customer
+
+-   The current baseline
+
+-   Existing alternatives
+
+-   The strategic importance
+
+-   The initial solution and value hypothesis
+
+Output
+
+A clearly framed opportunity and initial route-to-value hypothesis
+
+02. Assess the evidence
+
+Review:
+
+-   Existing technical results
+
+-   User and customer evidence
+
+-   Prior art and competing solutions
+
+-   Intellectual-property position
+
+-   Team capability
+
+-   Market and adoption assumptions
+
+-   Regulatory and operational barriers
+
+Output
+
+A clear picture of what is known, unknown and assumed
+
+03. Prioritize the critical uncertainty
+
+Identify the assumption most likely to determine whether the opportunity should progress.
+
+Examples include:
+
+-   Technical performance
+
+-   User need
+
+-   Customer willingness to pay
+
+-   Unit economics
+
+-   Operational adoption
+
+-   Manufacturability
+
+-   Regulatory feasibility
+
+-   Intellectual-property freedom to operate
+
+Output
+
+A prioritized validation question and decision gate
+
+04. Design the experiment
+
+Develop the smallest credible experiment capable of resolving the priority uncertainty.
+
+This may involve:
+
+-   Laboratory analysis
+
+-   Prototype iteration
+
+-   Greenhouse or field testing
+
+-   User interviews
+
+-   Workflow testing
+
+-   Market testing
+
+-   Cost modelling
+
+-   Prior-art or IP assessment
+
+Output
+
+An agreed experiment, evidence plan and success criteria
+
+05. Run the validation cycle
+
+Implement the experiment with access to the required expertise, facilities, users, data and operating environments.
+
+Output
+
+Technical, user, operational or commercial evidence
+
+06. Review and decide
+
+Assess the results against predefined criteria.
+
+Every cycle concludes with one of three decisions:
+
+Continue
+
+The evidence supports another focused validation cycle.
+
+Pivot
+
+The evidence suggests that the use case, customer, product design, technical approach or value pathway should change.
+
+Stop
+
+The evidence no longer justifies further investment, while useful data, know-how or intellectual property are documented and preserved.
+
+Output
+
+An evidence-based decision and next-step recommendation
+
+6. What Teams Receive
+
+INCUBATION SUPPORT
+
+IO acts as a co-developer, not only a funder
+
+Selected projects receive a support package tailored to the opportunity and validation cycle.
+
+Opportunity and product development
+
+-   Problem and use-case definition
+
+-   Product and value-proposition development
+
+-   Customer discovery
+
+-   Commercial pathway assessment
+
+-   Business-case development
+
+Scientific and technical validation
+
+-   Experimental design
+
+-   Trial protocols
+
+-   Laboratory support
+
+-   Greenhouse, nethouse and field access
+
+-   Technical and agronomic expertise
+
+-   Data review and interpretation
+
+Real-world access
+
+-   Farm and operational environments
+
+-   Relevant users and customers
+
+-   Crop and production data
+
+-   Supply-chain workflows
+
+-   Industry and ecosystem stakeholders
+
+Commercial and strategic support
+
+-   Market and competitive assessment
+
+-   Partnership development
+
+-   Internal sponsor engagement
+
+-   Licensing and co-development pathways
+
+-   Investor or customer introductions where appropriate
+
+Intellectual property and evidence
+
+-   Prior-art assessment
+
+-   IP-position review
+
+-   Data and evidence planning
+
+-   Identification of potentially protectable know-how
+
+-   Documentation of results and learnings
+
+Potential project resources
+
+Depending on the opportunity, support may include:
+
+-   In-kind IO contributions
+
+-   Access to facilities and expertise
+
+-   Partner contributions
+
+-   Milestone-based project funding
+
+-   Specialist services
+
+-   Further funding recommendations
+
+7. What Teams Commit
+
+ACCOUNTABLE OWNERSHIP
+
+Strong projects need capable, committed teams
+
+Incubation is a collaborative development process. Project teams remain accountable for the technical work, project delivery and quality of evidence.
+
+Teams should be prepared to:
+
+-   Assign a capable and accountable project lead
+
+-   Commit the required scientific and technical contributors
+
+-   Participate in customer and user discovery
+
+-   Share relevant data, research and project information
+
+-   Respond to evidence, including changing the proposed approach
+
+-   Work against defined decision gates and deadlines
+
+-   Clarify ownership, background IP and new IP
+
+-   Support project reporting and governance
+
+-   Engage with relevant users, partners or sponsors
+
+-   Accept that incubation may recommend a pivot or stop decision
+
+Suggested callout
+
+Incubation is not designed to protect the original idea. It is designed to find the strongest evidence-supported pathway to value.
+
+8. How Opportunities Are Selected
+
+SELECTION PRINCIPLES
+
+Where IO can make a meaningful difference
+
+Projects are not selected only because the technology is interesting. IO prioritizes opportunities where the problem matters, the potential value is credible and IO can provide a differentiated advantage.
+
+01. Problem relevance
+
+Is the project addressing an evidenced and strategically important agrifood challenge?
+
+02. Clear user or customer
+
+Is there an identified problem owner, user, customer or operational sponsor?
+
+03. Strength of early evidence
+
+Is there sufficient technical or user evidence to justify further validation?
+
+04. IO’s right to contribute
+
+Can IO provide important access to farms, facilities, data, expertise, customers, regulators or operating environments?
+
+05. Team capability
+
+Is the required scientific, technical, product and commercial capability available and accountable?
+
+06. Potential value
+
+Could the opportunity create meaningful operational, commercial, strategic or intellectual-property value more than will be invested to make it successful?
+
+07. Evidence gap
+
+Can a focused experiment resolve a defined uncertainty or unlock a specific next step?
+
+08. Route beyond incubation
+
+Is there an initial hypothesis for deployment, licensing, partnership, investment or another value pathway?
+
+9. Current Incubation Portfolio
+
+INCUBATION IN ACTION
+
+Projects translating research into practical opportunity
+
+The first incubation portfolio, developed with Khalifa University, is testing how emerging agricultural technologies can progress from university research toward practical, operational and commercial application.
+
+The portfolio currently includes technologies related to pollination, post-harvest quality, crop monitoring and plant health.
+
+Important positioning
+
+Khalifa University Research Translation Portfolio (instead of Agri-robotics 2026)
+
+The partner and project information in the current design can remain, but the portfolio should be presented as an example of IO’s incubation model, not as the definition of the complete platform.
+
+(4 projects presented as-is)
+
+11. What Success Looks Like
+
+INCUBATION OUTCOMES
+
+Better evidence. Better decisions. Stronger pathways.
+
+Success is not defined only by advancing a technology-readiness level or completing a planned list of deliverables.
+
+IO measures incubation through the quality and speed of learning and the extent to which evidence unlocks a credible next step.
+
+Learning
+
+-   Critical assumptions tested
+
+-   Validation cycles completed
+
+-   Technical and commercial uncertainties resolved
+
+-   Evidence-based pivots made
+
+-   Resources redirected away from weak pathways
+
+Validation
+
+-   Performance demonstrated against a relevant baseline
+
+-   User or customer need confirmed
+
+-   Operational conditions understood
+
+-   Unit economics or value case strengthened
+
+-   Adoption barriers identified and addressed
+
+Assets created
+
+-   Locally relevant data
+
+-   Validated protocols
+
+-   Prototype improvements
+
+-   Defensible know-how
+
+-   Intellectual-property opportunities
+
+-   Reusable technical or market insight
+
+Pathways unlocked
+
+-   Internal deployment
+
+-   Licensing
+
+-   Co-development
+
+-   Procurement
+
+-   Strategic partnership
+
+-   Follow-on investment
+
+-   Venture creation
+
+-   Progression to later-stage validation
+
+Recommended success statement
+
+Incubation succeeds when a project generates enough evidence to support a confident decision and a credible pathway forward, including when that decision is to pivot or stop.
+
+The current design states that success means at least one project becomes jointly owned IP, a commercial or scaled deployment, or attracts further investment. That can remain as an aspirational portfolio objective, but it is too narrow as the sole definition of success. It excludes valuable no-go decisions, reusable data, validated learning and strategic capability. [Incubation...rview.pptx | PowerPoint]
+
+12. Partner Model
+
+RESEARCH AND INDUSTRY PARTNERSHIPS
+
+Combining research excellence with real-world access
+
+IO works with research institutions, operating partners and technical specialists to translate emerging technologies into practical opportunities.
+
+Research partners contribute
+
+-   Scientific expertise
+
+-   Research teams
+
+-   Background intellectual property
+
+-   Laboratory and engineering capabilities
+
+-   Technical development
+
+IO contributes
+
+-   Problem and use-case definition
+
+-   Agrifood and arid-environment expertise
+
+-   Farm, greenhouse and operational access
+
+-   Data and user insight
+
+-   Experimental and pilot design
+
+-   Product and commercialization support
+
+-   Industry and ecosystem relationships
+
+Operating and commercial partners contribute
+
+-   Customer and user requirements
+
+-   Operational environments
+
+-   Adoption and implementation insight
+
+-   Market access
+
+-   Potential deployment, licensing or investment pathways
+
+Khalifa University example
+
+Khalifa University is the primary research partner for the current agricultural-technology portfolio, with project teams spanning robotics, artificial intelligence, sensing and engineering.
+
+Use partner logos alongside this explanation, rather than showing logos in the hero without explaining the relationship.
+
+13. Expression of Interest
+
+WORK WITH IO
+
+Is your research ready for translation?
+
+IO is interested in opportunities that address an evidenced agrifood need and can benefit materially from our technical, operational, validation and commercial capabilities.
+
+Before contacting IO, be ready to describe
+
+-   The problem
+
+-   Intended user or customer
+
+-   Current solution or research
+
+-   Evidence generated to date
+
+-   Technology and commercial readiness
+
+-   Team and intellectual-property ownership
+
+-   Critical uncertainties
+
+-   Support required
+
+-   Initial route-to-value hypothesis
+
+Primary CTA
+
+Submit an expression of interest
+
+Secondary CTA
+
+Speak to the incubation team
+
+Suggested form fields
+
+-   Applicant name
+
+-   Organization
+
+-   Email
+
+-   Project or technology name
+
+-   Problem addressed
+
+-   Intended user or customer
+
+-   Current evidence
+
+-   Current TRL and CRL, if known
+
+-   Intellectual-property status
+
+-   Team members and capabilities
+
+-   Required IO support
+
+-   Supporting document upload
+
+14. Related Pathway
+
+READY FOR OPERATIONAL VALIDATION?
+
+Unbreakable Harvest
+
+If your technology has already been proven in a relevant operating environment and is ready for UAE validation, customer engagement and market entry, Unbreakable Harvest may be the better place to start.
+
+CTA: Explore Unbreakable Harvest
+
+Replace the generic Accelerator closing banner with the approved platform name and a clear explanation of the distinction.

@@ -5427,6 +5427,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="rv_two"><div><span class="c_eyebrow" data-reveal>Cohort 1 at a glance · 2026</span><h2 class="x_h2" data-reveal>Farmer-led ideas from across the UAE</h2></div><div><p class="x_body" data-reveal>The first cycle in figures, from outreach to the final pitch. Funded projects and projects in progress will be added as they are confirmed.</p></div></div>
     <div class="rv_cohGrid"><ol class="rv_funnel"><li style="--w:100%"><div class="rv_fBar"><b>1,000+</b></div><div class="rv_fTxt"><h3>Farmers reached</h3><p>Targeted outreach introduced the Fund to local farmers and agricultural networks across the UAE.</p></div></li><li style="--w:70%"><div class="rv_fBar"><b>130</b></div><div class="rv_fTxt"><h3>Applications submitted</h3><p>Applicants brought forward a diverse range of ideas addressing practical agricultural challenges and opportunities.</p></div></li><li style="--w:61%"><div class="rv_fBar"><b>68</b></div><div class="rv_fTxt"><h3>Applicants progressed</h3><p>Eligible participants advanced to the proposal-development phase and were invited to strengthen their initial ideas.</p></div></li><li style="--w:30%"><div class="rv_fBar"><b>8</b></div><div class="rv_fTxt"><h3>Shortlisted for the final pitch</h3><p>Eight finalists presented their ideas for funding and implementation support.</p></div></li></ol>
     <ul class="rv_side"><li><b>7</b><span>Emirates represented</span><p>Applications came from all seven Emirates, giving the first cycle nationwide representation.</p></li><li><b>17</b><span>Expert reviewers engaged</span><p>Agricultural, scientific, technical, operational and commercial specialists contributed to proposal evaluation.</p></li></ul></div>
+    <div class="rv_impact"><div><span class="x_label">Impact · end of Cycle 1</span><p>Outcome metrics are added here as projects report verified results.</p></div><ul><li><b>—</b><span>Water saved</span></li><li><b>—</b><span>Yield increase</span></li><li><b>—</b><span>Input and cost savings</span></li><li><b>—</b><span>Solutions adopted</span></li></ul></div>
     <p class="rv_note">Cohort 1, 2026. Funnel bars use a log scale so every stage stays readable.</p>
   </div></section>
 <section class="x_grey"><div class="f_dayPin" id="dayPin"><div class="f_dayStick">
@@ -6683,6 +6684,14 @@ summary { list-style: none; cursor: pointer; } summary::-webkit-details-marker {
 .rv_side li { padding: 22px; background: var(--light); display: flex; flex-direction: column; gap: 6px; }
 .rv_side b { font-size: clamp(2.2rem, 3.4vw, 3.2rem); font-weight: 300; color: var(--io-ink); line-height: 1; }
 .rv_side span { font-size: .9375rem; color: var(--charcoal); } .rv_side p { font-size: .8125rem; color: var(--grey); line-height: 1.55; }
+/* impact slot (Caitlin, 5 Nov: impact metrics after the first cycle) */
+.rv_impact { margin-top: 24px; display: grid; grid-template-columns: 1fr 2fr; gap: var(--col-gap); align-items: center; padding: 22px 24px; border: 1px dashed #b9c9d1; }
+.rv_impact p { font-size: .875rem; color: var(--grey); margin-top: 6px; }
+.rv_impact ul { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.rv_impact li { display: flex; flex-direction: column; gap: 4px; }
+.rv_impact b { font-size: 2rem; font-weight: 200; color: #b9c9d1; line-height: 1; }
+.rv_impact li span { font-size: .8125rem; color: var(--charcoal); }
+@media (max-width: 899px) { .rv_impact { grid-template-columns: 1fr; } .rv_impact ul { grid-template-columns: 1fr 1fr; } }
 /* partners */
 .rv_pGrid2 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: start; }
 .rv_eco { grid-column: 1 / span 5; position: relative; aspect-ratio: 1; max-width: 460px; }

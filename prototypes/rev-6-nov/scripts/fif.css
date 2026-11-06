@@ -100,6 +100,14 @@ summary { list-style: none; cursor: pointer; } summary::-webkit-details-marker {
 .rv_side li { padding: 22px; background: var(--light); display: flex; flex-direction: column; gap: 6px; }
 .rv_side b { font-size: clamp(2.2rem, 3.4vw, 3.2rem); font-weight: 300; color: var(--io-ink); line-height: 1; }
 .rv_side span { font-size: .9375rem; color: var(--charcoal); } .rv_side p { font-size: .8125rem; color: var(--grey); line-height: 1.55; }
+/* impact slot (Caitlin, 5 Nov: impact metrics after the first cycle) */
+.rv_impact { margin-top: 24px; display: grid; grid-template-columns: 1fr 2fr; gap: var(--col-gap); align-items: center; padding: 22px 24px; border: 1px dashed #b9c9d1; }
+.rv_impact p { font-size: .875rem; color: var(--grey); margin-top: 6px; }
+.rv_impact ul { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.rv_impact li { display: flex; flex-direction: column; gap: 4px; }
+.rv_impact b { font-size: 2rem; font-weight: 200; color: #b9c9d1; line-height: 1; }
+.rv_impact li span { font-size: .8125rem; color: var(--charcoal); }
+@media (max-width: 899px) { .rv_impact { grid-template-columns: 1fr; } .rv_impact ul { grid-template-columns: 1fr 1fr; } }
 /* partners */
 .rv_pGrid2 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: start; }
 .rv_eco { grid-column: 1 / span 5; position: relative; aspect-ratio: 1; max-width: 460px; }

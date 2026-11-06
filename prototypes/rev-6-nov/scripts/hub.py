@@ -28,7 +28,7 @@ panels_old = between(h, '<div class="s_wrap"><div class="h_panels" id="hubPanels
 P = [
     ('ivp-farm-innovation-fund.html', IMG + 'hero_fif.webp', 'Farmers on the Innovation Day field tour beside the greenhouses', 'Farm Innovation Fund', 'For UAE farmers &amp; entrepreneurs', 'TRL 1–8',
      'Develop and test practical solutions to challenges identified on UAE farms, supported by funding, expert input and structured project delivery.', ''),
-    ('ivp-incubation.html', IMG + 'hero_inc.webp', 'Researchers with an agri-robotics prototype', 'Incubation', 'For researchers and early-stage ventures', 'TRL 4–7',
+    ('ivp-incubation.html', IMG + 'hero_inc.webp', 'Researchers with an agri-robotics prototype', 'Incubation', 'For researchers and early-stage ventures', 'TRL 3–6',
      'Translate promising research and early-stage technologies through focused technical, user, adoption and commercial validation.', ''),
     ('ivp-accelerator.html', IMG + 'acc_green.webp', 'Misting inside a high-tech greenhouse', 'Acceleration', 'For later-stage ventures', 'TRL 7+',
      'Validate, localize and commercialize deployment-ready technologies in demanding operational conditions and build a route into the UAE and wider region.', ''),
@@ -39,12 +39,8 @@ panels = ''.join(
     f'<a class="h_panel{x}" href="{u}"><div class="x_img"><img src="{im}" alt="{alt}"{"" if i == 0 else " loading=\"lazy\""}></div><span class="rv_trl">{trl}</span><div class="h_panelIn">'
     f'<h2>{n}</h2><div class="h_more"><div><span class="h_for">{aud}</span><p>{cp}</p><span class="h_go">Explore {A}</span></div></div></div></a>'
     for i, (u, im, alt, n, aud, trl, cp, x) in enumerate(P))
-plat = f'''<section class="rv_platHead"><div class="s_wrap rv_twoCol">
-    <div><span class="c_eyebrow" data-reveal>Platforms</span><h2 class="x_h2" data-reveal>Four routes, one objective.</h2></div>
-    <div><p class="x_lead" data-reveal>IO provides distinct pathways for farmer-led ideas, emerging research, deployment-ready technologies and partner-led innovation challenges.</p>
-    <p class="x_body" data-reveal>Each route is designed for a different starting point, but all share the same objective: to generate the evidence, partnerships and implementation pathways required to create real-world impact.</p></div>
-  </div></section>
-  <div class="s_wrap"><div class="h_panels" id="hubPanels">{panels}</div></div>'''
+# comment 6 Nov (thread 3e70e6ae): no separate 'Four routes' block; the hero copy above is the change
+plat = f'''<div class="s_wrap"><div class="h_panels" id="hubPanels">{panels}</div></div>'''
 h = rep(h, panels_old, plat)
 
 # ---------------- 3. find your pathway ----------------
@@ -184,6 +180,7 @@ featured = f'''<section class="x_sec x_secTop0 rv_feat"><div class="s_wrap">
     </article>
   </div></section>'''
 latest_old = '<div class="x_head"><div><span class="c_eyebrow" data-reveal>On the ground now</span><h2 class="x_h2" data-reveal>Latest from the platforms.</h2></div></div>'
+exec((S / 'scripts' / 'hub_v2.py').read_text())
 h = rep(h, '  <section class="x_sec"><div class="s_wrap">\n    ' + latest_old,
         approach + ready + tech + featured + '\n  <section class="x_sec x_secTop0"><div class="s_wrap">\n    '
         + '<div class="x_head rv_latestHead"><div><span class="c_eyebrow" data-reveal>On the ground now</span><h2 class="x_h2" data-reveal>Latest from Innovation &amp; Ventures</h2></div><p class="x_body">Follow current calls, cohort milestones, validation projects, partner programs and results from across IO’s innovation portfolio.</p></div>')
@@ -339,4 +336,5 @@ CSS = '''<style id="rev6-hub">
 })();
 </script>'''
 h = h.replace('</body>', CSS + '</body>')
+h = h.replace('</body>', V2 + '</body>')
 save('ivp-hub.html', global_patch(h))

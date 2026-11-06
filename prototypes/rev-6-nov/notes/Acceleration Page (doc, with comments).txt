@@ -1,0 +1,266 @@
+Acceleration Page
+
+Core message
+
+This is not a curriculum-based accelerator.
+
+It is a market-access and commercialization platform for mature agrifood ventures. Companies validate proven technologies in UAE conditions, work directly with prospective customers and partners, and build a route from pilot evidence to commercial deployment.
+
+(can largely keep hero section as is but prefer image-based hero rather than simply dark background)
+
+2. WHY
+
+WHY IO ACCELERATION
+
+From proven technology to commercial opportunity
+
+The UAE offers something most acceleration programs cannot: demanding operating conditions, advanced agrifood infrastructure and direct access to organizations capable of adopting, distributing or commercializing new solutions.
+
+Acceleration connects these assets to mature ventures ready to prove value and grow in the region.
+
+Three primary objectives
+
+Validate
+
+Test performance, reliability and economics under relevant UAE conditions.
+
+Localize
+
+Adapt the technology, value proposition and delivery model for the UAE and GCC.
+
+Commercialize
+
+Build the right route to customers, channels, partners or capital.
+
+3. Who It Is For
+
+VENTURE PROFILE
+
+Built for companies ready to scale
+
+Acceleration is designed for mature ventures with differentiated agrifood or adjacent-sector technologies that are ready for growth into a new market.
+
+Ideal profile
+
+-   Proven product or working system
+
+-   Typically TRL 7 or above
+
+-   Evidence from a relevant operating environment
+
+-   Clear advantage over existing solutions
+
+-   Credible customer and economic value
+
+-   Capacity to deploy and support a UAE pilot
+
+-   Interest in entering or expanding across the UAE and GCC
+
+-   A strong team with the technical and commercial capability to execute
+
+The current platform model targets mature ventures, broadly from Series A to C, but company quality and deployment readiness matters more than funding stage alone.
+
+Still validating an early prototype, customer need or value proposition?
+IO Incubation may be the better place to start.
+
+CTA: Explore Incubation
+
+4. Priority Challenges
+
+WHERE WE FOCUS
+
+ideally make very visual - can keep existing how might we statementsOpen-field resource optimization
+
+Improve yields, economics and resource efficiency in UAE open-field agriculture.
+
+Protected-agriculture resource optimization
+
+Reduce the water, energy and capital intensity of year-round protected production.
+
+Post-harvest quality and shelf life
+
+Reduce quality loss, extend freshness and prevent food waste.
+
+Supply-chain visibility and resilience
+
+Improve forecasting, traceability, coordination and decision-making across food supply chains.
+
+5. How Acceleration Works
+
+THE MODEL
+
+From global pipeline to commercial pathway
+
+Keep the process short and divide it into two distinct parts.
+
+Find and select
+
+1. Source
+
+Identify high-potential technologies through global scouting, applications and partner networks.
+
+2. Evaluate
+
+Assess maturity, differentiation, evidence, UAE relevance, team capability and commercial potential.
+
+3. Match
+
+Connect shortlisted ventures with a relevant problem owner, business sponsor/customer or commercial partner.
+
+4. Plan
+
+Develop a clear testing plan, success measures and commercial hypothesis.
+
+5. Pilot
+
+Deploy the technology and test technical, operational and economic performance.
+
+8. Build the case
+
+Translate pilot results and stakeholder feedback into a clear business and adoption case.
+
+9. Commercialize
+
+Progress the strongest opportunity through the right customer, channel, technology or investment pathway.
+
+6. What Ventures Receive
+
+THE OFFER
+
+Pilot funding
+
+Potential milestone-based, non-dilutive support for approved pilot costs.
+
+Real operating environments
+
+Access to relevant IO, Silal, and partner fields, greenhouses, nethouses, laboratories and operational sites.
+
+Technical expertise
+
+Agricultural, scientific, engineering and analytical support tailored to the pilot.
+
+Pilot delivery
+
+Support with scoping, project management, partner coordination, data collection and reporting.
+
+Commercial access
+
+Direct engagement with prospective customers, business sponsors, distributors and strategic partners.
+
+Market navigation
+
+Support with localization, regulatory requirements, procurement and regional operating conditions.
+
+Business-case development
+
+Translate technical results into customer value, economics, return on investment and deal options.
+
+Ecosystem connections
+
+Relevant introductions to commercial partners, investors and the broader UAE agrifood ecosystem.
+
+7. Routes to Market
+
+COMMERCIAL PATHWAYS
+
+The pilot is not the destination
+
+A successful pilot should create a credible route to adoption, revenue or strategic growth.
+
+Depending on the technology and market opportunity, pathways may include:
+
+Customer
+
+-   Venture-client adoption
+
+-   Paid deployment
+
+-   Commercial supply agreement
+
+Channel
+
+-   Distribution
+
+-   Reseller agreement
+
+-   Agent or brokerage model
+
+-   White-label partnership
+
+Technology
+
+-   Licensing
+
+-   Co-development
+
+-   Technology acquisition
+
+Strategic growth
+
+-   Joint venture
+
+-   Strategic partnership
+
+-   Regional operating partner
+
+8. Why the UAE and IO
+
+YOUR REGIONAL LAUNCHPAD
+
+The UAE combines real demand for resilient agrifood solutions with operating environments that test technologies against heat, water scarcity, salinity and supply-chain complexity.
+
+Through IO and the wider Silal ecosystem, ventures can access capabilities across innovation, farming, agricultural inputs, food operations, commercial distribution and supply-chain infrastructure.
+
+9. Current Cohort
+
+not yet confirmed but placeholder as we will have confirmation soon for what to highlight hereACCELERATION IN ACTION
+
+Meet the Current Cohort
+
+Use a configurable cohort section featuring:
+
+-   Venture logo and name
+
+-   Country
+
+-   Technology
+
+-   Challenge addressed
+
+-   Pilot question
+
+The current portfolio includes eight selected startups spanning agricultural inputs, sensing and supply-chain technologies.
+
+Design direction
+
+Use large venture cards with real pilot imagery as it becomes available.
+
+Avoid a long cohort-description paragraph. Allow visitors to select a venture and explore the individual story.
+
+10. Frequently Asked Questions
+
+Keep this short and founder-focused.
+
+Is this a traditional accelerator?
+
+No. The platform focuses on operational validation, localization, market access and commercialization rather than general startup education.
+
+Is funding guaranteed?
+
+No. Support depends on selection, final pilot scope, budget, milestones and partner participation.
+
+Is procurement guaranteed?
+
+No. The platform generates evidence and commercial engagement, but procurement and other commercial agreements remain subject to partner decisions and approvals.
+
+Does the company need to be based in the UAE?
+
+International ventures are encouraged to apply, provided they are committed and able to deploy, support and commercialize their solution in the region.
+
+11. Final CTA
+
+READY TO ENTER THE REGION?
+
+Tell us what your technology has proven, which challenge it solves and why the UAE is the right next market.
+
+Primary CTA: Register your interest

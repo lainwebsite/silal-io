@@ -27,11 +27,13 @@ def patch(s):
     s = R(s, '<div class="bigImg"><div class="photo" style="background-image:url(\'+PH[i]+\')"></div></div>',
             '<div class="bigImg"><div class="photo" style="background-image:url(\'+PH[i]+\')"></div>\'+(c.partner?\'<span class="dlBadge">iO × Delphy</span>\':\'\')+\'</div>')
     # library: partner filter pill + a partner block in the side nav
-    s = R(s, '<div class="filters"><label class="select"><span class="srOnly">Track</span>',
-            '<div class="filters"><button type="button" class="dlFilter" data-dl aria-pressed="\'+st.dl+\'"><span class="dlDot"></span>iO × Delphy <small>\'+C.filter(function(c){return c.partner}).length+\'</small></button><label class="select"><span class="srOnly">Track</span>')
-    s = R(s, '<nav aria-label="Browse by track"><p class="sideTitle">Browse by track</p><ul class="sideList" id="sidetracks">\'+sideTracks()+\'</ul></nav>',
-            '<nav aria-label="Browse by track"><p class="sideTitle">Browse by track</p><ul class="sideList" id="sidetracks">\'+sideTracks()+\'</ul></nav>'
-            '<div class="dlSide"><p class="sideTitle">Partner programmes</p><button type="button" class="dlSideBtn" data-dl aria-pressed="\'+st.dl+\'">\'+' + LOCK + '+\'<span>Co-branded courses with Delphy, greenhouse horticulture specialists.</span></button></div>')
+    # comment 6 Nov (thread de5b61a4): Delphy sits in the "Browse by track" list, its courses as Delphy-style training cards
+    s = R(s, "return '<li><a href=\"#top\" data-spy=\"'+t+'\"'+(n?'':' class=\"none\"')+'>'+esc(t)+' <small>'+n+'</small></a></li>'}).join(\"\")",
+            "return '<li><a href=\"#top\" data-spy=\"'+t+'\"'+(n?'':' class=\"none\"')+'>'+esc(t)+' <small>'+n+'</small></a></li>'}).join(\"\")+'<li class=\"dlTrack\"><a href=\"#top\" data-dl aria-pressed=\"'+st.dl+'\"><span class=\"dlLock\"><b>iO</b><i>×</i><b>Delphy</b></span> <small>'+C.filter(function(c){return c.partner}).length+'</small></a></li>'")
+    s = R(s, 'function feedBody(){',
+            'function dlCard(c,i){var f=c.facts||{};return \'<li data-up data-trk="\'+esc(c.track)+\'"><button type="button" class="dlCard" data-open="\'+i+\'"><span class="dlImg"><span class="photo" style="background-image:url(\'+PH[i]+\')"></span><span class="dlBadge">iO × Delphy</span></span><h3>\'+esc(c.title)+\'</h3><p>\'+esc(c.excerpt)+\'</p><ul class="dlMeta"><li>Type: \'+esc(c.mode)+\'</li><li>\'+esc(f.language||"English")+\'</li></ul></button></li>\'}\n'
+            'function feedBody(){')
+    s = R(s, 'var rows=rowsOf(L).map(', 'var rows=st.dl?\'<li><div class="dlIntro"><span class="dlLock"><b>iO</b><i>×</i><b>Delphy</b></span><p>Co-branded trainings, developed and delivered with Delphy, IO Academy content partner for greenhouse horticulture.</p></div><ul class="dlGrid">\'+L.map(function(x){return dlCard(x.c,x.i)}).join("")+\'</ul></li>\':rowsOf(L).map(')
     s = R(s, 'else if(t.hasAttribute("data-clear")){',
             'else if(t.hasAttribute("data-dl")){ev.preventDefault();st.dl=!st.dl;document.querySelectorAll("[data-dl]").forEach(function(b){b.setAttribute("aria-pressed",st.dl)});refeed()}\n  else if(t.hasAttribute("data-clear")){')
     # detail: partner lockup under the breadcrumb
@@ -40,20 +42,29 @@ def patch(s):
     CSS = '''<style id="rev6-academy">
 .dlBadge { position: absolute; left: 12px; top: 12px; z-index: 2; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.95); color: #1b6f93; font-size: .6875rem; font-weight: 600; letter-spacing: .04em; box-shadow: 0 6px 16px -8px rgba(0,0,0,.35); }
 .cardImg, .bigImg { position: relative; }
-.dlFilter { display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; min-height: 40px; border: 1px solid #d9d9d9; border-radius: 999px; background: #fff; font: inherit; font-size: .8125rem; color: #595453; cursor: pointer; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
-.dlFilter small { font-size: .6875rem; color: #7f8284; }
-.dlDot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #3ca7d2; }
-.dlFilter[aria-pressed="true"] { background: #1b6f93; border-color: #1b6f93; color: #fff; }
-.dlFilter[aria-pressed="true"] small { color: rgba(255,255,255,.75); }
-.dlFilter[aria-pressed="true"] .dlDot { background: #fff; border-color: #fff; }
-.dlSide { margin-top: 36px; }
-.dlSideBtn { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; padding: 16px; border: 1px solid #e3e3e3; background: #fff; font: inherit; text-align: left; cursor: pointer; transition: border-color .25s, box-shadow .25s; }
-.dlSideBtn span { font-size: .75rem; line-height: 1.5; color: #7f8284; }
-.dlSideBtn[aria-pressed="true"] { border-color: #1b6f93; box-shadow: inset 3px 0 0 #1b6f93; }
 .dlLock { display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; color: #595453; }
 .dlLock b { font-weight: 600; letter-spacing: .01em; }
 .dlLock b:first-child { color: #3ca7d2; font-size: 1.15em; }
 .dlLock i { font-style: normal; color: #7f8284; }
+.dlTrack { margin-top: 10px; padding-top: 10px; border-top: 1px solid #e3e3e3; }
+.dlTrack a { display: flex !important; align-items: center; gap: 8px; }
+.dlTrack a[aria-pressed="true"] { color: #1b6f93; }
+.dlTrack a[aria-pressed="true"] .dlLock b:last-child { color: #1b6f93; }
+.dlTrack .dlLock { font-size: .9375rem; }
+.dlIntro { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 14px 18px; margin-bottom: 18px; border-left: 3px solid #3ca7d2; background: #fafafa; }
+.dlIntro p { font-size: .8125rem; color: #7f8284; max-width: 56ch; }
+.dlGrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 28px 20px; }
+.dlCard { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 12px; width: 100%; height: 100%; }
+.dlCard:focus-visible { outline: 2px solid #3ca7d2; outline-offset: 4px; }
+.dlImg { position: relative; display: block; aspect-ratio: 2 / 1; overflow: hidden; background: #f1f1f1; }
+.dlImg .photo { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 1s cubic-bezier(.16,1,.3,1); }
+.dlCard:hover .dlImg .photo { transform: scale(1.05); }
+.dlCard h3 { font-size: 1.125rem; font-weight: 500; line-height: 1.3; color: #595453; }
+.dlCard:hover h3 { color: #1b6f93; }
+.dlCard p { font-size: .875rem; line-height: 1.55; color: #7f8284; }
+.dlMeta { list-style: none; margin: auto 0 0; padding: 12px 0 0; border-top: 1px solid #e3e3e3; display: flex; flex-direction: column; gap: 4px; }
+.dlMeta li { position: relative; padding-left: 14px; font-size: .8125rem; color: #595453; }
+.dlMeta li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: #3ca7d2; }
 .dlBand { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin: 18px 0 6px; padding: 14px 18px; border: 1px solid #e3e3e3; border-left: 3px solid #3ca7d2; background: #fafafa; }
 .dlBand p { font-size: .875rem; color: #7f8284; max-width: 60ch; }
 .dlBand b { color: #595453; font-weight: 500; }
