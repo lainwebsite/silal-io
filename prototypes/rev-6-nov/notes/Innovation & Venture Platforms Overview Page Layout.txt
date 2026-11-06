@@ -1,0 +1,915 @@
+Innovation & Venture Platforms Overview
+
+Page objective
+
+The overview page should help visitors understand:
+
+-   What IO’s innovation and venture offer is
+
+-   Which pathway or service is relevant to them
+
+-   How IO moves ideas and technologies toward implementation
+
+-   How IO assesses readiness beyond technical performance
+
+-   Which technology areas and agrifood challenges IO focuses on
+
+-   What is currently happening across the portfolio
+
+-   How to engage with IO
+
+The page should position IO as more than a program operator. IO combines domain expertise, scientific evaluation, real-world validation, program delivery and commercialization support across agrifood and relevant adjacent sectors.
+
+1. Hero
+
+Eyebrow
+
+INNOVATION & VENTURE PLATFORMS
+
+From idea to impact.
+
+Introductory copy
+
+IO connects ideas, research and proven technologies with the expertise, environments and commercial pathways needed to move them forward.
+
+Whether you are a farmer solving an operational problem, a researcher translating an emerging technology, a startup seeking real-world validation, or an organization addressing a strategic challenge, IO can help identify the right pathway.
+
+CTA: Find your pathway
+
+Design guidance
+
+-   Retain the clean, minimal hero treatment from the original concept.
+
+-   Keep the primary headline short.
+
+-   Use the introductory copy to explain the breadth of the offer without overloading the hero.
+
+-   Anchor “Find your pathway” to the interactive selector further down the page.
+
+-   Avoid referring to all routes as being tested exclusively at IO’s Al Ain site. Some engagements may involve program design, external delivery, expert evaluation or partner-site validation.
+
+2. Platforms Overview
+
+Introductory copy
+
+IO provides distinct pathways for farmer-led ideas, emerging research, deployment-ready technologies and partner-led innovation challenges.
+
+Each route is designed for a different starting point, but all share the same objective: to generate the evidence, partnerships and implementation pathways required to create real-world impact.
+
+Farm Innovation Fund
+
+Audience label
+
+FOR UAE FARMERS & ENTREPRENEURS
+
+Maturity label
+
+TRL 1-8
+
+Card copy
+
+Develop and test practical solutions to challenges identified on UAE farms, supported by funding, expert input and structured project delivery.
+
+Destination page focus
+
+The platform-specific page should include:
+
+-   Eligibility
+
+-   Funding and support model
+
+-   Application process
+
+-   Current or upcoming cycle
+
+-   Program methodology
+
+-   Workshops and mentoring
+
+-   Selected projects
+
+-   Impact and participation figures
+
+-   Results and farmer stories
+
+Incubation
+
+Audience label
+
+FOR RESEARCHERS AND EARLY-STAGE VENTURES
+
+Maturity label
+
+TRL 4-7
+
+Card copy
+
+Translate promising research and early-stage technologies through focused technical, user, adoption and commercial validation.
+
+Destination page focus
+
+The platform-specific page should include:
+
+-   Intended technology maturity
+
+-   Entry criteria
+
+-   Experiment-led incubation model
+
+-   Available scientific and technical support
+
+-   Facilities and validation capabilities
+
+-   Decision gates
+
+-   Potential commercialization pathways
+
+-   Incubated projects and results
+
+Acceleration (aka Unbreakable Harvest – final name pending confirmation)
+
+Audience label
+
+FOR LATER-STAGE VENTURES
+
+Maturity label
+
+TRL 7+
+
+Card copy
+
+Validate, localize and commercialize deployment-ready technologies in demanding operational conditions and build a route into the UAE and wider region.
+
+Destination page focus
+
+The platform-specific page should include:
+
+-   Target startup profile
+
+-   Technology and commercial-readiness requirements
+
+-   Application and selection process
+
+-   Pilot and validation support
+
+-   Facilities and operating environments
+
+-   Customer and industry engagement
+
+-   Market-entry support
+
+-   Commercial pathways
+
+-   Cohort companies and results
+
+Agri-food Challenges
+
+Audience label
+
+FOR GOVERNMENT AND INDUSTRY PARTNERS
+
+Card copy
+
+Design and support innovation programs that identify, evaluate, and test promising technologies against priority challenges across agrifood and related sectors such as water, energy and circularity.
+
+Important positioning note
+
+Agricultural Challenges should not be presented as an IO-owned challenge platform equivalent to the first three platforms.
+
+It is a partner-facing capability through which organizations can engage IO for:
+
+-   End-to-end challenge delivery
+
+-   Challenge design
+
+-   Technology sourcing
+
+-   Expert evaluation
+
+-   Finalist assessment
+
+-   Pilot design
+
+-   Real-world validation
+
+-   Commercialization and scale planning
+
+Perhaps the design / UI for this card should be visually distinctive from the others?
+
+3. Find Your Pathway
+
+Section eyebrow
+
+FIND THE RIGHT PLACE TO START
+
+Find your pathway
+
+Introductory copy
+
+Tell us where you are starting, and we will guide you to the most relevant IO platform or service.
+
+Interactive selector options
+
+Option 1
+
+I am a farmer or farm manager with a problem or improvement idea.
+
+Recommended pathway: Farm Innovation Fund
+
+Option 2
+
+I have research, intellectual property or an early-stage prototype.
+
+Recommended pathway: Incubation
+
+Option 3
+
+I have a proven technology ready for operational validation.
+
+Recommended pathway: Acceleration
+
+Option 4
+
+I represent an organization looking to solve a strategic challenge.
+
+Recommended pathway: Agri-food Challenges
+
+Dynamic result-card format
+
+When a visitor selects an option, the adjacent card should update.
+
+Result-card label
+
+BEST PLACE TO START
+
+Use “Best place to start” rather than “Your Platform”, because some visitors will be directed to a service rather than a named platform.
+
+Farm Innovation Fund
+
+Why
+Turn a practical farm challenge or improvement idea into a structured, real-world project while retaining ownership of your solution.
+
+Support
+Potential non-dilutive funding, expert guidance, pilot design, technical support and access to relevant IO capabilities.
+
+When
+Current cycle closed. Next cycle anticipated in April 2027.
+
+Incubation
+
+Why
+Test the critical technical, user, adoption and commercial assumptions behind promising research or an early-stage technology.
+
+Support
+Expert review, experimental design, facility access, focused validation and guidance toward commercialization or further development.
+
+When
+Expressions of interest accepted year-round, subject to evaluation cycles and available capacity.
+
+Acceleration
+
+Why
+Generate the operational and commercial evidence needed to localize a proven technology and build a route into the UAE and wider region.
+
+Support
+Pilot delivery, operating-environment access, technical expertise, prospective customer engagement and commercialization support, with potential milestone-based funding.
+
+When
+Current cycle closed. Next cycle anticipated in April 2027. Register interest in the next cohort.
+
+4. How IO Moves Innovation Forward
+
+Section eyebrow
+
+OUR APPROACH
+
+From problem to scale
+
+Introductory copy
+
+Every IO platform and program is supported by a structured process that reduces uncertainty and builds the evidence required for a clear next decision.
+
+The precise journey varies according to the maturity of the idea or technology, but the underlying method remains consistent.
+
+Step 1: Define the problem
+
+Establish the operational need, intended user, current baseline and strategic importance of the challenge.
+
+Typical activities:
+
+-   Stakeholder discovery
+
+-   User and customer interviews
+
+-   Baseline definition
+
+-   Constraint mapping
+
+-   Success-measure development
+
+Step 2: Source the right ideas and technologies
+
+Identify relevant ideas, research, technical teams and market-ready technologies through targeted outreach and ecosystem engagement.
+
+Typical activities:
+
+-   Technology landscaping
+
+-   Startup sourcing
+
+-   Research and university engagement
+
+-   Open calls
+
+-   Farmer engagement
+
+-   Partner referrals
+
+Step 3: Evaluate the opportunity
+
+Assess strategic relevance, technical potential, differentiation, commercial viability, operational feasibility, adoption barriers and team capability.
+
+Typical activities:
+
+-   Scientific and technical review
+
+-   Market assessment
+
+-   Prior-art and IP review
+
+-   Commercial analysis
+
+-   Team assessment
+
+-   Adoption-risk review
+
+Step 4: Design the validation pathway
+
+Determine the most important uncertainties and develop the smallest credible experiment, proof of concept or pilot required to resolve them.
+
+Typical activities:
+
+-   Experimental design
+
+-   Pilot scoping
+
+-   Protocol development
+
+-   Site selection
+
+-   KPI definition
+
+-   Go, no-go and pivot criteria
+
+Step 5: Test in real conditions
+
+Generate reliable evidence in environments that reflect how the technology or solution will ultimately be used.
+
+Typical activities:
+
+-   Laboratory analysis
+
+-   Greenhouse or nethouse trials
+
+-   Field validation
+
+-   User testing
+
+-   Operational deployment
+
+-   Performance and economic measurement
+
+Step 6: Build the pathway to adoption and scale
+
+Use the evidence generated to define the most appropriate next step.
+
+Potential pathways:
+
+-   Venture Clienting
+
+-   Licensing
+
+-   Co-development
+
+-   Strategic partnership
+
+-   Investment
+
+-   Joint venture
+
+-   Venture creation
+
+-   Further research, validation, or replications
+
+Design guidance
+
+Use a progressive six-stage journey rather than six isolated icons.
+
+The design should communicate that evidence accumulates as an opportunity moves forward. A horizontal progression, scroll-led interaction or expanding pathway would work better than a static grid.
+
+Section: Two routes to innovation
+
+Heading
+
+Localize the best. Build what is missing.
+
+Localize
+
+We identify strong solutions from the UAE and around the world, bring them into relevant operating environments and adapt them to local conditions and market requirements.
+
+This path is appropriate when a solution already has strong problem-solution fit and localization provides a faster or more efficient route than developing a new solution.
+
+Build
+
+When the market does not offer an adequate solution, we work with researchers, technical teams and partners to develop and validate new approaches.
+
+This path is appropriate where there is a demonstrated market or capability gap, the right team is available and the potential value justifies the higher time, cost and technical risk.
+
+5. Readiness Model
+
+Section eyebrow
+
+WHAT WE EVALUATE
+
+Technology readiness is only part of the picture
+
+Introductory copy
+
+A solution can perform successfully in a controlled environment and still fail to achieve adoption.
+
+IO evaluates opportunities across four connected dimensions to understand whether a solution is technically credible, commercially relevant, operationally feasible and ready for implementation.
+
+Technical readiness
+
+Key question
+
+Can the solution perform reliably in the intended environment?
+
+IO considers:
+
+-   Core functionality
+
+-   Supporting scientific evidence
+
+-   Reliability and repeatability
+
+-   Performance against the baseline
+
+-   Suitability for local environmental conditions
+
+-   Safety and technical risks
+
+Commercial readiness
+
+Key question
+
+Does the solution address a meaningful need and offer a credible path to economic value?
+
+IO considers:
+
+-   Customer and user need
+
+-   Value proposition
+
+-   Market potential
+
+-   Competitive differentiation
+
+-   Business model
+
+-   Cost and return on investment
+
+-   Willingness to pay
+
+Operational readiness
+
+Key question
+
+Can the solution be deployed, operated and supported at the required scale?
+
+IO considers:
+
+-   Manufacturing and supply
+
+-   Installation and integration
+
+-   Infrastructure requirements
+
+-   Day-to-day operation
+
+-   Maintenance and after-sales support
+
+-   Skills and training requirements
+
+-   Ability to scale delivery
+
+Adoption readiness
+
+Key question
+
+Can the solution overcome the practical barriers to implementation?
+
+IO considers:
+
+-   Regulation and permitting
+
+-   User acceptance
+
+-   Procurement processes
+
+-   Data and system integration
+
+-   Policy alignment
+
+-   Infrastructure dependencies
+
+-   Organizational change requirements
+
+Closing copy
+
+By assessing all four dimensions together, IO can identify the most important barriers, design more relevant validation activities and help partners make better-informed investment and implementation decisions.
+
+Design guidance
+
+Use four interlocking or connected components rather than a linear maturity scale. The purpose is to show that readiness is multidimensional and that strong technical performance cannot compensate for major commercial, operational or adoption gaps.
+
+6. Technology Areas
+
+Recommended placement
+
+Place this section after the readiness model and before the featured platform or case study.
+
+At this point, visitors understand:
+
+1.  The routes available
+
+2.  How IO works
+
+3.  How opportunities are assessed
+
+4.  The technical areas covered
+
+Section eyebrow
+
+OUR FOCUS AREAS
+
+Technologies shaping the future of agrifood
+
+Introductory copy
+
+IO works across the agrifood value chain, from production and resource efficiency to supply-chain intelligence, waste prevention and circularity.
+
+Our areas of focus evolve in response to strategic priorities, partner needs and emerging technologies. We also consider innovations from adjacent industries where they can create meaningful value for agriculture, food production or resource resilience.
+
+Technology group 1: Production
+
+Soil and plant health
+
+Solutions that improve soil quality, nutrient and water retention, crop health, stress tolerance and productive capacity.
+
+Example areas:
+
+-   Soil inputs and amendments
+
+-   Biological and plant-health inputs
+
+-   Nutrient-management technologies
+
+-   Soil-health monitoring
+
+-   Biostimulants and biological crop protection
+
+-   Technologies supporting resilience to abiotic and biotic stresses
+
+Precision agriculture
+
+Data-led technologies that improve decision-making, resource use and farm productivity.
+
+Example areas:
+
+-   Data-driven farming
+
+-   IoT and remote sensing
+
+-   Imaging and crop monitoring
+
+-   Robotics and automation
+
+-   Variable-rate technologies
+
+-   Decision-support systems
+
+-   AI-enabled farm management
+
+Water and energy management
+
+Technologies that improve water-use efficiency, energy performance and resource resilience.
+
+Example areas:
+
+-   Precision irrigation
+
+-   Water monitoring and optimization
+
+-   Water treatment, recycling and reuse
+
+-   Energy-efficient climate control
+
+-   Renewable-energy integration
+
+-   Resource-efficient cooling and environmental control
+
+Controlled-environment agriculture
+
+Technologies and systems supporting efficient indoor and protected cultivation.
+
+Example areas:
+
+-   Greenhouse and nethouse systems
+
+-   Controlled-environment equipment
+
+-   Climate-control technologies
+
+-   Lighting and growing systems
+
+-   Environmental monitoring
+
+-   Automation for protected agriculture
+
+Crop innovation
+
+Scientific and technological approaches that improve crop performance under challenging conditions.
+
+Example areas:
+
+-   Genomic innovation
+
+-   Crop breeding technologies
+
+-   Multi-stress-tolerant crops
+
+-   Phenotyping
+
+-   Seed and varietal innovation
+
+-   Climate-resilient production systems
+
+Technology group 2: Waste and Circularity
+
+Prevention
+
+Technologies that prevent food loss, maintain quality and improve planning before products become waste.
+
+Example areas:
+
+-   Cold-chain infrastructure
+
+-   Temperature-controlled storage and transport
+
+-   AI-enabled supply management
+
+-   Quality and freshness monitoring
+
+-   Shelf-life-extension technologies
+
+-   Advanced packaging, coatings and materials
+
+Rescue and reuse
+
+Solutions that redirect surplus products or convert waste into higher-value resources.
+
+Example areas:
+
+-   Food-redistribution platforms
+
+-   Alternative demand channels
+
+-   Waste-to-resource technologies
+
+-   Agricultural by-product utilization
+
+-   Organic-waste conversion
+
+-   Inputs, materials and energy derived from waste
+
+Technology group 3: Supply-Chain Visibility and Intelligence
+
+Data platforms and infrastructure
+
+Technologies that create, capture and connect data across agrifood value chains.
+
+Example areas:
+
+-   Agribusiness platforms and marketplaces
+
+-   Supply-chain IoT
+
+-   Alternative data sources
+
+-   Farm-to-market connectivity
+
+-   Product and logistics tracking
+
+-   Data integration infrastructure
+
+Applications and analytics
+
+Solutions that turn value-chain data into stronger decisions, transparency and operational improvements.
+
+Example areas:
+
+-   Traceability systems
+
+-   Blockchain-enabled records
+
+-   Demand forecasting
+
+-   Supply planning
+
+-   Inventory optimization
+
+-   Predictive analytics
+
+-   AI-enabled supply-chain management
+
+Adjacent-sector statement
+
+Heading
+
+Agrifood specialization with adjacent-sector reach
+
+Copy
+
+IO’s core focus is agrifood innovation. However, many of agriculture’s most important challenges intersect with other sectors.
+
+We therefore consider adjacent technologies where there is a clear application to:
+
+-   Agricultural water and wastewater
+
+-   Energy use and renewable integration
+
+-   Advanced materials
+
+-   Environmental monitoring
+
+-   Logistics and mobility
+
+-   Climate adaptation
+
+-   Resource recovery
+
+-   Circular production systems
+
+This enables IO to bring relevant innovations from other industries into agricultural environments and validate whether they can create meaningful operational or commercial value.
+
+Recommended design treatment
+
+Do not reproduce the full internal technology taxonomy as one dense website diagram. The source material is comprehensive but would be difficult to read on smaller screens.
+
+Use one of these treatments:
+
+Option: Interactive category explorer
+
+Display three primary categories:
+
+1.  Production
+
+2.  Waste and Circularity
+
+3.  Supply-Chain Visibility and Intelligence
+
+Selecting a category reveals its subcategories and example technologies.
+
+Option: Expandable cards
+
+Use cards for:
+
+-   Soil and Plant Health
+
+-   Precision Agriculture
+
+-   Water and Energy
+
+-   Controlled-Environment Agriculture
+
+-   Crop Innovation
+
+-   Waste Prevention
+
+-   Rescue and Reuse
+
+-   Supply-Chain Data
+
+-   Applications and Analytics
+
+[]
+
+7. Featured Platform or Partner Case Study
+
+Section eyebrow
+
+FEATURED WORK
+
+Innovation in action
+
+Purpose
+
+Use this section to demonstrate how IO’s approach is applied in practice. The content should be configurable so the website team can change the featured story according to current priorities.
+
+Content options
+
+The featured item could be:
+
+-   A project / validation experiment
+
+-   An agricultural challenge
+
+-   A commercialization outcome
+
+Recommended case-study structure
+
+Category label
+
+For example: AGRICULTURAL CHALLENGES
+
+Case-study heading
+
+For example:
+
+Validating water technologies under real-world conditions
+
+Summary
+
+IO supported the evaluation of finalist technologies for the Al Miyah Challenge by designing and delivering real-world validation activities.
+
+The work generated technical and operational evidence to help compare technologies and inform the final winner evaluation and selection process.
+
+Structured information
+
+Partner: Mohamed bin Zayed Water Initiative
+IO role: Real-world technology validation
+Environment: Relevant agricultural operating conditions
+Outcome: Evidence to support finalist evaluation and selection
+
+CTA
+
+Read the case study
+
+Design guidance
+
+The case study should explain:
+
+1.  The challenge or opportunity
+
+2.  The partner
+
+3.  IO’s role
+
+4.  The approach
+
+5.  The evidence generated
+
+6.  The outcome or next step
+
+Avoid showing a generic platform advertisement in this space. A specific example will provide stronger proof of IO’s capabilities.
+
+8. Latest from Innovation & Ventures
+
+Section eyebrow
+
+ON THE GROUND NOW
+
+Latest from Innovation & Ventures
+
+Introductory copy
+
+Follow current calls, cohort milestones, validation projects, partner programs and results from across IO’s innovation portfolio.
+
+Recommended content types (link to Content Library CMS pages)
+
+-   Open applications
+
+-   Cohort announcements
+
+-   Pilot launches
+
+-   Validation updates
+
+-   Workshops and events
+
+-   Project results
+
+-   Partner announcements
+
+-   Calls for technologies
+
+-   Commercialization milestones
+
+9. Guided Enquiry CTA
+
+Not sure where to start?
+
+Tell us about your idea, technology or challenge. The IO team will identify the most relevant platform, service or validation pathway.
+
+CTA: TBD

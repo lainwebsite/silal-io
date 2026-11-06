@@ -1,0 +1,2564 @@
+Farm Innovation Fund Page
+
+Page objective
+
+The page should enable UAE farmers and entrepreneurs to quickly understand:
+
+-   What the Farm Innovation Fund is
+
+-   Who can apply
+
+-   What types of ideas are suitable
+
+-   What support and potential funding are available
+
+-   How the application and selection process works
+
+-   What is expected from successful applicants
+
+-   What happens after a project is selected
+
+-   When the next cycle opens
+
+-   How to register interest
+
+The page should feel practical and accessible rather than like a conventional grant-program page. The central message is that farmers identify the problems, remain actively involved in developing the solutions and demonstrate the results in real operating conditions.
+
+1. Hero
+
+Eyebrow
+
+INNOVATION & VENTURE PLATFORMS – FARM INNOVATION FUND
+
+Farm Innovation Fund
+
+A practical pathway from farm needs to tested solutions.
+
+Introductory copy
+
+Launched in January 2026 in the presence of H.E. Dr. Amna Al Dahak, Minister of Climate Change and Environment, and members of the Board of Directors of the National Agriculture Center, the Farm Innovation Fund was established to help UAE farmers develop, test and scale practical solutions that improve farm performance, profitability and resilience.
+
+Selected projects receive structured support to move from a clearly defined farm challenge to a measurable on-farm experiment or validation project.
+
+Primary CTA
+
+Register Interest
+
+Secondary CTA
+
+See the Process
+
+Status badge
+
+Cohort 1 – Applications Closed
+
+Supporting status text
+
+Next cycle anticipated: April 2027
+
+This date should remain an editable CMS field until formally confirmed.
+
+Optional hero facts
+
+-   Potential project funding of up to AED 200,000
+
+-   5 ideas supported / year
+
+2. The Why
+
+Eyebrow
+
+WHY THE FUND
+
+Supporting local farmers to innovate, grow and build resilience
+
+Introductory copy
+
+Farmers understand their operational challenges better than anyone. They often also have practical ideas for improving how farms use water, manage crops, reduce costs, increase yields or adapt to changing conditions.
+
+However, turning an idea into a credible project can require funding, specialist expertise and a structured way to test whether the solution works.
+
+The Farm Innovation Fund helps bridge that gap.
+
+Three purpose pillars
+
+Improve productivity
+
+Support solutions that improve yields, quality, efficiency and day-to-day farm performance.
+
+Strengthen profitability
+
+Help farms reduce costs, improve returns and identify new sources of value.
+
+Build resilience
+
+Enable farms to adapt to resource constraints, environmental pressures and changing production needs.
+
+Design guidance
+
+-   Replace the current fragmented introductory text with one clear purpose statement and three supporting pillars.
+
+-   Use productivity, profitability and resilience as visually prominent words.
+
+-   Keep the section succinct. The objective is to establish the Fund’s purpose before explaining eligibility or process.
+
+3. More Than Project Funding
+
+Eyebrow
+
+BUILDING INNOVATION CAPABILITY
+
+Helping farmers move from problem to solution
+
+Introductory copy
+
+Participants do not need to arrive with a fully developed solution or technical proposal.
+
+Through workshops, mentoring and expert support, the Fund helps participants strengthen the skills required to turn a farm need into a well-designed innovation project.
+
+Capability-building journey
+
+Define the problem
+
+Understand the underlying issue, who it affects and its impact on farm performance.
+
+Explore potential solutions
+
+Consider different technologies, practices and partners rather than starting with a predetermined answer.
+
+Design the test
+
+Establish the baseline, project approach, success measures, budget and implementation requirements.
+
+Learn from evidence
+
+Assess what worked, what did not and whether the solution should be adopted, adapted, expanded or stopped.
+
+Supporting statement
+
+This learning begins during the application process and continues through proposal development, selection and pilot delivery.
+
+Design guidance
+
+-   Place this section early on the page, before “Who can participate.”
+
+-   Use a four-stage horizontal journey: Define → Explore → Test → Learn
+
+-   Show capability building as a core part of the Fund rather than an isolated Innovation Day activity.
+
+-   The design should make clear that funding is only one part of the offer.
+
+-   A workshop or mentoring photograph would be more appropriate here than another greenhouse image.
+
+4. Who Can Participate
+
+Eyebrow
+
+WHO CAN PARTICIPATE
+
+Supporting local ideas for better farming
+
+The Farm Innovation Fund is designed for UAE National farmers, farm owners and idea sponsors who want to address a practical challenge or opportunity in agriculture.
+
+Applicants may bring forward a challenge experienced on their own farm or sponsor an idea with potential value for UAE agriculture. They can also involve farm managers, entrepreneurs, researchers, technology providers and technical specialists to help develop and deliver the project.
+
+Participation Models
+
+Farmers and farm owners
+
+Identify and test practical ideas that could improve farm productivity, reduce costs, increase profitability, use resources more efficiently or strengthen resilience.
+
+Idea sponsors
+
+Bring forward or sponsor an idea that responds to a relevant agricultural need, while operational or technical partners support its development and delivery.
+
+Collaborative teams
+
+Applicants may work with farm managers, entrepreneurs, researchers, technology providers or other specialists to develop and test the solution.
+
+Eligibility Callout
+
+Each application must be led or sponsored by a UAE National and address a clearly defined on-farm or agricultural challenge relevant to the UAE.
+
+Applicants do not need to have every technical capability in place before applying. The Fund can help bring together the expertise, facilities and partners required to develop and test a promising idea.
+
+5. What Ideas Can the Fund Support?
+
+KEY FOCUS AREAS
+
+Practical innovation for better farm performance
+
+The following are common thematic areas we see addressing the local farming challenges
+
+01. Water and Irrigation Management
+
+Use water more intelligently and efficiently
+
+Ideas that help farms optimize water use, improve irrigation performance, manage water quality or strengthen resilience to water scarcity and salinity.
+
+Examples may include:
+
+-   Precision irrigation and automated scheduling
+
+-   Soil-moisture and crop-water monitoring
+
+-   Irrigation-system optimization
+
+-   Leak detection and reduction of water losses
+
+-   Water treatment, recycling and reuse
+
+-   Salinity monitoring and management
+
+-   Alternative water sources
+
+-   Data-led irrigation decisions
+
+Example farmer challenge
+
+How might a farm reduce water consumption without compromising crop yield or quality?
+
+02. Protected Agriculture
+
+Improve growing conditions, efficiency and crop performance
+
+Ideas that strengthen production within greenhouses, nethouses and other protected growing environments, particularly under challenging climatic conditions.
+
+Examples may include:
+
+-   Greenhouse cooling and climate control
+
+-   Energy-efficient growing systems
+
+-   Environmental monitoring and automation
+
+-   Ventilation, humidity and airflow management
+
+-   Improved greenhouse or nethouse designs
+
+-   Hydroponic and soilless production systems
+
+-   Lighting and shading solutions
+
+-   Improved crop management within protected environments
+
+Example farmer challenge
+
+How might a farm extend their seasonal production window without negatively impacting profitability through cost of production?
+
+03. Sustainable and Organic Practices
+
+Strengthen soil, crop and resource health
+
+Ideas that improve the long-term sustainability of farm operations while supporting crop health, input efficiency and responsible resource use.
+
+Examples may include:
+
+-   Soil-health improvement
+
+-   Compost and organic soil amendments
+
+-   Biological crop inputs
+
+-   Integrated pest and disease management
+
+-   Reduction of chemical inputs
+
+-   Nutrient-use efficiency
+
+-   Agricultural-waste reuse
+
+-   Circular farming practices
+
+-   Climate-resilient crops or production methods
+
+Example farmer challenge
+
+How might a farm improve soil quality and crop health while reducing dependency on conventional inputs?
+
+04. Smart Farming and Digital Technology
+
+Make farm operations more precise, connected and efficient
+
+Ideas that use data, sensing, automation or digital technologies to improve decisions, reduce labour requirements and strengthen operational control.
+
+Examples may include:
+
+-   Sensors and remote monitoring
+
+-   Farm-management platforms
+
+-   Artificial intelligence and predictive analytics
+
+-   Robotics and automation
+
+-   Drones and imaging technologies
+
+-   Early detection of crop stress, pests or disease
+
+-   Digital traceability and record management
+
+-   Yield forecasting
+
+-   Equipment and resource monitoring
+
+Example farmer challenge
+
+How might a farm use real-time data to identify problems earlier and make better operational decisions?
+
+6. How the Fund Works
+
+Eyebrow
+
+THE PARTICIPANT JOURNEY
+
+From initial idea to a funded project
+
+The Farm Innovation Fund supports participants through two connected journeys.
+
+First, applicants develop and present a strong project proposal through workshops, mentoring and expert evaluation. Selected projects then move through detailed scoping, contracting, funded implementation and results review.
+
+Journey 1: From Application to Selection
+
+01. Submit an Initial Application
+
+Tell us about the challenge and your idea
+
+Applicants submit a concise initial application explaining:
+
+-   The agricultural or on-farm challenge
+
+-   Why the challenge matters
+
+-   The proposed idea or potential solution
+
+-   The expected benefit
+
+-   The applicant or idea sponsor
+
+Applications are reviewed for completeness and eligibility. Eligible applicants progress to the proposal-development stage.
+
+02. Develop the Idea
+
+Strengthen the problem, solution and project approach
+
+Eligible applicants receive capability-building support to help turn the initial idea into a stronger and more deliverable project proposal.
+
+Support may include:
+
+-   Innovation workshops
+
+-   Visits to IO’s facilities
+
+-   Problem-definition exercises
+
+-   Solution exploration
+
+-   Technical and expert mentoring
+
+-   Pilot-design guidance
+
+-   Budget development
+
+-   Success-measure definition
+
+-   Pitch preparation
+
+This stage helps participants understand the root problem, compare possible solutions and identify the evidence needed to determine whether an idea works.
+
+What applicants develop
+
+By the end of this stage, applicants should have:
+
+-   A clearly defined agricultural challenge
+
+-   An appropriate proposed solution
+
+-   A realistic testing approach
+
+-   An indicative project scope and budget
+
+-   Defined technical, operational and commercial outcomes
+
+-   An initial delivery team
+
+03. Submit the Detailed Proposal
+
+Translate the idea into a credible project
+
+Participants submit a more detailed proposal setting out:
+
+-   The challenge and current baseline
+
+-   The proposed solution
+
+-   Intended users or beneficiaries
+
+-   Testing approach
+
+-   Proposed location or testing environment
+
+-   Required expertise and delivery partners
+
+-   Project activities and timeline
+
+-   Budget and resource requirements
+
+-   Key risks and dependencies
+
+-   Measures of success
+
+-   Potential value beyond the initial pilot
+
+Where a testing location has not yet been confirmed, applicants should describe the type of environment required. Suitable projects may later be matched with IO facilities, a participating farm or another relevant testing environment.
+
+04. Expert Evaluation
+
+Assess the project’s value and feasibility
+
+Detailed proposals are reviewed by specialists with relevant agricultural, scientific, technical, operational and commercial expertise.
+
+Evaluation considers:
+
+-   Importance and clarity of the challenge
+
+-   Relevance of the proposed solution
+
+-   Potential to improve productivity, profitability or resilience at scale
+
+-   Technical and operational feasibility
+
+-   Quality of the proposed testing approach
+
+-   Reasonableness of the budget
+
+-   Applicant and delivery-team capability
+
+-   Potential for farm adoption, replication, knowledge generation or commercialization
+
+Applicants may receive questions or requests for clarification during this stage.
+
+05. Finalist Pitch and Selection
+
+Present the complete project proposal
+
+Shortlisted applicants are invited to present their proposals to a panel.
+
+Following the pitches, the panel selects the projects recommended to progress toward funding and implementation.
+
+Selection is competitive. Progression to the finalist stage does not guarantee funding.
+
+Selection outcome
+
+Applicants are notified whether their project has been selected for implementation.
+
+Journey 2: From Selection to Project Implementation
+
+06. Project Readiness and Mobilization
+
+Turn into a delivery-ready scope of work
+
+The readiness process confirms:
+
+-   Final project scope
+
+-   Testing environment
+
+-   Technical approach
+
+-   Baseline and key performance indicators
+
+-   Delivery activities
+
+-   Project timeline
+
+-   Approved budget
+
+-   Procurement and supplier requirements
+
+-   Roles and responsibilities
+
+-   Data collection and reporting requirements
+
+-   Project risks and controls
+
+Before testing begins, the project team mobilizes the agreed resources and confirms that the delivery environment is ready.
+
+07. Project Delivery and Measurement
+
+Test the solution in relevant conditions
+
+The project is implemented according to the agreed scope, timeline and milestones.
+
+IO may support delivery through:
+
+-   Project-management oversight
+
+-   Scientific and technical expertise
+
+-   Laboratory analysis
+
+-   Greenhouse, nethouse or field facilities
+
+-   Site visits
+
+-   Partner coordination
+
+-   Data collection and review
+
+-   Risk and issue management
+
+-   Budget monitoring
+
+-   Milestone assessments
+
+-   Technical troubleshooting
+
+What may be measured
+
+Measures will vary by project but could include:
+
+-   Crop yield
+
+-   Crop quality
+
+-   Water consumption
+
+-   Energy consumption
+
+-   Input use
+
+-   Labour requirements
+
+-   Operating costs
+
+-   Waste reduction
+
+-   Resource recovery
+
+-   Production reliability
+
+-   Farm profitability
+
+-   User or operator feedback
+
+The objective is to generate credible evidence, not simply to demonstrate that the project was completed.
+
+08. Project Review and Close-Out
+
+Understand what worked and what should happen next
+
+At the end of the pilot, the project team reviews the results against the agreed baseline, milestones and success criteria.
+
+The close-out process may include:
+
+-   Final technical and financial reporting
+
+-   Performance-data analysis
+
+-   Farmer and user feedback
+
+-   Review of implementation challenges
+
+-   Assessment of the business or adoption case
+
+-   Documentation of knowledge generated
+
+-   Intellectual-property review
+
+-   Final project presentation
+
+-   Farmer or ecosystem demonstration
+
+Outcome
+
+A clear evidence-based recommendation to:
+
+-   Adopt the solution
+
+-   Refine and test it further
+
+-   Replicate it in another environment
+
+-   Progress it toward commercialization
+
+-   Conclude the project without further investment
+
+A project that does not meet its original target may still produce valuable evidence about technical constraints, operating requirements or the conditions required for success.
+
+09. Post-Project Scaling
+
+Use the evidence to identify the next opportunity
+
+Successful projects may progress through one or more pathways:
+
+Replication
+
+The solution is tested or adopted across additional farms, crops or operating environments.
+
+Further development
+
+The solution undergoes refinement, additional testing or a larger demonstration.
+
+Local knowledge and intellectual property
+
+The project generates locally relevant methods, data, technical know-how or potentially protectable intellectual property.
+
+Commercial partnership
+
+The project progresses toward procurement, licensing, manufacturing, distribution or another commercial arrangement.
+
+New business opportunity
+
+The applicant or project team develops a new product, service or farm-based enterprise.
+
+Follow-on funding
+
+The project attracts additional grant funding, investment, customer funding or partner contributions.
+
+Progression beyond the funded pilot is not automatic. It depends on the evidence generated, market or farmer demand, ownership arrangements, team capability and the resources required for wider deployment.
+_____
+
+Note for design – consider splitting journies rather than showing one?
+
+Journey 1: Your route to selection
+
+Use a lighter background and show the competitive application funnel:
+
+Apply → Develop → Submit → Evaluate → Pitch and Select
+
+Journey 2: If your project is selected
+
+Use a stronger IO-blue accent or contrasting background:
+
+Scope and Mobilize → Deliver → Review → Progress
+
+7. Cohort 1 At A Glance
+
+COHORT 1 AT A GLANCE
+
+1,000+
+
+Farmers reached
+
+Targeted outreach introduced the Fund to local farmers and agricultural networks across the UAE.
+
+130
+
+Applications submitted
+
+Applicants brought forward a diverse range of ideas addressing practical agricultural challenges and opportunities.
+
+68
+
+Applicants progressed
+
+Eligible participants advanced to the proposal-development phase and were invited to strengthen their initial ideas.
+
+7
+
+Emirates represented
+
+Applications were received from across all seven Emirates, giving the first cycle nationwide representation.
+
+17
+
+Expert reviewers engaged
+
+Agricultural, scientific, technical, operational and commercial specialists contributed to proposal evaluation.
+
+8
+
+Shortlisted for Final Pitch
+
+Eight finalists made it to the final Pitch phase to present their ideas for funding and implementation support.
+
+8. Innovation Day Spotlight
+
+(as in design)
+
+9. Supported by Leading UAE Partners
+
+OUR PARTNER NETWORK
+
+National expertise supporting ideas from evaluation to scale
+
+The Farm Innovation Fund brings together leading government, research and innovation organizations from across the UAE.
+
+Partners contribute complementary expertise to help assess ideas, strengthen project design, support implementation and identify pathways for successful solutions to be adopted, replicated or developed further.
+
+The role of each organization may vary according to the project and stage of the Fund, from expert evaluation and technical guidance to governance, validation, ecosystem connections and wider deployment support.
+
+Ministry of Climate Change and Environment
+
+Connecting farm innovation with national agricultural priorities
+
+The Ministry of Climate Change and Environment plays an important role in the UAE’s agriculture and environmental landscape, including the advancement of sustainable and climate-smart agriculture, agricultural research and innovative production approaches.
+
+National Agriculture Centre
+
+Supporting agricultural development and farmer engagement
+
+The National Agriculture Centre provides an important connection to the wider UAE agricultural ecosystem and to the farmers, production priorities and support structures that the Fund is intended to serve.
+
+Abu Dhabi Agriculture and Food Safety Authority
+
+Bringing regulatory, agricultural and food-system expertise
+
+The Abu Dhabi Agriculture and Food Safety Authority is responsible for agriculture, food safety, food security and biosecurity in the Emirate of Abu Dhabi. Its responsibilities include agricultural programs, farm oversight, licensing, food and agricultural establishments, and the sustainable development of the sector.
+
+Mohamed bin Zayed Water Initiative
+
+Advancing solutions to water scarcity
+
+The Mohamed bin Zayed Water Initiative works to accelerate the development, testing and deployment of technologies addressing water scarcity. The Initiative uses UAE infrastructure and expertise to support promising water solutions with potential for wider deployment.
+
+United Arab Emirates University
+
+Providing agricultural research and scientific expertise
+
+The United Arab Emirates University College of Agriculture and Veterinary Medicine is a significant national resource for agricultural education and research. Its capabilities include experimental stations, a food pilot plant and laboratories supporting research in agriculture, food and natural resources, including water use and protected agriculture.
+
+Khalifa University
+
+Connecting projects to advanced science and engineering
+
+Khalifa University contributes advanced research and engineering capabilities relevant to agricultural innovation, water, energy and sustainable systems.
+
+Recommended Partner-Section Design
+
+Avoid using logos alone
+
+The existing logo wall establishes credibility but does not explain why the partnerships matter.
+
+Retain the logos, but place each within an expandable partner card containing:
+
+-   Organization logo
+
+-   Organization name
+
+-   One-line description
+
+-   Role in or relevance to the Fund
+
+-   Link to the organization’s website, subject to approval
+
+Recommended grouping
+
+Organize the partners by the type of value contributed.
+
+National and sector alignment
+
+-   Ministry of Climate Change and Environment
+
+-   National Agriculture Centre
+
+-   Abu Dhabi Agriculture and Food Safety Authority
+
+Strategic issue expertise
+
+-   Mohamed bin Zayed Water Initiative
+
+Research and technical expertise
+
+-   United Arab Emirates University
+
+-   Khalifa University
+
+This makes the network easier to understand than presenting six equally weighted logos without context.
+
+Suggested introductory visual
+
+Use a simple ecosystem diagram with the Fund at the centre and four supporting roles around it:
+
+1.  Farmer and sector engagement
+
+2.  Expert evaluation
+
+3.  Technical and project support
+
+4.  Adoption and progression
+
+Connect partners to the relevant roles only after each organization’s specific contribution has been confirmed.
+
+Add a role disclaimer
+
+Use a short note beneath the cards:
+
+Partner participation and responsibilities may vary by project, cycle stage and area of expertise.
+
+This prevents the page from implying that every partner reviews or supports every project.
+
+Use current-cycle evidence
+
+Where permissions exist, include photographs from:
+
+-   Expert evaluator briefings
+
+-   Proposal-review panels
+
+-   Innovation Day workshops
+
+-   Technical mentoring
+
+-   Finalist pitches
+
+-   Site visits or project-scoping sessions
+
+A caption could read:
+
+Agricultural, scientific, technical and commercial experts contribute to the evaluation and development of Cohort 1 proposals.
+
+Do not imply endorsement
+
+Avoid wording such as:
+
+-   “Approved by”
+
+-   “Certified by”
+
+-   “Endorsed by”
+
+-   “Delivered by”
+
+unless the specific organization has formally accepted that description.
+
+Prefer:
+
+-   “Supporting partner”
+
+-   “Contributing expertise”
+
+-   “Participating in evaluation”
+
+-   “Providing technical insight”
+
+-   “Supporting farmer engagement”
+
+8. How Projects Are Evaluated
+
+Eyebrow
+
+SELECTION
+
+What makes a strong proposal?
+
+Introductory copy
+
+Projects are assessed by experts with relevant agricultural, scientific, technical, operational and commercial experience.
+
+The evaluation considers both the proposed solution and the applicant’s readiness to deliver a structured on-farm pilot.
+
+Evaluation areas
+
+A real and important farm challenge
+
+The proposal addresses a clearly defined need with a meaningful impact on farm operations.
+
+A relevant solution
+
+The proposed approach is connected to the problem and provides a clear improvement over current practice.
+
+Practical feasibility
+
+The solution can reasonably be implemented and tested within the available farm environment, budget and timeline.
+
+Measurable value
+
+The project has defined outcomes related to productivity, profitability, quality, resource use or resilience.
+
+Delivery readiness
+
+The required site, team, technical partners, approvals and operational resources can be mobilized.
+
+Potential beyond the pilot
+
+The project has the potential to generate useful knowledge, farm adoption, wider replication or a commercial opportunity.
+
+Supporting note
+
+Selection is competitive. Meeting the eligibility criteria does not guarantee funding.
+
+Design guidance
+
+-   Use six compact criteria cards.
+
+-   Avoid long paragraphs or a scorecard-style table on the main page.
+
+-   Provide detailed weightings and assessment rules in a downloadable applicant guide.
+
+-   Link this section directly to the applicant guidance and FAQs.
+
+9. What Selected Projects Receive
+
+Eyebrow
+
+SELECTED PROJECT SUPPORT
+
+More than funding
+
+Introductory copy
+
+Selected projects receive a support package tailored to the approved pilot scope. This may combine funding, technical guidance, project-management support, specialist expertise and access to relevant facilities or partners.
+
+Funding
+
+Potential project funding
+
+Selected projects may receive funding of up to AED 200,000, subject to the approved scope, budget, milestones and Fund terms.
+
+Funds are used for eligible project costs and released according to agreed delivery and evidence requirements.
+
+Pilot design
+
+IO works with each selected team to define:
+
+-   The operational baseline
+
+-   Pilot scope
+
+-   Technical approach
+
+-   Work plan
+
+-   Budget
+
+-   Success measures
+
+-   Data requirements
+
+-   Risk controls
+
+Expert support
+
+Depending on the project, support may include access to:
+
+-   Agronomists
+
+-   Scientists
+
+-   Irrigation specialists
+
+-   Greenhouse and controlled-environment specialists
+
+-   Laboratories
+
+-   Technology providers
+
+-   Commercial advisers
+
+-   Project-management specialists
+
+Delivery support
+
+Projects are managed through:
+
+-   Mobilization
+
+-   Milestone reviews
+
+-   Site visits
+
+-   Risk and issue management
+
+-   Budget control
+
+-   Evidence submission
+
+-   Final evaluation
+
+Visibility and connections
+
+Where appropriate and agreed, projects may gain visibility through:
+
+-   Demonstration events
+
+-   Farmer-engagement activities
+
+-   Case studies
+
+-   Industry introductions
+
+-   Technology-provider partnerships
+
+-   Commercial and investment discussions
+
+Design guidance
+
+Retain the alternating image-and-copy treatment from the current design, but revise the section order:
+
+1.  Potential project funding
+
+2.  Pilot design
+
+3.  Expert and technical support
+
+4.  Delivery and measurement
+
+5.  Visibility and next opportunities
+
+This keeps the section tangible without presenting funding as the Fund’s only benefit.
+
+10. What Selected Participants Commit
+
+Eyebrow
+
+A SHARED COMMITMENT
+
+Successful pilots require active participation
+
+Introductory copy
+
+The Fund provides structured support, but successful delivery depends on active ownership from the applicant, participating farm and wider project team.
+
+Commitments
+
+A suitable pilot environment
+
+Provide the agreed farm site, operational access and relevant farm resources.
+
+A named project lead
+
+Nominate a person responsible for coordinating delivery, information and decision-making.
+
+Time and participation
+
+Attend project meetings, workshops, reviews and agreed delivery activities.
+
+Data and evidence
+
+Support baseline collection, monitoring and the timely sharing of agreed project data.
+
+Safe and compliant delivery
+
+Meet relevant farm, environmental, regulatory, procurement and health and safety requirements.
+
+Knowledge sharing
+
+Where agreed, contribute to demonstrations or case studies so that learning can benefit the wider farming community.
+
+Design guidance
+
+-   Use a short checklist rather than six feature cards.
+
+-   Position this immediately after “What selected projects receive.”
+
+-   Visually connect the two sections as: What IO provides | What participants contribute
+
+-   This will help set expectations without making the section feel contractual.
+
+11. From Pilot to Longer-Term Value
+
+Eyebrow
+
+WHAT SUCCESS CAN UNLOCK
+
+Turning farm learning into wider opportunity
+
+Introductory copy
+
+A completed pilot is not the final objective. Successful projects should create evidence and knowledge that helps determine what should happen next.
+
+Not every project will follow the same route, but potential pathways include:
+
+Outcome 1: Farm adoption
+
+The participating farm continues using the solution after the funded pilot because it has demonstrated practical value.
+
+Outcome 2: Replication and scale
+
+The solution is implemented on additional farms, crops, production systems or operating sites.
+
+Outcome 3: Local knowledge
+
+The project generates data, methods, protocols or operating insights relevant to UAE farming conditions.
+
+Outcome 4: Intellectual property
+
+The project creates or strengthens a potentially protectable method, design, product or technical solution.
+
+Outcome 5: New business opportunities
+
+The team develops a new product, service, licensing model, farm-based business or commercial partnership.
+
+Outcome 6: Continued development
+
+The project progresses to a larger pilot, follow-on funding, commercial validation or another IO platform.
+
+Important note
+
+These are potential pathways rather than guaranteed outcomes. Progression depends on the project results, ownership arrangements, market demand and the capacity of the project team.
+
+Design guidance
+
+Use a branching pathway rather than a single linear arrow:
+
+Funded pilot → Evidence generated → Multiple possible outcomes
+
+Branches:
+
+-   Adopt
+
+-   Replicate
+
+-   Protect
+
+-   Commercialize
+
+-   Develop further
+
+This avoids suggesting every project will achieve commercialization.
+
+12. What Success Looks Like
+
+Eyebrow
+
+PROGRAM OUTCOMES
+
+Measuring value beyond the funded pilot
+
+This section should initially describe how success is measured. Once verified results are available, it can become a live results module.
+
+Capability-building measures
+
+-   Participants completing innovation workshops
+
+-   Proposals strengthened through mentoring
+
+-   Participants demonstrating improved innovation-planning capability
+
+-   Teams applying structured problem-definition and pilot-design methods
+
+Project-delivery measures
+
+-   Projects funded
+
+-   Pilots completed against agreed milestones
+
+-   Projects achieving defined technical or operational criteria
+
+-   Projects demonstrating measurable productivity, profitability, resource-efficiency or resilience benefits
+
+Knowledge and intellectual-property measures
+
+-   Local datasets and validated insights generated
+
+-   New methods or operating protocols developed
+
+-   Intellectual-property opportunities identified
+
+-   Case studies and demonstration activities completed
+
+Adoption and scale measures
+
+-   Solutions adopted by participating farms
+
+-   Solutions replicated on additional farms or sites
+
+-   Follow-on pilots or applications initiated
+
+Commercial measures
+
+-   New products or services developed
+
+-   Licensing or procurement agreements secured
+
+-   New ventures established
+
+-   Follow-on funding or investment obtained
+
+-   Documented commercial commitments generated
+
+Recommended definitions
+
+Scaled solution
+
+A solution that progresses beyond the original pilot and is adopted by at least one additional farm, operating site or paying customer.
+
+Commercial outcome
+
+A signed procurement agreement, paid deployment, licensing agreement, new venture, follow-on investment or another documented revenue-generating pathway.
+
+Design guidance
+
+-   Do not use a metric ribbon on the page.
+
+-   Show KPIs only when the figures are verified and attributable to a specific cycle or reporting period.
+
+-   Label figures clearly:
+
+    -   Current cycle
+
+    -   Since launch
+
+    -   2026 results
+
+-   Separate outputs, such as workshops delivered, from outcomes, such as solutions adopted or commercial agreements signed.
+
+-   Until mature results are available, use the heading“How we measure success” rather than“Our impact.”
+
+13. Fund Activity and Current Cycle
+
+Eyebrow
+
+CURRENT FUND CYCLE
+
+Farmer-led ideas from across the UAE
+
+Suggested content
+
+Once verified, show the program funnel:
+
+1.  Initial applications
+
+2.  Eligible applicants
+
+3.  Detailed proposals
+
+4.  Finalist pitches
+
+5.  Funded projects
+
+6.  Pilots in delivery
+
+7.  Pilots completed
+
+8.  Solutions adopted or advanced
+
+The available program material references 130 initial applications from all seven Emirates, but related figures should be reconciled before publication because the source presentation includes inconsistent totals for reviewers, finalists and selected projects. [Innovation...w-WIP.pptx | PowerPoint]
+
+Design guidance
+
+-   Replace the decorative dot matrix with a clear progression or funnel.
+
+-   Keep figures out of the hero.
+
+-   Add the cohort or reporting year to every statistic.
+
+-   Add a short link: View the current cycle
+
+-   If project delivery is ongoing, use: Pilots in progress rather than implying verified impact.
+
+14. Featured Projects
+
+Eyebrow
+
+FARM INNOVATION IN ACTION
+
+Explore selected projects
+
+Introductory copy
+
+See how participating farms are testing practical approaches to improve productivity, profitability, resource efficiency and resilience.
+
+Project-card structure
+
+Each card should include:
+
+-   Project title
+
+-   Participating farm or sponsor, subject to approval
+
+-   Emirate
+
+-   Farm challenge
+
+-   Proposed solution
+
+-   Pilot duration
+
+-   What is being measured
+
+-   Current status
+
+-   Verified results, once available
+
+-   Potential next pathway
+
+Status labels
+
+-   Project selected
+
+-   Scoping underway
+
+-   Pilot in delivery
+
+-   Results under review
+
+-   Pilot completed
+
+-   Progressing to adoption
+
+-   Progressing to scale
+
+Design guidance
+
+-   Use two or three featured projects initially.
+
+-   Avoid describing ongoing projects as success stories.
+
+-   If results are not yet available, focus on:
+
+    -   The challenge
+
+    -   The test
+
+    -   The intended evidence
+
+-   Link each card to a full project case study as content becomes available.
+
+15. Frequently Asked Questions
+
+Recommended questions
+
+Who is eligible to apply?
+
+State the local applicant or sponsorship requirement clearly and concisely.
+
+Can farm managers, researchers or technology companies participate?
+
+Yes, as project partners where the application has an eligible local applicant or sponsor and a participating UAE farm.
+
+Do I need a finished solution?
+
+No. Applicants should have a clear farm challenge and an initial idea, but the Fund can help strengthen the proposed approach and testing plan.
+
+How much funding is available?
+
+Explain the potential maximum, award variability, eligible costs and milestone-based release.
+
+Can I apply for standard equipment?
+
+Clarify that equipment may only be eligible where it forms part of a genuine innovation project and an approved testing plan.
+
+Who owns the intellectual property?
+
+Provide a plain-language summary and link to the formal application terms.
+
+What project costs are eligible?
+
+Give representative examples and major exclusions.
+
+How long will a funded project last?
+
+Provide a typical range only once confirmed.
+
+What reporting is required?
+
+Explain milestone, budget, data and final-evaluation requirements.
+
+What happens after the pilot?
+
+Describe potential adoption, replication, further development and commercial pathways without guaranteeing progression.
+
+Is support available in Arabic and English?
+
+Confirm the delivery model before publication.
+
+Design guidance
+
+-   Use an accordion treatment.
+
+-   Place downloadable documents alongside the FAQ:
+
+    -   Applicant guide
+
+    -   Eligibility guidance
+
+    -   Evaluation criteria
+
+    -   Eligible-cost guidance
+
+    -   Terms and conditions
+
+-   Provide Arabic and English versions wherever possible.
+
+16. Final Registration CTA
+
+Heading
+
+Have an idea that could improve a UAE farm?
+
+Copy
+
+Register to receive updates about the next Farm Innovation Fund cycle, applicant workshops and future opportunities.
+
+Primary CTA
+
+Register for the next cycle
+
+Secondary CTA
+
+Review the applicant guidance
+
+Open-cycle state
+
+When applications open, automatically replace the copy with:
+
+Applications are now open
+
+Tell us about the farm challenge, the idea you want to explore and the results you hope to achieve.
+
+Primary CTA: Start your application
+Secondary CTA: Download the applicant guide
+
+17. Related Pathway
+
+Eyebrow
+
+DEVELOPING A TECHNOLOGY?
+
+Incubation
+
+If you are developing research, intellectual property or an early-stage agricultural technology rather than a farmer-led project, IO Incubation may be the better place to start.
+
+CTA: Explore Incubation
+
+Recommended Final Page Order
+
+  ------------------------------------------------------------------------------------------------
+  Order   Section                           Primary purpose
+  ------- --------------------------------- ------------------------------------------------------
+  1       Hero                              Explain the offer and cycle status
+
+  2       Why the Fund exists               Establish productivity, profitability and resilience
+
+  3       More than project funding         Introduce innovation capability building
+
+  4       Who can participate               Explain participation and eligibility
+
+  5       What ideas can be supported       Show relevant farm challenges
+
+  6       How the Fund works                Map the full participant journey
+
+  7       Building better proposals         Explain pre-selection support
+
+  8       How projects are evaluated        Improve applicant self-selection
+
+  9       What selected projects receive    Explain funding and delivery support
+
+  10      What participants commit          Set delivery expectations
+
+  11      From pilot to longer-term value   Show adoption, IP and commercial pathways
+
+  12      What success looks like           Define program KPIs
+
+  13      Current cycle                     Show verified participation and project status
+
+  14      Featured projects                 Make the Fund tangible
+
+  15      FAQs and resources                Resolve practical applicant questions
+
+  16      Registration CTA                  Convert prospective applicants
+
+  17      Related pathway                   Route technology-led opportunities to Incubation
+  ------------------------------------------------------------------------------------------------
+
+Main Changes to the Existing Design
+
+Move earlier
+
+-   The Fund’s purpose
+
+-   Innovation capability building
+
+-   The meaning of farmer-led participation
+
+-   Productivity, profitability and resilience
+
+Move later
+
+-   Application figures
+
+-   Funded-project totals
+
+-   Cohort statistics
+
+-   Current-cycle activity
+
+Add
+
+-   Clear capability-building journey
+
+-   Evaluation criteria
+
+-   Participant commitments
+
+-   Post-pilot pathways
+
+-   Local knowledge and intellectual-property outcomes
+
+-   Scale and commercialization definitions
+
+-   Featured farm projects
+
+-   FAQs and applicant resources
+
+Revise
+
+-   “Built in a day” claims
+
+-   Unqualified AED 200K funding statements
+
+-   Broad eligibility wording
+
+-   The five-stage process
+
+-   Decorative statistics
+
+-   Overly technical focus-area language
+
+2. Program Proposition
+
+Eyebrow
+
+FARMERS KNOW THEIR FARMS
+
+Enabling farmers to improve performance and profitability through on-farm innovation
+
+Introductory copy
+
+Farmers experience operational challenges directly and often have valuable ideas for solving them. However, testing a new approach can require funding, technical expertise, structured planning and a willingness to accept implementation risk.
+
+The Farm Innovation Fund helps farmers turn practical ideas into defined solution and validation projects, supported by expert guidance, clear success measures and an evidence-based delivery process.
+
+Three proposition columns
+
+Farmer-led
+
+The challenge and proposed solution originate from the farm’s own operating experience.
+
+Practical
+
+Projects should address a defined need and have a realistic pathway to implementation on a working farm.
+
+Evidence-based
+
+Each funded project is measured against agreed technical, operational and economic outcomes.
+
+Recommended callout
+
+This is not a general farm subsidy or equipment-purchasing scheme. Funding is intended to support structured innovation projects that test a new or meaningfully improved solution against a clearly defined farm challenge.
+
+3. Who the Fund Is For
+
+Eyebrow
+
+WHO CAN APPLY
+
+Open to UAE farms and entrepreneurs, whatever the maturity of the idea
+
+Audience groups
+
+UAE farmers and farm owners
+
+Farmers seeking to solve a recurring operational challenge or improve an existing production process.
+
+Farm managers and operating teams
+
+Teams responsible for crop production, irrigation, protected agriculture, post-harvest operations or other farm activities can apply on behalf of their farms.
+
+Farmer-led partnerships
+
+Farmers working with technology providers, researchers or technical specialists, provided the farmer remains central to the project.
+
+Eligibility summary
+
+Applicants should:
+
+-   Operate or manage a farm in the UAE
+
+-   Identify a specific farm-level challenge or opportunity
+
+-   Provide a suitable location for project implementation
+
+-   Commit time and relevant farm resources to the project
+
+-   Participate in workshops, evaluation and project reviews
+
+-   Be willing to collect and share agreed project data
+
+-   Demonstrate that the proposed idea is new to the relevant farm or meaningfully improves current practice
+
+Content recommendation
+
+The current heading“Open to farmers across the UAE, whatever the maturity of the idea” is directionally good, but potentially too broad.
+
+Replace it with:
+
+Open to farmer-led ideas at different stages of development
+
+Then clarify:
+
+Applicants do not need a fully developed technical proposal. However, they should be able to explain the problem, the proposed improvement and how the idea could be tested on their farm.
+
+This preserves accessibility without implying that undefined concepts are automatically eligible.
+
+4. What Types of Projects Are Relevant?
+
+Eyebrow
+
+FOCUS AREAS
+
+Where proposals can focus
+
+Introductory copy
+
+The Fund welcomes practical farmer-led ideas that can improve productivity, profitability, quality, resource efficiency or operational resilience.
+
+Suggested focus areas
+
+Water and irrigation management
+
+-   Precision irrigation
+
+-   Water monitoring
+
+-   Irrigation scheduling
+
+-   Water treatment and reuse
+
+-   Reduction of water loss
+
+-   Improved water-use efficiency
+
+Protected agriculture and greenhouses
+
+-   Greenhouse and nethouse improvements
+
+-   Cooling and energy efficiency
+
+-   Climate-control optimization
+
+-   Environmental monitoring
+
+-   Automation
+
+-   Controlled-environment production
+
+Soil and plant health
+
+-   Soil improvement
+
+-   Nutrient management
+
+-   Biological inputs
+
+-   Crop-health monitoring
+
+-   Management of salinity
+
+-   Reduction of pest and disease pressure
+
+Farm productivity and automation
+
+-   Robotics
+
+-   Mechanization
+
+-   Digital farm-management tools
+
+-   Sensors and remote monitoring
+
+-   Labour-saving technologies
+
+-   Data-supported decision-making
+
+Crop and production innovation
+
+-   New production approaches
+
+-   Crop diversification
+
+-   Climate-resilient crops
+
+-   Improved propagation or cultivation
+
+-   Farm-level varietal trials
+
+-   Yield and quality improvement
+
+Post-harvest and supply chain
+
+-   Product handling
+
+-   Cooling and storage
+
+-   Quality monitoring
+
+-   Shelf-life extension
+
+-   Packaging
+
+-   Reduction of post-harvest losses
+
+Waste and circularity
+
+-   Agricultural-waste utilization
+
+-   Composting and soil inputs
+
+-   Resource recovery
+
+-   By-product valorization
+
+-   Waste-to-energy or waste-to-material applications
+
+Design recommendation
+
+The existing tabbed feature works well, but the current labels appear too technology-taxonomy driven and may not reflect how farmers describe their problems.
+
+For example, replace:
+
+-   “Photovoltaic responsibility” or similar technical wording
+
+-   “Digital Technology” as a broad standalone area
+
+with farmer-oriented categories such as:
+
+-   Water and irrigation
+
+-   Greenhouse and climate control
+
+-   Soil and crop health
+
+-   Automation and farm operations
+
+-   Post-harvest and quality
+
+-   Waste and resource recovery
+
+Each tab should include:
+
+-   Common farmer problems
+
+-   Example approaches
+
+-   An illustrative photograph
+
+-   A note that examples are not exhaustive
+
+Avoid implying that proposals must fall into only one category.
+
+5. How the Fund Works
+
+Eyebrow
+
+THE PROCESS
+
+From farm need to field evidence
+
+Introductory copy
+
+The Fund follows a structured process designed to strengthen farmer-led ideas, identify projects with the greatest potential and support successful applicants through implementation.
+
+Stage 1: Discovery and call
+
+The Fund defines priority themes, eligibility, available support and application requirements before opening a new cycle.
+
+Applicant action
+
+Register for updates and review the eligibility guidance.
+
+Stage 2: Initial application
+
+Farmers submit a short application describing:
+
+-   The farm and production system
+
+-   The challenge or opportunity
+
+-   The proposed idea
+
+-   The expected benefit
+
+-   The location where the project could be tested
+
+Applicant action
+
+Focus on the problem and practical opportunity. A complete technical proposal is not required at this stage.
+
+Stage 3: Eligibility and initial review
+
+Applications are checked for eligibility, strategic relevance and basic feasibility.
+
+Review considerations
+
+-   Clear farmer need
+
+-   Potential farm-level value
+
+-   Practicality
+
+-   Applicant commitment
+
+-   Potential to generate measurable evidence
+
+Stage 4: Training and proposal development
+
+Eligible applicants may be invited to workshops, facility visits or mentoring sessions to strengthen their project design.
+
+Support may include
+
+-   Problem definition
+
+-   Project design (POC, prototype development, pilot)
+
+-   Budget development
+
+-   Success measures
+
+-   Risk identification
+
+-   Pitch preparation
+
+Stage 5: Expert review and pitches
+
+Detailed proposals are assessed by relevant scientific, agricultural, technical and commercial experts.
+
+Shortlisted applicants may be invited to present their projects and respond to evaluator questions.
+
+Evaluation areas
+
+-   Importance of the farm challenge
+
+-   Strength of the proposed solution
+
+-   Technical feasibility
+
+-   Implementation readiness
+
+-   Expected agricultural or commercial benefit
+
+-   Strength of the measurement plan
+
+-   Potential for wider relevance
+
+Stage 6: Project scoping and contracting
+
+Selected projects are developed into an agreed delivery plan.
+
+The plan should define
+
+-   Project scope
+
+-   Roles and responsibilities
+
+-   Budget
+
+-   Timeline
+
+-   Milestones
+
+-   Data requirements
+
+-   Success measures
+
+-   Payment or reimbursement terms
+
+-   Reporting expectations
+
+-   IP, confidentiality and communications arrangements
+
+Stage 7: Project delivery
+
+The farmer, IO and relevant delivery partners implement the agreed project in real operating conditions.
+
+Progress is monitored through regular reporting, site visits and milestone reviews.
+
+Stage 8: Results and next pathway
+
+Results are evaluated against the agreed baseline and success criteria.
+
+Successful projects may progress toward:
+
+-   Continued use on the participating farm
+
+-   Replication across other farms
+
+-   Partnership with a technology provider
+
+-   Follow-on funding
+
+-   Commercial deployment
+
+-   Wider demonstration or knowledge sharing
+
+Design feedback
+
+The current five-step timeline is visually effective but compresses several materially different activities.
+
+The displayed journey appears to combine:
+
+-   Discovery
+
+-   Eligibility
+
+-   Training
+
+-   Review
+
+-   Test and scale
+
+I recommend using six visible stages on the page and placing project scoping and contracting within the selected-project section:
+
+1.  Apply
+
+2.  Eligibility review
+
+3.  Training and proposal development
+
+4.  Expert review and pitches
+
+5.  Project design and contracting
+
+6.  Project delivery and results
+
+This remains easy to understand while more accurately representing the operational process.
+
+6. Current Cycle and Program Results
+
+Eyebrow
+
+CURRENT FUND CYCLE
+
+Participation from across the UAE
+
+Recommended copy
+
+The current Fund cycle attracted applications from farms across all seven Emirates, demonstrating strong interest in farmer-led innovation.
+
+Suggested figures, subject to final verification
+
+-   130 initial applications
+
+-   7 Emirates represented
+
+-   68 applicants progressed to the next phase
+
+-   39 detailed proposals reviewed
+
+-   38 Innovation Day participants
+
+-   [Verified number] projects selected for funding
+
+The source presentation includes some inconsistencies in finalist, reviewer and funded-project totals. These should be reconciled before publication. [Innovation...w-WIP.pptx | PowerPoint]
+
+Design feedback
+
+The existing visualization reading“From 130 applications to five funded projects” is compelling, but the decorative dot matrix does not explain the selection funnel clearly.
+
+Replace or supplement it with a funnel:
+
+  -----------------------------------------------------------------------
+  Stage                                     Verified total
+  ----------------------------------------- -----------------------------
+  Applications received                     130
+
+  Eligible applicants                       [Confirm]
+
+  Detailed submissions                      39
+
+  Finalist pitches                          [Confirm]
+
+  Funded projects                           [Confirm]
+  -----------------------------------------------------------------------
+
+This gives visitors a clearer understanding of selectivity and progression.
+
+Do not show 2,000+ unless the metric is precisely defined, for example:
+
+-   Farmers reached through communications
+
+-   Farmers in the engagement database
+
+-   Event attendees
+
+-   Potential beneficiaries
+
+“Farmers reached” must not be presented as “participants” or “applicants.”
+
+7. Innovation Day and Applicant Support
+
+Eyebrow
+
+BUILDING STRONGER PROPOSALS
+
+Support before selection
+
+Introductory copy
+
+The Fund is designed to build farmer capability, not simply assess written applications.
+
+Eligible applicants may be invited to an Innovation Day or similar development activities to strengthen their proposals before final evaluation.
+
+Support areas
+
+Facility exposure
+
+See how scientific, field and controlled-environment capabilities can support practical farm innovation.
+
+Problem and solution design
+
+Clarify the operational challenge and strengthen the link between the problem, proposed solution and expected value.
+
+Project planning
+
+Define how the idea could be tested, what resources are required and how success should be measured.
+
+Direct mentoring
+
+Receive structured input from agricultural, scientific, technical and program-delivery specialists.
+
+Pitch preparation
+
+Develop a clear and evidence-led project presentation for expert evaluation.
+
+Design feedback
+
+The existing image carousel gives the page authenticity and should remain. However, the current headline“Stronger project proposals, built in a day” overstates what a one-day activity can achieve.
+
+Recommended replacement:
+
+Helping farmers strengthen their project proposals
+
+Supporting copy:
+
+Through workshops, facility exposure and direct mentoring, participating farmers refine their challenge definition, project approach, budget and success measures before final evaluation.
+
+A full-width photo gallery can remain, with captions such as:
+
+-   Facility tour
+
+-   Problem-definition workshop
+
+-   Technical mentoring
+
+-   Project-design session
+
+-   Finalist preparation
+
+8. What Selected Projects Receive
+
+Eyebrow
+
+SELECTED PROJECT SUPPORT
+
+A funded, measured on-farm project
+
+Introductory copy
+
+Selected projects receive tailored support based on the approved scope. The package may combine funding, specialist expertise, project-management support and access to relevant facilities or partners.
+
+Funding
+
+Recommended wording
+
+Potential funding of up to AED 200,000 per selected project
+
+Funding supports approved project costs and is released according to agreed milestones, evidence requirements and program terms.
+
+Important disclaimer
+
+The award value may vary according to the approved scope and budget. Selection does not automatically entitle every project to the maximum funding amount.
+
+Idea readiness
+
+Before implementation, IO works with the successful applicant and relevant partners to confirm:
+
+-   Scope
+
+-   Baseline
+
+-   Technical approach
+
+-   Project site
+
+-   Budget
+
+-   Timeline
+
+-   Roles and responsibilities
+
+-   Success measures
+
+-   Data plan
+
+-   Risk controls
+
+Delivery discipline
+
+Each project is governed through an agreed delivery plan that may include:
+
+-   Mobilization
+
+-   Milestone reviews
+
+-   Site visits
+
+-   Budget monitoring
+
+-   Evidence submission
+
+-   Risk and issue management
+
+-   Final evaluation
+
+Technical and expert support
+
+Depending on the project, farmers may receive access to:
+
+-   Agronomists
+
+-   Scientific experts
+
+-   Laboratory services
+
+-   Irrigation or greenhouse specialists
+
+-   Technology providers
+
+-   Commercial specialists
+
+-   Project-management support
+
+Visibility and potential scale
+
+Selected projects may be featured through:
+
+-   Demonstration days
+
+-   Farmer-engagement events
+
+-   Program communications
+
+-   Case studies
+
+-   Industry and partner introductions
+
+-   Wider replication discussions
+
+Visibility should be subject to agreed confidentiality, intellectual-property and communications arrangements.
+
+Design feedback
+
+The existing alternating text-and-image blocks are a strong layout for this section. Keep the format, but revise the current labels:
+
+-   Funding
+
+-   Idea readiness
+
+-   Expert and technical support
+
+-   Delivery and measurement
+
+-   Visibility and scale
+
+The current phrase“A funded, measured on-farm project” is strong and should be retained.
+
+9. What IO Expects from Selected Farmers
+
+Eyebrow
+
+A SHARED COMMITMENT
+
+What successful delivery requires
+
+Introductory copy
+
+The Fund provides structured support, but successful projects depend on active farmer ownership and participation.
+
+Requirements
+
+Farm and resource commitment
+
+Provide the agreed implementation site, operational access and available farm resources.
+
+Named project owner
+
+Nominate a person responsible for coordinating delivery and decision-making.
+
+Data and measurement
+
+Support baseline collection, monitoring and the sharing of agreed project data.
+
+Milestone participation
+
+Attend project reviews and provide required reports, records and evidence.
+
+Safe and compliant delivery
+
+Comply with relevant farm, environmental, health and safety, procurement and regulatory requirements.
+
+Knowledge sharing
+
+Where agreed, participate in demonstrations or case studies that help other farmers understand the project’s findings.
+
+Why this section matters
+
+The current design emphasizes what farmers receive but says little about what farmers contribute. Adding this section will:
+
+-   Improve applicant self-selection
+
+-   Reduce passive or unsuitable submissions
+
+-   Set expectations before contracting
+
+-   Reinforce that the Fund is a co-delivered project, not a cash award
+
+10. Featured Projects and Farmer Stories
+
+Eyebrow
+
+INNOVATION ON THE FARM
+
+Farmer-led projects in action
+
+Introductory copy
+
+Explore how participating farmers are testing practical ideas to improve productivity, profitability and resilience.
+
+Case-study card format
+
+Each funded-project card should include:
+
+-   Farm or project name, subject to approval
+
+-   Location or Emirate
+
+-   Challenge
+
+-   Proposed solution
+
+-   Project duration
+
+-   Support provided
+
+-   Key performance indicators
+
+-   Current status
+
+-   Results, once available
+
+-   Farmer quotation, where approved
+
+Suggested result measures
+
+Depending on the project:
+
+-   Water consumption
+
+-   Energy consumption
+
+-   Yield
+
+-   Crop quality
+
+-   Labour hours
+
+-   Input cost
+
+-   Crop losses
+
+-   Operating cost
+
+-   Return on investment
+
+-   Resource recovered or reused
+
+Design recommendation
+
+The current design moves from program support directly to eligibility and CTA. Add the featured-project section before eligibility if public project information is available.
+
+If the first projects have not yet produced credible results, label the content accurately:
+
+-   Projects selected
+
+-   Projects in delivery
+
+-   Early implementation updates
+
+Do not label ongoing work as “impact” until evidence has been reviewed.
+
+11. Eligibility and Evaluation
+
+Eyebrow
+
+BEFORE YOU APPLY
+
+Is the Fund right for your idea?
+
+Eligibility
+
+Applicants should operate or manage a UAE farm and be able to commit the site, time and resources required to deliver the proposed project.
+
+Evaluation
+
+Proposals are assessed against published criteria, which may include:
+
+-   Importance of the problem
+
+-   Farmer relevance
+
+-   Distinctiveness of the proposed approach
+
+-   Technical feasibility
+
+-   Implementation readiness
+
+-   Measurable benefit
+
+-   Budget reasonableness
+
+-   Applicant capability and commitment
+
+-   Potential for replication or wider learning
+
+Exclusions
+
+The page should clearly identify any exclusions once program rules are approved. Likely examples may include:
+
+-   Routine operational costs
+
+-   Retrospective reimbursement
+
+-   Standard equipment replacement without an innovation component
+
+-   Land acquisition
+
+-   Unrelated construction
+
+-   Projects without a defined UAE farm site
+
+-   Proposals requiring approvals that cannot reasonably be obtained
+
+-   Ideas with no measurable outcome
+
+These exclusions must be aligned with the final Fund terms before publication.
+
+12. Frequently Asked Questions
+
+Recommended questions
+
+Who can apply?
+
+Clarify legal applicant types, farm-location requirements and whether tenants, managers or cooperatives may apply.
+
+Does the idea need to be technically developed?
+
+Explain the minimum maturity required at initial application and at detailed-proposal stage.
+
+How much funding is available?
+
+Describe the potential maximum, eligible costs, co-contribution requirements and milestone terms.
+
+Can I apply with a technology company or researcher?
+
+Explain farmer-led consortium or partner applications.
+
+Who owns the idea and project intellectual property?
+
+Provide an accessible summary and link to the formal application terms.
+
+What costs are eligible?
+
+Give representative examples and major exclusions.
+
+How are applications assessed?
+
+Explain the evaluation stages and expert-review process.
+
+How long does a funded project last?
+
+Provide the expected range once agreed, for example 6 to 12 months, rather than implying all projects have the same duration.
+
+What reporting is required?
+
+Summarize milestone, budget, data and final-report expectations.
+
+What happens after the project?
+
+Explain the possible continuation, replication, commercial or follow-on pathways without guaranteeing scale-up.
+
+Can unsuccessful applicants receive feedback?
+
+Set clear expectations about the level and timing of feedback.
+
+Is application support available in Arabic and English?
+
+This should be confirmed and clearly stated because the intended audience spans farms across the UAE.
+
+13. Final CTA
+
+Heading
+
+Have an idea that could improve your farm?
+
+Copy
+
+Register to receive updates about the next Farm Innovation Fund cycle, applicant workshops and future opportunities.
+
+Primary CTA
+
+Register for the next cycle
+
+Secondary CTA
+
+Review eligibility
+
+Alternative state when applications open
+
+Applications are now open
+
+Tell us about the challenge on your farm, the solution you want to test and the results you hope to achieve.
+
+Primary CTA: Start your application
+Secondary CTA: Download the applicant guide
+
+14. Related Platform
+
+The large related-content banner at the bottom currently promotes Incubation. This is a reasonable cross-link, but it should be presented as a broader pathway for technologies not suited to a farmer-led Fund application.
+
+Recommended copy
+
+RELATED PATHWAY
+
+Incubation
+
+Developing research, intellectual property or an early-stage agricultural technology?
+
+IO Incubation provides focused scientific, technical, user and commercial validation.
+
+CTA: Explore Incubation
+
+Detailed Feedback on the Attached Design
+
+What is working well
+
+Strong visual storytelling
+
+The use of farm, greenhouse, workshop and project-delivery photography makes the program feel practical and grounded in real activity.
+
+Logical narrative
+
+The page already moves through:
+
+-   Program introduction
+
+-   Audience
+
+-   Focus areas
+
+-   Process
+
+-   Participation
+
+-   Applicant development
+
+-   Funded-project support
+
+-   Eligibility
+
+-   Related pathway
+
+This is a strong foundation.
+
+Appropriate level of whitespace
+
+The design feels premium and avoids the visual density associated with many grant-program pages.
+
+Good use of alternating layouts
+
+The sections pairing photography with short content blocks work particularly well for:
+
+-   Focus areas
+
+-   Process
+
+-   Applicant support
+
+-   Selected-project benefits
+
+Clear conversion points
+
+The hero and lower-page CTAs provide appropriate entry points for visitors at different stages.
+
+Priority design and content changes
+
+1. Change the hero from outcome statistics to program orientation
+
+The hero should first answer:
+
+-   What is this?
+
+-   Who is it for?
+
+-   What can it help farmers do?
+
+-   Is the current cycle open?
+
+Move impact or participation figures lower on the page.
+
+2. Clarify the funding statement
+
+Replace AED 200K with:
+
+Up to AED 200,000 in potential project funding
+
+Add:
+
+Funding is subject to approved scope, budget, milestones and program terms.
+
+3. Clarify “farmer-led”
+
+The existing page uses the concept well, but the definition should be explicit:
+
+Farmer-led means that the challenge originates from the farm, the farmer remains actively involved in the project and the solution is tested against the farm’s operational needs.
+
+It does not necessarily mean the farmer must invent or technically develop every component.
+
+4. Use farmer-oriented focus areas
+
+The current taxonomy should be simplified into problems and operational themes familiar to farmers. Technical terms can appear within the expanded detail.
+
+5. Expand the process slightly
+
+The five-stage process is visually clean but hides project design and contracting. Use six stages and distinguish selection from delivery.
+
+6. Replace the decorative application graphic with a funnel
+
+Show the journey from 130 applications to detailed submissions, finalist pitches and funded projects. Verify every figure before use. [Innovation...w-WIP.pptx | PowerPoint]
+
+7. Reframe Innovation Day
+
+Replace“Stronger project proposals, built in a day” with a more defensible promise:
+
+Helping farmers strengthen their project proposals
+
+8. Add farmer responsibilities
+
+Balance “what you receive” with “what successful delivery requires.” This is important for applicant quality and delivery discipline.
+
+9. Add project examples
+
+Even one or two funded-project profiles will make the program more tangible. If results are not yet available, present the challenge, planned project and intended measures rather than premature impact claims.
+
+10. Add FAQs and downloadable guidance
+
+Include:
+
+-   Applicant guide
+
+-   Eligibility criteria
+
+-   Evaluation criteria
+
+-   Eligible-cost guidance
+
+-   Application timeline
+
+-   Terms and conditions
+
+-   FAQ
+
+-   Arabic and English versions, if available

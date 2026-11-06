@@ -1,0 +1,34 @@
+# homepage site-tour galleries
+sp_parcel1.jpg	Archive/Screenshot 2026-09-24 164012.jpg
+sp_parcel2.jpg	Archive/Screenshot 2026-09-24 163545.jpg
+sp_parcel3.jpg	Archive/Screenshot 2026-09-24 163812.jpg
+sp_collab1.jpg	Professional Facility Photos (1)/PA__1211-Edit-Edit.jpg
+sp_collab2.jpg	Farm Innovation Fund Photos/DSC00432.jpg
+sp_collab3.jpg	Farm Innovation Fund Photos/DSC00424.jpg
+sp_collab4.jpg	Farm Innovation Fund Photos/DSC00587.jpg
+sp_labs1.jpg	Professional Facility Photos (1)/PA__1281.jpg
+sp_labs2.jpg	Professional Facility Photos (1)/PA__1405.jpg
+sp_labs3.jpg	Professional Facility Photos (1)/PA__1410.jpg
+sp_labs4.jpg	Professional Facility Photos (1)/PA__1421.jpg
+sp_cea1.jpg	General MarCom Photos (1)/PA__1490.jpg
+sp_cea2.jpg	General MarCom Photos (1)/PA__1526.jpg
+sp_cea3.jpg	General MarCom Photos (1)/PA__1576.jpg
+sp_cea4.jpg	Professional Facility Photos (1)/PA__1464.jpg
+sp_fields1.jpg	Archive/Screenshot 2026-09-24 163836.jpg
+sp_fields2.jpg	Archive/Screenshot 2026-09-24 163612.jpg
+sp_fields3.jpg	Archive/Screenshot 2026-09-24 163925.jpg
+sp_fields4.jpg	Farm Innovation Fund Photos/DSC00540.jpg
+sp_green1.jpg	General MarCom Photos (1)/SMJ_2763.jpg
+sp_green2.jpg	General MarCom Photos (1)/SAM_9200.jpg
+sp_green3.jpg	General MarCom Photos (1)/DSC04723 (1).jpg
+sp_green4.jpg	General MarCom Photos (1)/Screenshot 2026-02-20 at 10.58.36 AM copy.jpg
+sp_master1.jpg	Archive/Screenshot 2026-09-24 163505.jpg
+sp_master2.jpg	General MarCom Photos (1)/SAM_8874.jpg
+sp_master3.jpg	Professional Facility Photos (1)/PA__1065.jpg
+sp_master4.jpg	General MarCom Photos (1)/edited-121 (1).jpg
+# FIF page
+fif_hero.jpg	Farm Innovation Fund Photos/DSC00433.jpg	1920
+fif_mentor.jpg	Farm Innovation Fund Photos/DSC00594.jpg
+fif_speaker.jpg	Farm Innovation Fund Photos/DSC00420.jpg
+fif_lab.jpg	Farm Innovation Fund Photos/DSC00468.jpg
+fif_panel.jpg	Farm Innovation Fund Photos/DSC00600.jpg

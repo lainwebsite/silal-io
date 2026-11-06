@@ -30,6 +30,7 @@ Design routes live under random folder names so they cannot be guessed. There is
   - https://silal-io.vercel.app/innovation&venture-v2/agricultural-challenges
   - https://silal-io.vercel.app/innovation&venture-v2/enquire
 - https://silal-io.vercel.app/full-site (2026-10-30): the whole review site as one website: homepage (Method helix boxes), About IO, Team + profile pages, News + releases, IVP, IO Academy, Training Detail. Clean addresses: `/full-site/about`, `/full-site/team`, `/full-site/news`, … (old `.html` addresses redirect). Static files `public/full-site/` (noindex), built by `prototypes/about-team-news/` (`build.py`, `homepage.py`, `site.py`, then `publish.py`).
+- https://claude.ai/artifact/K4qEjdh9q1zUF29MA49HEa (2026-11-06): review artifact with the 6 Nov client revisions on the whole site (homepage, About + new Our Ecosystem, Team by verticals, IO Academy iO x Delphy, IVP overview, Farm Innovation Fund, Incubation). Not on Vercel yet. Sources: `prototypes/rev-6-nov/` (branch `claude/dazzling-wright-l97v7r`).
 - `/Team/V1`: not built yet, not published.
 
 Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below keep working.

@@ -1,0 +1,1038 @@
+--- slide 1
+INNOVATION OASIS
+Innovation & Venture Platforms
+Vertical Overview
+2026
+--- slide 2
+AN OVERVIEW OF OUR MISSION & VISION
+--- slide 3
+INNOVATION & VENTURES PLATFORMS OVERVIEW 
+--- slide 4
+The Venture Building Process
+PHASE 1
+Ideate
+PHASE 2
+Incubate
+PHASE 3
+Accelerate
+Build to Validate
+Build to Automate
+Build to Scale
+Operating Plan
+Product Market Fit
+Problem Identification
+What do people need? / Does anyone want it?
+Repeatable Model
+Value Proposition Testing
+Financial Model
+Competitive Landscape
+Customer Desirability?
+Technical Feasibility?
+Business Viability?
+iO Suitability?
+
+Ease of adoption/localization?
+Team Capability?
+
+Long-term Impact?
+Revenue
+Customer
+ActivateBusiness
+Source
+Assess & Prioritize
+What do we build?
+Product
+How do we make money?
+Business
+POC
+PROTOTYPE
+MVP
+PILOT
+--- slide 5
+OUR METHODS FOR INNOVATION
+LOCALIZE
+1
+BUILD
+2
+We identify the best, bring it here, and adapt it as required to fit our conditions.
+Pre-requisite: There is already a strong problem-solution fit in the market that we can reasonably extract value from, and it would be too expensive or timely to build ourself.
+We create new solutions when the market does not offer a suitable option.
+Pre-requisite: There is no adequate prior art and our team has the right capabilities to deliver a new solution. Potential value is large enough to trade-off higher investment and risk. 
+--- slide 6
+HOW DOES IO MEASURE READINESS?
+TECHNOLOGY READINESS
+COMMERCIAL READINESS
+OPERATIONAL READINESS
+ ADOPTION READINESS
+Measures the non-technical adoption barriers.
+**Valley of Death: The funding gap where technologies are too advanced for research grants but unproven for commercial investment, causing most innovations to stall and die despite being technically viable
+--- slide 7
+VALIDATION ROADMAP
+--- slide 8
+IDEATION
+1
+STAGE OBJECTIVE
+Explore feasibility of a concept or idea in a controlled environment.
+--- slide 9
+FARM INNOVATION FUND
+Sourcing & evaluation complete: 130 initial applications screened and 40 second round submissions assessed by 11 experts.
+Innovation Day : 38 farmers visited the Innovation Oasis for a facility tour, capability overview and bilingual pilot-scoping workshops supporting Phase 2 submissions
+Rejection notifications: farms that were not selected have need notified and will be prepared as first adopters of funded solutions or tracked for Cycle 2.
+2026 |  |  |  |  |  |  |  |  | 2027 |  |  |  |  | 
+APR | MAY | JUN | JUL | AUG | SEP | OCT | NOV | DEC | JAN | FEB | MAR | APR | MAY | JUN
+ |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+Onboarding
+Application Window
+Project Implementation
+Close-out & Post-Program Support
+Launch on April 22
+Design
+We are here
+ANNUAL CALENDAR
+PLATFORM VISION
+PROGRAM OBJECTIVES
+Regularly enable farmers across the UAE to develop, test, implement, and scale solutions that improve farm performance and profitability—turning real on-farm challenges into opportunities for innovation and long-term resilience.
+ENGAGE directly with UAE farmers to uncover pain points, operational constraints, and high-potential innovation opportunities grounded in on-farm realities
+EMPOWER farmers to design, test, and adopt practical innovations by lowering the cost and risk of experimentation, while building long-term capabilities
+SCALE high-impact solutions across the ecosystem by mobilizing partnerships, funding, and replication—delivering farmer value through shared learnings, savings, and efficiency
+KEY PROGRESS
+First SteerCo: Inaugural SteerCo session to support overall program governance
+Phase 3 Preparations: site visits, pitch and dossier preparation, and 1:1 feedback sessions help to support final evaluation.
+Pitch Day Planning: coordinating final pitch day structure, evaluation criteria, and event logistics.
+Communications: Announcement of 5 winning farms that will proceed to pilot. Activation of partners to amplify comms.
+WHAT’S NEXT
+Application Review & Selection
+Review business case & scaling options
+Finalist Pitch Day
+--- slide 10
+INCUBATION
+2
+STAGE OBJECTIVE
+Validate that a technology proven elsewhere can perform in IO's specific environment.
+
+--- slide 11
+KHALIFA UNIVERSITY INCUBATION PROJECTS
+Storytelling & Design of application flow underway and planned to be finalized by next week
+Finalize evaluation process, criteria, and other program design components
+ANNUAL CALENDAR
+PLATFORM VISION
+PROGRAM OBJECTIVES
+Empower UAE farmers to lead the adoption of practical, high-impact innovations that enhance productivity, resilience, and sustainability—strengthening national food security while positioning the UAE as a testbed for desert agriculture solutions.
+ENGAGE directly with UAE farmers to uncover pain points, operational constraints, and high-potential innovation opportunities grounded in on-farm realities
+EMPOWER farm managers to design and implement practical improvements and new ideas on their farms, reducing the risk and cost of experimentation
+STRENGTHEN farmer capabilities and long-term resilience by building exposure to innovations.
+AMPLIFY the visibility of UAE farmers as innovation leaders and showcase successful use cases that can be replicated across the ecosystem.
+KEY PROGRESS
+Identify and shortlist target farms (Silal contract farms and externals)
+Pressure-test program design (with focus on farmer incentives, currently AED ~200k for 5 farms in project funding)
+Review application flow to validate farmer-facing experience
+Define communications and outreach approach to increase engagement
+WHAT’S NEXT
+2025 | 2026 |  |  |  |  |  |  |  | 
+DEC-MAR | APR | MAY | JUN | JUL | AUG | SEP | OCT | NOV | DEC
+ |  |  |  |  |  |  |  |  | 
+Data collection
+We are here
+Scaling & Commercial Evaluation
+Lab Validation
+Field Testing
+User Discovery
+User Testing
+Product Refinement
+Business Case & Go-To-Market Assessment
+Research
+Prototype
+--- slide 12
+ACCELERATION
+3
+STAGE OBJECTIVE
+Validate that a technology proven elsewhere can perform in IO's specific environment.
+
+--- slide 13
+iO ACCELERATOR
+Cohort Selection & Onboarding: Cohort 1 finalized with 8 startups selected – mix of inputs, sensing tech, and supply chain tech
+Pilot Scoping Underway: Initial pilot concepts have been directionally defined for 6/8 of the selected startups. Sponsors and team members have been onboarded.
+Commercialization Readiness: A business case template has been developed combining pilot outcomes, commercial assessment, and stakeholder feedback.
+
+
+
+
+PROGRAM VISION
+PROGRAM OBJECTIVES
+Position iO as the global proving-ground for desert agriculture by validating and commercializing the best startup-led solutions
+KEY PROGRESS
+Complete Onboarding: Finalize outstanding legal, NDA, and registration, including Mori regulatory review
+Finalize Pilot Scope: Complete the remaining pilot scoping sessions and develop detailed pilot plans, success metrics, timelines, and resource requirements.
+Initiate Pilot & Business Casing: begin pilot implementation and parallel business case development
+WHAT’S NEXT
+--- slide 14
+14
+TECHNOLOGY TAXONOMY & LANDSCAPE
+Production
+Supply Chain Visibility & Intelligence
+Soil & Plant Health Inputs & Amendments
+Soil Inputs & Amendments
+Inputs and amendments to improve soil quality and structure nutrient/water retention, eg. hydrogels, nanoclay technologies
+Precision Ag.
+Data-driven Farming 
+Software and analytics platforms that leverage data (farm, climate, crop) to inform decision-making, optimize inputs, and improve yield predictability
+Plant Health Inputs
+Inputs that protect crops and enhance resilience to abiotic/biotic stresses and promote biodiversity
+Robotics & Automation
+Autonomous or semi-auto systems that reduce labor dependency and increase efficiency across farm ops. such as planting, harvesting, etc.
+IoT & Remote Sensing
+Sensor networks, imaging, and monitoring systems that provide visibility into crop, soil, and environmental conditions
+Variable Rate Tech. (VRT)
+Tech. that enables precise, site-specific application of inputs (water, fertilizer, chemicals) to improve efficiency/reduce waste
+Crop Innovation
+Genomic Innovation & Multi-stress Crops
+Crop varieties resilient to climate stresses (e.g., heat, drought,etc.), improving yield & input efficiency
+Controlled Env. Ag.
+CEA Equipment
+Tech. enabling control of growing conditions of indoor and protected farming systems
+Water & Energy Mgmt. Solutions
+Precision Irrigation
+Tech. that optimizes water delivery through targeted, data-driven irrigation methods to improve water-use efficiency and crop performance
+Water Recycling Tech.
+Solutions that capture, treat, and reuse water within ag. systems to reduce freshwater demand and enable sustainable production
+Water & Energy Efficient Climate Control
+Data Platforms & Infra. (Data Creation / Digitization)
+Systems that optimize indoor and protected farming conditions (cooling, humidity, airflow) and soil temperature while minimizing water and energy consumption
+Agribusiness Platforms & Marketplaces
+Digital platforms that connect producers, buyers, and intermediaries to enable efficient trading, price discovery, and access to markets
+Supply Chain IoT-enabled & Alternative Data
+Tech. that capture and integrate real-time supply chain data (e.g., sensors, satellite, external datasets) to improve visibility, tracking, and decision-making
+Applications & Analytics (Data Utilization / Decisioning)
+Blockchain-enabled Traceability
+Distributed ledger tech. that enable end-to-end product traceability, transparency, and trust across the supply chain
+AI-powered Demand Forecasting & Supply Mgmt.
+Analytics solutions that predict demand and optimize supply planning, inventory flows, and distribution to reduce waste and improve efficiency
+Renewable Energy Integration
+On-farm energy solutions that reduce reliance on grid power and improve the sustainability and cost-efficiency of farm operations
+Waste & Circularity
+Rescue & Reuse
+Redistribution Platforms
+Waste-as-a-Resource Tech.
+Tech. that convert organic and agri-waste into higher-value outputs such as food products, inputs, materials, or energy
+Prevention
+Cold Chain Infra. & Solutions
+Infra and tech. that maintain temperature-controlled storage and transport to reduce spoilage and extend freshness
+Tech. that assess product quality and freshness in real time to enable better handling, routing, and intervention before spoilage
+Quality Monitoring Tech.
+AI-powered Supply Mgmt.
+Software using data and predictive analytics to optimize inventory, reduce overstocking, and minimize waste
+Shelf-life Extension Materials & Tech.
+Materials and tech. that extend shelf life and preserve quality through packaging, coatings, and controlled environments
+Platforms and logistics solutions that redirect surplus/unsold food to secondary markets, charities, or alternative demand channels
+Sources: Pitchbook, AgFunder, Ibex analysis, VC expert input 
+--- slide 15
+THE OBJECTIVE: COMMERCIAL PATHWAYS OVERVIEW
+Pathway
+Option
+Description
+--- slide 16
+16
+IDEATION
+--- slide 17
+We don’t care about the maturity of the idea as we have multiple approaches to help bring it to life.
+Regularly enable farmers across the UAE to develop, test, implement, and scale solutions that improve farm performance and profitability—turning real on-farm challenges into opportunities for innovation and long-term resilience.
+Focused on operational relevance and viability. 
+Focused on building a farmer-centric capability that goes beyond one “challenge” cycle and prize pool.
+We help them make it happen, but farmers are at the core and essential to every step of the process. This is a funnel for more actively involving the local grower ecosystem in what the iO does.
+PROGRAM VISION
+--- slide 18
+PROGRAM OBJECTIVES & KPIs
+At its core, there are three main objectives driving the Farm Innovation Fund:
+ENGAGE
+Directly with UAE farmers to uncover pain points, operational constraints, and high-potential innovation opportunities grounded in on-farm realities
+EMPOWER
+Farmers to design, test, and adopt practical innovations by lowering the cost and risk of experimentation, while building long-term capabilities
+SCALE
+High-impact solutions across the ecosystem by mobilizing partnerships, funding, and replication—delivering farmer value through shared learnings, savings, and efficiency
+Applications (target ≥100)
+130
+Qualified applications (target ≥20)
+68
+Emirates represented (target 7)
+7
+Distinct problems tagged (target ≥10)
+TBC
+Support workshops (target ≥3)
+3
+Solutions progressed at least one TRL Stage
+≥1
+Participating-farm NPS
+≥30
+Solutions scaled (North Star)
+≥ 1
+Additional adopters within 12 months
+≥ 10
+Follow-on funding committed (AED)
+≥ 1M
+--- slide 19
+19
+BY THE NUMBERS
+1,000+
+Farmers reached through targeted outreach
+130
+Applications submitted
+68
+Applicants advanced to Phase 2
+7
+Emirates represented
+40+
+One-to-one farmer calls
+38
+Innovation Day attendees
+39
+Phase 2 submissions reviewed
+12
+Expert reviewers engaged
+VALID PHASE 2 SUBMISSIONS BY CATEGORY (N=39)
+16  (41.0%)
+Sustainable & Organic Practices
+10  (25.6%)
+Protected Agriculture & Greenhouses
+9  (23.1%)
+Water & Irrigation Management
+4  (10.3%)
+Smart Farming & Digital Technology
+--- slide 20
+POST-
+PROJECT
+
+(scaling)
+
+
+
+ONBOARDING
+
+
+
+
+
+
+PROJECT
+
+
+
+
+
+
+CLOSE-OUT & FARMER DEMO
+
+
+
+
+
+WHERE WE ARE IN THE PROCESS
+Sourcing and expert review are complete. 8 finalists now move to Pitch Day before 5 projects are confirmed.
+Establish what the Farm Innovation Fund is trying to achieve and how to structure it
+DISCOVERY
+SOURCING & SCOUTING
+EVALUATION & SELECTION
+Convert project successes into deployments on other farms with shared pain points
+Define project scope, execute contracts, and mobilize required resources
+DESIGN
+
+
+
+
+
+LAUNCH
+
+
+
+
+
+EVALUATION & SELECTION
+
+
+
+
+
+Launch applications and communicate the Fund to local farms
+Ten finalists selected. Pitch Day and the funding decision come next.
+Review project outcomes and showcase results to ecosystem partners and other farmers
+Execute projects to test selected solutions
+COMPLETED ✅
+COMPLETED ✅
+WE ARE HERE
+4 weeks
+
+12 - 24 weeks
+
+9 - 12 weeks
+
+TBD
+This cycle’s objective:  5 projects leading to at least 1 scaled solution
+--- slide 21
+Online applications closed May 31
+PHASE 1: ELIGIBILITY
+Application completeness check
+Mandatory eligibility criteria check
+E: 100 | A: 130
+Notify farmers and announce
+Initiate project readiness review and contracting
+PHASE 5: SELECTION & NOTIFICATION
+E: 5*
+PHASE 4: FINALIST PITCHES 
+Top candidates pitch to the jury panel
+Full project proposal and budget submitted 
+Grant recipients selected
+E: 10-12 | A: 10
+PHASE 3: EXPERT EVALUATION & SHORTLIST
+Expert evaluation and shortlisting recommendations 
+Outstanding questions and limitations identified
+Final selection for pitch
+E: 30 | A: 39
+PHASE 2: INNOVATION DAY & FORM SUBMISSION
+Candidate visit to iO for tour, capability overview, and workshops
+Mentorship offered for Phase 2 submission and project scope
+E: 50 | A: 68
+*Maintain 1–2 reserve finalists to mitigate dropout risk
+CURRENT GATE
+WHERE WE ARE IN THE PROCESS
+We have designed a five-phase process to strengthen farmer submission quality and apply techno-economic and strategic judgment to select the highest-potential first cohort.
+--- slide 22
+22
+EVALUATION PROCESS HIGHLIGHT: INNOVATION DAY
+As part of Phase 2, we invited all applicants to tour the innovation oasis facilities, understand our support capabilities, and provide practical training and direct mentoring to prepare stronger idea and proposals.
+26 JUL
+Full-day event hosted at the Innovation Oasis, Al Ain
+38
+Farmers attended the tour, workshops and mentoring
+3
+Arabic workshops with practical workbooks
+39
+High-quality proposals received post-workshop
+--- slide 23
+23
+EVALUATION PROCESS HIGHLIGHT: PHASE 2 BLIND REVIEWERS
+As part of Phase 2, all submissions where anonymously reviewed and scored by 2-3 evaluators, 10 in total. Only the final eight top-scoring solutions were selected to proceed to the final round. 
+Protected Agriculture & Greenhouses
+PA-GH-J01
+Mohammed Al Mehiri
+Farming Team
+10 applications in category
+PA-GH-J02
+Baraa Al Khaled
+iO Team
+10 applications in category
+PA-GH-J03
+Hatim Morbiwala
+External - Growhub
+10 applications in category
+Smart Farming & Digital Technology
+SFDT-J01
+Abdelfatah Jebari
+Farming Team
+4 applications in category
+SFDT-J02
+Shoeb Khot
+iO Team
+4 applications in category
+SFDT-J03
+Youcef Bettouaf
+External - Aquadev
+4 applications in category
+Sustainable & Organic Practices
+SOP-J01
+Yousef AlOjaimi
+Farming Team
+16 applications in category
+SOP-J03
+Adil Iqbal
+iO Team
+16 applications in category
+Water & Irrigation Management
+WIM-J02
+Ahmed El Nadjar
+iO Team
+9 applications in category
+WIM-J03
+Naseer Aldobal
+External Team - Sherwood
+9 applications in category
+--- slide 24
+24
+Smart Farming & Digital Technology (1)
+Sustainable & Organic Practices (3)
+SOP-011 : Priva/RO greenhouse optimisation upgrade 
+SOP-008 : Neem-leaf biopesticide for palm weevil 
+SOP-010 : Heat-tolerant hybrid bee tomato pollination 
+Protected Agriculture & Greenhouses (2)
+Water & Irrigation Management (2)
+FINALISTS
+Eight finalist ideas will be pitched to the jury; five will be selected for funded projects.
+WIM-013 : Solar wireless soil + flow sensors with AI advice 
+WIM-001 : Source-to-crop smart water chain system 
+SFDT-009 : Integrated greenhouse farm-management IoT platform 
+PA-GH-013 : Closed-loop hydroponics for saline water 
+PA-GH-015 : Positive-pressure solar sustainable greenhouse 
+--- slide 25
+25
+OUR JURY PANELISTS FOR FINAL WINNER SELECTION
+ | NAME | ENTITY | DESIGNATION | NEXT STEPS
+● | Dr Shamal Mohammed | IO | CEO | Confirmed and available for Nov 11 Pitch Day
+● | Mohammed Abdulla Khalfan Almheiri | Silal | Director – Local Farms | Confirmed and available for Nov 11 Pitch Day
+● | Khaled Omar | NAC | Agricultural Engineer | Confirmed and available for Nov 11 Pitch Day
+● | Salama AlHajeri  | ADAFSA | Agriculture Researcher | Confirmed and available for Nov 11 Pitch Day
+● | Dr. Elke Gabriel | UAEU | Associate Professor, Department of Integrative Agriculture | Discussed at GFW, nomination pending with them + Pitch Day availability TBC
+● | Dr Yusra Abdulrahman | KU | Deputy Director ARIC | Confirmed and available for Nov 11 Pitch Day
+● | Eng Haliema | MOCCAE | TBD | Pitch Day availability TBC (potentially away for National Service)
+--- slide 26
+FARM INNOVATION FUND PARTNERS
+We have cultivated a network of local partners to support the program through winner selection, implementation and governance, and – most importantly – the scaling of successful solutions.
+
+26
+--- slide 27
+27
+INCUBATION
+--- slide 28
+28
+WHAT IS “INCUBATION” TO INNOVATION OASIS?
+Not early-stage venture capital. Not open-ended research funding. A disciplined translation model to learn the fastest credible path to value.
+CURRENT CONTRACT MODEL
+PROPOSED FUTURE MODEL
+--- slide 29
+29
+NEW CORE PRINCIPLES FOR INCUBATION (1/2)
+--- slide 30
+30
+NEW CORE PRINCIPLES FOR INCUBATION (2/2)
+--- slide 31
+31
+ACCELERATION
+--- slide 32
+Innovation Oasis is structured by 4 main verticals with Innovation as the bridge between Science & Commercial 
+--- slide 33
+Strategic partners are increasingly turning to iO to deliver complex, high-impact innovation programs
+
+Strategic program under the Presidential Court to translate CGIAR research into scalable UAE desert agriculture solutions.
+Innovation Oasis 2-year program delivery partner and hub for Startups, Academia and Agribusinesses, applying to funding.
+
+AI and Advance Technology Council with a recommendation from HH office launching 2-year program on controlled environment research (Low light genetics & AI copilot for farmers). 
+Facility to be built at iO with expected commissioning in Q1 2027.
+1. Square Roots (AIATC)
+2. IAO - Presidential Court 
+USD $9.7m
+USD $5m
+
+
+
+
+MBZ Water Initiative – Program Management
+
+Tadweer – Anaerobic Digestion Systems trial
+
+Zayed for Good – Local Farmers support program management in UAE and Africa
+
+Department of Energy – Water and energy related innovations for farming
+
+3. Pipeline
+--- slide 34
+An overview of our External Service offerings
+Soil & Water Advisory
+
+PICTURE
+
+PICTURE
+
+PICTURE
+Advanced Analytical Services
+Trialing Services
+3
+Program Management Services & iO Academy
+4
+
+PICTURE
+Scope
+Focus Ahead
+Optimizing fertilisation use & irrigation practices across the UAE for sustainability, ESG and in alignment with the national vision
+Analysed soil samples from 207 farms across 3 regions 
+Of these, 75% of farms reported significant fertiliser improvements (10-20%)
+Submitted MAJRA Sustainable Impact 2026 report
+Collaboration with Cranfield for establishing a health card 
+Planned to commercialize the  service throughout of 2027
+Scope
+Focus Ahead
+Equipped with advanced laboratory technology providing dependable, high-quality chemical and bacteriological analyses
+ISO 9001 certified
+403 Crop Health analysis done for current season providing 
+For 2026 (4 months) Silal has seen a total saving of AED 366,185 by using our internal analytical services 
+
+Accreditation ISO 17025 expected by end of year 2026
+Expanding laboratory testing capabilities by Q4 2026
+Scope
+Focus Ahead
+Varieties testing 
+Seed health 
+Pest disease 
+Nutritional profiling  
+Contracted paid trials 
+25/26 season testing incl. 37 varieties across 6 crops analysed on behalf of Sherwood & farming
+Scope
+Focus Ahead
+iO Program management service, offering end-to-end delivery capabilities 
+iO Academy building an in-house training engine to educate & certify 
+
+iO PM: USD 0.9M from PM services to presidential court (CGIAR program)
+iO Academy: Delphy partnership for content delivery
+Launch full capability offerings of PM to external partners
+Establish the iO Academy & kick-off the training engine internally 
+Achievements
+1
+2
+June workshop with subsidiaries to define 2026/27 targets, including becoming the preferred testing partner
+Expanding available services.
+Achievements
+Achievements
+Achievements
+--- slide 35
+Our Program Delivery Framework
+DEFINE THE RIGHT CHALLENGE
+ACTIVATE THE ECOYSTEM
+DESIGN THE MODEL
+EVALUATE FOR IMPLEMENTATION
+VALIDATE IN REAL CONDITIONS
+STRATEGIC PARTNERSHIP & COMMERCIALIZATION
+Start with a precise problem statement rather than a broad innovation theme.
+
+Align challenge statements to strategic priorities 
+Define measurable success criteria 
+Establish clear operational outcomes 
+Focus innovators on solving specific problems
+Create incentives that reward progress and adoption-not just participation.
+
+Structure staged funding mechanisms
+Define pilot and implementation opportunities
+Establish IP and commercialization pathways.
+Align incentives with long-term outcomes
+OUTPUT:Clearly defined challenge brief
+OUTPUT:Challenge and funding architecture
+Build a qualified innovation pipeline before launch.
+
+Engage universities, startups, accelerators and industry partners
+Leverage global and local innovation networks
+Conduct targeted outreach and sourcing campaigns
+Secure ecosystem partners and mentors
+OUTPUT:Pre-qualified innovation pipeline
+Assess solutions based on their ability to deliver impact in real-world environments.
+
+Technical feasibility 
+Commercial viability 
+Scalability potential 
+Local applicability and adoption readiness
+OUTPUT:Validated shortlist of solutions
+Test promising solutions within operational environments before selection.
+
+Pilot deployment 
+Technical testing 
+End-user feedback 
+Performance measurement
+OUTPUT:Evidence-based validation results
+Establish implementation pathways before winners are announced.
+
+Pilot-to-scale roadmap 
+Investment opportunities 
+Procurement pathways 
+Strategic partnerships and deployment plans
+OUTPUT:Commercialization and scale strategy
+--- slide 36
+VISION
+Fast-track the future of food security, and position the UAE
+and Innovation Oasis / Silal as the global proving-ground for agri-innovation by building a platform that validates and commercializes the best startup-led solutions.
+Deep, real-world technical and commercial validation that generate clear and actionable learnings
+Not a one-off program.
+An enduring, scalable platform.
+Startups leave with commercial agreements, term sheets, customer contracts, or other commercialization progress – not just a certificate of completion
+36
+--- slide 37
+37
+“FAST-TRACKING
+THE FUTURE OF FOOD SECURITY.”
+THE UNBREAKABLE HARVEST PLATFORMBy Innovation Oasis (part of UAE-based Silal)
+Launched in 2026, UNBREAKABLE HARVEST is a high-velocity growth engine for the world’s most ambitious founders solving food security and resilience. 
+
+Developed by Innovation Oasis (part of UAE-based Silal), the platform enables late-stage startups to validate innovations in the arid extremes of the future, solving live challenges with regional commercial partners. 
+
+Unlike traditional accelerators, participants gain deep-tissue ecosystem integration from Day 1, accessing state-of-the-art labs, open-field trials, greenhouses, regulatory support, and more. With two cohorts a year and validation projects running 3-to-5 months, the platform delivers the fastest path to commercial application, investment, and real-world impact at the speed the global food security challenge deserves.
+
+For more, visit unbreakableharvest.com 
+--- slide 38
+38
+ADQ-backed agri-food and technology company operating across farming, distribution, and food supply chains in the UAE, providing large-scale infrastructure, controlled environment agriculture assets, and direct commercial deployment pathways.
+A promise that food security cannot be shaken by climate  unbreakableharvest.org
+Abu Dhabi sovereign investor with a portfolio of 90+ company holdings across food, agriculture, logistics, and infrastructure, driving long-term capital deployment and strategic ecosystem development aligned to national priorities.
+COMMERCIAL PATHWAY TO GCC’S NATIONAL AGRI-FOOD POWERHOUSESelected startups will be immersed in the UAE’s sovereign-backed agri innovation ecosystem
+3
+2
+1
+UAE’s dedicated agri-focused innovation platform by Silal, providing startups with end-to-end validation environments, R&D capabilities, and access to Silal’s infrastructure to test and commercialise solutions in desert conditions.
+(Now part of L'imad)
+--- slide 39
+39
+SILAL OPERATES FARMING, DISTRIBUTION & SUPPLY CHAINS IN THE UAE Selected startups will be immersed in the UAE’s sovereign-backed agri innovation ecosystem
+PRODUCTS
+PALLET CAPACITY
+BRANDS
+DAILY
+DELIVERIES
+30K
+82K
+200+
+5000+
+200K
+MT
+8K+
+20K
+SQM
+EXPORT
+MARKETS
+SILOS
+CUSTOMERS
+PACKHOUSE
+70+
+EMPLOYEES
+2400+
+130K+
+SQM OF TRANSFORMATIVE FACILITIES
+            in Numbers
+--- slide 40
+40
+AND ENABLES THE FULL CYCLE OF FOOD & AGRICULTURE  Selected startups will be immersed in the UAE’s sovereign-backed agri innovation ecosystem
+OPERATIONS
+Silal consolidates production from hundreds of farms.
+Our 14,000 sqm automated packhouse is the UAE’s largest, stands as an epitome of innovation, efficiency, and sustainability, and enables efficient post-harvest processing, quality control, and distribution.
+INNOVATION
+Silal Innovation Oasis is the UAE’s agrifood R&D hub.
+We pilot new solutions, support startups, and develop talent.
+Our platform includes high-tech greenhouses, labs, and applied research programs with universities and industry partners.
+FARMING
+Silal manages its own farms and supports the UAE’s largest network of contracted growers ensuring their competitiveness.
+We act as national off-taker, combining long-term purchase agreements with agronomic support to strengthen food security.
+AGRI INPUTS
+Through Sherwood, Silal offers a full range of agri-inputs and sustainable crop protection, with a network of input shops.
+We support farmers with seeds, fertilizers, biologicals, and advisory services to boost yields, enhance quality, and reduce production costs.
+COMMERCIAL & DISTRIBUTION
+Silal sells food and agri products globally via subsidiaries and private labels.
+We supply nourishing foods, fresh fruits and vegetables, agri-inputs, and essentials to 70+ countries across retail, foodservice, and institutional channels
+FOOD SECURITY, DATA & ESG
+--- slide 41
+41
+WHY THE UAE: THE GLOBAL DESTINATION FOR AGRI & FOOD SECURITY INNOVATIONThe world is actively searching for scalable food security solutions - and the UAE is emerging as the global proving ground
+Why Now
+Global urgency has created a massive market pull for scalable agritech solutions
+Sovereign-backed demand
+Real-world proving ground
+Speed to commercialisation 
+AI and ecosystem advantage
+Why UAE
+The UAE offers one of the world’s most attractive environments for agritech commercialisation and scale
+ADQ and Silal deployment environments
+Non-dilutive funding opportunities 
+Commercial pilots & procurement pathways
+Strategic ecosystem access across UAE
+Launchpad into UAE and GCC markets
+Why iO
+Food security is now a national priority 
+Global climate volatility is increasing
+Global supply chains remain fragile 
+AI is transforming agriculture rapidly
+Investors now prioritise traction over vision 
+It is a sovereign-backed commercialisation platform designed to help startups deploy, validate, and scale faster.
+Gov and corps seeking deployable technologies
+Demand for resilient agriculture is accelerating 
+Startups solving big challenges are in demand 
+Startups with AI-enabled solutions have major advantage 
+Startups need real-world deployment and outcomes fast
+Food security is a strategic national priority
+Success in the UAE creates global credibility
+Designed to move startups from pilot to scale
+One of the world’s most aggressive national AI investors
+Joining iO means entering one of the world’s most ambitious sovereign-backed agritech ecosystems - purpose-built to help startups launch in the UAE, prove commercial value quickly, and scale internationally faster than traditional innovation hubs allow.
+--- slide 42
+42
+Open-Field Resource Optimization
+How might we close the yield, cost, and resource-efficiency gaps in UAE open-field agriculture, competing with imports and unlocking new economically viable crop categories?
+Protected Agriculture Resource Optimization
+How might we reduce the water, energy, and capital intensity of protected agriculture across the UAE, making year-round production commercially viable and unlocking crop categories?
+Post-Harvest Quality & Shelf-Life
+How might we reduce post-harvest quality loss, extend shelf life, and cut the ~3.3 million tonnes of food wasted annually across the UAE food value chain?
+Supply Chain Visibility, Resilience & Data Infrastructure
+How might we build resilient, data-driven food supply chains that enable real-time visibility, coordinated production planning, and national food security decision-making?
+Growing & Production
+Supply Chain & Market Access
+CURRENT PRIORITY CHALLENGE STATEMENTSBased on stakeholder interviews, materials review, competitive benchmarking, design sessions and prioritisation workshop
+
+Primary Focus
+Secondary Focus (Opportunistic)
+--- slide 43
+43
+TAXONOMY FOR SOURCING & SCOUTING COHORTS 1 & 2
+Production
+Supply Chain Visibility & Intelligence
+Soil & Plant Health Inputs & Amendments
+Soil Inputs & Amendments
+Inputs and amendments to improve soil quality and structure nutrient/water retention, eg. hydrogels, nanoclay technologies
+Precision Ag.
+Data-driven Farming 
+Software and analytics platforms that leverage data (farm, climate, crop) to inform decision-making, optimize inputs, and improve yield predictability
+Plant Health Inputs
+Inputs that protect crops and enhance resilience to abiotic/biotic stresses and promote biodiversity
+Robotics & Automation
+Autonomous or semi-auto systems that reduce labor dependency and increase efficiency across farm ops. such as planting, harvesting, etc.
+IoT & Remote Sensing
+Sensor networks, imaging, and monitoring systems that provide visibility into crop, soil, and environmental conditions
+Variable Rate Tech. (VRT)
+Tech. that enables precise, site-specific application of inputs (water, fertilizer, chemicals) to improve efficiency/reduce waste
+Water & Energy Mgmt. Solutions
+Precision Irrigation
+Tech. that optimizes water delivery through targeted, data-driven irrigation methods to improve water-use efficiency and crop performance
+Water Recycling Tech.
+Solutions that capture, treat, and reuse water within ag. systems to reduce freshwater demand and enable sustainable production
+Water & Energy Efficient Climate Control
+Data Platforms & Infra. (Data Creation / Digitization)
+Systems that optimize indoor and protected farming conditions (cooling, humidity, airflow) and soil temperature while minimizing water and energy consumption
+Agribusiness Platforms & Marketplaces
+Digital platforms that connect producers, buyers, and intermediaries to enable efficient trading, price discovery, and access to markets
+Supply Chain IoT-enabled & Alternative Data
+Tech. that capture and integrate real-time supply chain data (e.g., sensors, satellite, external datasets) to improve visibility, tracking, and decision-making
+Applications & Analytics (Data Utilization / Decisioning)
+Blockchain-enabled Traceability
+Distributed ledger tech. that enable end-to-end product traceability, transparency, and trust across the supply chain
+AI-powered Demand Forecasting & Supply Mgmt.
+Analytics solutions that predict demand and optimize supply planning, inventory flows, and distribution to reduce waste and improve efficiency
+Renewable Energy Integration
+On-farm energy solutions that reduce reliance on grid power and improve the sustainability and cost-efficiency of farm operations
+Waste & Circularity
+Rescue & Reuse
+Redistribution Platforms
+Waste-as-a-Resource Tech.
+Tech. that convert organic and agri-waste into higher-value outputs such as food products, inputs, materials, or energy
+Prevention
+Cold Chain Infra. & Solutions
+Infra and tech. that maintain temperature-controlled storage and transport to reduce spoilage and extend freshness
+Tech. that assess product quality and freshness in real time to enable better handling, routing, and intervention before spoilage
+Quality Monitoring Tech.
+AI-powered Supply Mgmt.
+Software using data and predictive analytics to optimize inventory, reduce overstocking, and minimize waste
+Shelf-life Extension Materials & Tech.
+Materials and tech. that extend shelf life and preserve quality through packaging, coatings, and controlled environments
+Platforms and logistics solutions that redirect surplus/unsold food to secondary markets, charities, or alternative demand channels
+Sources: Pitchbook, AgFunder, Ibex analysis, VC expert input 
+Primary Themes
+Secondary Themes
+--- slide 44
+44
+7-8+ TRL (MVP of solution already proven in operational setting in other markets)
+TARGET STARTUP PROFILE
+We are seeking high-quality and high-potential agri-focused startups solving priority challenges with mature, differentiated solutions capable of being validated through a PoC or Pilot in UAE conditions
+Category
+Dimension
+Target Profile
+Team Strength
+Clear team/founder-market fit; strong and relevant on-team expertise
+Quality of Backers
+Credible investors, customers, and/or strategic partners
+Startup Stage
+Series A-C; mature enough to execute but still fit for platform 
+Startup Maturity & Quality
+Tech Readiness Level
+Solution Maturity & Quality
+Solution Differentiation
+Clear advantage and differentiation over both conventional solutions and other startups
+Evidence
+Demonstrated technical performance or early real-world validation
+Execution Capability
+Ability to deploy and support the solution operationally
+Value Proposition / ROI
+Clear and compelling potential economic benefit or a pathway to towards it at scale
+Scalability Potential
+Solution that have potential to scale in UAE and beyond
+Challenge Statement Fit
+Focused on solving one or more defined iO challenge statement
+Strategic Fit
+UAE / Regional Market Intent
+Do not need to be from UAE or region but must be interested in entering/expanding there
+Adoption Readiness Level
+At least medium readiness across the core adoption dimensions
+Commercial Potential
+4
+6
+3
+7
+8
+9
+5
+11
+12
+1
+2
+10
+--- slide 45
+45
+STARTUP OFFER
+What participating startups receive from the Unbreakable Harvest Platform
+DESCRIPTION
+TYPE
+COMPONENT
+Direct Funding
+Platform Access
+Non-dilutive Grant Funding
+AED 10M pool for 5-10 startups for milestone-based grant funding for pilot execution
+Funding amount and milestone structure defined based on project scope during onboarding
+Relocation & Operating Support
+iO testbeds: 6 greenhouses, 4 nethouses, 5 open fields
+6 labs for testing and validation
+Silal BU operational sites (where applicable)
+Infrastructure
+13+ full-time R&D staff scientists and lab technicians on-site
+Credit allocation to external scientific and industry expert network – max credit amount per startup to be discussed
+Technical & Industry Expertise
+Matched with a Silal BU sponsor who is evaluating solution for potential adoption post-pilot 
+Business case development and brand/storytelling support
+Commercial
+Pathway Support
+Closed-room sessions and warm intros to VCs and ADQ Food & Ag portfolio (Agthia, Al Dahra, Unifrutti, LDC, LuLu International)
+Peer learning across cohorts
+Curated events during cohort for exposure to regional decision-makers
+Network &
+Ecosystem Exposure
+Comprehensive orientation support before and during first project kick off week
+Support from iO or Silal BU Project Lead and the project teams
+Coordination and support form Platform team (e.g., regulatory navigation, resource access coordination)
+Project Delivery Support
+1
+2
+3
+4
+5
+6
+7
+In-kind support package to help with relocation, living, visa, and operational costs for on-site team members
+Delivered in partnership with a relocation provider, founders are not expected to self-arrange or submit expense reports
+--- slide 46
+INNOVATION OASIS
+UNBREAKABLE HARVEST
+46
+ABOUT SILALSilal is part of ADQ, one of the region’s largest holding companies with a broad portfolio of major enterprises spanning key sectors of Abu Dhabi’s diversified economy. Silal was established in September 2020 to diversify food sources and stimulate manufacturing and distribution in the agri-food sectors in the UAE and beyond. Silal’s mandates include managing procurement programs and strategic foodstuff stocks. The company also executes specialized knowledge transfer programs on desert farming techniques and devises research and development projects.
+For more, visit: silal.ae
+ABOUT INNOVATION OASISInnovation Oasis (IO) is Silal’s R&D venture engine, built to advance global food security. The 34 hectare state-of-the-art living laboratory is purposefully situated in one of Earth’s toughest environments, enabling high-caliber agri-techs to futureproof innovations against the same extreme conditions threatening food systems around the world. By integrating with Silal’s expansive infrastructure and connectivity, IO delivers an end-to-end platform to accelerate ideas through incubation, validation, venture clienting, and investment. With this singular mandate, IO is defining the new global standard in future-resilient food systems, for the UAE and beyond.
+For more, visit: silal.ae/innovation/innovation-oasis.
+--- slide 47
+47
+ |  | How it works | Commercial model for iO | Value lock-in for iO
+Venture Client | Silal BU sponsor | BU co-designs pilot, adopts solution into operations post-validation | Sponsors cohort or pilot + internal transfer pricing to support iO | Pre-agreed commercial frameworks + Ring-fenced scale-up funding
+ | ADQ Portfolio Co | Portfolio company either sponsors a cohort or pilot then adopts solution after; or they do not sponsor cohort/pilot and are introduced after | Sponsors cohort or facilitation fee (% of post-pilot contract value) | Pre-agreed commercial frameworks + Ring-fenced scale-up funding
+ | External corporate | Company either sponsors a cohort or pilot then adopts solution after; or they do not sponsor cohort/pilot and are introduced after | Sponsors cohort or facilitation fee (% of post-pilot contract value)  | Pre-agreed commercial frameworks +  Ring-fenced scale-up funding
+Distribution | Reseller | iO purchases from startup, resells to end customers | Buy-sell margin | ROFR
+ | Agent / Broker | iO connects startup to buyers, earns on each transaction | Ongoing commission | ROFR
+ | White-label | Solution sold under iO/Silal brand; iO owns customer relationship | Full margin control | ROFR
+Technology Licensing | Non-exclusive sublicense | iO sublicenses to third parties; startup can also license directly | Licensing spread | ROFR
+ | Exclusive sublicense | iO is sole licensor within defined scope | Licensing spread | ROFR
+EXAMPLE MODELS (1/3)
+--- slide 48
+48
+ |  | How it works | Commercial model for iO | Value lock-in for iO
+Joint Venture | Silal BU sponsor | BU co-designs pilot, adopts solution into operations post-validation | Sponsors cohort or pilot + internal transfer pricing to support iO | Pre-agreed commercial frameworks + Ring-fenced scale-up funding
+ | ADQ Portfolio Co | Portfolio company either sponsors a cohort or pilot then adopts solution after; or they do not sponsor cohort/pilot and are introduced after | Sponsors cohort or facilitation fee (% of post-pilot contract value) | Pre-agreed commercial frameworks + Ring-fenced scale-up funding
+ | External corporate | Company either sponsors a cohort or pilot then adopts solution after; or they do not sponsor cohort/pilot and are introduced after | Sponsors cohort or facilitation fee (% of post-pilot contract value)  | Pre-agreed commercial frameworks +  Ring-fenced scale-up funding
+Co-Development
+(Shared IP) | Reseller | iO purchases from startup, resells to end customers | Buy-sell margin | ROFR
+ | Agent / Broker | iO connects startup to buyers, earns on each transaction | Ongoing commission | ROFR
+ | White-label | Solution sold under iO/Silal brand; iO owns customer relationship | Full margin control | ROFR
+EXAMPLE MODELS (1/3)
+--- slide 49
+49
+ |  | How it works | Commercial model for iO | Value lock-in for iO
+Direct Strategic Investment | Silal BU sponsor | BU co-designs pilot, adopts solution into operations post-validation | Sponsors cohort or pilot + internal transfer pricing to support iO | Pre-agreed commercial frameworks + Ring-fenced scale-up funding
+ | ADQ Portfolio Co | Portfolio company either sponsors a cohort or pilot then adopts solution after; or they do not sponsor cohort/pilot and are introduced after | Sponsors cohort or facilitation fee (% of post-pilot contract value) | Pre-agreed commercial frameworks + Ring-fenced scale-up funding
+ | External corporate | Company either sponsors a cohort or pilot then adopts solution after; or they do not sponsor cohort/pilot and are introduced after | Sponsors cohort or facilitation fee (% of post-pilot contract value)  | Pre-agreed commercial frameworks +  Ring-fenced scale-up funding
+Fund Investment | Reseller | iO purchases from startup, resells to end customers | Buy-sell margin | ROFR
+ | Agent / Broker | iO connects startup to buyers, earns on each transaction | Ongoing commission | ROFR
+ | White-label | Solution sold under iO/Silal brand; iO owns customer relationship | Full margin control | ROFR
+Co-Investment | Non-exclusive sublicense | iO sublicenses to third parties; startup can also license directly | Licensing spread | ROFR
+ | Exclusive sublicense | iO is sole licensor within defined scope | Licensing spread | ROFR
+EXAMPLE MODELS (1/3)
+--- slide 50
+50
+ |  | How it works | Commercial model for iO | Value lock-in for iO
+Full Acquisition | Silal BU sponsor | BU co-designs pilot, adopts solution into operations post-validation | Sponsors cohort or pilot + internal transfer pricing to support iO | Pre-agreed commercial frameworks + Ring-fenced scale-up funding
+ | ADQ Portfolio Co | Portfolio company either sponsors a cohort or pilot then adopts solution after; or they do not sponsor cohort/pilot and are introduced after | Sponsors cohort or facilitation fee (% of post-pilot contract value) | Pre-agreed commercial frameworks + Ring-fenced scale-up funding
+ | External corporate | Company either sponsors a cohort or pilot then adopts solution after; or they do not sponsor cohort/pilot and are introduced after | Sponsors cohort or facilitation fee (% of post-pilot contract value)  | Pre-agreed commercial frameworks +  Ring-fenced scale-up funding
+IP / Tech Acquisition | Reseller | iO purchases from startup, resells to end customers | Buy-sell margin | ROFR
+ | Agent / Broker | iO connects startup to buyers, earns on each transaction | Ongoing commission | ROFR
+ | White-label | Solution sold under iO/Silal brand; iO owns customer relationship | Full margin control | ROFR
+Acqui-hire (Team) | Non-exclusive sublicense | iO sublicenses to third parties; startup can also license directly | Licensing spread | ROFR
+ | Exclusive sublicense | iO is sole licensor within defined scope | Licensing spread | ROFR
+EXAMPLE MODELS (1/3)
+--- slide 51
+51
+OUR TEAM
+& Extended Io Expert Pool
+Accessible based on requirements
+Senior Oversight Lead 
+15+ years leading global innovation programs and challenges
+Expert in AI, venture partnerships & innovation ecosystems
+Proven record commercializing innovation from strategy to scale
+Innovation Manager
+Caitlin Vickers
+Francisco Malpica
+Part-time
+Project Manager
+Nadia Tavafi
+5+ years leading Innovation consulting for enterprise transformation initiatives.
+Managed global product and innovation programs supporting 1,000+ startups and scaling digital platforms.
+Developed investor ecosystems enabling funding and strategic partnerships.
+Core Team
+8+ years leading complex transformation and innovation programs 
+Expert in project delivery, stakeholder engagement, and agile execution.
+Proven success managing cross-functional teams from strategy through implementation.
+Director of Science
+Dr. Jude Wilson
+Sr. Scientist
+Dr. Ahmed Elnaggar
+Operations Manager
+Mohsin Syed Albar
+Sr. Operations
+Sagar Sule
+CEO Innovation Oasis
+Dr. Shamal Mohammed
+Commercial Director
+Obaid AlZaabi
+For illustrate purposes only. Depending on exact needs the team may be adjusted accordingly .
+--- slide 52
+52
+OUR TEAM
+01.
+Program
+Leadership
+01.
+Innovation
+02.
+Program
+Management
+03. Project
+Delivery
+Enabling Areas
+Vertical Lead
+Francisco Malpica
+Jury Council / Selection Committee
+Steering Committee
+PROGRAM COMMITTEE
+Silal Technology
+& Data
+Silal Finance
+Silal Legal
+Silal Procurement
+iO Facility Mgmt.
+& Staff
+Silal Marketing & Communications
+Vertical Lead
+Francisco Malpica
+Program Manager
+Caitlin Vickers
+Project Team
+↑ Provides cross-cutting support to all layers
