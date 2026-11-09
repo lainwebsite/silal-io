@@ -303,6 +303,9 @@ CSS += """
 @media (max-width: 760px) { .hm_chips button { font-size: .6875rem; padding: 6px 10px 6px 26px; } .hm_chips button::before { left: 9px; width: 10px; height: 10px; margin-top: -5px; } }
 /* site model: the real space */
 .c_mapImg { cursor: zoom-in; }
+/* rev. 9 Nov (client comment on "The Arid Advantage": "remove shadow"): no curtain shadow under the chapter, no dark fade on the photo */
+.c_why.c_chapter { box-shadow: none !important; }
+.c_whySticky::after { display: none !important; }
 .x_galOpen { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: .6875rem; font-weight: 500; letter-spacing: .02em; padding: 7px 11px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .92); color: var(--io-ink); cursor: pointer; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .35); }
 .x_galOpen:hover { background: #fff; }
 .x_gal { position: fixed; inset: 0; z-index: 120; background: rgba(18, 22, 24, .94); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(14px, 3vh, 28px) clamp(14px, 3vw, 40px); color: #fff; }
