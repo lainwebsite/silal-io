@@ -364,7 +364,13 @@ t4 = ('<section class="tm_teams" id="tmTeams"><div class="s_wrap">'
       '</div></section>')
 # enter reveals on inner pages: one quiet fade (data-fade), not line-splitting (data-reveal)
 _calm = lambda s: re.sub(r'\sdata-reveal(="true")?', ' data-fade', s)
-team_body = f'<div class="c_page x_team tm_page">{_calm(t1 + t2 + t3 + t4)}</div>{v3wrap(media)}'
+# revision 9 November (client comment on the portrait-mosaic hero: "I don't like this section, use the old section"):
+# the old top of the page is back, the Leadership block (label, text, quote, portrait). T1 (mosaic) and T2 (the new
+# Leadership chapter) are no longer used; their code stays above for reference.
+t0 = people[:people.index('<div class="c_teamHead">')] + '</div></section>'
+t0 = t0.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
+t0 = re.sub(r'\sdata-parallax="[^"]*"', '', t0)  # no parallax on inner pages
+team_body = f'<div class="c_page x_team tm_page">{_calm(t0 + t3 + t4)}</div>{v3wrap(media)}'
 page(URL["team"], "Team &amp; CEO Message · Innovation Oasis", team_body, v3css)
 
 # the profile uses the press-release template (V3 detail): label, breadcrumb, title + lead, facts card in the aside,
