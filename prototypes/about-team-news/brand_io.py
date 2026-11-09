@@ -8,7 +8,10 @@ import pathlib, re, sys
 B = pathlib.Path(sys.argv[1])
 # Labels set in capitals (text-transform: uppercase) would still show "IO": in the page's visible text every "iO" sits in a
 # span that keeps its case (not inside scripts, styles, <title>, <option>, <textarea> or attribute values).
-CSS = "<style>.x_iO{text-transform:none!important}</style>"
+CSS_OLD = "<style>.x_iO{text-transform:none!important}</style>"
+# buttons are flex boxes with a gap: "About", "iO" and the arrow would each sit 12px apart; keep the word together, arrow 8px after it
+CSS = ("<style>.x_iO{text-transform:none!important}"
+       ".s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}</style>")
 SKIP = re.compile(r"(<(script|style|title|option|textarea)\b.*?</\2\s*>|<[^>]*>)", re.S | re.I)
 WORD = re.compile(r"(?<![\w-])iO(?![\w-])")
 n = w = 0
@@ -25,6 +28,7 @@ for f in sorted(B.glob("*.html")):
     t2 = re.sub(r'[ \t]+(<span class="x_iO">iO</span>)', r'&nbsp;\1', t2)
     t2 = re.sub(r'(<span class="x_iO">iO</span>)[ \t]+', r'\1&nbsp;', t2)
     w += t2.count('class="x_iO"') - t.count('class="x_iO"')
+    t2 = t2.replace(CSS_OLD, CSS)
     if CSS not in t2 and 'class="x_iO"' in t2:
         i = t2.lower().find("</head>")
         t2 = t2[:i] + CSS + t2[i:] if i > 0 else CSS + t2
