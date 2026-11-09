@@ -176,134 +176,118 @@
 .x_credList { list-style: none; margin: 0; padding: 0; }
 .x_credList li { margin: 0 0 .4em; }
 @media (max-width: 560px) { .x_credRow { grid-template-columns: 1fr; gap: 6px; } }
-/* ==== revision 9 November · Team (owner: "too safe, too newspaper, too static") ====
-   T1 living portrait mosaic · T2 Dr. Shamal, quote lit by the scroll · T3 org helix (pinned, iO-blue chapter) ·
-   T4 the team by vertical (tabs + FLIP), lifting over T3 like the homepage curtain */
-.tm_page { --sh: max(100svh, 640px); --deep: #1a6f96; --sky: #8fd1ec; background: #fff; }
+/* ==== inner-page motion standard (9 Nov): one quiet enter fade, feedback on hover/click, one drawn diagram. Nothing moves on its own. ==== */
+.fd [data-fade] { opacity: 0; transform: translateY(14px); transition: opacity .5s ease-out, transform .5s ease-out; }
+.fd [data-fade].in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .tm_page *, .x_ecoPage * { transition: none !important; animation: none !important; } }
+
+/* ==== Team: T1 portrait mosaic · T2 Dr. Shamal · T3 org helix · T4 team by vertical ==== */
+.tm_page { --deep: #1a6f96; --sky: #8fd1ec; background: #fff; }
 .tm_blue { color: var(--io); }
 .tm_lightBlue { color: var(--sky); }
 .tm_page .x_crumbs { margin: 0; }
-/* the iO-blue monogram (Shameer: no photo yet) — ring of the iO "O" and his initial */
+/* the iO-blue monogram (Shameer: no photo yet): the ring of the iO "O" and his initial */
 .tm_mono { position: absolute; inset: 0; display: grid; place-items: center; background: var(--io); color: #fff; container-type: size; overflow: hidden; }
 .tm_mono svg { position: absolute; width: 78%; left: 11%; top: 50%; translate: 0 -50%; overflow: visible; }
 .tm_mono circle { fill: none; stroke: rgba(255, 255, 255, .55); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .tm_mono b { font-weight: 300; font-size: 44cqw; line-height: 1; letter-spacing: -.04em; translate: 0 -.04em; }
 .tm_mono small { position: absolute; bottom: 7%; left: 0; right: 0; text-align: center; font-size: max(8px, 4.6cqw); letter-spacing: .16em; text-transform: uppercase; opacity: .82; }
 
-/* ---- T1 hero: headline left, five columns of portraits drifting at different speeds on the right ---- */
-.tm_hero { position: relative; display: grid; grid-template-columns: minmax(0, 5.2fr) minmax(0, 6.8fr); grid-template-rows: minmax(0, 1fr); height: calc(100svh - var(--hdr)); min-height: 600px; max-height: 1180px; overflow: clip; background: #fff; }
+/* ---- T1 hero: headline left, a still, staggered mosaic of portraits on the right ---- */
+.tm_hero { position: relative; display: grid; grid-template-columns: minmax(0, 5.2fr) minmax(0, 6.8fr); grid-template-rows: minmax(0, 1fr); height: calc(100svh - var(--hdr)); min-height: 600px; max-height: 860px; overflow: clip; background: #fff; }
 .tm_heroText { position: relative; z-index: 2; align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
   padding: 0 clamp(24px, 3.4vw, 64px) clamp(44px, 9vh, 120px) max(var(--gutter), calc((100vw - 1920px) / 2)); }
 .tm_hero .x_crumbs { position: absolute; top: clamp(22px, 4vh, 44px); left: max(var(--gutter), calc((100vw - 1920px) / 2)); }
 .tm_h1 { font-size: clamp(2.75rem, min(5.9vw, 10.4vh), 6.5rem); font-weight: 300; line-height: 1.02; letter-spacing: -.045em; color: var(--charcoal); margin: clamp(18px, 2.4vh, 28px) 0 clamp(20px, 3vh, 32px); }
 .tm_heroLead { font-size: var(--fs-lead); font-weight: 300; line-height: 1.55; color: var(--charcoal); max-width: 27em; }
 .tm_down { margin-top: clamp(28px, 4.6vh, 52px); display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); }
-.tm_down svg { transition: transform .5s var(--ease); }
-.tm_down:hover svg { transform: translateY(3px); }
 .tm_mosaic { position: relative; display: flex; gap: clamp(8px, .8vw, 14px); height: 100%; overflow: clip;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); }
-.tm_col { position: relative; flex: 1 1 0; min-width: 0; }
-.tm_colIn { display: flex; flex-direction: column; gap: clamp(8px, .8vw, 14px); will-change: transform; }
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%); }
+.tm_col { flex: 1 1 0; min-width: 0; }
+.tm_colIn { display: flex; flex-direction: column; gap: clamp(8px, .8vw, 14px); margin-top: var(--o, 0); }
 .tm_tile { position: relative; display: block; flex: none; aspect-ratio: 2 / 3; overflow: hidden; background: #e9ecee; }
-.tm_tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(var(--g, 0)); transition: transform 1.2s var(--ease); }
-.tm_tile:hover img, .tm_tile:focus-visible img { filter: none; transform: scale(1.045); }
+.tm_tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter .25s ease-out; }
+.tm_tile:hover img, .tm_tile:focus-visible img { filter: none; }
 .tm_cap { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 2px; padding: 44px 12px 12px; color: #fff;
-  background: linear-gradient(180deg, transparent, rgba(16, 28, 34, .66)); transform: translateY(101%); transition: transform .55s var(--ease); }
+  background: linear-gradient(180deg, transparent, rgba(16, 28, 34, .66)); opacity: 0; transition: opacity .25s ease-out; }
 .tm_cap b { font-size: .875rem; font-weight: 500; line-height: 1.25; }
 .tm_cap i { font-style: normal; font-size: .71875rem; line-height: 1.3; opacity: .86; }
-.tm_tile:hover .tm_cap, .tm_tile:focus-visible .tm_cap, .tm_tile[data-lit] .tm_cap { transform: none; }
+.tm_tile:hover .tm_cap, .tm_tile:focus-visible .tm_cap { opacity: 1; }
 .tm_tileMono .tm_cap { background: linear-gradient(180deg, transparent, rgba(16, 60, 86, .55)); }
 
 /* ---- T2 leadership ---- */
-.tm_leader { background: var(--light); padding: clamp(96px, 12vw, 190px) 0; }
+.tm_leader { background: var(--light); padding: clamp(80px, 9vw, 150px) 0; }
 .tm_leaderIn { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: center; }
 .tm_leaderImg { grid-column: 1 / span 5; display: block; }
-.tm_leaderImg .c_photo { aspect-ratio: 4 / 5; }
-.tm_leaderImg img { object-position: 50% 30%; }
+.tm_photo { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #e3e3e3; }
+.tm_photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .tm_leaderText { grid-column: 7 / span 6; display: flex; flex-direction: column; align-items: flex-start; }
-.tm_quote p { font-size: clamp(2.5rem, 4.7vw, 5.25rem); font-weight: 300; line-height: 1.06; letter-spacing: -.04em; margin: clamp(22px, 3vw, 40px) 0 clamp(28px, 3.4vw, 48px); max-width: 11.5em; }
-.tm_w { --w: 1; color: color-mix(in srgb, var(--charcoal) calc(var(--w) * 100%), #c4c9cc); }
-.tm_wLast { color: color-mix(in srgb, var(--io) calc(var(--w) * 100%), #c4c9cc); }
+.tm_quote p { font-size: clamp(2.25rem, min(4.2vw, 8vh), 4.5rem); font-weight: 300; line-height: 1.06; letter-spacing: -.04em; margin: clamp(20px, 2.6vw, 34px) 0 clamp(24px, 3vw, 40px); max-width: 11.5em; color: var(--charcoal); }
 .tm_who { display: flex; flex-direction: column; gap: 2px; padding-top: 16px; border-top: 1px solid var(--io); min-width: 260px; }
 .tm_who b { font-weight: 500; font-size: 1rem; color: var(--charcoal); }
 .tm_who span { font-size: .875rem; color: var(--grey-ink); }
 .tm_leaderLead { margin-top: 22px; font-size: var(--fs-body); line-height: 1.65; max-width: 31em; color: var(--charcoal); }
-.tm_btn { margin-top: clamp(28px, 3vw, 40px); }
+.tm_btn { margin-top: clamp(24px, 2.6vw, 36px); }
 
-/* ---- T3 org helix ---- */
+/* ---- T3 org helix: drawn once when it comes into view, then still ---- */
 .tm_org { position: relative; background: var(--deep); color: #fff; overflow: clip; }
-.tm_org::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 50% at 66% 18%, rgba(60, 167, 210, .55), transparent 70%); }
-.tm_org[data-on="true"] { height: calc(4.4 * var(--sh)); overflow: visible; }
-.tm_org[data-on="true"] > .tm_orgStick { position: sticky; top: 0; height: var(--sh); overflow: clip; }
+.tm_org::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 50% at 66% 18%, rgba(60, 167, 210, .5), transparent 70%); }
 .tm_orgStick { position: relative; }
 .tm_orgSvg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 1; }
 .tm_strands path { fill: none; stroke: #fff; stroke-linecap: round; }
-.tm_strands g { transition: opacity .45s; }
+.tm_strands g { transition: opacity .25s ease-out; }
 .tm_rungs line { stroke: rgba(255, 255, 255, .62); stroke-width: 1.4; }
 .tm_rungs circle { fill: #fff; }
-.tm_rungs g { transition: opacity .6s var(--ease); }
 .tm_heads circle { fill: var(--sky); }
-.tm_org[data-hot] .tm_strands g:not(.is-hot), .tm_org[data-hot] .tm_rungs { opacity: .2; }
+.tm_org[data-hot] .tm_strands g:not(.is-hot), .tm_org[data-hot] .tm_rungs { opacity: .22; }
 .tm_strands g.is-hot path { stroke-opacity: 1; stroke-width: 2.6; }
-.tm_orgIn { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: 5vw; padding-block: calc(64px + 3.5vh) 6vh; }
-.tm_org[data-on="true"] .tm_orgIn { height: 100%; }
-.tm_orgCopy { align-self: start; padding-top: 3vh; }
+.tm_orgIn { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: 5vw; padding-block: clamp(72px, 7vw, 112px); }
+.tm_orgCopy { align-self: start; padding-top: 2vh; }
 .tm_h2 { font-size: clamp(2.25rem, min(4.4vw, 7.6vh), 4.75rem); font-weight: 300; line-height: 1.04; letter-spacing: -.04em; color: #fff; margin: clamp(18px, 2.4vh, 28px) 0 clamp(18px, 2.4vh, 26px); }
 .tm_h2Dark { color: var(--charcoal); }
 .tm_orgLead { font-size: var(--fs-lead); font-weight: 300; line-height: 1.55; color: rgba(255, 255, 255, .9); max-width: 21em; }
-.tm_orgKey { margin-top: clamp(28px, 6vh, 64px); display: grid; gap: 12px; border-top: 1px solid rgba(255, 255, 255, .22); padding-top: 22px; max-width: 280px; }
-.tm_orgKey li { display: flex; gap: 16px; font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .42); transition: color .6s var(--ease); }
-.tm_orgKey li span { color: var(--sky); font-variant-numeric: tabular-nums; }
-.tm_orgKey li[data-on] { color: #fff; }
 .tm_orgDia { display: flex; flex-direction: column; align-items: center; min-height: 0; }
 .tm_node { position: relative; display: block; flex: none; }
-.tm_nodeImg { display: block; position: relative; width: clamp(76px, 11vh, 112px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #cfd8dc;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, .7), 0 0 0 12px rgba(143, 209, 236, .14); transition: box-shadow .8s var(--ease); }
+.tm_nodeImg { display: block; position: relative; width: clamp(76px, 11vh, 108px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #cfd8dc;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .7), 0 0 0 12px rgba(143, 209, 236, .14); }
 .tm_nodeImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 14%; transform: scale(1.9); transform-origin: 50% 18%; }
-.tm_node:hover .tm_nodeImg { box-shadow: 0 0 0 1px #fff, 0 0 0 16px rgba(143, 209, 236, .22); }
 .tm_nodeTxt { position: absolute; left: calc(100% + 22px); top: 50%; translate: 0 -50%; display: flex; flex-direction: column; white-space: nowrap; }
 .tm_nodeTxt b { font-weight: 400; font-size: 1.125rem; }
 .tm_nodeTxt i { font-style: normal; font-size: .8125rem; color: rgba(255, 255, 255, .78); }
-.tm_orgGap { flex: 1 1 auto; min-height: 120px; }
-@media (min-width: 1000px) { .tm_org[data-mode="static"] .tm_orgGap { min-height: 240px; } }
-.tm_leads { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 28px); width: min(100%, 4 * 25vh + 3 * 28px); }
+.tm_orgGap { flex: none; height: clamp(150px, 24vh, 230px); }
+.tm_leads { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 28px); width: min(100%, 4 * 24vh + 3 * 28px); }
 .tm_lead a { display: flex; flex-direction: column; height: 100%; background: #fff; color: var(--charcoal); box-shadow: 0 34px 60px -34px rgba(0, 16, 32, .6); }
 .tm_leadImg { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #dfe5e8; }
-.tm_leadImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; transition: transform 1.2s var(--ease), filter 1.4s var(--ease); }
-.tm_lead a:hover .tm_leadImg img { transform: scale(1.045); }
+.tm_leadImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
 .tm_leadTxt { display: flex; flex-direction: column; gap: 3px; padding: 14px 16px 17px; border-top: 3px solid var(--io); }
 .tm_leadV { font-size: 10.5px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--io-ink); }
 .tm_leadTxt b { font-weight: 400; font-size: 1.125rem; line-height: 1.25; }
 .tm_leadTxt i { font-style: normal; font-size: .8125rem; line-height: 1.35; color: var(--grey-ink); }
-/* drawn by the scroll: a lead "develops" when its strand lands on it (pinned and phone modes only) */
-.tm_org[data-mode="pin"] .tm_lead, .tm_org[data-mode="flow"] .tm_lead { clip-path: inset(0 0 100% 0); transition: clip-path 1.1s var(--slow); }
-.tm_org[data-mode="pin"] .tm_lead img, .tm_org[data-mode="flow"] .tm_lead img { filter: grayscale(1); }
-.tm_org .tm_lead[data-on] { clip-path: inset(0 0 -60px 0); }
-.tm_org .tm_lead[data-on] img { filter: none; }
-.tm_org[data-mode="pin"] .tm_node, .tm_org[data-mode="flow"] .tm_node { opacity: 0; scale: .86; transition: opacity .9s var(--ease), scale 1.1s var(--slow); }
-.tm_org .tm_node[data-on] { opacity: 1; scale: 1; }
+/* drawn once: the portraits and the CEO fade in as the strands arrive (the script sets data-mode="draw") */
+.tm_org[data-mode="draw"] .tm_lead, .tm_org[data-mode="draw"] .tm_node { opacity: 0; transition: opacity .45s ease-out; }
+.tm_org[data-mode="draw"] .tm_lead[data-on], .tm_org[data-mode="draw"] .tm_node[data-on] { opacity: 1; }
 
 /* ---- T4 teams ---- */
-.tm_page > .tm_teams { position: relative; z-index: 3; background: #fff; padding: clamp(96px, 11vw, 170px) 0 clamp(96px, 10vw, 160px); }
-.tm_org[data-on="true"] + .tm_teams { margin-top: calc(-1 * var(--sh)); box-shadow: 0 -50px 80px -40px rgba(0, 20, 34, .45); }
-.tm_teamsHead { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px 64px; padding-bottom: 26px; margin-bottom: clamp(40px, 4.4vw, 72px); border-bottom: 1px solid var(--line); }
+.tm_page > .tm_teams { position: relative; background: #fff; padding: clamp(80px, 9vw, 140px) 0 clamp(80px, 8vw, 130px); }
+.tm_teamsHead { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px 64px; padding-bottom: 26px; margin-bottom: clamp(36px, 4vw, 60px); border-bottom: 1px solid var(--line); }
 .tm_teamsLead { font-size: var(--fs-lead); font-weight: 300; line-height: 1.55; color: var(--charcoal); max-width: 27em; }
 .tm_tabs { display: flex; flex-wrap: wrap; gap: 6px 28px; }
-.tm_tabs button { font: inherit; font-size: .9375rem; color: var(--grey); background: none; border: 0; border-bottom: 1px solid transparent; padding: 8px 0; cursor: pointer; transition: color .3s, border-color .3s; }
+.tm_tabs button { font: inherit; font-size: .9375rem; color: var(--grey); background: none; border: 0; border-bottom: 1px solid transparent; padding: 8px 0; cursor: pointer; transition: color .25s ease-out, border-color .25s ease-out; }
 .tm_tabs button sup { font-size: 10px; margin-left: 5px; color: var(--io); font-variant-numeric: tabular-nums; }
 .tm_tabs button:hover { color: var(--charcoal); }
 .tm_tabs button[aria-pressed="true"] { color: var(--charcoal); border-bottom-color: var(--io); }
-.tm_grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(36px, 3.6vw, 56px) var(--col-gap); }
+.tm_grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(32px, 3.2vw, 48px) var(--col-gap); transition: opacity .3s ease-out, transform .3s ease-out; }
+.tm_grid.sw { opacity: 0; transform: translateY(8px); transition-duration: .15s; }
 .tm_p[hidden] { display: none; }
 .tm_p a { display: flex; flex-direction: column; color: inherit; }
 .tm_pImg { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #e9ecee; margin-bottom: 14px; }
-.tm_pImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; filter: grayscale(1); transition: filter .7s var(--ease), transform 1.2s var(--ease); }
-.tm_p a:hover .tm_pImg img, .tm_p a:focus-visible .tm_pImg img { filter: none; transform: scale(1.045); }
-.tm_pMore { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; font-size: .8125rem; font-weight: 500; color: #fff; background: var(--io-ink); transform: translateY(101%); transition: transform .55s var(--ease); }
-.tm_p a:hover .tm_pMore, .tm_p a:focus-visible .tm_pMore { transform: none; }
+.tm_pImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; filter: grayscale(1); transition: filter .25s ease-out; }
+.tm_p a:hover .tm_pImg img, .tm_p a:focus-visible .tm_pImg img { filter: none; }
+.tm_pMore { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; font-size: .8125rem; font-weight: 500; color: #fff; background: var(--io-ink); opacity: 0; transition: opacity .25s ease-out; }
+.tm_p a:hover .tm_pMore, .tm_p a:focus-visible .tm_pMore { opacity: 1; }
 .tm_pName { position: relative; padding-top: 12px; border-top: 1px solid var(--line); font-size: 1.125rem; color: var(--charcoal); }
-.tm_pName::after { content: ""; position: absolute; left: 0; top: -1px; height: 1px; width: 0; background: var(--io); transition: width .6s var(--ease); }
-.tm_p a:hover .tm_pName::after { width: 100%; }
+.tm_pName::after { content: ""; position: absolute; left: 0; top: -1px; height: 1px; width: 0; background: var(--io); transition: width .25s ease-out; }
+.tm_p a:hover .tm_pName::after, .tm_p a:focus-visible .tm_pName::after { width: 100%; }
 .tm_pRole { font-size: .8125rem; line-height: 1.4; color: var(--grey-ink); margin-top: 2px; }
 .tm_pTag { margin-top: 10px; font-size: 10.5px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; color: var(--io-ink); }
 .tm_pTag[data-t="tbc"] { color: #8a9399; }
@@ -312,113 +296,97 @@
 .tm_vLed { margin: 22px 0 18px; font-size: clamp(1.75rem, 2.8vw, 3rem); font-weight: 300; line-height: 1.12; letter-spacing: -.03em; color: var(--charcoal); max-width: 16em; }
 .tm_vLed a { color: var(--io); }
 .tm_vMore { font-size: .9375rem; color: var(--grey-ink); max-width: 30em; }
-@media (hover: none) { .tm_pImg img { filter: none; } }
 @media (max-width: 1200px) { .tm_grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (max-width: 999px) {
   .tm_hero { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); height: auto; min-height: 0; max-height: none; }
   .tm_heroText { padding: clamp(64px, 12vw, 96px) var(--gutter) 32px; }
   .tm_hero .x_crumbs { top: 22px; left: var(--gutter); }
-  .tm_mosaic { height: clamp(380px, 62svh, 560px); }
+  .tm_mosaic { height: clamp(380px, 62svh, 520px); }
   .tm_down { display: none; }
   .tm_leaderImg, .tm_leaderText { grid-column: 1 / -1; }
-  .tm_leaderImg { max-width: 520px; margin-bottom: 48px; }
-  .tm_orgIn { grid-template-columns: minmax(0, 1fr); padding-block: clamp(80px, 14vw, 120px); }
-  .tm_orgKey { display: none; }
-  .tm_orgDia { align-items: flex-start; margin-top: 48px; }
+  .tm_leaderImg { max-width: 520px; margin-bottom: 40px; }
+  .tm_orgIn { grid-template-columns: minmax(0, 1fr); }
+  .tm_orgDia { align-items: flex-start; margin-top: 40px; }
   .tm_nodeImg { width: 72px; }
-  .tm_orgGap { min-height: 48px; flex: none; }
-  .tm_leads { grid-template-columns: minmax(0, 1fr); gap: 22px; width: 100%; padding-left: 70px; }
+  .tm_orgGap { height: 48px; }
+  .tm_leads { grid-template-columns: minmax(0, 1fr); gap: 20px; width: 100%; padding-left: 70px; }
   .tm_lead a { flex-direction: row; }
   .tm_leadImg { width: 40%; max-width: 200px; flex: none; }
   .tm_leadTxt { justify-content: center; border-top: 0; border-left: 3px solid var(--io); }
-  .tm_org[data-mode="flow"] .tm_lead { clip-path: inset(0 100% 0 0); }
-  .tm_org .tm_lead[data-on] { clip-path: inset(0 -60px 0 0); }
   .tm_grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .tm_vNote { grid-column: span 2; }
 }
 @media (max-width: 640px) {
   .tm_col[data-col="4"] { display: none; }
   .tm_vNote { grid-column: 1 / -1; padding: 0; }
-  .tm_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 14px; }
+  .tm_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 14px; }
   .tm_tabs { gap: 4px 20px; }
   .tm_quote p { font-size: clamp(2.25rem, 10vw, 3rem); }
   .tm_pName { font-size: 1rem; }
 }
-/* ==== revision 9 November · Our Ecosystem: hero diagram (kept) · deep-green statement · partner ORBIT with real logos ==== */
-.x_ecoPage { --sh: max(100svh, 640px); }
-.x_ecoHero { padding-bottom: clamp(96px, 10vw, 160px); }
+@media (hover: none) { .tm_tile img, .tm_p .tm_pImg img { filter: none; } }
+/* ==== Our Ecosystem: hero diagram (kept) · statement · still partner map with real logos ==== */
+.x_ecoHero { padding-bottom: clamp(72px, 8vw, 128px); }
 .x_ecoTitle { max-width: 13em; }
 .x_ecoLead { max-width: 30em; }
-/* E2 · statement, deep green (homepage chapter colour); held while the orbit lifts over it */
-.eo_silo { position: relative; z-index: 1; background: #0d3b26; color: #fff; overflow: clip; }
-.eo_silo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 60% at 85% 100%, rgba(0, 161, 107, .28), transparent 70%); }
-.eo_siloStick { position: relative; z-index: 1; padding: clamp(110px, 14vw, 200px) 0; }
-.eo_silo[data-on="true"] { height: calc(2 * var(--sh)); }
-.eo_silo[data-on="true"] .eo_siloStick { position: sticky; top: 0; height: var(--sh); padding: 0; display: flex; align-items: center; }
-.eo_silo[data-on="true"] .eo_siloStick > .s_wrap { padding-top: 40px; }
-.eo_siloBig { font-size: clamp(2.5rem, min(6vw, 11vh), 6.75rem); font-weight: 300; line-height: 1.02; letter-spacing: -.045em; max-width: 11em; margin: clamp(20px, 3vh, 32px) 0 clamp(24px, 4vh, 40px); }
+/* statement: the homepage's deep-green chapter colour, a plain section (no pin, no curtain) */
+.eo_silo { position: relative; background: #0d3b26; color: #fff; }
+.eo_siloStick { padding: clamp(72px, 8vw, 124px) 0; }
+.eo_siloBig { font-size: clamp(2.25rem, min(5vw, 9.5vh), 5.5rem); font-weight: 300; line-height: 1.04; letter-spacing: -.045em; max-width: 11em; margin: clamp(18px, 2.4vh, 28px) 0 clamp(20px, 3vh, 32px); }
 .eo_lime { color: var(--sky, #8fd1ec); }
 .eo_siloLine { max-width: 33em; font-size: var(--fs-lead); font-weight: 300; line-height: 1.55; color: rgba(255, 255, 255, .86); }
-/* E3 · orbit */
-.eo_orbit { position: relative; z-index: 2; background: var(--light); }
-.eo_silo[data-on="true"] + .eo_orbit { margin-top: calc(-1 * var(--sh)); box-shadow: 0 -50px 80px -40px rgba(0, 20, 10, .45); }
-.eo_orbit[data-mode="pin"] { height: calc(5.4 * var(--sh)); }
-.eo_orbit[data-mode="pin"] .eo_stick { position: sticky; top: 0; height: var(--sh); overflow: clip; }
-.eo_in { display: grid; grid-template-columns: minmax(0, 4.8fr) minmax(0, 7.2fr); column-gap: 3vw; padding-block: var(--pad); }
+/* the partner map */
+.eo_orbit { position: relative; background: var(--light); }
+.eo_in { display: grid; grid-template-columns: minmax(0, 4.8fr) minmax(0, 7.2fr); column-gap: 3vw; padding-block: clamp(64px, 6vw, 100px); align-items: center; }
+.eo_copy { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
 .eo_copy .tm_h2 { font-size: clamp(2.25rem, min(3.6vw, 6.6vh), 3.875rem); }
-.eo_orbit[data-mode="pin"] .eo_in { height: 100%; padding-block: calc(64px + 3vh) 3vh; }
-.eo_copy { align-self: center; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
-.eo_lead { font-size: clamp(1rem, 1.1vw, 1.1875rem); font-weight: 300; line-height: 1.55; color: var(--charcoal); max-width: 25em; margin-bottom: clamp(20px, 3.4vh, 36px); }
+.eo_lead { font-size: clamp(1rem, 1.1vw, 1.1875rem); font-weight: 300; line-height: 1.55; color: var(--charcoal); max-width: 25em; margin-bottom: clamp(18px, 3vh, 32px); }
 .eo_tabs { display: flex; flex-wrap: wrap; gap: 6px; }
-.eo_tabs button { font: inherit; font-size: .8125rem; line-height: 1; padding: 10px 13px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--charcoal); cursor: pointer; transition: background .3s, color .3s, border-color .3s; }
-.eo_tabs button sup { font-size: 9.5px; margin-left: 5px; color: var(--io-ink); font-variant-numeric: tabular-nums; transition: color .3s; }
+.eo_tabs button { font: inherit; font-size: .8125rem; line-height: 1; padding: 10px 13px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--charcoal); cursor: pointer; transition: background .25s ease-out, color .25s ease-out, border-color .25s ease-out; }
+.eo_tabs button sup { font-size: 9.5px; margin-left: 5px; color: var(--io-ink); font-variant-numeric: tabular-nums; }
 .eo_tabs button:hover { border-color: var(--io); }
 .eo_tabs button[aria-pressed="true"] { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
-.eo_tabs button[aria-pressed="true"] sup { color: var(--sky, #8fd1ec); }
-.eo_panels { position: relative; width: 100%; max-width: 540px; margin-top: clamp(18px, 3vh, 30px); }
-.eo_panel { position: absolute; inset: 0 0 auto 0; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .3s, transform .3s, visibility 0s .3s; }
-.eo_panel[data-on] { opacity: 1; visibility: visible; transform: none; transition: opacity .6s .32s, transform .8s .32s var(--slow), visibility 0s .3s; }
-.eo_panel li { display: grid; gap: 1px; padding: clamp(7px, 1.1vh, 11px) 0; border-top: 1px solid var(--line); transition: background .3s; }
+.eo_tabs button[aria-pressed="true"] sup { color: #8fd1ec; }
+.eo_panels { position: relative; width: 100%; max-width: 540px; margin-top: clamp(16px, 2.6vh, 28px); }
+.eo_panel { position: absolute; inset: 0 0 auto 0; opacity: 0; visibility: hidden; transition: opacity .15s ease-out, visibility 0s .15s; }
+.eo_panel[data-on] { opacity: 1; visibility: visible; transition: opacity .25s ease-out .15s, visibility 0s .15s; }
+.eo_panel li { display: grid; gap: 1px; padding: clamp(7px, 1.1vh, 11px) 0; border-top: 1px solid var(--line); }
 .eo_panel li:last-child { border-bottom: 1px solid var(--line); }
-.eo_panel li b { font-weight: 500; font-size: .9375rem; line-height: 1.3; color: var(--charcoal); transition: color .3s; }
+.eo_panel li b { font-weight: 500; font-size: .9375rem; line-height: 1.3; color: var(--charcoal); transition: color .25s ease-out; }
 .eo_panel li span { font-size: .8125rem; line-height: 1.45; color: var(--grey-ink); }
 .eo_panel li[data-hot] b { color: var(--io-ink); }
 .eo_hint { font-size: .9375rem; color: var(--grey-ink); max-width: 30em; margin-bottom: 16px; }
 .eo_panel .eo_legend li { padding: 0; border: 0; }
 .eo_legend button { font: inherit; color: inherit; background: none; border: 0; border-top: 1px solid var(--line); border-radius: 0; text-align: left; display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 16px; width: 100%; padding: clamp(9px, 1.3vh, 13px) 0; cursor: pointer; }
 .eo_legend li:last-child button { border-bottom: 1px solid var(--line); }
-.eo_legend b { font-weight: 500; font-size: .9375rem; color: var(--charcoal); transition: color .3s; }
+.eo_legend b { font-weight: 500; font-size: .9375rem; color: var(--charcoal); transition: color .25s ease-out; }
 .eo_legend b sup { font-size: 9.5px; margin-left: 4px; color: var(--io-ink); font-weight: 500; }
 .eo_legend span { font-size: .8125rem; line-height: 1.45; color: var(--grey-ink); }
 .eo_legend button:hover b, .eo_legend button:focus-visible b { color: var(--io-ink); }
 .eo_note { margin-top: clamp(14px, 2.4vh, 26px); font-size: .75rem; line-height: 1.5; color: var(--grey-ink); max-width: 34em; }
-.eo_stage { position: relative; min-height: min(70vh, 720px); }
-.eo_orbit[data-mode="pin"] .eo_stage { min-height: 0; }
+.eo_stage { position: relative; height: clamp(520px, 72vh, 700px); }
 .eo_rings { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.eo_rings ellipse { fill: none; stroke: rgba(89, 84, 83, .2); stroke-width: 1; transition: stroke .6s, stroke-width .6s; }
-.eo_rings ellipse[data-on] { stroke: var(--io); stroke-width: 1.6; }
-.eo_rings text { font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; fill: var(--grey-ink); transition: fill .6s; }
-.eo_rings text[data-on] { fill: var(--io-ink); }
-.eo_core { position: absolute; left: 50%; top: 50%; width: clamp(104px, 10vw, 160px); height: auto; translate: -50% -50%; z-index: 50; filter: drop-shadow(0 18px 30px rgba(26, 111, 150, .22)); }
+.eo_rings ellipse { fill: none; stroke: rgba(89, 84, 83, .22); stroke-width: 1; transition: stroke .3s ease-out, stroke-width .3s ease-out; }
+.eo_rings ellipse[data-on] { stroke: var(--io); stroke-width: 2; }
+.eo_core { position: absolute; left: 50%; top: 50%; width: var(--cw, 120px); height: auto; translate: -50% -50%; }
 .eo_nodes { position: absolute; inset: 0; }
-.eo_node { position: absolute; left: 0; top: 0; width: var(--nw, 148px); height: var(--nh, 72px); display: grid; place-items: center; border-radius: 999px; background: #fff;
-  box-shadow: 0 16px 32px -20px rgba(40, 36, 35, .45), 0 0 0 1px rgba(89, 84, 83, .06); will-change: transform; transition: opacity .6s, filter .6s, box-shadow .3s; }
-.eo_node:hover, .eo_node:focus-visible, .eo_node[data-hot] { box-shadow: 0 16px 32px -20px rgba(40, 36, 35, .45), 0 0 0 1.5px var(--io); outline: 0; }
-.eo_node[data-dim] { opacity: .28; filter: grayscale(1); }
-.eo_logo { display: block; max-width: min(calc(var(--nw, 148px) * .84), calc(var(--nw, 148px) * .68 * var(--s, 1))); max-height: min(calc(var(--nh, 72px) * .78), calc(var(--nh, 72px) * .46 * var(--s, 1))); width: auto; height: auto; object-fit: contain; }
-.eo_type { max-width: 82%; font-size: .9375rem; font-weight: 500; line-height: 1.1; letter-spacing: -.01em; color: var(--charcoal); text-align: center; }
-.eo_nm { position: absolute; top: calc(100% + 8px); left: 50%; translate: -50% 0; white-space: nowrap; padding: 5px 11px; border-radius: 999px; background: var(--charcoal); color: #fff;
-  font-size: .75rem; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.eo_node { position: absolute; left: 0; top: 0; width: var(--nw, 148px); height: var(--nh, 66px); display: grid; place-items: center; border-radius: 999px; background: #fff;
+  box-shadow: 0 10px 24px -16px rgba(40, 36, 35, .4), 0 0 0 1px rgba(89, 84, 83, .07); transition: opacity .3s ease-out, filter .3s ease-out, box-shadow .25s ease-out; }
+.eo_node:hover, .eo_node:focus-visible, .eo_node[data-hot] { box-shadow: 0 10px 24px -16px rgba(40, 36, 35, .4), 0 0 0 1.5px var(--io); outline: 0; z-index: 5; }
+.eo_node[data-dim] { opacity: .3; filter: grayscale(1); }
+.eo_logo { display: block; max-width: min(calc(var(--nw, 148px) * .84), calc(var(--nw, 148px) * .68 * var(--s, 1))); max-height: min(calc(var(--nh, 66px) * .78), calc(var(--nh, 66px) * .46 * var(--s, 1))); width: auto; height: auto; object-fit: contain; }
+.eo_type { max-width: 82%; font-size: .875rem; font-weight: 500; line-height: 1.1; letter-spacing: -.01em; color: var(--charcoal); text-align: center; }
+.eo_nm { position: absolute; top: calc(100% + 6px); left: 50%; translate: -50% 0; white-space: nowrap; padding: 5px 11px; border-radius: 999px; background: var(--charcoal); color: #fff;
+  font-size: .75rem; opacity: 0; transition: opacity .2s ease-out; pointer-events: none; }
 .eo_node:hover .eo_nm, .eo_node:focus-visible .eo_nm, .eo_node[data-hot] .eo_nm { opacity: 1; }
 .eo_cards { display: none; }
 @media (max-width: 999px) {
-  .eo_in { grid-template-columns: minmax(0, 1fr); padding-block: clamp(80px, 14vw, 120px); }
+  .eo_in { grid-template-columns: minmax(0, 1fr); padding-block: clamp(64px, 12vw, 100px); }
   .eo_stage, .eo_panels, .eo_note { display: none; }
   .eo_cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
   .eo_card { background: #fff; border-radius: 10px; padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 4px; }
   .eo_card[hidden] { display: none; }
-  .eo_cardLogo { height: 72px; display: grid; place-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
-  .eo_cardLogo { --nw: 150px; --nh: 70px; }
+  .eo_cardLogo { --nw: 150px; --nh: 70px; height: 72px; display: grid; place-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
   .eo_cardCat { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); }
   .eo_cardName { font-size: .9375rem; font-weight: 500; line-height: 1.3; color: var(--charcoal); }
   .eo_cardLine { font-size: .75rem; line-height: 1.45; color: var(--grey-ink); }
@@ -427,8 +395,8 @@
 </style>
 </head>
 <body>
-<script>/* text is hidden only until the line reveals take over; with reduced motion there are none, so it shows at once */
-if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)}</script>
+<script>/* text is hidden only until its reveal runs; with reduced motion there is none, so everything shows at once. fd = the inner-page one-time fade */
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("rv","fd");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)}</script>
 
 <div class="s_root" data-wide data-blue="false">
 {{HEADER}}
@@ -448,6 +416,14 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentEle
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var G = !!(window.gsap && window.ScrollTrigger && window.SplitText) && !reduce;
   $$('a[href="#"]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); }); });
+  /* inner-page enter reveal (motion standard, 9 Nov): a block fades in once, 14px, 500ms, when it scrolls into view */
+  (function () {
+    var f = $$('[data-fade]'); if (!f.length) return;
+    var all = function () { f.forEach(function (e) { e.classList.add('in'); }); };
+    if (reduce || !('IntersectionObserver' in window)) return all();
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -6% 0px' });
+    f.forEach(function (e) { io.observe(e); }); setTimeout(all, 8000);
+  })();
   if (G) gsap.registerPlugin(ScrollTrigger, SplitText);
 
   /* ---------- smooth scroll (homepage settings), on the GSAP ticker so ScrollTrigger and Lenis share one clock ---------- */
@@ -578,120 +554,69 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentEle
 })();
 </script>
 <script>
-/* ==== revision 9 November · Team page: mosaic, lit quote, org helix, team tabs (each chapter isolated) ==== */
+/* ==== Team page: org helix (drawn once on entering the view) and the team tabs. Everything else is still. ==== */
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   if (!$('.tm_page')) return;
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, touch = matchMedia('(hover: none)').matches;
-  var G = !!window.gsap;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
   var span = function (p, a, b) { return clamp((p - a) / (b - a), 0, 1); };
   var smooth = function (t) { return t * t * (3 - 2 * t); };
-  var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
-  var jobs = [];
-  function every(fn) { jobs.push(fn); }
-  var last = performance.now();
-  function frame() { var now = performance.now(), dt = Math.min(.05, (now - last) / 1000); last = now; for (var i = 0; i < jobs.length; i++) { try { jobs[i](dt, now / 1000); } catch (e) { jobs.splice(i--, 1); if (window.console) console.warn(e); } } }
-  if (G) gsap.ticker.add(frame); else (function raf() { frame(); requestAnimationFrame(raf); })();
-  function onResize(fn) { var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fn, 180); }); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fn); }
-
-  /* ---------- T1 · the living mosaic: five columns drift at their own speed (and with the scroll); a portrait comes
-     into colour as it crosses the middle of the screen ---------- */
-  try { (function () {
-    var hero = $('#tmHero'); if (!hero) return;
-    var cols = $$('.tm_col', hero);
-    if (reduce) return;   // final state: still columns, every portrait in colour
-    var SPEED = [11, -8, 13, -9.5, 10], SCROLL = [.22, -.12, .3, -.08, .18], OFF = [.1, .55, .3, .8, .45];
-    var C = cols.map(function (col, k) {
-      var inn = $('.tm_colIn', col), orig = [].slice.call(inn.children);
-      orig.forEach(function (t) { var c = t.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1; inn.appendChild(c); });
-      return { inn: inn, tiles: [].slice.call(inn.children), k: k, period: 0, y: 0, tops: [], hs: [] };
-    });
-    function measure() {
-      C.forEach(function (c) {
-        var n = c.tiles.length / 2, gap = parseFloat(getComputedStyle(c.inn).rowGap) || 0;
-        c.period = c.tiles[n].offsetTop - c.tiles[0].offsetTop || 1;
-        c.tops = c.tiles.map(function (t) { return t.offsetTop; }); c.hs = c.tiles.map(function (t) { return t.offsetHeight; });
-        c.colTop = c.inn.parentNode.getBoundingClientRect().top - hero.getBoundingClientRect().top;
-      });
-    }
-    measure(); onResize(measure);
-    var t0 = 0, vis = true;
-    new IntersectionObserver(function (e) { vis = e[0].isIntersecting; }).observe(hero);
-    if (G) gsap.from(cols, { yPercent: 14, opacity: 0, duration: 1.6, stagger: { each: .09, from: 'center' }, ease: 'expo.out', delay: .1 });
-    every(function (dt) {
-      if (!vis) return;
-      t0 += dt;
-      var hr = hero.getBoundingClientRect(), mid = innerHeight * .5, sy = scrollY;
-      C.forEach(function (c) {
-        var y = (SPEED[c.k] * t0 + SCROLL[c.k] * sy + OFF[c.k] * c.period) % c.period; if (y < 0) y += c.period;
-        c.inn.style.transform = 'translate3d(0,' + (-y).toFixed(2) + 'px,0)';
-        for (var i = 0; i < c.tiles.length; i++) {
-          var cy = hr.top + c.colTop + c.tops[i] - y + c.hs[i] / 2, d = Math.abs(cy - mid);
-          var g = smooth(span(d, c.hs[i] * .3, c.hs[i] * 1.15));
-          var t = c.tiles[i], gs = g.toFixed(2);
-          if (t._g !== gs) { t._g = gs; t.style.setProperty('--g', gs); if (touch) { if (g < .12) t.setAttribute('data-lit', ''); else t.removeAttribute('data-lit'); } }
-        }
-      });
-    });
-  })(); } catch (e) { console.warn(e); }
-
-  /* ---------- T2 · the quote is lit word by word as it rises through the screen ---------- */
-  try { (function () {
-    var q = $('.tm_quote'); if (!q || reduce) return;
-    var w = $$('.tm_w', q), n = w.length, prev = -1;
-    w.forEach(function (s) { s.style.setProperty('--w', 0); });
-    every(function () {
-      var r = q.getBoundingClientRect(); if (r.bottom < -50 || r.top > innerHeight + 50) return;
-      var p = span(innerHeight * .86 - r.top, 0, innerHeight * .46);
-      if (Math.abs(p - prev) < .001) return; prev = p;
-      w.forEach(function (s, i) { s.style.setProperty('--w', smooth(clamp(p * (n + 1.2) - i, 0, 1)).toFixed(3)); });
-    });
-  })(); } catch (e) { console.warn(e); }
+  var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+  function onResize(fn) { var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fn, 200); }); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fn); }
 
   /* ---------- T3 · org helix: four strands leave Dr. Shamal and braid down like the helix inside the iO mark (rungs
-     with a dot at each end), then land on the four Vertical Leads. Pinned on wide screens; on phones the helix runs
-     down the left edge and peels off into each lead as you pass. Pure function of the scroll; reversible. ---------- */
+     with a dot at each end), then land on the four Vertical Leads. Drawn once, in about a second, when it enters the view. ---------- */
   try { (function () {
     var org = $('#tmOrg'); if (!org) return;
     var svg = $('.tm_orgSvg', org), gS = $('.tm_strands', svg), gR = $('.tm_rungs', svg), gH = $('.tm_heads', svg);
-    var node = $('.tm_node', org), nodeImg = $('.tm_nodeImg', org), leads = $$('.tm_lead', org), keys = $$('.tm_orgKey li', org);
-    var NS = 'http://www.w3.org/2000/svg', mode = '', S = [], R = [], A = [], N = null, dirty = true;
+    var node = $('.tm_node', org), nodeImg = $('.tm_nodeImg', org), dia = $('.tm_orgDia', org), leads = $$('.tm_lead', org);
+    var NS = 'http://www.w3.org/2000/svg', flow = false, S = [], R = [], A = [], N = null, played = false, T = { p: 0 }, io = null;
     function el(t, a) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); return e; }
     function setup() {
-      mode = reduce ? 'static' : innerWidth >= 1000 && innerHeight >= 600 ? 'pin' : 'flow';
-      org.dataset.mode = mode; org.dataset.on = mode === 'pin';
-      build(); dirty = true;
+      flow = innerWidth < 1000;
+      if (io) io.disconnect();
+      build();
+      if (reduce) { org.dataset.mode = 'static'; render(1); return; }
+      org.dataset.mode = 'draw';
+      if (played) { render(1); leads.forEach(function (l) { l.setAttribute('data-on', ''); }); node.setAttribute('data-on', ''); return; }
+      render(0);
+      io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); play(); } }, { threshold: flow ? 0.05 : 0.3 });
+      io.observe(flow ? node : dia);
+      if (flow) leads.forEach(function (l) { new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { l.setAttribute('data-on', ''); o.disconnect(); } }, { threshold: .25 }).observe(l); });
+    }
+    function play() {
+      played = true; node.setAttribute('data-on', '');
+      if (!flow) leads.forEach(function (l, i) { setTimeout(function () { l.setAttribute('data-on', ''); }, 620 + i * 60); });
+      if (window.gsap) gsap.to(T, { p: 1, duration: 1.1, ease: 'power2.inOut', onUpdate: function () { render(T.p); } });
+      else render(1);
     }
     function build() {
       gS.innerHTML = ''; gR.innerHTML = ''; gH.innerHTML = ''; S = []; R = [];
       var b = svg.getBoundingClientRect(), rel = function (e) { var r = e.getBoundingClientRect(); return { x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height }; };
       var nr = rel(nodeImg); N = { x: nr.x + nr.w / 2, y: nr.y + nr.h / 2, r: nr.w / 2 };
-      A = leads.map(function (l) { var r = rel($('.tm_leadImg', l)); return mode === 'flow' ? { x: r.x, y: r.y + r.h / 2 } : { x: r.x + r.w / 2, y: r.y }; });
-      var wide = mode !== 'flow', y0 = N.y + N.r + 2, k, i;
+      A = leads.map(function (l) { var r = rel($('.tm_leadImg', l)); return flow ? { x: r.x, y: r.y + r.h / 2 } : { x: r.x + r.w / 2, y: r.y }; });
+      var wide = !flow, y0 = N.y + N.r + 2, i;
       var yEnd = wide ? A[0].y : 0, L = wide ? yEnd - y0 : 0;
       var lw = wide ? A[3].x - A[0].x : 0, amax = wide ? Math.min(lw * .2, 150, L * .45) : 15, turns = 1.55, period = 230;
-      var helix = function (y, ph) {   // x of a strand's helix at height y, and its depth (front = 1)
+      var helix = function (y, ph) {
         var u = wide ? (y - y0) / L : 0, a, th;
         if (wide) { a = amax * smooth(span(u, 0, .2)) * (1 - .25 * smooth(span(u, .5, 1))); th = Math.PI * 2 * turns * u + ph; }
         else { a = amax * smooth(span(y - y0, 0, 60)); th = Math.PI * 2 * (y - y0) / period + ph; }
         return { x: N.x + a * Math.sin(th), z: Math.cos(th) };
       };
       var PH = [0, Math.PI / 2, Math.PI, Math.PI * 1.5].map(function (p) { return p + .35; });
-      // which lead each strand lands on: on wide screens by where the strands are when they let go (fewest crossings)
       var order = [0, 1, 2, 3];
       if (wide) order.sort(function (a, c) { return helix(y0 + L * .72, PH[a]).x - helix(y0 + L * .72, PH[c]).x; });
       for (i = 0; i < 4; i++) {
-        var lead = wide ? i : i, ph = PH[order[i]], T = A[lead], pts = [], cum = [0], len = 0, yS, yE = T.y;
-        yS = wide ? y0 + L * .56 : T.y - 96;
-        var zs = [];
+        var ph = PH[order[i]], T_ = A[i], pts = [], zs = [], cum = [0], len = 0, yE = T_.y, yS = wide ? y0 + L * .56 : T_.y - 96;
         for (var y = y0; y <= yE + .01; y += 3) {
-          var h = helix(Math.min(y, yE), ph), s = y <= yS ? 0 : smooth(span(y, yS, yE)), x = h.x * (1 - s) + T.x * s;
+          var h = helix(Math.min(y, yE), ph), s = y <= yS ? 0 : smooth(span(y, yS, yE)), x = h.x * (1 - s) + T_.x * s;
           if (pts.length) { var p = pts[pts.length - 1]; len += Math.hypot(x - p[0], y - p[1]); cum.push(len); }
           pts.push([x, Math.min(y, yE)]); zs.push(h.z * (1 - s) + s * .55);
         }
-        // the strand in short pieces, each as bright and as thick as its depth: front pieces lead, back pieces recede
-        var grp = el('g', { 'data-k': lead }), segs = [];
+        // each strand in short pieces, as bright and as thick as its depth: front pieces lead, back pieces recede
+        var grp = el('g', { 'data-k': i }), segs = [];
         for (var a = 0; a < pts.length - 1; a += 5) {
           var bI = Math.min(pts.length - 1, a + 5), zz = 0, q;
           for (q = a; q <= bI; q++) zz += zs[q]; zz /= (bI - a + 1);
@@ -702,9 +627,8 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentEle
         }
         gS.appendChild(grp);
         var head = el('circle', { r: 4 }); head.style.opacity = 0; gH.appendChild(head);
-        S.push({ grp: grp, segs: segs, head: head, pts: pts, cum: cum, len: len, k: lead, y1: yE, ph: ph, yS: yS });
+        S.push({ grp: grp, segs: segs, head: head, pts: pts, cum: cum, len: len, k: i, y1: yE });
       }
-      // rungs: between the two strands of each pair (0/2 and 1/3 are opposite), centred on the axis like the iO mark
       var step = wide ? 26 : 20, yStop = wide ? y0 + L * .54 : Math.min.apply(null, A.map(function (a) { return a.y; })) - 100, n = 0;
       for (var yy = y0 + (wide ? L * .12 : 34); yy < yStop; yy += step, n++) {
         var pa = n % 2 ? [1, 3] : [0, 2], h1 = helix(yy, PH[pa[0]]), h2 = helix(yy, PH[pa[1]]);
@@ -713,155 +637,110 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentEle
         g.appendChild(el('line', { x1: h1.x.toFixed(1), y1: yy.toFixed(1), x2: h2.x.toFixed(1), y2: yy.toFixed(1) }));
         g.appendChild(el('circle', { cx: h1.x.toFixed(1), cy: yy.toFixed(1), r: 3 }));
         g.appendChild(el('circle', { cx: h2.x.toFixed(1), cy: yy.toFixed(1), r: 3 }));
-        g.style.opacity = 0; g.style.transformBox = 'fill-box'; g.style.transformOrigin = '50% 50%';
-        gR.appendChild(g); R.push({ g: g, y: yy, op: op, on: -1 });
+        g.style.opacity = 0; gR.appendChild(g); R.push({ g: g, y: yy, op: op, on: -1 });
       }
     }
-    function drawn(s, hy) {   // length of a strand above the height hy
+    function drawn(s, hy) {
       var pts = s.pts; if (hy <= pts[0][1]) return 0; if (hy >= s.y1) return s.len;
       var lo = 0, hi = pts.length - 1; while (hi - lo > 1) { var m = (lo + hi) >> 1; if (pts[m][1] <= hy) lo = m; else hi = m; }
       var f = (hy - pts[lo][1]) / ((pts[hi][1] - pts[lo][1]) || 1); return s.cum[lo] + (s.cum[hi] - s.cum[lo]) * f;
     }
-    var prevKey = '';
-    function update() {
-      if (!N) return;
-      var r = org.getBoundingClientRect(); if (r.bottom < -100 || r.top > innerHeight + 100) return;
-      var sh = Math.max(innerHeight, 640), heads = [], nodeOn, key;
-      if (mode === 'pin') {
-        var p = span(-r.top, 0, r.height - 2 * sh);
-        nodeOn = p > .015;
-        S.forEach(function (s, i) { var t = ease(span(p, .08 + i * .04, .6 + i * .04)); heads[i] = N.y + N.r + (s.y1 - N.y - N.r + 1) * t; });
-        key = p.toFixed(4);
-      } else if (mode === 'flow') {
-        var b = svg.getBoundingClientRect(), hy = innerHeight * .74 - b.top;
-        nodeOn = hy > N.y - 40;
-        S.forEach(function (s, i) { heads[i] = hy; });
-        key = hy.toFixed(1);
-      } else { nodeOn = true; S.forEach(function (s, i) { heads[i] = 1e6; }); key = 'static'; }
-      if (key === prevKey && !dirty) return; prevKey = key; dirty = false;
-      if (nodeOn) node.setAttribute('data-on', ''); else node.removeAttribute('data-on');
-      var axisHead = 0;
+    function render(p) {
+      if (!N || !S.length) return;
+      var minHead = 1e9;
       S.forEach(function (s, i) {
-        var l = drawn(s, heads[i]), f = l / s.len;
+        var hy = N.y + N.r + (s.y1 - N.y - N.r + 1) * ease(span(p, i * .04, .88 + i * .04)); if (hy < minHead) minHead = hy;
+        var l = drawn(s, hy), f = l / s.len;
         s.segs.forEach(function (g) { var v = l <= g.a ? g.l + 4 : l >= g.b ? 0 : g.l - (l - g.a); if (v !== g.last) { g.last = v; g.el.style.strokeDashoffset = v.toFixed(1); } });
-        if (heads[i] > axisHead) axisHead = heads[i];
-        var on = f > .999;
-        if (on) leads[s.k].setAttribute('data-on', ''); else leads[s.k].removeAttribute('data-on');
-        if (keys[s.k]) { if (on) keys[s.k].setAttribute('data-on', ''); else keys[s.k].removeAttribute('data-on'); }
         if (f > .002 && f < .998) {
-          var j = Math.min(s.pts.length - 1, Math.max(0, Math.round((Math.min(heads[i], s.y1) - s.pts[0][1]) / 3)));
+          var j = Math.min(s.pts.length - 1, Math.max(0, Math.round((Math.min(hy, s.y1) - s.pts[0][1]) / 3)));
           s.head.setAttribute('cx', s.pts[j][0].toFixed(1)); s.head.setAttribute('cy', s.pts[j][1].toFixed(1)); s.head.style.opacity = 1;
         } else s.head.style.opacity = 0;
       });
-      var minHead = Math.min.apply(null, heads);
-      R.forEach(function (q) {
-        var v = smooth(span(minHead - q.y, 0, 34)), k = v.toFixed(2);
-        if (k !== q.on) { q.on = k; q.g.style.opacity = (v * q.op).toFixed(2); q.g.style.transform = 'scaleX(' + (.2 + .8 * v).toFixed(3) + ')'; }
-      });
+      R.forEach(function (q) { var v = smooth(span(minHead - q.y, 0, 34)); q.g.style.opacity = (v * q.op).toFixed(2); });
     }
     leads.forEach(function (l, k) {
-      l.addEventListener('mouseenter', function () { org.dataset.hot = k; S.forEach(function (s) { s.grp.classList.toggle('is-hot', s.k === k); }); });
-      l.addEventListener('mouseleave', function () { delete org.dataset.hot; S.forEach(function (s) { s.grp.classList.remove('is-hot'); }); });
+      var on = function () { org.dataset.hot = k; S.forEach(function (s) { s.grp.classList.toggle('is-hot', s.k === k); }); };
+      var off = function () { delete org.dataset.hot; S.forEach(function (s) { s.grp.classList.remove('is-hot'); }); };
+      l.addEventListener('mouseenter', on); l.addEventListener('mouseleave', off); l.addEventListener('focusin', on); l.addEventListener('focusout', off);
     });
     setup(); onResize(setup);
-    every(update);
   })(); } catch (e) { console.warn(e); }
 
-  /* ---------- T4 · the team by vertical: tabs; leaving portraits fade, the rest glide to their new places (FLIP),
-     newcomers rise in after ---------- */
+  /* ---------- T4 · the team by vertical: a short fade out, swap, a short fade in (about 300 ms) ---------- */
   try { (function () {
-    var tabs = $$('.tm_tabs button'), items = $$('.tm_p, .tm_vNote'); if (!tabs.length) return;
+    var tabs = $$('.tm_tabs button'), grid = $('#tmGrid'), items = $$('.tm_p, .tm_vNote'); if (!tabs.length || !grid) return;
     function want(it, f) { return f === 'all' ? !it.classList.contains('tm_vNote') : it.dataset.v === f; }
     tabs.forEach(function (b) {
       b.addEventListener('click', function () {
         if (b.getAttribute('aria-pressed') === 'true') return;
         var f = b.dataset.f;
         tabs.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
-        if (!G || reduce) { items.forEach(function (it) { it.hidden = !want(it, f); }); return; }
-        var leaving = items.filter(function (it) { return !it.hidden && !want(it, f); });
-        var staying = items.filter(function (it) { return !it.hidden && want(it, f); });
-        var entering = items.filter(function (it) { return it.hidden && want(it, f); });
-        gsap.killTweensOf(items); items.forEach(function (it) { gsap.set(it, { clearProps: 'opacity,scale,transform' }); });
-        var flip = function () {
-          var first = staying.map(function (it) { return it.getBoundingClientRect(); });
-          leaving.forEach(function (it) { it.hidden = true; gsap.set(it, { clearProps: 'opacity,scale,transform' }); });
-          entering.forEach(function (it) { it.hidden = false; });
-          staying.forEach(function (it, i) {
-            var r = it.getBoundingClientRect(), dx = first[i].left - r.left, dy = first[i].top - r.top;
-            if (Math.abs(dx) + Math.abs(dy) > .5) gsap.fromTo(it, { x: dx, y: dy }, { x: 0, y: 0, duration: 1.05, ease: 'expo.inOut' });
-          });
-          if (entering.length) gsap.fromTo(entering, { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: .07, delay: staying.length ? .35 : 0 });
-          gsap.delayedCall(1.5, function () { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
-        };
-        if (leaving.length) gsap.to(leaving, { opacity: 0, scale: .96, duration: .38, ease: 'power2.in', stagger: .03, onComplete: flip });
-        else flip();
+        var swap = function () { items.forEach(function (it) { it.hidden = !want(it, f); }); };
+        if (reduce) { swap(); return; }
+        grid.classList.add('sw');
+        setTimeout(function () { swap(); grid.classList.remove('sw'); }, 160);
       });
     });
   })(); } catch (e) { console.warn(e); }
 })();
 </script>
 <script>
-/* ==== revision 9 November · Our Ecosystem: the partner orbit (pinned on wide screens), tabs, phone grid ==== */
+/* ==== Our Ecosystem: a still partner map. Logos are placed once on four rings (no overlaps); tabs and hover only respond to input. ==== */
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var sec = $('#eoOrbit'); if (!sec) return;
   try {
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, lenis = window.__lenis;
-    var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; }, span = function (p, a, b) { return clamp((p - a) / (b - a), 0, 1); };
-    var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
-    var silo = $('#eoSilo'), stage = $('.eo_stage', sec), svg = $('.eo_rings', sec), nodes = $$('.eo_node', sec), tabs = $$('.eo_tabs button', sec);
+    var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
+    var stage = $('.eo_stage', sec), svg = $('.eo_rings', sec), core = $('.eo_core', sec), nodes = $$('.eo_node', sec), tabs = $$('.eo_tabs button', sec);
     var panels = $$('.eo_panel', sec), cards = $$('.eo_card', sec), lis = $$('.eo_panel li', sec);
-    var CATS = ['Academia', 'Startups', 'Government', 'Industry'], SPEED = [.045, .045, .045, .045], TURN = [.9, .9, .9, .9];   // one rigid system: the rings turn together, so logos never collide
-    var TILT = .42, NS = 'http://www.w3.org/2000/svg';
-    // pinned story: overview, then one circle at a time from the centre out, then everyone again
-    var WIN = [[0, .14, -1], [.14, .31, 0], [.31, .48, 1], [.48, .65, 2], [.65, .82, 3], [.82, 1.01, -1]];
-    var mode = '', W = 0, H = 0, cx = 0, cy = 0, RX = [], ells = [], labels = [], cur = null, t = 0, entry = reduce ? 1 : 0, seen = false, vis = false;
+    var CATS = ['Academia', 'Startups', 'Government', 'Industry'], NS = 'http://www.w3.org/2000/svg', FR = [.4, .62, .82, 1];
+    var grid = false, cur = null, ells = [];
     var N = nodes.map(function (n) {
       var k = CATS.indexOf(n.dataset.cat), mates = nodes.filter(function (m) { return m.dataset.cat === n.dataset.cat; });
-      return { el: n, k: k, j: mates.indexOf(n), m: mates.length, base: 0, w: 0, h: 0, z: -1 };
+      return { el: n, k: k, j: mates.indexOf(n), m: mates.length, a: 0 };
     });
     function setup() {
-      mode = innerWidth < 1000 ? 'grid' : reduce || innerHeight < 640 ? 'static' : 'pin';
-      sec.dataset.mode = mode; if (silo) silo.dataset.on = mode === 'pin';
-      if (mode === 'grid') { apply(cur === null ? -1 : cur, true); return; }
-      W = stage.clientWidth; H = stage.clientHeight; cx = W / 2; cy = H / 2;
-      var k = clamp(W / 900, .72, 1.05), nw = Math.round(148 * k), nh = Math.round(72 * k);
-      stage.style.setProperty('--nw', nw + 'px'); stage.style.setProperty('--nh', nh + 'px');
-      var r4 = W / 2 - nw * .5; TILT = clamp((H / 2 - nh * .6) / r4, .45, .66);
-      RX = [.38, .6, .8, 1].map(function (f) { return r4 * f; });
-      svg.innerHTML = ''; ells = []; labels = [];
-      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-      RX.forEach(function (rx, i) {
-        var e = document.createElementNS(NS, 'ellipse');
-        e.setAttribute('cx', cx); e.setAttribute('cy', cy); e.setAttribute('rx', rx); e.setAttribute('ry', rx * TILT); e.setAttribute('pathLength', 1);
-        e.style.strokeDasharray = '1 1'; svg.appendChild(e); ells.push(e);
-      });
-      N.forEach(function (n) { n.w = nw; n.h = nh; });
-      // place each ring's logos where they overlap the rings inside it least, over a whole turn (greedy, once per layout)
-      var off = [0, 0, 0, 0];
-      var pos = function (k, a, rot) { var th = a + rot, sn = Math.sin(th), s = .74 + .24 * (sn + 1) / 2; return [RX[k] * Math.cos(th), RX[k] * TILT * sn, nw * s, nh * s]; };
-      for (var kk = 1; kk < 4; kk++) {
-        var best = 1e18, bo = 0;
-        for (var st = 0; st < 36; st++) {
-          var o = st / 36 * Math.PI * 2, tot = 0;
-          for (var r = 0; r < 24; r++) {
-            var rot = r / 24 * Math.PI * 2;
-            N.forEach(function (a) {
-              if (a.k !== kk) return; var A = pos(kk, o + Math.PI * 2 * a.j / a.m, rot);
-              N.forEach(function (b) {
-                if (b.k >= kk) return; var B = pos(b.k, off[b.k] + Math.PI * 2 * b.j / b.m, rot);
-                var ox = (A[2] + B[2]) / 2 - Math.abs(A[0] - B[0]), oy = (A[3] + B[3]) / 2 - Math.abs(A[1] - B[1]);
-                if (ox > 0 && oy > 0) tot += ox * oy;
-              });
+      grid = innerWidth < 1000; if (grid) { apply(cur === null ? -1 : cur, true); return; }
+      var W = stage.clientWidth, H = stage.clientHeight, cx = W / 2, cy = H / 2;
+      var k = clamp(W / 900, .72, 1.05), nw = Math.round(148 * k), nh = Math.round(66 * k), tilt = .62, RX = [], tries = 0, bad = 1;
+      var cw = clamp(W * .15, 96, 128); stage.style.setProperty('--cw', cw + 'px');
+      while (bad && tries < 8) {   // place the logos once; if any two still overlap, make the pills a little smaller and try again
+        var r4 = Math.min(W / 2 - nw / 2 - 4, (H / 2 - nh / 2 - 4) / tilt); RX = FR.map(function (f) { return r4 * f; });
+        var core_ = { w: cw * 1.02 + 8, h: cw * .74 + 8 };
+        N.forEach(function (n) { n.a = Math.PI * 2 * n.j / n.m + [.5, .9, 1.4, .2][n.k]; n.w = nw; n.h = nh; });
+        var pos = function (n) { return [cx + RX[n.k] * Math.cos(n.a), cy + RX[n.k] * tilt * Math.sin(n.a)]; };
+        for (var it = 0; it < 500; it++) {
+          N.forEach(function (n, i) {
+            var P = pos(n), push = 0;
+            N.forEach(function (o, j) {
+              if (i === j) return; var Q = pos(o), ox = (n.w + o.w) / 2 + 6 - Math.abs(P[0] - Q[0]), oy = (n.h + o.h) / 2 + 6 - Math.abs(P[1] - Q[1]);
+              if (ox > 0 && oy > 0) {   // slide along the ring, away from the other logo
+                var tx = -RX[n.k] * Math.sin(n.a), ty = RX[n.k] * tilt * Math.cos(n.a), sgn = ((P[0] - Q[0]) * tx + (P[1] - Q[1]) * ty) >= 0 ? 1 : -1;
+                push += sgn * Math.min(ox, oy);
+              }
             });
-          }
-          if (tot < best) { best = tot; bo = o; }
+            var ox2 = (n.w + core_.w) / 2 - Math.abs(P[0] - cx), oy2 = (n.h + core_.h) / 2 - Math.abs(P[1] - cy);
+            if (ox2 > 0 && oy2 > 0) { var tx2 = -RX[n.k] * Math.sin(n.a), ty2 = RX[n.k] * tilt * Math.cos(n.a); push += (((P[0] - cx) * tx2 + (P[1] - cy) * ty2) >= 0 ? 1 : -1) * Math.min(ox2, oy2); }
+            n.a += push * .004 / (RX[n.k] / 200);
+          });
         }
-        off[kk] = bo;
+        bad = 0; N.forEach(function (n, i) {
+          var P = pos(n);
+          N.forEach(function (o, j) { if (j <= i) return; var Q = pos(o); if ((n.w + o.w) / 2 > Math.abs(P[0] - Q[0]) + 1 && (n.h + o.h) / 2 > Math.abs(P[1] - Q[1]) + 1) bad++; });
+          if ((n.w + core_.w) / 2 > Math.abs(P[0] - cx) + 1 && (n.h + core_.h) / 2 > Math.abs(P[1] - cy) + 1) bad++;
+        });
+        if (bad) { nw = Math.round(nw * .93); nh = Math.round(nh * .93); tries++; }
       }
-      N.forEach(function (n) { n.base = off[n.k] + Math.PI * 2 * n.j / n.m + .4; });
+      stage.style.setProperty('--nw', nw + 'px'); stage.style.setProperty('--nh', nh + 'px');
+      stage.dataset.overlaps = bad;
+      svg.innerHTML = ''; ells = []; svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      RX.forEach(function (rx) {
+        var e = document.createElementNS(NS, 'ellipse'); e.setAttribute('cx', cx); e.setAttribute('cy', cy); e.setAttribute('rx', rx); e.setAttribute('ry', rx * tilt); svg.appendChild(e); ells.push(e);
+      });
+      N.forEach(function (n) { var P = pos(n); n.el.style.transform = 'translate3d(' + (P[0] - n.w / 2).toFixed(1) + 'px,' + (P[1] - n.h / 2).toFixed(1) + 'px,0)'; });
       var ph = $('.eo_panels', sec); ph.style.minHeight = ''; ph.style.minHeight = Math.max.apply(null, panels.map(function (q) { return q.offsetHeight; })) + 'px';
-      apply(cur === null ? -1 : cur, true); draw(0);
+      apply(cur === null ? -1 : cur, true);
     }
     function apply(a, force) {
       if (a === cur && !force) return; cur = a;
@@ -869,51 +748,12 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentEle
       tabs.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.cat === cat); });
       panels.forEach(function (p) { if (p.dataset.cat === cat) p.setAttribute('data-on', ''); else p.removeAttribute('data-on'); });
       ells.forEach(function (e, i) { if (i === a) e.setAttribute('data-on', ''); else e.removeAttribute('data-on'); });
-      labels.forEach(function (e, i) { if (i === a) e.setAttribute('data-on', ''); else e.removeAttribute('data-on'); });
       N.forEach(function (n) { if (a >= 0 && n.k !== a) n.el.setAttribute('data-dim', ''); else n.el.removeAttribute('data-dim'); });
       cards.forEach(function (c) { c.hidden = !(a < 0 || c.dataset.cat === cat); });
     }
-    function progress() { var r = sec.getBoundingClientRect(), sh = Math.max(innerHeight, 640); return -r.top / (r.height - sh); }
-    function draw(dt) {
-      if (mode === 'grid' || !W) return;
-      var raw = mode === 'pin' ? progress() : 0, p = clamp(raw, 0, 1);
-      if (!reduce) t += dt;
-      if (mode === 'pin') {
-        entry = ease(span(raw, -.16, .05));
-        for (var w = 0; w < WIN.length; w++) if (p >= WIN[w][0] && p < WIN[w][1]) { apply(WIN[w][2]); break; }
-      }
-      ells.forEach(function (e, i) { var d = clamp(entry * 1.25 - i * .08, 0, 1); e.style.strokeDashoffset = (1 - d).toFixed(3); });
-      labels.forEach(function (l, i) { l.style.opacity = clamp(entry * 1.4 - .3 - i * .08, 0, 1).toFixed(2); });
-      for (var i = 0; i < N.length; i++) {
-        var n = N[i], th = n.base + SPEED[n.k] * t + TURN[n.k] * p * Math.PI, e2 = clamp(entry * 1.3 - n.k * .1, 0, 1);
-        var rx = RX[n.k] * (.25 + .75 * e2), sn = Math.sin(th), x = cx + rx * Math.cos(th), y = cy + rx * TILT * sn, d = (sn + 1) / 2;
-        var s = (.74 + .24 * d) * (.6 + .4 * e2);
-        n.el.style.transform = 'translate3d(' + (x - n.w / 2).toFixed(1) + 'px,' + (y - n.h / 2).toFixed(1) + 'px,0) scale(' + s.toFixed(3) + ')';
-        n.el.style.opacity = n.el.hasAttribute('data-dim') ? '' : (e2 * (.62 + .38 * d)).toFixed(2);   // depth: the far side recedes
-        var z = 10 + Math.round(d * 80) - (cur >= 0 && n.k !== cur ? 40 : 0); if (z !== n.z) { n.z = z; n.el.style.zIndex = z; }
-      }
-    }
-    var io = new IntersectionObserver(function (es) {
-      vis = es[0].isIntersecting;
-      if (vis && !seen && mode === 'static' && !reduce && window.gsap) { seen = true; var o = { v: 0 }; gsap.to(o, { v: 1, duration: 2, ease: 'expo.out', onUpdate: function () { entry = o.v; } }); }
-      else if (vis && !seen && mode === 'static') { seen = true; entry = 1; }
-    });
-    io.observe(sec);
-    var last = performance.now();
-    function tick() { var now = performance.now(), dt = Math.min(.05, (now - last) / 1000); last = now; if (vis) { try { draw(dt); } catch (e) { console.warn(e); } } }
-    if (window.gsap) gsap.ticker.add(tick); else (function raf() { tick(); requestAnimationFrame(raf); })();
-    // tabs: in the pinned story they scroll to that circle's moment; elsewhere they switch directly
     tabs.concat($$('.eo_legend button', sec)).forEach(function (b) {
-      b.addEventListener('click', function () {
-        var a = b.dataset.cat === 'all' ? -1 : CATS.indexOf(b.dataset.cat);
-        if (mode === 'pin') {
-          var w = a < 0 ? WIN[5] : WIN[a + 1], f = (w[0] + Math.min(1, w[1])) / 2, sh = Math.max(innerHeight, 640);
-          var y = sec.getBoundingClientRect().top + scrollY + f * (sec.offsetHeight - sh);
-          if (lenis) lenis.scrollTo(y, { duration: 1.4 }); else scrollTo({ top: y, behavior: 'smooth' });
-        } else apply(a);
-      });
+      b.addEventListener('click', function () { apply(b.dataset.cat === 'all' ? -1 : CATS.indexOf(b.dataset.cat)); });
     });
-    // a node and its line in the list light together
     function hot(k, on) {
       N.forEach(function (n) { if (+n.el.dataset.n === k && on) n.el.setAttribute('data-hot', ''); else n.el.removeAttribute('data-hot'); });
       lis.forEach(function (l) { if (+l.dataset.n === k && on) l.setAttribute('data-hot', ''); else l.removeAttribute('data-hot'); });
@@ -923,7 +763,7 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentEle
       n.addEventListener('focus', function () { hot(+n.dataset.n, true); }); n.addEventListener('blur', function () { hot(-1, false); });
     });
     lis.forEach(function (l) { l.addEventListener('mouseenter', function () { hot(+l.dataset.n, true); }); l.addEventListener('mouseleave', function () { hot(-1, false); }); });
-    var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(setup, 180); });
+    var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(setup, 200); });
     setup(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(setup);
   } catch (e) { console.warn(e); }
 })();
