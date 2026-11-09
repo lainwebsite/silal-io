@@ -291,14 +291,15 @@
 .x_tcHead h4 { margin: 0 0 4px; font-size: 1.0625rem; font-weight: 500; color: #fff; }
 .x_tcHead p { margin: 0; font-size: .8125rem; color: rgba(255,255,255,.85); }
 .x_tcHead a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
-.x_tcList { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
-.x_tcCard { display: flex; align-items: center; gap: 14px; padding: 14px; background: #fff; border: 1px solid rgba(0,0,0,.1); }
+.x_tcList { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 16px; }
+.x_tcCard { display: flex; flex-direction: column; gap: 0; padding: 0; background: #fff; border: 1px solid rgba(0,0,0,.1); overflow: hidden; }
 .x_tcCard:hover { border-color: var(--io); }
-.x_tcAv { flex: 0 0 56px; width: 56px; height: 56px; border-radius: 50%; overflow: hidden; background: #e3e3e3; }
-.x_tcAv img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; }
-.x_tcTxt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.x_tcAv { display: block; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; background: #e3e3e3; }
+.x_tcAv img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; transition: transform .6s var(--ease, ease); }
+.x_tcCard:hover .x_tcAv img { transform: scale(1.03); }
+.x_tcTxt { display: flex; flex-direction: column; gap: 3px; min-width: 0; padding: 14px 16px 16px; border-top: 3px solid var(--tcc, var(--io)); }
 .x_tcTxt b { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
-.x_tcTxt strong { font-size: .9375rem; font-weight: 600; color: var(--charcoal, #595453); }
+.x_tcTxt strong { font-size: 1.0625rem; font-weight: 600; color: var(--charcoal, #595453); }
 .x_tcTxt i { font-style: normal; font-size: .8125rem; color: var(--grey-ink, #6e7173); }
 .x_tcRest { margin-top: clamp(24px, 3vw, 40px); grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px var(--col-gap, 24px); }
 @media (max-width: 1000px) { .x_tcRest { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
