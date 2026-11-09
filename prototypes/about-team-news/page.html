@@ -284,28 +284,25 @@
 .x_groupStick > .s_wrap { width: 100%; }
 .x_about > .x_group ~ section:first-of-type, .x_about > .x_group + section { position: relative; z-index: 1; background: #fff; }
 @media (max-width: 900px) { .x_groupGrid { grid-template-columns: 1fr; gap: 44px; } .x_groupMark { height: 300px; right: -70px; } }
-/* rev. 9 Nov (client: split by teams "as in the examples shared"): one column per team, a coloured header box (team + its lead), the
-   team's people as cards under it, like the evaluation-process slide in the client's deck */
-.x_tcGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px var(--col-gap, 24px); align-items: start; }
-.x_tcHead { border-radius: 8px; padding: 18px 16px; color: #fff; text-align: center; }
-.x_tcHead h4 { margin: 0 0 4px; font-size: 1.0625rem; font-weight: 500; color: #fff; }
+/* rev. 9 Nov (client: split by teams "as in the examples shared"): one column per team with a coloured header (team + its lead) and the
+   team's people under it as image-first cards (name and title over the photo), so many teams still fit one screen width */
+.x_tcGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(176px, 1fr)); gap: 24px 16px; align-items: start; }
+.x_tcHead { border-radius: 10px; padding: 14px 16px; color: #fff; display: flex; flex-direction: column; gap: 2px; }
+.x_tcHead h4 { margin: 0; font-size: 1.0625rem; font-weight: 500; color: #fff; }
 .x_tcHead p { margin: 0; font-size: .8125rem; color: rgba(255,255,255,.85); }
 .x_tcHead a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
-.x_tcList { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 16px; }
-.x_tcCard { display: flex; flex-direction: column; gap: 0; padding: 0; background: #fff; border: 1px solid rgba(0,0,0,.1); overflow: hidden; }
-.x_tcCard:hover { border-color: var(--io); }
-.x_tcAv { display: block; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; background: #e3e3e3; }
-.x_tcAv img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; transition: transform .6s var(--ease, ease); }
-.x_tcCard:hover .x_tcAv img { transform: scale(1.03); }
-.x_tcTxt { display: flex; flex-direction: column; gap: 3px; min-width: 0; padding: 14px 16px 16px; border-top: 3px solid var(--tcc, var(--io)); }
-.x_tcTxt b { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
-.x_tcTxt strong { font-size: 1.0625rem; font-weight: 600; color: var(--charcoal, #595453); }
-.x_tcTxt i { font-style: normal; font-size: .8125rem; color: var(--grey-ink, #6e7173); }
-.x_tcRest { margin-top: clamp(24px, 3vw, 40px); grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px var(--col-gap, 24px); }
-@media (max-width: 1000px) { .x_tcRest { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .x_tcRest { grid-template-columns: 1fr; } }
-@media (max-width: 1000px) { .x_tcGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .x_tcGrid { grid-template-columns: 1fr; } }
+.x_tcList { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 12px; }
+.x_tcCard { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #dfe3e5; isolation: isolate; }
+.x_tcAv { position: absolute; inset: 0; display: block; }
+.x_tcAv img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; transition: transform .6s var(--ease, ease); }
+.x_tcCard:hover .x_tcAv img { transform: scale(1.04); }
+.x_tcCard::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; background: linear-gradient(to top, rgba(9, 30, 42, .82), rgba(9, 30, 42, 0)); z-index: 1; pointer-events: none; }
+.x_tcTag { position: absolute; z-index: 2; top: 12px; left: 12px; padding: 4px 10px; border-radius: 999px; color: #fff; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.x_tcTxt { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 2px; padding: 14px 16px 16px; color: #fff; }
+.x_tcTxt strong { font-size: 1.0625rem; font-weight: 500; color: #fff; }
+.x_tcTxt i { font-style: normal; font-size: .8125rem; color: rgba(255,255,255,.85); }
+.x_tcRest { margin-top: clamp(24px, 3vw, 40px); grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 12px 16px; }
+@media (max-width: 560px) { .x_tcGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .x_tcRest { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>
 </head>
 <body>
