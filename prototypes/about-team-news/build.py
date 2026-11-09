@@ -334,12 +334,12 @@ _TC = {"Science": "#1a6f96", "Innovation": "#14684a", "Commercial": "#595453", "
 
 def _mcard(p_, t_):
     return (f'<li><a class="x_tcCard" href="team-{p_["slug"]}.html"><span class="x_tcAv"><img alt="" decoding="async" loading="lazy" src="{p_["src"]}"/></span>'
-            f'<span class="x_tcTxt" style="--tcc:{_TC[t_]}"><b style="color:{_TC[t_]}">{esc(t_)} team</b><strong>{esc(p_["name"])}</strong><i>{esc(p_["role"])}</i></span></a></li>')
+            f'<span class="x_tcTxt"><strong>{esc(p_["name"])}</strong><i>{esc(p_["role"])}</i></span></a></li>')
 
 
 def _rcard(p_):
     return (f'<li><a class="x_tcCard" href="team-{p_["slug"]}.html"><span class="x_tcAv"><img alt="" decoding="async" loading="lazy" src="{p_["src"]}"/></span>'
-            f'<span class="x_tcTxt"><b style="color:#6e7173">Innovation Oasis</b><strong>{esc(p_["name"])}</strong>' + (f'<i>{esc(p_["role"])}</i>' if p_.get("role") else "") + '</span></a></li>')
+            f'<span class="x_tcTxt"><strong>{esc(p_["name"])}</strong>' + (f'<i>{esc(p_["role"])}</i>' if p_.get("role") else "") + '</span></a></li>')
 
 
 _oteams = "".join(
