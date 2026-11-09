@@ -258,17 +258,26 @@
 @media (max-width: 1100px) { .x_ecoGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .x_ecoGrid { grid-template-columns: 1fr 1fr; gap: 12px; } .x_ecoCard { padding: 14px 14px 18px; } .x_ecoLogo { height: 84px; padding-bottom: 12px; } .x_ecoLogo img { max-height: 56px; } }
 @media (max-width: 480px) { .x_ecoGrid { grid-template-columns: 1fr 1fr; } }
-/* rev. 9 Nov (client comment on About): iO is part of Silal Group, which is part of L'IMAD (formerly ADQ). Same system as the
-   rest of the page: white section, eyebrow row, 35px headline, three columns on hairlines (the client's image is inspiration only) */
-.x_group .x_groupTitle { margin: 0 0 clamp(32px, 4vw, 56px); max-width: 22em; }
-.x_groupGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px var(--col-gap, 32px); }
-.x_groupCol { border-top: 1px solid var(--line, rgba(0,0,0,.12)); padding-top: 28px; position: relative; }
-.x_groupCol::before { content: ""; position: absolute; left: 0; top: -1px; width: 56px; height: 1px; background: var(--io); }
-.x_groupLogo { height: 40px; display: flex; align-items: center; margin-bottom: 24px; }
-.x_groupLogo img { height: 100%; width: auto; max-width: 180px; object-fit: contain; display: block; }
+/* rev. 9 Nov (client comments on About): iO is part of Silal, which is part of L'IMAD. Three linked cards on a light band: logo,
+   one real figure from the supplied text, name, text; "part of" links between them; the iO mark as a pale supergraphic */
+.x_group { background: #f3f5f6; position: relative; overflow: hidden; }
+.x_group .s_wrap { position: relative; }
+.x_groupMark { position: absolute; right: -90px; top: -60px; height: 460px; width: auto; opacity: .07; pointer-events: none; }
+.x_group .x_groupTitle { margin: 0 0 clamp(36px, 4vw, 60px); max-width: 22em; position: relative; }
+.x_groupBlue { color: var(--io); }
+.x_groupGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; position: relative; }
+.x_groupCol { position: relative; background: #fff; border: 1px solid var(--line, rgba(0,0,0,.1)); padding: clamp(24px, 2.4vw, 36px); }
+.x_groupCol::before { content: ""; position: absolute; left: -1px; top: -1px; width: 64px; height: 3px; background: var(--io); }
+.x_groupLogo { height: 40px; display: flex; align-items: center; margin-bottom: 26px; }
+.x_groupLogo img { height: 100%; width: auto; max-width: 190px; object-fit: contain; display: block; }
+.x_groupNum { display: flex; flex-direction: column; gap: 4px; margin: 0 0 22px; padding: 16px 0; border-top: 1px solid var(--line, rgba(0,0,0,.1)); border-bottom: 1px solid var(--line, rgba(0,0,0,.1)); }
+.x_groupNum b { font-size: 2.25rem; font-weight: 300; line-height: 1; letter-spacing: -.03em; color: var(--io-ink); }
+.x_groupNum span { font-size: .75rem; color: var(--grey); }
 .x_groupName { font-size: 1.0625rem; font-weight: 500; line-height: 1.3; margin: 0 0 14px; color: var(--io-ink); }
 .x_groupCol .c_body { margin: 0 0 1em; }
-@media (max-width: 900px) { .x_groupGrid { grid-template-columns: 1fr; } }
+.x_groupLink { position: absolute; left: -28px; top: 38px; transform: translateX(-50%); z-index: 2; display: inline-flex; align-items: center; gap: 6px; background: var(--io); color: #fff; border-radius: 999px; padding: 6px 10px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.x_groupLink i { font-style: normal; }
+@media (max-width: 900px) { .x_groupGrid { grid-template-columns: 1fr; gap: 44px; } .x_groupLink { left: 24px; top: -30px; transform: none; } .x_groupLink svg { transform: rotate(90deg); } .x_groupMark { height: 300px; right: -70px; } }
 </style>
 </head>
 <body>
