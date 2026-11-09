@@ -8,7 +8,7 @@ import pathlib, re, sys
 B = pathlib.Path(sys.argv[1])
 # Labels set in capitals (text-transform: uppercase) would still show "IO": in the page's visible text every "iO" sits in a
 # span that keeps its case (not inside scripts, styles, <title>, <option>, <textarea> or attribute values).
-CSS = "<style>.x_iO{text-transform:none}</style>"
+CSS = "<style>.x_iO{text-transform:none!important}</style>"
 SKIP = re.compile(r"(<(script|style|title|option|textarea)\b.*?</\2\s*>|<[^>]*>)", re.S | re.I)
 WORD = re.compile(r"(?<![\w-])iO(?![\w-])")
 n = w = 0
