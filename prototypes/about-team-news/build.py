@@ -324,9 +324,12 @@ def _oc(p_, sub=None):
 # Innovation Manager Caitlin Vickers and Project Manager Nadia Tavafi under Francisco; Sr. Scientist Dr. Ahmed Elnaggar under Dr. Jude
 # Wilson; Operations Manager Mohsin Syed Albar). Ali is not named in the deck, so he has no team yet.
 _TEAM_OF = {"Ahmed": ("Science", "Senior Scientist"), "Caitlin": ("Innovation", "Innovation Manager"),
-            "Nadia": ("Innovation", "Project Manager"), "Mohsin": ("Operations", "Operations Manager")}
+            "Nadia": ("Innovation", "Project Manager"), "Mohsin": ("Operations", "Operations Manager"),
+            "Ali": ("Commercial", None)}  # Ali is not named in the deck: placed in Commercial for now (client: "put him in one team if not confirmed"), no title
 for _n, (_t, _r) in _TEAM_OF.items():
-    _by[_n]["team"], _by[_n]["role"] = _t, _r
+    _by[_n]["team"] = _t
+    if _r:
+        _by[_n]["role"] = _r
 _oleads = "".join(_oc(_by[n_], r_) for n_, r_, t_ in LEADS)
 _orest = [p_ for p_ in members if p_["name"] != CEO and not p_.get("team")]
 _TC = {"Science": "#1a6f96", "Innovation": "#14684a", "Commercial": "#595453", "Operations": "#3ca7d2"}   # brand tones, one per team
@@ -334,7 +337,7 @@ _TC = {"Science": "#1a6f96", "Innovation": "#14684a", "Commercial": "#595453", "
 
 def _mcard(p_, t_):
     return (f'<li><a class="x_tcCard" href="team-{p_["slug"]}.html"><span class="x_tcAv"><img alt="" decoding="async" loading="lazy" src="{p_["src"]}"/></span>'
-            f'<span class="x_tcTxt"><strong>{esc(p_["name"])}</strong><i>{esc(p_["role"])}</i></span></a></li>')
+            f'<span class="x_tcTxt"><strong>{esc(p_["name"])}</strong>' + (f'<i>{esc(p_["role"])}</i>' if p_.get("role") else "") + '</span></a></li>')
 
 
 def _rcard(p_):
