@@ -115,8 +115,8 @@ about_group = ('<section class="c_section c_white x_group" aria-label="iO, Silal
 # stays put while the story section slides up over it (the curtain the site already uses), desktop only
 about_group += ('<script>(function(){try{var g=document.querySelector(".x_group");if(!g)return;var cols=[].slice.call(g.querySelectorAll(".x_groupCol")),M=[28,14,46];'
                 'var calm=matchMedia("(prefers-reduced-motion: reduce)");function on(){return innerWidth>900&&!calm.matches}'
-                'function fit(){if(!on()){g.style.top="";g.classList.remove("x_groupStick");cols.forEach(function(c){c.style.transform=""});return}'
-                'g.classList.add("x_groupStick");g.style.top=Math.min(0,innerHeight-g.offsetHeight)+"px";tick()}'
+                'function fit(){if(!on()){g.style.top="";g.style.minHeight="";g.classList.remove("x_groupStick");cols.forEach(function(c){c.style.transform=""});return}'
+                'g.classList.add("x_groupStick");var hd=document.querySelector("header"),hh=Math.max(0,hd?hd.getBoundingClientRect().bottom:0);g.style.minHeight=(innerHeight-hh)+"px";g.style.top=Math.min(hh,innerHeight-g.offsetHeight)+"px";tick()}'
                 'function tick(){if(!on())return;var p=Math.max(0,Math.min(1,scrollY/Math.max(1,g.offsetHeight)));cols.forEach(function(c,i){c.style.transform="translate3d(0,"+(-(p*M[i]).toFixed(1))+"px,0)"})}'
                 'fit();addEventListener("resize",fit);addEventListener("load",fit);addEventListener("scroll",tick,{passive:true})}catch(e){}})();</script>')
 about = about_group + "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
