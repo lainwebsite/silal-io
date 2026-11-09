@@ -8,7 +8,7 @@ Changes, on top of that file only:
     (one panel per step: what happens, the line it ends on, and a link to that category)
 Run: python3 homepage.py <homepage.html> <out.html>
 """
-import html, sys
+import html, re as _re, sys
 
 src, dst = sys.argv[1], sys.argv[2]
 h = open(src, encoding="utf8").read()
@@ -137,6 +137,192 @@ CSS = """
   .x_mPanel .x_mOut { margin: 8px 0 12px; }
 }
 """
+
+# ===================== client revisions, 6 November 2026 ("Revision 6 November", Rushikesh) =====================
+import json as _json
+
+# intro figures: inauguration second, then the 34 hectares; "37+ strategic partners" in place of "2030 Vision"
+sub('<ul class="c_stats"><li><span class="c_statNum" data-count="2020">2020</span><span class="c_statLabel" data-reveal>Silal was established</span></li><li><span class="c_statNum" data-count="34">34</span><span class="c_statLabel" data-reveal>hectare parcel of land<br>adjacent to Al Foah Farm</span></li><li><span class="c_statNum" data-count="2024">2024</span><span class="c_statLabel" data-reveal>iO Official Inauguration</span></li><li><span class="c_statNum" data-count="2030">2030</span><span class="c_statLabel" data-reveal>Vision</span></li></ul>',
+    '<ul class="c_stats"><li><span class="c_statNum" data-count="2020">2020</span><span class="c_statLabel" data-reveal>Silal was established</span></li><li><span class="c_statNum" data-count="2024">2024</span><span class="c_statLabel" data-reveal>iO Official Inauguration</span></li><li><span class="c_statNum" data-count="34">34</span><span class="c_statLabel" data-reveal>hectare parcel of land<br>adjacent to Al Foah Farm</span></li><li><span class="c_statNum"><span data-count="37">37</span>+</span><span class="c_statLabel" data-reveal>strategic partners</span></li></ul>')
+
+# section order: the Method helix right under the intro brief; the 3D site after the Arid Advantage (it sets the site up)
+_marks = {"site": '<div class="c_curtain" id="siteCurtain"', "map": '<section class="c_section c_white hm_map"',
+          "why": '<section class="c_why', "helix": '<div class="c_curtain" id="helixCurtain"',
+          "journey": '<div class="c_curtain" id="jCurtain"', "press": '<section class="c_section c_white hm_press"'}
+_pos = {k: h.index(v) for k, v in _marks.items()}
+_pos["principles"] = h.index('<section class="c_section c_white">', _pos["why"])
+_order = sorted(_pos, key=_pos.get)
+_end = h.index("</main>", _pos["press"]) if "</main>" in h[_pos["press"]:] else None
+_blocks = {}
+for _k, _n in zip(_order, _order[1:] + [None]):
+    _blocks[_k] = h[_pos[_k]:(_pos[_n] if _n else h.index("</section>", _pos["press"]) + len("</section>"))]
+_first, _last = _pos[_order[0]], _pos["press"] + len(_blocks["press"])
+h = h[:_first] + "".join(_blocks[k] for k in ["helix", "map", "why", "site", "principles", "journey", "press"]) + h[_last:]
+
+# map: pressures become filters that layer a heat map onto the world (Operational complexity removed; illustrative)
+def _lonlat(x, y):
+    return x * 360 / 696 - 177.5, 85 - y * 145 / 285
+def _box(lon, lat, b):
+    return b[0] <= lon <= b[1] and b[2] <= lat <= b[3]
+_L = {  # level 1..3 per region box (lon0, lon1, lat0, lat1); highest box wins
+ "heat": [(3, (-17, 35, 14, 32)), (3, (35, 60, 12, 33)), (3, (50, 72, 24, 32)), (3, (68, 78, 21, 30)), (3, (115, 145, -32, -18)),
+          (3, (-118, -102, 22, 35)), (2, (12, 26, -29, -17)), (2, (-80, -35, -15, 12)), (2, (8, 30, -5, 8)), (2, (90, 125, -10, 22)),
+          (2, (70, 90, 8, 28)), (2, (-110, -80, 8, 22)), (1, (-125, -75, 30, 40)), (1, (-10, 45, 33, 42)), (1, (60, 120, 30, 42)), (1, (-70, -50, -35, -15))],
+ "water": [(3, (-17, 62, 14, 38)), (3, (60, 78, 20, 35)), (2, (50, 72, 36, 47)), (2, (95, 120, 34, 43)), (2, (-122, -100, 22, 38)),
+           (2, (115, 145, -33, -20)), (2, (14, 30, -34, -20)), (2, (-75, -68, -32, -5)), (2, (-17, 40, 10, 14)), (1, (70, 88, 10, 20)), (1, (-10, 30, 36, 44))],
+ "salt": [(3, (44, 60, 20, 32)), (3, (40, 50, 29, 37)), (3, (66, 75, 23, 32)), (3, (55, 70, 38, 46)), (2, (25, 35, 27, 32)),
+          (2, (113, 150, -37, -25)), (2, (-122, -110, 32, 40)), (2, (-66, -58, -38, -28)), (1, (115, 125, 35, 42)), (1, (-10, 12, 28, 36))],
+ "soil": [(3, (-17, 40, 10, 18)), (2, (-17, 35, 18, 32)), (2, (35, 60, 14, 32)), (2, (68, 88, 10, 30)), (2, (100, 115, 33, 40)),
+          (2, (115, 145, -33, -18)), (2, (-45, -35, -12, -3)), (2, (55, 72, 36, 46)), (2, (30, 45, -5, 12)), (1, (43, 51, -26, -12)), (1, (-110, -95, 20, 32))],
+}
+def _lvl(layer, lon, lat):
+    return max([v for v, b in _L[layer] if _box(lon, lat, b)] or [0])
+def _dot(m):
+    cls, attrs = m.group(1), m.group(2)
+    if cls == "hm_u":
+        return m.group(0)
+    attrs = _re.sub(r' data-k="\d+"', "", attrs)
+    x = float(_re.search(r'cx="([\d.]+)"', attrs).group(1)); y = float(_re.search(r'cy="([\d.]+)"', attrs).group(1))
+    lon, lat = _lonlat(x, y)
+    lv = "".join(str(_lvl(k, lon, lat)) for k in ("heat", "water", "salt", "soil"))
+    d = round(((x - 447.5) ** 2 + (y - 120) ** 2) ** .5)
+    return f'<circle class="hm_d" data-p="{lv}" data-d="{d}"{attrs}/>'
+_ms = h.index('<svg class="hm_svg"'); _me = h.index('</svg>', _ms)
+_svg = _re.sub(r'<circle class="(hm_l|hm_a|hm_u)"([^>]*?)/>', _dot, h[_ms:_me])
+_svg = _svg.replace('<circle class="hm_u"', '<circle class="hm_ring" cx="447.5" cy="120.0" r="7"/><circle class="hm_u"', 1)
+h = h[:_ms] + _svg + h[_me:]
+sub('aria-label="Dot map of the world with arid and semi-arid regions highlighted around the UAE"',
+    'aria-label="Illustrative heat map of the world: heat, water scarcity, salinity and soil quality, with the UAE marked"')
+sub('<div class="hm_legend"><span class="hm_k hm_kU">UAE</span><span class="hm_k hm_kA">Arid and semi-arid regions</span><em>Illustrative</em></div>',
+    '<div class="hm_legend"><span class="hm_k hm_kU">UAE</span><span class="hm_scale" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="hm_scaleTxt">Lower to higher pressure</span><em>Illustrative</em></div>')
+sub('<ul class="hm_chips"><li><span data-reveal>Heat</span></li><li><span data-reveal>Water scarcity</span></li><li><span data-reveal>Salinity</span></li><li><span data-reveal>Soil quality</span></li><li><span data-reveal>Operational complexity</span></li></ul>',
+    '<ul class="hm_chips" aria-label="Show pressures on the map"><li><button type="button" aria-pressed="true" data-layer="0">Heat</button></li><li><button type="button" aria-pressed="true" data-layer="1">Water scarcity</button></li><li><button type="button" aria-pressed="true" data-layer="2">Salinity</button></li><li><button type="button" aria-pressed="true" data-layer="3">Soil quality</button></li></ul>')
+sub("""  var mapSec = $('#mapSec'), arid = $$('.hm_a').sort(function (a, b) { return a.dataset.k - b.dataset.k; }), lit = 0;
+  function mapProgress() {
+    var r = mapSec.getBoundingClientRect(), vh = innerHeight;
+    var p = reduce ? 1 : clamp((vh * 0.9 - r.top) / (vh * 0.7), 0, 1), want = Math.round(p * arid.length);
+    if (want === lit) return;
+    for (var i = Math.min(lit, want); i < Math.max(lit, want); i++) { if (i < want) arid[i].setAttribute('data-on', ''); else arid[i].removeAttribute('data-on'); }
+    lit = want;
+  }""", """  // heat map (rev. 6 Nov): each pressure is a filter; the active ones are averaged per dot, spreading out from the UAE as it scrolls in
+  var mapSec = $('#mapSec'), hmDots = $$('.hm_d').map(function (c) { return { el: c, d: +c.dataset.d, p: c.dataset.p.split('').map(Number), lv: -1 }; }),
+      hmOn = [1, 1, 1, 1], hmR = -1, hmMax = 460;
+  function hmPaint(force) {
+    var n = hmOn.reduce(function (a, b) { return a + b; }, 0);
+    hmDots.forEach(function (o) {
+      var lv = 0;
+      if (o.d <= hmR && n) { var s = 0; for (var k = 0; k < 4; k++) if (hmOn[k]) s += o.p[k]; lv = Math.round(s / n); if (!lv && s) lv = 1; }
+      if (lv !== o.lv || force) { o.lv = lv; o.el.setAttribute('data-lv', lv); }
+    });
+  }
+  $$('#mapSec .hm_chips button').forEach(function (b) {
+    b.addEventListener('click', function () { var k = +b.dataset.layer; hmOn[k] = hmOn[k] ? 0 : 1; b.setAttribute('aria-pressed', hmOn[k] ? 'true' : 'false'); hmPaint(true); });
+  });
+  function mapProgress() {
+    var r = mapSec.getBoundingClientRect(), vh = innerHeight;
+    var p = reduce ? 1 : clamp((vh * 0.9 - r.top) / (vh * 0.7), 0, 1), want = Math.round(p * hmMax);
+    if (want === hmR) return;
+    hmR = want; hmPaint(false);
+  }""")
+
+# the 3D site: far fewer palm trees (roadside rows gone, the farm orchard thinned and muted)
+sub('let K=[];for(let C=-60;C<=34;C+=4.4)K.push([C,36.3],[C,40.7]);for(let C=25.5;C<=30.5;C+=2.5)K.push([-10.4,C],[-5.6,C]);for(let C=-33;C<=33;C+=4.2)K.push([C,23.4]);',
+    'let K=[];for(let C=-10.4;C<=-5.6;C+=4.8)K.push([C,28]);')
+sub('Le=540,Ce=new tn(new gn(.07,.11,1.8,6),M("#c9bfae"),Le),ht=new tn(ae,M("#9db58c"),Le)',
+    'Le=120,Ce=new tn(new gn(.07,.11,1.8,6),M("#d6cfc2"),Le),ht=new tn(ae,M("#b9c6a7"),Le)')
+sub('for(let C=0;C<18;C++)for(let N=0;N<30;N++){let j=43+C*3.1', 'for(let C=0;C<4;C++)for(let N=0;N<30;N++){let j=43+C*3.1')
+
+# the 3D site: each place opens a slideshow of the real space (photos for now; a video can take a slot later)
+_G = [  # one list per TOUR stop, same order
+ ["photos/Archive/Screenshot 2026-09-24 164012.jpg", "photos/Archive/Screenshot 2026-09-24 163505.jpg", "photos/Archive/Screenshot 2026-09-24 163545.jpg"],
+ ["photos/Professional Facility Photos (1)/PA__1211-Edit-Edit.jpg", "photos/Professional Facility Photos (1)/PA__1065.jpg", "photos/General MarCom Photos (1)/SAM_8874.jpg"],
+ ["photos/Professional Facility Photos (1)/PA__1405.jpg", "photos/Professional Facility Photos (1)/PA__1410.jpg", "photos/Professional Facility Photos (1)/PA__1281.jpg", "photos/Professional Facility Photos (1)/PA__1285.jpg"],
+ ["photos/General MarCom Photos (1)/PA__1490.jpg", "photos/General MarCom Photos (1)/PA__1526.jpg", "photos/Professional Facility Photos (1)/PA__1464.jpg", "photos/Professional Facility Photos (1)/PA__1488.jpg"],
+ ["photos/Archive/Screenshot 2026-09-24 163612.jpg", "photos/Archive/Screenshot 2026-09-24 163836.jpg", "photos/Archive/Screenshot 2026-09-24 163545.jpg"],
+ ["photos/General MarCom Photos (1)/SAM_9200.jpg", "photos/General MarCom Photos (1)/SMJ_2763.jpg", "photos/General MarCom Photos (1)/DSC04723 (1).jpg"],
+ ["photos/Archive/Screenshot 2026-09-24 163505.jpg", "photos/Archive/Screenshot 2026-09-24 163812.jpg", "photos/Archive/Screenshot 2026-09-24 164012.jpg"],
+]
+GALLERY_FILES = sorted({p for g in _G for p in g})
+sub('<span class="c_mapCount" id="siteCount">01 <i>/ 07</i></span></div>',
+    '<span class="c_mapCount" id="siteCount">01 <i>/ 07</i></span><button type="button" class="x_galOpen" id="siteGalOpen"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3" width="13" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="m4 11 3-3 2 2 2-2 2 3" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>See the real space</button></div>')
+_GAL_HTML = ('<div class="x_gal" id="siteGal" role="dialog" aria-modal="true" aria-labelledby="siteGalTitle" hidden>'
+             '<div class="x_galTop"><p class="x_galTitle" id="siteGalTitle"></p><span class="x_galCount" id="siteGalCount"></span>'
+             '<button type="button" class="x_galClose" aria-label="Close">&times;</button></div>'
+             '<div class="x_galStage"><button type="button" class="x_galNav" data-d="-1" aria-label="Previous photo">&larr;</button>'
+             '<figure class="x_galFig"><img id="siteGalImg" alt=""></figure>'
+             '<button type="button" class="x_galNav" data-d="1" aria-label="Next photo">&rarr;</button></div>'
+             '<div class="x_galThumbs" id="siteGalThumbs"></div></div>')
+sub('</main>', _GAL_HTML + '</main>')
+_GAL_JS = """
+<script>
+/* rev. 6 Nov: the site model's places open a slideshow of the real space */
+(function () {
+  var G = %s, gal = document.getElementById('siteGal'), img = document.getElementById('siteGalImg'), th = document.getElementById('siteGalThumbs'),
+      title = document.getElementById('siteGalTitle'), count = document.getElementById('siteGalCount'), open = document.getElementById('siteGalOpen'), set = [], k = 0, last = null;
+  if (!gal || !open) return;
+  function cur() { var on = document.querySelector('#siteIndex button[data-on="true"]'); return on ? +on.dataset.i : 0; }
+  function show(i) { k = (i + set.length) %% set.length; img.src = set[k]; count.textContent = (k + 1) + ' / ' + set.length;
+    [].forEach.call(th.children, function (b, j) { b.setAttribute('aria-current', j === k ? 'true' : 'false'); }); }
+  function openGal(i) { var s = i == null ? cur() : i; set = G[s] || []; if (!set.length) return; last = document.activeElement;
+    var lab = document.querySelector('#siteIndex button[data-i="' + s + '"] b'); title.textContent = lab ? lab.textContent : '';
+    th.innerHTML = set.map(function (p, j) { return '<button type="button" aria-label="Photo ' + (j + 1) + '"><img src="' + p.replace(/"/g, '&quot;') + '" alt=""></button>'; }).join('');
+    [].forEach.call(th.children, function (b, j) { b.addEventListener('click', function () { show(j); }); });
+    gal.hidden = false; document.documentElement.classList.add('x_galLock'); show(0); gal.querySelector('.x_galClose').focus(); }
+  function closeGal() { gal.hidden = true; document.documentElement.classList.remove('x_galLock'); if (last) last.focus(); }
+  open.addEventListener('click', function () { openGal(); });
+  document.querySelector('.c_mapImg').addEventListener('click', function (e) { if (e.target.closest('button')) return; openGal(); });
+  gal.querySelector('.x_galClose').addEventListener('click', closeGal);
+  [].forEach.call(gal.querySelectorAll('.x_galNav'), function (b) { b.addEventListener('click', function () { show(k + +b.dataset.d); }); });
+  gal.addEventListener('click', function (e) { if (e.target === gal) closeGal(); });
+  document.addEventListener('keydown', function (e) { if (gal.hidden) return; if (e.key === 'Escape') closeGal(); else if (e.key === 'ArrowRight') show(k + 1); else if (e.key === 'ArrowLeft') show(k - 1); });
+})();
+</script>
+""" % _json.dumps(_G)
+h = h.replace("</body>", _GAL_JS + "</body>") if "</body>" in h else h + _GAL_JS
+
+CSS += """
+/* ---- revisions 6 November ---- */
+/* navbar: only the page you are on is underlined; hover/focus no longer draws the line, so nothing looks selected by accident */
+.s_navItem:hover > a:not([data-active="true"])::after, .s_navItem:focus-within > a:not([data-active="true"])::after { transform: scaleX(0); }
+/* heat map */
+.hm_d { fill: #dcdcdc; transition: fill .5s ease; }
+.hm_d[data-lv="1"] { fill: #a9d6ea; } .hm_d[data-lv="2"] { fill: #4fb0da; } .hm_d[data-lv="3"] { fill: #156a96; }
+.hm_u { fill: #e0582f; } .hm_ring { fill: none; stroke: #e0582f; stroke-width: 1.2; opacity: .7; transform-origin: 447.5px 120px; animation: hmPulse 2.4s ease-out infinite; }
+@keyframes hmPulse { from { transform: scale(.4); opacity: .9; } to { transform: scale(1.8); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .hm_ring { animation: none; } }
+.hm_kU::before { background: #e0582f; }
+.hm_scale { display: inline-flex; gap: 3px; } .hm_scale i { width: 14px; height: 7px; border-radius: 2px; background: #dcdcdc; }
+.hm_scale i:nth-child(2) { background: #a9d6ea; } .hm_scale i:nth-child(3) { background: #4fb0da; } .hm_scale i:nth-child(4) { background: #156a96; }
+.hm_scaleTxt { margin-left: -14px; }
+.hm_chips li { padding: 0; border: 0; background: none; box-shadow: none; }
+.hm_chips button { font: inherit; font-size: .75rem; padding: 8px 14px 8px 30px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: var(--charcoal); cursor: pointer; position: relative; box-shadow: 0 6px 16px -12px rgba(40, 36, 35, .25); transition: background .25s, color .25s, border-color .25s; }
+.hm_chips button::before { content: ""; position: absolute; left: 11px; top: 50%; width: 11px; height: 11px; margin-top: -6px; border-radius: 3px; border: 1.5px solid currentColor; }
+.hm_chips button[aria-pressed="true"] { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
+.hm_chips button[aria-pressed="true"]::before { background: #fff; box-shadow: inset 0 0 0 2px var(--io-ink); }
+.hm_chips button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+@media (max-width: 760px) { .hm_chips button { font-size: .6875rem; padding: 6px 10px 6px 26px; } .hm_chips button::before { left: 9px; width: 10px; height: 10px; margin-top: -5px; } }
+/* site model: the real space */
+.c_mapImg { cursor: zoom-in; }
+.x_galOpen { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: .6875rem; font-weight: 500; letter-spacing: .02em; padding: 7px 11px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .92); color: var(--io-ink); cursor: pointer; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .35); }
+.x_galOpen:hover { background: #fff; }
+.x_gal { position: fixed; inset: 0; z-index: 120; background: rgba(18, 22, 24, .94); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(14px, 3vh, 28px) clamp(14px, 3vw, 40px); color: #fff; }
+.x_gal[hidden] { display: none; }
+html.x_galLock { overflow: hidden; }
+.x_galTop { display: flex; align-items: center; gap: 18px; }
+.x_galTitle { margin: 0; font-size: 1.125rem; font-weight: 400; } .x_galCount { font-size: .8125rem; opacity: .7; font-variant-numeric: tabular-nums; }
+.x_galClose { margin-left: auto; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .35); background: none; color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+.x_galStage { display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: center; gap: 12px; min-height: 0; }
+.x_galFig { margin: 0; height: 100%; min-height: 0; display: grid; place-items: center; }
+.x_galFig img { max-width: 100%; max-height: 72vh; object-fit: contain; border-radius: 4px; }
+.x_galNav { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .35); background: none; color: #fff; font-size: 1.25rem; cursor: pointer; }
+.x_galNav:hover, .x_galClose:hover { background: rgba(255, 255, 255, .12); }
+.x_galThumbs { display: flex; gap: 8px; justify-content: center; padding-top: 14px; overflow-x: auto; }
+.x_galThumbs button { width: 84px; height: 56px; padding: 0; border: 2px solid transparent; border-radius: 4px; overflow: hidden; background: none; cursor: pointer; opacity: .6; flex: none; }
+.x_galThumbs button[aria-current="true"] { border-color: #fff; opacity: 1; }
+.x_galThumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 760px) { .x_galStage { grid-template-columns: 36px minmax(0, 1fr) 36px; gap: 6px; } .x_galNav { width: 36px; height: 36px; } .x_galThumbs button { width: 60px; height: 40px; } }
+"""
+
 last = h.rindex("</style>", 0, h.index('<header class="s_header"'))
 h = h[:last] + CSS + h[last:]
 open(dst, "w", encoding="utf8").write(h)
