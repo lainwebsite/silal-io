@@ -157,7 +157,7 @@ _blocks = {}
 for _k, _n in zip(_order, _order[1:] + [None]):
     _blocks[_k] = h[_pos[_k]:(_pos[_n] if _n else h.index("</section>", _pos["press"]) + len("</section>"))]
 _first, _last = _pos[_order[0]], _pos["press"] + len(_blocks["press"])
-h = h[:_first] + "".join(_blocks[k] for k in ["helix", "map", "why", "site", "principles", "journey", "press"]) + h[_last:]
+h = h[:_first] + "".join(_blocks[k] for k in ["helix", "map", "why", "site", "journey", "press"])  # Principles moved to About (client comment, 9 Nov) + h[_last:]
 
 # map: pressures become filters that layer a heat map onto the world (Operational complexity removed; illustrative)
 def _lonlat(x, y):
