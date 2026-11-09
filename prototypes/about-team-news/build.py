@@ -192,44 +192,143 @@ for p in members:
     p["slug"] = slugify(p["name"])
 people = re.sub(r'<li><span class="c_teamImg">(.*?)</span><span class="c_teamName">([^<]+)</span></li>',
                 lambda m: f'<li><a class="x_teamLink" href="team-{slugify(m.group(2))}.html"><span class="c_teamImg">{m.group(1)}</span><span class="c_teamName">{m.group(2)}</span></a></li>', people)
-# ---- revision 6 November (Shamal / Francisco via Rushikesh): the team is split by vertical. First line under the CEO:
-# the four Vertical Leads, then one block per team (Science, Innovation, Commercial, Operations). Shameer has no photo yet.
+# ---- revision 9 November (owner: the Team page was "too safe, too newspaper, too static"; client comment #41: the
+# four Vertical Leads first under Dr. Shamal, then the team by vertical: Science, Innovation, Commercial, Operations).
+# Five chapters: T1 a living portrait mosaic, T2 Dr. Shamal with his scroll-lit quote, T3 the org helix (four strands
+# from Dr. Shamal braid down into the four Vertical Leads, pinned, iO-blue chapter), T4 the team by vertical (tabs,
+# FLIP), T5 the media band. Shameer has no photo yet: a monogram tile in iO blue, never a grey silhouette.
 LEADS = [("Jude", "Director of Science & Research", "Science"), ("Francisco", "Head of Innovation", "Innovation"),
          ("Shameer", "Commercial Manager", "Commercial"), ("Sagar", "Operations Lead", "Operations")]
+# the same monogram as an image (profile pages, related cards): ring of the iO "O" + initial, Arial = the brand's substitute
 NO_PHOTO = ("data:image/svg+xml;utf8," + urllib.parse.quote(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#e9ecee"/>'
-    '<circle cx="200" cy="190" r="70" fill="#d3d9dd"/><path d="M80 470c10-90 60-140 120-140s110 50 120 140z" fill="#d3d9dd"/></svg>'))
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#3ca7d2"/>'
+    '<circle cx="200" cy="235" r="118" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>'
+    '<text x="200" y="235" dy=".35em" text-anchor="middle" font-family="Readex Pro, Arial, sans-serif" font-weight="300" '
+    'font-size="150" fill="#fff">S</text>'
+    '<text x="200" y="452" text-anchor="middle" font-family="Readex Pro, Arial, sans-serif" font-size="17" letter-spacing="3" '
+    'fill="#fff" fill-opacity=".8">PORTRAIT TO FOLLOW</text></svg>'))
 members.append({"name": "Shameer", "src": NO_PHOTO, "role": None, "slug": "shameer"})
 for p_ in members:
     for n_, r_, t_ in LEADS:
         if p_["name"] == n_:
             p_["role"], p_["team"] = r_, t_
-def _card(p_, sub=None):
-    img = (f'<img alt="" decoding="async" loading="lazy" src="{p_["src"]}" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"/>')
-    sub = sub or p_.get("role")
-    return (f'<li><a class="x_teamLink" href="team-{p_["slug"]}.html"><span class="c_teamImg">{img}</span>'
-            f'<span class="c_teamName">{p_["name"]}</span>' + (f'<span class="x_teamRole">{sub}</span>' if sub else "") + '</a></li>')
+members[0]["team"] = "Leadership"
 _by = {p_["name"]: p_ for p_ in members}
-_leads = "".join(_card(_by[n_], f"{r_}") for n_, r_, t_ in LEADS)
-_rest = [p_ for p_ in members if p_["name"] != CEO and not p_.get("team")]
-_teams = "".join(
-    f'<div class="x_teamBlock"><div class="x_teamBlockHead"><h4 class="x_teamBlockTitle">{t_}</h4>'
-    f'<p class="x_teamBlockLead">Led by <a href="team-{_by[n_]["slug"]}.html">{n_}</a>, {r_}</p></div>'
-    f'<p class="x_teamEmpty">Team members are added from the CMS.</p></div>' for n_, r_, t_ in LEADS)
-_new_grid = (f'<div class="x_leads"><div class="x_secHead"><h3 class="c_h2" data-reveal>Vertical Leads</h3>'
-             f'<p class="c_lead x_teamSub" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p></div>'
-             f'<ul class="c_team x_leadGrid" data-stagger="true">{_leads}</ul></div>'
-             f'<div class="x_teamsWrap"><div class="x_secHead"><h3 class="c_h2" data-reveal>Our Teams</h3>'
-             f'<p class="c_lead x_teamSub" data-reveal>Behind every laboratory, trial and partnership at Innovation Oasis is a small, hands-on team that has grown alongside the ecosystem itself.</p></div>'
-             f'<div class="x_teamBlocks">{_teams}</div>'
-             f'<div class="x_teamBlock x_teamOpen"><div class="x_teamBlockHead"><h4 class="x_teamBlockTitle">Team members</h4>'
-             f'<p class="x_teamBlockLead">Team placement to be confirmed by Innovation Oasis.</p></div>'
-             f'<ul class="c_team" data-stagger="true">{"".join(_card(p_, "Role to be confirmed") for p_ in _rest)}</ul></div></div>')
-people = re.sub(r'<div class="c_teamHead">.*?</div>\s*<ul class="c_team"[^>]*>.*?</ul>', lambda m: _new_grid, people, count=1, flags=re.S)
-# the site's primary pill button, the same as Enquire (comment 2026-10-30: no underlined text link here)
+esc = html.escape
+HS = "/photos/iO%20Team%20Headshot%20%26%20Bios/"
+MONO = ('<span class="tm_mono" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="38"/></svg>'
+        '<b>S</b><small>Portrait to follow</small></span>')
+role_of = lambda p_: p_.get("role") or "Role to be confirmed"
+
+
+def _img(src, cls="", alt="", lazy=True):
+    return f'<img class="{cls}" alt="{esc(alt)}" decoding="async"{" loading=\"lazy\"" if lazy else ""} src="{src}"/>'
+
+
+# T1 · hero: the whole team as a living mosaic, five columns at different speeds; a portrait comes into colour as it
+# crosses the middle of the screen. Every real headshot (two shots per person from the photo shoot), Shameer's monogram.
+ALT = {"Dr. Shamal Mohammed": "Shamal/Shamal-10.jpg", "Ahmed": "Ahmed/Ahmed-4.jpg", "Ali": "Ali/Ali-2.jpg",
+       "Nadia": "Nadia/Nadia-12.jpg", "Sagar": "Sagar/Sagar-12.jpg", "Caitlin": "Caitlin/Caitlin-2.jpg",
+       "Francisco": "Francisco/Francisco-4.jpg", "Jude": "Jude/Jude-2.jpg", "Mohsin": "Mohsin/Mohsin-2.jpg"}
+COLS = [[("Dr. Shamal Mohammed", 0), ("Nadia", 1), ("Francisco", 1), ("Ahmed", 0)],
+        [("Jude", 0), ("Ali", 1), ("Sagar", 1), ("Caitlin", 0)],
+        [("Mohsin", 0), ("Shameer", 0), ("Ahmed", 1), ("Nadia", 0)],
+        [("Francisco", 0), ("Caitlin", 1), ("Dr. Shamal Mohammed", 1), ("Jude", 1)],
+        [("Sagar", 0), ("Mohsin", 1), ("Ali", 0)]]
+
+
+def _tile(name, alt):
+    p_ = _by[name]
+    face = MONO if name == "Shameer" else _img(p_["src"] if not alt else HS + ALT[name], lazy=False)
+    return (f'<a class="tm_tile{" tm_tileMono" if name == "Shameer" else ""}" href="team-{p_["slug"]}.html">{face}'
+            f'<span class="tm_cap"><b>{esc(name)}</b><i>{esc(role_of(p_))}</i></span></a>')
+
+
+_mosaic = ('<div class="tm_mosaic" aria-label="The Innovation Oasis team">'
+           + "".join(f'<div class="tm_col" data-col="{k}"><div class="tm_colIn">{"".join(_tile(*t) for t in col)}</div></div>'
+                     for k, col in enumerate(COLS)) + '</div>')
+t1 = ('<section class="tm_hero" id="tmHero"><div class="tm_heroText">'
+      f'<nav class="x_crumbs" aria-label="Breadcrumb"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><span aria-current="page">Team</span></nav>'
+      '<span class="c_eyebrow">Our People</span>'
+      '<h1 class="tm_h1" data-reveal>The people behind <span class="tm_blue">every&nbsp;trial.</span></h1>'
+      f'<p class="tm_heroLead" data-reveal>{intro.rstrip(".").replace("Behind every laboratory, trial and partnership at Innovation Oasis is", "Behind every laboratory, trial and partnership is")}.</p>'
+      '<a class="tm_down" href="#tmLeader"><span>Meet the team</span><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M4 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
+      f'</div>{_mosaic}</section>')
+
+# T2 · leadership: Dr. Shamal, portrait whole, the quote lit word by word with the scroll; the rest of his story is on
+# his profile (one click), so this chapter keeps to label + quote + two lines + button
 arrow_svg = re.search(r'<a href="#" class="s_btn s_btnPrimary s_btnSm">Enquire (<svg.*?</svg>)', header, re.S).group(1)
-people = people.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
-page(URL["team"], "Team &amp; CEO Message · Innovation Oasis", f'<div class="c_page x_team">{people}</div>{v3wrap(media)}', v3css)
+_q = "If it works here, it can work anywhere."
+_qw = _q.split(" ")
+t2 = ('<section class="tm_leader" id="tmLeader"><div class="s_wrap tm_leaderIn">'
+      f'<a class="tm_leaderImg" href="team-{slugify(CEO)}.html" aria-label="{CEO}, profile"><div class="c_photo" data-img="true"><div class="c_photoInner" data-parallax="5">'
+      f'{_img(leader_src, alt=CEO + ", CEO, Innovation Oasis")}</div></div></a>'
+      '<div class="tm_leaderText"><span class="c_eyebrow">Leadership</span>'
+      '<blockquote class="tm_quote"><p aria-label="' + esc(_q) + '">'
+      + " ".join(f'<span class="tm_w{" tm_wLast" if k == len(_qw) - 1 else ""}" aria-hidden="true">{esc(w)}</span>' for k, w in enumerate(_qw))
+      + '</p></blockquote>'
+      '<p class="tm_who"><b>Dr. Shamal Mohammed</b><span>Chief Executive Officer</span></p>'
+      '<p class="tm_leaderLead" data-reveal>Joined Silal in 2021 to build its innovation and R&amp;D function from the ground up, '
+      'after more than two decades running agricultural research facilities in the UK.</p>'
+      f'<a class="s_btn s_btnPrimary tm_btn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>'
+      '</div></div></section>')
+
+# T3 · signature: the org helix. Four strands leave Dr. Shamal and braid down like the helix inside the iO mark (rungs
+# with a dot at each end); each strand lands on its Vertical Lead. Scroll draws it (pinned, desktop); on phones the
+# helix runs down the left edge and peels off into each lead as you pass. Hover a lead: its strand lights.
+def _lead(k, n_, r_, t_):
+    p_ = _by[n_]
+    face = MONO if n_ == "Shameer" else _img(p_["src"], alt=n_)
+    return (f'<li class="tm_lead" data-k="{k}"><a href="team-{p_["slug"]}.html"><span class="tm_leadImg">{face}</span>'
+            f'<span class="tm_leadTxt"><span class="tm_leadV">{t_}</span><b>{esc(n_)}</b><i>{esc(r_)}</i></span></a></li>')
+
+
+t3 = ('<section class="tm_org" id="tmOrg" data-on="false"><div class="tm_orgStick">'
+      '<svg class="tm_orgSvg" aria-hidden="true"><g class="tm_rungs"></g><g class="tm_strands"></g><g class="tm_heads"></g></svg>'
+      '<div class="s_wrap tm_orgIn"><div class="tm_orgCopy"><span class="c_eyebrow c_eyebrowLight">Structure</span>'
+      '<h2 class="tm_h2" data-reveal>One team, <span class="tm_lightBlue">four verticals.</span></h2>'
+      '<p class="tm_orgLead" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p>'
+      '<ol class="tm_orgKey" aria-hidden="true">' + "".join(f'<li data-k="{k}"><span>{k + 1:02d}</span>{t_}</li>' for k, (n_, r_, t_) in enumerate(LEADS)) + '</ol></div>'
+      '<div class="tm_orgDia">'
+      f'<a class="tm_node" href="team-{slugify(CEO)}.html"><span class="tm_nodeImg">{_img(HS + ALT[CEO], alt="")}</span>'
+      '<span class="tm_nodeTxt"><b>Dr. Shamal Mohammed</b><i>Chief Executive Officer</i></span></a>'
+      '<div class="tm_orgGap"></div>'
+      '<ol class="tm_leads" aria-label="Vertical Leads">' + "".join(_lead(k, *l) for k, l in enumerate(LEADS)) + '</ol>'
+      '</div></div></div></section>')
+
+# T4 · the team by vertical: tabs (Science, Innovation, Commercial, Operations, Everyone); the grid re-flows (FLIP).
+# Only the leads have a confirmed vertical so far: everyone else is in "Everyone" with a quiet "Placement to be confirmed".
+ORDER = [CEO] + [n_ for n_, r_, t_ in LEADS] + [p_["name"] for p_ in members if p_["name"] != CEO and not p_.get("team")]
+
+
+def _person(name):
+    p_ = _by[name]
+    v = p_.get("team", "")
+    face = MONO if name == "Shameer" else _img(p_["src"], alt=name)
+    tag = ("Vertical Lead" if v in [t_ for _, _, t_ in LEADS] else "CEO" if name == CEO else "Placement to be confirmed")
+    return (f'<li class="tm_p" data-v="{v.lower()}"><a href="team-{p_["slug"]}.html"><span class="tm_pImg">{face}'
+            f'<span class="tm_pMore">View profile {arrow_svg}</span></span>'
+            f'<span class="tm_pName">{esc(name)}</span><span class="tm_pRole">{esc(role_of(p_))}</span>'
+            f'<span class="tm_pTag" data-t="{"tbc" if tag.startswith("Placement") else "on"}">{tag}{" · " + v if v and v != "Leadership" else ""}</span></a></li>')
+
+
+_tabs = [(t_.lower(), t_, 1) for _, _, t_ in LEADS] + [("all", "Everyone", len(ORDER))]
+t4 = ('<section class="tm_teams" id="tmTeams"><div class="s_wrap">'
+      '<div class="tm_teamsHead"><div><span class="c_eyebrow">Our Teams</span>'
+      '<h2 class="tm_h2 tm_h2Dark" data-reveal>Different disciplines. <span class="tm_blue">One mandate.</span></h2>'
+      f'<p class="tm_teamsLead" data-reveal>{text.split("one mandate: ")[1][0].upper() + text.split("one mandate: ")[1][1:]}</p></div>'
+      '<div class="tm_tabs" role="group" aria-label="Show a team">'
+      + "".join(f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{lab}<sup>{c:02d}</sup></button>' for k, lab, c in _tabs)
+      + '</div></div>'
+      '<ul class="tm_grid">' + "".join(_person(n_) for n_ in ORDER)
+      # a vertical's tab: its lead, and beside it what is known so far (never an empty "added from the CMS" box)
+      + "".join(f'<li class="tm_vNote" data-v="{t_.lower()}" hidden><span class="c_eyebrow">{t_}</span>'
+                f'<p class="tm_vLed">Led by <a href="team-{_by[n_]["slug"]}.html">{n_}</a>, {esc(r_)}.</p>'
+                f'<p class="tm_vMore">More of the {t_} team will be listed here once placements are confirmed.</p></li>' for n_, r_, t_ in LEADS)
+      + '</ul>'
+      '</div></section>')
+team_body = f'<div class="c_page x_team tm_page">{t1}{t2}{t3}{t4}</div>{v3wrap(media)}'
+page(URL["team"], "Team &amp; CEO Message · Innovation Oasis", team_body, v3css)
 
 # the profile uses the press-release template (V3 detail): label, breadcrumb, title + lead, facts card in the aside,
 # text column with the About box, previous / next, then three more people as related cards
