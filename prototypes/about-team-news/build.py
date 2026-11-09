@@ -351,8 +351,9 @@ _ogrid = (f'<div class="x_leads"><div class="x_secHead"><h3 class="c_h2" data-re
           f'<ul class="c_team x_leadGrid" data-stagger="true">{_oleads}</ul></div>'
           f'<div class="x_teamsWrap"><div class="x_secHead"><h3 class="c_h2" data-reveal>Our Teams</h3>'
           f'<p class="c_lead x_teamSub" data-reveal>Behind every laboratory, trial and partnership at Innovation Oasis is a small, hands-on team that has grown alongside the ecosystem itself.</p></div>'
-          f'<div class="x_tcGrid">{_oteams}</div>'
-          + (f'<ul class="x_tcList x_tcRest">{"".join(_rcard(p_) for p_ in _orest)}</ul>' if _orest else "") + '</div>')
+          f'<div class="x_tcGrid">{_oteams}'
+          + (f'<div class="x_tc"><div class="x_tcHead" style="background:#8a9499"><h4>Team members</h4></div>'
+             f'<ul class="x_tcList">{"".join(_rcard(p_) for p_ in _orest)}</ul></div>' if _orest else "") + '</div></div>')
 _ppl = re.sub(r'<div class="c_teamHead">.*?</div>\s*<ul class="c_team"[^>]*>.*?</ul>', lambda m: _ogrid, people, count=1, flags=re.S)
 _ppl = _ppl.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
 _ppl = re.sub(r'\sdata-parallax="[^"]*"', '', _ppl)
