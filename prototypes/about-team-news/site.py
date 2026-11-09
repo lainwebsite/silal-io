@@ -30,7 +30,7 @@ for f in B.glob("*.html"):
         f.write_text(t.replace('"new-homepage.html"', '"index.html"').replace("'new-homepage.html'", "'index.html'"), encoding="utf8")
 LINKS = {
     "Home": HOME,
-    "About IO": "about.html", "Our Story": "about.html", "Team & CEO Message": "team.html",
+    "About IO": "about.html", "Our Story": "about.html", "Team & CEO Message": "team.html", "Our Ecosystem": "ecosystem.html",
     "Innovation & Venture Platforms": "ivp-hub.html", "Farm Innovation Fund": "ivp-farm-innovation-fund.html",
     "Incubation": "ivp-incubation.html", "Accelerator": "ivp-accelerator.html", "Agricultural Challenges": "ivp-agricultural-challenges.html",
     "Talent & Training": "io-academy.html", "IO Academy Training": "io-academy.html", "Advanced Agritech Academy": "io-academy.html",
@@ -40,11 +40,13 @@ LINKS = {
     "Read the release": "news-foodtech-challenge-winners.html",
     "FoodTech Challenge winners recognised at Innovation Oasis": "news-foodtech-challenge-winners.html",
 }
-SECTION = {"about": "About IO", "team": "About IO", "ivp-": "Innovation & Venture Platforms", "io-academy": "Talent & Training", "training-detail": "Talent & Training"}
+SECTION = {"about": "About IO", "team": "About IO", "ecosystem": "About IO", "ivp-": "Innovation & Venture Platforms", "io-academy": "Talent & Training", "training-detail": "Talent & Training"}
 
 norm = lambda t: re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", t))).strip().rstrip("→↗ ").strip()
 
-SCRIPT = """<script>
+SCRIPT = """<style>/* rev. 6 Nov: only the current page's menu item is underlined; hover/focus no longer looks "selected" */
+.s_navItem:hover > a:not([data-active="true"])::after, .s_navItem:focus-within > a:not([data-active="true"])::after { transform: scaleX(0); }</style>
+<script>
 /* one site: menus built in script, mobile-menu "Overview" entries and the logo open their pages (site.py) */
 (function () {
   var L = %s, HOME = %s;
@@ -84,6 +86,10 @@ for f in sorted(B.glob("*.html")):
     # "Our Story" opened the same page as "About IO" right below it in the menu (comment 2026-10-30): one entry is enough
     s = s.replace('<li><a href="about.html">Our Story</a></li>', "")
     s = s.replace('["Our Story","Team & CEO Message","Virtual Tour \u2197"]', '["Team & CEO Message","Virtual Tour \u2197"]')
+    # revision 6 November: About IO gets its "Our Ecosystem" sub-page in every menu (static menus and script-built ones)
+    if "ecosystem.html\">Our Ecosystem" not in s:
+        s = s.replace('<li><a href="team.html">Team &amp; CEO Message</a></li>', '<li><a href="team.html">Team &amp; CEO Message</a></li><li><a href="ecosystem.html">Our Ecosystem</a></li>')
+    s = s.replace('["Team & CEO Message","Virtual Tour \u2197"]', '["Team & CEO Message","Our Ecosystem","Virtual Tour \u2197"]')
     # mega menu: the category's own page link first, above its description and sub pages (comment 2026-10-30)
     s = re.sub(r'(<div class="s_dropdownInner">)(<p>.*?</p><ul>.*?</ul>)(<a [^>]*class="s_textLink"[^>]*>.*?</a>)(</div>)', r"\1\3\2\4", s, flags=re.S)
     # same for the menus IO Academy and Training Detail build in script

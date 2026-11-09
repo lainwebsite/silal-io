@@ -90,10 +90,83 @@ jnav = ('<span class="x_jNav" role="group" aria-label="Jump to a milestone"><spa
         + arrow(-1, "M12 8H4M7.5 4.5L4 8l3.5 3.5") + arrow(1, "M4 8h8M8.5 4.5L12 8l-3.5 3.5") + "</span>")
 journey = re.sub(r'(<p class="j_head">.*?</span>)(</p>)', lambda m: m.group(1) + jnav + m.group(2), journey, count=1, flags=re.S)
 about = "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
+# revision 6 November: vision and mission as in the Strategy Overview deck (client: "reflect the materials shared")
+about = re.sub(r'<span class="c_eyebrow c_eyebrowLight">Our Mission</span><p class="c_missionText" data-reveal>.*?</p>',
+               '<div class="x_vm"><div><span class="c_eyebrow c_eyebrowLight">Our Vision</span><p class="c_missionText x_vmText" data-reveal>'
+               'To be the UAE&rsquo;s leading agriculture innovation engine, delivering innovative solutions that strengthen national food security '
+               'and become a global leader for hot arid agriculture innovation.</p></div>'
+               '<div><span class="c_eyebrow c_eyebrowLight">Our Mission</span><p class="c_missionText x_vmText" data-reveal>'
+               'To develop and validate arid-adapted agricultural innovations, enable farmer adoption, and commercialize proven solutions.</p></div></div>',
+               about, count=1, flags=re.S)
 # Principles: no underline below its label (comment 2026-10-30) = the homepage's own Principles variant, c_noRule
 about += no_num(part("v1-principles.html")).replace('<div class="c_headRow">', '<div class="c_headRow c_noRule">', 1)
 about += f'<div class="x_jour" id="xJour" data-on="false">{journey}</div>'
+arrow_svg_a = re.search(r'<a href="#" class="s_btn s_btnPrimary s_btnSm">Enquire (<svg.*?</svg>)', header, re.S).group(1)
+# revision 6 November: About gets a sub-page "Our Ecosystem" (Shamal's request): key partners by category
+about += ('<section class="c_section c_white x_ecoTeaser"><div class="s_wrap"><div class="x_ecoTeaserIn">'
+          '<div><span class="c_eyebrow">Our Ecosystem</span><h2 class="x_ecoTeaserTitle" data-reveal>Food security cannot be solved in silos.</h2>'
+          '<p class="c_lead" data-reveal>Meet the universities, startups, government entities and industry partners that make up the Innovation Oasis ecosystem.</p></div>'
+          f'<a class="s_btn s_btnPrimary x_bioBtn" href="ecosystem.html">Explore our ecosystem {arrow_svg_a}</a></div></div></section>')
 page(URL["about"], "About IO · Innovation Oasis", f'<div class="c_page x_about">{about}</div>')
+
+ECO_ITEMS = ["World-class research facilities", "Commercial testbeds", "Venture development programs", "Industry partnerships",
+             "Farmer networks", "Academic collaborators", "Investment pathways", "Food security stakeholders"]
+PARTNERS = [  # (category, name, short, line) — roles from the client's programme material; logos to come from the About folder
+    ("Academia", "Khalifa University", "KU", "Incubation partner for the Agri-Robotics 2026 cohort; advanced research and engineering."),
+    ("Academia", "United Arab Emirates University", "UAEU", "College of Agriculture and Veterinary Medicine: agricultural research, experimental stations and laboratories."),
+    ("Startups", "Raincatcher", "RC", "Al Miyah Challenge finalist (UAE), tested in the field pilots at Innovation Oasis."),
+    ("Startups", "EF Polymer", "EF", "Al Miyah Challenge finalist (India): a biodegradable superabsorbent made from fruit waste."),
+    ("Startups", "M4LIFE", "M4", "Al Miyah Challenge finalist (Argentina): microbes that help soil hold water."),
+    ("Startups", "Krilltech", "KT", "Al Miyah Challenge finalist (Brazil): a bio-stimulant for water-use efficiency."),
+    ("Startups", "Agri-Vit", "AV", "Al Miyah Challenge finalist (Egypt): a foliar biostimulant for heat and salinity."),
+    ("Startups", "CRETA Group", "CG", "Al Miyah Challenge finalist (UAE): a greenhouse cooled by the ground."),
+    ("Government", "Ministry of Climate Change and Environment", "MOCCAE", "National priorities for sustainable, climate-smart agriculture; Farm Innovation Fund launch."),
+    ("Government", "National Agriculture Centre", "NAC", "Connection to UAE farmers, production priorities and support structures."),
+    ("Government", "Abu Dhabi Agriculture and Food Safety Authority", "ADAFSA", "Agriculture, food safety and biosecurity in Abu Dhabi; evaluation under local conditions."),
+    ("Government", "Abu Dhabi Investment Office", "ADIO", "Supports growth-stage startups landing in Abu Dhabi."),
+    ("Government", "Mohamed bin Zayed Water Initiative", "MBZWI", "Organiser of the Al Miyah Challenge for Agriculture."),
+    ("Government", "ASPIRE", "ASP", "Innovation acceleration partner on the Al Miyah Challenge."),
+    ("Industry", "Silal", "SILAL", "Innovation Oasis is part of Silal: business units pilot and adopt proven solutions."),
+    ("Industry", "ADQ", "ADQ", "Silal's shareholder; portfolio companies as potential adopters of validated solutions."),
+    ("Industry", "Delphy", "DELPHY", "Co-branded IO × Delphy courses in the IO Academy."),
+    ("Industry", "Zayed for Good Foundation", "ZFG", "Strategic partner on the Al Miyah Challenge."),
+]
+CATS = ["Academia", "Startups", "Government", "Industry"]
+_left, _right = ECO_ITEMS[:4], ECO_ITEMS[4:]
+_eco = ('<div class="s_eco x_ecoDiagram">'
+        '<ul class="s_ecoCol" data-side="left" data-stagger="true">' + "".join(f'<li><span>{x}</span><i aria-hidden="true"></i></li>' for x in _left) + '</ul>'
+        '<div class="s_ecoCore" data-reveal><img src="brand/io-mark.svg" alt="Innovation Oasis"></div>'
+        '<ul class="s_ecoCol" data-side="right" data-stagger="true">' + "".join(f'<li><i aria-hidden="true"></i><span>{x}</span></li>' for x in _right) + '</ul></div>')
+_tabs = ('<div class="x_ecoTabs" role="group" aria-label="Filter partners by category"><button type="button" aria-pressed="true" data-cat="all">All <span>'
+         f'{len(PARTNERS)}</span></button>' + "".join(f'<button type="button" aria-pressed="false" data-cat="{c}">{c} <span>{sum(1 for p in PARTNERS if p[0] == c)}</span></button>' for c in CATS) + '</div>')
+_grid = '<ul class="x_ecoGrid">' + "".join(
+    f'<li class="x_ecoCard" data-cat="{c}"><div class="x_ecoLogo" aria-hidden="true"><span>{sh}</span></div><p class="x_ecoCat">{c}</p>'
+    f'<h3 class="x_ecoName">{html.escape(n)}</h3><p class="x_ecoLine">{html.escape(l)}</p></li>' for c, n, sh, l in PARTNERS) + '</ul>'
+eco_body = ('<div class="c_page x_ecoPage">'
+            '<section class="c_section c_white x_ecoHero"><div class="s_wrap">'
+            f'<nav class="x_crumbs" aria-label="Breadcrumb"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><span aria-current="page">Our Ecosystem</span></nav>'
+            '<div class="c_headRow c_noRule"><span class="c_eyebrow">Our Ecosystem</span></div>'
+            '<h1 class="x_ecoTitle" data-reveal>More than a research center. More than an accelerator.</h1>'
+            '<p class="c_lead x_ecoLead" data-reveal>Most innovation ecosystems focus on one part of the journey. Innovation Oasis was designed to connect them all. We bring together:</p>'
+            + _eco +
+            '<p class="s_ecoOutro x_ecoOutro" data-reveal>Under one ecosystem. This integrated model allows promising ideas to move from concept to validation, from validation to adoption, and from local impact to global relevance. Because food security cannot be solved in silos.</p>'
+            '</div></section>'
+            '<section class="c_section x_ecoPartners"><div class="s_wrap">'
+            '<div class="x_secHead"><span class="c_eyebrow">Key partners</span><h2 class="c_h2" data-reveal>Who we work with</h2>'
+            '<p class="c_lead" data-reveal>Partners by category: the universities, startups, government entities and industry partners behind our programmes, trials and research.</p></div>'
+            + _tabs + _grid +
+            '<p class="x_ecoNote">Partner logos and the full breakdown to be added from the About folder. Roles are shown as they appear in programme material and remain subject to each partner&rsquo;s approval.</p>'
+            '</div></section>'
+            '<section class="c_section c_white x_ecoTeaser"><div class="s_wrap"><div class="x_ecoTeaserIn">'
+            '<div><span class="c_eyebrow">Partner with us</span><h2 class="x_ecoTeaserTitle" data-reveal>Bring a challenge, a technology or a programme.</h2>'
+            '<p class="c_lead" data-reveal>The Innovation Oasis team will find the right way to work together.</p></div>'
+            f'<a class="s_btn s_btnPrimary x_bioBtn" href="ivp-enquire.html">Enquire {arrow_svg_a}</a></div></div></section>'
+            '</div>'
+            '<script>(function(){var t=document.querySelectorAll(".x_ecoTabs button"),c=document.querySelectorAll(".x_ecoCard");'
+            't.forEach(function(b){b.addEventListener("click",function(){t.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});'
+            'var k=b.dataset.cat;c.forEach(function(e){e.hidden=!(k==="all"||e.dataset.cat===k)})})})})();</script>')
+page("ecosystem.html", "Our Ecosystem · About IO · Innovation Oasis", eco_body)
+
 
 # ---------------------------------------------------------------- Team: Our People (V1 About-D) + media band (V3)
 people = (part("v1-people.html").replace("Dr. Mohammed joined Silal", "Dr. Shamal joined Silal")  # PDF + comment 2026-10-30
@@ -119,6 +192,40 @@ for p in members:
     p["slug"] = slugify(p["name"])
 people = re.sub(r'<li><span class="c_teamImg">(.*?)</span><span class="c_teamName">([^<]+)</span></li>',
                 lambda m: f'<li><a class="x_teamLink" href="team-{slugify(m.group(2))}.html"><span class="c_teamImg">{m.group(1)}</span><span class="c_teamName">{m.group(2)}</span></a></li>', people)
+# ---- revision 6 November (Shamal / Francisco via Rushikesh): the team is split by vertical. First line under the CEO:
+# the four Vertical Leads, then one block per team (Science, Innovation, Commercial, Operations). Shameer has no photo yet.
+LEADS = [("Jude", "Director of Science & Research", "Science"), ("Francisco", "Head of Innovation", "Innovation"),
+         ("Shameer", "Commercial Manager", "Commercial"), ("Sagar", "Operations Lead", "Operations")]
+NO_PHOTO = ("data:image/svg+xml;utf8," + urllib.parse.quote(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#e9ecee"/>'
+    '<circle cx="200" cy="190" r="70" fill="#d3d9dd"/><path d="M80 470c10-90 60-140 120-140s110 50 120 140z" fill="#d3d9dd"/></svg>'))
+members.append({"name": "Shameer", "src": NO_PHOTO, "role": None, "slug": "shameer"})
+for p_ in members:
+    for n_, r_, t_ in LEADS:
+        if p_["name"] == n_:
+            p_["role"], p_["team"] = r_, t_
+def _card(p_, sub=None):
+    img = (f'<img alt="" decoding="async" loading="lazy" src="{p_["src"]}" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"/>')
+    sub = sub or p_.get("role")
+    return (f'<li><a class="x_teamLink" href="team-{p_["slug"]}.html"><span class="c_teamImg">{img}</span>'
+            f'<span class="c_teamName">{p_["name"]}</span>' + (f'<span class="x_teamRole">{sub}</span>' if sub else "") + '</a></li>')
+_by = {p_["name"]: p_ for p_ in members}
+_leads = "".join(_card(_by[n_], f"{r_}") for n_, r_, t_ in LEADS)
+_rest = [p_ for p_ in members if p_["name"] != CEO and not p_.get("team")]
+_teams = "".join(
+    f'<div class="x_teamBlock"><div class="x_teamBlockHead"><h4 class="x_teamBlockTitle">{t_}</h4>'
+    f'<p class="x_teamBlockLead">Led by <a href="team-{_by[n_]["slug"]}.html">{n_}</a>, {r_}</p></div>'
+    f'<p class="x_teamEmpty">Team members are added from the CMS.</p></div>' for n_, r_, t_ in LEADS)
+_new_grid = (f'<div class="x_leads"><div class="x_secHead"><h3 class="c_h2" data-reveal>Vertical Leads</h3>'
+             f'<p class="c_lead x_teamSub" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p></div>'
+             f'<ul class="c_team x_leadGrid" data-stagger="true">{_leads}</ul></div>'
+             f'<div class="x_teamsWrap"><div class="x_secHead"><h3 class="c_h2" data-reveal>Our Teams</h3>'
+             f'<p class="c_lead x_teamSub" data-reveal>Behind every laboratory, trial and partnership at Innovation Oasis is a small, hands-on team that has grown alongside the ecosystem itself.</p></div>'
+             f'<div class="x_teamBlocks">{_teams}</div>'
+             f'<div class="x_teamBlock x_teamOpen"><div class="x_teamBlockHead"><h4 class="x_teamBlockTitle">Team members</h4>'
+             f'<p class="x_teamBlockLead">Team placement to be confirmed by Innovation Oasis.</p></div>'
+             f'<ul class="c_team" data-stagger="true">{"".join(_card(p_, "Role to be confirmed") for p_ in _rest)}</ul></div></div>')
+people = re.sub(r'<div class="c_teamHead">.*?</div>\s*<ul class="c_team"[^>]*>.*?</ul>', lambda m: _new_grid, people, count=1, flags=re.S)
 # the site's primary pill button, the same as Enquire (comment 2026-10-30: no underlined text link here)
 arrow_svg = re.search(r'<a href="#" class="s_btn s_btnPrimary s_btnSm">Enquire (<svg.*?</svg>)', header, re.S).group(1)
 people = people.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
@@ -150,7 +257,7 @@ for i, p in enumerate(members):
             f'<nav aria-label="Breadcrumb" class="n3_crumbs"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><a href="{URL["team"]}">Team</a><span aria-hidden="true">/</span><span aria-current="page">{p["name"]}</span></nav>'
             f'<h1 class="n3_articleTitle" data-reveal>{p["name"]}</h1><p class="n3_articleLead">{role}, Innovation Oasis</p></div></header>'
             f'<div class="n3_wrap"><div class="n3_articleGrid"><aside class="n3_aside"><div class="x_bioImg"><img alt="{html.escape(p["name"])}" src="{p["src"]}"/></div>'
-            f'<dl class="n3_metaCard"><div><dt>Role</dt><dd>{role}</dd></div><div><dt>Team</dt><dd>Innovation Oasis</dd></div><div><dt>Location</dt><dd>Al Ain, UAE</dd></div></dl>{sh}</aside>'
+            f'<dl class="n3_metaCard"><div><dt>Role</dt><dd>{role}</dd></div><div><dt>Team</dt><dd>{p.get("team", "Innovation Oasis")}</dd></div><div><dt>Location</dt><dd>Al Ain, UAE</dd></div></dl>{sh}</aside>'
             f'<div class="n3_article">{text}{boiler}<p class="n3_note">{note}</p></div></div>'
             f'</div></article>'  # no previous / next row (comment 2026-10-30); "More of the team" below links on
             f'<section aria-labelledby="rel-h" class="n3_sec"><div class="n3_wrap"><p class="s3_label"><span class="s3_labelN">+</span><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p>'

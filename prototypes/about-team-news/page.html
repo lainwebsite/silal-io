@@ -111,6 +111,61 @@
 }
 .n3_media .s3_go { color: var(--io-ink); }
 .n3_media .s3_goText::after { content: "\2192"; margin-left: 10px; }
+/* ---- revision 6 November ---- */
+/* About: vision + mission side by side over the photo */
+.x_vm { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 96px); }
+.x_vm .c_eyebrow { margin-bottom: 18px; display: inline-flex; }
+.x_vmText { font-size: clamp(1.25rem, 2.1vw, 2rem) !important; line-height: 1.25 !important; }
+@media (max-width: 760px) { .x_vm { grid-template-columns: 1fr; gap: 36px; } }
+/* About + Ecosystem: teaser / CTA band */
+.x_ecoTeaser { padding-block: clamp(64px, 7vw, 120px); border-top: 1px solid var(--line); }
+.x_ecoTeaserIn { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px 64px; flex-wrap: wrap; }
+.x_ecoTeaserIn > div { max-width: 640px; }
+.x_ecoTeaserIn .c_eyebrow { display: inline-flex; margin-bottom: 16px; }
+.x_ecoTeaserTitle { font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 300; line-height: 1.12; letter-spacing: -.02em; color: var(--charcoal); margin: 0 0 14px; }
+.x_ecoTeaser .x_bioBtn { margin-top: 0; flex: none; }
+/* Team: vertical leads and teams */
+.x_secHead { grid-column: 1 / -1; display: grid; gap: 14px; margin: clamp(88px, 9vw, 150px) 0 clamp(32px, 3.5vw, 52px); max-width: 760px; }
+.x_secHead .c_eyebrow { display: inline-flex; }
+.x_leads, .x_teamsWrap { grid-column: 1 / -1; }
+.x_teamRole { font-size: .8125rem; color: var(--grey-ink, #6e7173); margin-top: -6px; }
+.x_teamBlocks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px var(--col-gap); }
+.x_teamBlock { border-top: 1px solid var(--line); padding-top: 18px; }
+.x_teamBlockTitle { font-size: 1.375rem; font-weight: 300; margin: 0 0 8px; color: var(--charcoal); }
+.x_teamBlockLead { font-size: .875rem; color: var(--grey-ink, #6e7173); margin: 0; }
+.x_teamBlockLead a { color: var(--io-ink); }
+.x_teamEmpty { margin: 18px 0 0; padding: 18px; border: 1px dashed var(--line); border-radius: 6px; font-size: .8125rem; color: var(--grey-ink, #6e7173); }
+.x_teamOpen { margin-top: clamp(48px, 5vw, 80px); }
+.x_teamOpen .x_teamBlockHead { margin-bottom: 28px; }
+@media (max-width: 900px) { .x_teamBlocks { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .x_teamBlocks { grid-template-columns: 1fr; } }
+/* Ecosystem page */
+.x_ecoHero { padding-top: calc(64px + clamp(40px, 6vh, 80px)); }
+.x_crumbs { display: flex; gap: 8px; font-size: 13px; color: var(--grey-ink, #6e7173); margin-bottom: 28px; }
+.x_crumbs a { color: inherit; } .x_crumbs [aria-current] { color: var(--charcoal); }
+.x_ecoTitle { font-size: clamp(2.25rem, 4.6vw, 4.25rem); font-weight: 300; line-height: 1.05; letter-spacing: -.03em; color: var(--charcoal); max-width: 15em; margin: 18px 0 22px; }
+.x_ecoLead { max-width: 40em; margin-bottom: clamp(48px, 6vw, 96px); }
+.x_ecoDiagram { max-width: 1100px; margin-inline: auto; }
+.x_ecoDiagram .s_ecoCore img { display: block; }
+.x_ecoPartners { background: var(--light, #f4f4f2); padding-block: clamp(32px, 4vw, 64px) clamp(80px, 8vw, 140px); }
+.x_ecoPartners .x_secHead { margin-top: clamp(48px, 5vw, 80px); }
+.x_ecoTabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.x_ecoTabs button { font: inherit; font-size: .875rem; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--charcoal); cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.x_ecoTabs button span { opacity: .55; margin-left: 4px; font-variant-numeric: tabular-nums; }
+.x_ecoTabs button[aria-pressed="true"] { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
+.x_ecoTabs button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.x_ecoGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.x_ecoCard { background: #fff; border-radius: 8px; padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 0 rgba(0, 0, 0, .04); }
+.x_ecoCard[hidden] { display: none; }
+.x_ecoLogo { height: 72px; display: grid; place-items: center start; margin-bottom: 10px; border-bottom: 1px solid var(--line); }
+.x_ecoLogo span { font-size: 1.25rem; font-weight: 600; letter-spacing: .06em; color: var(--io-ink); }
+.x_ecoCat { margin: 0; font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--io); }
+.x_ecoName { margin: 0; font-size: 1.0625rem; font-weight: 400; line-height: 1.3; color: var(--charcoal); }
+.x_ecoLine { margin: 0; font-size: .8125rem; line-height: 1.55; color: var(--grey-ink, #6e7173); }
+.x_ecoNote { margin-top: 28px; font-size: .75rem; color: var(--grey-ink, #6e7173); max-width: 60em; }
+@media (max-width: 1100px) { .x_ecoGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .x_ecoGrid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .x_ecoGrid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
