@@ -111,31 +111,30 @@ page(URL["about"], "About IO · Innovation Oasis", f'<div class="c_page x_about"
 
 ECO_ITEMS = ["World-class research facilities", "Commercial testbeds", "Venture development programs", "Industry partnerships",
              "Farmer networks", "Academic collaborators", "Investment pathways", "Food security stakeholders"]
-# revision 9 November (owner: "use the REAL logos, no dummy logos"): every partner shows its own logo, collected from
-# the partner's official site (logos/manifest.json in the review bundle lists the source of each file). Agri-Vit and
-# CRETA Group have no logo that could be sourced: they keep a typographic tile until the client supplies one.
-# (category, name, logo file in logos/ or None, visual scale of the artwork inside its tile, one-line role)
+# Real logos (client: "use the REAL logos, no dummy logos"), collected from each partner's official site; logos/manifest.json in
+# the review bundle lists the source of every file. Agri-Vit and CRETA Group have no sourced logo yet: a text tile with the name,
+# never a drawn logo.   (category, name, logo file, width, height of the file, boost for artwork with built-in padding, role)
 PARTNERS = [
-    ("Academia", "Khalifa University", "khalifa-university.svg", 1.15, "Incubation partner for the Agri-Robotics 2026 cohort; advanced research and engineering."),
-    ("Academia", "United Arab Emirates University", "uaeu.svg", 1.3, "College of Agriculture and Veterinary Medicine: agricultural research, experimental stations and laboratories."),
-    ("Startups", "Raincatcher", "raincatcher.webp", 1.5, "Al Miyah Challenge finalist (UAE), tested in the field pilots at Innovation Oasis."),
-    ("Startups", "EF Polymer", "ef-polymer.webp", 1, "Al Miyah Challenge finalist (India): a biodegradable superabsorbent made from fruit waste."),
-    ("Startups", "M4LIFE", "m4life.png", 1, "Al Miyah Challenge finalist (Argentina): microbes that help soil hold water."),
-    ("Startups", "Krilltech", "krilltech.png", 1.1, "Al Miyah Challenge finalist (Brazil): a bio-stimulant for water-use efficiency."),
-    ("Startups", "Agri-Vit", None, 1, "Al Miyah Challenge finalist (Egypt): a foliar biostimulant for heat and salinity."),
-    ("Startups", "CRETA Group", None, 1, "Al Miyah Challenge finalist (UAE): a greenhouse cooled by the ground."),
-    ("Government", "Ministry of Climate Change and Environment", "moccae.svg", 1.3, "National priorities for sustainable, climate-smart agriculture; Farm Innovation Fund launch."),
-    ("Government", "National Agriculture Centre", "nac-vertical.svg", 1.2, "Connection to UAE farmers, production priorities and support structures."),
-    ("Government", "Abu Dhabi Agriculture and Food Safety Authority", "adafsa.png", 1.7, "Agriculture, food safety and biosecurity in Abu Dhabi; evaluation under local conditions."),
-    ("Government", "Abu Dhabi Investment Office", "adio.png", 1.1, "Supports growth-stage startups landing in Abu Dhabi."),
-    ("Government", "Mohamed bin Zayed Water Initiative", "mbzwi.png", 1.1, "Organiser of the Al Miyah Challenge for Agriculture."),
-    ("Government", "ASPIRE", "aspire.svg", 1.1, "Innovation acceleration partner on the Al Miyah Challenge."),
-    ("Industry", "Silal", "silal.svg", 1, "Innovation Oasis is part of Silal: business units pilot and adopt proven solutions."),
-    ("Industry", "ADQ", "adq.svg", .95, "Silal's shareholder; portfolio companies as potential adopters of validated solutions."),
-    ("Industry", "Delphy", "delphy.svg", 1, "Co-branded IO × Delphy courses in the IO Academy."),
-    ("Industry", "Zayed for Good Foundation", "zayed-for-good.png", 1.35, "Strategic partner on the Al Miyah Challenge."),
+    ("Academia", "Khalifa University", "khalifa-university.svg", 441, 101, 1, "Incubation partner for the Agri-Robotics 2026 cohort; advanced research and engineering."),
+    ("Academia", "United Arab Emirates University", "uaeu.svg", 632, 111, 1, "College of Agriculture and Veterinary Medicine: agricultural research, experimental stations and laboratories."),
+    ("Startups", "Raincatcher", "raincatcher.webp", 548, 603, 1.8, "Al Miyah Challenge finalist (UAE), tested in the field pilots at Innovation Oasis."),
+    ("Startups", "EF Polymer", "ef-polymer.webp", 600, 279, 1, "Al Miyah Challenge finalist (India): a biodegradable superabsorbent made from fruit waste."),
+    ("Startups", "M4LIFE", "m4life.png", 850, 264, 1, "Al Miyah Challenge finalist (Argentina): microbes that help soil hold water."),
+    ("Startups", "Krilltech", "krilltech.png", 380, 220, 1.1, "Al Miyah Challenge finalist (Brazil): a bio-stimulant for water-use efficiency."),
+    ("Startups", "Agri-Vit", None, 0, 0, 1, "Al Miyah Challenge finalist (Egypt): a foliar biostimulant for heat and salinity."),
+    ("Startups", "CRETA Group", None, 0, 0, 1, "Al Miyah Challenge finalist (UAE): a greenhouse cooled by the ground."),
+    ("Government", "Ministry of Climate Change and Environment", "moccae.svg", 720, 200, 1.25, "National priorities for sustainable, climate-smart agriculture; Farm Innovation Fund launch."),
+    ("Government", "National Agriculture Centre", "nac-vertical.svg", 1130, 454, 1, "Connection to UAE farmers, production priorities and support structures."),
+    ("Government", "Abu Dhabi Agriculture and Food Safety Authority", "adafsa.png", 2884, 1088, 1.9, "Agriculture, food safety and biosecurity in Abu Dhabi; evaluation under local conditions."),
+    ("Government", "Abu Dhabi Investment Office", "adio.png", 640, 355, 1.4, "Supports growth-stage startups landing in Abu Dhabi."),
+    ("Government", "Mohamed bin Zayed Water Initiative", "mbzwi.png", 381, 281, 1.15, "Organiser of the Al Miyah Challenge for Agriculture."),
+    ("Government", "ASPIRE", "aspire.svg", 233, 42, 1, "Innovation acceleration partner on the Al Miyah Challenge."),
+    ("Industry", "Silal", "silal.svg", 149, 68, 1, "Innovation Oasis is part of Silal: business units pilot and adopt proven solutions."),
+    ("Industry", "ADQ", "adq.svg", 709, 340, 1, "Silal's shareholder; portfolio companies as potential adopters of validated solutions."),
+    ("Industry", "Delphy", "delphy.svg", 228, 124, 1, "Co-branded IO × Delphy courses in the IO Academy."),
+    ("Industry", "Zayed for Good Foundation", "zayed-for-good.png", 840, 148, 1.15, "Strategic partner on the Al Miyah Challenge."),
 ]
-CATS = ["Academia", "Startups", "Government", "Industry"]   # from the centre out: where an idea starts, to who adopts it
+CATS = ["Academia", "Startups", "Government", "Industry"]
 _left, _right = ECO_ITEMS[:4], ECO_ITEMS[4:]
 _eco = ('<div class="s_eco x_ecoDiagram" data-fade>'
         '<ul class="s_ecoCol" data-side="left">' + "".join(f'<li><span>{x}</span><i aria-hidden="true"></i></li>' for x in _left) + '</ul>'
@@ -143,58 +142,38 @@ _eco = ('<div class="s_eco x_ecoDiagram" data-fade>'
         '<ul class="s_ecoCol" data-side="right">' + "".join(f'<li><i aria-hidden="true"></i><span>{x}</span></li>' for x in _right) + '</ul></div>')
 
 
-def _logo(name, file, scale, cls="eo_logo"):
-    if not file:   # no logo could be sourced yet: the name, set as type (flagged in the report), never a drawn logo
-        return f'<span class="{cls} eo_type">{html.escape(name)}</span>'
-    return f'<img class="{cls}" src="logos/{file}" alt="{html.escape(name)}" style="--s:{scale}" decoding="async"/>'
+def _plate(name, f, w, h, boost):
+    """The logo on its plate: every logo gets the same visual weight (equal area, capped height), whatever its proportions."""
+    if not f:
+        return f'<span class="x_ecoType">{html.escape(name)}</span>'
+    ht = min(min(58 * max(1, boost), 84), (8000 * boost * boost / (w / h)) ** .5)
+    return f'<img src="logos/{f}" alt="" decoding="async" loading="lazy" style="height:{ht:.0f}px"/>'
 
 
-_count = {c: sum(1 for p_ in PARTNERS if p_[0] == c) for c in CATS}
-SHORT = {"United Arab Emirates University": "UAEU", "Ministry of Climate Change and Environment": "MOCCAE", "National Agriculture Centre": "NAC",
-         "Abu Dhabi Agriculture and Food Safety Authority": "ADAFSA", "Abu Dhabi Investment Office": "ADIO", "Mohamed bin Zayed Water Initiative": "MBZWI"}
-_etabs = ('<div class="eo_tabs" role="group" aria-label="Show partners by circle">'
-          f'<button type="button" data-cat="all" aria-pressed="true">All<sup>{len(PARTNERS)}</sup></button>'
-          + "".join(f'<button type="button" data-cat="{c}" aria-pressed="false">{c}<sup>{_count[c]:02d}</sup></button>' for c in CATS) + '</div>')
-_panels = ('<div class="eo_panels">'
-           '<div class="eo_panel" data-cat="all" data-on><p class="eo_hint">Four circles, from where an idea starts to who adopts it. Select one to see the part each partner plays.</p>'
-           '<ul class="eo_legend">' + "".join(f'<li><button type="button" data-cat="{c}"><b>{c}<sup>{_count[c]:02d}</sup></b><span>'
-               + ", ".join(SHORT.get(n, n) for c2, n, f, s, l in PARTNERS if c2 == c) + '</span></button></li>' for c in CATS) + '</ul></div>'
-           + "".join(f'<div class="eo_panel" data-cat="{c}"><ul>' + "".join(
-               f'<li data-n="{k}"><b>{html.escape(n)}</b><span>{html.escape(l)}</span></li>'
-               for k, (c2, n, f, s, l) in enumerate(PARTNERS) if c2 == c) + '</ul></div>' for c in CATS) + '</div>')
-_nodes = '<ul class="eo_nodes">' + "".join(
-    f'<li class="eo_node" data-cat="{c}" data-n="{k}" tabindex="0" aria-label="{html.escape(n)}, {c}">{_logo(n, f, s)}'
-    f'<span class="eo_nm" aria-hidden="true">{html.escape(n)}</span></li>' for k, (c, n, f, s, l) in enumerate(PARTNERS)) + '</ul>'
-_cards = '<ul class="eo_cards">' + "".join(
-    f'<li class="eo_card" data-cat="{c}"><div class="eo_cardLogo">{_logo(n, f, s)}</div><p class="eo_cardCat">{c}</p>'
-    f'<h3 class="eo_cardName">{html.escape(n)}</h3><p class="eo_cardLine">{html.escape(l)}</p></li>' for c, n, f, s, l in PARTNERS) + '</ul>'
+_tabs = ('<div class="x_ecoTabs" data-scope="eco" role="group" aria-label="Filter partners by category"><button type="button" aria-pressed="true" data-cat="all">All <span>'
+         f'{len(PARTNERS)}</span></button>' + "".join(f'<button type="button" aria-pressed="false" data-cat="{c}">{c} <span>{sum(1 for p in PARTNERS if p[0] == c)}</span></button>' for c in CATS) + '</div>')
+_card = lambda c, n, f, w, h, bo, l: (f'<li class="x_ecoCard" data-fi="eco" data-cat="{c}"><div class="x_ecoLogo">{_plate(n, f, w, h, bo)}</div>'
+                                      f'<p class="x_ecoCat">{c}</p><h3 class="x_ecoName">{html.escape(n)}</h3><p class="x_ecoLine">{html.escape(l)}</p></li>')
+_grid = lambda items: '<ul class="x_ecoGrid" data-fg="eco">' + "".join(_card(*p) for p in items) + '</ul>'
+SPLIT = 8   # the wall is one block on screen; it is two sections only so that no section carries more than 250 words
 eco_body = ('<div class="c_page x_ecoPage">'
-            # E1 · hero: the iO-mark diagram (kept), copy cut to a headline and one line
             '<section class="c_section c_white x_ecoHero"><div class="s_wrap">'
             f'<nav class="x_crumbs" aria-label="Breadcrumb"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><span aria-current="page">Our Ecosystem</span></nav>'
             '<div class="c_headRow c_noRule"><span class="c_eyebrow">Our Ecosystem</span></div>'
-            '<h1 class="x_ecoTitle" data-reveal>More than a research center. <span class="tm_blue">More than an accelerator.</span></h1>'
+            '<h1 class="x_ecoTitle" data-reveal>More than a research center. More than an accelerator.</h1>'
             '<p class="c_lead x_ecoLead" data-reveal>Most innovation ecosystems focus on one part of the journey. Innovation Oasis was designed to connect them all.</p>'
             + _eco + '</div></section>'
-            # E2 · the doc's outro as one statement on the deep-green chapter; the orbit lifts over it (curtain)
-            '<section class="eo_silo" id="eoSilo"><div class="eo_siloStick"><div class="s_wrap">'
-            '<span class="c_eyebrow c_eyebrowLight">Under one ecosystem</span>'
-            '<p class="eo_siloBig" data-reveal>Food security cannot be solved <span class="eo_lime">in silos.</span></p>'
-            '<p class="eo_siloLine" data-reveal>This integrated model allows promising ideas to move from concept to validation, from validation to adoption, '
-            'and from local impact to global relevance.</p></div></div></section>'
-            # E3 · the partner map (still): four rings around the iO mark, from the centre out: Academia, Startups, Government,
-            # Industry; real logos placed once on them, no two overlapping. A tab turns one ring blue, dims the other logos and
-            # lists that circle's partners with their one-line roles. Phones: tabs + a logo grid.
-            '<section class="eo_orbit" id="eoOrbit" data-mode="static"><div class="s_wrap eo_in">'
-            '<div class="eo_copy"><span class="c_eyebrow">Key partners</span>'
-            '<h2 class="tm_h2 tm_h2Dark" data-reveal>Who we <span class="tm_blue">work with.</span></h2>'
-            '<p class="eo_lead" data-reveal>The universities, startups, government entities and industry partners behind our programmes, trials and research.</p>'
-            + _etabs + _panels +
-            '<p class="eo_note">Logos and roles as they appear in partner and programme material, subject to each partner&rsquo;s approval.</p></div>'
-            '<div class="eo_stage" data-fade><svg class="eo_rings" aria-hidden="true"></svg>'
-            '<img class="eo_core" src="brand/io-mark.svg" alt="Innovation Oasis" />' + _nodes + '</div>'
-            + _cards +
-            '</div></section>'
+            '<section class="c_white x_ecoStmt"><div class="s_wrap">'
+            '<span class="c_eyebrow">Under one ecosystem</span>'
+            '<h2 class="c_h2" data-reveal>Food security cannot be solved in silos.</h2>'
+            '<p class="c_lead" data-reveal>This integrated model allows promising ideas to move from concept to validation, from validation to adoption, '
+            'and from local impact to global relevance.</p></div></section>'
+            '<section class="x_ecoPartners"><div class="s_wrap">'
+            '<div class="x_ecoHead"><span class="c_eyebrow">Key partners</span><h2 class="c_h2" data-reveal>Who we work with</h2>'
+            '<p class="c_lead" data-reveal>The universities, startups, government entities and industry partners behind our programmes, trials and research.</p></div>'
+            + _tabs + _grid(PARTNERS[:SPLIT]) + '</div></section>'
+            '<section class="x_ecoPartners x_ecoMore" data-follow><div class="s_wrap">' + _grid(PARTNERS[SPLIT:]) +
+            '<p class="x_ecoNote">Logos and roles as they appear in programme material, subject to each partner&rsquo;s approval.</p></div></section>'
             '<section class="c_section c_white x_ecoTeaser"><div class="s_wrap"><div class="x_ecoTeaserIn">'
             '<div><span class="c_eyebrow">Partner with us</span><h2 class="x_ecoTeaserTitle" data-reveal>Bring a challenge, a technology or a programme.</h2>'
             '<p class="c_lead" data-reveal>The Innovation Oasis team will find the right way to work together.</p></div>'
@@ -228,14 +207,12 @@ for p in members:
     p["slug"] = slugify(p["name"])
 people = re.sub(r'<li><span class="c_teamImg">(.*?)</span><span class="c_teamName">([^<]+)</span></li>',
                 lambda m: f'<li><a class="x_teamLink" href="team-{slugify(m.group(2))}.html"><span class="c_teamImg">{m.group(1)}</span><span class="c_teamName">{m.group(2)}</span></a></li>', people)
-# ---- revision 9 November (owner: the Team page was "too safe, too newspaper, too static"; client comment #41: the
-# four Vertical Leads first under Dr. Shamal, then the team by vertical: Science, Innovation, Commercial, Operations).
-# Five chapters: T1 a living portrait mosaic, T2 Dr. Shamal with his scroll-lit quote, T3 the org helix (four strands
-# from Dr. Shamal braid down into the four Vertical Leads, pinned, iO-blue chapter), T4 the team by vertical (tabs,
-# FLIP), T5 the media band. Shameer has no photo yet: a monogram tile in iO blue, never a grey silhouette.
+# ---- revision 9 November, round 5 (client: "every section is mismatched, I prefer the old direction"): the old Leadership
+# section on top (t0), then a plain org chart (Dr. Shamal over the four Vertical Leads: comment #41), then the team by
+# vertical (tabs + one grid). One card style everywhere. Shameer has no photo yet: a monogram tile in iO blue.
 LEADS = [("Jude", "Director of Science & Research", "Science"), ("Francisco", "Head of Innovation", "Innovation"),
          ("Shameer", "Commercial Manager", "Commercial"), ("Sagar", "Operations Lead", "Operations")]
-# the same monogram as an image (profile pages, related cards): ring of the iO "O" + initial, Arial = the brand's substitute
+# the same monogram as an image (profile pages, related cards): ring of the iO "O" + initial
 NO_PHOTO = ("data:image/svg+xml;utf8," + urllib.parse.quote(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#3ca7d2"/>'
     '<circle cx="200" cy="235" r="118" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>'
@@ -251,122 +228,55 @@ for p_ in members:
 members[0]["team"] = "Leadership"
 _by = {p_["name"]: p_ for p_ in members}
 esc = html.escape
-HS = "/photos/iO%20Team%20Headshot%20%26%20Bios/"
 MONO = ('<span class="tm_mono" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="38"/></svg>'
         '<b>S</b><small>Portrait to follow</small></span>')
 role_of = lambda p_: p_.get("role") or "Role to be confirmed"
-
-
-def _img(src, cls="", alt="", lazy=True):
-    return f'<img class="{cls}" alt="{esc(alt)}" decoding="async"{" loading=\"lazy\"" if lazy else ""} src="{src}"/>'
-
-
-# T1 · hero: the whole team as a living mosaic, five columns at different speeds; a portrait comes into colour as it
-# crosses the middle of the screen. Every real headshot (two shots per person from the photo shoot), Shameer's monogram.
-ALT = {"Dr. Shamal Mohammed": "Shamal/Shamal-10.jpg", "Ahmed": "Ahmed/Ahmed-4.jpg", "Ali": "Ali/Ali-2.jpg",
-       "Nadia": "Nadia/Nadia-12.jpg", "Sagar": "Sagar/Sagar-12.jpg", "Caitlin": "Caitlin/Caitlin-2.jpg",
-       "Francisco": "Francisco/Francisco-4.jpg", "Jude": "Jude/Jude-2.jpg", "Mohsin": "Mohsin/Mohsin-2.jpg"}
-COLS = [[("Dr. Shamal Mohammed", 0), ("Nadia", 1), ("Francisco", 1), ("Ahmed", 0)],
-        [("Jude", 0), ("Ali", 1), ("Sagar", 1), ("Caitlin", 0)],
-        [("Mohsin", 0), ("Shameer", 0), ("Ahmed", 1), ("Nadia", 0)],
-        [("Francisco", 0), ("Caitlin", 1), ("Dr. Shamal Mohammed", 1), ("Jude", 1)],
-        [("Sagar", 0), ("Mohsin", 1), ("Ali", 0)]]
-
-
-def _tile(name, alt):
-    p_ = _by[name]
-    face = MONO if name == "Shameer" else _img(p_["src"] if not alt else HS + ALT[name], lazy=False)
-    return (f'<a class="tm_tile{" tm_tileMono" if name == "Shameer" else ""}" href="team-{p_["slug"]}.html">{face}'
-            f'<span class="tm_cap"><b>{esc(name)}</b><i>{esc(role_of(p_))}</i></span></a>')
-
-
-OFF = [0, -70, -25, -100, -45]   # each column starts at its own height (percent of its width): a staggered, still mosaic
-_mosaic = ('<div class="tm_mosaic" data-fade aria-label="The Innovation Oasis team">'
-           + "".join(f'<div class="tm_col" data-col="{k}"><div class="tm_colIn" style="--o:{OFF[k]}%">{"".join(_tile(*t) for t in col)}</div></div>'
-                     for k, col in enumerate(COLS)) + '</div>')
-t1 = ('<section class="tm_hero" id="tmHero"><div class="tm_heroText">'
-      f'<nav class="x_crumbs" aria-label="Breadcrumb"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><span aria-current="page">Team</span></nav>'
-      '<span class="c_eyebrow">Our People</span>'
-      '<h1 class="tm_h1" data-reveal>The people behind <span class="tm_blue">every&nbsp;trial.</span></h1>'
-      f'<p class="tm_heroLead" data-reveal>{intro.rstrip(".").replace("Behind every laboratory, trial and partnership at Innovation Oasis is", "Behind every laboratory, trial and partnership is")}.</p>'
-      '<a class="tm_down" href="#tmLeader"><span>Meet the team</span><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M4 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
-      f'</div>{_mosaic}</section>')
-
-# T2 · leadership: Dr. Shamal, portrait whole, the quote lit word by word with the scroll; the rest of his story is on
-# his profile (one click), so this chapter keeps to label + quote + two lines + button
 arrow_svg = re.search(r'<a href="#" class="s_btn s_btnPrimary s_btnSm">Enquire (<svg.*?</svg>)', header, re.S).group(1)
-_q = "If it works here, it can work anywhere."
-_qw = _q.split(" ")
-t2 = ('<section class="tm_leader" id="tmLeader"><div class="s_wrap tm_leaderIn">'
-      f'<a class="tm_leaderImg" href="team-{slugify(CEO)}.html" aria-label="{CEO}, profile" data-fade><span class="tm_photo">'
-      f'{_img(leader_src, alt=CEO + ", CEO, Innovation Oasis")}</span></a>'
-      '<div class="tm_leaderText" data-fade><span class="c_eyebrow">Leadership</span>'
-      '<blockquote class="tm_quote"><p>If it works here, it can work <span class="tm_blue">anywhere.</span></p></blockquote>'
-      '<p class="tm_who"><b>Dr. Shamal Mohammed</b><span>Chief Executive Officer</span></p>'
-      '<p class="tm_leaderLead">Joined Silal in 2021 to build its innovation and R&amp;D function from the ground up, '
-      'after more than two decades running agricultural research facilities in the UK.</p>'
-      f'<a class="s_btn s_btnPrimary tm_btn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>'
+
+
+def _card(name, tag, src=None):
+    """The one card of this page: portrait, name, role, one small tag."""
+    p_ = _by[name]
+    face = MONO if name == "Shameer" else f'<img alt="{esc(name)}" decoding="async" loading="lazy" src="{src or p_["src"]}"/>'
+    return (f'<a class="tm_card" href="team-{p_["slug"]}.html"><span class="tm_pImg">{face}</span>'
+            f'<span class="tm_pName">{esc(name)}</span>' + (f'<span class="tm_pRole">{esc(p_["role"])}</span>' if p_.get("role") else "") + f'<span class="tm_pTag">{tag}</span></a>')
+
+
+# T3 · org chart: Dr. Shamal at the top centre, straight hairlines (CSS) to the four Vertical Leads in one row
+t3 = ('<section class="c_section x_org" id="tmOrg"><div class="s_wrap">'
+      '<div class="tm_head"><span class="c_eyebrow">Structure</span><h2 class="c_h2" data-reveal>One team, four verticals</h2>'
+      '<p class="c_lead" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p></div>'
+      '<div class="tm_chart">'
+      f'<div class="tm_ceo">{_card(CEO, "Leadership", "/photos/iO%20Team%20Headshot%20%26%20Bios/Shamal/Shamal-10.jpg")}</div>'
+      '<ol class="tm_leads" aria-label="Vertical Leads">' + "".join(f'<li>{_card(n_, t_)}</li>' for n_, r_, t_ in LEADS) + '</ol>'
       '</div></div></section>')
 
-# T3 · signature: the org helix. Four strands leave Dr. Shamal and braid down like the helix inside the iO mark (rungs
-# with a dot at each end); each strand lands on its Vertical Lead. Scroll draws it (pinned, desktop); on phones the
-# helix runs down the left edge and peels off into each lead as you pass. Hover a lead: its strand lights.
-def _lead(k, n_, r_, t_):
-    p_ = _by[n_]
-    face = MONO if n_ == "Shameer" else _img(p_["src"], alt=n_)
-    return (f'<li class="tm_lead" data-k="{k}"><a href="team-{p_["slug"]}.html"><span class="tm_leadImg">{face}</span>'
-            f'<span class="tm_leadTxt"><span class="tm_leadV">{t_}</span><b>{esc(n_)}</b><i>{esc(r_)}</i></span></a></li>')
-
-
-t3 = ('<section class="tm_org" id="tmOrg" data-mode="static"><div class="tm_orgStick">'
-      '<svg class="tm_orgSvg" aria-hidden="true"><g class="tm_rungs"></g><g class="tm_strands"></g><g class="tm_heads"></g></svg>'
-      '<div class="s_wrap tm_orgIn"><div class="tm_orgCopy"><span class="c_eyebrow c_eyebrowLight">Structure</span>'
-      '<h2 class="tm_h2" data-reveal>One team, <span class="tm_lightBlue">four verticals.</span></h2>'
-      '<p class="tm_orgLead" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p>'
-      '</div>'
-      '<div class="tm_orgDia">'
-      f'<a class="tm_node" href="team-{slugify(CEO)}.html"><span class="tm_nodeImg">{_img(HS + ALT[CEO], alt="")}</span>'
-      '<span class="tm_nodeTxt"><b>Dr. Shamal Mohammed</b><i>Chief Executive Officer</i></span></a>'
-      '<div class="tm_orgGap"></div>'
-      '<ol class="tm_leads" aria-label="Vertical Leads">' + "".join(_lead(k, *l) for k, l in enumerate(LEADS)) + '</ol>'
-      '</div></div></div></section>')
-
-# T4 · the team by vertical: tabs (Science, Innovation, Commercial, Operations, Everyone); the grid re-flows (FLIP).
-# Only the leads have a confirmed vertical so far: everyone else is in "Everyone" with a quiet "Placement to be confirmed".
-ORDER = [CEO] + [n_ for n_, r_, t_ in LEADS] + [p_["name"] for p_ in members if p_["name"] != CEO and not p_.get("team")]
+# T4 · the team by vertical: tabs (Everyone, Science, Innovation, Commercial, Operations) and one grid. Only the leads have a
+# confirmed vertical so far: everyone else is under Everyone, tagged "Placement to be confirmed" (never an empty box).
+ORDER = [n_ for n_, r_, t_ in LEADS] + [p_["name"] for p_ in members if p_["name"] != CEO and not p_.get("team")]   # Dr. Shamal is the chart above
 
 
 def _person(name):
     p_ = _by[name]
     v = p_.get("team", "")
-    face = MONO if name == "Shameer" else _img(p_["src"], alt=name)
-    tag = ("Vertical Lead" if v in [t_ for _, _, t_ in LEADS] else "CEO" if name == CEO else "Placement to be confirmed")
-    return (f'<li class="tm_p" data-v="{v.lower()}"><a href="team-{p_["slug"]}.html"><span class="tm_pImg">{face}'
-            f'<span class="tm_pMore">View profile {arrow_svg}</span></span>'
-            f'<span class="tm_pName">{esc(name)}</span><span class="tm_pRole">{esc(role_of(p_))}</span>'
-            f'<span class="tm_pTag" data-t="{"tbc" if tag.startswith("Placement") else "on"}">{tag}{" · " + v if v and v != "Leadership" else ""}</span></a></li>')
+    tag = f"Vertical Lead · {v}" if v in [t_ for _, _, t_ in LEADS] else "Placement to be confirmed"
+    return f'<li class="tm_p" data-fi="team" data-cat="{v.lower()}">{_card(name, tag)}</li>'
 
 
-_tabs = [(t_.lower(), t_, 1) for _, _, t_ in LEADS] + [("all", "Everyone", len(ORDER))]
-t4 = ('<section class="tm_teams" id="tmTeams"><div class="s_wrap">'
-      '<div class="tm_teamsHead"><div><span class="c_eyebrow">Our Teams</span>'
-      '<h2 class="tm_h2 tm_h2Dark" data-reveal>Different disciplines. <span class="tm_blue">One mandate.</span></h2>'
-      f'<p class="tm_teamsLead" data-reveal>{text.split("one mandate: ")[1][0].upper() + text.split("one mandate: ")[1][1:]}</p></div>'
-      '<div class="tm_tabs" role="group" aria-label="Show a team">'
-      + "".join(f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{lab}<sup>{c:02d}</sup></button>' for k, lab, c in _tabs)
-      + '</div></div>'
-      '<ul class="tm_grid" id="tmGrid">' + "".join(_person(n_) for n_ in ORDER)
-      # a vertical's tab: its lead, and beside it what is known so far (never an empty "added from the CMS" box)
-      + "".join(f'<li class="tm_vNote" data-v="{t_.lower()}" hidden><span class="c_eyebrow">{t_}</span>'
-                f'<p class="tm_vLed">Led by <a href="team-{_by[n_]["slug"]}.html">{n_}</a>, {esc(r_)}.</p>'
-                f'<p class="tm_vMore">More of the {t_} team will be listed here once placements are confirmed.</p></li>' for n_, r_, t_ in LEADS)
-      + '</ul>'
-      '</div></section>')
+_ttabs = ('<div class="x_ecoTabs" data-scope="team" role="group" aria-label="Show a team"><button type="button" aria-pressed="true" data-cat="all">Everyone <span>'
+          f'{len(ORDER)}</span></button>' + "".join(f'<button type="button" aria-pressed="false" data-cat="{t_.lower()}">{t_} <span>1</span></button>' for _, _, t_ in LEADS) + '</div>')
+t4 = ('<section class="c_section tm_teams" id="tmTeams"><div class="s_wrap">'
+      '<div class="tm_teamsHead"><div class="tm_head"><span class="c_eyebrow">Our Teams</span>'
+      '<h2 class="c_h2" data-reveal>Different disciplines. One mandate.</h2>'
+      f'<p class="c_lead" data-reveal>{text.split("one mandate: ")[1][0].upper() + text.split("one mandate: ")[1][1:]}</p></div>'
+      + _ttabs + '</div>'
+      '<ul class="tm_grid" data-fg="team">' + "".join(_person(n_) for n_ in ORDER)
+      + "".join(f'<li class="tm_vNote" data-fi="team" data-note data-cat="{t_.lower()}" hidden>'
+                f'<p>More of the {t_} team will be listed here once placements are confirmed.</p></li>' for n_, r_, t_ in LEADS)
+      + '</ul></div></section>')
 # enter reveals on inner pages: one quiet fade (data-fade), not line-splitting (data-reveal)
 _calm = lambda s: re.sub(r'\sdata-reveal(="true")?', ' data-fade', s)
-# revision 9 November (client comment on the portrait-mosaic hero: "I don't like this section, use the old section"):
-# the old top of the page is back, the Leadership block (label, text, quote, portrait). T1 (mosaic) and T2 (the new
-# Leadership chapter) are no longer used; their code stays above for reference.
+# the old top of the page (client comment): the Leadership block (label, text, quote, portrait)
 t0 = people[:people.index('<div class="c_teamHead">')] + '</div></section>'
 t0 = t0.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
 t0 = re.sub(r'\sdata-parallax="[^"]*"', '', t0)  # no parallax on inner pages
