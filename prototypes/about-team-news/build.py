@@ -111,60 +111,95 @@ page(URL["about"], "About IO · Innovation Oasis", f'<div class="c_page x_about"
 
 ECO_ITEMS = ["World-class research facilities", "Commercial testbeds", "Venture development programs", "Industry partnerships",
              "Farmer networks", "Academic collaborators", "Investment pathways", "Food security stakeholders"]
-PARTNERS = [  # (category, name, short, line) — roles from the client's programme material; logos to come from the About folder
-    ("Academia", "Khalifa University", "KU", "Incubation partner for the Agri-Robotics 2026 cohort; advanced research and engineering."),
-    ("Academia", "United Arab Emirates University", "UAEU", "College of Agriculture and Veterinary Medicine: agricultural research, experimental stations and laboratories."),
-    ("Startups", "Raincatcher", "RC", "Al Miyah Challenge finalist (UAE), tested in the field pilots at Innovation Oasis."),
-    ("Startups", "EF Polymer", "EF", "Al Miyah Challenge finalist (India): a biodegradable superabsorbent made from fruit waste."),
-    ("Startups", "M4LIFE", "M4", "Al Miyah Challenge finalist (Argentina): microbes that help soil hold water."),
-    ("Startups", "Krilltech", "KT", "Al Miyah Challenge finalist (Brazil): a bio-stimulant for water-use efficiency."),
-    ("Startups", "Agri-Vit", "AV", "Al Miyah Challenge finalist (Egypt): a foliar biostimulant for heat and salinity."),
-    ("Startups", "CRETA Group", "CG", "Al Miyah Challenge finalist (UAE): a greenhouse cooled by the ground."),
-    ("Government", "Ministry of Climate Change and Environment", "MOCCAE", "National priorities for sustainable, climate-smart agriculture; Farm Innovation Fund launch."),
-    ("Government", "National Agriculture Centre", "NAC", "Connection to UAE farmers, production priorities and support structures."),
-    ("Government", "Abu Dhabi Agriculture and Food Safety Authority", "ADAFSA", "Agriculture, food safety and biosecurity in Abu Dhabi; evaluation under local conditions."),
-    ("Government", "Abu Dhabi Investment Office", "ADIO", "Supports growth-stage startups landing in Abu Dhabi."),
-    ("Government", "Mohamed bin Zayed Water Initiative", "MBZWI", "Organiser of the Al Miyah Challenge for Agriculture."),
-    ("Government", "ASPIRE", "ASP", "Innovation acceleration partner on the Al Miyah Challenge."),
-    ("Industry", "Silal", "SILAL", "Innovation Oasis is part of Silal: business units pilot and adopt proven solutions."),
-    ("Industry", "ADQ", "ADQ", "Silal's shareholder; portfolio companies as potential adopters of validated solutions."),
-    ("Industry", "Delphy", "DELPHY", "Co-branded IO × Delphy courses in the IO Academy."),
-    ("Industry", "Zayed for Good Foundation", "ZFG", "Strategic partner on the Al Miyah Challenge."),
+# revision 9 November (owner: "use the REAL logos, no dummy logos"): every partner shows its own logo, collected from
+# the partner's official site (logos/manifest.json in the review bundle lists the source of each file). Agri-Vit and
+# CRETA Group have no logo that could be sourced: they keep a typographic tile until the client supplies one.
+# (category, name, logo file in logos/ or None, visual scale of the artwork inside its tile, one-line role)
+PARTNERS = [
+    ("Academia", "Khalifa University", "khalifa-university.svg", 1.15, "Incubation partner for the Agri-Robotics 2026 cohort; advanced research and engineering."),
+    ("Academia", "United Arab Emirates University", "uaeu.svg", 1.3, "College of Agriculture and Veterinary Medicine: agricultural research, experimental stations and laboratories."),
+    ("Startups", "Raincatcher", "raincatcher.webp", 1.5, "Al Miyah Challenge finalist (UAE), tested in the field pilots at Innovation Oasis."),
+    ("Startups", "EF Polymer", "ef-polymer.webp", 1, "Al Miyah Challenge finalist (India): a biodegradable superabsorbent made from fruit waste."),
+    ("Startups", "M4LIFE", "m4life.png", 1, "Al Miyah Challenge finalist (Argentina): microbes that help soil hold water."),
+    ("Startups", "Krilltech", "krilltech.png", 1.1, "Al Miyah Challenge finalist (Brazil): a bio-stimulant for water-use efficiency."),
+    ("Startups", "Agri-Vit", None, 1, "Al Miyah Challenge finalist (Egypt): a foliar biostimulant for heat and salinity."),
+    ("Startups", "CRETA Group", None, 1, "Al Miyah Challenge finalist (UAE): a greenhouse cooled by the ground."),
+    ("Government", "Ministry of Climate Change and Environment", "moccae.svg", 1.3, "National priorities for sustainable, climate-smart agriculture; Farm Innovation Fund launch."),
+    ("Government", "National Agriculture Centre", "nac-vertical.svg", 1.2, "Connection to UAE farmers, production priorities and support structures."),
+    ("Government", "Abu Dhabi Agriculture and Food Safety Authority", "adafsa.png", 1.7, "Agriculture, food safety and biosecurity in Abu Dhabi; evaluation under local conditions."),
+    ("Government", "Abu Dhabi Investment Office", "adio.png", 1.1, "Supports growth-stage startups landing in Abu Dhabi."),
+    ("Government", "Mohamed bin Zayed Water Initiative", "mbzwi.png", 1.1, "Organiser of the Al Miyah Challenge for Agriculture."),
+    ("Government", "ASPIRE", "aspire.svg", 1.1, "Innovation acceleration partner on the Al Miyah Challenge."),
+    ("Industry", "Silal", "silal.svg", 1, "Innovation Oasis is part of Silal: business units pilot and adopt proven solutions."),
+    ("Industry", "ADQ", "adq.svg", .95, "Silal's shareholder; portfolio companies as potential adopters of validated solutions."),
+    ("Industry", "Delphy", "delphy.svg", 1, "Co-branded IO × Delphy courses in the IO Academy."),
+    ("Industry", "Zayed for Good Foundation", "zayed-for-good.png", 1.35, "Strategic partner on the Al Miyah Challenge."),
 ]
-CATS = ["Academia", "Startups", "Government", "Industry"]
+CATS = ["Academia", "Startups", "Government", "Industry"]   # from the centre out: where an idea starts, to who adopts it
 _left, _right = ECO_ITEMS[:4], ECO_ITEMS[4:]
 _eco = ('<div class="s_eco x_ecoDiagram">'
         '<ul class="s_ecoCol" data-side="left" data-stagger="true">' + "".join(f'<li><span>{x}</span><i aria-hidden="true"></i></li>' for x in _left) + '</ul>'
         '<div class="s_ecoCore" data-reveal><img src="brand/io-mark.svg" alt="Innovation Oasis"></div>'
         '<ul class="s_ecoCol" data-side="right" data-stagger="true">' + "".join(f'<li><i aria-hidden="true"></i><span>{x}</span></li>' for x in _right) + '</ul></div>')
-_tabs = ('<div class="x_ecoTabs" role="group" aria-label="Filter partners by category"><button type="button" aria-pressed="true" data-cat="all">All <span>'
-         f'{len(PARTNERS)}</span></button>' + "".join(f'<button type="button" aria-pressed="false" data-cat="{c}">{c} <span>{sum(1 for p in PARTNERS if p[0] == c)}</span></button>' for c in CATS) + '</div>')
-_grid = '<ul class="x_ecoGrid">' + "".join(
-    f'<li class="x_ecoCard" data-cat="{c}"><div class="x_ecoLogo" aria-hidden="true"><span>{sh}</span></div><p class="x_ecoCat">{c}</p>'
-    f'<h3 class="x_ecoName">{html.escape(n)}</h3><p class="x_ecoLine">{html.escape(l)}</p></li>' for c, n, sh, l in PARTNERS) + '</ul>'
+
+
+def _logo(name, file, scale, cls="eo_logo"):
+    if not file:   # no logo could be sourced yet: the name, set as type (flagged in the report), never a drawn logo
+        return f'<span class="{cls} eo_type">{html.escape(name)}</span>'
+    return f'<img class="{cls}" src="logos/{file}" alt="{html.escape(name)}" style="--s:{scale}" decoding="async"/>'
+
+
+_count = {c: sum(1 for p_ in PARTNERS if p_[0] == c) for c in CATS}
+SHORT = {"United Arab Emirates University": "UAEU", "Ministry of Climate Change and Environment": "MOCCAE", "National Agriculture Centre": "NAC",
+         "Abu Dhabi Agriculture and Food Safety Authority": "ADAFSA", "Abu Dhabi Investment Office": "ADIO", "Mohamed bin Zayed Water Initiative": "MBZWI"}
+_etabs = ('<div class="eo_tabs" role="group" aria-label="Show partners by circle">'
+          f'<button type="button" data-cat="all" aria-pressed="true">All<sup>{len(PARTNERS)}</sup></button>'
+          + "".join(f'<button type="button" data-cat="{c}" aria-pressed="false">{c}<sup>{_count[c]:02d}</sup></button>' for c in CATS) + '</div>')
+_panels = ('<div class="eo_panels">'
+           '<div class="eo_panel" data-cat="all" data-on><p class="eo_hint">Four circles, from where an idea starts to who adopts it. Select one to see the part each partner plays.</p>'
+           '<ul class="eo_legend">' + "".join(f'<li><button type="button" data-cat="{c}"><b>{c}<sup>{_count[c]:02d}</sup></b><span>'
+               + ", ".join(SHORT.get(n, n) for c2, n, f, s, l in PARTNERS if c2 == c) + '</span></button></li>' for c in CATS) + '</ul></div>'
+           + "".join(f'<div class="eo_panel" data-cat="{c}"><ul>' + "".join(
+               f'<li data-n="{k}"><b>{html.escape(n)}</b><span>{html.escape(l)}</span></li>'
+               for k, (c2, n, f, s, l) in enumerate(PARTNERS) if c2 == c) + '</ul></div>' for c in CATS) + '</div>')
+_nodes = '<ul class="eo_nodes">' + "".join(
+    f'<li class="eo_node" data-cat="{c}" data-n="{k}" tabindex="0" aria-label="{html.escape(n)}, {c}">{_logo(n, f, s)}'
+    f'<span class="eo_nm" aria-hidden="true">{html.escape(n)}</span></li>' for k, (c, n, f, s, l) in enumerate(PARTNERS)) + '</ul>'
+_cards = '<ul class="eo_cards">' + "".join(
+    f'<li class="eo_card" data-cat="{c}"><div class="eo_cardLogo">{_logo(n, f, s)}</div><p class="eo_cardCat">{c}</p>'
+    f'<h3 class="eo_cardName">{html.escape(n)}</h3><p class="eo_cardLine">{html.escape(l)}</p></li>' for c, n, f, s, l in PARTNERS) + '</ul>'
 eco_body = ('<div class="c_page x_ecoPage">'
+            # E1 · hero: the iO-mark diagram (kept), copy cut to a headline and one line
             '<section class="c_section c_white x_ecoHero"><div class="s_wrap">'
             f'<nav class="x_crumbs" aria-label="Breadcrumb"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><span aria-current="page">Our Ecosystem</span></nav>'
             '<div class="c_headRow c_noRule"><span class="c_eyebrow">Our Ecosystem</span></div>'
-            '<h1 class="x_ecoTitle" data-reveal>More than a research center. More than an accelerator.</h1>'
-            '<p class="c_lead x_ecoLead" data-reveal>Most innovation ecosystems focus on one part of the journey. Innovation Oasis was designed to connect them all. We bring together:</p>'
-            + _eco +
-            '<p class="s_ecoOutro x_ecoOutro" data-reveal>Under one ecosystem. This integrated model allows promising ideas to move from concept to validation, from validation to adoption, and from local impact to global relevance. Because food security cannot be solved in silos.</p>'
-            '</div></section>'
-            '<section class="c_section x_ecoPartners"><div class="s_wrap">'
-            '<div class="x_secHead"><span class="c_eyebrow">Key partners</span><h2 class="c_h2" data-reveal>Who we work with</h2>'
-            '<p class="c_lead" data-reveal>Partners by category: the universities, startups, government entities and industry partners behind our programmes, trials and research.</p></div>'
-            + _tabs + _grid +
-            '<p class="x_ecoNote">Partner logos and the full breakdown to be added from the About folder. Roles are shown as they appear in programme material and remain subject to each partner&rsquo;s approval.</p>'
-            '</div></section>'
+            '<h1 class="x_ecoTitle" data-reveal>More than a research center. <span class="tm_blue">More than an accelerator.</span></h1>'
+            '<p class="c_lead x_ecoLead" data-reveal>Most innovation ecosystems focus on one part of the journey. Innovation Oasis was designed to connect them all.</p>'
+            + _eco + '</div></section>'
+            # E2 · the doc's outro as one statement on the deep-green chapter; the orbit lifts over it (curtain)
+            '<section class="eo_silo" id="eoSilo" data-on="false"><div class="eo_siloStick"><div class="s_wrap">'
+            '<span class="c_eyebrow c_eyebrowLight">Under one ecosystem</span>'
+            '<p class="eo_siloBig" data-reveal>Food security cannot be solved <span class="eo_lime">in silos.</span></p>'
+            '<p class="eo_siloLine" data-reveal>This integrated model allows promising ideas to move from concept to validation, from validation to adoption, '
+            'and from local impact to global relevance.</p></div></div></section>'
+            # E3 · signature: the partner ORBIT. Four rings around the iO mark, from the centre out: Academia, Startups,
+            # Government, Industry; real logos orbit on them. Scroll (pinned) or the tabs light one ring at a time and list
+            # its partners with their one-line roles. Phones: tabs + a logo grid.
+            '<section class="eo_orbit" id="eoOrbit" data-mode="static"><div class="eo_stick"><div class="s_wrap eo_in">'
+            '<div class="eo_copy"><span class="c_eyebrow">Key partners</span>'
+            '<h2 class="tm_h2 tm_h2Dark" data-reveal>Who we <span class="tm_blue">work with.</span></h2>'
+            '<p class="eo_lead" data-reveal>The universities, startups, government entities and industry partners behind our programmes, trials and research.</p>'
+            + _etabs + _panels +
+            '<p class="eo_note">Logos and roles as they appear in partner and programme material, subject to each partner&rsquo;s approval.</p></div>'
+            '<div class="eo_stage" aria-hidden="false"><svg class="eo_rings" aria-hidden="true"></svg>'
+            '<img class="eo_core" src="brand/io-mark.svg" alt="Innovation Oasis" />' + _nodes + '</div>'
+            + _cards +
+            '</div></div></section>'
             '<section class="c_section c_white x_ecoTeaser"><div class="s_wrap"><div class="x_ecoTeaserIn">'
             '<div><span class="c_eyebrow">Partner with us</span><h2 class="x_ecoTeaserTitle" data-reveal>Bring a challenge, a technology or a programme.</h2>'
             '<p class="c_lead" data-reveal>The Innovation Oasis team will find the right way to work together.</p></div>'
             f'<a class="s_btn s_btnPrimary x_bioBtn" href="ivp-enquire.html">Enquire {arrow_svg_a}</a></div></div></section>'
-            '</div>'
-            '<script>(function(){var t=document.querySelectorAll(".x_ecoTabs button"),c=document.querySelectorAll(".x_ecoCard");'
-            't.forEach(function(b){b.addEventListener("click",function(){t.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});'
-            'var k=b.dataset.cat;c.forEach(function(e){e.hidden=!(k==="all"||e.dataset.cat===k)})})})})();</script>')
+            '</div>')
 page("ecosystem.html", "Our Ecosystem · About IO · Innovation Oasis", eco_body)
 
 

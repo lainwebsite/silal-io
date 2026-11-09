@@ -265,6 +265,7 @@
 .tm_nodeTxt b { font-weight: 400; font-size: 1.125rem; }
 .tm_nodeTxt i { font-style: normal; font-size: .8125rem; color: rgba(255, 255, 255, .78); }
 .tm_orgGap { flex: 1 1 auto; min-height: 120px; }
+@media (min-width: 1000px) { .tm_org[data-mode="static"] .tm_orgGap { min-height: 240px; } }
 .tm_leads { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 28px); width: min(100%, 4 * 25vh + 3 * 28px); }
 .tm_lead a { display: flex; flex-direction: column; height: 100%; background: #fff; color: var(--charcoal); box-shadow: 0 34px 60px -34px rgba(0, 16, 32, .6); }
 .tm_leadImg { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #dfe5e8; }
@@ -336,16 +337,98 @@
   .tm_vNote { grid-column: span 2; }
 }
 @media (max-width: 640px) {
+  .tm_col[data-col="4"] { display: none; }
   .tm_vNote { grid-column: 1 / -1; padding: 0; }
   .tm_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 14px; }
   .tm_tabs { gap: 4px 20px; }
   .tm_quote p { font-size: clamp(2.25rem, 10vw, 3rem); }
   .tm_pName { font-size: 1rem; }
 }
+/* ==== revision 9 November · Our Ecosystem: hero diagram (kept) · deep-green statement · partner ORBIT with real logos ==== */
+.x_ecoPage { --sh: max(100svh, 640px); }
+.x_ecoHero { padding-bottom: clamp(96px, 10vw, 160px); }
+.x_ecoTitle { max-width: 13em; }
+.x_ecoLead { max-width: 30em; }
+/* E2 · statement, deep green (homepage chapter colour); held while the orbit lifts over it */
+.eo_silo { position: relative; z-index: 1; background: #0d3b26; color: #fff; overflow: clip; }
+.eo_silo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 60% at 85% 100%, rgba(0, 161, 107, .28), transparent 70%); }
+.eo_siloStick { position: relative; z-index: 1; padding: clamp(110px, 14vw, 200px) 0; }
+.eo_silo[data-on="true"] { height: calc(2 * var(--sh)); }
+.eo_silo[data-on="true"] .eo_siloStick { position: sticky; top: 0; height: var(--sh); padding: 0; display: flex; align-items: center; }
+.eo_silo[data-on="true"] .eo_siloStick > .s_wrap { padding-top: 40px; }
+.eo_siloBig { font-size: clamp(2.5rem, min(6vw, 11vh), 6.75rem); font-weight: 300; line-height: 1.02; letter-spacing: -.045em; max-width: 11em; margin: clamp(20px, 3vh, 32px) 0 clamp(24px, 4vh, 40px); }
+.eo_lime { color: var(--sky, #8fd1ec); }
+.eo_siloLine { max-width: 33em; font-size: var(--fs-lead); font-weight: 300; line-height: 1.55; color: rgba(255, 255, 255, .86); }
+/* E3 · orbit */
+.eo_orbit { position: relative; z-index: 2; background: var(--light); }
+.eo_silo[data-on="true"] + .eo_orbit { margin-top: calc(-1 * var(--sh)); box-shadow: 0 -50px 80px -40px rgba(0, 20, 10, .45); }
+.eo_orbit[data-mode="pin"] { height: calc(5.4 * var(--sh)); }
+.eo_orbit[data-mode="pin"] .eo_stick { position: sticky; top: 0; height: var(--sh); overflow: clip; }
+.eo_in { display: grid; grid-template-columns: minmax(0, 4.8fr) minmax(0, 7.2fr); column-gap: 3vw; padding-block: var(--pad); }
+.eo_copy .tm_h2 { font-size: clamp(2.25rem, min(3.6vw, 6.6vh), 3.875rem); }
+.eo_orbit[data-mode="pin"] .eo_in { height: 100%; padding-block: calc(64px + 3vh) 3vh; }
+.eo_copy { align-self: center; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.eo_lead { font-size: clamp(1rem, 1.1vw, 1.1875rem); font-weight: 300; line-height: 1.55; color: var(--charcoal); max-width: 25em; margin-bottom: clamp(20px, 3.4vh, 36px); }
+.eo_tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.eo_tabs button { font: inherit; font-size: .8125rem; line-height: 1; padding: 10px 13px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--charcoal); cursor: pointer; transition: background .3s, color .3s, border-color .3s; }
+.eo_tabs button sup { font-size: 9.5px; margin-left: 5px; color: var(--io-ink); font-variant-numeric: tabular-nums; transition: color .3s; }
+.eo_tabs button:hover { border-color: var(--io); }
+.eo_tabs button[aria-pressed="true"] { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
+.eo_tabs button[aria-pressed="true"] sup { color: var(--sky, #8fd1ec); }
+.eo_panels { position: relative; width: 100%; max-width: 540px; margin-top: clamp(18px, 3vh, 30px); }
+.eo_panel { position: absolute; inset: 0 0 auto 0; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .3s, transform .3s, visibility 0s .3s; }
+.eo_panel[data-on] { opacity: 1; visibility: visible; transform: none; transition: opacity .6s .32s, transform .8s .32s var(--slow), visibility 0s .3s; }
+.eo_panel li { display: grid; gap: 1px; padding: clamp(7px, 1.1vh, 11px) 0; border-top: 1px solid var(--line); transition: background .3s; }
+.eo_panel li:last-child { border-bottom: 1px solid var(--line); }
+.eo_panel li b { font-weight: 500; font-size: .9375rem; line-height: 1.3; color: var(--charcoal); transition: color .3s; }
+.eo_panel li span { font-size: .8125rem; line-height: 1.45; color: var(--grey-ink); }
+.eo_panel li[data-hot] b { color: var(--io-ink); }
+.eo_hint { font-size: .9375rem; color: var(--grey-ink); max-width: 30em; margin-bottom: 16px; }
+.eo_panel .eo_legend li { padding: 0; border: 0; }
+.eo_legend button { font: inherit; color: inherit; background: none; border: 0; border-top: 1px solid var(--line); border-radius: 0; text-align: left; display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 16px; width: 100%; padding: clamp(9px, 1.3vh, 13px) 0; cursor: pointer; }
+.eo_legend li:last-child button { border-bottom: 1px solid var(--line); }
+.eo_legend b { font-weight: 500; font-size: .9375rem; color: var(--charcoal); transition: color .3s; }
+.eo_legend b sup { font-size: 9.5px; margin-left: 4px; color: var(--io-ink); font-weight: 500; }
+.eo_legend span { font-size: .8125rem; line-height: 1.45; color: var(--grey-ink); }
+.eo_legend button:hover b, .eo_legend button:focus-visible b { color: var(--io-ink); }
+.eo_note { margin-top: clamp(14px, 2.4vh, 26px); font-size: .75rem; line-height: 1.5; color: var(--grey-ink); max-width: 34em; }
+.eo_stage { position: relative; min-height: min(70vh, 720px); }
+.eo_orbit[data-mode="pin"] .eo_stage { min-height: 0; }
+.eo_rings { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.eo_rings ellipse { fill: none; stroke: rgba(89, 84, 83, .2); stroke-width: 1; transition: stroke .6s, stroke-width .6s; }
+.eo_rings ellipse[data-on] { stroke: var(--io); stroke-width: 1.6; }
+.eo_rings text { font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; fill: var(--grey-ink); transition: fill .6s; }
+.eo_rings text[data-on] { fill: var(--io-ink); }
+.eo_core { position: absolute; left: 50%; top: 50%; width: clamp(104px, 10vw, 160px); height: auto; translate: -50% -50%; z-index: 50; filter: drop-shadow(0 18px 30px rgba(26, 111, 150, .22)); }
+.eo_nodes { position: absolute; inset: 0; }
+.eo_node { position: absolute; left: 0; top: 0; width: var(--nw, 148px); height: var(--nh, 72px); display: grid; place-items: center; border-radius: 999px; background: #fff;
+  box-shadow: 0 16px 32px -20px rgba(40, 36, 35, .45), 0 0 0 1px rgba(89, 84, 83, .06); will-change: transform; transition: opacity .6s, filter .6s, box-shadow .3s; }
+.eo_node:hover, .eo_node:focus-visible, .eo_node[data-hot] { box-shadow: 0 16px 32px -20px rgba(40, 36, 35, .45), 0 0 0 1.5px var(--io); outline: 0; }
+.eo_node[data-dim] { opacity: .28; filter: grayscale(1); }
+.eo_logo { display: block; max-width: min(calc(var(--nw, 148px) * .84), calc(var(--nw, 148px) * .68 * var(--s, 1))); max-height: min(calc(var(--nh, 72px) * .78), calc(var(--nh, 72px) * .46 * var(--s, 1))); width: auto; height: auto; object-fit: contain; }
+.eo_type { max-width: 82%; font-size: .9375rem; font-weight: 500; line-height: 1.1; letter-spacing: -.01em; color: var(--charcoal); text-align: center; }
+.eo_nm { position: absolute; top: calc(100% + 8px); left: 50%; translate: -50% 0; white-space: nowrap; padding: 5px 11px; border-radius: 999px; background: var(--charcoal); color: #fff;
+  font-size: .75rem; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.eo_node:hover .eo_nm, .eo_node:focus-visible .eo_nm, .eo_node[data-hot] .eo_nm { opacity: 1; }
+.eo_cards { display: none; }
+@media (max-width: 999px) {
+  .eo_in { grid-template-columns: minmax(0, 1fr); padding-block: clamp(80px, 14vw, 120px); }
+  .eo_stage, .eo_panels, .eo_note { display: none; }
+  .eo_cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+  .eo_card { background: #fff; border-radius: 10px; padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 4px; }
+  .eo_card[hidden] { display: none; }
+  .eo_cardLogo { height: 72px; display: grid; place-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+  .eo_cardLogo { --nw: 150px; --nh: 70px; }
+  .eo_cardCat { font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); }
+  .eo_cardName { font-size: .9375rem; font-weight: 500; line-height: 1.3; color: var(--charcoal); }
+  .eo_cardLine { font-size: .75rem; line-height: 1.45; color: var(--grey-ink); }
+}
+@media (max-width: 420px) { .eo_tabs button { padding: 10px 13px; font-size: .8125rem; } }
 </style>
 </head>
 <body>
-<script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
+<script>/* text is hidden only until the line reveals take over; with reduced motion there are none, so it shows at once */
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)}</script>
 
 <div class="s_root" data-wide data-blue="false">
 {{HEADER}}
@@ -715,6 +798,134 @@
       });
     });
   })(); } catch (e) { console.warn(e); }
+})();
+</script>
+<script>
+/* ==== revision 9 November · Our Ecosystem: the partner orbit (pinned on wide screens), tabs, phone grid ==== */
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var sec = $('#eoOrbit'); if (!sec) return;
+  try {
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, lenis = window.__lenis;
+    var clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; }, span = function (p, a, b) { return clamp((p - a) / (b - a), 0, 1); };
+    var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+    var silo = $('#eoSilo'), stage = $('.eo_stage', sec), svg = $('.eo_rings', sec), nodes = $$('.eo_node', sec), tabs = $$('.eo_tabs button', sec);
+    var panels = $$('.eo_panel', sec), cards = $$('.eo_card', sec), lis = $$('.eo_panel li', sec);
+    var CATS = ['Academia', 'Startups', 'Government', 'Industry'], SPEED = [.045, .045, .045, .045], TURN = [.9, .9, .9, .9];   // one rigid system: the rings turn together, so logos never collide
+    var TILT = .42, NS = 'http://www.w3.org/2000/svg';
+    // pinned story: overview, then one circle at a time from the centre out, then everyone again
+    var WIN = [[0, .14, -1], [.14, .31, 0], [.31, .48, 1], [.48, .65, 2], [.65, .82, 3], [.82, 1.01, -1]];
+    var mode = '', W = 0, H = 0, cx = 0, cy = 0, RX = [], ells = [], labels = [], cur = null, t = 0, entry = reduce ? 1 : 0, seen = false, vis = false;
+    var N = nodes.map(function (n) {
+      var k = CATS.indexOf(n.dataset.cat), mates = nodes.filter(function (m) { return m.dataset.cat === n.dataset.cat; });
+      return { el: n, k: k, j: mates.indexOf(n), m: mates.length, base: 0, w: 0, h: 0, z: -1 };
+    });
+    function setup() {
+      mode = innerWidth < 1000 ? 'grid' : reduce || innerHeight < 640 ? 'static' : 'pin';
+      sec.dataset.mode = mode; if (silo) silo.dataset.on = mode === 'pin';
+      if (mode === 'grid') { apply(cur === null ? -1 : cur, true); return; }
+      W = stage.clientWidth; H = stage.clientHeight; cx = W / 2; cy = H / 2;
+      var k = clamp(W / 900, .72, 1.05), nw = Math.round(148 * k), nh = Math.round(72 * k);
+      stage.style.setProperty('--nw', nw + 'px'); stage.style.setProperty('--nh', nh + 'px');
+      var r4 = W / 2 - nw * .5; TILT = clamp((H / 2 - nh * .6) / r4, .45, .66);
+      RX = [.38, .6, .8, 1].map(function (f) { return r4 * f; });
+      svg.innerHTML = ''; ells = []; labels = [];
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      RX.forEach(function (rx, i) {
+        var e = document.createElementNS(NS, 'ellipse');
+        e.setAttribute('cx', cx); e.setAttribute('cy', cy); e.setAttribute('rx', rx); e.setAttribute('ry', rx * TILT); e.setAttribute('pathLength', 1);
+        e.style.strokeDasharray = '1 1'; svg.appendChild(e); ells.push(e);
+      });
+      N.forEach(function (n) { n.w = nw; n.h = nh; });
+      // place each ring's logos where they overlap the rings inside it least, over a whole turn (greedy, once per layout)
+      var off = [0, 0, 0, 0];
+      var pos = function (k, a, rot) { var th = a + rot, sn = Math.sin(th), s = .74 + .24 * (sn + 1) / 2; return [RX[k] * Math.cos(th), RX[k] * TILT * sn, nw * s, nh * s]; };
+      for (var kk = 1; kk < 4; kk++) {
+        var best = 1e18, bo = 0;
+        for (var st = 0; st < 36; st++) {
+          var o = st / 36 * Math.PI * 2, tot = 0;
+          for (var r = 0; r < 24; r++) {
+            var rot = r / 24 * Math.PI * 2;
+            N.forEach(function (a) {
+              if (a.k !== kk) return; var A = pos(kk, o + Math.PI * 2 * a.j / a.m, rot);
+              N.forEach(function (b) {
+                if (b.k >= kk) return; var B = pos(b.k, off[b.k] + Math.PI * 2 * b.j / b.m, rot);
+                var ox = (A[2] + B[2]) / 2 - Math.abs(A[0] - B[0]), oy = (A[3] + B[3]) / 2 - Math.abs(A[1] - B[1]);
+                if (ox > 0 && oy > 0) tot += ox * oy;
+              });
+            });
+          }
+          if (tot < best) { best = tot; bo = o; }
+        }
+        off[kk] = bo;
+      }
+      N.forEach(function (n) { n.base = off[n.k] + Math.PI * 2 * n.j / n.m + .4; });
+      var ph = $('.eo_panels', sec); ph.style.minHeight = ''; ph.style.minHeight = Math.max.apply(null, panels.map(function (q) { return q.offsetHeight; })) + 'px';
+      apply(cur === null ? -1 : cur, true); draw(0);
+    }
+    function apply(a, force) {
+      if (a === cur && !force) return; cur = a;
+      var cat = a < 0 ? 'all' : CATS[a];
+      tabs.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.cat === cat); });
+      panels.forEach(function (p) { if (p.dataset.cat === cat) p.setAttribute('data-on', ''); else p.removeAttribute('data-on'); });
+      ells.forEach(function (e, i) { if (i === a) e.setAttribute('data-on', ''); else e.removeAttribute('data-on'); });
+      labels.forEach(function (e, i) { if (i === a) e.setAttribute('data-on', ''); else e.removeAttribute('data-on'); });
+      N.forEach(function (n) { if (a >= 0 && n.k !== a) n.el.setAttribute('data-dim', ''); else n.el.removeAttribute('data-dim'); });
+      cards.forEach(function (c) { c.hidden = !(a < 0 || c.dataset.cat === cat); });
+    }
+    function progress() { var r = sec.getBoundingClientRect(), sh = Math.max(innerHeight, 640); return -r.top / (r.height - sh); }
+    function draw(dt) {
+      if (mode === 'grid' || !W) return;
+      var raw = mode === 'pin' ? progress() : 0, p = clamp(raw, 0, 1);
+      if (!reduce) t += dt;
+      if (mode === 'pin') {
+        entry = ease(span(raw, -.16, .05));
+        for (var w = 0; w < WIN.length; w++) if (p >= WIN[w][0] && p < WIN[w][1]) { apply(WIN[w][2]); break; }
+      }
+      ells.forEach(function (e, i) { var d = clamp(entry * 1.25 - i * .08, 0, 1); e.style.strokeDashoffset = (1 - d).toFixed(3); });
+      labels.forEach(function (l, i) { l.style.opacity = clamp(entry * 1.4 - .3 - i * .08, 0, 1).toFixed(2); });
+      for (var i = 0; i < N.length; i++) {
+        var n = N[i], th = n.base + SPEED[n.k] * t + TURN[n.k] * p * Math.PI, e2 = clamp(entry * 1.3 - n.k * .1, 0, 1);
+        var rx = RX[n.k] * (.25 + .75 * e2), sn = Math.sin(th), x = cx + rx * Math.cos(th), y = cy + rx * TILT * sn, d = (sn + 1) / 2;
+        var s = (.74 + .24 * d) * (.6 + .4 * e2);
+        n.el.style.transform = 'translate3d(' + (x - n.w / 2).toFixed(1) + 'px,' + (y - n.h / 2).toFixed(1) + 'px,0) scale(' + s.toFixed(3) + ')';
+        n.el.style.opacity = n.el.hasAttribute('data-dim') ? '' : (e2 * (.62 + .38 * d)).toFixed(2);   // depth: the far side recedes
+        var z = 10 + Math.round(d * 80) - (cur >= 0 && n.k !== cur ? 40 : 0); if (z !== n.z) { n.z = z; n.el.style.zIndex = z; }
+      }
+    }
+    var io = new IntersectionObserver(function (es) {
+      vis = es[0].isIntersecting;
+      if (vis && !seen && mode === 'static' && !reduce && window.gsap) { seen = true; var o = { v: 0 }; gsap.to(o, { v: 1, duration: 2, ease: 'expo.out', onUpdate: function () { entry = o.v; } }); }
+      else if (vis && !seen && mode === 'static') { seen = true; entry = 1; }
+    });
+    io.observe(sec);
+    var last = performance.now();
+    function tick() { var now = performance.now(), dt = Math.min(.05, (now - last) / 1000); last = now; if (vis) { try { draw(dt); } catch (e) { console.warn(e); } } }
+    if (window.gsap) gsap.ticker.add(tick); else (function raf() { tick(); requestAnimationFrame(raf); })();
+    // tabs: in the pinned story they scroll to that circle's moment; elsewhere they switch directly
+    tabs.concat($$('.eo_legend button', sec)).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var a = b.dataset.cat === 'all' ? -1 : CATS.indexOf(b.dataset.cat);
+        if (mode === 'pin') {
+          var w = a < 0 ? WIN[5] : WIN[a + 1], f = (w[0] + Math.min(1, w[1])) / 2, sh = Math.max(innerHeight, 640);
+          var y = sec.getBoundingClientRect().top + scrollY + f * (sec.offsetHeight - sh);
+          if (lenis) lenis.scrollTo(y, { duration: 1.4 }); else scrollTo({ top: y, behavior: 'smooth' });
+        } else apply(a);
+      });
+    });
+    // a node and its line in the list light together
+    function hot(k, on) {
+      N.forEach(function (n) { if (+n.el.dataset.n === k && on) n.el.setAttribute('data-hot', ''); else n.el.removeAttribute('data-hot'); });
+      lis.forEach(function (l) { if (+l.dataset.n === k && on) l.setAttribute('data-hot', ''); else l.removeAttribute('data-hot'); });
+    }
+    nodes.forEach(function (n) {
+      n.addEventListener('mouseenter', function () { hot(+n.dataset.n, true); }); n.addEventListener('mouseleave', function () { hot(-1, false); });
+      n.addEventListener('focus', function () { hot(+n.dataset.n, true); }); n.addEventListener('blur', function () { hot(-1, false); });
+    });
+    lis.forEach(function (l) { l.addEventListener('mouseenter', function () { hot(+l.dataset.n, true); }); l.addEventListener('mouseleave', function () { hot(-1, false); }); });
+    var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(setup, 180); });
+    setup(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(setup);
+  } catch (e) { console.warn(e); }
 })();
 </script>
 </body>
