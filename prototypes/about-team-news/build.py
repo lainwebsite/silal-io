@@ -89,7 +89,25 @@ jnav = ('<span class="x_jNav" role="group" aria-label="Jump to a milestone"><spa
         + "".join(f'<button type="button" class="x_jYear">{y}</button>' for y in years) + "</span>"
         + arrow(-1, "M12 8H4M7.5 4.5L4 8l3.5 3.5") + arrow(1, "M4 8h8M8.5 4.5L12 8l-3.5 3.5") + "</span>")
 journey = re.sub(r'(<p class="j_head">.*?</span>)(</p>)', lambda m: m.group(1) + jnav + m.group(2), journey, count=1, flags=re.S)
-about = "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
+# revision 9 November (client comment on About: "require some top-level framing around how iO is part of Silal Group (+ some info on
+# the group), which is part of L'IMAD (formerly ADQ)"; the attached image is the inspiration: three columns, logo + name + two
+# paragraphs each). The copy is the client's, from that image; the third name follows the comment, the paragraphs stay as supplied.
+_grp = [("brand/io-mark-white-on-blue.svg", "iO", "Innovation Oasis (iO)",
+         ["Innovation Oasis is Silal&rsquo;s R&amp;D venture engine, built to advance global food security. The 34-hectare state-of-the-art facility is purposefully situated in one of earth&rsquo;s toughest environments, enabling agri-tech innovators to validate solutions against the same extreme conditions threatening food systems around the world.",
+          "By integrating with Silal&rsquo;s expansive infrastructure and networks, iO delivers an end-to-end platform to accelerate ideas through incubation, validation, venture clienting, and investment. With this singular mandate, iO is defining the new global standard in future-resilient food systems, for the UAE and beyond."]),
+        ("logos/silal-white.svg", "Silal", "Silal",
+         ["Silal is Abu Dhabi&rsquo;s leading agri-food and technology company, focused on strengthening food security through innovation, sustainable agriculture, and supply chain development.",
+          "Established in 2020 and part of ADQ, Silal works to diversify food sources, enhance local production, and build more resilient food systems across the UAE and beyond. Its activities span procurement, distribution, and research and development, alongside programs that support farmers and advance desert agriculture."]),
+        ("logos/adq-white.svg", "ADQ", "L&rsquo;IMAD (formerly ADQ)",
+         ["ADQ is an active sovereign investor established in 2018, focused on critical infrastructure and global supply chains. As a strategic partner to the Government of Abu Dhabi, ADQ invests in business platforms that drive long-term value and support economic development across the Emirate.",
+          "With total assets of USD 251 billion as of December 2024, ADQ&rsquo;s portfolio spans key sectors including energy, transport and logistics, healthcare, financial services, and sustainable manufacturing. Its food and agriculture investments include companies such as Louis Dreyfus Company, Unifrutti, Agthia, Al Dahra, Lulu, and Silal."])]
+about_group = ('<section class="x_group" aria-label="iO, Silal and L&rsquo;IMAD"><div class="s_wrap">'
+               '<div class="x_groupHead"><span class="c_eyebrow c_eyebrowLight">Part of Silal Group</span></div>'
+               '<div class="x_groupGrid">' + "".join(
+                   f'<div class="x_groupCol"><div class="x_groupLogo"><img src="{src}" alt="{alt}" loading="lazy"/></div>'
+                   f'<h2 class="x_groupName">{name}</h2>' + "".join(f"<p>{t}</p>" for t in paras) + '</div>'
+                   for src, alt, name, paras in _grp) + '</div></div></section>')
+about = about_group + "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
 # revision 6 November: vision and mission as in the Strategy Overview deck (client: "reflect the materials shared")
 about = re.sub(r'<span class="c_eyebrow c_eyebrowLight">Our Mission</span><p class="c_missionText" data-reveal>.*?</p>',
                '<div class="x_vm"><div><span class="c_eyebrow c_eyebrowLight">Our Vision</span><p class="c_missionText x_vmText" data-reveal>'
