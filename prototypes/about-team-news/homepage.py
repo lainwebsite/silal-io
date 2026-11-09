@@ -304,6 +304,14 @@ CSS += """
 /* site model: the real space */
 .c_mapImg { cursor: zoom-in; }
 /* rev. 9 Nov (client comment on "The Arid Advantage": "remove shadow"): no curtain shadow under the chapter, no dark fade on the photo */
+/* rev. 9 Nov (client: "make the second section like this", with a reference image): white ground, a bigger two-line statement, the body text
+   on the left margin in a column of about 38%, the blue line and the About iO button in a second column from the middle, then the stats */
+.c_section.c_intro { background: #fff !important; }
+.c_intro .c_statement { font-size: clamp(2rem, 2.8vw, 2.5rem) !important; max-width: 62em; }
+.c_intro .c_introCols { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 38%) minmax(0, 1fr); column-gap: 4.6%; align-items: start; }
+.c_intro .c_introCols .c_body { grid-column: auto; max-width: none; }
+.c_intro .c_introRight { grid-column: auto; }
+@media (max-width: 900px) { .c_intro .c_introCols { grid-template-columns: 1fr; row-gap: 24px; } }
 .c_why.c_chapter, .hm_map, .c_section.c_white { box-shadow: none !important; }
 .c_whySticky::after { display: none !important; }
 .x_galOpen { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: .6875rem; font-weight: 500; letter-spacing: .02em; padding: 7px 11px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .92); color: var(--io-ink); cursor: pointer; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .35); }
