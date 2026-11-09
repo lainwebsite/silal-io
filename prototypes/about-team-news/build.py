@@ -101,16 +101,24 @@ _grp = [("brand/io-mark.svg", "iO", "Innovation Oasis (iO)", "34", "hectares of 
         ("logos/limad.svg", "L&rsquo;IMAD", "L&rsquo;IMAD", "USD 251 bn", "total assets as of December 2024",
          ["L&rsquo;IMAD is an active sovereign investor established in 2018, focused on critical infrastructure and global supply chains. As a strategic partner to the Government of Abu Dhabi, L&rsquo;IMAD invests in business platforms that drive long-term value and support economic development across the Emirate.",
           "With total assets of USD 251 billion as of December 2024, L&rsquo;IMAD&rsquo;s portfolio spans key sectors including energy, transport and logistics, healthcare, financial services, and sustainable manufacturing. Its food and agriculture investments include companies such as Louis Dreyfus Company, Unifrutti, Agthia, Al Dahra, Lulu, and Silal."])]
-_part = '<span class="x_groupLink" aria-hidden="true"><i>part of</i><svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
+_rel = ["Part of Silal", "Part of L&rsquo;IMAD", "Formerly ADQ"]
 about_group = ('<section class="c_section c_white x_group" aria-label="iO, Silal and L&rsquo;IMAD"><div class="s_wrap">'
                '<img class="x_groupMark" src="brand/io-mark.svg" alt="" aria-hidden="true"/>'
                '<div class="c_headRow"><span class="c_eyebrow">Part of Silal Group</span></div>'
                '<h2 class="c_h2 x_groupTitle" data-reveal>iO is part of Silal, which is part of <span class="x_groupBlue">L&rsquo;IMAD.</span></h2>'
                '<div class="x_groupGrid">' + "".join(
-                   f'<div class="x_groupCol">' + (_part if k else '') + f'<div class="x_groupLogo"><img src="{src}" alt="{alt}" loading="lazy"/></div>'
+                   f'<div class="x_groupCol"><div class="x_groupLogo"><img src="{src}" alt="{alt}" loading="lazy"/><span class="x_groupRel">{_rel[k]}</span></div>'
                    f'<p class="x_groupNum"><b>{num}</b><span>{lab}</span></p>'
                    f'<h3 class="x_groupName">{name}</h3>' + "".join(f'<p class="c_body">{t}</p>' for t in paras) + '</div>'
                    for k, (src, alt, name, num, lab, paras) in enumerate(_grp)) + '</div></div></section>')
+# revision 9 November (client comment on About): "make it overlap, when scrolling, with the section above": the Silal Group section
+# stays put while the story section slides up over it (the curtain the site already uses), desktop only
+about_group += ('<script>(function(){try{var g=document.querySelector(".x_group");if(!g)return;var cols=[].slice.call(g.querySelectorAll(".x_groupCol")),F=[0,.1,.2];'
+                'var calm=matchMedia("(prefers-reduced-motion: reduce)");function on(){return innerWidth>900&&!calm.matches}'
+                'function fit(){if(!on()){g.style.top="";g.classList.remove("x_groupStick");cols.forEach(function(c){c.style.transform=""});return}'
+                'g.classList.add("x_groupStick");g.style.top=Math.min(0,innerHeight-g.offsetHeight)+"px";tick()}'
+                'function tick(){if(!on())return;var s=Math.max(0,Math.min(scrollY,520));cols.forEach(function(c,i){c.style.transform="translate3d(0,"+(-(s*F[i]).toFixed(1))+"px,0)"})}'
+                'fit();addEventListener("resize",fit);addEventListener("load",fit);addEventListener("scroll",tick,{passive:true})}catch(e){}})();</script>')
 about = about_group + "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
 # revision 6 November: vision and mission as in the Strategy Overview deck (client: "reflect the materials shared")
 about = re.sub(r'<span class="c_eyebrow c_eyebrowLight">Our Mission</span><p class="c_missionText" data-reveal>.*?</p>',

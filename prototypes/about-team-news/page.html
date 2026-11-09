@@ -268,16 +268,17 @@
 .x_groupGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; position: relative; }
 .x_groupCol { position: relative; background: #fff; border: 1px solid var(--line, rgba(0,0,0,.1)); padding: clamp(24px, 2.4vw, 36px); }
 .x_groupCol::before { content: ""; position: absolute; left: -1px; top: -1px; width: 64px; height: 3px; background: var(--io); }
-.x_groupLogo { height: 40px; display: flex; align-items: center; margin-bottom: 26px; }
-.x_groupLogo img { height: 100%; width: auto; max-width: 190px; object-fit: contain; display: block; }
+.x_groupLogo { height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 26px; }
+.x_groupRel { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--io-ink); white-space: nowrap; }
+.x_groupLogo img { height: 100%; width: auto; max-width: 150px; object-fit: contain; display: block; }
 .x_groupNum { display: flex; flex-direction: column; gap: 4px; margin: 0 0 22px; padding: 16px 0; border-top: 1px solid var(--line, rgba(0,0,0,.1)); border-bottom: 1px solid var(--line, rgba(0,0,0,.1)); }
 .x_groupNum b { font-size: 2.25rem; font-weight: 300; line-height: 1; letter-spacing: -.03em; color: var(--io-ink); }
 .x_groupNum span { font-size: .75rem; color: var(--grey); }
 .x_groupName { font-size: 1.0625rem; font-weight: 500; line-height: 1.3; margin: 0 0 14px; color: var(--io-ink); }
 .x_groupCol .c_body { margin: 0 0 1em; }
-.x_groupLink { position: absolute; left: -28px; top: 38px; transform: translateX(-50%); z-index: 2; display: inline-flex; align-items: center; gap: 6px; background: var(--io); color: #fff; border-radius: 999px; padding: 6px 10px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
-.x_groupLink i { font-style: normal; }
-@media (max-width: 900px) { .x_groupGrid { grid-template-columns: 1fr; gap: 44px; } .x_groupLink { left: 24px; top: -30px; transform: none; } .x_groupLink svg { transform: rotate(90deg); } .x_groupMark { height: 300px; right: -70px; } }
+.c_page > .x_groupStick { position: sticky; z-index: 0; }
+.x_about > .x_group ~ section:first-of-type, .x_about > .x_group + section { position: relative; z-index: 1; background: #fff; }
+@media (max-width: 900px) { .x_groupGrid { grid-template-columns: 1fr; gap: 44px; } .x_groupMark { height: 300px; right: -70px; } }
 </style>
 </head>
 <body>
