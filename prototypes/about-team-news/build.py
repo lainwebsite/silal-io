@@ -115,24 +115,24 @@ ECO_ITEMS = ["World-class research facilities", "Commercial testbeds", "Venture 
 # the review bundle lists the source of every file. Agri-Vit and CRETA Group have no sourced logo yet: a text tile with the name,
 # never a drawn logo.   (category, name, logo file, width, height of the file, boost for artwork with built-in padding, role)
 PARTNERS = [
-    ("Academia", "Khalifa University", "khalifa-university.svg", 441, 101, 1, "Incubation partner for the Agri-Robotics 2026 cohort; advanced research and engineering."),
+    ("Academia", "Khalifa University", "khalifa-university.svg", 441, 101, 1, "Research partner for the Khalifa University Research Translation Portfolio; advanced research and engineering."),
     ("Academia", "United Arab Emirates University", "uaeu.svg", 632, 111, 1, "College of Agriculture and Veterinary Medicine: agricultural research, experimental stations and laboratories."),
-    ("Startups", "Raincatcher", "raincatcher.webp", 548, 603, 1.8, "Al Miyah Challenge finalist (UAE), tested in the field pilots at Innovation Oasis."),
-    ("Startups", "EF Polymer", "ef-polymer.webp", 600, 279, 1, "Al Miyah Challenge finalist (India): a biodegradable superabsorbent made from fruit waste."),
-    ("Startups", "M4LIFE", "m4life.png", 850, 264, 1, "Al Miyah Challenge finalist (Argentina): microbes that help soil hold water."),
-    ("Startups", "Krilltech", "krilltech.png", 380, 220, 1.1, "Al Miyah Challenge finalist (Brazil): a bio-stimulant for water-use efficiency."),
-    ("Startups", "Agri-Vit", None, 0, 0, 1, "Al Miyah Challenge finalist (Egypt): a foliar biostimulant for heat and salinity."),
-    ("Startups", "CRETA Group", None, 0, 0, 1, "Al Miyah Challenge finalist (UAE): a greenhouse cooled by the ground."),
+    ("Startups", "Raincatcher", "raincatcher.webp", 548, 603, 1.8, "Startup partner, UAE."),
+    ("Startups", "EF Polymer", "ef-polymer.webp", 600, 279, 1, "Startup partner, India."),
+    ("Startups", "M4LIFE", "m4life.png", 850, 264, 1, "Startup partner, Argentina."),
+    ("Startups", "Krilltech", "krilltech.png", 380, 220, 1.1, "Startup partner, Brazil."),
+    ("Startups", "Agri-Vit", None, 0, 0, 1, "Startup partner, Egypt."),
+    ("Startups", "CRETA Group", None, 0, 0, 1, "Startup partner, UAE."),
     ("Government", "Ministry of Climate Change and Environment", "moccae.svg", 720, 200, 1.25, "National priorities for sustainable, climate-smart agriculture; Farm Innovation Fund launch."),
     ("Government", "National Agriculture Centre", "nac-vertical.svg", 1130, 454, 1, "Connection to UAE farmers, production priorities and support structures."),
     ("Government", "Abu Dhabi Agriculture and Food Safety Authority", "adafsa.png", 2884, 1088, 1.9, "Agriculture, food safety and biosecurity in Abu Dhabi; evaluation under local conditions."),
     ("Government", "Abu Dhabi Investment Office", "adio.png", 640, 355, 1.4, "Supports growth-stage startups landing in Abu Dhabi."),
-    ("Government", "Mohamed bin Zayed Water Initiative", "mbzwi.png", 381, 281, 1.15, "Organiser of the Al Miyah Challenge for Agriculture."),
-    ("Government", "ASPIRE", "aspire.svg", 233, 42, 1, "Innovation acceleration partner on the Al Miyah Challenge."),
+    ("Government", "Mohamed bin Zayed Water Initiative", "mbzwi.png", 381, 281, 1.15, "Water innovation initiative; partner in innovation challenges."),
+    ("Government", "ASPIRE", "aspire.svg", 233, 42, 1, "Innovation acceleration partner."),
     ("Industry", "Silal", "silal.svg", 149, 68, 1, "Innovation Oasis is part of Silal: business units pilot and adopt proven solutions."),
     ("Industry", "ADQ", "adq.svg", 709, 340, 1, "Silal's shareholder; portfolio companies as potential adopters of validated solutions."),
     ("Industry", "Delphy", "delphy.svg", 228, 124, 1, "Co-branded IO × Delphy courses in the IO Academy."),
-    ("Industry", "Zayed for Good Foundation", "zayed-for-good.png", 840, 148, 1.15, "Strategic partner on the Al Miyah Challenge."),
+    ("Industry", "Zayed for Good Foundation", "zayed-for-good.png", 840, 148, 1.15, "Strategic partner."),
 ]
 CATS = ["Academia", "Startups", "Government", "Industry"]
 _left, _right = ECO_ITEMS[:4], ECO_ITEMS[4:]
@@ -280,7 +280,33 @@ _calm = lambda s: re.sub(r'\sdata-reveal(="true")?', ' data-fade', s)
 t0 = people[:people.index('<div class="c_teamHead">')] + '</div></section>'
 t0 = t0.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
 t0 = re.sub(r'\sdata-parallax="[^"]*"', '', t0)  # no parallax on inner pages
-team_body = f'<div class="c_page x_team tm_page">{_calm(t0 + t3 + t4)}</div>{v3wrap(media)}'
+# revision 9 November, later the same day (client: "if the document gives a direction, follow it; do not invent"): the Team
+# page follows comment #41 literally, as built on 6 November: Leadership, then the four Vertical Leads, then one block per
+# team (Science, Innovation, Commercial, Operations), then the other members. No placeholder strings for visitors. The
+# org chart (t3) and the tabs (t4) above are kept in the code for reference only.
+def _oc(p_, sub=None):
+    img = (f'<img alt="" decoding="async" loading="lazy" src="{p_["src"]}" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"/>')
+    return (f'<li><a class="x_teamLink" href="team-{p_["slug"]}.html"><span class="c_teamImg">{img}</span>'
+            f'<span class="c_teamName">{p_["name"]}</span>' + (f'<span class="x_teamRole">{sub}</span>' if sub else "") + '</a></li>')
+
+
+_oleads = "".join(_oc(_by[n_], r_) for n_, r_, t_ in LEADS)
+_orest = [p_ for p_ in members if p_["name"] != CEO and not p_.get("team")]
+_oteams = "".join(
+    f'<div class="x_teamBlock"><div class="x_teamBlockHead"><h4 class="x_teamBlockTitle">{t_}</h4>'
+    f'<p class="x_teamBlockLead">Led by <a href="team-{_by[n_]["slug"]}.html">{n_}</a>, {r_}</p></div></div>' for n_, r_, t_ in LEADS)
+_ogrid = (f'<div class="x_leads"><div class="x_secHead"><h3 class="c_h2" data-reveal>Vertical Leads</h3>'
+          f'<p class="c_lead x_teamSub" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p></div>'
+          f'<ul class="c_team x_leadGrid" data-stagger="true">{_oleads}</ul></div>'
+          f'<div class="x_teamsWrap"><div class="x_secHead"><h3 class="c_h2" data-reveal>Our Teams</h3>'
+          f'<p class="c_lead x_teamSub" data-reveal>Behind every laboratory, trial and partnership at Innovation Oasis is a small, hands-on team that has grown alongside the ecosystem itself.</p></div>'
+          f'<div class="x_teamBlocks">{_oteams}</div>'
+          f'<div class="x_teamBlock x_teamOpen"><div class="x_teamBlockHead"><h4 class="x_teamBlockTitle">Team members</h4></div>'
+          f'<ul class="c_team" data-stagger="true">{"".join(_oc(p_) for p_ in _orest)}</ul></div></div>')
+_ppl = re.sub(r'<div class="c_teamHead">.*?</div>\s*<ul class="c_team"[^>]*>.*?</ul>', lambda m: _ogrid, people, count=1, flags=re.S)
+_ppl = _ppl.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
+_ppl = re.sub(r'\sdata-parallax="[^"]*"', '', _ppl)
+team_body = f'<div class="c_page x_team">{_ppl}</div>{v3wrap(media)}'
 page(URL["team"], "Team &amp; CEO Message · Innovation Oasis", team_body, v3css)
 
 # the profile uses the press-release template (V3 detail): label, breadcrumb, title + lead, facts card in the aside,
