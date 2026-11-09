@@ -113,11 +113,11 @@ about_group = ('<section class="c_section c_white x_group" aria-label="iO, Silal
                    for k, (src, alt, name, num, lab, paras) in enumerate(_grp)) + '</div></div></section>')
 # revision 9 November (client comment on About): "make it overlap, when scrolling, with the section above": the Silal Group section
 # stays put while the story section slides up over it (the curtain the site already uses), desktop only
-about_group += ('<script>(function(){try{var g=document.querySelector(".x_group");if(!g)return;var cols=[].slice.call(g.querySelectorAll(".x_groupCol")),F=[0,.1,.2];'
+about_group += ('<script>(function(){try{var g=document.querySelector(".x_group");if(!g)return;var cols=[].slice.call(g.querySelectorAll(".x_groupCol")),M=[28,14,46];'
                 'var calm=matchMedia("(prefers-reduced-motion: reduce)");function on(){return innerWidth>900&&!calm.matches}'
                 'function fit(){if(!on()){g.style.top="";g.classList.remove("x_groupStick");cols.forEach(function(c){c.style.transform=""});return}'
                 'g.classList.add("x_groupStick");g.style.top=Math.min(0,innerHeight-g.offsetHeight)+"px";tick()}'
-                'function tick(){if(!on())return;var s=Math.max(0,Math.min(scrollY,520));cols.forEach(function(c,i){c.style.transform="translate3d(0,"+(-(s*F[i]).toFixed(1))+"px,0)"})}'
+                'function tick(){if(!on())return;var p=Math.max(0,Math.min(1,scrollY/Math.max(1,g.offsetHeight)));cols.forEach(function(c,i){c.style.transform="translate3d(0,"+(-(p*M[i]).toFixed(1))+"px,0)"})}'
                 'fit();addEventListener("resize",fit);addEventListener("load",fit);addEventListener("scroll",tick,{passive:true})}catch(e){}})();</script>')
 about = about_group + "".join(no_num(part(f"v1-{n}.html")) for n in ("story", "mission"))
 # revision 6 November: vision and mission as in the Strategy Overview deck (client: "reflect the materials shared")
