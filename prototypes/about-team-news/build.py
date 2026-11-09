@@ -350,7 +350,7 @@ _oteams = "".join(
     f'<ul class="x_tcList">' + "".join(_mcard(p_, t_) for p_ in members if p_.get("team") == t_ and p_["name"] != n_) + '</ul></div>'
     for n_, r_, t_ in LEADS)
 _ogrid = (f'<div class="x_leads"><div class="x_secHead"><h3 class="c_h2" data-reveal>Vertical Leads</h3>'
-          f'<p class="c_lead x_teamSub" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p></div>'
+          f'</div>'  # the heading is the client's own wording (comment #41); the sentence that stood under it was mine, so it is gone
           f'<ul class="c_team x_leadGrid" data-stagger="true">{_oleads}</ul></div>'
           f'<div class="x_teamsWrap"><div class="x_secHead"><h3 class="c_h2" data-reveal>Our Teams</h3>'
           f'<p class="c_lead x_teamSub" data-reveal>Behind every laboratory, trial and partnership at Innovation Oasis is a small, hands-on team that has grown alongside the ecosystem itself.</p></div>'
