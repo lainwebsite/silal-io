@@ -304,7 +304,7 @@ CSS += """
 /* site model: the real space */
 .c_mapImg { cursor: zoom-in; }
 /* rev. 9 Nov (client comment on "The Arid Advantage": "remove shadow"): no curtain shadow under the chapter, no dark fade on the photo */
-.c_why.c_chapter { box-shadow: none !important; }
+.c_why.c_chapter, .hm_map, .c_section.c_white { box-shadow: none !important; }
 .c_whySticky::after { display: none !important; }
 .x_galOpen { position: absolute; right: 10px; bottom: 10px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; font: inherit; font-size: .6875rem; font-weight: 500; letter-spacing: .02em; padding: 7px 11px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .92); color: var(--io-ink); cursor: pointer; box-shadow: 0 6px 16px -8px rgba(0, 0, 0, .35); }
 .x_galOpen:hover { background: #fff; }
