@@ -320,19 +320,39 @@ def _oc(p_, sub=None):
             f'<span class="c_teamName">{p_["name"]}</span>' + (f'<span class="x_teamRole">{sub}</span>' if sub else "") + '</a></li>')
 
 
+# who sits in which team, and their titles: from the client's own "Our Team" slides (Innovation & Venture Platforms deck, "OUR TEAM":
+# Innovation Manager Caitlin Vickers and Project Manager Nadia Tavafi under Francisco; Sr. Scientist Dr. Ahmed Elnaggar under Dr. Jude
+# Wilson; Operations Manager Mohsin Syed Albar). Ali is not named in the deck, so he has no team yet.
+_TEAM_OF = {"Ahmed": ("Science", "Senior Scientist"), "Caitlin": ("Innovation", "Innovation Manager"),
+            "Nadia": ("Innovation", "Project Manager"), "Mohsin": ("Operations", "Operations Manager")}
+for _n, (_t, _r) in _TEAM_OF.items():
+    _by[_n]["team"], _by[_n]["role"] = _t, _r
 _oleads = "".join(_oc(_by[n_], r_) for n_, r_, t_ in LEADS)
 _orest = [p_ for p_ in members if p_["name"] != CEO and not p_.get("team")]
+_TC = {"Science": "#1a6f96", "Innovation": "#14684a", "Commercial": "#595453", "Operations": "#3ca7d2"}   # brand tones, one per team
+
+
+def _mcard(p_, t_):
+    return (f'<li><a class="x_tcCard" href="team-{p_["slug"]}.html"><span class="x_tcAv"><img alt="" decoding="async" loading="lazy" src="{p_["src"]}"/></span>'
+            f'<span class="x_tcTxt"><b style="color:{_TC[t_]}">{esc(t_)} team</b><strong>{esc(p_["name"])}</strong><i>{esc(p_["role"])}</i></span></a></li>')
+
+
+def _rcard(p_):
+    return (f'<li><a class="x_tcCard" href="team-{p_["slug"]}.html"><span class="x_tcAv"><img alt="" decoding="async" loading="lazy" src="{p_["src"]}"/></span>'
+            f'<span class="x_tcTxt"><b style="color:#6e7173">Innovation Oasis</b><strong>{esc(p_["name"])}</strong>' + (f'<i>{esc(p_["role"])}</i>' if p_.get("role") else "") + '</span></a></li>')
+
+
 _oteams = "".join(
-    f'<div class="x_teamBlock"><div class="x_teamBlockHead"><h4 class="x_teamBlockTitle">{t_}</h4>'
-    f'<p class="x_teamBlockLead">Led by <a href="team-{_by[n_]["slug"]}.html">{n_}</a>, {r_}</p></div></div>' for n_, r_, t_ in LEADS)
+    f'<div class="x_tc"><div class="x_tcHead" style="background:{_TC[t_]}"><h4>{t_}</h4><p>Led by <a href="team-{_by[n_]["slug"]}.html">{n_}</a></p></div>'
+    f'<ul class="x_tcList">' + "".join(_mcard(p_, t_) for p_ in members if p_.get("team") == t_ and p_["name"] != n_) + '</ul></div>'
+    for n_, r_, t_ in LEADS)
 _ogrid = (f'<div class="x_leads"><div class="x_secHead"><h3 class="c_h2" data-reveal>Vertical Leads</h3>'
           f'<p class="c_lead x_teamSub" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p></div>'
           f'<ul class="c_team x_leadGrid" data-stagger="true">{_oleads}</ul></div>'
           f'<div class="x_teamsWrap"><div class="x_secHead"><h3 class="c_h2" data-reveal>Our Teams</h3>'
           f'<p class="c_lead x_teamSub" data-reveal>Behind every laboratory, trial and partnership at Innovation Oasis is a small, hands-on team that has grown alongside the ecosystem itself.</p></div>'
-          f'<div class="x_teamBlocks">{_oteams}</div>'
-          f'<div class="x_teamBlock x_teamOpen"><div class="x_teamBlockHead"><h4 class="x_teamBlockTitle">Team members</h4></div>'
-          f'<ul class="c_team" data-stagger="true">{"".join(_oc(p_) for p_ in _orest)}</ul></div></div>')
+          f'<div class="x_tcGrid">{_oteams}</div>'
+          + (f'<ul class="x_tcList x_tcRest">{"".join(_rcard(p_) for p_ in _orest)}</ul>' if _orest else "") + '</div>')
 _ppl = re.sub(r'<div class="c_teamHead">.*?</div>\s*<ul class="c_team"[^>]*>.*?</ul>', lambda m: _ogrid, people, count=1, flags=re.S)
 _ppl = _ppl.replace("</blockquote>", f'</blockquote><a class="s_btn s_btnPrimary x_bioBtn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>', 1)
 _ppl = re.sub(r'\sdata-parallax="[^"]*"', '', _ppl)
