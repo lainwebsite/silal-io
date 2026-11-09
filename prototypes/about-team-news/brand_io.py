@@ -21,6 +21,9 @@ for f in sorted(B.glob("*.html")):
         parts.append(m.group(0)); last = m.end()
     parts.append(WORD.sub('<span class="x_iO">iO</span>', t[last:]))
     t2 = "".join(parts)
+    # a plain space next to the span disappears where the label is a flex box (nav links): bind it with a no-break space
+    t2 = re.sub(r'[ \t]+(<span class="x_iO">iO</span>)', r'&nbsp;\1', t2)
+    t2 = re.sub(r'(<span class="x_iO">iO</span>)[ \t]+', r'\1&nbsp;', t2)
     w += t2.count('class="x_iO"') - t.count('class="x_iO"')
     if CSS not in t2 and 'class="x_iO"' in t2:
         i = t2.lower().find("</head>")
