@@ -242,12 +242,21 @@ for i, p in enumerate(members):
     url = f'https://silal-io.vercel.app/team/{p["slug"]}'
     sh = re.sub(r'https%3A%2F%2Fsilal-io\.vercel\.app%2F[^"&]*', urllib.parse.quote(url, safe=""), share)
     sh = re.sub(r'(subject=|text=)[^"&]*', lambda m: m.group(1) + urllib.parse.quote(p["name"] + " · Innovation Oasis"), sh)
+    # revision 9 November: no "About Innovation Oasis" box on a person's page (client: "makes no sense to explain about iO
+    # here"); a short description, then the long one, then credentials (degrees, certifications, awards, publications)
     if p["name"] == CEO:
-        text = (f'<p>{leader_text.replace(" — described above — ", " ")}</p><p class="n3_bioQuote">&ldquo;If it works here, it can work anywhere.&rdquo;</p>')
-        note = "Profile text from the About page. Full bio to be supplied by Innovation Oasis."
+        short = "Leads Innovation Oasis, Silal&rsquo;s R&amp;D and venture engine in Al Ain."
+        long = (f'<p>{leader_text.replace(" — described above — ", " ")}</p><p class="n3_bioQuote">&ldquo;If it works here, it can work anywhere.&rdquo;</p>')
+        note = "Profile text from the About page. Full bio and credentials to be supplied by Innovation Oasis."
     else:
-        text = f'<p>{first} is part of the small, hands-on team behind every laboratory, trial and partnership at Innovation Oasis.</p>'
-        note = "Sample profile shown for layout. Role and bio to be supplied by Innovation Oasis."
+        short = f'{first} is part of the small, hands-on team behind every laboratory, trial and partnership at Innovation Oasis.'
+        long = (f'<p class="x_bioTbc">Long description: background, expertise and current focus at Innovation Oasis, in two or three short paragraphs.</p>')
+        note = "Sample profile shown for layout. Role, bio and credentials to be supplied by Innovation Oasis."
+    creds = "".join(f'<div class="x_credRow"><h2 class="x_credH">{h}</h2><ul class="x_credList"><li class="x_bioTbc">{t}</li></ul></div>' for h, t in (
+        ("Education", "Degree, institution, year"), ("Certifications", "Certification, issuing body, year"),
+        ("Awards", "Award, organisation, year"), ("Publications", "Title, journal or publisher, year")))
+    text = (f'<p class="x_bioShort">{short}</p><div class="x_bioLong">{long}</div>'
+            f'<section class="x_creds" aria-label="Credentials">{creds}</section>')
     role = p["role"] or "Role to be confirmed"
     others = [members[(i + k) % len(members)] for k in (1, 2, 3)]
     cards = "".join(f'<li><a class="n3_card" href="team-{o["slug"]}.html"><div class="n3_cardImg"><img alt="{html.escape(o["name"])}" decoding="async" loading="lazy" src="{o["src"]}" '
@@ -257,8 +266,8 @@ for i, p in enumerate(members):
             f'<nav aria-label="Breadcrumb" class="n3_crumbs"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><a href="{URL["team"]}">Team</a><span aria-hidden="true">/</span><span aria-current="page">{p["name"]}</span></nav>'
             f'<h1 class="n3_articleTitle" data-reveal>{p["name"]}</h1><p class="n3_articleLead">{role}, Innovation Oasis</p></div></header>'
             f'<div class="n3_wrap"><div class="n3_articleGrid"><aside class="n3_aside"><div class="x_bioImg"><img alt="{html.escape(p["name"])}" src="{p["src"]}"/></div>'
-            f'<dl class="n3_metaCard"><div><dt>Role</dt><dd>{role}</dd></div><div><dt>Team</dt><dd>{p.get("team", "Innovation Oasis")}</dd></div><div><dt>Location</dt><dd>Al Ain, UAE</dd></div></dl>{sh}</aside>'
-            f'<div class="n3_article">{text}{boiler}<p class="n3_note">{note}</p></div></div>'
+            f'<dl class="n3_metaCard"><div><dt>Role</dt><dd>{role}</dd></div><div><dt>Team</dt><dd>{p.get("team", "Innovation Oasis")}</dd></div></dl></aside>'
+            f'<div class="n3_article">{text}<p class="n3_note">{note}</p></div></div>'
             f'</div></article>'  # no previous / next row (comment 2026-10-30); "More of the team" below links on
             f'<section aria-labelledby="rel-h" class="n3_sec"><div class="n3_wrap"><p class="s3_label"><span class="s3_labelN">+</span><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p>'
             f'<div class="n3_relHead"><h2 class="n3_h2" data-reveal id="rel-h">More of the team</h2><a class="s3_go" href="{URL["team"]}"><span class="s3_goText">The whole team</span>{go_svg}</a></div>'
