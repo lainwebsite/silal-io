@@ -137,10 +137,10 @@ PARTNERS = [
 ]
 CATS = ["Academia", "Startups", "Government", "Industry"]   # from the centre out: where an idea starts, to who adopts it
 _left, _right = ECO_ITEMS[:4], ECO_ITEMS[4:]
-_eco = ('<div class="s_eco x_ecoDiagram">'
-        '<ul class="s_ecoCol" data-side="left" data-stagger="true">' + "".join(f'<li><span>{x}</span><i aria-hidden="true"></i></li>' for x in _left) + '</ul>'
-        '<div class="s_ecoCore" data-reveal><img src="brand/io-mark.svg" alt="Innovation Oasis"></div>'
-        '<ul class="s_ecoCol" data-side="right" data-stagger="true">' + "".join(f'<li><i aria-hidden="true"></i><span>{x}</span></li>' for x in _right) + '</ul></div>')
+_eco = ('<div class="s_eco x_ecoDiagram" data-fade>'
+        '<ul class="s_ecoCol" data-side="left">' + "".join(f'<li><span>{x}</span><i aria-hidden="true"></i></li>' for x in _left) + '</ul>'
+        '<div class="s_ecoCore"><img src="brand/io-mark.svg" alt="Innovation Oasis"></div>'
+        '<ul class="s_ecoCol" data-side="right">' + "".join(f'<li><i aria-hidden="true"></i><span>{x}</span></li>' for x in _right) + '</ul></div>')
 
 
 def _logo(name, file, scale, cls="eo_logo"):
@@ -177,29 +177,30 @@ eco_body = ('<div class="c_page x_ecoPage">'
             '<p class="c_lead x_ecoLead" data-reveal>Most innovation ecosystems focus on one part of the journey. Innovation Oasis was designed to connect them all.</p>'
             + _eco + '</div></section>'
             # E2 · the doc's outro as one statement on the deep-green chapter; the orbit lifts over it (curtain)
-            '<section class="eo_silo" id="eoSilo" data-on="false"><div class="eo_siloStick"><div class="s_wrap">'
+            '<section class="eo_silo" id="eoSilo"><div class="eo_siloStick"><div class="s_wrap">'
             '<span class="c_eyebrow c_eyebrowLight">Under one ecosystem</span>'
             '<p class="eo_siloBig" data-reveal>Food security cannot be solved <span class="eo_lime">in silos.</span></p>'
             '<p class="eo_siloLine" data-reveal>This integrated model allows promising ideas to move from concept to validation, from validation to adoption, '
             'and from local impact to global relevance.</p></div></div></section>'
-            # E3 · signature: the partner ORBIT. Four rings around the iO mark, from the centre out: Academia, Startups,
-            # Government, Industry; real logos orbit on them. Scroll (pinned) or the tabs light one ring at a time and list
-            # its partners with their one-line roles. Phones: tabs + a logo grid.
-            '<section class="eo_orbit" id="eoOrbit" data-mode="static"><div class="eo_stick"><div class="s_wrap eo_in">'
+            # E3 · the partner map (still): four rings around the iO mark, from the centre out: Academia, Startups, Government,
+            # Industry; real logos placed once on them, no two overlapping. A tab turns one ring blue, dims the other logos and
+            # lists that circle's partners with their one-line roles. Phones: tabs + a logo grid.
+            '<section class="eo_orbit" id="eoOrbit" data-mode="static"><div class="s_wrap eo_in">'
             '<div class="eo_copy"><span class="c_eyebrow">Key partners</span>'
             '<h2 class="tm_h2 tm_h2Dark" data-reveal>Who we <span class="tm_blue">work with.</span></h2>'
             '<p class="eo_lead" data-reveal>The universities, startups, government entities and industry partners behind our programmes, trials and research.</p>'
             + _etabs + _panels +
             '<p class="eo_note">Logos and roles as they appear in partner and programme material, subject to each partner&rsquo;s approval.</p></div>'
-            '<div class="eo_stage" aria-hidden="false"><svg class="eo_rings" aria-hidden="true"></svg>'
+            '<div class="eo_stage" data-fade><svg class="eo_rings" aria-hidden="true"></svg>'
             '<img class="eo_core" src="brand/io-mark.svg" alt="Innovation Oasis" />' + _nodes + '</div>'
             + _cards +
-            '</div></div></section>'
+            '</div></section>'
             '<section class="c_section c_white x_ecoTeaser"><div class="s_wrap"><div class="x_ecoTeaserIn">'
             '<div><span class="c_eyebrow">Partner with us</span><h2 class="x_ecoTeaserTitle" data-reveal>Bring a challenge, a technology or a programme.</h2>'
             '<p class="c_lead" data-reveal>The Innovation Oasis team will find the right way to work together.</p></div>'
             f'<a class="s_btn s_btnPrimary x_bioBtn" href="ivp-enquire.html">Enquire {arrow_svg_a}</a></div></div></section>'
             '</div>')
+eco_body = re.sub(r'\sdata-reveal(="true")?', ' data-fade', eco_body)
 page("ecosystem.html", "Our Ecosystem · About IO · Innovation Oasis", eco_body)
 
 
@@ -279,8 +280,9 @@ def _tile(name, alt):
             f'<span class="tm_cap"><b>{esc(name)}</b><i>{esc(role_of(p_))}</i></span></a>')
 
 
-_mosaic = ('<div class="tm_mosaic" aria-label="The Innovation Oasis team">'
-           + "".join(f'<div class="tm_col" data-col="{k}"><div class="tm_colIn">{"".join(_tile(*t) for t in col)}</div></div>'
+OFF = [0, -70, -25, -100, -45]   # each column starts at its own height (percent of its width): a staggered, still mosaic
+_mosaic = ('<div class="tm_mosaic" data-fade aria-label="The Innovation Oasis team">'
+           + "".join(f'<div class="tm_col" data-col="{k}"><div class="tm_colIn" style="--o:{OFF[k]}%">{"".join(_tile(*t) for t in col)}</div></div>'
                      for k, col in enumerate(COLS)) + '</div>')
 t1 = ('<section class="tm_hero" id="tmHero"><div class="tm_heroText">'
       f'<nav class="x_crumbs" aria-label="Breadcrumb"><a href="{URL["about"]}">About IO</a><span aria-hidden="true">/</span><span aria-current="page">Team</span></nav>'
@@ -296,14 +298,12 @@ arrow_svg = re.search(r'<a href="#" class="s_btn s_btnPrimary s_btnSm">Enquire (
 _q = "If it works here, it can work anywhere."
 _qw = _q.split(" ")
 t2 = ('<section class="tm_leader" id="tmLeader"><div class="s_wrap tm_leaderIn">'
-      f'<a class="tm_leaderImg" href="team-{slugify(CEO)}.html" aria-label="{CEO}, profile"><div class="c_photo" data-img="true"><div class="c_photoInner" data-parallax="5">'
-      f'{_img(leader_src, alt=CEO + ", CEO, Innovation Oasis")}</div></div></a>'
-      '<div class="tm_leaderText"><span class="c_eyebrow">Leadership</span>'
-      '<blockquote class="tm_quote"><p aria-label="' + esc(_q) + '">'
-      + " ".join(f'<span class="tm_w{" tm_wLast" if k == len(_qw) - 1 else ""}" aria-hidden="true">{esc(w)}</span>' for k, w in enumerate(_qw))
-      + '</p></blockquote>'
+      f'<a class="tm_leaderImg" href="team-{slugify(CEO)}.html" aria-label="{CEO}, profile" data-fade><span class="tm_photo">'
+      f'{_img(leader_src, alt=CEO + ", CEO, Innovation Oasis")}</span></a>'
+      '<div class="tm_leaderText" data-fade><span class="c_eyebrow">Leadership</span>'
+      '<blockquote class="tm_quote"><p>If it works here, it can work <span class="tm_blue">anywhere.</span></p></blockquote>'
       '<p class="tm_who"><b>Dr. Shamal Mohammed</b><span>Chief Executive Officer</span></p>'
-      '<p class="tm_leaderLead" data-reveal>Joined Silal in 2021 to build its innovation and R&amp;D function from the ground up, '
+      '<p class="tm_leaderLead">Joined Silal in 2021 to build its innovation and R&amp;D function from the ground up, '
       'after more than two decades running agricultural research facilities in the UK.</p>'
       f'<a class="s_btn s_btnPrimary tm_btn" href="team-{slugify(CEO)}.html">Read Dr. Shamal&rsquo;s profile {arrow_svg}</a>'
       '</div></div></section>')
@@ -318,12 +318,12 @@ def _lead(k, n_, r_, t_):
             f'<span class="tm_leadTxt"><span class="tm_leadV">{t_}</span><b>{esc(n_)}</b><i>{esc(r_)}</i></span></a></li>')
 
 
-t3 = ('<section class="tm_org" id="tmOrg" data-on="false"><div class="tm_orgStick">'
+t3 = ('<section class="tm_org" id="tmOrg" data-mode="static"><div class="tm_orgStick">'
       '<svg class="tm_orgSvg" aria-hidden="true"><g class="tm_rungs"></g><g class="tm_strands"></g><g class="tm_heads"></g></svg>'
       '<div class="s_wrap tm_orgIn"><div class="tm_orgCopy"><span class="c_eyebrow c_eyebrowLight">Structure</span>'
       '<h2 class="tm_h2" data-reveal>One team, <span class="tm_lightBlue">four verticals.</span></h2>'
       '<p class="tm_orgLead" data-reveal>Each of Innovation Oasis&rsquo;s four verticals is led by a member of the leadership team.</p>'
-      '<ol class="tm_orgKey" aria-hidden="true">' + "".join(f'<li data-k="{k}"><span>{k + 1:02d}</span>{t_}</li>' for k, (n_, r_, t_) in enumerate(LEADS)) + '</ol></div>'
+      '</div>'
       '<div class="tm_orgDia">'
       f'<a class="tm_node" href="team-{slugify(CEO)}.html"><span class="tm_nodeImg">{_img(HS + ALT[CEO], alt="")}</span>'
       '<span class="tm_nodeTxt"><b>Dr. Shamal Mohammed</b><i>Chief Executive Officer</i></span></a>'
@@ -355,14 +355,16 @@ t4 = ('<section class="tm_teams" id="tmTeams"><div class="s_wrap">'
       '<div class="tm_tabs" role="group" aria-label="Show a team">'
       + "".join(f'<button type="button" data-f="{k}" aria-pressed="{"true" if k == "all" else "false"}">{lab}<sup>{c:02d}</sup></button>' for k, lab, c in _tabs)
       + '</div></div>'
-      '<ul class="tm_grid">' + "".join(_person(n_) for n_ in ORDER)
+      '<ul class="tm_grid" id="tmGrid">' + "".join(_person(n_) for n_ in ORDER)
       # a vertical's tab: its lead, and beside it what is known so far (never an empty "added from the CMS" box)
       + "".join(f'<li class="tm_vNote" data-v="{t_.lower()}" hidden><span class="c_eyebrow">{t_}</span>'
                 f'<p class="tm_vLed">Led by <a href="team-{_by[n_]["slug"]}.html">{n_}</a>, {esc(r_)}.</p>'
                 f'<p class="tm_vMore">More of the {t_} team will be listed here once placements are confirmed.</p></li>' for n_, r_, t_ in LEADS)
       + '</ul>'
       '</div></section>')
-team_body = f'<div class="c_page x_team tm_page">{t1}{t2}{t3}{t4}</div>{v3wrap(media)}'
+# enter reveals on inner pages: one quiet fade (data-fade), not line-splitting (data-reveal)
+_calm = lambda s: re.sub(r'\sdata-reveal(="true")?', ' data-fade', s)
+team_body = f'<div class="c_page x_team tm_page">{_calm(t1 + t2 + t3 + t4)}</div>{v3wrap(media)}'
 page(URL["team"], "Team &amp; CEO Message · Innovation Oasis", team_body, v3css)
 
 # the profile uses the press-release template (V3 detail): label, breadcrumb, title + lead, facts card in the aside,
