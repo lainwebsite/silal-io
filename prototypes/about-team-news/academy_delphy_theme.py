@@ -57,6 +57,8 @@ CARD = f"""<style>/* rev. 9 Nov: Delphy course cards = the iO card in Delphy's c
 #feedbody li[data-trk="Delphy"] .meta span::before{{background:{RED}}}
 #feedbody li[data-trk="Delphy"] .cardLink:hover .cardTitle,#feedbody li[data-trk="Delphy"] .bigLink:hover .bigTitle{{color:{RED}}}
 #feedbody li[data-trk="Delphy"] .cobrand .cobrandLogo{{height:20px}}
+#feedbody li[data-trk="Delphy"] .cardLink,#feedbody li[data-trk="Delphy"] .bigLink{{position:relative}}
+#feedbody li[data-trk="Delphy"] .cobrand{{position:absolute;top:14px;left:14px;z-index:2;margin:0;background:#fff}}
 </style>"""
 for name in ("io-academy.html",):
     f = B / name
