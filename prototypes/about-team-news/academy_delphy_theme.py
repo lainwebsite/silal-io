@@ -19,7 +19,8 @@ CSS = f"""<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
 {V} .cobrandBig{{display:inline-flex;align-items:center;gap:14px;border:0;background:none;padding:0;margin:0 0 20px;color:{RED};font-size:11px;letter-spacing:.12em;text-transform:uppercase}}
 {V} .cobrandBig>span,{V} .cobrandBig>i{{display:none}}
 {V} .cobrandBig .cobrandLogo{{height:46px;width:auto}}
-{V} .cobrandBig::after{{content:"We make growers better!";font-weight:700;letter-spacing:.08em;color:{RED};border-left:1px solid #d9c3cb;padding-left:14px}}
+{V} .cobrandBig::after{{content:"We make growers better!";display:flex;align-items:center;height:46px;line-height:1;font-weight:700;letter-spacing:.08em;color:{RED};border-left:1px solid #d9c3cb;padding-left:14px}}
+{V} p:has(>.cobrandBig){{margin:26px 0 26px}}
 {V} .facts{{background:#f6f3f4;border-radius:8px}}
 {V} .facts dt{{color:{RED};font-weight:700}}
 {V} .dHero{{position:relative;border-radius:0;margin-bottom:26px}}
@@ -31,15 +32,15 @@ CSS = f"""<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
 {V} a,{V} .textLink{{color:#1b96c8}}
 {V} .btn.btnPrimary{{background:{RED};border-color:{RED};color:#fff;border-radius:4px;font-weight:700}}
 {V} .btn.btnPrimary:hover{{background:#7f0d32;border-color:#7f0d32}}
-{V} .reqCard{{background:#fff;border:0;border-top:4px solid {RED};border-radius:8px;box-shadow:0 10px 30px -12px rgb(30 20 25/.28)}}
+{V} .reqCard{{background:#fff;border:0;border-top:4px solid {RED};border-radius:8px;border-left:1px solid #e6e1e4;border-right:1px solid #e6e1e4;border-bottom:1px solid #e6e1e4}}
 {V} .reqCard h3{{color:{RED}}}
 {V} .reqCard input,{V} .reqCard textarea{{background:#fff;border:1px solid #cfc8d0;border-radius:4px}}
 {V} .reqCard input:focus,{V} .reqCard textarea:focus{{outline:2px solid {RED}33;border-color:{RED}}}
 {V} .reqCard .big{{color:{SLATE}}}
 {V} .dClose{{background:{RED};color:#fff}}
 {V} .dClose h2,{V} .dClose p{{color:#fff}}
-{V} .dClose .btn.btnPrimary{{background:#fff;border-color:#fff;color:{RED}}}
-{V} .cardLink,{V} .bigLink{{box-shadow:0 8px 24px -14px rgb(30 20 25/.3)}}
+{V} .dClose .btn.btnPrimary{{background:#fff;border-color:#fff;color:{RED}!important}}
+{V} .dClose .btn.btnPrimary svg{{stroke:{RED}}}
 </style>"""
 for name in ("io-academy.html", "training-detail.html"):
     f = B / name
@@ -53,7 +54,7 @@ for name in ("io-academy.html", "training-detail.html"):
 # the library cards of the Delphy courses follow the cards of delphy.nl/en/services/trainings: picture on top with a black label on its
 # top-left corner ("English spoken", the language the course facts give), white card, soft shadow, 8px corners, semibold slate title
 CARD = f"""<style>/* rev. 9 Nov: Delphy course cards in Delphy's card style */
-#feedbody li[data-trk="Delphy"] .cardLink{{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 26px -12px rgb(30 20 25/.32);padding:0 0 18px;font-family:'Nunito Sans',Arial,sans-serif}}
+#feedbody li[data-trk="Delphy"] .cardLink{{background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e6e1e4;padding:0 0 18px;font-family:'Nunito Sans',Arial,sans-serif}}
 #feedbody li[data-trk="Delphy"] .cardImg{{position:relative;border-radius:0;margin:0}}
 #feedbody li[data-trk="Delphy"] .cardImg::after{{content:"English spoken";position:absolute;left:0;top:14px;background:#111;color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px}}
 #feedbody li[data-trk="Delphy"] .meta,#feedbody li[data-trk="Delphy"] .cardHead,#feedbody li[data-trk="Delphy"] .cardSub{{padding-inline:18px}}
