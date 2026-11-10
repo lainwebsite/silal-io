@@ -66,3 +66,20 @@ for name in ("io-academy.html",):
         if "Delphy course cards = the iO card in Delphy's colour" not in s:
             s = s.replace("<head>", "<head>" + CARD, 1) if "<head>" in s else CARD + s
             f.write_text(s, encoding="utf8"); print(name, "Delphy cards")
+
+# revision 9 November (client comment on the co-brand pill: "change iO to the logo, and remove the rectangle inside the pill"): the pill shows the
+# iO mark and the Delphy logo (no typed "iO", no little square before it)
+for name in ("io-academy.html", "training-detail.html"):
+    f = B / name
+    if not f.exists():
+        continue
+    s = f.read_text(encoding="utf8"); o = s
+    s = s.replace('<b class="cobrand"><span>iO</span>', '<b class="cobrand"><img class="cobrandIo" src="brand/io-mark.svg" alt="iO"/>')
+    s = s.replace('<b class="cobrand cobrandBig"><span>iO</span>', '<b class="cobrand cobrandBig"><img class="cobrandIo" src="brand/io-mark.svg" alt="iO"/>')
+    if "rev. 9 Nov: co-brand pill logo" not in s:
+        css = ("<style>/* rev. 9 Nov: co-brand pill logo */.cobrand span::before{display:none!important}"
+               ".cobrand .cobrandIo{height:17px;width:auto;display:block}"
+               f"{V} .cobrandBig>.cobrandIo{{display:none}}</style>")
+        s = s.replace("<head>", "<head>" + css, 1) if "<head>" in s else css + s
+    if s != o:
+        f.write_text(s, encoding="utf8"); print(name, "co-brand pill with logos")
