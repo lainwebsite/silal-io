@@ -65,3 +65,14 @@ for name in ("io-academy.html", "training-detail.html"):
         o = 'function mt(c,t){return t==="Delphy"?c.partner==="Delphy":(c.topic||c.track)===t}'
         if o in s:
             f.write_text(s.replace(o, "function mt(c,t){return c.track===t}"), encoding="utf8"); print(name, "counts per feed group")
+
+# revision 9 November, fifth comment ("sort the labels in the order of the list, no jumping back; drop Controlled Environment when it has no course"):
+# the track list = the tracks that have courses, in the order the feed shows them, Delphy last
+for name in ("io-academy.html", "training-detail.html"):
+    f = B / name
+    if f.exists():
+        s = f.read_text(encoding="utf8")
+        o = 'TR=TR.concat(["Delphy"]);'
+        n = 'TR=[].concat(C.map(function(c){return c.track}).filter(function(t,i,a){return a.indexOf(t)===i&&t!=="Delphy"}),["Delphy"]);'
+        if o in s:
+            f.write_text(s.replace(o, n), encoding="utf8"); print(name, "track list in feed order")
