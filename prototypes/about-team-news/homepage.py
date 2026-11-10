@@ -304,6 +304,8 @@ CSS += """
 /* site model: the real space */
 .c_mapImg { cursor: zoom-in; }
 /* rev. 9 Nov (client comment on "The Arid Advantage": "remove shadow"): no curtain shadow under the chapter, no dark fade on the photo */
+/* rev. 9 Nov (client comment on the hero): the list of slide names (01 Entrance ... 04 Controlled environment) is deleted; the slides still change by themselves */
+.c_heroAside { display: none !important; }
 /* rev. 9 Nov (client: "make the second section like this", with a reference image): white ground, a bigger two-line statement, the body text
    on the left margin in a column of about 38%, the blue line and the About iO button in a second column from the middle, then the stats */
 .c_section.c_intro { background: #fff !important; }
