@@ -9,6 +9,7 @@ A2 = '<h1 class="mhTitle srOnly">iO Academy</h1>'
 B = '" data-st><h2 class="mhSlideTitle">'
 B2 = '" data-st><p class="mhEye" aria-hidden="true">iO Academy</p><h2 class="mhSlideTitle">'
 CSS = ("<style>" + MARK +
+       ".mhSlide{align-content:start!important}"
        ".mhEye{margin:0 0 calc(12px - clamp(20px,3vh,32px));font-weight:300;font-size:var(--t-h3);line-height:1.2;color:rgb(255 255 255/.9)}"
        "</style>")
 s = open(P).read()
