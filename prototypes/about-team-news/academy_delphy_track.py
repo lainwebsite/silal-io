@@ -30,7 +30,7 @@ for name in ("io-academy.html", "training-detail.html"):
         s = s.replace("""+esc(t)+' <small>'+n+'</small></a></li>'""", """+(t==="Delphy"?'<img class="sideLogo" src="logos/delphy.svg" alt="Delphy"/>':esc(t))+' <small>'+n+'</small></a></li>'""")
     if "rev. 9 Nov: Delphy track row" not in s:
         css = ("<style>/* rev. 9 Nov: Delphy track row */.sideList a[data-spy=\"Delphy\"]{display:flex;align-items:center;gap:8px}"
-               ".sideLogo{height:38px;width:auto;display:block}"
+               ".sideLogo{height:42px;width:auto;display:block}"
                f".sideList a[data-spy=\"Delphy\"][aria-current] small{{color:{RED}}}</style>")
         s = s.replace("<head>", "<head>" + css, 1) if "<head>" in s else css + s
     if s != o:
