@@ -30,7 +30,7 @@ CSS = f"""<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
 {V} .chips.o li{{background:#fff;color:{SLATE};border:1px solid #cfc8d0;text-transform:none;letter-spacing:0;font-weight:600;font-size:13px;border-radius:4px}}
 {V} .faq summary{{font-weight:600}}
 {V} a,{V} .textLink{{color:#1b96c8}}
-{V} .btn.btnPrimary{{background:{RED};border-color:{RED};color:#fff;border-radius:4px;font-weight:700}}
+{V} .btn.btnPrimary{{background:{RED};border-color:{RED};color:#fff;border-radius:4px}}
 {V} .btn.btnPrimary:hover{{background:#7f0d32;border-color:#7f0d32}}
 {V} .reqCard{{background:#fff;border:0;border-top:4px solid {RED};border-radius:8px;border-left:1px solid #e6e1e4;border-right:1px solid #e6e1e4;border-bottom:1px solid #e6e1e4}}
 {V} .reqCard h3{{color:{RED}}}
