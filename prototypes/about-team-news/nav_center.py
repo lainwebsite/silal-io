@@ -25,7 +25,12 @@ for f in glob.glob(os.path.join(D, "*.html")):
     if "navItem" not in s and "s_navItem" not in s:
         continue
     s = STRIP.sub("", s)
-    s = s.replace("</head>", CSS + "</head>", 1) if "</head>" in s else CSS + s
+    if "</head>" in s:
+        s = s.replace("</head>", CSS + "</head>", 1)
+    elif re.search(r"<head[^>]*>", s):  # never put anything before <!doctype> (quirks mode)
+        s = re.sub(r"(<head[^>]*>)", lambda m: m.group(1) + CSS, s, count=1)
+    else:
+        s = CSS + s
     s = s.replace("</body>", JS + "</body>", 1) if "</body>" in s else s + JS
     open(f, "w").write(s)
     n += 1
