@@ -6,7 +6,7 @@ headings, Delphy red (#a51140) for accents and buttons, the blue + yellow band u
 (the CSS is scoped with :has() to the detail view that contains the co-brand logo). Idempotent.
 Run after academy_delphy_track.py:  python3 academy_delphy_theme.py <bundle dir>
 """
-import pathlib, sys
+import pathlib, re, sys
 B = pathlib.Path(sys.argv[1])
 RED, SLATE, BLUE, YELLOW = "#a51140", "#2e353e", "#29a7df", "#d9b800"
 V = "#view:has(.cobrandBig)"
@@ -51,22 +51,18 @@ for name in ("io-academy.html", "training-detail.html"):
         s = s.replace("<head>", "<head>" + CSS, 1) if "<head>" in s else CSS + s
         f.write_text(s, encoding="utf8"); print(name, "Delphy theme")
 
-# the library cards of the Delphy courses follow the cards of delphy.nl/en/services/trainings: picture on top with a black label on its
-# top-left corner ("English spoken", the language the course facts give), white card, soft shadow, 8px corners, semibold slate title
-CARD = f"""<style>/* rev. 9 Nov: Delphy course cards in Delphy's card style */
-#feedbody li[data-trk="Delphy"] .cardLink{{background:#fff;border-radius:8px;overflow:hidden;border:1px solid #e6e1e4;padding:0 0 18px;font-family:'Nunito Sans',Arial,sans-serif}}
-#feedbody li[data-trk="Delphy"] .cardImg{{position:relative;border-radius:0;margin:0}}
-#feedbody li[data-trk="Delphy"] .cardImg::after{{content:"English spoken";position:absolute;left:0;top:14px;background:#111;color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px}}
-#feedbody li[data-trk="Delphy"] .meta,#feedbody li[data-trk="Delphy"] .cardHead,#feedbody li[data-trk="Delphy"] .cardSub{{padding-inline:18px}}
-#feedbody li[data-trk="Delphy"] .meta{{margin-top:16px;color:#6b737c}}
-#feedbody li[data-trk="Delphy"] .cardTitle{{font-family:'Nunito Sans',Arial,sans-serif;font-weight:600;color:{SLATE};font-size:1.1875rem;line-height:1.25}}
-#feedbody li[data-trk="Delphy"] .cardSub{{color:#6b737c}}
-#feedbody li[data-trk="Delphy"] .cardLink:hover .cardTitle{{color:{RED}}}
+# the library cards of the Delphy courses keep the iO card (owner: "like this, only the colour and the Delphy icon"): the same picture, meta
+# row and title; the little square of the meta row, the title on hover and the co-brand badge (iO x Delphy logo) take Delphy red
+CARD = f"""<style>/* rev. 9 Nov: Delphy course cards = the iO card in Delphy's colour */
+#feedbody li[data-trk="Delphy"] .meta span::before{{background:{RED}}}
+#feedbody li[data-trk="Delphy"] .cardLink:hover .cardTitle,#feedbody li[data-trk="Delphy"] .bigLink:hover .bigTitle{{color:{RED}}}
+#feedbody li[data-trk="Delphy"] .cobrand .cobrandLogo{{height:20px}}
 </style>"""
 for name in ("io-academy.html",):
     f = B / name
     if f.exists():
         s = f.read_text(encoding="utf8")
-        if "Delphy course cards in Delphy's card style" not in s:
+        s = re.sub(r"<style>/\* rev\. 9 Nov: Delphy course cards in Delphy's card style \*/.*?</style>", "", s, flags=re.S)
+        if "Delphy course cards = the iO card in Delphy's colour" not in s:
             s = s.replace("<head>", "<head>" + CARD, 1) if "<head>" in s else CARD + s
             f.write_text(s, encoding="utf8"); print(name, "Delphy cards")
