@@ -49,3 +49,23 @@ for name in ("io-academy.html", "training-detail.html"):
     if "rev. 9 Nov: Delphy course detail in Delphy" not in s:
         s = s.replace("<head>", "<head>" + CSS, 1) if "<head>" in s else CSS + s
         f.write_text(s, encoding="utf8"); print(name, "Delphy theme")
+
+# the library cards of the Delphy courses follow the cards of delphy.nl/en/services/trainings: picture on top with a black label on its
+# top-left corner ("English spoken", the language the course facts give), white card, soft shadow, 8px corners, semibold slate title
+CARD = f"""<style>/* rev. 9 Nov: Delphy course cards in Delphy's card style */
+#feedbody li[data-trk="Delphy"] .cardLink{{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 26px -12px rgb(30 20 25/.32);padding:0 0 18px;font-family:'Nunito Sans',Arial,sans-serif}}
+#feedbody li[data-trk="Delphy"] .cardImg{{position:relative;border-radius:0;margin:0}}
+#feedbody li[data-trk="Delphy"] .cardImg::after{{content:"English spoken";position:absolute;left:0;top:14px;background:#111;color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px}}
+#feedbody li[data-trk="Delphy"] .meta,#feedbody li[data-trk="Delphy"] .cardHead,#feedbody li[data-trk="Delphy"] .cardSub{{padding-inline:18px}}
+#feedbody li[data-trk="Delphy"] .meta{{margin-top:16px;color:#6b737c}}
+#feedbody li[data-trk="Delphy"] .cardTitle{{font-family:'Nunito Sans',Arial,sans-serif;font-weight:600;color:{SLATE};font-size:1.1875rem;line-height:1.25}}
+#feedbody li[data-trk="Delphy"] .cardSub{{color:#6b737c}}
+#feedbody li[data-trk="Delphy"] .cardLink:hover .cardTitle{{color:{RED}}}
+</style>"""
+for name in ("io-academy.html",):
+    f = B / name
+    if f.exists():
+        s = f.read_text(encoding="utf8")
+        if "Delphy course cards in Delphy's card style" not in s:
+            s = s.replace("<head>", "<head>" + CARD, 1) if "<head>" in s else CARD + s
+            f.write_text(s, encoding="utf8"); print(name, "Delphy cards")
