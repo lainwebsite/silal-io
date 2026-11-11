@@ -75,6 +75,13 @@ rep('<p class="x_lead" data-reveal>Each route is designed', '<p class="x_lead" s
 rep('<p class="h_nowMore" data-reveal>', '<p class="h_nowMore" style="margin-top:48px" data-reveal>')
 rep('<section class="x_sec x_secTop0"><div class="s_wrap">\n    <div class="x_cbox">', '<section class="x_sec x_secTop0" style="padding-bottom:clamp(32px,4vw,64px)"><div class="s_wrap">\n    <div class="x_cbox">')
 
+# comment 11 Nov: the platforms intro is exactly as wide as the two cards below it (half of the panel row, minus half the 6px gap)
+rep(".hp_plIntro .x_lead { max-width: 46em; }",
+    ".hp_plIntro .x_lead { max-width: calc(50% - 3px); }\n@media (max-width: 1100px) { .hp_plIntro .x_lead { max-width: none; } }")
+
+# comment 11 Nov: shorter platform cards (was ~605px tall at 1440x900, now ~450px)
+rep(".h_panels { --h: min(clamp(460px, 68vh, 700px), 42vw);", ".h_panels { --h: min(clamp(400px, 50vh, 460px), 32vw);")
+
 if s != n0:
     open(P, "w", encoding="utf8").write(s)
 print("\n".join(R))
