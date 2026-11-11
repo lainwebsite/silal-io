@@ -6,7 +6,122 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Innovation &amp; Venture Platforms · Innovation Oasis</title>
 <link rel="icon" href="/full-site/brand/io-mark.svg" type="image/svg+xml">
-</head>
+<style>.x_iO{text-transform:none!important}.s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}.h_nowMore{margin-top:40px}
+</style><style id="navc">.navItem .dropdown,.navItem:nth-last-child(-n + 2) .dropdown,.s_navItem .s_dropdown,.s_navItem:nth-last-child(-n + 2) .s_dropdown{left:50%;right:auto;margin:0}</style><style>/* hub comments 11 Nov v5 */
+body .x_head { align-items: start; }
+body .x_head > * { align-self: start; }
+body .hp_jourHead { padding-bottom: 0; }
+body .hp_routeCols { row-gap: var(--blk); }
+body .hp_routeCols > .hp_route:first-child { grid-column: 1 / span 6; }
+body .hp_routeCols > .hp_route:last-child { grid-column: 7 / span 6; }
+body .hp_route .x_lead, body .hp_route .x_body { max-width: none; }
+@media (max-width: 900px) { body .hp_routeCols > .hp_route:first-child, body .hp_routeCols > .hp_route:last-child { grid-column: 1 / -1; } }
+@media (min-width: 901px) {
+  #xJour[data-on="true"] > .j_journey { justify-content: flex-start; padding: 88px 0 0; }
+  #xJour .j_jourFrames { height: max(280px, calc(100svh - 500px)); }
+}
+body .hp_svc { margin-top: 28px; padding-top: 28px; row-gap: 0; align-items: start; }
+body .hp_svcHead { grid-column: 1 / span 4; flex-direction: column; flex-wrap: nowrap; gap: 12px; }
+body .hp_svcHead .x_cap { max-width: 22em; font-size: var(--fs-body); line-height: 1.5; color: var(--charcoal); }
+body .hp_svc ul { grid-column: 5 / -1; grid-template-columns: 1fr 1fr; column-gap: var(--col-gap); row-gap: 0; border-bottom: 1px solid var(--line); }
+body .hp_svc li { padding: 13px 0; border-top: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.4; color: var(--charcoal); }
+@media (max-width: 1100px) {
+  body .hp_svcHead { grid-column: 1 / -1; margin-bottom: 14px; }
+  body .hp_svc ul { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) { body .hp_svc ul { grid-template-columns: 1fr; } }
+</style><style>/* hub comments 11 Nov c */
+body .hp_jr2 { padding-top: 0; }
+body .jr2_head { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: clamp(24px, 3vw, 40px); padding-top: 20px; border-top: 1px solid var(--io); }
+body .jr2_nav { display: flex; align-items: center; gap: 8px; }
+body .jr2_count { margin-right: 10px; font-size: var(--t-small); color: var(--grey); font-variant-numeric: tabular-nums; }
+body .jr2_arrow { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(89,84,83,.3); background: transparent; color: var(--charcoal); display: grid; place-items: center; cursor: pointer; transition: border-color .25s, background-color .25s, color .25s, opacity .25s; }
+body .jr2_arrow:hover:not(:disabled) { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
+body .jr2_arrow:disabled { opacity: .35; cursor: default; }
+body .jr2_railWrap { position: relative; margin-bottom: clamp(24px, 3vw, 40px); }
+body .jr2_railWrap::before { content: ""; position: absolute; left: 0; right: 0; top: 10px; height: 2px; background: #d6d6d6; }
+body .jr2_fill { position: absolute; left: 0; top: 10px; height: 2px; background: var(--io); width: calc(var(--c, 0) / 5 * (100% - 100% / 6) + 10px); max-width: 100%; transition: width .6s cubic-bezier(.22,.8,.2,1); }
+body .jr2_rail { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+body .jr2_rail button { position: relative; display: block; width: 100%; padding: 34px 12px 0 0; background: none; border: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+body .jr2_dot { position: absolute; top: 1px; left: 0; width: 20px; height: 20px; border-radius: 50%; background: #f0f0f0; border: 2px solid #c9c9c9; transition: background-color .3s, border-color .3s, box-shadow .3s; }
+body .jr2_rail li[data-state="done"] .jr2_dot { background: var(--io); border-color: var(--io); }
+body .jr2_rail li[data-state="on"] .jr2_dot { background: var(--io); border-color: var(--io); box-shadow: 0 0 0 6px rgba(41,167,223,.2); }
+body .jr2_n { display: block; font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; color: var(--grey); }
+body .jr2_t { display: block; margin-top: 4px; font-size: var(--fs-lead); font-weight: 300; line-height: 1.2; color: var(--grey); transition: color .3s; }
+body .jr2_rail li[data-state="done"] .jr2_t, body .jr2_rail li[data-state="on"] .jr2_t { color: var(--charcoal); }
+body .jr2_rail li[data-state="on"] .jr2_n { color: var(--io-ink); }
+body .jr2_rail button:hover .jr2_t { color: var(--io-ink); }
+body .jr2_rail button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+body .hp_tag { text-transform: uppercase; }
+body .jr2_panel { min-height: 300px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: start; background: #fff; padding: clamp(28px, 3.5vw, 56px); }
+body .jr2_panel[hidden] { display: none; }
+body .jr2_panel.in { animation: jr2in .35s ease-out; }
+@keyframes jr2in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+body .jr2_pl { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: var(--stack); }
+body .jr2_pr { grid-column: 7 / -1; display: flex; flex-direction: column; gap: 14px; }
+body .jr2_title { font-size: var(--t-h3); font-weight: 300; line-height: 1.15; letter-spacing: -.02em; }
+body .jr2_pr ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--col-gap); border-bottom: 1px solid var(--line); }
+body .jr2_pr li { border-top: 1px solid var(--line); padding: 11px 0; font-size: var(--t-small); line-height: 1.45; }
+@media (max-width: 900px) {
+  body .jr2_pl, body .jr2_pr { grid-column: 1 / -1; }
+  body .jr2_pl { margin-bottom: 24px; }
+  body .jr2_t { display: none; }
+  body .jr2_rail button { padding-top: 32px; }
+}
+@media (max-width: 560px) { body .jr2_pr ul { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { body .jr2_panel.in { animation: none; } body .jr2_fill { transition: none; } }
+
+/* readiness options (comparison only) */
+body .alt_tag { display: inline-flex; align-self: flex-start; margin-bottom: 28px; padding: 5px 12px; border: 1px dashed var(--io-ink); border-radius: 999px; font-size: var(--t-label); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--io-ink); background: #fff; }
+body .hp_alt { padding-top: 0; }
+body .alt_grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: center; }
+body .alt_left { grid-column: 1 / span 6; }
+body .alt_right { grid-column: 8 / -1; min-height: 360px; }
+body .alt_svg { width: 100%; height: auto; max-width: 560px; display: block; }
+body .alt_c { cursor: pointer; outline: none; }
+body .alt_c circle { fill: rgba(41,167,223,.08); stroke: #9fcfe6; stroke-width: 1.5; transition: fill .3s, stroke .3s; mix-blend-mode: multiply; }
+body .alt_c[aria-selected="true"] circle { fill: rgba(41,167,223,.24); stroke: var(--io); stroke-width: 2; }
+body .alt_c:focus-visible circle { stroke: var(--io-ink); stroke-width: 3; }
+body .alt_c text { font-family: inherit; font-size: 12px; letter-spacing: .1em; font-weight: 500; fill: var(--charcoal); pointer-events: none; }
+body .alt_c .alt_c2, body .alt_svg .alt_c2 { font-size: 11px; letter-spacing: .08em; font-weight: 400; fill: var(--grey); }
+body .alt_mid { font-family: inherit; font-size: 22px; font-weight: 500; fill: var(--io-ink); }
+body .alt_pane { display: flex; flex-direction: column; gap: 14px; }
+body .alt_pane[hidden] { display: none; }
+body .alt_lab { margin-top: 6px; }
+body .alt_pane ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--col-gap); border-bottom: 1px solid var(--line); }
+body .alt_pane li, body .alt_col li { border-top: 1px solid var(--line); padding: 11px 0; font-size: var(--t-small); line-height: 1.45; }
+body .alt_close { margin-top: clamp(28px, 3.5vw, 48px); max-width: 52em; }
+body .alt_cols { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--col-gap); padding-top: 22px; }
+body .alt_loop { position: absolute; left: 14px; right: 14px; top: 14px; height: 2px; background: var(--io); }
+body .alt_col { position: relative; display: flex; flex-direction: column; gap: 14px; padding-top: 34px; }
+body .alt_node { position: absolute; top: -16px; left: 0; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--io); color: #fff; font-size: 13px; font-weight: 500; }
+body .alt_col ul { border-bottom: 1px solid var(--line); }
+@media (max-width: 1100px) { body .alt_cols { grid-template-columns: 1fr 1fr; row-gap: 48px; } body .alt_loop { display: none; } }
+@media (max-width: 900px) { body .alt_left, body .alt_right { grid-column: 1 / -1; } body .alt_right { margin-top: 24px; min-height: 0; } }
+@media (max-width: 640px) { body .alt_cols { grid-template-columns: 1fr; } body .alt_pane ul { grid-template-columns: 1fr; } }
+</style><style>/* hub comments 11 Nov b7 */
+body .h_panels { --h: min(clamp(440px, 63.5vh, 572px), 40vw); --hw: var(--h); }
+body .h_panel:hover, body .h_panel:focus-visible { flex: 0 0 var(--hw); }
+body .hp_svc { border-top: 0; margin-top: 36px; padding-top: 0; }
+body .hp_svcHead { grid-column: 1 / span 5; }
+body .hp_svc ul { grid-column: 7 / -1; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+body .hp_svc li { border-top: 1px solid var(--line); padding: 11px 0; font-size: var(--t-small); line-height: 1.45; }
+@media (max-width: 1100px) { body .hp_svcHead, body .hp_svc ul { grid-column: 1 / -1; } }
+@media (max-width: 640px) { body .hp_svc ul { grid-template-columns: 1fr; } }
+body .hp_route .x_lead, body .hp_route .x_body { font-size: var(--fs-lead); line-height: 1.5; }
+body .hp_ready .x_h2, body #areasWrap .x_head .x_h2 { max-width: 13em; text-wrap: balance; }
+body .gTag span { max-width: 300px; text-wrap: balance; }
+body .hp_adjMain .x_cap { max-width: 83.3%; font-size: var(--fs-body); line-height: 1.7; }
+#xJour .j_jour { max-width: none; }
+@media (min-width: 901px) {
+  body .hp_caseImg { grid-column: 1 / span 6; }
+  body .hp_caseText { grid-column: 7 / span 6; }
+  #xJour .j_jourGrid { grid-template-columns: minmax(0, .95fr) minmax(0, 1fr); column-gap: clamp(32px, 3.5vw, 64px); }
+  #xJour .j_jourSteps { overflow-clip-margin: 0; }
+  #xJour .j_odo { display: none; }
+  #xJour .j_jourFrames { height: max(300px, calc(100svh - 360px)); }
+}
+</style></head>
 <body>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -382,7 +497,7 @@
   display: inline-flex;
 }
 
-/* on IO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
+/* on iO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
 .s_logoOnBlue {
   display: none;
   align-items: flex-start;
@@ -1403,7 +1518,7 @@ li[data-active="true"] .s_pillarArrow {
   flex: 0 1 auto;
 }
 
-/* connectors drawn like the helix rungs inside the IO mark: a line with a dot at each end */
+/* connectors drawn like the helix rungs inside the iO mark: a line with a dot at each end */
 .s_ecoCol i {
   flex: 1 1 auto;
   min-width: 40px;
@@ -4543,7 +4658,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .h_aside p { font-size: var(--fs-body); font-weight: 400; line-height: 1.7; max-width: none; }
 /* hub panels: at rest only number + title; hover opens one panel to a square and reveals its text.
    The title is locked to the width of a narrow panel, so it never re-wraps while panels resize. */
-.h_panels { --h: min(clamp(460px, 68vh, 700px), 42vw); --pad: 24px; container-type: inline-size; display: flex; gap: 6px; height: var(--h); }
+.h_panels { --h: min(clamp(400px, 50vh, 460px), 32vw); --pad: 24px; container-type: inline-size; display: flex; gap: 6px; height: var(--h); }
 .h_panel { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; color: #fff; background: #1f1f1e; display: block; transition: flex-grow 1s var(--slow), flex-basis 1s var(--slow); }
 .h_panel:hover, .h_panel:focus-visible { flex: 0 0 var(--h); }
 .h_panel .x_img { position: absolute; inset: 0; background: #1f1f1e; }
@@ -4857,7 +4972,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .i_kd li[data-s="now"] .tag { border-color: var(--io-ink); color: var(--io-ink); }
 .i_successSec { background: var(--io); overflow: hidden; }
 .i_successSec > .s_wrap { position: relative; }
-/* official mark file, untouched: on the IO blue its blue shapes vanish and only the white helix shows, cropped on the right */
+/* official mark file, untouched: on the iO blue its blue shapes vanish and only the white helix shows, cropped on the right */
 .i_successMark { position: absolute; right: -14%; top: 50%; height: 190%; translate: 0 -50%; opacity: .28; pointer-events: none; user-select: none; }
 @media (max-width: 900px) { .i_successMark { height: 130%; right: -40%; opacity: .22; } }
 /* 3D helix (homepage model) replaces the flat one once it has loaded */
@@ -5327,6 +5442,185 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .k_flow, .x_pill::before, .k_now::before { animation: none; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+
+/* =========================== OVERVIEW · rev9 redo (client doc "Innovation & Venture Platforms Overview Page Layout") ===========================
+   Original hub sections are untouched; the additions below only reuse the site's own components:
+   hero eyebrow (c_eyebrow), platform tags on the original photo panels, About's horizontal journey (x_jour),
+   a big statement, the Agricultural Challenges dial (k_funDial), the Accelerator's nine-areas explorer (n1),
+   f_tenets lists and the i_facts rules. */
+.x_iO { text-transform: none; }
+.hp_heroEye { margin-bottom: 18px; }
+.h_aside .hp_toPath { margin-top: 8px; }
+
+/* platforms intro: the hero's two text styles, one row above the panels */
+.hp_plIntro { margin-bottom: 32px; }
+.hp_plIntro .x_lead { max-width: calc(50% - 3px); }
+@media (max-width: 1100px) { .hp_plIntro .x_lead { max-width: none; } }
+/* panel tags: maturity (TRL) and, on the fourth panel, "Partner service"; the fourth photo carries a quiet iO-blue tint */
+.hp_tag { position: absolute; z-index: 3; top: var(--pad); left: var(--pad); display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.5); background: rgba(20,22,21,.18); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: var(--t-label); font-weight: 500; letter-spacing: .12em; color: #fff; white-space: nowrap; }
+.hp_tagSvc { border-color: transparent; background: var(--io-ink); text-transform: uppercase; letter-spacing: .14em; }
+ 
+
+/* ---------- 4 · journey: About's horizontal journey (same markup and rules), six stages ---------- */
+.hp_jourHead { padding-bottom: 0; }
+.hp_jourHead .x_head { margin-bottom: clamp(24px, 3vw, 40px); }
+.hp_jour { --sh: max(100svh, 680px); background: var(--light); }
+.hp_jour .j_journey { padding-block: clamp(24px, 3vw, 48px) var(--sec); }
+.x_jour[data-on="true"] { height: calc(var(--sh) + var(--len, 0px)); }
+.x_jour .j_jourStep { cursor: pointer; }
+.x_jour .j_journey, .x_jour .j_jour { overflow: clip; }
+.x_jour .j_jourFrames { order: -1; }
+.x_jour .j_jourStep:focus-visible { outline: 2px solid var(--io); outline-offset: 6px; }
+.x_jour .j_head { align-items: center; }
+.x_jNav { display: flex; align-items: center; gap: 12px; color: var(--grey); }
+.x_jYears { display: flex; flex-wrap: wrap; gap: 2px 18px; margin-right: 10px; }
+.x_jYear { font: inherit; font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); background: none; border: 0; border-bottom: 1px solid transparent; padding: 6px 0; cursor: pointer; transition: color .3s, border-color .3s; }
+.x_jYear:hover { color: var(--charcoal); }
+.x_jYear[aria-current="true"] { color: var(--io-ink); border-bottom-color: var(--io); }
+.x_jArrow { flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(89, 84, 83, .3); background: transparent; color: var(--charcoal); display: grid; place-items: center; cursor: pointer; transition: border-color .3s, color .3s, opacity .3s; }
+.x_jArrow:hover:not(:disabled) { border-color: var(--io); color: var(--io-ink); }
+.x_jArrow:disabled { opacity: .35; cursor: default; }
+.hp_jour .j_jourTitle { color: var(--charcoal); }
+.hp_jour .j_jourText { color: var(--grey-ink); }
+.hp_jour .j_jourStep::before { background: var(--light); }
+.hp_jour .j_jourStep[data-on]::before { background: var(--io); }
+/* typical activities: a short hairline list under each stage */
+.hp_acts { display: flex; flex-direction: column; gap: 8px; }
+.hp_acts .x_label { color: var(--io-ink); }
+.hp_acts ul { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: 18px; border-top: 1px solid var(--line); }
+.hp_acts li { padding: 7px 0; border-bottom: 1px solid var(--line); font-size: var(--t-small); line-height: 1.4; color: var(--charcoal); }
+.hp_jour .j_odo span:first-child { color: var(--charcoal); }
+@media (max-width: 999px) { .x_jour .j_head { flex-wrap: wrap; gap: 12px; } .x_jYears { display: none; } .hp_jour .j_jourStep { padding-block: 32px; gap: 14px; } .hp_jour .j_jourMobileImg { order: -1; } }
+@media (min-width: 1000px) {
+  .x_jour[data-on="true"] > .j_journey { position: sticky; top: 0; height: var(--sh); padding: calc(64px + 2.5vh) 0 2.5vh; display: flex; flex-direction: column; justify-content: center; overflow: clip; }
+  .x_jour .j_jour { width: 100%; min-width: 0; }
+  .x_jour .j_head { padding-top: 2vh; border-top: 1px solid var(--io); margin-bottom: 2.4vh; }
+  .x_jour .j_jourGrid { display: grid; grid-template-columns: min(444px, 31vw) minmax(0, 1fr); column-gap: clamp(40px, 4.5vw, 88px); align-items: start; }
+  .x_jour .j_jourStage { display: block; grid-column: 1; grid-row: 1; min-width: 0; }
+  .x_jour .j_jourStick { position: static; height: auto; width: 100%; gap: 1.4vh; }
+  .x_jour .j_jourFrames { flex: none; height: 36vh; aspect-ratio: auto; min-height: 0; }
+  .x_jour .j_jourMobileImg { display: none; }
+  .x_jour .j_jourTag { padding-block-start: 1.2vh; }
+  .x_jour .j_odo { font-size: clamp(44px, min(5.4vw, 7.4vh), 96px); }
+  .x_jour .j_jourSteps { grid-column: 2; grid-row: 1; padding: 0; margin: 0; overflow: clip; overflow-clip-margin: 16px; -webkit-mask-image: none; mask-image: none; }
+  .x_jour #jList { position: relative; width: max-content; will-change: transform; }
+  .x_jour .j_jourSteps ol { display: flex; margin: 0; padding: 0; list-style: none; }
+  .x_jour .j_jourLine { inset: 0 0 auto 0; width: auto; height: 1px; top: 0; }
+  .x_jour .j_jourLine > i { inset: -0.5px 0; transform: scaleX(0); transform-origin: left; }
+  .x_jour .j_jourStep { width: clamp(320px, 28vw, 520px); min-height: 0; padding: 4.4vh 48px 0 2px; justify-content: flex-start; gap: 1.5vh; opacity: .3; }
+  .x_jour .j_jourStep[data-on] { opacity: 1; }
+  .x_jour .j_jourStep::before { top: 0; inset-inline-start: 0; }
+  .x_jour .j_jourTitle { font-size: clamp(24px, min(2.4vw, 4.2vh), 44px); }
+  .x_jour .j_jourText { font-size: clamp(13px, 1.8vh, 16px); line-height: 1.6; max-width: 42ch; }
+  .x_jour .hp_acts li { padding: .6vh 0; }
+}
+
+/* ---------- two routes: one big statement; pointing at a route lights its half of the sentence ---------- */
+.hp_routeCols { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); }
+.hp_route { position: relative; padding-top: 24px; display: flex; flex-direction: column; gap: var(--stack); outline: none; }
+.hp_route:first-child { grid-column: 1 / span 5; } .hp_route:last-child { grid-column: 7 / span 6; }
+.hp_route::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--line); }
+.hp_route::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--io); transform: scaleX(var(--d, 0)); transform-origin: left; transition: transform 1.2s var(--slow) calc(var(--k) * .15s); }
+.hp_routeCols[data-in] .hp_route { --d: 1; }
+.hp_route > .x_label { color: var(--io-ink); }
+
+/* ---------- 5 · readiness: the challenge dial, four connected segments ---------- */
+@media (max-width: 900px) { .hp_rdText { min-height: 0; } .hp_dial { width: min(100%, 420px); } }
+
+/* ---------- 6 · nine areas: the Accelerator explorer; "Take a closer look" opens the example areas in the card ---------- */
+.hp_ex { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .7s var(--slow); }
+.hp_ex > div { overflow: hidden; display: flex; flex-direction: column; gap: 8px; opacity: 0; transition: opacity .4s; }
+.n1Stage.zoomed .hp_ex { grid-template-rows: 1fr; }
+.n1Stage.zoomed .hp_ex > div { opacity: 1; transition-delay: .2s; }
+.hp_ex .x_label { margin-top: 14px; color: var(--gd, var(--io-ink)); }
+.hp_ex ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; border-top: 1px solid var(--line); }
+.hp_ex li { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: var(--t-small); line-height: 1.4; color: var(--charcoal); }
+.a_n1 .n1Card { width: min(440px, calc(100% - 32px)); }
+.a_n1 .n1Stage:focus-visible { outline: 2px solid var(--io); outline-offset: 3px; }
+@media (max-width: 600px) { .hp_ex ul { grid-template-columns: 1fr; } .hp_ex li { padding: 4px 0; } }
+/* adjacent sectors, light: heading + copy left, the eight sectors as a hairline list right */
+.hp_adj { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); margin-top: var(--head); padding-top: var(--blk); border-top: 1px solid var(--line); align-items: start; }
+.hp_adjSide { grid-column: 1 / span 5; }
+.hp_adjH { font-size: var(--t-h3); font-weight: 300; line-height: 1.2; letter-spacing: -.02em; color: var(--charcoal); }
+.hp_adjMain { grid-column: 7 / span 6; }
+.hp_adjMain .f_tenets li { padding: 14px 0; color: var(--charcoal); }
+
+/* ---------- 7 · featured case study ---------- */
+.hp_case { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: center; }
+.hp_caseImg { grid-column: 1 / span 7; aspect-ratio: 4 / 3; display: block; }
+.hp_caseImg img { transition: scale 1.4s var(--slow); }
+.hp_case:hover .hp_caseImg img { scale: 1.04; }
+.hp_caseText { grid-column: 9 / span 4; }
+.hp_caseText > .x_label { color: var(--io-ink); }
+.hp_caseH { font-size: var(--t-h3); font-weight: 300; line-height: 1.2; letter-spacing: -.02em; color: var(--charcoal); text-wrap: balance; }
+.hp_caseFacts { grid-template-columns: 1fr 1fr; row-gap: 22px; margin: 8px 0 calc(var(--blk) - var(--stack)); }
+.hp_caseFacts dd { font-size: var(--fs-body); line-height: 1.5; }
+.hp_caseSec { padding-top: 0; }
+
+@media (max-width: 900px) {
+  .hp_route:first-child, .hp_route:last-child, .hp_adjSide, .hp_adjMain, .hp_caseImg, .hp_caseText { grid-column: 1 / -1; }
+  .hp_acts ul { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .hp_caseFacts { grid-template-columns: 1fr; } }
+.a_n1 .n1Ctl em { white-space: nowrap; }
+/* phones: the doc's longer card copy needs the panel to grow with its text (the tag sits above the title) */
+@media (max-width: 900px) {
+  .h_panels .h_panel { height: auto; min-height: 300px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .h_panels .h_panelIn { position: relative; left: auto; right: auto; bottom: auto; padding: 72px var(--pad) var(--pad); }
+}
+@media (max-width: 900px) { .h_panels .h_panel::before { height: 100%; background: linear-gradient(0deg, rgba(14,16,15,.72) 0%, rgba(14,16,15,.5) 55%, rgba(14,16,15,.12) 100%); } }
+
+/* round 5 · hero = one headline, one lead, one button; the panels (original component) show their copy at rest */
+.h_top { padding-bottom: 40px; }
+.h_aside .x_lead { font-size: var(--fs-lead); font-weight: 300; line-height: 1.55; }
+.h_go svg { transition: transform .3s var(--slow); }
+.h_panel:hover .h_go svg, .h_panel:focus-visible .h_go svg { transform: translateX(4px); }
+.h_panels .hp_partner::before { background: linear-gradient(0deg, rgba(26,111,150,.96) 0%, rgba(26,111,150,.84) 48%, rgba(26,111,150,0) 100%); }
+.hp_partner .x_img::after { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(60,167,210,.32); pointer-events: none; }
+.hp_routes .x_head { margin-bottom: var(--blk); }
+.hp_routes .x_h2 span { color: var(--io-ink); }
+@media (max-width: 1100px) {
+  .h_panels { display: grid; grid-template-columns: 1fr 1fr; height: auto; gap: 6px; }
+  .h_panels .h_panel { flex: none; height: auto; min-height: 400px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .h_panels .h_panelIn { position: relative; left: auto; right: auto; bottom: auto; min-height: 0; padding: 72px var(--pad) var(--pad); }
+  .h_panels .h_panel::before { height: 100%; background: linear-gradient(0deg, rgba(14,16,15,.9) 0%, rgba(14,16,15,.78) 55%, rgba(14,16,15,.15) 100%); }
+  .h_panels .hp_partner::before { background: linear-gradient(0deg, rgba(26,111,150,.96) 0%, rgba(26,111,150,.84) 55%, rgba(26,111,150,.1) 100%); }
+}
+@media (max-width: 700px) { .h_panels { grid-template-columns: 1fr; } }
+
+/* round 5 · journey: tidy the head join, all six stages readable, no duplicate stage names */
+.hp_jourHead { padding-bottom: clamp(24px, 3vw, 40px); }
+.hp_jourHead .x_head { margin-bottom: 0; }
+.j_odoStrip span::before { content: attr(data-d); }
+@media (min-width: 1000px) { .x_jour .j_jourStep:not([data-on]) { opacity: .55; } }
+
+/* round 5b · readiness = ONE connected figure (2x2 adjoining panels, shared hairlines, centre badge); the closing sentence is its join */
+.hp_dims { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); background: #fff; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.hp_cell { padding: clamp(24px, 2.8vw, 44px); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; }
+.hp_cell > .x_label { color: var(--io-ink); }
+.hp_cell > .x_lead { font-size: var(--fs-lead); padding-bottom: 6px; }
+.hp_rdList { display: flex; flex-direction: column; gap: 8px; }
+.hp_cell .f_tenets { grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: var(--col-gap); }
+.hp_cell .f_tenets li { padding: 8px 0; font-size: var(--t-small); line-height: 1.45; }
+.hp_cell .f_tenets li:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+.hp_badge { position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2; width: 104px; aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; text-align: center; line-height: 1.35; letter-spacing: .06em; color: var(--io-ink); background: #fff; border: 1px solid var(--io-ink); box-shadow: 0 0 0 6px #fff; }
+.hp_rdClose { margin-top: 0; max-width: none; padding: 20px clamp(24px, 2.8vw, 44px); background: #fff; border: 1px solid var(--line); border-top: 0; }
+@media (max-width: 900px) { .hp_dims { grid-template-columns: 1fr; } .hp_badge { display: none; } }
+@media (max-width: 600px) { .hp_cell .f_tenets { grid-template-columns: 1fr; } .hp_cell .f_tenets li:nth-last-child(2) { border-bottom: 0; } }
+/* partner capabilities strip under the four cards */
+.hp_svc { margin-top: 20px; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 10px; padding-top: 16px; border-top: 1px solid var(--line); }
+.hp_svcHead { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+.hp_svcHead .x_label { color: var(--io-ink); }
+.hp_svcHead .x_cap { margin-top: 0; }
+.hp_svc ul { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 4px; }
+.hp_svc li { font-size: var(--t-small); line-height: 1.5; color: var(--grey-ink); }
+@media (max-width: 900px) { .hp_svc ul { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .hp_svc ul { grid-template-columns: 1fr; } }
+/* selector: option 4 lists the partner capabilities in two short columns */
+.h_swap.h_list > span { columns: 2; column-gap: 16px; white-space: pre-line; }
+/* exact doc category names are long: the island tags wrap instead of overflowing the stage */
+.gTag span { white-space: normal; width: max-content; max-width: 200px; line-height: 1.35; border-radius: 16px; align-items: flex-start; }
+.gTag span::before { flex: none; margin-top: .35em; } .gTag em { white-space: nowrap; }
 </style>
 <script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
 
@@ -5334,14 +5628,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 <header class="s_header" id="hdr" data-scrolled="false" data-overlay="false">
   <div class="s_utility"><div class="s_wrap s_utilityInner">
     <span>Advancing Agri-food Systems</span>
-    <span class="s_utilityLinks"><a href="/full-site/news">Resources</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
+    <span class="s_utilityLinks"><a href="/full-site/news">News</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
   </div></div>
   <div class="s_headerMain"><div class="s_wrap s_headerInner">
     <a href="#" class="s_logo" aria-label="Innovation Oasis — home">
       <span class="s_logoFull"><span class="s_logoOnLight"><span style="display:inline-flex;align-items:flex-start;gap:9px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="110" height="50"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="39" width="53"></span></span><span class="s_logoOnDark"><span style="display:inline-flex;align-items:flex-start;gap:9px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed-reversed.svg" alt="Innovation Oasis — Part of Silal" width="110" height="50"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="39" width="53"></span></span></span>
       <span class="s_logoSmall"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="Innovation Oasis" height="36" width="49"></span>
     </a>
-    <nav class="s_nav" aria-label="Main"><ul><li class="s_navItem"><a href="/full-site/about" data-active="false">About IO</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/about" class="s_textLink">About IO <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Silal&#x27;s R&amp;D and venture engine.</p><ul><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Research &amp; Science</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Research &amp; Science <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Plant science, soil, water and food technology, tested in real arid conditions.</p><ul><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/ivp-hub" data-active="true" aria-current="page">Innovation &amp; Venture Platforms</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/ivp-hub" class="s_textLink">Innovation &amp; Venture Platforms <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Funding, incubation and acceleration for agri-food startups.</p><ul><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Technology &amp; Services</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Technology &amp; Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Sensing, desalination, analytics, trials and facilities for partners.</p><ul><li><a href="#">iO Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Centres of Excellence</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Centres of Excellence <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Specialist hubs for robotics, crop genomics and controlled-environment agriculture.</p><ul><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/io-academy" data-active="false">Talent &amp; Training</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/io-academy" class="s_textLink">Talent &amp; Training <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Building the next generation of agri-food talent in the UAE.</p><ul><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy">IO Academy Training</a></li></ul></div></div></li></ul></nav>
+    <nav class="s_nav" aria-label="Main"><ul><li class="s_navItem"><a href="/full-site/about" data-active="false">About&nbsp;<span class="x_iO">iO</span></a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/about" class="s_textLink">About&nbsp;<span class="x_iO">iO</span>&nbsp;<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Silal&#x27;s R&amp;D and venture engine.</p><ul><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="/full-site/ecosystem">Our Ecosystem</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Research &amp; Science</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Research &amp; Science <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Plant science, soil, water and food technology, tested in real arid conditions.</p><ul><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/ivp-hub" data-active="true" aria-current="page">Innovation &amp; Venture Platforms</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/ivp-hub" class="s_textLink">Innovation &amp; Venture Platforms <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Funding, incubation and acceleration for agri-food startups.</p><ul><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Technology &amp; Services</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Technology &amp; Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Sensing, desalination, analytics, trials and facilities for partners.</p><ul><li><a href="#"><span class="x_iO">iO</span>&nbsp;Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Centres of Excellence</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Centres of Excellence <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Specialist hubs for robotics, crop genomics and controlled-environment agriculture.</p><ul><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/io-academy" data-active="false">Talent &amp; Training</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/io-academy" class="s_textLink">Talent &amp; Training <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Building the next generation of agri-food talent in the UAE.</p><ul><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy"><span class="x_iO">iO</span>&nbsp;Academy Training</a></li></ul></div></div></li></ul></nav>
     <div class="s_headerActions">
       <a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary s_btnSm">Enquire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <button class="s_menuToggle" id="menuOpen" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -5351,7 +5645,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="s_wrap s_mobileNavTop"><span style="display:inline-flex;align-items:flex-start;gap:8px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="93" height="42"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="33" width="45"></span>
       <button class="s_menuClose" id="menuClose" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M7 7l14 14M21 7 7 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
-    <div class="s_wrap"><details class="s_mobileGroup"><summary><span class="s_mobileNum">01</span>About IO</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">02</span>Research &amp; Science</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">03</span>Innovation &amp; Venture Platforms</summary><ul><li><a href="/full-site/ivp-hub">Overview</a></li><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">04</span>Technology &amp; Services</summary><ul><li><a href="#">Overview</a></li><li><a href="#">iO Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">05</span>Centres of Excellence</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">06</span>Talent &amp; Training</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy">IO Academy Training</a></li></ul></details>
+    <div class="s_wrap"><details class="s_mobileGroup"><summary><span class="s_mobileNum">01</span>About&nbsp;<span class="x_iO">iO</span></summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="/full-site/ecosystem">Our Ecosystem</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">02</span>Research &amp; Science</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">03</span>Innovation &amp; Venture Platforms</summary><ul><li><a href="/full-site/ivp-hub">Overview</a></li><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">04</span>Technology &amp; Services</summary><ul><li><a href="#">Overview</a></li><li><a href="#"><span class="x_iO">iO</span>&nbsp;Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">05</span>Centres of Excellence</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">06</span>Talent &amp; Training</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy"><span class="x_iO">iO</span>&nbsp;Academy Training</a></li></ul></details>
       <div class="s_mobileFoot"><a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary">Enquire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#" class="s_btn s_btnGhostLight">Contact</a></div>
     </div>
   </div>
@@ -5362,67 +5656,167 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <section class="s_wrap h_top"><div class="h_topGrid">
     <nav class="x_crumb" aria-label="Breadcrumb"><a href="/full-site">Home</a><i></i><span>Innovation &amp; Venture Platforms</span></nav>
     <div class="h_title">
+      <span class="c_eyebrow hp_heroEye" data-reveal>Innovation &amp; Venture Platforms</span>
       <h1 data-reveal>From idea <span>to impact.</span></h1>
     </div>
     <div class="h_aside">
-      <p class="x_lead" data-reveal>Four ways in for the people solving food security, each tested on Innovation Oasis ground in Al Ain.</p>
-      <p class="x_body" data-reveal>Fund a farmer’s idea, incubate a lab prototype, accelerate a proven technology, or prove it in an open challenge. Start where your idea is today.</p>
+      <p class="x_lead" data-reveal><span class="x_iO">iO</span>&nbsp;connects ideas, research and proven technologies with the expertise, environments and commercial pathways needed to move them forward.</p>
+      <p class="x_body" data-reveal>Whether you are a farmer solving an operational problem, a researcher translating an emerging technology, a startup seeking real-world validation, or an organization addressing a strategic challenge,&nbsp;<span class="x_iO">iO</span>&nbsp;can help identify the right pathway.</p>
+      <a href="#pathway" class="s_btn s_btnPrimary s_btnSm hp_toPath" style="align-self:flex-start">Find your pathway <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div></section>
 
+  <div class="s_wrap hp_plIntro">
+    <p class="x_lead" data-reveal><span class="x_iO">iO</span>&nbsp;provides distinct pathways for farmer-led ideas, emerging research, deployment-ready technologies and partner-led innovation challenges.</p>
+    <p class="x_lead" style="margin-top:18px" data-reveal>Each route is designed for a different starting point, but all share the same objective: to generate the evidence, partnerships and implementation pathways required to create real-world impact.</p>
+  </div>
+
   <div class="s_wrap"><div class="h_panels" id="hubPanels">
-    <a class="h_panel" href="/full-site/ivp-farm-innovation-fund"><div class="x_img"><img src="/innovation-venture-platforms/img/hero_fif.webp" alt="Farmers on the Innovation Day field tour beside the greenhouses"></div><div class="h_panelIn"><h2>Farm Innovation Fund</h2><div class="h_more"><div><span class="h_for">For farmers</span><p>From farm need to field evidence. Up to AED 200,000 per pilot.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
-    <a class="h_panel" href="/full-site/ivp-incubation"><div class="x_img"><img src="/innovation-venture-platforms/img/hero_inc.webp" alt="Researchers with an agri-robotics prototype" loading="lazy"></div><div class="h_panelIn"><h2>Incubation</h2><div class="h_more"><div><span class="h_for">For researchers</span><p>From lab research to market-ready, with Khalifa University.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
-    <a class="h_panel" href="/full-site/ivp-accelerator"><div class="x_img"><img src="/innovation-venture-platforms/img/acc_green.webp" alt="Misting inside a high-tech greenhouse" loading="lazy"></div><div class="h_panelIn"><h2>Accelerator</h2><div class="h_more"><div><span class="h_for">For Series A+</span><p>Unbreakable Harvest. Stop pitching, start piloting.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
-    <a class="h_panel" href="/full-site/ivp-agricultural-challenges"><div class="x_img"><img src="/innovation-venture-platforms/img/chal_seed.webp" alt="A seedling growing in open-field soil" loading="lazy"></div><div class="h_panelIn"><h2>Agricultural Challenges</h2><div class="h_more"><div><span class="h_for">Open calls</span><p>Proven on Silal ground. Al Miyah winners in December 2026.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
+    <a class="h_panel" href="/full-site/ivp-farm-innovation-fund"><div class="x_img"><img src="/innovation-venture-platforms/img/hero_fif.webp" alt="Farmers on the Innovation Day field tour beside the greenhouses"></div><span class="hp_tag">TRL 1–8</span><div class="h_panelIn"><h2>Farm Innovation Fund</h2><div class="h_more"><div><span class="h_for">For UAE farmers &amp; entrepreneurs</span><p>Develop and test practical solutions to challenges identified on UAE farms, supported by funding, expert input and structured project delivery.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
+    <a class="h_panel" href="/full-site/ivp-incubation"><div class="x_img"><img src="/innovation-venture-platforms/img/hero_inc.webp" alt="Researchers with an agri-robotics prototype" loading="lazy"></div><span class="hp_tag">TRL 4–7</span><div class="h_panelIn"><h2>Incubation</h2><div class="h_more"><div><span class="h_for">For researchers and early-stage ventures</span><p>Translate promising research and early-stage technologies through focused technical, user, adoption and commercial validation.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
+    <a class="h_panel" href="/full-site/ivp-accelerator"><div class="x_img"><img src="/innovation-venture-platforms/img/acc_green.webp" alt="Misting inside a high-tech greenhouse" loading="lazy"></div><span class="hp_tag">TRL 7+</span><div class="h_panelIn"><h2>Acceleration</h2><div class="h_more"><div><span class="h_for">For later-stage ventures</span><p>Validate, localize and commercialize deployment-ready technologies in demanding operational conditions and build a route into the UAE and wider region.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
+    <a class="h_panel" href="/full-site/ivp-agricultural-challenges"><div class="x_img"><img src="/innovation-venture-platforms/img/chal_seed.webp" alt="A seedling growing in open-field soil" loading="lazy"></div><span class="hp_tag">Partner service</span><div class="h_panelIn"><h2>Agri-food Challenges</h2><div class="h_more"><div><span class="h_for">For government and industry partners</span><p>Design and support innovation programs that identify, evaluate, and test promising technologies against priority challenges across agrifood and related sectors such as water, energy and circularity.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
   </div></div>
 
-  <section class="x_sec"><div class="s_wrap h_finder">
+  
+
+  <section class="x_sec" id="pathway"><div class="s_wrap h_finder">
     <div class="h_finderQ">
-      <span class="c_eyebrow" data-reveal>Find your platform</span>
-      <h2 class="x_h2" data-reveal>Where is your idea today?</h2>
-      <div class="h_opts" role="radiogroup" aria-label="Where is your idea today?">
-        <button class="h_opt" role="radio" aria-checked="true" data-pick="fif">I farm in the UAE and have a problem to solve<svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="h_opt" role="radio" aria-checked="false" tabindex="-1" data-pick="inc">I have lab research or an early-stage prototype<svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="h_opt" role="radio" aria-checked="false" tabindex="-1" data-pick="acc">I have a proven technology with commercial traction<svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="h_opt" role="radio" aria-checked="false" tabindex="-1" data-pick="chal">I want to enter, or run, an open challenge<svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <span class="c_eyebrow" data-reveal>Find the right place to start</span>
+      <h2 class="x_h2" data-reveal>Find your pathway</h2>
+      <p class="x_body" data-reveal>Tell us where you are starting, and we will guide you to the most relevant&nbsp;<span class="x_iO">iO</span>&nbsp;platform or service.</p>
+      <div class="h_opts" role="radiogroup" aria-label="Find your pathway">
+        <button class="h_opt" role="radio" aria-checked="true" data-pick="fif">I am a farmer or farm manager with a problem or improvement idea.<svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="h_opt" role="radio" aria-checked="false" tabindex="-1" data-pick="inc">I have research, intellectual property or an early-stage prototype.<svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="h_opt" role="radio" aria-checked="false" tabindex="-1" data-pick="acc">I have a proven technology ready for operational validation.<svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="h_opt" role="radio" aria-checked="false" tabindex="-1" data-pick="chal">I represent an organization looking to solve a strategic challenge.<svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div>
     <article class="h_result" id="pickCard" aria-live="polite">
       <div class="x_img h_resultImgs"><img src="/innovation-venture-platforms/img/fif_workshop.webp" alt="" data-k="fif" style="clip-path:inset(0)"><img src="/innovation-venture-platforms/img/hero_inc.webp" alt="" data-k="inc" loading="lazy" style="clip-path:inset(0 0 100% 0)"><img src="/innovation-venture-platforms/img/acc_green.webp" alt="" data-k="acc" loading="lazy" style="clip-path:inset(0 0 100% 0)"><img src="/innovation-venture-platforms/img/hero_chal.webp" alt="" data-k="chal" loading="lazy" style="clip-path:inset(0 0 100% 0)"></div>
       <div class="h_resultBox"><div class="h_resultIn">
-        <span class="x_label">Your platform</span>
+        <span class="x_label">Best place to start</span>
         <h3 class="h_swap" id="pickName">Farm Innovation Fund</h3>
-        <dl><dt>Why</dt><dd class="h_swap" id="pickWhy">Ideas at any stage, from early concept to trial-ready. Farmers keep ownership.</dd><dt>Support</dt><dd class="h_swap" id="pickSup">Up to AED 200,000 per pilot, training and mentoring</dd><dt>Now</dt><dd class="h_swap" id="pickNow">Cohort 1 · 10 finalists</dd></dl>
+        <dl><dt>Why</dt><dd class="h_swap" id="pickWhy">Turn a practical farm challenge or improvement idea into a structured, real-world project while retaining ownership of your solution.</dd><dt>Support</dt><dd class="h_swap" id="pickSup">Potential non-dilutive funding, expert guidance, pilot design, technical support and access to relevant&nbsp;<span class="x_iO">iO</span>&nbsp;capabilities.</dd><dt id="pickWhenDt">When</dt><dd class="h_swap" id="pickNow">Current cycle closed. Next cycle anticipated in April 2027.</dd></dl>
         <a href="/full-site/ivp-farm-innovation-fund" id="pickGo" class="s_btn s_btnPrimary s_btnSm" style="align-self:flex-start"><span id="pickGoText">Go to Farm Innovation Fund</span> <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div></div>
     </article>
   </div></section>
 
-  <div class="h_ticker" aria-label="Platform facts"><div class="h_tickTrack">
-    <span><b>2,000+</b> farms reached by the Farm Innovation Fund <i></i></span><span><b>AED 10M</b> non-dilutive grant pool <i></i></span><span><b>846</b> teams from 54 countries in the Al Miyah Challenge <i></i></span><span><b>4</b> technologies in the first incubator cohort <i></i></span><span><b>34 ha</b> of greenhouses, labs and open-field plots <i></i></span>
-    <span aria-hidden="true"><b>2,000+</b> farms reached by the Farm Innovation Fund <i></i></span><span aria-hidden="true"><b>AED 10M</b> non-dilutive grant pool <i></i></span><span aria-hidden="true"><b>846</b> teams from 54 countries in the Al Miyah Challenge <i></i></span><span aria-hidden="true"><b>4</b> technologies in the first incubator cohort <i></i></span><span aria-hidden="true"><b>34 ha</b> of greenhouses, labs and open-field plots <i></i></span>
-  </div></div>
+  <!-- 4 · How iO moves innovation forward: the About journey (horizontal, pinned, scroll-led), six stages; evidence fills as you go -->
+  <section class="x_sec x_grey hp_jourHead"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Our approach</span><h2 class="x_h2" data-reveal>From problem to scale</h2></div><div class="x_stack"><p class="x_body" data-reveal>Every&nbsp;<span class="x_iO">iO</span>&nbsp;platform and program is supported by a structured process that reduces uncertainty and builds the evidence required for a clear next decision.</p><p class="x_body" data-reveal>The precise journey varies according to the maturity of the idea or technology, but the underlying method remains consistent.</p></div></div>
+  </div></section>
+  <div class="x_jour hp_jour" id="xJour" data-on="false"><section class="j_journey" id="journey" aria-label="How iO moves innovation forward">
+  <div class="j_jour">
+    <p class="j_head"><span class="c_eyebrow">How&nbsp;<span class="x_iO">iO</span>&nbsp;moves innovation forward</span><span class="x_jNav" role="group" aria-label="Jump to a stage"><span class="x_jYears"><button type="button" class="x_jYear">Define</button><button type="button" class="x_jYear">Source</button><button type="button" class="x_jYear">Evaluate</button><button type="button" class="x_jYear">Design</button><button type="button" class="x_jYear">Test</button><button type="button" class="x_jYear">Scale</button></span><button type="button" class="x_jArrow" data-dir="-1" aria-label="Previous stage"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M12 8H4M7.5 4.5L4 8l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="x_jArrow" data-dir="1" aria-label="Next stage"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 8h8M8.5 4.5L12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></p>
+    <div class="j_jourGrid">
+      <div class="j_jourStage"><div class="j_jourStick">
+        <p class="j_jourTag" aria-hidden="true"><span id="jTag">Stage</span><span id="jCount">01 / 06</span></p>
+        <p class="j_odo" aria-hidden="true"><span>0</span>
+          <span class="j_odoDigit"><span class="j_odoStrip" id="odoO"><span data-d="0"></span><span data-d="1"></span><span data-d="2"></span><span data-d="3"></span><span data-d="4"></span><span data-d="5"></span><span data-d="6"></span><span data-d="7"></span><span data-d="8"></span><span data-d="9"></span></span></span></p>
+        <div class="j_jourFrames"><div class="j_jourFrame" style="z-index:0" data-on><img src="/innovation-venture-platforms/img/fif_talk.webp" alt=""></div><div class="j_jourFrame" style="z-index:1"><img src="/innovation-venture-platforms/img/chal_pitch.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:2"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:3"><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:4"><img src="/photos/General%20MarCom%20Photos%20(1)/SAM_9200.jpg" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:5"><img src="/full-site/img/card_plots.jpg" alt="" loading=lazy></div></div>
+      </div></div>
+      <div class="j_jourSteps" id="jSteps"><div id="jList"><i class="j_jourLine" aria-hidden="true"><i id="jLine"></i></i><ol>
+        <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Define" data-on><p class="j_jourWhen">Step 1</p><h3 class="j_jourTitle">Define the problem</h3><p class="j_jourText">Establish the operational need, intended user, current baseline and strategic importance of the challenge.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Stakeholder discovery</li><li>User and customer interviews</li><li>Baseline definition</li><li>Constraint mapping</li><li>Success-measure development</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/innovation-venture-platforms/img/fif_talk.webp" alt="" loading="lazy"></div></li>
+        <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Source"><p class="j_jourWhen">Step 2</p><h3 class="j_jourTitle">Source the right ideas and technologies</h3><p class="j_jourText">Identify relevant ideas, research, technical teams and market-ready technologies through targeted outreach and ecosystem engagement.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Technology landscaping</li><li>Startup sourcing</li><li>Research and university engagement</li><li>Open calls</li><li>Farmer engagement</li><li>Partner referrals</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/innovation-venture-platforms/img/chal_pitch.webp" alt="" loading="lazy"></div></li>
+        <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Evaluate"><p class="j_jourWhen">Step 3</p><h3 class="j_jourTitle">Evaluate the opportunity</h3><p class="j_jourText">Assess strategic relevance, technical potential, differentiation, commercial viability, operational feasibility, adoption barriers and team capability.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Scientific and technical review</li><li>Market assessment</li><li>Prior-art and IP review</li><li>Commercial analysis</li><li>Team assessment</li><li>Adoption-risk review</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="" loading="lazy"></div></li>
+        <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Design"><p class="j_jourWhen">Step 4</p><h3 class="j_jourTitle">Design the validation pathway</h3><p class="j_jourText">Determine the most important uncertainties and develop the smallest credible experiment, proof of concept or pilot required to resolve them.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Experimental design</li><li>Pilot scoping</li><li>Protocol development</li><li>Site selection</li><li>KPI definition</li><li>Go, no-go and pivot criteria</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="" loading="lazy"></div></li>
+        <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Test"><p class="j_jourWhen">Step 5</p><h3 class="j_jourTitle">Test in real conditions</h3><p class="j_jourText">Generate reliable evidence in environments that reflect how the technology or solution will ultimately be used.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Laboratory analysis</li><li>Greenhouse or nethouse trials</li><li>Field validation</li><li>User testing</li><li>Operational deployment</li><li>Performance and economic measurement</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/photos/General%20MarCom%20Photos%20(1)/SAM_9200.jpg" alt="" loading="lazy"></div></li>
+        <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Scale"><p class="j_jourWhen">Step 6</p><h3 class="j_jourTitle">Build the pathway to adoption and scale</h3><p class="j_jourText">Use the evidence generated to define the most appropriate next step.</p><div class="hp_acts"><span class="x_label">Potential pathways</span><ul><li>Venture clienting</li><li>Licensing</li><li>Co-development</li><li>Strategic partnership</li><li>Investment</li><li>Joint venture</li><li>Venture creation</li><li>Further research, validation or replications</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/full-site/img/card_plots.jpg" alt="" loading="lazy"></div></li>
+      </ol></div></div>
+    </div>
+  </div>
+  </section></div>
+
+  <!-- Two routes to innovation: one big statement, two routes under it -->
+  <section class="x_sec hp_routes"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Two routes to innovation</span><h2 class="x_h2" data-reveal>Localize the best. <span>Build what is missing.</span></h2></div></div>
+    <div class="hp_routeCols" data-inview>
+      <div class="hp_route" style="--k:0"><span class="x_label">Localize</span><p class="x_lead">We identify strong solutions from the UAE and around the world, bring them into relevant operating environments and adapt them to local conditions and market requirements.</p><p class="x_body">This path is appropriate when a solution already has strong problem-solution fit and localization provides a faster or more efficient route than developing a new solution.</p></div>
+      <div class="hp_route" style="--k:1"><span class="x_label">Build</span><p class="x_lead">When the market does not offer an adequate solution, we work with researchers, technical teams and partners to develop and validate new approaches.</p><p class="x_body">This path is appropriate where there is a demonstrated market or capability gap, the right team is available and the potential value justifies the higher time, cost and technical risk.</p></div>
+    </div>
+  </div></section>
+
+  <!-- 5 · Readiness model: four dimensions side by side in the page's column pattern (hairline rule, name, key question, "iO considers" list), all visible -->
+  <section class="x_sec x_grey hp_ready"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>What we evaluate</span><h2 class="x_h2" data-reveal>Technology readiness is only part of the picture</h2></div><div class="x_stack"><p class="x_body" data-reveal>A solution can perform successfully in a controlled environment and still fail to achieve adoption.</p><p class="x_body" data-reveal><span class="x_iO">iO</span>&nbsp;evaluates opportunities across four connected dimensions to understand whether a solution is technically credible, commercially relevant, operationally feasible and ready for implementation.</p></div></div>
+    <div class="hp_dims">
+      <div class="hp_cell"><span class="x_label">Technical readiness</span><p class="x_lead">Can the solution perform reliably in the intended environment?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Core functionality</li><li>Supporting scientific evidence</li><li>Reliability and repeatability</li><li>Performance against the baseline</li><li>Suitability for local environmental conditions</li><li>Safety and technical risks</li></ul></div></div>
+      <div class="hp_cell"><span class="x_label">Commercial readiness</span><p class="x_lead">Does the solution address a meaningful need and offer a credible path to economic value?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Customer and user need</li><li>Value proposition</li><li>Market potential</li><li>Competitive differentiation</li><li>Business model</li><li>Cost and return on investment</li><li>Willingness to pay</li></ul></div></div>
+      <div class="hp_cell"><span class="x_label">Operational readiness</span><p class="x_lead">Can the solution be deployed, operated and supported at the required scale?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Manufacturing and supply</li><li>Installation and integration</li><li>Infrastructure requirements</li><li>Day-to-day operation</li><li>Maintenance and after-sales support</li><li>Skills and training requirements</li><li>Ability to scale delivery</li></ul></div></div>
+      <div class="hp_cell"><span class="x_label">Adoption readiness</span><p class="x_lead">Can the solution overcome the practical barriers to implementation?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Regulation and permitting</li><li>User acceptance</li><li>Procurement processes</li><li>Data and system integration</li><li>Policy alignment</li><li>Infrastructure dependencies</li><li>Organizational change requirements</li></ul></div></div>
+      <span class="hp_badge x_label" aria-hidden="false"><span class="x_iO">iO</span>&nbsp;readiness</span>
+    </div>
+    <p class="x_body hp_rdClose" data-reveal>By assessing all four dimensions together,&nbsp;<span class="x_iO">iO</span>&nbsp;can identify the most important barriers, design more relevant validation activities and help partners make better-informed investment and implementation decisions.</p>
+  </div></section>
+
+  <!-- 6 · Technology areas: the Accelerator's nine-areas explorer, moved here (comment #01), with literal farm scenes -->
+  <section class="x_sec"><div class="s_wrap a_n1" id="areasWrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Our focus areas</span><h2 class="x_h2" data-reveal>Technologies shaping the future of agrifood</h2></div><div class="x_stack"><p class="x_body" data-reveal><span class="x_iO">iO</span>&nbsp;works across the agrifood value chain, from production and resource efficiency to supply-chain intelligence, waste prevention and circularity.</p><p class="x_body" data-reveal>Our areas of focus evolve in response to strategic priorities, partner needs and emerging technologies. We also consider innovations from adjacent industries where they can create meaningful value for agriculture, food production or resource resilience.</p></div></div>
+  <div class="n1Stage" id="n1Stage" tabindex="0" aria-label="Nine technology areas. Use the arrow keys to move between areas.">
+    <div class="n1Hots" id="n1Hots"></div>
+    <div class="n1Groups" id="n1Groups" aria-hidden="true"><span data-on>Production</span><span>Waste and Circularity</span><span>Supply-Chain Visibility and Intelligence</span></div>
+    <div class="n1Card" id="n1Card" aria-live="polite">
+      <small class="mask"><span id="n1Group">Production</span></small>
+      <h3 class="mask"><span id="n1Title">Soil and plant health</span></h3>
+      <p class="mask"><span id="n1Text">Solutions that improve soil quality, nutrient and water retention, crop health, stress tolerance and productive capacity.</span></p>
+      <div class="hp_ex"><div><span class="x_label">Example areas</span><ul id="n1Ex"></ul></div></div>
+      <div class="n1Ctl"><button class="s_btn s_btnPrimary s_btnSm x_round" id="n1Prev" type="button" aria-label="Previous area"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="s_btn s_btnPrimary s_btnSm x_round" id="n1Next" type="button" aria-label="Next area"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="s_btn s_btnPrimary s_btnSm" id="n1Zoom" type="button" aria-expanded="false">Take a closer look</button><em id="n1Count">1 / 9</em></div>
+    </div>
+      </div>
+    <div class="a_chain" id="chain">
+      <div class="a_stops" role="tablist" aria-label="Nine technology areas"><div class="a_line" aria-hidden="true"><i id="chainFill"></i></div><button class="a_stop" role="tab" type="button" aria-selected="true" tabindex="0"><b aria-hidden="true"></b><span>Soil &amp; plant health</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Precision agriculture</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Water &amp; energy</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Controlled environment</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Crop innovation</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Waste prevention</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Rescue &amp; reuse</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Supply-chain data</span></button><button class="a_stop" role="tab" type="button" aria-selected="false" tabindex="-1"><b aria-hidden="true"></b><span>Applications &amp; analytics</span></button></div>
+      <div class="a_groupsBar" aria-hidden="true"><div style="grid-column:1 / span 5" data-on>Production</div><div style="grid-column:6 / span 2">Waste and Circularity</div><div style="grid-column:8 / span 2">Supply-Chain Visibility and Intelligence</div></div>
+      <div class="a_detail" role="tabpanel" aria-live="polite"><div class="a_detailHead"><small id="areaGroup">Production</small><h3 id="areaTitle">Soil and plant health</h3></div><p class="a_detailText" id="areaText">Solutions that improve soil quality, nutrient and water retention, crop health, stress tolerance and productive capacity.</p></div>
+    </div>
+    <div class="hp_adj">
+      <div class="hp_adjSide x_stack"><h3 class="hp_adjH" data-reveal>Agrifood specialization with adjacent-sector reach</h3><p class="x_body" data-reveal><span class="x_iO">iO</span>’s core focus is agrifood innovation. However, many of agriculture’s most important challenges intersect with other sectors. We therefore consider adjacent technologies where there is a clear application to:</p></div>
+      <div class="hp_adjMain"><ul class="f_tenets"><li><span>Agricultural water and wastewater</span></li><li><span>Energy use and renewable integration</span></li><li><span>Advanced materials</span></li><li><span>Environmental monitoring</span></li><li><span>Logistics and mobility</span></li><li><span>Climate adaptation</span></li><li><span>Resource recovery</span></li><li><span>Circular production systems</span></li></ul>
+      <p class="x_cap">This enables&nbsp;<span class="x_iO">iO</span>&nbsp;to bring relevant innovations from other industries into agricultural environments and validate whether they can create meaningful operational or commercial value.</p></div>
+    </div>
+  </div></section>
+
+  <!-- 7 · Featured case study: a feature block in the IVP pages' language (photo with corners, label, facts with drawn blue rules) -->
+  <section class="x_sec x_secTop0 hp_caseSec"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Featured work</span><h2 class="x_h2" data-reveal>Innovation in action</h2></div></div>
+    <article class="hp_case">
+      <a class="x_img x_corners hp_caseImg" data-img href="/full-site/ivp-agricultural-challenges" tabindex="-1" aria-hidden="true"><img src="/full-site/img/j1.jpg" alt="" loading="lazy"></a>
+      <div class="hp_caseText x_stack">
+        <span class="x_label">Agricultural Challenges</span>
+        <h3 class="hp_caseH" data-reveal>Validating water technologies under real-world conditions</h3>
+        <p class="x_body" data-reveal><span class="x_iO">iO</span>&nbsp;supported the evaluation of finalist technologies for the Al Miyah Challenge by designing and delivering real-world validation activities.</p>
+        <p class="x_body" data-reveal>The work generated technical and operational evidence to help compare technologies and inform the final winner evaluation and selection process.</p>
+        <dl class="i_facts hp_caseFacts" data-inview>
+          <div style="--k:0"><dt class="x_label">Partner</dt><dd>Mohamed bin Zayed Water Initiative</dd></div>
+          <div style="--k:1"><dt class="x_label"><span class="x_iO">iO</span>&nbsp;role</dt><dd>Real-world technology validation</dd></div>
+          <div style="--k:2"><dt class="x_label">Environment</dt><dd>Relevant agricultural operating conditions</dd></div>
+          <div style="--k:3"><dt class="x_label">Outcome</dt><dd>Evidence to support finalist evaluation and selection</dd></div>
+        </dl>
+        <a href="/full-site/ivp-agricultural-challenges" class="s_btn s_btnPrimary s_btnSm" style="align-self:flex-start">Read the case study <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </article>
+  </div></section>
 
   <section class="x_sec"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>On the ground now</span><h2 class="x_h2" data-reveal>Latest from the platforms.</h2></div></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>On the ground now</span><h2 class="x_h2" data-reveal>Latest from Innovation &amp; Ventures</h2></div><p class="x_body" data-reveal>Follow current calls, cohort milestones, validation projects, partner programs and results from across&nbsp;<span class="x_iO">iO</span>’s innovation portfolio.</p></div>
     <div class="h_now">
-      <a class="h_card" href="/full-site/ivp-farm-innovation-fund"><div class="x_img x_corners" data-img><img src="/innovation-venture-platforms/img/fif_group.webp" alt="Innovation Day participants in the Innovation Oasis atrium" loading="lazy"></div><span class="h_cardMeta">26 Jul 2026 · Farm Innovation Fund</span><h3><span>Innovation Day: 38 farmers sharpen their pilot proposals</span></h3><p>A facility tour, three workshops in Arabic and direct mentoring at Innovation Oasis.</p></a>
-      <a class="h_card" href="/full-site/ivp-agricultural-challenges"><div class="x_img x_corners" data-img><img src="/innovation-venture-platforms/img/chal_seed.webp" alt="A seedling in dry soil" loading="lazy"></div><span class="h_cardMeta">Testing now · Agricultural Challenges</span><h3><span>Six Al Miyah finalists under test at Innovation Oasis</span></h3><p>Five field pilots and a geothermal-cooled greenhouse, ahead of the December 2026 award.</p></a>
-      <a class="h_card" href="/full-site/ivp-accelerator"><div class="x_img x_corners" data-img><img src="/innovation-venture-platforms/img/hero_acc.webp" alt="Greenhouses in the desert haze" loading="lazy"></div><span class="h_cardMeta">Nov 2026 · Accelerator</span><h3><span>Unbreakable Harvest welcomes its first cohort</span></h3><p>Series A+ startups begin 3 to 5 month pilots with Silal’s business units.</p></a>
+      <a class="h_card" href="/full-site/ivp-farm-innovation-fund"><div class="x_img x_corners" data-img><img src="/innovation-venture-platforms/img/fif_group.webp" alt="Innovation Day participants in the Innovation Oasis atrium" loading="lazy"></div><span class="h_cardMeta">Workshops and events · Farm Innovation Fund · 26 Jul 2026</span><h3><span>Innovation Day: 38 farmers sharpen their pilot proposals</span></h3><p>A facility tour, three workshops in Arabic and direct mentoring at Innovation Oasis.</p></a>
+      <a class="h_card" href="/full-site/ivp-agricultural-challenges"><div class="x_img x_corners" data-img><img src="/innovation-venture-platforms/img/chal_seed.webp" alt="A seedling in dry soil" loading="lazy"></div><span class="h_cardMeta">Validation updates · Agri-food Challenges · Testing now</span><h3><span>Six Al Miyah finalists under test at Innovation Oasis</span></h3><p>Five field pilots and a geothermal-cooled greenhouse, ahead of the December 2026 award.</p></a>
+      <a class="h_card" href="/full-site/ivp-accelerator"><div class="x_img x_corners" data-img><img src="/innovation-venture-platforms/img/hero_acc.webp" alt="Greenhouses in the desert haze" loading="lazy"></div><span class="h_cardMeta">Cohort announcements · Acceleration · Nov 2026</span><h3><span>Acceleration welcomes its first cohort</span></h3><p>Series A+ startups begin 3 to 5 month pilots with Silal’s business units.</p></a>
     </div>
+    <p class="h_nowMore" style="margin-top:48px" data-reveal><a class="s_btn s_btnGhost s_btnSm" href="/full-site/news">View all in the Content Library <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
   </div></section>
 
-  <section class="x_sec x_secTop0"><div class="s_wrap">
+  <section class="x_sec x_secTop0" style="padding-bottom:clamp(32px,4vw,64px)"><div class="s_wrap">
     <div class="x_cbox">
       <img class="x_cboxMark" src="/innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true">
-      <div class="x_cboxMain"><span class="x_label">Enquire</span><h2 data-reveal>Not sure which platform fits? Tell us where you are.</h2><p data-reveal>The Innovation Oasis team will point you to the right platform, or to the next call that suits you.</p></div>
-      <ul class="x_cboxList"><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund<span>For farmers</span></a></li><li><a href="/full-site/ivp-incubation">Incubation<span>For researchers</span></a></li><li><a href="/full-site/ivp-accelerator">Accelerator<span>For Series A+</span></a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges<span>Open calls</span></a></li></ul>
-      <a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary s_btnSm">Enquire <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="x_cboxMain"><h2 data-reveal>Not sure where to start?</h2><p data-reveal>Tell us about your idea, technology or challenge. The&nbsp;<span class="x_iO">iO</span>&nbsp;team will identify the most relevant platform, service or validation pathway.</p></div>
+      
+      <a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary s_btnSm">Start an enquiry <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div></section>
-  <a class="x_next" href="/full-site/ivp-farm-innovation-fund"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/fif_tour.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Start with · For farmers</span><strong>Farm Innovation Fund</strong><p>From farm need to field evidence. Up to AED 200,000 per pilot.</p><span class="s_btn s_btnPrimary s_btnSm">Go to Farm Innovation Fund <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
-</div>
+  </div>
 
 </div></main>
 <footer class="s_footer">
@@ -5430,7 +5824,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="s_footerCols">
       <div class="s_footerNews"><h4 data-reveal>Stay close to the work</h4><p data-reveal>Research, programmes and calls for innovators, a few times a year.</p>
         <form class="s_newsletter" id="nl" aria-label="Newsletter"><input type="email" id="nlEmail" placeholder="Email address" aria-label="Email address"><button type="submit" class="s_btn s_btnPrimary s_btnSm" aria-label="Subscribe"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form></div>
-      <div><h4 data-reveal>Explore</h4><ul><li><a href="/full-site/about"><span data-reveal>About IO</span></a></li><li><a href="#"><span data-reveal>Research &amp; Science</span></a></li><li><a href="/full-site/ivp-hub"><span data-reveal>Innovation &amp; Venture Platforms</span></a></li><li><a href="#"><span data-reveal>Technology &amp; Services</span></a></li><li><a href="#"><span data-reveal>Centres of Excellence</span></a></li><li><a href="/full-site/io-academy"><span data-reveal>Talent &amp; Training</span></a></li></ul></div>
+      <div><h4 data-reveal>Explore</h4><ul><li><a href="/full-site/about"><span data-reveal>About&nbsp;<span class="x_iO">iO</span></span></a></li><li><a href="#"><span data-reveal>Research &amp; Science</span></a></li><li><a href="/full-site/ivp-hub"><span data-reveal>Innovation &amp; Venture Platforms</span></a></li><li><a href="#"><span data-reveal>Technology &amp; Services</span></a></li><li><a href="#"><span data-reveal>Centres of Excellence</span></a></li><li><a href="/full-site/io-academy"><span data-reveal>Talent &amp; Training</span></a></li></ul></div>
       <div><h4 data-reveal>Resources</h4><ul><li><a href="/full-site/news"><span data-reveal>Content Library</span></a></li><li><a href="#"><span data-reveal>FAQs</span></a></li></ul>
         <h4 style="margin-top:32px" data-reveal>Connect</h4><ul><li><a href="#"><span data-reveal>Contact</span></a></li><li><a href="/full-site/ivp-enquire"><span data-reveal>Enquire</span></a></li><li><a href="#"><span data-reveal>LinkedIn</span><svg class="s_extIcon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect width="16" height="16" rx="2" fill="#7f8284"/><path d="M5 11l6-6M6.5 5H11v4.5" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></div>
     </div>
@@ -5450,8 +5844,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <a href="/full-site/ivp-hub" data-route="overview" class="x_dockHome" title="Innovation &amp; Venture Platforms"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="Overview"></a><span class="x_dockSep" aria-hidden="true"></span>
   <a href="/full-site/ivp-farm-innovation-fund" data-route="farm-innovation-fund"><span><i class="x_long">Farm Innovation </i>Fund</span></a>
   <a href="/full-site/ivp-incubation" data-route="incubation"><span>Incubation</span></a>
-  <a href="/full-site/ivp-accelerator" data-route="accelerator"><span>Accelerator</span></a>
-  <a href="/full-site/ivp-agricultural-challenges" data-route="agricultural-challenges"><span>Challenges</span></a>
+  <a href="/full-site/ivp-accelerator" data-route="accelerator"><span>Acceleration</span></a>
+  <a href="/full-site/ivp-agricultural-challenges" data-route="agricultural-challenges"><span>Agri-food Challenges</span></a>
 </div></nav>
 <div class="x_curtain" id="curtain" aria-hidden="true"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt=""><span id="curtainLabel"></span></div>
 </div>
@@ -5644,200 +6038,326 @@ function creta(host) {
   return {};
 }
 
-/* ===== Accelerator, nine areas: three tinted islands of clay scenes; hover = preview, click = fly in ===== */
+/* ===== Overview, nine technology areas (rev9, comment #01: "more like the actual components on the farm"):
+   the Accelerator's three tinted islands, now with literal farm dioramas (soil profile, drip beds and a drone, solar and a tank,
+   a twin-span greenhouse, trial plots, a cold store, compost windrows, a distribution centre with a reefer truck, a racked
+   store with a dashboard). Hover = preview, click = fly in; "Take a closer look" opens the example areas ===== */
 const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 function areas(stage, opts) {
-const AREAS = [
-  ['Growing & production', 'Soil & Plant Health Inputs & Amendments', 'Biological and chemical innovations that enhance soil fertility, plant nutrition, and crop resilience in arid and saline conditions.', 'Soil & plant health'],
-  ['Growing & production', 'Crop Innovation', 'Novel crop varieties, breeding techniques, and seed technologies adapted for heat, water scarcity, and desert-climate growing.', 'Crop innovation'],
-  ['Growing & production', 'Controlled Environment Agriculture', 'Advanced greenhouse, vertical farming, and indoor cultivation systems that maximize yield while minimizing water and energy inputs.', 'Controlled environment'],
-  ['Growing & production', 'Precision Agriculture', 'Sensor networks, AI-driven analytics, and data platforms that optimize resource allocation and decision-making at the field level.', 'Precision agriculture'],
-  ['Growing & production', 'Water & Energy Management Solutions', 'Irrigation efficiency, water recycling, renewable energy integration, and resource monitoring across agricultural operations.', 'Water & energy'],
-  ['Waste', 'Waste Circularity', 'Technologies and platforms that recover, repurpose, or redistribute agricultural and food waste into valuable inputs.', 'Waste circularity'],
-  ['Waste', 'Waste Prevention', 'Cold chain optimization, shelf-life extension, and AI-driven supply and demand matching.', 'Waste prevention'],
-  ['Supply chain', 'Supply Chain Data Platforms', 'Core data infrastructure, IoT-enabled systems, and digital platforms across agricultural value chains.', 'Supply chain data'],
-  ['Supply chain', 'Supply Chain Analytics', 'Analytics, AI, and traceability tools that forecast demand and enhance end-to-end supply chain performance.', 'Supply chain analytics']];
+const AREAS = opts.data, N = AREAS.length, onPick = opts.onPick || (() => {});
 const hotsEl = stage.querySelector('.n1Hots'), groupsEl = [...stage.querySelectorAll('.n1Groups span')], $ = q => stage.querySelector(q), swap = opts.swap;
 let renderer;
 try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { renderer = null; }
 if (!renderer) return null;
-{
-  renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
-  stage.prepend(renderer.domElement);
-  const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(26, 2, 0.1, 200);
-  scene.fog = new THREE.Fog(0xe4dccf, 34, 70);
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xe0d8cc, 2.1));
-  const sun = new THREE.DirectionalLight(0xffffff, 1.5); sun.position.set(-8, 18, 12); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
-  Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 10, bottom: -10, near: 1, far: 60 }); sun.shadow.radius = 10; sun.shadow.bias = -0.0004; scene.add(sun);
-  const sand = contourTex('#ddd3c5', 'rgba(140,118,92,.22)', 23); sand.repeat.set(5, 2.5);
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(140, 70), new THREE.MeshStandardMaterial({ map: sand, roughness: 1, metalness: 0 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -0.36; floor.receiveShadow = true; scene.add(floor);
+renderer.setPixelRatio(Math.min(2, devicePixelRatio)); renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.02;
+stage.prepend(renderer.domElement);
+const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(26, 2, 0.1, 200);
+scene.fog = new THREE.Fog(0xe4dccf, 34, 70);
+scene.add(new THREE.HemisphereLight(0xffffff, 0xe0d8cc, 1.9));
+const sun = new THREE.DirectionalLight(0xffffff, 1.7); sun.position.set(-8, 18, 12); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 10, bottom: -10, near: 1, far: 60 }); sun.shadow.radius = 8; sun.shadow.bias = -0.0004; scene.add(sun);
+const sand = contourTex('#ddd3c5', 'rgba(140,118,92,.22)', 23); sand.repeat.set(5, 2.5);
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(140, 70), new THREE.MeshStandardMaterial({ map: sand, roughness: 1, metalness: 0 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -0.36; floor.receiveShadow = true; scene.add(floor);
 
-  // clay palette: base white, quiet grey details, IO blue for the active scene
-  const C = { clay: 0xf6f5f2, soil: 0xd8ccbb, soil2: 0xc4b39c, grey: 0xd9dadb, dark: 0xb9bbbc, blue: 0x3ca7d2, ink: 0x1a6f96, glass: 0xeef6f9 };
-  const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
-  const rbox = (w, h, d, r, m) => { const g = new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)); const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
-  const mesh = (g, m) => { const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
-  const SP = 3.6, GAP = 1.6, grpOf = i => (i < 5 ? 0 : i < 7 ? 1 : 2);
-  const X = i => (i - 4) * SP + (i >= 5 ? GAP : 0) + (i >= 7 ? GAP : 0) - (GAP * 2 + GAP * 4) / 9; // a gap between groups
-  const GRP = [{ tile: 0xe7eee0, island: 0xd3e1c8 }, { tile: 0xf3e9db, island: 0xe7d5bc }, { tile: 0xe3ecf3, island: 0xcbdbe8 }];
-  const scenes = [];
-  function make(i, build) {
-    const g = new THREE.Group(), lift = new THREE.Group(), accents = [], base = mat(C.clay);
-    g.position.x = X(i); g.add(lift);
-    const add = (o, accent) => { lift.add(o); if (accent) accents.push(o); return o; };
-    build({ add, base, mat, rbox, mesh, C });
-    accents.forEach(o => { o.material = o.material.clone(); o.userData.c0 = o.material.color.clone(); });
-    // tile it stands on
-    const tile = rbox(3.1, 0.24, 3.1, 0.12, mat(GRP[grpOf(i)].tile)); tile.position.y = -0.24; g.add(tile);
-    scene.add(g); scenes.push({ g, lift, accents, top: new THREE.Vector3(X(i), 2.6, 0) });
-  }
-  const leaf = (m) => { const l = mesh(new THREE.SphereGeometry(0.22, 18, 12), m); l.scale.set(1, 0.32, 0.55); return l; };
-  const sprout = (add, m, x, z, h, s) => {
-    const st = mesh(new THREE.CylinderGeometry(0.035 * s, 0.045 * s, h, 8), mat(C.dark)); st.position.set(x, h / 2, z); add(st);
-    const l1 = leaf(m); l1.scale.multiplyScalar(s); l1.position.set(x - 0.17 * s, h * 0.82, z); l1.rotation.z = 0.5; add(l1, true);
-    const l2 = leaf(m); l2.scale.multiplyScalar(s); l2.position.set(x + 0.17 * s, h, z); l2.rotation.z = -0.5; add(l2, true);
-  };
-  // 1 soil & plant health: a cut block of soil in layers, roots, a seedling on top
-  make(0, ({ add, mat, rbox, C }) => {
-    const l1 = rbox(2.4, 0.42, 2.0, 0.08, mat(C.soil2)); l1.position.y = 0.21; add(l1);
-    const l2 = rbox(2.4, 0.36, 2.0, 0.08, mat(C.soil)); l2.position.y = 0.6; add(l2);
-    const l3 = rbox(2.4, 0.22, 2.0, 0.08, mat(0xece8e1)); l3.position.y = 0.88; add(l3);
-    for (let k = 0; k < 7; k++) { const p = mesh(new THREE.SphereGeometry(0.06, 10, 8), mat(C.dark)); p.position.set(-0.9 + k * 0.3, 0.32 + (k % 3) * 0.16, 1.0); add(p, true); }
-    sprout(add, mat(C.grey), 0, 0, 0.9, 1.4); scenes.length; // seedling
-  });
-  // 2 crop innovation: rows of young plants
-  make(1, ({ add, mat }) => { for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) sprout((o, a) => { o.position.y += 0; return add(o, a); }, mat(C.grey), -0.8 + c * 0.8, -0.8 + r * 0.8, 0.55 + ((r + c) % 2) * 0.2, 1); });
-  // 3 controlled environment: a greenhouse tunnel with ribs and benches inside
-  make(2, ({ add, mat, rbox, mesh, C }) => {
-    const shell = mesh(new THREE.CylinderGeometry(1.15, 1.15, 2.6, 32, 1, true, 0, Math.PI), mat(C.glass, { transparent: true, opacity: 0.55, side: THREE.DoubleSide, roughness: 0.3 })); shell.rotation.set(0, Math.PI / 2, Math.PI / 2); // tunnel along z, arch up shell.position.y = 0.02; add(shell, true);
-    for (let k = 0; k < 4; k++) { const rib = mesh(new THREE.TorusGeometry(1.15, 0.035, 8, 32, Math.PI), mat(C.clay)); rib.position.set(0, 0.02, -1.2 + k * 0.8); add(rib); }
-    for (let k = 0; k < 2; k++) { const bench = rbox(0.5, 0.3, 2.2, 0.06, mat(C.clay)); bench.position.set(-0.45 + k * 0.9, 0.15, 0); add(bench); for (let j = 0; j < 4; j++) { const b = mesh(new THREE.SphereGeometry(0.12, 12, 8), mat(C.grey)); b.position.set(-0.45 + k * 0.9, 0.38, -0.8 + j * 0.53); add(b, true); } }
-  });
-  // 4 precision agriculture: a sensor mast with signal rings over a small field
-  make(3, ({ add, mat, rbox, mesh, C }) => {
-    for (let r = 0; r < 4; r++) { const row = rbox(2.2, 0.12, 0.28, 0.05, mat(0xe6e2da)); row.position.set(0, 0.06, -0.9 + r * 0.6); add(row); }
-    const pole = mesh(new THREE.CylinderGeometry(0.05, 0.06, 2.0, 10), mat(C.dark)); pole.position.y = 1.0; add(pole);
-    const head = rbox(0.42, 0.26, 0.42, 0.08, mat(C.clay)); head.position.y = 2.05; add(head);
-    for (let k = 0; k < 2; k++) { const ring = mesh(new THREE.TorusGeometry(0.42 + k * 0.28, 0.025, 8, 40), mat(C.grey)); ring.rotation.x = Math.PI / 2; ring.position.y = 2.05; add(ring, true); }
-  });
-  // 5 water & energy: a solar panel and a water tank with a pipe
-  make(4, ({ add, mat, rbox, mesh, C }) => {
-    const panel = rbox(1.5, 0.08, 1.0, 0.04, mat(C.grey)); panel.position.set(-0.45, 1.0, -0.2); panel.rotation.x = -0.6; add(panel, true);
-    const leg = mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.95, 8), mat(C.dark)); leg.position.set(-0.45, 0.47, -0.2); add(leg);
-    const tank = mesh(new THREE.CylinderGeometry(0.45, 0.45, 1.1, 28), mat(C.clay)); tank.position.set(0.75, 0.55, 0.45); add(tank);
-    const lid = mesh(new THREE.SphereGeometry(0.45, 28, 12, 0, Math.PI * 2, 0, Math.PI / 2), mat(C.clay)); lid.position.set(0.75, 1.1, 0.45); add(lid);
-    const pipe = mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.5, 10), mat(C.grey)); pipe.rotation.z = Math.PI / 2; pipe.position.set(0, 0.1, 1.0); add(pipe, true);
-    const drop = mesh(new THREE.SphereGeometry(0.16, 16, 12), mat(C.grey)); drop.scale.set(1, 1.3, 1); drop.position.set(0.75, 1.75, 0.45); add(drop, true);
-  });
-  // 6 waste circularity: a compost bin with a loop arrow above it
-  make(5, ({ add, mat, rbox, mesh, C }) => {
-    const bin = rbox(1.3, 0.9, 1.1, 0.12, mat(C.clay)); bin.position.y = 0.45; add(bin);
-    const fill = rbox(1.1, 0.12, 0.9, 0.05, mat(C.soil2)); fill.position.y = 0.92; add(fill);
-    const loop = mesh(new THREE.TorusGeometry(0.55, 0.06, 10, 48, Math.PI * 1.6), mat(C.grey)); loop.position.y = 1.85; loop.rotation.z = 0.5; add(loop, true);
-    const tip = mesh(new THREE.ConeGeometry(0.14, 0.26, 16), mat(C.grey)); tip.position.set(0.55 * Math.cos(0.5 + Math.PI * 1.6), 1.85 + 0.55 * Math.sin(0.5 + Math.PI * 1.6), 0); tip.rotation.z = 0.5 + Math.PI * 1.6; add(tip, true);
-  });
-  // 7 waste prevention: chilled crates of produce
-  make(6, ({ add, mat, rbox, mesh, C }) => {
-    for (let k = 0; k < 3; k++) { const cr = rbox(1.0, 0.5, 0.8, 0.07, mat(C.clay)); cr.position.set(k === 2 ? 0 : -0.55 + k * 1.1, k === 2 ? 0.75 : 0.25, k === 2 ? 0 : 0.2); add(cr); for (let j = 0; j < 3; j++) { const f = mesh(new THREE.SphereGeometry(0.13, 14, 10), mat(C.grey)); f.position.set(cr.position.x - 0.28 + j * 0.28, cr.position.y + 0.3, cr.position.z); add(f, true); } }
-    const flake = mesh(new THREE.OctahedronGeometry(0.22), mat(C.grey)); flake.position.set(0.85, 1.6, 0); add(flake, true);
-  });
-  // 8 supply chain data: a truck with data cubes floating above
-  make(7, ({ add, mat, rbox, mesh, C }) => {
-    const body = rbox(1.7, 0.9, 0.95, 0.1, mat(C.clay)); body.position.set(-0.25, 0.65, 0); add(body);
-    const cab = rbox(0.7, 0.7, 0.9, 0.12, mat(C.clay)); cab.position.set(0.95, 0.55, 0); add(cab);
-    const win = rbox(0.06, 0.28, 0.7, 0.03, mat(C.grey)); win.position.set(1.3, 0.7, 0); add(win, true);
-    [[-0.8, 0.5], [-0.8, -0.5], [0.95, 0.5], [0.95, -0.5]].forEach(([x, z]) => { const w = mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.14, 20), mat(C.dark)); w.rotation.x = Math.PI / 2; w.position.set(x, 0.2, z); add(w); });
-    for (let k = 0; k < 3; k++) { const c = rbox(0.28, 0.28, 0.28, 0.06, mat(C.grey)); c.position.set(-0.6 + k * 0.6, 1.65 + (k % 2) * 0.25, 0); c.userData.bob = k; add(c, true); }
-  });
-  // 9 supply chain analytics: a warehouse and a bar chart in front of it
-  make(8, ({ add, mat, rbox, mesh, C }) => {
-    const wh = rbox(1.7, 1.1, 1.2, 0.08, mat(C.clay)); wh.position.set(0.25, 0.55, -0.45); add(wh);
-    const sh = new THREE.Shape(); sh.moveTo(-0.9, 0); sh.lineTo(0.9, 0); sh.lineTo(0, 0.5); sh.closePath(); const rg = new THREE.ExtrudeGeometry(sh, { depth: 1.2, bevelEnabled: false }); rg.translate(0, 0, -0.6); const roof = mesh(rg, mat(C.clay)); roof.position.set(0.25, 1.1, -0.45); add(roof);
-    const door = rbox(0.5, 0.6, 0.05, 0.03, mat(C.grey)); door.position.set(0.25, 0.3, 0.17); add(door);
-    [0.45, 0.8, 1.2].forEach((h, k) => { const bar = rbox(0.22, h, 0.22, 0.05, mat(C.grey)); bar.position.set(-1.0 + k * 0.32, h / 2, 0.85); add(bar, true); });
-  });
+// real colours, kept soft (from the Accelerator's farm dioramas); iO blue marks the selected tile and the tracking pin
+const P = { sand: 0xe2cfa8, soil: 0xa47b52, soilD: 0x7d5a3a, soilL: 0xc4a07a, leaf: 0x5f9a3e, leafD: 0x447a2f, leafL: 0x8cba58, palm: 0x5b8c3a, trunk: 0x9a7650, red: 0xd2543a, orange: 0xe8892e, yellow: 0xe6c044,
+  white: 0xf6f6f4, seam: 0xdedfe0, concrete: 0xd9d6d0, concrete2: 0xc9c6c0, steel: 0xc6cacd, steelD: 0x8f9499, black: 0x3b3d40, glass: 0xdff0f6, pad: 0xc9b48a,
+  door: 0xaeb3b7, wood: 0xc49b68, crate: 0x4f9a6b, road: 0x7f8387, dc: 0xeae7e1, dcRoof: 0xcfd2d4, cab: 0x1a6f96, windowC: 0x2e3a42, blue: 0x3ca7d2, pv: 0x2f4a63, compost: 0x6b4e33, compostL: 0x8a6a48, rack: 0x3c6e8f };
+const MC = {};
+const M = (c, flat) => MC[c + (flat ? 'f' : '')] || (MC[c + (flat ? 'f' : '')] = new THREE.MeshStandardMaterial({ color: c, roughness: 0.85, metalness: 0, flatShading: !!flat }));
+const box = (w, h, d, c, x, y, z, r) => { const m = rbox(w, h, d, r === undefined ? Math.min(w, h, d) * 0.18 : r, typeof c === 'number' ? M(c) : c); m.position.set(x, y + h / 2, z); return m; }; // y = bottom
+const cyl = (rt, rb, h, c, seg) => mesh(new THREE.CylinderGeometry(rt, rb, h, seg || 16), typeof c === 'number' ? M(c) : c);
+const ball = (r, c, flat) => mesh(new THREE.IcosahedronGeometry(r, flat ? 1 : 2), M(c, flat));
 
-  // one island per group, tinted, so the three groups read at a glance
-  const ISL = [[0, 4], [5, 6], [7, 8]].map(([a, b], k) => {
-    const cx = (X(a) + X(b)) / 2, w = X(b) - X(a) + 3.9, isl = rbox(w, 0.34, 4.1, 0.2, mat(GRP[k].island)); isl.position.set(cx, -0.5, 0); scene.add(isl);
-    const lab = document.createElement('div'); lab.className = 'gTag'; lab.dataset.g = k; lab.innerHTML = '<span>' + ['Growing &amp; production', 'Waste', 'Supply chain'][k] + '<em>' + (b - a + 1) + ' areas</em></span>'; hotsEl.appendChild(lab);
-    return { pos: new THREE.Vector3(cx, -0.5, 2.3), lab };
-  });
-  // fixed name tags (alternate heights so neighbours never collide)
-  const tags = AREAS.map((a, i) => { const t = document.createElement('div'); t.className = 'nm'; t.dataset.row = i % 2; t.innerHTML = '<i></i><span>' + a[3] + '</span>'; hotsEl.appendChild(t); return t; });
-  // every mesh knows which scene it belongs to, for hover and click straight on the 3D
-  const hitList = []; scenes.forEach((s, i) => s.g.traverse(o => { if (o.isMesh) { o.userData.scene = i; hitList.push(o); } }));
-  let sel = -1, hov = -1, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false, zoom = 0, zoomK = 0;
-  const grp = i => (i < 5 ? 0 : i < 7 ? 1 : 2), card = $('#n1Card'), zoomBtn = $('#n1Zoom');
-  function show(i) {
-    if (i === sel) return; sel = i;
-    tags.forEach((t, k) => k === i ? t.setAttribute('data-on', '') : t.removeAttribute('data-on'));
-    groupsEl.forEach((g, k) => k === grp(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'));
-    scenes.forEach((s, k) => {
-      const on = k === i;
-      if (G) gsap.to(s.lift.position, { y: on ? 0.32 : 0, duration: 0.9, ease: on ? 'back.out(2.2)' : 'power3.out' }); else s.lift.position.y = on ? 0.32 : 0;
-      s.accents.forEach(o => { const to = on ? new THREE.Color(C.blue) : o.userData.c0; if (G) gsap.to(o.material.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); else o.material.color.copy(to); });
-    });
-    card.style.setProperty('--gd', ['#5f8a4c', '#a77b3d', '#4f7ea3'][grp(i)]);
-    const h0 = card.offsetHeight;
-    swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]);
-    if (G) { gsap.set(card, { height: h0 }); clearTimeout(card.__ht); card.__ht = setTimeout(() => { card.style.height = 'auto'; const h1 = card.offsetHeight; gsap.fromTo(card, { height: h0 }, { height: h1, duration: 0.65, ease: 'power3.inOut', clearProps: 'height' }); }, 380); }
-    $('#n1Count').textContent = (i + 1) + ' / 9';
-    if (zoom || focus) camTX = X(i);
-  }
-  function zoomTo(i) { show(i); camTX = X(i); zoom = 1; stage.classList.add('zoomed'); zoomBtn.textContent = '← All nine areas'; }
-  function zoomOut() { zoom = 0; stage.classList.remove('zoomed'); zoomBtn.textContent = 'Take a closer look'; }
-  zoomBtn.addEventListener('click', () => zoom ? zoomOut() : zoomTo(sel));
-  $('#n1Prev').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 8) % 9));
-  $('#n1Next').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 1) % 9));
-  stage.addEventListener('keydown', e => { if (e.key === 'ArrowRight') $('#n1Next').click(); if (e.key === 'ArrowLeft') $('#n1Prev').click(); if (e.key === 'Escape' && zoom) zoomOut(); });
-  // pointer: hover a scene = preview it; click a scene = fly in; no dragging: while the pointer is over the model the camera leans a little towards it
-  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
-  function hit(e) { const r = renderer.domElement.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(hitList, false)[0]; return h ? h.object.userData.scene : -1; }
-  let px = null, py = 0, pit = 0, pitT = 0;
-  renderer.domElement.addEventListener('pointerdown', e => { px = e.clientX; py = e.clientY; });
-  addEventListener('pointerup', e => { if (px !== null && Math.hypot(e.clientX - px, e.clientY - py) < 8 && e.target === renderer.domElement) { const i = hit(e); if (i >= 0) zoomTo(i); } px = null; });
-  addEventListener('pointermove', e => {
-    if (e.target !== renderer.domElement) { if (hov !== -1) { hov = -1; stage.classList.remove('onObj'); } return; }
-    if (fine) { const r = renderer.domElement.getBoundingClientRect(); dragT = ((e.clientX - r.left) / r.width - 0.5) * 0.5; pitT = ((e.clientY - r.top) / r.height - 0.5) * 2; }
-    const i = hit(e); stage.classList.toggle('onObj', i >= 0);
-    if (i !== hov) { hov = i; if (i >= 0 && fine) show(i); }
-  });
-  renderer.domElement.addEventListener('pointerleave', () => { hov = -1; dragT = 0; pitT = 0; stage.classList.remove('onObj'); });
-
-  // camera: whole strip on wide screens, follow the selected scene on narrow ones or when zoomed
-  const target = new THREE.Vector3(), v = new THREE.Vector3();
-  function resize() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); focus = camera.aspect < 1.5; }
-  addEventListener('resize', resize); resize();
-  let visible = false, intro = { k: 0 };
-  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) resize(); }, { rootMargin: '200px' }).observe(stage);
-  const clock = new THREE.Clock();
-  function frame() {
-    requestAnimationFrame(frame); if (!visible) return;
-    const tm = clock.getElapsedTime();
-    drag += (dragT - drag) * 0.05; pit += (pitT - pit) * 0.05;
-    zoomK += (zoom - zoomK) * (reduce ? 1 : 0.05);
-    camX += (((focus || zoom) ? camTX : 0) - camX) * (reduce ? 1 : 0.05);
-    const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 22 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 11 : 15;
-    const dist = far + (near - far) * zoomK, ang = 0.62 - zoomK * 0.16 + pit * 0.05, yaw = drag * (0.5 + zoomK * 0.6);
-    // objects sit a little above centre so the info card in the lower-left corner never covers them
-    target.set(camX + (focus ? 0 : -zoomK * 1.4), (focus ? -0.4 : -1.8) + zoomK * 2.0, 0);
-    camera.position.set(target.x + Math.sin(yaw) * dist * Math.cos(ang), target.y + Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
-    camera.lookAt(target);
-    scenes.forEach(s => s.lift.children.forEach(o => { if (o.userData.bob !== undefined && !reduce) o.position.y = 1.65 + (o.userData.bob % 2) * 0.25 + Math.sin(tm * 1.6 + o.userData.bob) * 0.06; }));
-    renderer.render(scene, camera);
-    const w = stage.clientWidth, h = stage.clientHeight;
-    ISL.forEach(o => { v.copy(o.pos).project(camera); o.lab.style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * h) + 'px)'; o.lab.toggleAttribute('data-on', grp(sel) === +o.lab.dataset.g); });
-    scenes.forEach((s, i) => { v.copy(s.top); v.y += s.lift.position.y; v.project(camera); const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h; tags[i].style.transform = 'translate(' + x + 'px,' + y + 'px)'; tags[i].style.visibility = x < 30 || x > w - 30 ? 'hidden' : 'visible'; zoom && i !== sel ? tags[i].setAttribute('data-dim', '') : tags[i].removeAttribute('data-dim'); });
-  }
-  show(0); if (focus) camX = camTX; frame(); // phones start on the first scene, no fly-over on load
-  // entrance: scenes rise in one by one; no auto-cycle, the visitor leads
-  scenes.forEach(s => s.g.scale.setScalar(G ? 0.001 : 1));
-  const enter = () => { if (G) { scenes.forEach((s, k) => gsap.to(s.g.scale, { x: 1, y: 1, z: 1, duration: 1, delay: 0.08 * k, ease: 'back.out(1.7)' })); gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out' }); } };
-  if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: stage, start: 'top 75%', once: true, onEnter: enter }); else enter();
+const SP = 3.6, GAP = 1.6, grpOf = i => (i < 5 ? 0 : i < 7 ? 1 : 2), K = 0.7; // K: each 4 x 3.4 diorama is built full size and scaled onto its tile
+const X = i => (i - 4) * SP + (i >= 5 ? GAP : 0) + (i >= 7 ? GAP : 0) - (GAP * 2 + GAP * 4) / 9;
+const GRP = [{ tile: 0xe7eee0, island: 0xd3e1c8 }, { tile: 0xf3e9db, island: 0xe7d5bc }, { tile: 0xe3ecf3, island: 0xcbdbe8 }], TILE_ON = 0xcfe6f1;
+const scenes = [];
+function make(i, build) {
+  const g = new THREE.Group(), lift = new THREE.Group(), body = new THREE.Group(); g.position.x = X(i); g.add(lift); lift.add(body); body.scale.setScalar(K);
+  build(o => { body.add(o); return o; });
+  const tileM = new THREE.MeshStandardMaterial({ color: GRP[grpOf(i)].tile, roughness: 0.92, metalness: 0 });
+  const tile = rbox(3.1, 0.24, 3.1, 0.12, tileM); tile.position.y = -0.24; g.add(tile);
+  scene.add(g); scenes.push({ g, lift, tileM, c0: new THREE.Color(GRP[grpOf(i)].tile), top: new THREE.Vector3(X(i), 2.4, 0) });
 }
-  return {};
+const bush = (add, x, y, z, s, c) => {
+  const a = ball(0.13 * s, c || P.leaf, true); a.position.set(x, y + 0.1 * s, z); a.scale.y = 0.8; add(a);
+  const b = ball(0.085 * s, P.leafL, true); b.position.set(x + 0.06 * s, y + 0.19 * s, z + 0.03); add(b);
+};
+const palm = (add, x, y, z, h) => {
+  for (let k = 0; k < 6; k++) { const seg = cyl(0.08 - k * 0.006, 0.092 - k * 0.006, h / 6 * 0.94, P.trunk, 10); seg.position.set(x, y + h / 6 * (k + 0.5), z); add(seg); }
+  for (let k = 0; k < 9; k++) { const a = k / 9 * Math.PI * 2 + 0.2; const f = ball(0.42, k % 2 ? P.palm : P.leafD, true); f.scale.set(1, 0.07, 0.2); f.position.set(x + Math.cos(a) * 0.34, y + h - 0.12, z + Math.sin(a) * 0.34); f.rotation.set(0, -a, -0.5); add(f); }
+};
+const tomato = (add, x, y, z) => {
+  const st = cyl(0.012, 0.012, 0.78, P.leafD, 5); st.position.set(x, y + 0.39, z); add(st);
+  for (let k = 0; k < 3; k++) { const l = ball(0.11 - k * 0.014, k % 2 ? P.leaf : P.leafD, true); l.position.set(x + (k % 2 ? 0.03 : -0.03), y + 0.2 + k * 0.21, z); l.scale.set(1, 1.15, 1); add(l); }
+  const t1 = ball(0.045, P.red); t1.position.set(x - 0.07, y + 0.18, z + 0.07); add(t1);
+  const t2 = ball(0.042, P.orange); t2.position.set(x + 0.08, y + 0.32, z + 0.06); add(t2);
+};
+const crates = (add, x, y, z, cols, layers) => {
+  add(box(0.8, 0.09, 0.66, P.wood, x, y, z, 0.02));
+  for (let l = 0; l < (layers || 2); l++) for (let a = 0; a < 2; a++) for (let b = 0; b < 2; b++) {
+    const cx = x - 0.19 + a * 0.38, cz = z - 0.16 + b * 0.32, cy = y + 0.09 + l * 0.2;
+    add(box(0.36, 0.19, 0.3, P.crate, cx, cy, cz, 0.03));
+    if (l === (layers || 2) - 1) for (let p = 0; p < 4; p++) { const f = ball(0.055, cols[(a + b + p) % cols.length]); f.position.set(cx - 0.08 + (p % 2) * 0.16, cy + 0.2, cz - 0.065 + Math.floor(p / 2) * 0.13); add(f); }
+  }
+};
+const forklift = (add, x, y, z) => {
+  add(box(0.46, 0.3, 0.56, P.orange, x, y + 0.08, z, 0.06));
+  add(box(0.2, 0.16, 0.4, P.black, x + 0.1, y + 0.38, z, 0.03));
+  [[-0.17, -0.22], [-0.17, 0.22], [0.17, -0.22], [0.17, 0.22]].forEach(([dx, dz]) => add(box(0.03, 0.46, 0.03, P.black, x + dx, y + 0.38, z + dz, 0.01)));
+  add(box(0.42, 0.03, 0.5, P.black, x, y + 0.84, z, 0.01));
+  [-0.15, 0.15].forEach(dz => { add(box(0.04, 0.95, 0.04, P.steelD, x - 0.27, y + 0.05, z + dz, 0.01)); add(box(0.46, 0.025, 0.06, P.steelD, x - 0.5, y + 0.06, z + dz, 0.008)); });
+  [[-0.15, -0.3], [-0.15, 0.3], [0.16, -0.3], [0.16, 0.3]].forEach(([dx, dz]) => { const w = cyl(0.09, 0.09, 0.08, P.black, 16); w.rotation.x = Math.PI / 2; w.position.set(x + dx, y + 0.09, z + dz); add(w); });
+};
+const anim = []; // small things that move: drone, tracking pin, ring
+
+// 1 · soil & plant health: a soil profile cut open in layers, crop rows on top, a moisture probe and sacks of amendments
+make(0, add => {
+  add(box(4.0, 0.12, 3.4, P.sand, 0, 0, 0, 0.05));
+  const y0 = 0.12;
+  add(box(3.2, 0.42, 2.3, P.soilL, -0.2, y0, -0.35, 0.05));
+  add(box(3.2, 0.32, 2.3, P.soil, -0.2, y0 + 0.42, -0.35, 0.05));
+  add(box(3.2, 0.14, 2.3, P.soilD, -0.2, y0 + 0.74, -0.35, 0.04));
+  for (let k = 0; k < 9; k++) { const s = ball(0.05, k % 3 ? 0xe9dfcf : P.white); s.position.set(-1.6 + k * 0.36, y0 + 0.16 + (k % 3) * 0.14, 0.81); add(s); } // stones and granules on the cut face
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 6; c++) bush(add, -1.5 + c * 0.52, y0 + 0.88, -1.15 + r * 0.6, 1.0 + ((r + c) % 3) * 0.15);
+  for (let k = 0; k < 4; k++) { const root = cyl(0.012, 0.02, 0.5, 0xd7c1a0, 5); root.position.set(-1.25 + k * 0.85, y0 + 0.6, 0.81); root.rotation.z = (k % 2 ? 0.3 : -0.3); add(root); }
+  const probe = cyl(0.02, 0.02, 0.9, P.steelD, 6); probe.position.set(1.15, y0 + 0.9, 0.2); add(probe);
+  add(box(0.18, 0.13, 0.09, P.white, 1.15, y0 + 1.3, 0.2, 0.02)); add(box(0.1, 0.04, 0.01, P.blue, 1.15, y0 + 1.36, 0.25, 0.005));
+  [[1.3, 1.25, 0], [0.82, 1.25, 0], [1.06, 1.25, 1]].forEach(([x, z, l]) => { add(box(0.44, 0.22, 0.32, P.white, x, y0 + l * 0.22, z, 0.06)); add(box(0.445, 0.05, 0.325, P.leafD, x, y0 + l * 0.22 + 0.1, z, 0.01)); });
+});
+// 2 · precision agriculture: raised beds with drip lines, a sensor mast with its own small panel, a drone over the crop
+make(1, add => {
+  add(box(4.0, 0.22, 3.4, P.sand, 0, 0, 0, 0.06));
+  for (let r = 0; r < 5; r++) {
+    const z = -1.2 + r * 0.6;
+    add(box(3.5, 0.12, 0.34, P.soil, 0.1, 0.22, z, 0.06));
+    const drip = cyl(0.016, 0.016, 3.5, P.black, 6); drip.rotation.z = Math.PI / 2; drip.position.set(0.1, 0.355, z + 0.12); add(drip);
+    for (let c = 0; c < 7; c++) bush(add, -1.45 + c * 0.5, 0.34, z - 0.03, 0.9 + ((r * 7 + c) % 3) * 0.12);
+  }
+  const main = cyl(0.045, 0.045, 3.2, P.black, 8); main.rotation.x = Math.PI / 2; main.position.set(-1.8, 0.3, 0); add(main);
+  const mast = cyl(0.035, 0.04, 1.4, P.steelD, 8); mast.position.set(1.75, 0.92, 1.35); add(mast);
+  const pv = box(0.42, 0.03, 0.3, P.pv, 1.75, 1.55, 1.35, 0.01); pv.rotation.x = -0.5; add(pv);
+  add(box(0.16, 0.2, 0.12, P.white, 1.75, 1.05, 1.42, 0.03));
+  const drone = new THREE.Group();
+  drone.add(box(0.36, 0.1, 0.36, P.white, 0, 0, 0, 0.04));
+  [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(([a, b]) => { const arm = box(0.42, 0.03, 0.04, P.black, a * 0.15, 0.04, b * 0.15, 0.01); arm.rotation.y = a * b > 0 ? -Math.PI / 4 : Math.PI / 4; drone.add(arm);
+    const rotor = cyl(0.16, 0.16, 0.01, new THREE.MeshStandardMaterial({ color: P.black, transparent: true, opacity: 0.35 }), 20); rotor.position.set(a * 0.3, 0.09, b * 0.3); drone.add(rotor); });
+  const cam = ball(0.05, P.black); cam.position.set(0, -0.04, 0.16); drone.add(cam);
+  drone.position.set(-0.2, 1.75, 0.1); add(drone); anim.push(t => { drone.position.y = 1.75 + Math.sin(t * 1.4) * 0.08; drone.rotation.y = Math.sin(t * 0.4) * 0.3; });
+});
+// 3 · water & energy: a row of solar panels on frames, a water tank, a pump and filter skid, pipework to the field
+make(2, add => {
+  add(box(4.0, 0.12, 3.4, P.concrete, 0, 0, 0, 0.05));
+  for (let k = 0; k < 3; k++) {
+    const x = -1.25 + k * 1.15;
+    const panel = box(1.0, 0.04, 0.7, P.pv, x, 0.62, -0.9, 0.01); panel.rotation.x = -0.55; add(panel);
+    for (let s = 1; s < 4; s++) { const seam = box(0.01, 0.045, 0.7, P.steel, x - 0.5 + s * 0.25, 0.62, -0.9, 0.002); seam.rotation.x = -0.55; add(seam); }
+    add(box(0.05, 0.55, 0.05, P.steelD, x, 0.12, -0.7, 0.01)); add(box(0.05, 0.78, 0.05, P.steelD, x, 0.12, -1.1, 0.01));
+  }
+  const tank = cyl(0.55, 0.55, 1.2, P.white, 28); tank.position.set(1.2, 0.72, 0.75); add(tank);
+  const lid = mesh(new THREE.SphereGeometry(0.55, 28, 10, 0, Math.PI * 2, 0, Math.PI / 2), M(P.white)); lid.scale.y = 0.35; lid.position.set(1.2, 1.32, 0.75); add(lid);
+  for (let k = 0; k < 3; k++) { const band = cyl(0.555, 0.555, 0.03, P.seam, 28); band.position.set(1.2, 0.4 + k * 0.35, 0.75); add(band); }
+  add(box(0.7, 0.4, 0.5, P.steel, 0.05, 0.12, 0.95, 0.05));
+  const motor = cyl(0.12, 0.12, 0.34, P.blue, 16); motor.rotation.z = Math.PI / 2; motor.position.set(0.05, 0.66, 0.95); add(motor);
+  [-0.18, 0.18].forEach(dx => { const f = cyl(0.1, 0.1, 0.5, P.white, 16); f.position.set(-0.6 + dx, 0.37, 1.2); add(f); });
+  const p1 = cyl(0.045, 0.045, 0.85, P.black, 8); p1.rotation.z = Math.PI / 2; p1.position.set(0.7, 0.3, 0.95); add(p1);
+  const p2 = cyl(0.045, 0.045, 2.0, P.black, 8); p2.rotation.z = Math.PI / 2; p2.position.set(-1.0, 0.25, 1.45); add(p2);
+  const drop = ball(0.12, P.blue); drop.scale.set(1, 1.3, 1); drop.position.set(1.2, 1.72, 0.75); add(drop); anim.push(t => { drop.position.y = 1.72 + Math.sin(t * 1.6) * 0.06; });
+});
+// 4 · controlled environment: a twin-span greenhouse, glazed, on a concrete pad; tomato rows, cooling pad at the back, fans at the front
+make(3, add => {
+  const W = 3.4, D = 2.8, E = 1.05, y0 = 0.14;
+  add(box(4.0, y0, 3.4, P.concrete, 0, 0, 0, 0.05));
+  [-1.25, -0.45, 0.45, 1.25].forEach(x => { add(box(0.2, 0.1, 2.45, P.white, x, y0 + 0.06, 0, 0.03)); for (let k = 0; k < 6; k++) tomato(add, x, y0 + 0.16, -1.0 + k * 0.4); });
+  add(box(W - 0.12, 0.55, 0.05, P.pad, 0, y0 + 0.15, -D / 2 + 0.04, 0.02));
+  [-0.85, 0.85].forEach(x => { add(box(0.46, 0.46, 0.04, P.steel, x, y0 + 0.32, D / 2 + 0.01, 0.02)); const f = cyl(0.17, 0.17, 0.03, P.black, 20); f.rotation.x = Math.PI / 2; f.position.set(x, y0 + 0.55, D / 2 + 0.04); add(f); });
+  for (const x of [-W / 2, 0, W / 2]) for (const z of [-D / 2, -D / 6, D / 6, D / 2]) add(box(0.05, E, 0.05, P.steel, x, y0, z, 0.01));
+  for (const x of [-W / 2, 0, W / 2]) add(box(0.09, 0.06, D, P.steel, x, y0 + E - 0.03, 0, 0.02));
+  const glass = new THREE.MeshStandardMaterial({ color: P.glass, transparent: true, opacity: 0.34, roughness: 0.15, metalness: 0, side: THREE.DoubleSide, depthWrite: false });
+  const wall = (w, x, z, ry) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, E), glass); m.position.set(x, y0 + E / 2, z); m.rotation.y = ry; add(m); };
+  wall(W, 0, D / 2, 0); wall(W, 0, -D / 2, 0); wall(D, W / 2, 0, Math.PI / 2); wall(D, -W / 2, 0, Math.PI / 2);
+  [-W / 4, W / 4].forEach(cx => {
+    const roof = new THREE.Mesh(new THREE.CylinderGeometry(W / 4, W / 4, D, 28, 1, true, 0, Math.PI), glass); roof.rotation.set(0, Math.PI / 2, Math.PI / 2); roof.scale.set(0.62, 1, 1); roof.position.set(cx, y0 + E, 0); add(roof);
+    for (const z of [-D / 2, D / 2]) { const gab = new THREE.Mesh(new THREE.CircleGeometry(W / 4, 28, 0, Math.PI), glass); gab.scale.set(1, 0.62, 1); gab.position.set(cx, y0 + E, z); add(gab); }
+    for (let k = 0; k < 5; k++) { const rib = mesh(new THREE.TorusGeometry(W / 4, 0.016, 6, 28, Math.PI), M(P.steel)); rib.scale.set(1, 0.62, 1); rib.position.set(cx, y0 + E, -D / 2 + k * D / 4); add(rib); }
+  });
+});
+// 5 · crop innovation: a variety trial, nine small plots of different lines with white plot markers, a date palm at the edge
+make(4, add => {
+  add(box(4.0, 0.16, 3.4, P.sand, 0, 0, 0, 0.05));
+  const lines = [[P.leaf, 0.8], [P.leafD, 1.15], [P.leafL, 0.95], [P.leafD, 0.7], [P.leaf, 1.3], [0x9cb04a, 1.0], [P.leafL, 1.2], [P.leaf, 0.85], [0x6f9e3c, 1.05]];
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) {
+    const k = r * 3 + c, x = -1.15 + c * 1.0, z = -0.95 + r * 0.95;
+    add(box(0.82, 0.08, 0.74, P.soil, x, 0.16, z, 0.03));
+    for (let a = 0; a < 3; a++) for (let b = 0; b < 2; b++) bush(add, x - 0.25 + a * 0.25, 0.24, z - 0.16 + b * 0.32, lines[k][1], lines[k][0]);
+    const stake = cyl(0.012, 0.012, 0.36, P.steelD, 5); stake.position.set(x + 0.38, 0.38, z + 0.34); add(stake);
+    add(box(0.14, 0.09, 0.015, P.white, x + 0.38, 0.52, z + 0.35, 0.005));
+  }
+  palm(add, 1.72, 0.16, -1.35, 1.5);
+});
+// 6 · waste prevention: an insulated cold store with roof condensers and dock doors; pallets of produce and a forklift
+make(5, add => {
+  const y0 = 0.12, bx = 0.2, bz = -0.6, BW = 3.0, BH = 1.3, BD = 1.8, front = bz + BD / 2;
+  add(box(4.0, y0, 3.4, P.concrete, 0, 0, 0, 0.05));
+  add(box(BW, BH, BD, P.white, bx, y0, bz, 0.05));
+  for (let k = 1; k < 10; k++) add(box(0.014, BH - 0.06, 0.014, P.seam, bx - BW / 2 + k * BW / 10, y0 + 0.03, front + 0.004, 0.005));
+  [-0.65, 0.55].forEach(x => { add(box(0.62, 0.3, 0.5, P.steel, bx + x, y0 + BH, bz - 0.25, 0.04)); const fan = cyl(0.16, 0.16, 0.03, P.black, 20); fan.position.set(bx + x, y0 + BH + 0.31, bz - 0.25); add(fan); });
+  add(box(BW, 0.3, 0.55, P.concrete2, bx, y0, front + 0.275, 0.03));
+  [-0.6, 0.8].forEach(x => {
+    add(box(0.78, 0.82, 0.04, P.door, bx + x, y0 + 0.3, front + 0.01, 0.01));
+    for (let k = 1; k < 6; k++) add(box(0.76, 0.012, 0.012, P.steelD, bx + x, y0 + 0.3 + k * 0.137, front + 0.035, 0.004));
+  });
+  add(box(0.15, 0.2, 0.03, P.black, bx + 0.1, y0 + 0.78, front + 0.015, 0.01));
+  add(box(0.11, 0.07, 0.01, P.blue, bx + 0.1, y0 + 0.88, front + 0.034, 0.003));
+  crates(add, -1.38, y0, 1.2, [P.red, P.orange]);
+  crates(add, -0.45, y0, 1.28, [P.yellow, P.leafL, P.red]);
+  forklift(add, 1.15, y0, 1.25);
+});
+// 7 · rescue & reuse: compost windrows from crop residues, a bin of surplus produce, bagged compost on a pallet
+make(6, add => {
+  add(box(4.0, 0.12, 3.4, P.sand, 0, 0, 0, 0.05));
+  [-1.0, -0.15].forEach((z, k) => {
+    const row = mesh(new THREE.CapsuleGeometry(0.42, 2.4, 6, 14), M(k ? P.compostL : P.compost, true)); row.rotation.z = Math.PI / 2; row.scale.set(1, 1, 0.9); row.position.set(-0.25, 0.12, z); add(row);
+    for (let s = 0; s < 6; s++) { const st = ball(0.07, P.leafL, true); st.position.set(-1.4 + s * 0.45, 0.5 + (s % 2) * 0.04, z + 0.12); add(st); }
+  });
+  add(box(0.95, 0.6, 0.75, P.crate, -1.05, 0.12, 1.05, 0.06));
+  [[P.red, -1.3, 0.95], [P.orange, -1.05, 1.15], [P.yellow, -0.82, 0.95], [P.leafL, -1.18, 1.2], [P.red, -0.9, 1.22]].forEach(([c, x, z]) => { const f = ball(0.11, c); f.position.set(x, 0.78, z); add(f); });
+  add(box(0.9, 0.09, 0.75, P.wood, 0.55, 0.12, 1.1, 0.02));
+  for (let l = 0; l < 2; l++) for (let a = 0; a < 2; a++) add(box(0.42, 0.17, 0.68, P.soilD, 0.33 + a * 0.44, 0.21 + l * 0.17, 1.1, 0.06));
+  add(box(0.86, 0.04, 0.7, P.leafD, 0.55, 0.555, 1.1, 0.01));
+  palm(add, 1.65, 0.12, -0.6, 1.35);
+});
+// 8 · supply-chain data: a distribution centre with dock doors, a road, a refrigerated truck and a tracking pin above it
+make(7, add => {
+  const y0 = 0.12;
+  add(box(4.0, y0, 3.4, P.concrete, 0, 0, 0, 0.05));
+  add(box(4.0, 0.03, 1.1, P.road, 0, y0, 1.08, 0.01));
+  for (let k = 0; k < 6; k++) add(box(0.34, 0.008, 0.05, P.white, -1.7 + k * 0.68, y0 + 0.03, 1.08, 0.004));
+  const dz = -0.8;
+  add(box(3.3, 1.0, 1.4, P.dc, -0.1, y0, dz, 0.05));
+  add(box(3.34, 0.07, 1.44, P.dcRoof, -0.1, y0 + 1.0, dz, 0.03));
+  for (let k = 0; k < 4; k++) add(box(0.48, 0.6, 0.03, P.door, -1.25 + k * 0.76, y0, dz + 0.71, 0.01));
+  const x = 0.12, y = y0 + 0.03, z = 1.08;
+  add(box(2.6, 0.08, 0.6, P.black, x + 0.1, y + 0.2, z, 0.02));
+  add(box(2.0, 0.85, 0.78, P.white, x - 0.45, y + 0.28, z, 0.05));
+  add(box(2.005, 0.06, 0.785, P.blue, x - 0.45, y + 0.42, z, 0.01));
+  add(box(0.12, 0.42, 0.56, P.steel, x + 0.62, y + 0.62, z, 0.03));
+  add(box(0.6, 0.72, 0.78, P.cab, x + 0.98, y + 0.24, z, 0.1));
+  add(box(0.03, 0.26, 0.64, P.windowC, x + 1.28, y + 0.6, z, 0.01));
+  [-1.15, -0.85, 1.0].forEach(wx => [-0.34, 0.34].forEach(wz => { const w = cyl(0.15, 0.15, 0.12, P.black, 18); w.rotation.x = Math.PI / 2; w.position.set(x + wx, y + 0.15, z + wz); add(w); }));
+  const pin = new THREE.Group();
+  const head = ball(0.17, P.blue); head.position.y = 0.22; pin.add(head);
+  const tip = mesh(new THREE.ConeGeometry(0.13, 0.3, 18), M(P.blue)); tip.rotation.x = Math.PI; tip.position.y = 0.02; pin.add(tip);
+  const dot = ball(0.065, P.white); dot.position.set(0, 0.22, 0.13); pin.add(dot);
+  pin.position.set(x + 0.2, 1.85, z); add(pin);
+  const ring = mesh(new THREE.TorusGeometry(0.5, 0.018, 6, 48), new THREE.MeshStandardMaterial({ color: P.blue, transparent: true, opacity: 0.8 })); ring.rotation.x = Math.PI / 2; ring.position.set(x + 0.2, y + 0.04, z); add(ring);
+  anim.push(t => { pin.position.y = 1.85 + Math.sin(t * 1.8) * 0.07; pin.rotation.y = t * 0.8; const q = (t * 0.6) % 1; ring.scale.setScalar(0.5 + q * 1.1); ring.material.opacity = 0.85 * (1 - q); });
+});
+// 9 · applications & analytics: a racked store of labelled produce crates and a dashboard screen reading the flow
+make(8, add => {
+  const y0 = 0.12;
+  add(box(4.0, y0, 3.4, P.concrete, 0, 0, 0, 0.05));
+  for (let r = 0; r < 2; r++) {
+    const z = -1.05 + r * 0.95;
+    [-1.6, -0.4, 0.8].forEach(x => add(box(0.06, 1.55, 0.06, P.rack, x, y0, z, 0.01)));
+    [-1.6, -0.4, 0.8].forEach(x => add(box(0.06, 1.55, 0.06, P.rack, x, y0, z - 0.55, 0.01)));
+    for (let l = 0; l < 3; l++) {
+      add(box(2.46, 0.05, 0.62, P.orange, -0.4, y0 + 0.12 + l * 0.5, z - 0.275, 0.01));
+      for (let b = 0; b < 4; b++) {
+        const cx = -1.3 + b * 0.6 + (b > 1 ? 0.0 : 0), c = [P.crate, P.white, P.crate, P.wood][(b + l + r) % 4];
+        add(box(0.46, 0.26, 0.42, c, cx, y0 + 0.17 + l * 0.5, z - 0.275, 0.03));
+        add(box(0.1, 0.07, 0.01, P.white, cx, y0 + 0.26 + l * 0.5, z - 0.06, 0.003));
+      }
+    }
+  }
+  const sx = 1.45, sz = 1.05;
+  add(box(0.08, 0.9, 0.08, P.steelD, sx, y0, sz - 0.1, 0.02));
+  add(box(0.5, 0.05, 0.4, P.steelD, sx, y0, sz - 0.1, 0.02));
+  const scr = new THREE.Group(); scr.position.set(sx, y0 + 1.2, sz); scr.rotation.y = -0.5; add(scr);
+  scr.add(box(0.98, 0.64, 0.06, P.black, 0, -0.32, 0, 0.03));
+  scr.add(box(0.9, 0.56, 0.01, P.white, 0, -0.28, 0.032, 0.01));
+  [0.16, 0.26, 0.2, 0.36, 0.3].forEach((h, k) => scr.add(box(0.1, h, 0.015, k === 3 ? P.blue : 0x9ec9dd, -0.3 + k * 0.15, -0.5, 0.04, 0.005)));
+  forklift(add, 1.35, y0, -1.35);
+});
+
+// one island per group, tinted, so the three groups read at a glance
+const GNAME = ['Production', 'Waste and Circularity', 'Supply-Chain Visibility and Intelligence'];
+const ISL = [[0, 4], [5, 6], [7, 8]].map(([a, b], k) => {
+  const cx = (X(a) + X(b)) / 2, w = X(b) - X(a) + 3.9, isl = rbox(w, 0.34, 4.1, 0.2, M(GRP[k].island)); isl.position.set(cx, -0.5, 0); isl.receiveShadow = true; scene.add(isl);
+  const lab = document.createElement('div'); lab.className = 'gTag'; lab.dataset.g = k; lab.innerHTML = '<span>' + GNAME[k] + '<em>' + (b - a + 1) + ' areas</em></span>'; hotsEl.appendChild(lab);
+  return { pos: new THREE.Vector3(cx, -0.5, 2.3), lab };
+});
+const tags = AREAS.map((a, i) => { const t = document.createElement('div'); t.className = 'nm'; t.dataset.row = i % 2; t.innerHTML = '<i></i><span>' + a[3] + '</span>'; hotsEl.appendChild(t); return t; });
+const hitList = []; scenes.forEach((s, i) => s.g.traverse(o => { if (o.isMesh) { o.userData.scene = i; hitList.push(o); } }));
+let sel = -1, hov = -1, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false, zoom = 0, zoomK = 0;
+const card = $('#n1Card'), zoomBtn = $('#n1Zoom'), on = new THREE.Color(TILE_ON);
+function show(i) {
+  if (i === sel) return; sel = i;
+  tags.forEach((t, k) => k === i ? t.setAttribute('data-on', '') : t.removeAttribute('data-on'));
+  groupsEl.forEach((g, k) => k === grpOf(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'));
+  scenes.forEach((s, k) => {
+    const isOn = k === i, to = isOn ? on : s.c0;
+    if (G) { gsap.to(s.lift.position, { y: isOn ? 0.3 : 0, duration: 0.9, ease: isOn ? 'back.out(2.2)' : 'power3.out' }); gsap.to(s.tileM.color, { r: to.r, g: to.g, b: to.b, duration: 0.6 }); }
+    else { s.lift.position.y = isOn ? 0.3 : 0; s.tileM.color.copy(to); }
+  });
+  card.style.setProperty('--gd', ['#5f8a4c', '#a77b3d', '#4f7ea3'][grpOf(i)]);
+  const h0 = card.offsetHeight;
+  swap($('#n1Group'), AREAS[i][0]); swap($('#n1Title'), AREAS[i][1]); swap($('#n1Text'), AREAS[i][2]); onPick(i);
+  if (G) { gsap.set(card, { height: h0 }); clearTimeout(card.__ht); card.__ht = setTimeout(() => { card.style.height = 'auto'; const h1 = card.offsetHeight; gsap.fromTo(card, { height: h0 }, { height: h1, duration: 0.65, ease: 'power3.inOut', clearProps: 'height' }); }, 380); }
+  $('#n1Count').textContent = (i + 1) + ' / ' + N;
+  if (zoom || focus) camTX = X(i);
+}
+function zoomTo(i) { show(i); camTX = X(i); zoom = 1; stage.classList.add('zoomed'); zoomBtn.textContent = '← All nine areas'; zoomBtn.setAttribute('aria-expanded', 'true'); }
+function zoomOut() { zoom = 0; stage.classList.remove('zoomed'); zoomBtn.textContent = 'Take a closer look'; zoomBtn.setAttribute('aria-expanded', 'false'); }
+zoomBtn.addEventListener('click', () => zoom ? zoomOut() : zoomTo(sel));
+$('#n1Prev').addEventListener('click', () => (zoom ? zoomTo : show)((sel + N - 1) % N));
+$('#n1Next').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 1) % N));
+stage.addEventListener('keydown', e => { if (e.key === 'ArrowRight') $('#n1Next').click(); if (e.key === 'ArrowLeft') $('#n1Prev').click(); if (e.key === 'Escape' && zoom) zoomOut(); });
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+function hit(e) { const r = renderer.domElement.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(hitList, false)[0]; return h ? h.object.userData.scene : -1; }
+let px = null, py = 0, pit = 0, pitT = 0;
+renderer.domElement.addEventListener('pointerdown', e => { px = e.clientX; py = e.clientY; });
+addEventListener('pointerup', e => { if (px !== null && Math.hypot(e.clientX - px, e.clientY - py) < 8 && e.target === renderer.domElement) { const i = hit(e); if (i >= 0) zoomTo(i); } px = null; });
+addEventListener('pointermove', e => {
+  if (e.target !== renderer.domElement) { if (hov !== -1) { hov = -1; stage.classList.remove('onObj'); } return; }
+  if (fine) { const r = renderer.domElement.getBoundingClientRect(); dragT = ((e.clientX - r.left) / r.width - 0.5) * 0.5; pitT = ((e.clientY - r.top) / r.height - 0.5) * 2; }
+  const i = hit(e); stage.classList.toggle('onObj', i >= 0);
+  if (i !== hov) { hov = i; if (i >= 0 && fine) show(i); }
+});
+renderer.domElement.addEventListener('pointerleave', () => { hov = -1; dragT = 0; pitT = 0; stage.classList.remove('onObj'); });
+
+// camera: the whole strip on wide screens; on narrow ones (or zoomed) it follows the selected scene
+const target = new THREE.Vector3(), v = new THREE.Vector3();
+function resize() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); focus = camera.aspect < 1.5; }
+addEventListener('resize', resize); resize();
+let visible = false; const intro = { k: 0 };
+new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) resize(); }, { rootMargin: '200px' }).observe(stage);
+const clock = new THREE.Clock();
+function frame() {
+  requestAnimationFrame(frame); if (!visible) return;
+  const tm = clock.getElapsedTime();
+  drag += (dragT - drag) * 0.05; pit += (pitT - pit) * 0.05;
+  zoomK += (zoom - zoomK) * (reduce ? 1 : 0.05);
+  camX += (((focus || zoom) ? camTX : 0) - camX) * (reduce ? 1 : 0.05);
+  const hv = Math.atan(Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect), far = focus ? 15 : 22 / Math.tan(hv) / (1 + intro.k * 0.03), near = focus ? 10 : 10.5;
+  const dist = far + (near - far) * zoomK, ang = 0.62 - zoomK * 0.16 + pit * 0.05, yaw = drag * (0.5 + zoomK * 0.6);
+  // objects sit above centre so the info card in the lower-left corner never covers them; zoomed, they move right of it
+  target.set(camX + (focus ? 0 : -zoomK * 2.4), (focus ? -0.4 : -1.8) + zoomK * 2.0, 0);
+  camera.position.set(target.x + Math.sin(yaw) * dist * Math.cos(ang), target.y + Math.sin(ang) * dist, Math.cos(yaw) * dist * Math.cos(ang));
+  camera.lookAt(target);
+  if (!reduce) anim.forEach(f => f(tm));
+  renderer.render(scene, camera);
+  const w = stage.clientWidth, h = stage.clientHeight;
+  ISL.forEach(o => { v.copy(o.pos).project(camera); o.lab.style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * h) + 'px)'; o.lab.toggleAttribute('data-on', grpOf(sel) === +o.lab.dataset.g); });
+  scenes.forEach((s, i) => { v.copy(s.top); v.y += s.lift.position.y; v.project(camera); const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h; tags[i].style.transform = 'translate(' + x + 'px,' + y + 'px)'; tags[i].style.visibility = x < 30 || x > w - 30 ? 'hidden' : 'visible'; zoom && i !== sel ? tags[i].setAttribute('data-dim', '') : tags[i].removeAttribute('data-dim'); });
+}
+show(0); if (focus) camX = camTX; frame();
+scenes.forEach(s => s.g.scale.setScalar(G ? 0.001 : 1));
+const enter = () => { if (G) { scenes.forEach((s, k) => gsap.to(s.g.scale, { x: 1, y: 1, z: 1, duration: 1, delay: 0.08 * k, ease: 'back.out(1.7)' })); gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out' }); } };
+if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: stage, start: 'top 75%', once: true, onEnter: enter }); else enter();
+return { show };
 }
 
 /* ===== Agricultural Challenges, five field pilots (B1): one plant, its soil cut open in layers; where each finalist's solution works.
@@ -5880,7 +6400,7 @@ function soil(host, names) {
   return { setStage, setProgress(p) { prog = p; } };
 }
 
-/* ===== Incubation success band: the homepage IO helix (same model); its nine levels turn one after another with the scroll ===== */
+/* ===== Incubation success band: the homepage iO helix (same model); its nine levels turn one after another with the scroll ===== */
 function helix(host) {
   if (!host) return null;
   let r; try { r = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' }); } catch (e) { return null; }
@@ -6157,10 +6677,10 @@ dispatchEvent(new Event('io3d'));
   var INIT = {};
   INIT.overview = function (view) {
     var PICK = {
-      fif: { route: 'farm-innovation-fund', name: 'Farm Innovation Fund', why: 'Ideas at any stage, from early concept to trial-ready. Farmers keep ownership.', sup: 'Up to AED 200,000 per pilot, training and mentoring', now: 'Cohort 1 · 10 finalists' },
-      inc: { route: 'incubation', name: 'Incubation', why: 'Early-stage ventures and university research taken towards market-ready.', sup: 'Testbeds, farm operations and end users, with Khalifa University', now: 'Agri-Robotics cohort · 4 technologies' },
-      acc: { route: 'accelerator', name: 'Accelerator · Unbreakable Harvest', why: 'Series A+ startups with proven technology (TRL 7–8+) and commercial traction.', sup: 'AED 10M non-dilutive grant pool, Silal as venture client', now: 'Cohort 1 selected · 2 cohorts a year' },
-      chal: { route: 'agricultural-challenges', name: 'Agricultural Challenges', why: 'Proven solutions entering open calls, or partners running their own challenge.', sup: 'Trials designed, run and measured at Innovation Oasis', now: 'Al Miyah · winners December 2026' }
+      fif: { route: 'farm-innovation-fund', name: 'Farm Innovation Fund', why: 'Turn a practical farm challenge or improvement idea into a structured, real-world project while retaining ownership of your solution.', sup: 'Potential non-dilutive funding, expert guidance, pilot design, technical support and access to relevant iO capabilities.', now: 'Current cycle closed. Next cycle anticipated in April 2027.' },
+      inc: { route: 'incubation', name: 'Incubation', why: 'Test the critical technical, user, adoption and commercial assumptions behind promising research or an early-stage technology.', sup: 'Expert review, experimental design, facility access, focused validation and guidance toward commercialization or further development.', now: 'Expressions of interest accepted year-round, subject to evaluation cycles and available capacity.' },
+      acc: { route: 'accelerator', name: 'Acceleration', why: 'Generate the operational and commercial evidence needed to localize a proven technology and build a route into the UAE and wider region.', sup: 'Pilot delivery, operating-environment access, technical expertise, prospective customer engagement and commercialization support, with potential milestone-based funding.', now: 'Current cycle closed. Next cycle anticipated in April 2027. Register interest in the next cohort.' },
+      chal: { route: 'agricultural-challenges', name: 'Agri-food Challenges', why: 'Design and support innovation programs that identify, evaluate and test promising technologies against priority challenges across agrifood and related sectors such as water, energy and circularity.', sup: 'End-to-end challenge delivery\nChallenge design\nTechnology sourcing\nExpert evaluation\nFinalist assessment\nPilot design\nReal-world validation\nCommercialization and scale planning', now: '' }
     };
     var opts = $$('.h_opt', view), imgs = $$('.h_resultImgs img', view), z = 2;
     function pick(o) {
@@ -6168,13 +6688,14 @@ dispatchEvent(new Event('io3d'));
       var k = o.dataset.pick, p = PICK[k], link = $('#dock a[data-route="' + p.route + '"]');
       imgs.forEach(function (im) { if (im.dataset.k === k) { im.style.zIndex = ++z; im.style.clipPath = 'inset(0 0 100% 0)'; void im.offsetWidth; im.style.clipPath = 'inset(0 0 0 0)'; } });
       swap($('#pickName'), p.name); swap($('#pickWhy'), p.why); swap($('#pickSup'), p.sup); swap($('#pickNow'), p.now);
+      var noWhen = k === 'chal'; $('#pickSup').classList.toggle('h_list', noWhen); $('#pickWhenDt').hidden = noWhen; $('#pickNow').hidden = noWhen;
       $('#pickGo').setAttribute('href', link ? link.getAttribute('href') : '#' + p.route); goText('Go to ' + p.name.split(' · ')[0]);
     }
     // idle: while the section is on screen and nobody points at it, the options take turns every 5 s
     var optsBox = $('.h_opts', view), finder = $('.h_finder', view), AUTO = 5000, autoT = 0, inView = false, held = false;
     function stopAuto() { clearTimeout(autoT); optsBox.removeAttribute('data-auto'); }
     function runAuto() {
-      stopAuto(); if (reduce || !inView || held) return;
+      stopAuto(); return; /* round 5: the selector only changes when the visitor picks */
       void optsBox.offsetWidth; optsBox.style.setProperty('--autoT', AUTO + 'ms'); optsBox.setAttribute('data-auto', '');
       autoT = setTimeout(function () { var k = opts.findIndex(function (b) { return b.getAttribute('aria-checked') === 'true'; }); pick(opts[(k + 1) % opts.length]); runAuto(); }, AUTO);
     }
@@ -6187,17 +6708,6 @@ dispatchEvent(new Event('io3d'));
       b.addEventListener('click', function () { if (b.getAttribute('aria-checked') !== 'true') pick(b); });
       b.addEventListener('keydown', function (e) { var d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0; if (!d) return; e.preventDefault(); var n = opts[(k + d + opts.length) % opts.length]; pick(n); n.focus(); });
     });
-    // marquee: eases to a stop on hover and eases back up on leave
-    var tick = $('.h_ticker', view), tickAnim = $('.h_tickTrack', view).getAnimations ? $('.h_tickTrack', view).getAnimations()[0] : null, rate = { v: 1 };
-    if (tickAnim) {
-      var setRate = function (v, d) { gsap.to(rate, { v: v, duration: d, ease: 'power2.out', overwrite: true, onUpdate: function () { tickAnim.playbackRate = rate.v; } }); };
-      // the band runs with the scroll: scrolling up turns it back, scrolling down sends it forward; hover eases it to a stop
-      var tDir = 1, tHov = false;
-      tick.addEventListener('mouseenter', function () { tHov = true; setRate(0, 1.4); });
-      tick.addEventListener('mouseleave', function () { tHov = false; setRate(tDir, 1.2); });
-      var lastY = scrollY;
-      addEventListener('scroll', function () { var d = scrollY > lastY ? 1 : scrollY < lastY ? -1 : 0; lastY = scrollY; if (!d || d === tDir) return; tDir = d; if (!tHov) setRate(tDir, 0.9); }, { passive: true });
-    }
     // the card follows its content height smoothly instead of jumping when the text swaps
     var box = $('.h_resultBox', view), boxIn = $('.h_resultIn', view), boxH = 0;
     if (G && window.ResizeObserver) new ResizeObserver(function () { var h = boxIn.offsetHeight; if (!boxH) { boxH = h; return; } if (h === boxH) return; gsap.fromTo(box, { height: boxH }, { height: h, duration: 0.8, ease: 'expo.out', overwrite: true, onComplete: function () { box.style.height = ''; } }); boxH = h; }).observe(boxIn);
@@ -6213,6 +6723,107 @@ dispatchEvent(new Event('io3d'));
       } });
     }
     if (G) gsap.from($$('.h_panel', view), { clipPath: 'inset(100% 0 0 0)', duration: 1.5, stagger: 0.1, ease: 'expo.out', delay: 0.2 });
+
+    /* ---------- rev9: "Find your pathway" links (hero and enquiry band) glide to the selector ---------- */
+    $$('.hp_toPath', view).forEach(function (a) {
+      a.addEventListener('click', function (e) { var el = document.getElementById('pathway'); if (!el) return; e.preventDefault(); if (lenis) lenis.scrollTo(el, { offset: -90, duration: 1.2 }); else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); });
+    });
+
+    /* ---------- rev9 · How iO moves innovation forward: About's journey (horizontal): pinned on wide screens, the stages move
+       left to right with the scroll; every stage (and its dot) is a button that jumps to it; the evidence ticks fill up ---------- */
+    var jw = $('#xJour', view);
+    if (jw) {
+      var jl = $('#jList', jw), jSteps = $$('.j_jourStep', jw), frames = $$('.j_jourFrame', jw), fill = $('#jLine', jw), ticks = $$('.j_jourTicks li', jw);
+      var odoO = $('#odoO', jw), jTag = $('#jTag', jw), jCount = $('#jCount', jw), jn = jSteps.length;
+      var jYears = $$('.x_jYear', jw), jArrows = $$('.x_jArrow', jw);
+      var jOn = false, jDist = 0, jLen = 0, jCur = -1, pad2 = function (v) { return (v < 10 ? '0' : '') + v; };
+      var jSet = function (c) {
+        if (c === jCur) return; jCur = c;
+        jSteps.forEach(function (s, i) { if (i === c) s.setAttribute('data-on', ''); else s.removeAttribute('data-on'); s.setAttribute('aria-current', i === c); });
+        frames.forEach(function (f, i) { if (i === c) f.setAttribute('data-on', ''); else f.removeAttribute('data-on'); if (i < c) f.setAttribute('data-past', ''); else f.removeAttribute('data-past'); });
+        ticks.forEach(function (t, i) { if (i <= c) t.setAttribute('data-on', ''); else t.removeAttribute('data-on'); });
+        if (odoO) odoO.style.transform = 'translateY(' + (-(c + 1)) + 'em)';
+        if (jTag) jTag.textContent = jSteps[c].dataset.tag || 'Stage';
+        if (jCount) jCount.textContent = pad2(c + 1) + ' / ' + pad2(jn);
+        jYears.forEach(function (b, i) { b.setAttribute('aria-current', i === c); });
+        if (jArrows.length) { jArrows[0].disabled = c === 0; jArrows[1].disabled = c === jn - 1; }
+      };
+      var jUpd = function () {
+        var c = 0;
+        if (jOn && jLen) {
+          var p = Math.max(0, Math.min(1, -jw.getBoundingClientRect().top / jLen));
+          jl.style.transform = 'translate3d(' + (-p * jDist).toFixed(1) + 'px,0,0)';
+          if (fill) fill.style.transform = 'scaleX(' + p + ')';
+          c = Math.round(p * (jn - 1));
+        } else {
+          jSteps.forEach(function (s, i) { if (s.getBoundingClientRect().top < innerHeight * 0.55) c = i; });
+          if (fill) fill.style.transform = 'scaleY(' + (jn > 1 ? c / (jn - 1) : 0) + ')';
+        }
+        jSet(c);
+      };
+      var jSetup = function () {
+        jOn = !reduce && innerWidth >= 1000 && innerHeight >= 600;
+        jw.dataset.on = jOn; jl.style.transform = ''; if (fill) fill.style.transform = '';
+        jDist = jOn ? Math.max(0, jSteps[jn - 1].offsetLeft - jSteps[0].offsetLeft) : 0;
+        jLen = Math.round(jDist * 1.1); jw.style.setProperty('--len', jLen + 'px');
+        jCur = -1; jUpd(); if (G) ScrollTrigger.refresh();
+      };
+      var jGo = function (i) {
+        i = Math.max(0, Math.min(jn - 1, i));
+        var y = jOn ? jw.getBoundingClientRect().top + scrollY + (jn > 1 ? i / (jn - 1) : 0) * jLen + 2 : jSteps[i].getBoundingClientRect().top + scrollY - 140;
+        if (lenis) lenis.scrollTo(y, { duration: 1.2 }); else scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+      };
+      jSteps.forEach(function (s, i) {
+        s.setAttribute('aria-label', 'Go to ' + s.querySelector('.j_jourWhen').textContent + ': ' + s.querySelector('.j_jourTitle').textContent);
+        s.addEventListener('click', function () { jGo(i); });
+        s.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jGo(i); } if (e.key === 'ArrowRight') jGo(i + 1); if (e.key === 'ArrowLeft') jGo(i - 1); });
+      });
+      jYears.forEach(function (b, i) { b.addEventListener('click', function () { jGo(i); }); });
+      jArrows.forEach(function (b) { b.addEventListener('click', function () { jGo(jCur + +b.dataset.dir); }); });
+      addEventListener('scroll', jUpd, { passive: true }); addEventListener('resize', jSetup);
+      jSetup(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(jSetup);
+    }
+
+    /* ---------- rev9 · technology areas: the Accelerator's nine-areas explorer (comment #01), literal farm scenes in 3D;
+       the line of nine stops stays as the fallback without WebGL ---------- */
+    var AREAS = window.IVP_AREAS = [
+      ['Production', 'Soil and plant health', 'Solutions that improve soil quality, nutrient and water retention, crop health, stress tolerance and productive capacity.', 'Soil & plant health', ['Soil inputs and amendments', 'Biological and plant-health inputs', 'Nutrient-management technologies', 'Soil-health monitoring', 'Biostimulants and biological crop protection', 'Technologies supporting resilience to abiotic and biotic stresses']],
+      ['Production', 'Precision agriculture', 'Data-led technologies that improve decision-making, resource use and farm productivity.', 'Precision agriculture', ['Data-driven farming', 'IoT and remote sensing', 'Imaging and crop monitoring', 'Robotics and automation', 'Variable-rate technologies', 'Decision-support systems', 'AI-enabled farm management']],
+      ['Production', 'Water and energy management', 'Technologies that improve water-use efficiency, energy performance and resource resilience.', 'Water & energy', ['Precision irrigation', 'Water monitoring and optimization', 'Water treatment, recycling and reuse', 'Energy-efficient climate control', 'Renewable-energy integration', 'Resource-efficient cooling and environmental control']],
+      ['Production', 'Controlled-environment agriculture', 'Technologies and systems supporting efficient indoor and protected cultivation.', 'Controlled environment', ['Greenhouse and nethouse systems', 'Controlled-environment equipment', 'Climate-control technologies', 'Lighting and growing systems', 'Environmental monitoring', 'Automation for protected agriculture']],
+      ['Production', 'Crop innovation', 'Scientific and technological approaches that improve crop performance under challenging conditions.', 'Crop innovation', ['Genomic innovation', 'Crop breeding technologies', 'Multi-stress-tolerant crops', 'Phenotyping', 'Seed and varietal innovation', 'Climate-resilient production systems']],
+      ['Waste and Circularity', 'Waste prevention', 'Technologies that prevent food loss, maintain quality and improve planning before products become waste.', 'Waste prevention', ['Cold-chain infrastructure', 'Temperature-controlled storage and transport', 'AI-enabled supply management', 'Quality and freshness monitoring', 'Shelf-life-extension technologies', 'Advanced packaging, coatings and materials']],
+      ['Waste and Circularity', 'Rescue and reuse', 'Solutions that redirect surplus products or convert waste into higher-value resources.', 'Rescue & reuse', ['Food-redistribution platforms', 'Alternative demand channels', 'Waste-to-resource technologies', 'Agricultural by-product utilization', 'Organic-waste conversion', 'Inputs, materials and energy derived from waste']],
+      ['Supply-Chain Visibility and Intelligence', 'Data platforms and infrastructure', 'Technologies that create, capture and connect data across agrifood value chains.', 'Supply-chain data', ['Agribusiness platforms and marketplaces', 'Supply-chain IoT', 'Alternative data sources', 'Farm-to-market connectivity', 'Product and logistics tracking', 'Data integration infrastructure']],
+      ['Supply-Chain Visibility and Intelligence', 'Applications and analytics', 'Solutions that turn value-chain data into stronger decisions, transparency and operational improvements.', 'Applications & analytics', ['Traceability systems', 'Blockchain-enabled records', 'Demand forecasting', 'Supply planning', 'Inventory optimization', 'Predictive analytics', 'AI-enabled supply-chain management']]];
+    var exEl = $('#n1Ex', view), exList = function (i) { if (exEl) exEl.innerHTML = AREAS[i][4].map(function (x) { return '<li>' + x + '</li>'; }).join(''); };
+    exList(0);
+    var stops = $$('.a_stop', view), groupsBar = $$('.a_groupsBar div', view), fillLine = $('#chainFill', view), aSel = 0, aAuto = null;
+    var groupOf = function (i) { return i < 5 ? 0 : i < 7 ? 1 : 2; };
+    var pickArea = function (i, focus) {
+      if (i === aSel && stops[i].getAttribute('aria-selected') === 'true') return; aSel = i;
+      stops.forEach(function (b, k) { b.setAttribute('aria-selected', k === i); b.tabIndex = k === i ? 0 : -1; k < i ? b.setAttribute('data-past', '') : b.removeAttribute('data-past'); });
+      groupsBar.forEach(function (g, k) { k === groupOf(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'); });
+      fillLine.style.setProperty('--p', i / 8);
+      swap($('#areaGroup', view), AREAS[i][0]); swap($('#areaTitle', view), AREAS[i][1]); swap($('#areaText', view), AREAS[i][2]);
+      if (focus) stops[i].focus();
+    };
+    var stopAAuto = function () { if (aAuto) { clearInterval(aAuto); aAuto = null; } };
+    stops.forEach(function (b, i) {
+      b.addEventListener('mouseenter', function () { if (fine) { stopAAuto(); pickArea(i); } });
+      b.addEventListener('click', function () { stopAAuto(); pickArea(i); });
+      b.addEventListener('focus', function () { stopAAuto(); pickArea(i); });
+      b.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0; if (!d) return; e.preventDefault(); stopAAuto(); pickArea((i + d + 9) % 9, true); });
+    });
+    var n13d = null;
+    var mountAreas = function () { if (n13d || !window.IO3D) return; var wrap = $('#areasWrap', view); wrap.classList.add('is3d'); n13d = IO3D.areas($('#n1Stage', view), { swap: swap, data: AREAS, onPick: exList }); if (n13d) { stopAAuto(); if (G) ScrollTrigger.refresh(); } else wrap.classList.remove('is3d'); };
+    mountAreas(); addEventListener('io3d', mountAreas);
+    if (G && !reduce) ScrollTrigger.create({ trigger: '#chain', start: 'top 75%', once: true, onEnter: function () {
+      if (n13d) return;
+      gsap.from($$('.a_stop b', view), { opacity: 0, y: 16, duration: 0.8, stagger: 0.06, ease: 'expo.out' });
+      gsap.from($('.a_line', view), { scaleX: 0, transformOrigin: 'left', duration: 1.4, ease: 'expo.out' });
+      aAuto = setInterval(function () { pickArea((aSel + 1) % 9); }, 4000);
+    } });
   };
 
   INIT['farm-innovation-fund'] = function (view) {
@@ -6433,7 +7044,7 @@ dispatchEvent(new Event('io3d'));
     var GS = [['Selection', 'Finding the right growth-stage innovators to tackle each challenge area.', 'Before the start'],
       ['Onboarding', 'Getting your team set up and oriented around the scope, the facilities, and the Silal business units and experts you’ll be working with.', 'Month 0 to 1'],
       ['Validation', 'Live pilots and proof-of-concept projects in real operating conditions, testing what matters with the people it matters to.', 'Month 1 to 4'],
-      ['Pathways Forward', 'Post-pilot support that leverages the Silal relationship, ecosystem network, and IO platform to convert a successful pilot into scaled commercial agreements.', 'Month 4 to 5 and beyond']];
+      ['Pathways Forward', 'Post-pilot support that leverages the Silal relationship, ecosystem network, and iO platform to convert a successful pilot into scaled commercial agreements.', 'Month 4 to 5 and beyond']];
     var gm = $('#gMonths', view); for (var m = 0; m <= 5; m++) gm.insertAdjacentHTML('beforeend', '<span style="left:' + (m * 20) + '%"><b>Month </b>' + m + '</span>');
     var gRows = $$('#gRows .a_gRow', view), gBars = gRows.map(function (r) { return r.querySelector('.a_gBar'); }), gHead = $('#gHead', view), gLbl = $('#gHeadLbl', view), gk = -1;
     function gantt(x) {
@@ -6572,7 +7183,7 @@ dispatchEvent(new Event('io3d'));
 <script>
 /* one site: menus built in script, mobile-menu "Overview" entries and the logo open their pages (site.py) */
 (function () {
-  var L = {"Home": "/full-site", "About IO": "/full-site/about", "Our Story": "/full-site/about", "Team & CEO Message": "/full-site/team", "Innovation & Venture Platforms": "/full-site/ivp-hub", "Farm Innovation Fund": "/full-site/ivp-farm-innovation-fund", "Incubation": "/full-site/ivp-incubation", "Accelerator": "/full-site/ivp-accelerator", "Agricultural Challenges": "/full-site/ivp-agricultural-challenges", "Talent & Training": "/full-site/io-academy", "IO Academy Training": "/full-site/io-academy", "Advanced Agritech Academy": "/full-site/io-academy", "Resources": "/full-site/news", "News & Media": "/full-site/news", "Content Library": "/full-site/news", "Press releases": "/full-site/news", "Press Releases": "/full-site/news", "Enquire": "/full-site/ivp-enquire", "Read the release": "/full-site/news-foodtech-challenge-winners", "FoodTech Challenge winners recognised at Innovation Oasis": "/full-site/news-foodtech-challenge-winners"}, HOME = "/full-site";
+  var L = {"Home": "/full-site", "About iO": "/full-site/about", "Our Story": "/full-site/about", "Team & CEO Message": "/full-site/team", "Our Ecosystem": "/full-site/ecosystem", "Innovation & Venture Platforms": "/full-site/ivp-hub", "Farm Innovation Fund": "/full-site/ivp-farm-innovation-fund", "Incubation": "/full-site/ivp-incubation", "Accelerator": "/full-site/ivp-accelerator", "Agricultural Challenges": "/full-site/ivp-agricultural-challenges", "Talent & Training": "/full-site/io-academy", "iO Academy Training": "/full-site/io-academy", "Advanced Agritech Academy": "/full-site/io-academy", "Resources": "/full-site/news", "News & Media": "/full-site/news", "Content Library": "/full-site/news", "Press releases": "/full-site/news", "Press Releases": "/full-site/news", "Enquire": "/full-site/ivp-enquire", "Read the release": "/full-site/news-foodtech-challenge-winners", "FoodTech Challenge winners recognised at Innovation Oasis": "/full-site/news-foodtech-challenge-winners"}, HOME = "/full-site";
   function target(a) {
     var t = (a.textContent || '').replace(/\s+/g, ' ').replace(/[\u2192\u2197]/g, '').trim();
     if (L[t]) return L[t];
@@ -6589,5 +7200,5 @@ dispatchEvent(new Event('io3d'));
   }, true);
 })();
 </script>
-</body>
+<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script></body>
 </html>

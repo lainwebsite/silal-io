@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Farm Innovation Fund · Innovation Oasis</title>
 <link rel="icon" href="/full-site/brand/io-mark.svg" type="image/svg+xml">
-</head>
+<style>.x_iO{text-transform:none!important}.s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}</style><style id="navc">.navItem .dropdown,.navItem:nth-last-child(-n + 2) .dropdown,.s_navItem .s_dropdown,.s_navItem:nth-last-child(-n + 2) .s_dropdown{left:50%;right:auto;margin:0}</style></head>
 <body>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -382,7 +382,7 @@
   display: inline-flex;
 }
 
-/* on IO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
+/* on iO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
 .s_logoOnBlue {
   display: none;
   align-items: flex-start;
@@ -1403,7 +1403,7 @@ li[data-active="true"] .s_pillarArrow {
   flex: 0 1 auto;
 }
 
-/* connectors drawn like the helix rungs inside the IO mark: a line with a dot at each end */
+/* connectors drawn like the helix rungs inside the iO mark: a line with a dot at each end */
 .s_ecoCol i {
   flex: 1 1 auto;
   min-width: 40px;
@@ -4857,7 +4857,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .i_kd li[data-s="now"] .tag { border-color: var(--io-ink); color: var(--io-ink); }
 .i_successSec { background: var(--io); overflow: hidden; }
 .i_successSec > .s_wrap { position: relative; }
-/* official mark file, untouched: on the IO blue its blue shapes vanish and only the white helix shows, cropped on the right */
+/* official mark file, untouched: on the iO blue its blue shapes vanish and only the white helix shows, cropped on the right */
 .i_successMark { position: absolute; right: -14%; top: 50%; height: 190%; translate: 0 -50%; opacity: .28; pointer-events: none; user-select: none; }
 @media (max-width: 900px) { .i_successMark { height: 130%; right: -40%; opacity: .22; } }
 /* 3D helix (homepage model) replaces the flat one once it has loaded */
@@ -5328,20 +5328,506 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
 </style>
+<style>
+/* =========================== FARM INNOVATION FUND · rev9 redo =========================== */
+/* Base = the original page: its sections, classes, CSS and JS are kept as they were. The rules below only
+   (1) add the small pieces the client doc needs inside those sections and (2) adapt components that already
+   exist in the original IVP pages / homepage (c_principles, a_gain, x_cbox, a_faq, a_powerCol, i_successSec). */
+
+/* hero: placeholder note for the photo (#16 #17), status pill with the next-cycle date, intro + the two banner figures (#47 #48) */
+.f_heroPh { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; font-size: var(--t-small); line-height: 1.4; color: rgba(255,255,255,.78); max-width: 22em; }
+.f_heroPh b { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+.f_status::before, .f_gateSplit .x_pill::before { animation: none; } /* status and journey labels do not pulse: nothing idles */
+.f_heroEy { color: rgba(255,255,255,.92); } .f_heroEy::before { background: rgba(255,255,255,.7); }
+.f_pillSep { width: 1px; height: 12px; background: rgba(255,255,255,.4); }
+.f_heroSide { grid-column: 8 / span 5; grid-row: 3; align-self: end; display: flex; flex-direction: column; gap: 28px; }
+/* rev. 11 Nov (comment): hero side block sits further right; more room between Funding and Each year */
+.f_heroSide .f_heroFacts { grid-template-columns: auto auto; justify-content: start; column-gap: clamp(32px, 3.6vw, 80px); }
+.f_heroSide .f_heroFacts { grid-column: auto; grid-row: auto; align-self: stretch; }
+.f_heroIntro { display: flex; flex-direction: column; gap: 12px; max-width: none; }
+.f_heroIntro p { font-size: var(--fs-body); line-height: 1.65; color: rgba(255,255,255,.88); }
+.f_heroNote { font-size: var(--t-small); color: rgba(255,255,255,.66); margin-top: -14px; }
+
+/* why: one purpose statement and three pillars (the original tenets list, three columns, the pillar word in Light) */
+.f_visionBody { display: flex; flex-direction: column; gap: 12px; }
+.f_visionBody .f_bridge { color: var(--charcoal); }
+.f_pillars { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.f_pillars li { display: flex; flex-direction: column; gap: 10px; padding-top: 22px; }
+.f_pillars li > em { font-style: normal; font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.f_pillars strong { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; line-height: 1.1; color: var(--io-ink); }
+
+/* capability: the homepage principles row as a four-stage journey */
+.f_capSteps { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.f_capSteps li { border-top-color: var(--io); position: relative; }
+.f_capSteps li::before { content: ""; position: absolute; left: 0; top: -4px; width: 7px; height: 7px; border-radius: 50%; background: var(--io-ink); }
+.f_capSteps span { margin-bottom: 20px; color: var(--io-ink); letter-spacing: .14em; text-transform: uppercase; }
+.f_capSteps h3 { color: var(--charcoal); font-weight: 300; }
+.x_grey .f_callout, .f_capFoot { margin-top: var(--head); }
+
+/* areas: the example question sits under the tabs (original callout), extra examples open from a chip */
+.f_areaQ { margin-top: 0; }
+.f_areaQ span { color: var(--charcoal); }
+.f_areaDesc { font-size: var(--fs-body); line-height: 1.6; color: rgba(255,255,255,.82); max-width: 34em; margin-top: -4px; }
+.f_areaChips button { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,.16); font-size: var(--t-small); transition: background .3s; }
+.f_areaChips button:hover { background: rgba(255,255,255,.3); }
+.f_areaChips button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* process: nine gates in two journeys; detail opens inside each gate */
+.f_gateSide2 { display: flex; flex-direction: column; gap: 12px; }
+.f_gateJ { margin-top: 0; min-height: 1.5em; }
+.f_gate .x_label { display: block; color: #b4b6b7; transition: color .6s; margin-top: 18px; }
+.f_gate[data-on] .x_label { color: var(--io-ink); }
+.f_gate h3 { padding-top: 6px; }
+.f_gateJ2[data-on] .f_gateN { background: var(--io); border-color: var(--io); box-shadow: 0 0 0 6px rgba(60,167,210,.18); }
+.f_gateSplit { position: relative; padding: 0 0 clamp(64px, 9vh, 120px) 84px; }
+.f_gateSplit .x_pill { position: relative; z-index: 1; }
+.f_gateMore { margin-top: 16px; max-width: 34em; }
+.f_gateMore summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: var(--t-small); font-weight: 500; color: var(--io-ink); }
+.f_gateMore summary::-webkit-details-marker { display: none; }
+.f_gateMore summary i { width: 10px; height: 10px; position: relative; transition: transform .5s var(--slow); }
+.f_gateMore summary i::before, .f_gateMore summary i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: currentColor; }
+.f_gateMore summary i::after { transform: rotate(90deg); }
+.f_gateMore[open] summary i { transform: rotate(45deg); }
+.f_gateMore summary:focus-visible { outline: 2px solid var(--io); outline-offset: 3px; }
+.f_gateMore > div { padding-top: 14px; display: flex; flex-direction: column; gap: 12px; }
+.f_gate .f_gateMore p { margin-top: 0; color: var(--grey-ink); }
+.f_gateMore h4 { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); margin-top: 6px; }
+.f_gateList { columns: 2; column-gap: 24px; }
+.f_gateList li { break-inside: avoid; padding: 7px 0; border-top: 1px solid var(--line); font-size: var(--t-small); line-height: 1.4; color: var(--charcoal); }
+.f_gateWays { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 24px; }
+.f_gateWays div { padding: 10px 0; border-top: 1px solid var(--line); }
+.f_gateWays dt { font-size: var(--fs-body); color: var(--charcoal); }
+.f_gateWays dd { margin: 4px 0 0; font-size: var(--t-small); line-height: 1.45; color: var(--grey-ink); }
+
+/* innovation day (pinned gallery): captions carry the support area. The stage keeps its bottom 110px free so the floating dock never
+   covers a caption; the photo height is whatever is left after header, intro and captions (4:5 portrait on large screens,
+   flatter on short laptop screens), so nothing sits under the dock at 1280x720 up to 1920x1080. */
+.f_dayStick { --dtop: clamp(24px, 5vh, 64px); --dcap: 140px; --dhead: clamp(176px, 12.6vw, 244px);
+  --dbud: calc(100svh - var(--hh) - 110px - var(--dtop) - var(--dhead) - var(--head) - var(--dcap));
+  --fw: max(240px, min(clamp(240px, 24vw, 400px), calc(var(--dbud) * .8)));
+  --fh: max(120px, min(calc(var(--fw) * 1.25), var(--dbud)));
+  padding: var(--dtop) 0 110px; }
+.f_dayHead > div:first-child { max-width: 52em; }
+.f_track .x_img, .f_trackEnd { aspect-ratio: auto; height: var(--fh); }
+.f_track .x_cap { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+.f_track .x_cap b { margin-right: 0; }
+
+/* evaluation: six criteria on the original tenets grid */
+.f_criteria { grid-template-columns: repeat(3, minmax(0,1fr)); row-gap: 8px; }
+.f_criteria li { display: flex; flex-direction: column; gap: 10px; padding: 24px 0 32px; }
+.f_criteria li > span { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; color: var(--io-ink); margin-bottom: 14px; }
+.f_criteria h3 { font-size: var(--t-h4); font-weight: 400; color: var(--charcoal); line-height: 1.3; }
+.f_criteria p { max-width: 26em; }
+.f_critFoot { margin-top: var(--head); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px 40px; }
+.f_critFoot .f_callout { margin-top: 0; }
+.f_critFoot .x_row { gap: 14px 28px; }
+.f_soon { font-size: var(--t-small); color: var(--grey); }
+
+/* selected project support: the accelerator benefits list with the sticky photo, design assets of the old cards reused */
+#fif-receive .x_head > div:first-child { grid-column: 1 / span 5; }
+#fif-receive .x_head > :nth-child(2) { grid-column: 7 / span 6; max-width: 36em; }
+.a_item .x_label { color: #b4b6b7; transition: color .6s; }
+.a_item[data-on] .x_label { color: var(--io-ink); }
+.a_item .f_spec, .a_item .f_check { margin-top: 10px; }
+.a_item .f_check li { font-size: var(--t-small); }
+.a_item .f_check svg { width: 18px; height: 18px; }
+.f_fine { font-size: var(--t-small) !important; color: var(--grey) !important; margin-top: 12px; }
+
+/* shared commitment: what iO provides | what participants contribute */
+.f_share { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: start; }
+.f_shareIO { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 18px; position: sticky; top: calc(var(--hh) + 32px); }
+.f_shareYou { grid-column: 6 / span 7; display: flex; flex-direction: column; gap: 18px; padding-left: var(--col-gap); border-left: 1px solid var(--io); }
+.f_shareIO .x_label, .f_shareYou .x_label { color: var(--io-ink); }
+.f_shareList { border-top: 1px solid var(--line); }
+.f_shareList li { display: grid; grid-template-columns: 3ch minmax(0,1fr); gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-body); color: var(--charcoal); }
+.f_shareList b { font-weight: 500; font-size: var(--t-label); letter-spacing: .14em; color: var(--io-ink); padding-top: 3px; }
+.f_shareIO .s_textLink { align-self: flex-start; margin-top: 8px; }
+.f_commit { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: var(--col-gap); }
+.f_commit li { display: grid; grid-template-columns: 20px minmax(0,1fr); gap: 14px; padding: 20px 0 24px; border-top: 1px solid var(--line); }
+.f_commit svg { width: 20px; height: 20px; padding: 3px; border-radius: 50%; background: var(--io-ink); color: #fff; margin-top: 2px; box-sizing: border-box; }
+.f_commit h3 { font-size: var(--t-h4); font-weight: 400; color: var(--charcoal); line-height: 1.3; }
+.f_commit p { margin-top: 6px; font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); }
+
+/* pathways: the blue box (hub enquiry box) with a branching list */
+.f_paths { row-gap: 40px; }
+.f_pathFlow { display: flex; align-items: center; gap: 0; margin-top: 16px; }
+.f_pathFlow li { display: inline-flex; flex-direction: column; gap: 4px; padding: 12px 18px; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; font-size: var(--fs-body); white-space: nowrap; }
+.f_pathFlow li small { font-size: var(--t-label); letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.65); }
+.f_pathFlow li + li { margin-left: 34px; position: relative; background: #fff; color: var(--io-ink); border-color: #fff; }
+.f_pathFlow li + li small { color: var(--io-ink); opacity: .7; }
+.f_pathFlow li + li::before { content: ""; position: absolute; right: 100%; top: 50%; width: 34px; height: 1px; background: rgba(255,255,255,.55); }
+.f_branch { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.f_branch path { fill: none; stroke: rgba(255,255,255,.4); stroke-width: 1; }
+.f_branch path[data-on] { stroke: #fff; stroke-width: 1.5; }
+.f_branch circle { fill: #fff; }
+.f_pathList { align-self: center; }
+.f_pathList button { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 16px 0; font-size: var(--fs-body); transition: padding .5s var(--slow); }
+.f_pathList button:hover, .f_pathList li[data-open] button { padding-left: 10px; }
+.f_pathList button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.f_pathList strong { font-size: var(--t-h4); font-weight: 300; }
+.f_pathA { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .7s var(--slow); }
+.f_pathList li[data-open] .f_pathA { grid-template-rows: 1fr; }
+.f_pathA > div { overflow: hidden; }
+.f_pathA p { padding: 0 0 18px 10px; font-size: var(--t-small) !important; }
+.f_pathNote { grid-column: 1 / -1; position: relative; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.24); font-size: var(--t-small) !important; max-width: none !important; }
+.f_pathNote b { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+
+/* measures: the accelerator FAQ accordion on light grey, definitions on the original value row */
+.f_meas .a_faqSide { gap: var(--stack); }
+.f_meas .a_faqList { border-top-color: var(--line); }
+.f_meas .a_faqItem { border-bottom-color: var(--line); }
+.f_meas .a_faqItem button { color: var(--charcoal); font-size: var(--t-h4); align-items: baseline; }
+.f_meas .a_faqItem button:hover { color: var(--io-ink); }
+.f_meas .a_faqItem button i::before, .f_meas .a_faqItem button i::after { background: var(--io-ink); }
+.f_meas .a_faqItem button em { font-style: normal; font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; color: var(--io-ink); margin-right: 18px; }
+.f_measList { padding: 0 0 26px; columns: 2; column-gap: 24px; }
+.f_measList li { break-inside: avoid; padding: 8px 0; border-top: 1px solid var(--line); font-size: var(--t-small); line-height: 1.45; color: var(--charcoal); }
+.f_defs { grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: var(--blk); }
+.f_defs .x_label { color: var(--io-ink); }
+
+/* current cycle: five stepped bars on the page grid (list rows with hairlines, one bar per stage); no dots, no funnel outline */
+.f_bars { grid-column: 7 / span 6; align-self: center; border-top: 1px solid var(--line); }
+.f_bars li { display: grid; grid-template-columns: clamp(72px, 7.5vw, 112px) minmax(0,1fr); column-gap: 24px; row-gap: 12px; align-items: center; padding: 18px 0 20px; border-bottom: 1px solid var(--line); color: #b4b6b7; transition: color .5s; }
+.f_bars b { grid-row: 1 / span 2; font-size: var(--t-num); font-weight: 300; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; color: #c3c5c6; transition: color .5s; }
+.f_barTop { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: var(--fs-body); }
+.f_barTop small { margin-left: auto; font-size: var(--t-small); color: var(--grey); }
+.f_tbc { font-style: normal; font-size: var(--t-label); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--io-ink); border: 1px solid var(--io-ink); border-radius: 999px; padding: 2px 10px; }
+.f_barTrack { height: 10px; background: #ebecec; position: relative; overflow: hidden; }
+.f_barFill { position: absolute; left: 0; top: 0; bottom: 0; width: var(--w); min-width: 10px; background: var(--charcoal); transform: scaleX(0); transform-origin: left; transition: transform .8s var(--slow), background .5s; }
+.f_bars li[data-on], .f_bars li[data-past] { color: var(--grey-ink); }
+.f_bars li[data-past] b { color: var(--charcoal); }
+.f_bars li[data-on] { color: var(--charcoal); }
+.f_bars li[data-on] b { color: var(--io-ink); }
+.f_bars li[data-on] .f_barFill, .f_bars li[data-past] .f_barFill { transform: scaleX(1); }
+.f_bars li[data-on] .f_barFill { background: var(--io-ink); }
+.f_bars li[data-tbc] .f_barFill { background: transparent; border: 1px dashed var(--io-ink); box-sizing: border-box; min-width: 14px; }
+.f_cohortDesc { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); max-width: 30em; min-height: 3.2em; }
+.f_cohortFoot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; }
+
+/* rev. 11 Nov (comments): hero facts stay on one line; process intro as wide as the photo below it */
+.f_heroFacts strong { white-space: nowrap; }
+.f_gatesSide .x_body { max-width: none; }
+
+/* rev. 11 Nov (comment): Who can participate, heading in 2 lines and top-aligned, models as a list with one photo that follows */
+#fif-who .x_head { align-items: start; }
+.f_whoGrid { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: stretch; }
+.f_whoStage { grid-column: 1 / span 5; position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+.f_whoStage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity .7s var(--slow), transform 1.2s var(--slow); }
+.f_whoStage img.on { opacity: 1; transform: none; }
+.f_whoSide { grid-column: 7 / span 6; display: flex; flex-direction: column; justify-content: flex-end; gap: 20px; }
+.f_whoList { border-top: 1px solid var(--line); counter-reset: none; }
+.f_whoList li { position: relative; display: grid; grid-template-columns: 56px minmax(0,1fr); column-gap: 16px; padding: clamp(24px, 2.6vw, 36px) 0; border-bottom: 1px solid var(--line); cursor: pointer; outline: none; }
+.f_whoList li::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--io-ink); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--slow); }
+.f_whoList li[data-on]::before { transform: scaleX(1); }
+.f_whoList li:focus-visible { outline: 2px solid var(--io); outline-offset: 4px; }
+.f_whoNum { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; color: var(--grey); padding-top: .55em; transition: color .4s; }
+.f_whoTxt { display: flex; flex-direction: column; gap: 10px; }
+.f_whoTxt h3 { font-size: var(--fs-h3); font-weight: 300; line-height: 1.2; letter-spacing: -.015em; color: var(--grey); transition: color .4s; }
+.f_whoTxt p { font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); max-width: 34em; }
+.f_whoList li[data-on] .f_whoNum, .f_whoList li[data-on] h3 { color: var(--io-ink); }
+.f_whoThumb { display: none; }
+@media (max-width: 900px) {
+  .f_whoGrid { display: block; }
+  .f_whoStage { display: none; }
+  .f_whoList li { grid-template-columns: minmax(0,1fr) 88px; column-gap: 16px; cursor: default; }
+  .f_whoList li::before { display: none; }
+  .f_whoNum { display: none; }
+  .f_whoTxt h3 { color: var(--charcoal); }
+  .f_whoThumb { display: block; position: relative; aspect-ratio: 1; overflow: hidden; align-self: start; }
+  .f_whoThumb img { width: 100%; height: 100%; object-fit: cover; }
+}
+
+/* rev. 11 Nov (comment): Cohort 1 at a glance as an open board, every figure with its description */
+#fif-cycle .x_head > :nth-child(2) { align-self: end; justify-self: end; }
+.f_board { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: clamp(40px, 4.5vw, 72px); }
+.f_board li { position: relative; display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 1px solid var(--line); }
+.f_board li::before { content: ""; position: absolute; left: 0; top: -2px; width: 48px; height: 3px; background: var(--io); }
+.f_board strong { font-size: clamp(3rem, 5.4vw, 5.25rem); font-weight: 300; line-height: .95; letter-spacing: -.04em; color: var(--io-ink); font-variant-numeric: tabular-nums; margin-bottom: 8px; }
+.f_board h3 { font-size: var(--t-h4); font-weight: 400; color: var(--charcoal); }
+.f_board p { font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); max-width: 30em; }
+.f_board small { margin-top: auto; padding-top: 8px; font-size: var(--t-small); color: var(--grey); }
+@media (max-width: 900px) {
+  .f_board { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  #fif-cycle .x_head > :nth-child(2) { justify-self: start; }
+}
+@media (max-width: 560px) {
+  .f_board { grid-template-columns: minmax(0,1fr); row-gap: 36px; }
+}
+
+/* rev. 11 Nov (comment): Cohort board text keeps the body line height */
+#fif-cycle .f_board p { line-height: 1.6; }
+
+/* rev. 11 Nov (comment): pathway pills, equal size, one connector with an arrow */
+.f_pathFlow { align-items: stretch; margin-top: 24px; }
+.f_pathFlow li { justify-content: center; gap: 6px; min-height: 68px; padding: 12px 26px; border-radius: 999px; line-height: 1.2; }
+.f_pathFlow li + li { margin-left: 44px; }
+.f_pathFlow li + li::before { width: 44px; background: rgba(255,255,255,.7); }
+.f_pathFlow li + li::after { content: ""; position: absolute; right: calc(100% + 1px); top: 50%; width: 7px; height: 7px; border-top: 1px solid rgba(255,255,255,.85); border-right: 1px solid rgba(255,255,255,.85); transform: translateY(-50%) rotate(45deg); }
+.f_branch path { stroke: #76a9c0; stroke-width: 1; stroke-linejoin: round; stroke-linecap: round; }
+.f_branch path[data-on] { stroke: #fff; stroke-width: 1.5; }
+@media (max-width: 900px) { .f_pathFlow li + li { margin-left: 0; } .f_pathFlow li + li::after { display: none; } }
+
+/* rev. 11 Nov (comment): measures as five open cards, fewer rules (white cards with the iO top accent, dot lists) */
+.f_meas2 .a_faqSide { align-self: start; }
+.f_measGrid { grid-column: 7 / span 6; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; align-content: start; }
+.f_measCard { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 26px; background: #fff; border-top: 3px solid var(--io); }
+.f_measCard:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.f_measNum { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; color: var(--io-ink); }
+.f_measCard h3 { font-size: var(--t-h4); font-weight: 400; line-height: 1.25; color: var(--charcoal); margin-bottom: 4px; }
+.f_measDots { display: flex; flex-direction: column; gap: 8px; }
+.f_measDots li { position: relative; padding-left: 18px; font-size: var(--t-small); line-height: 1.5; color: var(--grey-ink); }
+.f_measDots li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--io); }
+.f_measCard:last-child:nth-child(odd) .f_measDots { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: 24px; row-gap: 8px; }
+@media (max-width: 900px) { .f_measGrid { grid-column: 1 / -1; } }
+@media (max-width: 700px) {
+  .f_measGrid { grid-template-columns: minmax(0,1fr); }
+  .f_measCard:last-child:nth-child(odd) .f_measDots { grid-template-columns: minmax(0,1fr); }
+}
+
+/* rev. 11 Nov (comment): registration CTA, new split layout: message and actions left, Innovation Day photo right */
+.f_reg { padding-block: clamp(72px, 8vw, 128px); }
+.f_reg .i_successMark { display: none; }
+.f_regGrid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; align-items: center; }
+.f_regMain { grid-column: 1 / span 6; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.f_regMain .x_statement { font-size: clamp(2rem, 3.4vw, 3.25rem); line-height: 1.1; letter-spacing: -.025em; max-width: 13em; }
+.f_regMain #ctaBody { font-size: var(--fs-lead, 1.125rem); line-height: 1.6; color: rgba(255,255,255,.92); max-width: 30em; }
+.f_regStatus { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 9px 18px; border: 1px solid rgba(255,255,255,.5); border-radius: 999px; font-size: var(--t-small); color: #fff; }
+.f_regStatus > span:first-child { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+.f_regStatus > span:first-child::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #fff; }
+.f_regStatus i { width: 1px; height: 14px; background: rgba(255,255,255,.5); }
+.f_regBtns { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 8px; }
+.f_regBtns .s_textLink { color: #fff; background-image: linear-gradient(#fff, #fff); }
+.f_regImg { grid-column: 8 / span 5; position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+@media (max-width: 900px) {
+  .f_regMain, .f_regImg { grid-column: 1 / -1; }
+  .f_regImg { order: -1; aspect-ratio: 16 / 10; }
+  .f_regStatus i { display: none; }
+}
+
+/* rev. 11 Nov (comment): FAQ, heading row on top; numbered questions left; applicant documents as a panel right */
+.f_faqGrid { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 40px; align-items: start; }
+#fif-faq .f_faqGrid .a_faqList { grid-column: 1 / span 7; counter-reset: faq; }
+#fif-faq .a_faqItem button { counter-increment: faq; justify-content: flex-start; }
+#fif-faq .a_faqItem button::before { content: counter(faq, decimal-leading-zero); flex: 0 0 44px; padding-top: .55em; font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; color: var(--io-on-dark, #8fd0ea); }
+#fif-faq .a_faqItem button i { margin-left: auto; }
+#fif-faq .a_faqA p { padding-left: 44px; }
+@media (max-width: 900px) {
+  #fif-faq .f_faqGrid .a_faqList, .f_docs { grid-column: 1 / -1; }
+  .f_docs { position: static; }
+}
+
+.x_next .x_nextText { grid-column: 8 / span 5; }
+
+/* rev. 11 Nov (request): featured projects with full profiles */
+.f_projGrid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--col-gap); }
+.f_projCard { display: flex; flex-direction: column; background: var(--light); border-top: 3px solid var(--io); }
+.f_projImg { position: relative; aspect-ratio: 16 / 10; }
+.f_projStatus { position: absolute; z-index: 2; left: 16px; top: 16px; display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 14px; border-radius: 999px; background: #fff; color: var(--charcoal); font-size: var(--t-small); font-weight: 500; }
+.f_projStatus::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--grey); }
+.f_projStatus[data-st="live"]::before { background: var(--green, #00a16b); box-shadow: 0 0 0 3px rgba(0,161,107,.18); }
+.f_projStatus[data-st="scope"]::before { background: var(--io); }
+.f_projBody { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 24px 24px 26px; }
+.f_projBody h3 { font-size: var(--fs-h3); font-weight: 300; line-height: 1.2; letter-spacing: -.015em; color: var(--charcoal); }
+.f_projFarm { font-size: var(--fs-body); color: var(--io-ink); }
+.f_projFields { display: flex; flex-direction: column; gap: 12px; margin: 10px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
+.f_projFields dt { font-size: var(--t-label); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin-bottom: 3px; }
+.f_projFields dd { margin: 0; font-size: var(--t-small); line-height: 1.55; color: var(--charcoal); }
+.f_projLink { margin-top: auto; align-self: flex-start; }
+.f_projBody .f_projFields { margin-bottom: 20px; }
+.f_projLegend { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 32px; }
+.f_projLegend ol { display: flex; flex-wrap: wrap; gap: 8px; }
+.f_projLegend li { display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--grey); font-size: var(--t-small); }
+.f_projLegend li[data-on] { border-color: transparent; background: rgba(60,167,210,.12); color: var(--io-ink); }
+@media (max-width: 1000px) { .f_projGrid { grid-template-columns: minmax(0,1fr); } .f_projImg { aspect-ratio: 16 / 9; } }
+
+/* rev. 11 Nov (request): applicant documents panel, file type, size, language links, download all */
+.f_docs { grid-column: 9 / span 4; position: sticky; top: calc(var(--hh, 80px) + 24px); display: flex; flex-direction: column; gap: 16px; padding: 28px; background: #fff; color: var(--charcoal); border-top: 3px solid var(--io); }
+.f_docsHead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.f_docsHead .x_label { color: var(--io-ink); }
+.f_docsHead small { font-size: var(--t-small); color: var(--grey); }
+.f_docs ul { display: flex; flex-direction: column; }
+.f_docs li { display: grid; grid-template-columns: 40px minmax(0,1fr) auto; column-gap: 14px; align-items: center; padding: 14px 0; border-top: 1px solid var(--line); }
+.f_docType { display: grid; place-items: center; width: 40px; height: 48px; border-radius: 4px; background: rgba(60,167,210,.12); color: var(--io-ink); font-size: 11px; font-weight: 600; letter-spacing: .06em; }
+.f_docTxt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.f_docTxt b { font-size: var(--fs-body); font-weight: 500; }
+.f_docTxt small { font-size: var(--t-small); color: var(--grey); }
+.f_docLang { display: flex; gap: 6px; }
+.f_docLang a { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 30px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--line); font-size: var(--t-small); font-weight: 500; color: var(--io-ink); transition: background .3s, color .3s, border-color .3s; }
+.f_docLang a:hover { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
+.f_docsAll { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-radius: 999px; background: var(--io-ink); color: #fff !important; font-size: var(--fs-body); font-weight: 500; transition: background .3s; }
+.f_docsAll:hover { background: var(--charcoal); }
+.f_docsAll svg { width: 16px; height: 16px; }
+.f_docsAll small { margin-left: auto; font-size: var(--t-small); font-weight: 400; opacity: .75; }
+
+/* rev. 11 Nov (request): applicant documents UX. One language switch for the whole set (remembered),
+   then one download button per document that always downloads in the chosen language, with clear feedback. */
+.f_docsLang { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: var(--light); }
+.f_docsLang > span { font-size: var(--t-small); color: var(--grey-ink); }
+.f_seg { display: inline-flex; padding: 3px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
+.f_seg button { height: 30px; padding: 0 14px; border: 0; border-radius: 999px; background: none; font: inherit; font-size: var(--t-small); font-weight: 500; color: var(--grey-ink); cursor: pointer; transition: background .3s, color .3s; }
+.f_seg button[aria-checked="true"] { background: var(--io-ink); color: #fff; }
+.f_seg button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.f_docList li { grid-template-columns: 40px minmax(0,1fr) auto !important; }
+.f_docTxt b { transition: opacity .25s; }
+.f_docs[data-lang="ar"] .f_docTxt b { font-family: var(--f-brand); direction: rtl; text-align: left; unicode-bidi: plaintext; }
+.f_docHint { font-size: var(--t-small); line-height: 1.4; color: var(--grey); }
+.f_docDl { position: relative; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--io-ink); font-size: var(--t-small); font-weight: 500; white-space: nowrap; transition: background .3s, color .3s, border-color .3s; }
+.f_docDl:hover, .f_docDl:focus-visible { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
+.f_docDl svg, .f_docsAll svg { width: 16px; height: 16px; flex: 0 0 16px; }
+.f_okIco { display: none; }
+[data-state="busy"] .f_dlIco { animation: dlBob .7s ease-in-out infinite; }
+[data-state="done"] .f_dlIco { display: none; } [data-state="done"] .f_okIco { display: block; }
+.f_docDl[data-state="done"] { background: rgba(0,161,107,.1); border-color: transparent; color: #00794f; }
+.f_docsAll[data-state="done"] { background: #00794f; }
+@keyframes dlBob { 50% { transform: translateY(2px); } }
+.f_docsLive { min-height: 1.2em; margin: -4px 0 0; font-size: var(--t-small); color: var(--grey-ink); }
+@media (max-width: 420px) { .f_docDlTxt { display: none; } .f_docDl { width: 36px; padding: 0; justify-content: center; } }
+
+/* rev. 11 Nov (comment): hero fact labels stay on one line */
+.f_heroSide .f_heroFacts dd { white-space: nowrap; }
+
+/* rev. 11 Nov (comment): Why the fund, statement across the top, photo and story side by side, three wide pillars */
+.f_why { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: clamp(40px, 4.5vw, 72px); align-items: start; }
+.f_whyHead { grid-column: 1 / span 9; display: flex; flex-direction: column; gap: var(--stack); }
+.f_whyHead .x_statement { max-width: 22em; }
+.f_whyImg { grid-column: 1 / span 6; aspect-ratio: 3 / 2; }
+.f_whyBody { grid-column: 8 / span 5; align-self: center; display: flex; flex-direction: column; gap: 16px; }
+.f_whyBody .x_body { max-width: none; }
+.f_whyBody .f_bridge { margin-top: 8px; padding-left: 18px; border-left: 2px solid var(--io); font-size: var(--fs-lead, 1.125rem); font-weight: 300; line-height: 1.45; color: var(--charcoal); }
+.f_why .f_pillars { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); }
+.f_why .f_pillars li { position: relative; display: flex; flex-direction: column; gap: 12px; padding-top: 28px; border-top: 1px solid var(--line); }
+.f_why .f_pillars li::before { content: ""; position: absolute; left: 0; top: -2px; width: 48px; height: 3px; background: var(--io); }
+.f_why .f_pillars strong { font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 300; letter-spacing: -.03em; line-height: 1; color: var(--io-ink); }
+.f_why .f_pillars span { max-width: 26em; font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); }
+@media (max-width: 900px) {
+  .f_whyHead, .f_whyImg, .f_whyBody { grid-column: 1 / -1; }
+  .f_why .f_pillars { grid-template-columns: minmax(0,1fr); row-gap: 32px; }
+}
+
+/* rev. 11 Nov (brief): partner ecosystem, the Fund at the centre with four supporting roles */
+.f_eco { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)) minmax(0,1.1fr) repeat(2, minmax(0,1fr)); column-gap: var(--col-gap); align-items: center; margin-bottom: var(--head); }
+.f_eco::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--io); }
+.f_ecoRole { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; min-height: 104px; padding: 16px 20px; text-align: center; background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--io); font-size: var(--fs-body); line-height: 1.4; color: var(--charcoal); }
+.f_ecoCore { position: relative; z-index: 1; justify-self: center; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 220px; aspect-ratio: 1; padding: 24px; border-radius: 50%; text-align: center; background: var(--io-ink); color: #fff; font-size: var(--fs-h3); font-weight: 300; line-height: 1.2; letter-spacing: -.01em; }
+@media (max-width: 900px) {
+  .f_eco { grid-template-columns: repeat(2, minmax(0,1fr)); row-gap: 12px; }
+  .f_eco::before { display: none; }
+  .f_ecoCore { grid-column: 1 / -1; order: -1; max-width: 168px; margin-bottom: 8px; }
+  .f_ecoRole { min-height: 88px; padding: 14px; }
+}
+
+/* partners: six equal cards (one logo tile style), in the three groups of the doc; detail opens on request */
+.f_pGrid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--head); align-items: start; }
+.f_pGroup { display: flex; flex-direction: column; gap: var(--blk); }
+.f_pGroup[data-n="3"] { grid-column: span 3; } .f_pGroup[data-n="2"] { grid-column: span 2; } .f_pGroup[data-n="1"] { grid-column: span 1; }
+.f_pGroupHead { display: flex; align-items: baseline; gap: 14px; padding-top: 16px; border-top: 1px solid var(--io); }
+.f_pGroupHead .x_label { color: var(--io-ink); }
+.f_pGroupHead h3 { font-size: var(--t-h4); font-weight: 400; color: var(--charcoal); line-height: 1.3; }
+.f_pList { display: grid; column-gap: var(--col-gap); row-gap: var(--blk); align-items: start; }
+.f_pGroup[data-n="3"] .f_pList { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.f_pGroup[data-n="2"] .f_pList { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.f_pGroup[data-n="1"] .f_pList { grid-template-columns: minmax(0,1fr); }
+.f_pCard { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.f_pLogo { height: 104px; display: flex; align-items: center; justify-content: center; padding: 14px 24px; box-sizing: border-box; background: #fff; border: 1px solid var(--line); margin-bottom: 4px; font-size: 1.125rem; font-weight: 500; letter-spacing: .08em; color: var(--charcoal); text-align: center; }
+.f_pLogo img { display: block; height: var(--lh, 48px); max-height: 100%; width: auto; max-width: 100%; object-fit: contain; }
+.f_pCard h4 { font-size: var(--fs-body); font-weight: 500; color: var(--charcoal); line-height: 1.4; }
+.f_pRole { font-size: var(--fs-body); line-height: 1.5; color: var(--grey-ink); }
+.f_pMore { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-size: var(--t-small); font-weight: 500; color: var(--io-ink); align-self: flex-start; }
+.f_pMore:hover { color: var(--charcoal); }
+.f_pMore:focus-visible { outline: 2px solid var(--io); outline-offset: 3px; }
+.f_pMore i { width: 10px; height: 10px; position: relative; transition: transform .35s var(--slow); }
+.f_pMore i::before, .f_pMore i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: currentColor; }
+.f_pMore i::after { transform: rotate(90deg); }
+.f_pCard[data-open] .f_pMore i { transform: rotate(45deg); }
+.f_pA { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .5s var(--slow), visibility 0s .5s; }
+.f_pCard[data-open] .f_pA { grid-template-rows: 1fr; visibility: visible; transition-delay: 0s; }
+.f_pA > div { overflow: hidden; }
+.f_pA p { font-size: var(--t-small); line-height: 1.6; color: var(--grey-ink); padding-bottom: 4px; }
+
+/* FAQ: resources beside the questions, in the blue box list style */
+.f_res { width: 100%; margin-top: calc(var(--blk) - var(--stack)); }
+.f_res li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 14px 0; font-size: var(--fs-body); }
+
+/* registration CTA: the incubation success band */
+.f_ctaText { grid-column: 1 / span 8; display: flex; flex-direction: column; gap: var(--stack); position: relative; z-index: 2; }
+.f_ctaText p:not(.x_statement) { font-size: var(--fs-body); line-height: 1.7; color: rgba(255,255,255,.92); max-width: 34em; }
+.f_ctaBtns { grid-column: 9 / span 4; justify-self: start; width: fit-content; flex-direction: column; align-items: flex-start; position: relative; z-index: 2; gap: 18px; }
+.f_ctaBtns .s_textLink { color: #fff; }
+
+@media (max-width: 1100px) {
+  .f_criteria { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 900px) {
+  .f_heroSide { grid-column: 1 / -1; grid-row: 4; }
+  .f_heroTop { flex-direction: column; align-items: flex-start; } .f_heroPh { align-items: flex-start; text-align: left; }
+  .f_pillars, .f_capSteps, .f_criteria, .f_commit, .f_defs, .f_gateWays { grid-template-columns: 1fr; }
+  .f_capSteps { row-gap: 28px; }
+  .f_gateList, .f_measList { columns: 1; }
+  .f_gateSplit { padding-left: 0; }
+  .f_shareIO, .f_shareYou { grid-column: 1 / -1; position: static; }
+  .f_shareYou { padding-left: 0; border-left: 0; margin-top: var(--head); }
+  .f_pathFlow { flex-wrap: wrap; row-gap: 12px; }
+  .f_pathFlow li { white-space: normal; }
+  .f_branch { display: none; }
+  .f_pGrid { grid-template-columns: 1fr; } .f_pGroup[data-n] { grid-column: 1 / -1; } .f_pGroup[data-n] .f_pList { grid-template-columns: 1fr; }
+  .f_ctaText, .f_ctaBtns { grid-column: 1 / -1; }
+  .f_bars { grid-column: 1 / -1; }
+  .f_hero { height: auto; max-height: none; }
+  .f_heroIn { height: auto; min-height: max(100svh, 640px); box-sizing: border-box; }
+  .f_status { flex-wrap: wrap; row-gap: 2px; } .f_status .f_pillSep { display: none; } .f_status > span:last-child { color: rgba(255,255,255,.8); }
+  .f_cohortDesc { min-height: 0; }
+  .f_pathFlow li + li { margin-left: 0; } .f_pathFlow li + li::before { display: none; }
+}
+
+/* closed accordion panels are hidden, not just collapsed: no invisible text in the reading order or the page count */
+#fif-faq .a_faqA, #fif-measures .a_faqA, .f_pathA { visibility: hidden; transition: grid-template-rows .7s var(--slow), visibility 0s .7s; }
+#fif-faq .a_faqItem[data-open] .a_faqA, #fif-measures .a_faqItem[data-open] .a_faqA, .f_pathList li[data-open] .f_pathA { visibility: visible; transition-delay: 0s; }
+
+/* page length (desktop): the long scroll-led sections keep their original behaviour with tighter spacing */
+@media (min-width: 901px) {
+  .f_gate { padding-bottom: clamp(28px, 3.4vh, 44px); }
+  .f_gate:last-child { padding-bottom: 0; }
+  .f_gatesList { --gb: 28svh; }
+  .f_gateSplit { padding-bottom: clamp(36px, 5vh, 60px); }
+  .a_list { padding-bottom: 12vh; }
+  #fif-faq .a_faqItem button, .f_meas .a_faqItem button { padding-block: 18px; }
+  .a_item { padding-block: clamp(20px, 2.2vw, 32px); }
+  .f_cohortPin { height: 250vh; }
+  .f_gatesSide { padding-bottom: 120px; }
+  .f_cohortGrid { padding-block: clamp(16px, 3vh, 40px) 110px; }
+}
+@media (min-width: 901px) and (max-height: 880px) {
+  .f_cohortL { gap: 16px; }
+  .f_bars li { padding-block: 12px 14px; }
+  .f_cohortDesc { min-height: 0; }
+  .f_cohortMeta { gap: 4px 20px; }
+}
+@media (min-width: 901px) and (max-height: 760px) {
+  .f_cohortL { gap: 10px; }
+  .f_bars li { padding-block: 8px 10px; row-gap: 8px; }
+  .f_cohortGrid { padding-top: 8px; }
+  .f_who .x_img { aspect-ratio: 4 / 3; }
+}
+
+/* participant journey: every stage shows its name and its one-line summary at reading contrast; the lists stay in "What this involves" */
+.f_gate h3 { color: var(--grey); }
+.f_gate p { color: var(--grey-ink); }
+.f_gate[data-on] h3 { color: var(--charcoal); }
+</style>
 <script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
 
 <div class="s_root" data-wide data-blue="false">
 <header class="s_header" id="hdr" data-scrolled="false" data-overlay="false">
   <div class="s_utility"><div class="s_wrap s_utilityInner">
     <span>Advancing Agri-food Systems</span>
-    <span class="s_utilityLinks"><a href="/full-site/news">Resources</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
+    <span class="s_utilityLinks"><a href="/full-site/news">News</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
   </div></div>
   <div class="s_headerMain"><div class="s_wrap s_headerInner">
     <a href="#" class="s_logo" aria-label="Innovation Oasis — home">
       <span class="s_logoFull"><span class="s_logoOnLight"><span style="display:inline-flex;align-items:flex-start;gap:9px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="110" height="50"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="39" width="53"></span></span><span class="s_logoOnDark"><span style="display:inline-flex;align-items:flex-start;gap:9px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed-reversed.svg" alt="Innovation Oasis — Part of Silal" width="110" height="50"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="39" width="53"></span></span></span>
       <span class="s_logoSmall"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="Innovation Oasis" height="36" width="49"></span>
     </a>
-    <nav class="s_nav" aria-label="Main"><ul><li class="s_navItem"><a href="/full-site/about" data-active="false">About IO</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/about" class="s_textLink">About IO <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Silal&#x27;s R&amp;D and venture engine.</p><ul><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Research &amp; Science</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Research &amp; Science <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Plant science, soil, water and food technology, tested in real arid conditions.</p><ul><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/ivp-hub" data-active="true" aria-current="page">Innovation &amp; Venture Platforms</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/ivp-hub" class="s_textLink">Innovation &amp; Venture Platforms <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Funding, incubation and acceleration for agri-food startups.</p><ul><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Technology &amp; Services</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Technology &amp; Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Sensing, desalination, analytics, trials and facilities for partners.</p><ul><li><a href="#">iO Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Centres of Excellence</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Centres of Excellence <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Specialist hubs for robotics, crop genomics and controlled-environment agriculture.</p><ul><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/io-academy" data-active="false">Talent &amp; Training</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/io-academy" class="s_textLink">Talent &amp; Training <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Building the next generation of agri-food talent in the UAE.</p><ul><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy">IO Academy Training</a></li></ul></div></div></li></ul></nav>
+    <nav class="s_nav" aria-label="Main"><ul><li class="s_navItem"><a href="/full-site/about" data-active="false">About&nbsp;<span class="x_iO">iO</span></a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/about" class="s_textLink">About&nbsp;<span class="x_iO">iO</span>&nbsp;<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Silal&#x27;s R&amp;D and venture engine.</p><ul><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="/full-site/ecosystem">Our Ecosystem</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Research &amp; Science</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Research &amp; Science <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Plant science, soil, water and food technology, tested in real arid conditions.</p><ul><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/ivp-hub" data-active="true" aria-current="page">Innovation &amp; Venture Platforms</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/ivp-hub" class="s_textLink">Innovation &amp; Venture Platforms <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Funding, incubation and acceleration for agri-food startups.</p><ul><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Technology &amp; Services</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Technology &amp; Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Sensing, desalination, analytics, trials and facilities for partners.</p><ul><li><a href="#"><span class="x_iO">iO</span>&nbsp;Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Centres of Excellence</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Centres of Excellence <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Specialist hubs for robotics, crop genomics and controlled-environment agriculture.</p><ul><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/io-academy" data-active="false">Talent &amp; Training</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/io-academy" class="s_textLink">Talent &amp; Training <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Building the next generation of agri-food talent in the UAE.</p><ul><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy"><span class="x_iO">iO</span>&nbsp;Academy Training</a></li></ul></div></div></li></ul></nav>
     <div class="s_headerActions">
       <a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary s_btnSm">Enquire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <button class="s_menuToggle" id="menuOpen" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -5351,90 +5837,121 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="s_wrap s_mobileNavTop"><span style="display:inline-flex;align-items:flex-start;gap:8px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="93" height="42"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="33" width="45"></span>
       <button class="s_menuClose" id="menuClose" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M7 7l14 14M21 7 7 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
-    <div class="s_wrap"><details class="s_mobileGroup"><summary><span class="s_mobileNum">01</span>About IO</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">02</span>Research &amp; Science</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">03</span>Innovation &amp; Venture Platforms</summary><ul><li><a href="/full-site/ivp-hub">Overview</a></li><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">04</span>Technology &amp; Services</summary><ul><li><a href="#">Overview</a></li><li><a href="#">iO Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">05</span>Centres of Excellence</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">06</span>Talent &amp; Training</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy">IO Academy Training</a></li></ul></details>
+    <div class="s_wrap"><details class="s_mobileGroup"><summary><span class="s_mobileNum">01</span>About&nbsp;<span class="x_iO">iO</span></summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="/full-site/ecosystem">Our Ecosystem</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">02</span>Research &amp; Science</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">03</span>Innovation &amp; Venture Platforms</summary><ul><li><a href="/full-site/ivp-hub">Overview</a></li><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">04</span>Technology &amp; Services</summary><ul><li><a href="#">Overview</a></li><li><a href="#"><span class="x_iO">iO</span>&nbsp;Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">05</span>Centres of Excellence</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">06</span>Talent &amp; Training</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy"><span class="x_iO">iO</span>&nbsp;Academy Training</a></li></ul></details>
       <div class="s_mobileFoot"><a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary">Enquire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#" class="s_btn s_btnGhostLight">Contact</a></div>
     </div>
   </div>
 </header>
 <main><div class="c_page">
-<!-- =========================================================== FARM INNOVATION FUND · sub page =========================================================== -->
+<!-- =========================================================== FARM INNOVATION FUND · sub page · rev9 redo: original sections kept, order and copy from 00_FIF Page Overview =========================================================== -->
 <div data-view="farm-innovation-fund">
   <section class="f_hero x_onPhoto" data-overlay-hero>
     <div class="x_img" data-hero><img src="/innovation-venture-platforms/img/fif_tour.webp" alt="Farmers gathered under tents on the Innovation Day field tour"></div>
     <div class="s_wrap f_heroIn">
       <div class="f_heroTop"><nav class="x_crumb" aria-label="Breadcrumb"><a href="/full-site/ivp-hub">Innovation &amp; Venture Platforms</a><i></i><span>Farm Innovation Fund</span></nav></div>
       <div class="f_heroMain">
-        <span class="x_pill">Cohort 1 · 10 finalists · 5 pilots to fund</span>
+        <span class="c_eyebrow f_heroEy" data-reveal>Innovation &amp; Venture Platforms – Farm Innovation Fund</span>
         <h1 data-reveal>Farm Innovation Fund</h1>
         <p class="x_lead" data-reveal>A practical pathway from farm needs to tested solutions.</p>
-        <div class="x_row"><a href="/full-site/ivp-enquire?platform=fif" class="s_btn s_btnPrimary s_btnSm" data-platform="fif">Apply for funding <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#fif-process" class="s_textLink">See the process <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <span class="x_pill f_status"><span>Cohort 1 – Applications Closed</span><span class="f_pillSep" aria-hidden="true"></span><span>Next cycle anticipated: <span data-cms="next-cycle">April 2027</span></span></span>
+        <div class="x_row"><a href="/full-site/ivp-enquire?platform=fif" class="s_btn s_btnPrimary s_btnSm" data-platform="fif">Register Interest <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#fif-process" class="s_textLink">See the Process <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
       </div>
-      <dl class="f_heroFacts">
-        <div><dt>Per pilot</dt><dd><strong>AED 200K</strong>up to</dd></div>
-        <div><dt>Farms reached</dt><dd><strong data-count="2000" data-sep data-suffix="+">2,000+</strong>cohort 1</dd></div>
-      </dl>
+      <div class="f_heroSide">
+        <div class="f_heroIntro"><p>Launched in January 2026 in the presence of H.E. Dr. Amna Al Dahak, Minister of Climate Change and Environment, and members of the Board of Directors of the National Agriculture Center, the Farm Innovation Fund was established to help UAE farmers develop, test and scale practical solutions that improve farm performance, profitability and resilience.</p><p>Selected projects receive structured support to move from a clearly defined farm challenge to a measurable on-farm experiment or validation project.</p></div>
+        <dl class="f_heroFacts">
+          <div><dt>Funding</dt><dd><strong>Up to AED 200,000</strong>potential project funding</dd></div>
+          <div><dt>Each year</dt><dd><strong data-count="5">5</strong>ideas supported / year</dd></div>
+        </dl>
+        <p class="f_heroNote">Funding is subject to approved scope, budget, milestones and program terms.</p>
+      </div>
     </div>
   </section>
 
-  <section class="x_sec"><div class="s_wrap f_vision">
-    <span class="c_eyebrow">Farmers drive every stage</span>
-    <div class="f_visionSide"><div class="x_img x_corners f_visionImg" data-img><img src="/innovation-venture-platforms/img/fif_listen.webp" alt="A farmer listening at a Farm Innovation Fund workshop" loading="lazy"></div></div>
-    <div class="f_visionMain"><p class="x_statement" data-scrub>Enable farmers across the UAE to improve <b>farm performance and profitability</b> through on-farm innovation.</p>
-    <ul class="f_tenets">
-      <li><span>Real farm problems, with a structured path to develop, test and scale solutions.</span></li>
-      <li><span>Ideas can enter at different levels of maturity.</span></li>
-      <li><span>Support adapts to the evidence, readiness and needs of each proposal.</span></li>
-      <li><span>Farmers keep ownership of their ideas, and value is measured beyond one cycle.</span></li>
-    </ul></div>
+  <section class="x_sec" id="fif-why"><div class="s_wrap f_why">
+    <div class="f_whyHead"><span class="c_eyebrow">Why the fund</span><p class="x_statement" data-scrub>Supporting local farmers to <b>innovate, grow and build resilience</b>.</p></div>
+    <div class="x_img x_corners f_whyImg" data-img><img src="/innovation-venture-platforms/img/fif_listen.webp" alt="A farmer listening at a Farm Innovation Fund workshop" loading="lazy"></div>
+    <div class="f_whyBody">
+      <p class="x_body" data-reveal>Farmers understand their operational challenges better than anyone. They often also have practical ideas for improving how farms use water, manage crops, reduce costs, increase yields or adapt to changing conditions.</p>
+      <p class="x_body" data-reveal>However, turning an idea into a credible project can require funding, specialist expertise and a structured way to test whether the solution works.</p>
+      <p class="x_body f_bridge" data-reveal>The Farm Innovation Fund helps bridge that gap.</p>
+    </div>
+    <ul class="f_tenets f_pillars">
+      <li><em>Improve</em><strong>Productivity</strong><span>Support solutions that improve yields, quality, efficiency and day-to-day farm performance.</span></li>
+      <li><em>Strengthen</em><strong>Profitability</strong><span>Help farms reduce costs, improve returns and identify new sources of value.</span></li>
+      <li><em>Build</em><strong>Resilience</strong><span>Enable farms to adapt to resource constraints, environmental pressures and changing production needs.</span></li>
+    </ul>
+  </div></section>
+
+  <section class="x_sec x_grey" id="fif-capability"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Building innovation capability</span><h2 class="x_h2" data-reveal>Helping farmers move from problem to solution.</h2></div><div class="x_stack"><p class="x_body" data-reveal>Participants do not need to arrive with a fully developed solution or technical proposal.</p><p class="x_body" data-reveal>Through workshops, mentoring and expert support, the Fund helps participants strengthen the skills required to turn a farm need into a well-designed innovation project.</p></div></div>
+    <ol class="c_principles f_capSteps">
+      <li><span>01 · Define</span><h3 data-reveal>Define the problem</h3><p data-reveal>Understand the underlying issue, who it affects and its impact on farm performance.</p></li>
+      <li><span>02 · Explore</span><h3 data-reveal>Explore potential solutions</h3><p data-reveal>Consider different technologies, practices and partners rather than starting with a predetermined answer.</p></li>
+      <li><span>03 · Test</span><h3 data-reveal>Design the test</h3><p data-reveal>Establish the baseline, project approach, success measures, budget and implementation requirements.</p></li>
+      <li><span>04 · Learn</span><h3 data-reveal>Learn from evidence</h3><p data-reveal>Assess what worked, what did not and whether the solution should be adopted, adapted, expanded or stopped.</p></li>
+    </ol>
+    <p class="f_callout"><b>Throughout</b><span>This learning begins during the application process and continues through proposal development, selection and pilot delivery.</span></p>
+  </div></section>
+
+  <section class="x_sec" id="fif-who"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Who can participate</span><h2 class="x_h2" data-reveal>Supporting local ideas<br> for better farming.</h2></div><div class="x_stack"><p class="x_body" data-reveal>The Farm Innovation Fund is designed for UAE National farmers, farm owners and idea sponsors who want to address a practical challenge or opportunity in agriculture.</p><p class="x_body" data-reveal>Applicants may bring forward a challenge experienced on their own farm or sponsor an idea with potential value for UAE agriculture. They can also involve farm managers, entrepreneurs, researchers, technology providers and technical specialists to help develop and deliver the project.</p></div></div>
+    <div class="f_whoGrid">
+      <div class="x_img x_corners f_whoStage" id="whoStage"><img src="/innovation-venture-platforms/img/fif_farmers.webp" alt="Two farmers at an Innovation Day session" loading="lazy" class="on"><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="Farmers reviewing a written proposal" loading="lazy"><img src="/innovation-venture-platforms/img/fif_group.webp" alt="Participants together in the Innovation Oasis atrium" loading="lazy"></div>
+      <div class="f_whoSide"><span class="x_label">Participation models</span><ol class="f_whoList" id="whoList"><li data-on tabindex="0"><span class="f_whoNum">01</span><div class="f_whoTxt"><h3>Farmers and farm owners</h3><p>Identify and test practical ideas that could improve farm productivity, reduce costs, increase profitability, use resources more efficiently or strengthen resilience.</p></div><div class="x_img f_whoThumb"><img src="/innovation-venture-platforms/img/fif_farmers.webp" alt="" loading="lazy"></div></li><li tabindex="0"><span class="f_whoNum">02</span><div class="f_whoTxt"><h3>Idea sponsors</h3><p>Bring forward or sponsor an idea that responds to a relevant agricultural need, while operational or technical partners support its development and delivery.</p></div><div class="x_img f_whoThumb"><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="" loading="lazy"></div></li><li tabindex="0"><span class="f_whoNum">03</span><div class="f_whoTxt"><h3>Collaborative teams</h3><p>Applicants may work with farm managers, entrepreneurs, researchers, technology providers or other specialists to develop and test the solution.</p></div><div class="x_img f_whoThumb"><img src="/innovation-venture-platforms/img/fif_group.webp" alt="" loading="lazy"></div></li></ol></div>
+    </div>
+    <p class="f_callout"><b>Eligibility</b><span>Each application must be led or sponsored by a UAE National and address a clearly defined on-farm or agricultural challenge relevant to the UAE. Applicants do not need to have every technical capability in place before applying: the Fund can help bring together the expertise, facilities and partners required to develop and test a promising idea.</span></p>
   </div></section>
 
   <section class="x_sec x_grey"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Who the fund supports</span><h2 class="x_h2" data-reveal>Open to farmers across the UAE, whatever the maturity of the idea.</h2></div></div>
-    <ol class="f_who">
-      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/fif_farmers.webp" alt="Two farmers at an Innovation Day session" loading="lazy"></div><h3>UAE farmers and farm operators</h3><p>A clear operational challenge, or an opportunity to improve production.</p></li>
-      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="Farmers reviewing a written proposal" loading="lazy"></div><h3>Ideas at any stage</h3><p>Early concepts and solutions that are ready for an on-farm trial can both enter the pathway.</p></li>
-      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/fif_greenh.webp" alt="Greenhouses at Innovation Oasis, Al Ain" loading="lazy"></div><h3>Pilots with measurable value</h3><p>Proposals develop clear evidence, feasibility, cost, data and adoption plans.</p></li>
-    </ol>
-    <p class="f_callout"><b>Current cycle</b><span>Five pilots may receive up to AED 200,000 each.</span></p>
-  </div></section>
-
-  <section class="x_sec"><div class="s_wrap">
     <div class="f_areas">
-      <div class="f_areaSide"><div class="f_areaHead"><span class="c_eyebrow" data-reveal>Four areas of farm innovation</span><h2 class="x_h2" data-reveal>Where proposals can focus.</h2><p class="x_body" data-reveal>Used across the application and evaluation stages.</p></div>
-      <div class="f_areaTabs" role="tablist" aria-label="Four areas of farm innovation" id="areaTabs"><button class="f_areaTab" role="tab" id="fa-0" aria-controls="faStage" aria-selected="true" tabindex="0"><strong>Water &amp; Irrigation Management</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button><button class="f_areaTab" role="tab" id="fa-1" aria-controls="faStage" aria-selected="false" tabindex="-1"><strong>Protected Agriculture &amp; Greenhouses</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button><button class="f_areaTab" role="tab" id="fa-2" aria-controls="faStage" aria-selected="false" tabindex="-1"><strong>Sustainable &amp; Organic Practices</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button><button class="f_areaTab" role="tab" id="fa-3" aria-controls="faStage" aria-selected="false" tabindex="-1"><strong>Smart Farming &amp; Digital Technology</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button></div></div>
-      <div class="x_img f_areaStage" id="faStage" role="tabpanel" aria-labelledby="fa-0" data-img><img src="/innovation-venture-platforms/img/area_water.webp" alt="Lettuce in irrigated rows" loading="lazy" class="on"><img src="/innovation-venture-platforms/img/area_protected.webp" alt="Crop rows inside a greenhouse" loading="lazy"><img src="/innovation-venture-platforms/img/area_organic.webp" alt="Red-leaf seedlings under a grow light" loading="lazy"><img src="/innovation-venture-platforms/img/area_smart.webp" alt="Seedlings under LED growing lights" loading="lazy"><div class="f_areaCap"><span>What it covers</span><p id="faText">Water quality, efficiency, monitoring and reuse.</p><div class="f_areaChips" id="faChips"><i>Water quality</i><i>Efficiency</i><i>Monitoring</i><i>Reuse</i></div></div></div>
+      <div class="f_areaSide"><div class="f_areaHead"><span class="c_eyebrow" data-reveal>Key focus areas</span><h2 class="x_h2" data-reveal>Practical innovation for better farm performance.</h2><p class="x_body" data-reveal>The following are common thematic areas we see addressing the local farming challenges.</p></div>
+      <div class="f_areaTabs" role="tablist" aria-label="Key focus areas" id="areaTabs"><button class="f_areaTab" role="tab" id="fa-0" aria-controls="faStage" aria-selected="true" tabindex="0"><strong>Water and Irrigation Management</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="f_areaTab" role="tab" id="fa-1" aria-controls="faStage" aria-selected="false" tabindex="-1"><strong>Protected Agriculture</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="f_areaTab" role="tab" id="fa-2" aria-controls="faStage" aria-selected="false" tabindex="-1"><strong>Sustainable and Organic Practices</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="f_areaTab" role="tab" id="fa-3" aria-controls="faStage" aria-selected="false" tabindex="-1"><strong>Smart Farming and Digital Technology</strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <p class="f_callout f_areaQ"><b>Example farmer challenge</b><span id="faQ">How might a farm reduce water consumption without compromising crop yield or quality?</span></p></div>
+      <div class="x_img f_areaStage" id="faStage" role="tabpanel" aria-labelledby="fa-0" data-img><img src="/innovation-venture-platforms/img/area_water.webp" alt="Lettuce in irrigated rows" loading="lazy" class="on"><img src="/innovation-venture-platforms/img/area_protected.webp" alt="Crop rows inside a greenhouse" loading="lazy"><img src="/innovation-venture-platforms/img/area_organic.webp" alt="Red-leaf seedlings under a grow light" loading="lazy"><img src="/innovation-venture-platforms/img/area_smart.webp" alt="Seedlings under LED growing lights" loading="lazy"><div class="f_areaCap"><span>What it covers</span><p id="faText">Use water more intelligently and efficiently.</p><p class="f_areaDesc" id="faDesc">Ideas that help farms optimize water use, improve irrigation performance, manage water quality or strengthen resilience to water scarcity and salinity.</p><div class="f_areaChips" id="faChips"></div></div></div>
     </div>
   </div></section>
 
-  <section class="x_sec x_grey" id="fif-process"><div class="s_wrap f_gates">
+  <section class="x_sec" id="fif-process"><div class="s_wrap f_gates">
     <div class="f_gatesSide">
-      <span class="c_eyebrow" data-reveal>The process</span>
-      <h2 class="x_h2" data-reveal>From farm need to field evidence.</h2>
-      <p class="x_body" data-reveal>A staged process strengthens ideas before funding and keeps farmer ownership at the centre. Each gate adds evidence before the programme commits pilot funding and resources.</p>
-      <div class="x_img x_corners f_gateImgs" id="gateImgs" data-img><img src="/innovation-venture-platforms/img/fif_audience.webp" alt="Farmers at a Farm Innovation Fund session" class="on"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="Farmers working on a pilot proposal at a workshop table" loading="lazy"><img src="/innovation-venture-platforms/img/fif_workshop.webp" alt="A training workshop in the agritech room" loading="lazy"><img src="/innovation-venture-platforms/img/fif_talk.webp" alt="Two farmers in discussion" loading="lazy"><img src="/innovation-venture-platforms/img/area_water.webp" alt="Lettuce in irrigated rows on a pilot farm" loading="lazy"></div>
+      <span class="c_eyebrow" data-reveal>The participant journey</span>
+      <h2 class="x_h2" data-reveal>From initial idea to a funded project.</h2>
+      <p class="x_body" data-reveal>The Fund supports participants through two connected journeys. First, applicants develop and present a strong project proposal through workshops, mentoring and expert evaluation. Selected projects then move through detailed scoping, contracting, funded implementation and results review.</p>
+      <div class="x_img x_corners f_gateImgs" id="gateImgs" data-img><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="Farmers reviewing a written application" class="on"><img src="/innovation-venture-platforms/img/fif_workshop.webp" alt="A workshop in the agritech room" loading="lazy"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="Farmers working on a project proposal at a workshop table" loading="lazy"><img src="/innovation-venture-platforms/img/fif_audience.webp" alt="Farmers at a Farm Innovation Fund session" loading="lazy"><img src="/innovation-venture-platforms/img/fif_talk.webp" alt="Two farmers in discussion" loading="lazy"><img src="/innovation-venture-platforms/img/fif_greenh.webp" alt="Greenhouses at Innovation Oasis, Al Ain" loading="lazy"><img src="/innovation-venture-platforms/img/area_water.webp" alt="Lettuce in irrigated rows" loading="lazy"><img src="/innovation-venture-platforms/img/fif_soil.webp" alt="A soil and water analysis session" loading="lazy"><img src="/innovation-venture-platforms/img/area_protected.webp" alt="Crop rows inside a greenhouse" loading="lazy"></div>
+      <p class="x_cap f_gateJ" id="gateJ"><b id="gateJb">Journey 1</b><span id="gateJs">From application to selection</span></p>
     </div>
     <ol class="f_gatesList" id="gates">
       <i class="f_gatesRail" aria-hidden="true"></i><i class="f_gatesFill" aria-hidden="true"></i>
-      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><h3>Discovery &amp; Call</h3><p>Farmers submit a problem and a proposed solution.</p></div></li>
-      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><h3>Eligibility</h3><p>The team checks completeness and programme fit.</p></div></li>
-      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><h3>Training &amp; Proposal</h3><p>Workshops and mentoring strengthen the pilot design.</p><small>Innovation Day, 26 July 2026</small></div></li>
-      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><h3>Review &amp; Pitches</h3><p>Experts assess the evidence and finalists present.</p></div></li>
-      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><h3>Pilot &amp; Scale</h3><p>Selected teams trial, measure and consider adoption.</p></div></li>
+      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">01 · Apply</span><h3>Submit an initial application</h3><p>Tell us about the challenge and your idea.</p>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>Applicants submit a concise initial application explaining:</p><ul class="f_gateList"><li>The agricultural or on-farm challenge</li><li>Why the challenge matters</li><li>The proposed idea or potential solution</li><li>The expected benefit</li><li>The applicant or idea sponsor</li></ul><p>Applications are reviewed for completeness and eligibility. Eligible applicants progress to the proposal-development stage.</p></div></details></div></li>
+      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">02 · Develop</span><h3>Develop the idea</h3><p>Strengthen the problem, solution and project approach.</p><small>Cohort 1: Innovation Day, 26 July 2026</small>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>Eligible applicants receive capability-building support to help turn the initial idea into a stronger and more deliverable project proposal. Support may include:</p><ul class="f_gateList"><li>Innovation workshops</li><li>Visits to&nbsp;<span class="x_iO">iO</span>’s facilities</li><li>Problem-definition exercises</li><li>Solution exploration</li><li>Technical and expert mentoring</li><li>Pilot-design guidance</li><li>Budget development</li><li>Success-measure definition</li><li>Pitch preparation</li></ul><p>This stage helps participants understand the root problem, compare possible solutions and identify the evidence needed to determine whether an idea works.</p><h4>What applicants develop</h4><ul class="f_gateList"><li>A clearly defined agricultural challenge</li><li>An appropriate proposed solution</li><li>A realistic testing approach</li><li>An indicative project scope and budget</li><li>Defined technical, operational and commercial outcomes</li><li>An initial delivery team</li></ul></div></details></div></li>
+      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">03 · Submit</span><h3>Submit the detailed proposal</h3><p>Translate the idea into a credible project.</p>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>Participants submit a more detailed proposal setting out:</p><ul class="f_gateList"><li>The challenge and current baseline</li><li>The proposed solution</li><li>Intended users or beneficiaries</li><li>Testing approach</li><li>Proposed location or testing environment</li><li>Required expertise and delivery partners</li><li>Project activities and timeline</li><li>Budget and resource requirements</li><li>Key risks and dependencies</li><li>Measures of success</li><li>Potential value beyond the initial pilot</li></ul><p>Where a testing location has not yet been confirmed, applicants should describe the type of environment required. Suitable projects may later be matched with&nbsp;<span class="x_iO">iO</span>&nbsp;facilities, a participating farm or another relevant testing environment.</p></div></details></div></li>
+      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">04 · Evaluate</span><h3>Expert evaluation</h3><p>Assess the project’s value and feasibility.</p>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>Detailed proposals are reviewed by specialists with relevant agricultural, scientific, technical, operational and commercial expertise. Evaluation considers:</p><ul class="f_gateList"><li>Importance and clarity of the challenge</li><li>Relevance of the proposed solution</li><li>Potential to improve productivity, profitability or resilience at scale</li><li>Technical and operational feasibility</li><li>Quality of the proposed testing approach</li><li>Reasonableness of the budget</li><li>Applicant and delivery-team capability</li><li>Potential for farm adoption, replication, knowledge generation or commercialization</li></ul><p>Applicants may receive questions or requests for clarification during this stage.</p></div></details></div></li>
+      <li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">05 · Pitch and select</span><h3>Finalist pitch and selection</h3><p>Present the complete project proposal.</p>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>Shortlisted applicants are invited to present their proposals to a panel. Following the pitches, the panel selects the projects recommended to progress toward funding and implementation.</p><p>Selection is competitive. Progression to the finalist stage does not guarantee funding.</p><h4>Selection outcome</h4><p>Applicants are notified whether their project has been selected for implementation.</p></div></details></div></li>
+      <li class="f_gateSplit"><span class="x_pill">Journey 2 · From selection to project implementation</span></li>
+      <li class="f_gate f_gateJ2"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">06 · Scope and mobilize</span><h3>Project readiness and mobilization</h3><p>Turn the proposal into a delivery-ready scope of work.</p>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>The readiness process confirms:</p><ul class="f_gateList"><li>Final project scope</li><li>Testing environment</li><li>Technical approach</li><li>Baseline and key performance indicators</li><li>Delivery activities</li><li>Project timeline</li><li>Approved budget</li><li>Procurement and supplier requirements</li><li>Roles and responsibilities</li><li>Data collection and reporting requirements</li><li>Project risks and controls</li></ul><p>Before testing begins, the project team mobilizes the agreed resources and confirms that the delivery environment is ready.</p></div></details></div></li>
+      <li class="f_gate f_gateJ2"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">07 · Deliver</span><h3>Project delivery and measurement</h3><p>Test the solution in relevant conditions.</p>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>The project is implemented according to the agreed scope, timeline and milestones.&nbsp;<span class="x_iO">iO</span>&nbsp;may support delivery through:</p><ul class="f_gateList"><li>Project-management oversight</li><li>Scientific and technical expertise</li><li>Laboratory analysis</li><li>Greenhouse, nethouse or field facilities</li><li>Site visits</li><li>Partner coordination</li><li>Data collection and review</li><li>Risk and issue management</li><li>Budget monitoring</li><li>Milestone assessments</li><li>Technical troubleshooting</li></ul><h4>What may be measured</h4><p>Measures will vary by project but could include:</p><ul class="f_gateList"><li>Crop yield</li><li>Crop quality</li><li>Water consumption</li><li>Energy consumption</li><li>Input use</li><li>Labour requirements</li><li>Operating costs</li><li>Waste reduction</li><li>Resource recovery</li><li>Production reliability</li><li>Farm profitability</li><li>User or operator feedback</li></ul><p>The objective is to generate credible evidence, not simply to demonstrate that the project was completed.</p></div></details></div></li>
+      <li class="f_gate f_gateJ2"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">08 · Review</span><h3>Project review and close-out</h3><p>Understand what worked and what should happen next.</p>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>At the end of the pilot, the project team reviews the results against the agreed baseline, milestones and success criteria. The close-out process may include:</p><ul class="f_gateList"><li>Final technical and financial reporting</li><li>Performance-data analysis</li><li>Farmer and user feedback</li><li>Review of implementation challenges</li><li>Assessment of the business or adoption case</li><li>Documentation of knowledge generated</li><li>Intellectual-property review</li><li>Final project presentation</li><li>Farmer or ecosystem demonstration</li></ul><h4>Outcome</h4><p>A clear evidence-based recommendation to:</p><ul class="f_gateList"><li>Adopt the solution</li><li>Refine and test it further</li><li>Replicate it in another environment</li><li>Progress it toward commercialization</li><li>Conclude the project without further investment</li></ul><p>A project that does not meet its original target may still produce valuable evidence about technical constraints, operating requirements or the conditions required for success.</p></div></details></div></li>
+      <li class="f_gate f_gateJ2"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">09 · Progress</span><h3>Post-project scaling</h3><p>Use the evidence to identify the next opportunity.</p>
+        <details class="f_gateMore"><summary><i></i>What this involves</summary><div><p>Successful projects may progress through one or more pathways:</p><dl class="f_gateWays"><div><dt>Replication</dt><dd>The solution is tested or adopted across additional farms, crops or operating environments.</dd></div><div><dt>Further development</dt><dd>The solution undergoes refinement, additional testing or a larger demonstration.</dd></div><div><dt>Local knowledge and intellectual property</dt><dd>The project generates locally relevant methods, data, technical know-how or potentially protectable intellectual property.</dd></div><div><dt>Commercial partnership</dt><dd>The project progresses toward procurement, licensing, manufacturing, distribution or another commercial arrangement.</dd></div><div><dt>New business opportunity</dt><dd>The applicant or project team develops a new product, service or farm-based enterprise.</dd></div><div><dt>Follow-on funding</dt><dd>The project attracts additional grant funding, investment, customer funding or partner contributions.</dd></div></dl><p>Progression beyond the funded pilot is not automatic. It depends on the evidence generated, market or farmer demand, ownership arrangements, team capability and the resources required for wider deployment.</p></div></details></div></li>
     </ol>
   </div></section>
 
-  <section class="f_cohort"><div class="f_cohortPin" id="cohortPin"><div class="f_cohortStick"><div class="s_wrap f_cohortGrid">
-    <div class="f_cohortL">
-      <div class="x_stack f_cohortHead"><span class="c_eyebrow">Cohort 1 at a glance · 15 Sep 2026</span><h2 class="x_h2">From 130 applications to five funded pilots.</h2></div>
-      <ol class="f_cohortList" id="cohortList"><i class="f_cohortRail" aria-hidden="true"></i><i class="f_cohortFill" aria-hidden="true"></i><li data-on><b>130</b><span>Applications submitted</span></li><li><b>68</b><span>Advanced to Phase 2</span></li><li><b>39</b><span>Valid Phase 2 proposals</span></li><li><b>10</b><span>Finalists</span></li><li><b>5</b><span>Pilots to fund</span></li></ol>
-      <div class="f_cohortMeta"><span><b>2,000+</b> farms reached</span><span><b>7</b> emirates represented</span><span>Target: at least 1 scaled solution</span><span class="f_fieldKey"><span><i class="f_keySeed" aria-hidden="true"></i>1 application</span><span><svg class="f_keySprout" viewBox="0 0 12 14" aria-hidden="true"><path d="M6 13V5M6 8C3 6 2 4 2.5 2.5 4.5 3 5.6 5 6 8ZM6 6c1-2.6 3-3.8 4.5-3.6C10.6 4.2 8.8 5.6 6 6Z"/></svg>funded pilot</span></span></div>
-    </div>
-    <div class="f_field" id="field" data-stage="0" role="img" aria-label="130 applications; 68 advanced to Phase 2; 39 valid Phase 2 proposals; 10 finalists; 5 pilots to fund"></div>
-  </div></div></div></section>
+  <section class="x_sec" id="fif-cycle"><div class="s_wrap">
+    <div class="x_head"><div><h2 class="x_h2" data-reveal>Cohort 1 at a glance</h2></div></div>
+    <ol class="f_board"><li><strong data-count="1000" data-sep data-suffix="+">1,000+</strong><h3>Farmers reached</h3><p>Targeted outreach introduced the Fund to local farmers and agricultural networks across the UAE.</p></li><li><strong data-count="130">130</strong><h3>Applications submitted</h3><p>Applicants brought forward a diverse range of ideas addressing practical agricultural challenges and opportunities.</p></li><li><strong data-count="68">68</strong><h3>Applicants progressed</h3><p>Eligible participants advanced to the proposal-development phase and were invited to strengthen their initial ideas.</p></li><li><strong data-count="7">7</strong><h3>Emirates represented</h3><p>Applications were received from across all seven Emirates, giving the first cycle nationwide representation.</p></li><li><strong data-count="17">17</strong><h3>Expert reviewers engaged</h3><p>Agricultural, scientific, technical, operational and commercial specialists contributed to proposal evaluation.</p></li><li><strong data-count="8">8</strong><h3>Shortlisted for Final Pitch</h3><p>Eight finalists made it to the final Pitch phase to present their ideas for funding and implementation support.</p></li></ol>
+  </div></section>
+
 
   <section class="x_grey"><div class="f_dayPin" id="dayPin"><div class="f_dayStick">
     <div class="s_wrap f_dayHead">
-      <div><span class="c_eyebrow" data-reveal>Innovation Day · 26 July 2026</span><h2 class="x_h2" data-reveal>Stronger pilot proposals, built in a day.</h2><p class="x_body" data-reveal>A full day at Innovation Oasis, Al Ain: a facility tour, workshops and direct mentoring, with Arabic facilitation and practical workbooks.</p></div>
+      <div><span class="c_eyebrow" data-reveal>Innovation Day · 26 July 2026</span><h2 class="x_h2" data-reveal>Stronger pilot<br> proposals, built in a day.</h2><p class="x_body" data-reveal>A full day at Innovation Oasis, Al Ain: a facility tour, workshops and direct mentoring, with Arabic facilitation and practical workbooks.</p></div>
       <div class="f_dayNums"><div><strong data-count="38">38</strong><span>farmers</span></div><div><strong data-count="3">3</strong><span>workshops</span></div><div><strong>1</strong><span>full day</span></div></div>
     </div>
     <div class="f_track" id="dayTrack">
@@ -5449,18 +5966,143 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
   </div></div></section>
 
-  <section class="x_sec"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>What selected pilot teams receive</span><h2 class="x_h2" data-reveal>A funded, measured on-farm pilot.</h2></div><p class="x_body" data-reveal>From proposal to a pilot with a defined route to adoption.</p></div>
-    <ol class="f_stack" id="fifStack">
-      <li class="f_card" style="--i:0"><div class="f_cardText"><div><span class="x_label">Funding</span><h3>Pilot funding</h3><p>Each selected pilot is funded to run on a real farm.</p></div><div class="f_spec"><div class="f_specBig"><strong>AED 200K</strong><span>up to, per selected pilot</span></div><div class="f_specRow" data-stagger><span>Current cycle</span><span>5 pilots to fund</span></div></div></div><div class="x_img"><img src="/innovation-venture-platforms/img/area_water.webp" alt="Lettuce in irrigated rows on a pilot farm" loading="lazy"></div></li>
-      <li class="f_card" style="--i:1"><div class="f_cardText"><div><span class="x_label">Readiness</span><h3>Pilot readiness</h3><p>Before anything is planted, the pilot is fully defined.</p></div><ul class="f_spec f_check" data-stagger><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Scope</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Baseline</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Site</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Season</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Resource plan</li></ul></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_soil.webp" alt="A Soil and Water Analysis session with farmers" loading="lazy"></div></li>
-      <li class="f_card" style="--i:2"><div class="f_cardText"><div><span class="x_label">Delivery</span><h3>Delivery discipline</h3><p>The pilot is run and measured the same way, start to finish.</p></div><ol class="f_spec f_seq" style="--n:4" data-stagger><li>Milestones</li><li>Data logging</li><li>Success KPIs</li><li>Review points</li></ol></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="Farmers working on a pilot proposal at a workshop table" loading="lazy"></div></li>
-      <li class="f_card" style="--i:3"><div class="f_cardText"><div><span class="x_label">Scale</span><h3>Visibility and scale</h3><p>Results are shown to other farmers, with a route to adoption.</p></div><ol class="f_spec f_seq" style="--n:3" data-stagger><li>Close-out review</li><li>Farmer demonstration</li><li>Adoption pathway</li></ol></div><div class="x_img"><img src="/innovation-venture-platforms/img/fif_audience.webp" alt="Farmers at a Farm Innovation Fund session" loading="lazy"></div></li>
-    </ol>
-    <div class="f_value"><div><span class="x_label">Each pilot delivers</span><h3>Farm value</h3><p>Performance, efficiency or profitability measured during the pilot.</p></div><div><span class="x_label">&nbsp;</span><h3>Evidence</h3><p>Comparable data and practical lessons that other farms can use.</p></div><div><span class="x_label">&nbsp;</span><h3>Adoption</h3><p>A clear next step for farmers, funders and implementation partners.</p></div></div>
-    <div class="x_row" style="margin-top:var(--head)"><a href="/full-site/ivp-enquire?platform=fif" class="s_btn s_btnPrimary s_btnSm" data-platform="fif">Apply for funding <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <section class="x_sec" id="fif-partners"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Our partner network</span><h2 class="x_h2" data-reveal>National expertise supporting ideas from evaluation to scale.</h2></div><div class="x_stack"><p class="x_body" data-reveal>The Farm Innovation Fund brings together leading government, research and innovation organizations from across the UAE.</p><p class="x_body" data-reveal>Partners contribute complementary expertise to help assess ideas, strengthen project design, support implementation and identify pathways for successful solutions to be adopted, replicated or developed further.</p></div></div>
+    <div class="f_eco" role="img" aria-label="The Farm Innovation Fund at the centre, with four supporting roles around it: farmer and sector engagement, expert evaluation, technical and project support, adoption and progression">
+      <span class="f_ecoRole">Farmer and sector engagement</span><span class="f_ecoRole">Expert evaluation</span>
+      <span class="f_ecoCore">Farm Innovation Fund</span>
+      <span class="f_ecoRole">Technical and project support</span><span class="f_ecoRole">Adoption and progression</span>
+    </div>
+    <div class="f_pGrid">
+      <div class="f_pGroup" data-n="3"><div class="f_pGroupHead"><span class="x_label">01</span><h3>National and sector alignment</h3></div><ul class="f_pList">
+        <li class="f_pCard"><span class="f_pLogo" style="--lh:62px"><img src="/full-site/logos/moccae.svg" alt="Ministry of Climate Change and Environment logo" loading="lazy"></span><h4>Ministry of Climate Change and Environment</h4><p class="f_pRole">Connecting farm innovation with national agricultural priorities.</p><button class="f_pMore" type="button" aria-expanded="false"><i></i>About this partner</button><div class="f_pA"><div><p>The Ministry of Climate Change and Environment plays an important role in the UAE’s agriculture and environmental landscape, including the advancement of sustainable and climate-smart agriculture, agricultural research and innovative production approaches.</p></div></div></li>
+        <li class="f_pCard"><span class="f_pLogo" style="--lh:58px"><img src="/full-site/logos/nac.svg" alt="National Agriculture Centre logo" loading="lazy"></span><h4>National Agriculture Centre</h4><p class="f_pRole">Supporting agricultural development and farmer engagement.</p><button class="f_pMore" type="button" aria-expanded="false"><i></i>About this partner</button><div class="f_pA"><div><p>The National Agriculture Centre provides an important connection to the wider UAE agricultural ecosystem and to the farmers, production priorities and support structures that the Fund is intended to serve.</p></div></div></li>
+        <li class="f_pCard"><span class="f_pLogo" style="--lh:92px"><img src="/full-site/logos/adafsa.png" alt="Abu Dhabi Agriculture and Food Safety Authority logo" loading="lazy"></span><h4>Abu Dhabi Agriculture and Food Safety Authority</h4><p class="f_pRole">Bringing regulatory, agricultural and food-system expertise.</p><button class="f_pMore" type="button" aria-expanded="false"><i></i>About this partner</button><div class="f_pA"><div><p>The Abu Dhabi Agriculture and Food Safety Authority is responsible for agriculture, food safety, food security and biosecurity in the Emirate of Abu Dhabi. Its responsibilities include agricultural programs, farm oversight, licensing, food and agricultural establishments, and the sustainable development of the sector.</p></div></div></li>
+      </ul></div>
+      <div class="f_pGroup" data-n="1"><div class="f_pGroupHead"><span class="x_label">02</span><h3>Strategic issue expertise</h3></div><ul class="f_pList">
+        <li class="f_pCard"><span class="f_pLogo" style="--lh:88px"><img src="/full-site/logos/mbzwi.png" alt="Mohamed bin Zayed Water Initiative logo" loading="lazy"></span><h4>Mohamed bin Zayed Water Initiative</h4><p class="f_pRole">Advancing solutions to water scarcity.</p><button class="f_pMore" type="button" aria-expanded="false"><i></i>About this partner</button><div class="f_pA"><div><p>The Mohamed bin Zayed Water Initiative works to accelerate the development, testing and deployment of technologies addressing water scarcity. The Initiative uses UAE infrastructure and expertise to support promising water solutions with potential for wider deployment.</p></div></div></li>
+      </ul></div>
+      <div class="f_pGroup" data-n="2"><div class="f_pGroupHead"><span class="x_label">03</span><h3>Research and technical expertise</h3></div><ul class="f_pList">
+        <li class="f_pCard"><span class="f_pLogo" style="--lh:40px"><img src="/full-site/logos/uaeu.svg" alt="United Arab Emirates University logo" loading="lazy"></span><h4>United Arab Emirates University</h4><p class="f_pRole">Providing agricultural research and scientific expertise.</p><button class="f_pMore" type="button" aria-expanded="false"><i></i>About this partner</button><div class="f_pA"><div><p>The United Arab Emirates University College of Agriculture and Veterinary Medicine is a significant national resource for agricultural education and research. Its capabilities include experimental stations, a food pilot plant and laboratories supporting research in agriculture, food and natural resources, including water use and protected agriculture.</p></div></div></li>
+        <li class="f_pCard"><span class="f_pLogo" style="--lh:44px"><img src="/full-site/logos/khalifa-university.svg" alt="Khalifa University logo" loading="lazy"></span><h4>Khalifa University</h4><p class="f_pRole">Connecting projects to advanced science and engineering.</p><button class="f_pMore" type="button" aria-expanded="false"><i></i>About this partner</button><div class="f_pA"><div><p>Khalifa University contributes advanced research and engineering capabilities relevant to agricultural innovation, water, energy and sustainable systems.</p></div></div></li>
+      </ul></div>
+    </div>
+    <p class="f_callout"><b>Please note</b><span>Partner participation and responsibilities may vary by project, cycle stage and area of expertise.</span></p>
   </div></section>
-  <a class="x_next" href="/full-site/ivp-incubation"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/inc_robot.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Next platform · For researchers</span><strong>Incubation</strong><p>From lab research to market-ready, with Khalifa University.</p><span class="s_btn s_btnPrimary s_btnSm">Go to Incubation <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
+
+  <section class="x_sec" id="fif-evaluation"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Selection</span><h2 class="x_h2" data-reveal>What makes a strong proposal?</h2></div><div class="x_stack"><p class="x_body" data-reveal>Projects are assessed by experts with relevant agricultural, scientific, technical, operational and commercial experience.</p><p class="x_body" data-reveal>The evaluation considers both the proposed solution and the applicant’s readiness to deliver a structured on-farm pilot.</p></div></div>
+    <ol class="f_tenets f_criteria" data-stagger>
+      <li><span>01</span><h3>A real and important farm challenge</h3><p>The proposal addresses a clearly defined need with a meaningful impact on farm operations.</p></li>
+      <li><span>02</span><h3>A relevant solution</h3><p>The proposed approach is connected to the problem and provides a clear improvement over current practice.</p></li>
+      <li><span>03</span><h3>Practical feasibility</h3><p>The solution can reasonably be implemented and tested within the available farm environment, budget and timeline.</p></li>
+      <li><span>04</span><h3>Measurable value</h3><p>The project has defined outcomes related to productivity, profitability, quality, resource use or resilience.</p></li>
+      <li><span>05</span><h3>Delivery readiness</h3><p>The required site, team, technical partners, approvals and operational resources can be mobilized.</p></li>
+      <li><span>06</span><h3>Potential beyond the pilot</h3><p>The project has the potential to generate useful knowledge, farm adoption, wider replication or a commercial opportunity.</p></li>
+    </ol>
+    <div class="f_critFoot"><p class="f_callout"><b>Note</b><span>Selection is competitive. Meeting the eligibility criteria does not guarantee funding.</span></p><div class="x_row"><a href="#fif-faq" class="s_textLink">Read the FAQs <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+  </div></section>
+
+  <section class="x_sec x_grey" id="fif-receive"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Selected project support</span><h2 class="x_h2" data-reveal>More than funding.</h2></div><p class="x_body" data-reveal>Selected projects receive a support package tailored to the approved pilot scope. This may combine funding, technical guidance, project-management support, specialist expertise and access to relevant facilities or partners.</p></div>
+    <div class="a_gain">
+      <div class="x_img x_corners a_gainMedia" id="fifMedia" data-img><img src="/innovation-venture-platforms/img/area_water.webp" alt="Lettuce in irrigated rows on a pilot farm" class="on"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="Farmers working on a project plan at a workshop table" loading="lazy"><img src="/innovation-venture-platforms/img/fif_soil.webp" alt="A soil and water analysis session with farmers" loading="lazy"><img src="/innovation-venture-platforms/img/fif_lettuce.webp" alt="A hydroponic growing unit" loading="lazy"><img src="/innovation-venture-platforms/img/fif_audience.webp" alt="Farmers at a Farm Innovation Fund session" loading="lazy"></div>
+      <ol class="a_list" id="fifList">
+        <li class="a_item" data-on><span class="x_label">01 · Funding</span><h3>Potential project funding</h3><p>Selected projects may receive funding of up to AED 200,000, subject to the approved scope, budget, milestones and Fund terms. Funds are used for eligible project costs and released according to agreed delivery and evidence requirements.</p><div class="f_spec"><div class="f_specBig"><strong>Up to AED 200,000</strong><span>per selected project</span></div><p class="f_fine">The award value may vary according to the approved scope and budget. Selection does not automatically entitle every project to the maximum funding amount.</p></div></li>
+        <li class="a_item"><span class="x_label">02 · Pilot design</span><h3>Pilot design</h3><p><span class="x_iO">iO</span>&nbsp;works with each selected team to define:</p><ul class="f_check" data-stagger><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>The operational baseline</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Pilot scope</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Technical approach</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Work plan</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Budget</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Success measures</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Data requirements</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Risk controls</li></ul></li>
+        <li class="a_item"><span class="x_label">03 · Expert support</span><h3>Expert and technical support</h3><p>Depending on the project, support may include access to:</p><ul class="f_check" data-stagger><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Agronomists</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Scientists</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Irrigation specialists</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Greenhouse and controlled-environment specialists</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Laboratories</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Technology providers</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Commercial advisers</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Project-management specialists</li></ul></li>
+        <li class="a_item"><span class="x_label">04 · Delivery</span><h3>Delivery and measurement</h3><p>Projects are managed through:</p><ul class="f_check" data-stagger><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Mobilization</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Milestone reviews</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Site visits</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Risk and issue management</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Budget control</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Evidence submission</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Final evaluation</li></ul></li>
+        <li class="a_item"><span class="x_label">05 · Visibility</span><h3>Visibility and next opportunities</h3><p>Where appropriate and agreed, projects may gain visibility through:</p><ul class="f_check" data-stagger><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Demonstration events</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Farmer-engagement activities</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Case studies</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Industry introductions</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Technology-provider partnerships</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Commercial and investment discussions</li></ul></li>
+      </ol>
+    </div>
+  </div></section>
+
+  <section class="x_sec" id="fif-commit"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>A shared commitment</span><h2 class="x_h2" data-reveal>Successful pilots require active participation.</h2></div><p class="x_body" data-reveal>The Fund provides structured support, but successful delivery depends on active ownership from the applicant, participating farm and wider project team.</p></div>
+    <div class="f_share">
+      <div class="f_shareIO"><span class="x_label">What&nbsp;<span class="x_iO">iO</span>&nbsp;provides</span><ol class="f_shareList"><li><b>01</b>Potential project funding</li><li><b>02</b>Pilot design</li><li><b>03</b>Expert and technical support</li><li><b>04</b>Delivery and measurement</li><li><b>05</b>Visibility and next opportunities</li></ol><a href="#fif-receive" class="s_textLink">Support in detail <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      <div class="f_shareYou"><span class="x_label">What participants contribute</span>
+        <ul class="f_commit">
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>A suitable pilot environment</h3><p>Provide the agreed farm site, operational access and relevant farm resources.</p></div></li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>A named project lead</h3><p>Nominate a person responsible for coordinating delivery, information and decision-making.</p></div></li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Time and participation</h3><p>Attend project meetings, workshops, reviews and agreed delivery activities.</p></div></li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Data and evidence</h3><p>Support baseline collection, monitoring and the timely sharing of agreed project data.</p></div></li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Safe and compliant delivery</h3><p>Meet relevant farm, environmental, regulatory, procurement and health and safety requirements.</p></div></li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>Knowledge sharing</h3><p>Where agreed, contribute to demonstrations or case studies so that learning can benefit the wider farming community.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="x_sec x_secTop0" id="fif-pathways"><div class="s_wrap">
+    <div class="x_cbox f_paths" id="pathBox">
+      <img class="x_cboxMark" src="/innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true">
+      <svg class="f_branch" id="pathBranch" aria-hidden="true"></svg>
+      <div class="x_cboxMain"><span class="x_label">What success can unlock</span><h2 data-reveal>Turning farm learning into wider opportunity.</h2><p data-reveal>A completed pilot is not the final objective. Successful projects should create evidence and knowledge that helps determine what should happen next.</p><p data-reveal>Not every project will follow the same route, but potential pathways include:</p>
+        <ol class="f_pathFlow"><li><small>Start</small>Funded pilot</li><li id="pathNode"><small>Then</small>Evidence generated</li></ol>
+      </div>
+      <ul class="x_cboxList f_pathList" id="pathList">
+        <li data-open><button aria-expanded="true"><strong>Farm adoption</strong><span>Adopt</span></button><div class="f_pathA"><div><p>The participating farm continues using the solution after the funded pilot because it has demonstrated practical value.</p></div></div></li>
+        <li><button aria-expanded="false"><strong>Replication and scale</strong><span>Replicate</span></button><div class="f_pathA"><div><p>The solution is implemented on additional farms, crops, production systems or operating sites.</p></div></div></li>
+        <li><button aria-expanded="false"><strong>Local knowledge and intellectual property</strong><span>Protect</span></button><div class="f_pathA"><div><p>The project generates data, methods, protocols or operating insights relevant to UAE farming conditions, and may create or strengthen a potentially protectable method, design, product or technical solution.</p></div></div></li>
+        <li><button aria-expanded="false"><strong>New business opportunities</strong><span>Commercialize</span></button><div class="f_pathA"><div><p>The team develops a new product, service, licensing model, farm-based business or commercial partnership.</p></div></div></li>
+        <li><button aria-expanded="false"><strong>Continued development</strong><span>Develop further</span></button><div class="f_pathA"><div><p>The project progresses to a larger pilot, follow-on funding, commercial validation or another&nbsp;<span class="x_iO">iO</span>&nbsp;platform.</p></div></div></li>
+      </ul>
+      <p class="f_pathNote"><b>Important note</b><span>These are potential pathways rather than guaranteed outcomes. Progression depends on the project results, ownership arrangements, market demand and the capacity of the project team.</span></p>
+    </div>
+  </div></section>
+
+  <section class="x_sec x_grey" id="fif-measures"><div class="s_wrap a_faq f_meas f_meas2">
+    <div class="a_faqSide"><span class="c_eyebrow" data-reveal>Program outcomes</span><h2 class="x_h2" data-reveal>How we measure success.</h2><p class="x_body" data-reveal>Measuring value beyond the funded pilot. Results will be published here once they are verified, labelled by cycle or reporting period.</p>
+      <div class="f_value f_defs"><div><span class="x_label">Definition</span><h3>Scaled solution</h3><p>A solution that progresses beyond the original pilot and is adopted by at least one additional farm, operating site or paying customer.</p></div><div><span class="x_label">Definition</span><h3>Commercial outcome</h3><p>A signed procurement agreement, paid deployment, licensing agreement, new venture, follow-on investment or another documented revenue-generating pathway.</p></div></div>
+    </div>
+    <div class="f_measGrid"><article class="f_measCard"><span class="f_measNum">01</span><h3>Capability-building measures</h3><ul class="f_measDots"><li>Participants completing innovation workshops</li><li>Proposals strengthened through mentoring</li><li>Participants demonstrating improved innovation-planning capability</li><li>Teams applying structured problem-definition and pilot-design methods</li></ul></article><article class="f_measCard"><span class="f_measNum">02</span><h3>Project-delivery measures</h3><ul class="f_measDots"><li>Projects funded</li><li>Pilots completed against agreed milestones</li><li>Projects achieving defined technical or operational criteria</li><li>Projects demonstrating measurable productivity, profitability, resource-efficiency or resilience benefits</li></ul></article><article class="f_measCard"><span class="f_measNum">03</span><h3>Knowledge and intellectual-property measures</h3><ul class="f_measDots"><li>Local datasets and validated insights generated</li><li>New methods or operating protocols developed</li><li>Intellectual-property opportunities identified</li><li>Case studies and demonstration activities completed</li></ul></article><article class="f_measCard"><span class="f_measNum">04</span><h3>Adoption and scale measures</h3><ul class="f_measDots"><li>Solutions adopted by participating farms</li><li>Solutions replicated on additional farms or sites</li><li>Follow-on pilots or applications initiated</li></ul></article><article class="f_measCard"><span class="f_measNum">05</span><h3>Commercial measures</h3><ul class="f_measDots"><li>New products or services developed</li><li>Licensing or procurement agreements secured</li><li>New ventures established</li><li>Follow-on funding or investment obtained</li><li>Documented commercial commitments generated</li></ul></article></div>
+  </div></section>
+
+
+
+  <section class="x_sec" id="fif-projects"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Farm innovation in action</span><h2 class="x_h2" data-reveal>Explore selected projects.</h2></div><p class="x_body" data-reveal>See how participating farms are testing practical approaches to improve productivity, profitability, resource efficiency and resilience.</p></div>
+    <ol class="f_projGrid"><li class="f_projCard"><div class="x_img f_projImg"><img src="/innovation-venture-platforms/img/area_water.webp" alt="Irrigated rows at a participating farm" loading="lazy"><span class="f_projStatus" data-st="live">Pilot in delivery</span></div><div class="f_projBody"><span class="x_label">Cohort 1 · Al Ain, Abu Dhabi</span><h3>Sensor-led irrigation scheduling for date palms</h3><p class="f_projFarm">Al Khatim Family Farm</p><dl class="f_projFields"><div><dt>Farm challenge</dt><dd>Flood irrigation on 1,200 palms uses more water than the trees need, and salinity is building up in the root zone.</dd></div><div><dt>Proposed solution</dt><dd>Soil-moisture and salinity sensors linked to an automated scheduler that irrigates by zone and crop stage.</dd></div><div><dt>Pilot duration</dt><dd>12 months · Oct 2026 – Sep 2027</dd></div><div><dt>What is being measured</dt><dd>Water use per palm, soil salinity, fruit yield and grade</dd></div><div><dt>Verified results</dt><dd>Baseline recorded in October 2026. Interim review due April 2027.</dd></div><div><dt>Potential next pathway</dt><dd>Replication on neighbouring date farms</dd></div></dl><a href="#fif-projects" class="s_textLink f_projLink">Read the project profile <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li class="f_projCard"><div class="x_img f_projImg"><img src="/innovation-venture-platforms/img/area_protected.webp" alt="Crops in a nethouse" loading="lazy"><span class="f_projStatus" data-st="scope">Scoping underway</span></div><div class="f_projBody"><span class="x_label">Cohort 1 · Ras Al Khaimah</span><h3>Evaporative cooling retrofit for a tomato nethouse</h3><p class="f_projFarm">Wadi Shaam Growers</p><dl class="f_projFields"><div><dt>Farm challenge</dt><dd>Summer heat stops tomato production for four months and raises flower drop in the shoulder season.</dd></div><div><dt>Proposed solution</dt><dd>Pad-and-fan cooling retrofitted to an existing nethouse, controlled by temperature and humidity sensors.</dd></div><div><dt>Pilot duration</dt><dd>9 months · Jan – Sep 2027</dd></div><div><dt>What is being measured</dt><dd>Canopy temperature, energy use, marketable yield, season length</dd></div><div><dt>Verified results</dt><dd>Results published after pilot close-out.</dd></div><div><dt>Potential next pathway</dt><dd>Adoption on the participating farm</dd></div></dl><a href="#fif-projects" class="s_textLink f_projLink">Read the project profile <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li class="f_projCard"><div class="x_img f_projImg"><img src="/innovation-venture-platforms/img/area_organic.webp" alt="Leafy greens in soil beds" loading="lazy"><span class="f_projStatus" data-st="sel">Project selected</span></div><div class="f_projBody"><span class="x_label">Cohort 1 · Masafi, Fujairah</span><h3>Compost-based soil amendment for leafy greens</h3><p class="f_projFarm">Sponsored by Hamdan Al Yamahi</p><dl class="f_projFields"><div><dt>Farm challenge</dt><dd>Sandy soil holds little water or nutrients, so fertiliser costs are high and crop losses are frequent.</dd></div><div><dt>Proposed solution</dt><dd>On-farm compost from date-palm residues, applied at three rates and compared with current practice.</dd></div><div><dt>Pilot duration</dt><dd>8 months · Feb – Sep 2027</dd></div><div><dt>What is being measured</dt><dd>Soil organic matter, input cost per kg, crop losses, yield</dd></div><div><dt>Verified results</dt><dd>Results published after pilot close-out.</dd></div><div><dt>Potential next pathway</dt><dd>Further development and knowledge sharing</dd></div></dl><a href="#fif-projects" class="s_textLink f_projLink">Read the project profile <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li></ol>
+    <div class="f_projLegend"><span class="x_label">Project status</span><ol><li data-on>Project selected</li><li data-on>Scoping underway</li><li data-on>Pilot in delivery</li><li>Results under review</li><li>Pilot completed</li><li>Progressing to adoption</li><li>Progressing to scale</li></ol></div>
+  </div></section>
+
+  <section class="x_sec x_ink" id="fif-faq"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>FAQs and resources</span><h2 class="x_h2" data-reveal>Questions farmers ask.</h2></div><p class="x_body" data-reveal>Answers to the questions applicants ask most. The applicant documents are available to download in Arabic and English.</p></div>
+    <div class="f_faqGrid">
+    <div class="a_faqList" id="faq">
+      <div class="a_faqItem" data-open><button aria-expanded="true">Who is eligible to apply?<i></i></button><div class="a_faqA"><div><p>Each application must be led or sponsored by a UAE National and address a clearly defined on-farm or agricultural challenge relevant to the UAE. Farmers, farm owners and idea sponsors can apply.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">Can farm managers, researchers or technology companies participate?<i></i></button><div class="a_faqA"><div><p>Yes, as project partners where the application has an eligible local applicant or sponsor and a participating UAE farm.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">Do I need a finished solution?<i></i></button><div class="a_faqA"><div><p>No. Applicants should have a clear farm challenge and an initial idea, but the Fund can help strengthen the proposed approach and testing plan.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">How much funding is available?<i></i></button><div class="a_faqA"><div><p>Selected projects may receive funding of up to AED 200,000, subject to the approved scope, budget, milestones and Fund terms. The award value may vary, and selection does not automatically entitle a project to the maximum. Funds are used for eligible project costs and released according to agreed delivery and evidence requirements.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">Can I apply for standard equipment?<i></i></button><div class="a_faqA"><div><p>Equipment may only be eligible where it forms part of a genuine innovation project and an approved testing plan.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">Who owns the intellectual property?<i></i></button><div class="a_faqA"><div><p>Applicants keep ownership of the intellectual property they bring to the Fund. Rights in new results generated during a funded pilot are agreed project by project in the funding agreement, so the participating farm can keep using the solution. The full position is set out in Section 7 of the Terms and Conditions.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">What project costs are eligible?<i></i></button><div class="a_faqA"><div><p>Eligible costs include equipment and materials needed for the test, installation, sensors and data collection, laboratory analysis and specialist services. Routine operating costs, land, unrelated construction and costs incurred before the funding agreement is signed are not eligible. The Eligible-cost guidance lists both in full.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">How long will a funded project last?<i></i></button><div class="a_faqA"><div><p>Most funded pilots run for 6 to 12 months, depending on the crop cycle and the approved scope.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">What reporting is required?<i></i></button><div class="a_faqA"><div><p>Projects report against agreed milestones, the approved budget and the agreed data requirements, and complete a final evaluation with technical and financial reporting.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">What happens after the pilot?<i></i></button><div class="a_faqA"><div><p>Results are reviewed against the agreed baseline. A project may be adopted, replicated, developed further or progressed toward commercialization, or it may conclude without further investment. Progression is not automatic: it depends on the evidence generated, demand, ownership arrangements and the resources required.</p></div></div></div>
+      <div class="a_faqItem"><button aria-expanded="false">Is support available in Arabic and English?<i></i></button><div class="a_faqA"><div><p>Yes. Workshops, mentoring and all applicant documents are available in Arabic and English, and applications can be submitted in either language.</p></div></div></div>
+    </div>
+      <aside class="f_docs" id="fifDocs">
+        <div class="f_docsHead"><span class="x_label">Applicant documents</span><small>Updated October 2026</small></div>
+        <div class="f_docsLang"><span id="docsLangLbl">Document language</span><div class="f_seg" role="radiogroup" aria-labelledby="docsLangLbl"><button type="button" role="radio" aria-checked="true" data-lang="en">English</button><button type="button" role="radio" aria-checked="false" data-lang="ar" lang="ar">العربية</button></div></div>
+        <ul class="f_docList"><li data-doc="applicant-guide"><span class="f_docType" aria-hidden="true">PDF</span><div class="f_docTxt"><b data-en="Applicant guide" data-ar="دليل المتقدّم">Applicant guide</b><small data-en="24 pages · 2.4 MB" data-ar="26 pages · 2.7 MB">24 pages · 2.4 MB</small><span class="f_docHint">Start here: how the Fund works, timeline and how to apply</span></div><a class="f_docDl" href="#" data-file="iO-FIF-applicant-guide" aria-label="Download Applicant guide (English, PDF, 2.4 MB)"><svg class="f_dlIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8.5M4.5 7 8 10.5 11.5 7M3 13.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="f_okIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="f_docDlTxt">Download</span></a></li><li data-doc="eligibility"><span class="f_docType" aria-hidden="true">PDF</span><div class="f_docTxt"><b data-en="Eligibility guidance" data-ar="إرشادات الأهلية">Eligibility guidance</b><small data-en="8 pages · 0.8 MB" data-ar="9 pages · 0.9 MB">8 pages · 0.8 MB</small><span class="f_docHint">Who can apply and what a project must include</span></div><a class="f_docDl" href="#" data-file="iO-FIF-eligibility" aria-label="Download Eligibility guidance (English, PDF, 0.8 MB)"><svg class="f_dlIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8.5M4.5 7 8 10.5 11.5 7M3 13.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="f_okIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="f_docDlTxt">Download</span></a></li><li data-doc="evaluation"><span class="f_docType" aria-hidden="true">PDF</span><div class="f_docTxt"><b data-en="Evaluation criteria" data-ar="معايير التقييم">Evaluation criteria</b><small data-en="6 pages · 0.6 MB" data-ar="6 pages · 0.7 MB">6 pages · 0.6 MB</small><span class="f_docHint">How proposals are scored at each stage</span></div><a class="f_docDl" href="#" data-file="iO-FIF-evaluation" aria-label="Download Evaluation criteria (English, PDF, 0.6 MB)"><svg class="f_dlIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8.5M4.5 7 8 10.5 11.5 7M3 13.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="f_okIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="f_docDlTxt">Download</span></a></li><li data-doc="eligible-costs"><span class="f_docType" aria-hidden="true">PDF</span><div class="f_docTxt"><b data-en="Eligible-cost guidance" data-ar="إرشادات التكاليف المؤهلة">Eligible-cost guidance</b><small data-en="10 pages · 0.9 MB" data-ar="11 pages · 1.0 MB">10 pages · 0.9 MB</small><span class="f_docHint">What the funding can and cannot pay for</span></div><a class="f_docDl" href="#" data-file="iO-FIF-eligible-costs" aria-label="Download Eligible-cost guidance (English, PDF, 0.9 MB)"><svg class="f_dlIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8.5M4.5 7 8 10.5 11.5 7M3 13.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="f_okIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="f_docDlTxt">Download</span></a></li><li data-doc="terms"><span class="f_docType" aria-hidden="true">PDF</span><div class="f_docTxt"><b data-en="Terms and conditions" data-ar="الشروط والأحكام">Terms and conditions</b><small data-en="14 pages · 1.1 MB" data-ar="15 pages · 1.2 MB">14 pages · 1.1 MB</small><span class="f_docHint">The formal terms, including intellectual property</span></div><a class="f_docDl" href="#" data-file="iO-FIF-terms" aria-label="Download Terms and conditions (English, PDF, 1.1 MB)"><svg class="f_dlIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8.5M4.5 7 8 10.5 11.5 7M3 13.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="f_okIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="f_docDlTxt">Download</span></a></li></ul>
+        <a class="f_docsAll" href="#" data-file="iO-FIF-applicant-pack"><svg class="f_dlIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8.5M4.5 7 8 10.5 11.5 7M3 13.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="f_okIco" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 8.5 3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="f_docsAllTxt">Download all</span><small data-en="5 PDFs · ZIP · 5.8 MB" data-ar="5 PDFs · ZIP · 6.5 MB">5 PDFs · ZIP · 5.8 MB</small></a>
+        <p class="f_docsLive" aria-live="polite"></p>
+      </aside>
+    </div>
+  </div></section>
+
+  <section class="x_sec i_successSec f_reg" id="fif-register"><img class="i_successMark" src="/innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true"><div class="i_successGl" id="succHelix" hidden aria-hidden="true"></div><div class="s_wrap f_regGrid">
+    <div class="f_regMain">
+      <span class="f_regStatus"><span>Cohort 1 – Applications Closed</span><i aria-hidden="true"></i><span>Next cycle anticipated: <span data-cms="next-cycle">April 2027</span></span></span>
+      <p class="x_statement" id="ctaTitle" data-scrub data-from="rgba(255,255,255,.4)">Have an idea that could <b>improve a UAE farm?</b></p>
+      <p id="ctaBody">Register to receive updates about the next Farm Innovation Fund cycle, applicant workshops and future opportunities.</p>
+      <div class="x_row f_regBtns" id="succBtn"><a href="/full-site/ivp-enquire?platform=fif" class="s_btn s_btnPrimary s_btnSm" id="ctaPrimary" data-platform="fif"><span>Register for the next cycle</span> <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#fif-faq" class="s_textLink" id="ctaSecondary"><span>Review the applicant guidance</span> <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+    <div class="x_img x_corners f_regImg"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="Farmers working on a project proposal at a workshop table" loading="lazy"></div>
+  </div></section>
+  <a class="x_next" href="/full-site/ivp-incubation"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/inc_robot.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Related pathway · Developing a technology?</span><strong>Incubation</strong><p>If you are developing research, intellectual property or an early-stage agricultural technology rather than a farmer-led project,&nbsp;<span class="x_iO">iO</span>&nbsp;Incubation may be the better place to start.</p><span class="s_btn s_btnPrimary s_btnSm">Explore Incubation <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
 </div>
 
 </div></main>
@@ -5469,7 +6111,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="s_footerCols">
       <div class="s_footerNews"><h4 data-reveal>Stay close to the work</h4><p data-reveal>Research, programmes and calls for innovators, a few times a year.</p>
         <form class="s_newsletter" id="nl" aria-label="Newsletter"><input type="email" id="nlEmail" placeholder="Email address" aria-label="Email address"><button type="submit" class="s_btn s_btnPrimary s_btnSm" aria-label="Subscribe"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form></div>
-      <div><h4 data-reveal>Explore</h4><ul><li><a href="/full-site/about"><span data-reveal>About IO</span></a></li><li><a href="#"><span data-reveal>Research &amp; Science</span></a></li><li><a href="/full-site/ivp-hub"><span data-reveal>Innovation &amp; Venture Platforms</span></a></li><li><a href="#"><span data-reveal>Technology &amp; Services</span></a></li><li><a href="#"><span data-reveal>Centres of Excellence</span></a></li><li><a href="/full-site/io-academy"><span data-reveal>Talent &amp; Training</span></a></li></ul></div>
+      <div><h4 data-reveal>Explore</h4><ul><li><a href="/full-site/about"><span data-reveal>About&nbsp;<span class="x_iO">iO</span></span></a></li><li><a href="#"><span data-reveal>Research &amp; Science</span></a></li><li><a href="/full-site/ivp-hub"><span data-reveal>Innovation &amp; Venture Platforms</span></a></li><li><a href="#"><span data-reveal>Technology &amp; Services</span></a></li><li><a href="#"><span data-reveal>Centres of Excellence</span></a></li><li><a href="/full-site/io-academy"><span data-reveal>Talent &amp; Training</span></a></li></ul></div>
       <div><h4 data-reveal>Resources</h4><ul><li><a href="/full-site/news"><span data-reveal>Content Library</span></a></li><li><a href="#"><span data-reveal>FAQs</span></a></li></ul>
         <h4 style="margin-top:32px" data-reveal>Connect</h4><ul><li><a href="#"><span data-reveal>Contact</span></a></li><li><a href="/full-site/ivp-enquire"><span data-reveal>Enquire</span></a></li><li><a href="#"><span data-reveal>LinkedIn</span><svg class="s_extIcon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect width="16" height="16" rx="2" fill="#7f8284"/><path d="M5 11l6-6M6.5 5H11v4.5" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></div>
     </div>
@@ -5712,7 +6354,7 @@ if (!renderer) return null;
   const sand = contourTex('#ddd3c5', 'rgba(140,118,92,.22)', 23); sand.repeat.set(5, 2.5);
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(140, 70), new THREE.MeshStandardMaterial({ map: sand, roughness: 1, metalness: 0 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -0.36; floor.receiveShadow = true; scene.add(floor);
 
-  // clay palette: base white, quiet grey details, IO blue for the active scene
+  // clay palette: base white, quiet grey details, iO blue for the active scene
   const C = { clay: 0xf6f5f2, soil: 0xd8ccbb, soil2: 0xc4b39c, grey: 0xd9dadb, dark: 0xb9bbbc, blue: 0x3ca7d2, ink: 0x1a6f96, glass: 0xeef6f9 };
   const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
   const rbox = (w, h, d, r, m) => { const g = new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)); const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
@@ -5919,7 +6561,7 @@ function soil(host, names) {
   return { setStage, setProgress(p) { prog = p; } };
 }
 
-/* ===== Incubation success band: the homepage IO helix (same model); its nine levels turn one after another with the scroll ===== */
+/* ===== Incubation success band: the homepage iO helix (same model); its nine levels turn one after another with the scroll ===== */
 function helix(host) {
   if (!host) return null;
   let r; try { r = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' }); } catch (e) { return null; }
@@ -6255,23 +6897,50 @@ dispatchEvent(new Event('io3d'));
   };
 
   INIT['farm-innovation-fund'] = function (view) {
-    // four areas: one photo at a time, wiped in from below
-    var AREA = [['Water quality, efficiency, monitoring and reuse.', ['Water quality', 'Efficiency', 'Monitoring', 'Reuse']], ['Structures, climate control and crop production.', ['Structures', 'Climate control', 'Crop production']], ['Soils, inputs, biological solutions and circularity.', ['Soils', 'Inputs', 'Biological solutions', 'Circularity']], ['Sensors, automation, analytics and farm decisions.', ['Sensors', 'Automation', 'Analytics', 'Farm decisions']]];
-    var faImgs = $$('#faStage > img', view), faT;
+    // layout changed (a panel opened): pinned sections below re-measure once it has finished moving
+    var rT = 0; function refresh() { clearTimeout(rT); rT = setTimeout(function () { if (G) ScrollTrigger.refresh(); }, 750); }
+    // cycle status: when applications open, set CYCLE_OPEN = true and the closing band switches to the open-cycle copy (00_FIF, section 16)
+    var CYCLE_OPEN = false;
+    if (CYCLE_OPEN) {
+      $('#ctaTitle', view).innerHTML = 'Applications are <b>now open.</b>';
+      $('#ctaBody', view).textContent = 'Tell us about the farm challenge, the idea you want to explore and the results you hope to achieve.';
+      $('#ctaPrimary span', view).textContent = 'Start your application'; $('#ctaSecondary span', view).textContent = 'Download the applicant guide';
+    }
+    // four areas: one photo at a time, wiped in from below; text, examples and the example challenge follow the tab
+    var AREA = [
+      ['Use water more intelligently and efficiently.', 'Ideas that help farms optimize water use, improve irrigation performance, manage water quality or strengthen resilience to water scarcity and salinity.', ['Precision irrigation and automated scheduling', 'Soil-moisture and crop-water monitoring', 'Irrigation-system optimization', 'Leak detection and reduction of water losses', 'Water treatment, recycling and reuse', 'Salinity monitoring and management', 'Alternative water sources', 'Data-led irrigation decisions'], 'How might a farm reduce water consumption without compromising crop yield or quality?'],
+      ['Improve growing conditions, efficiency and crop performance.', 'Ideas that strengthen production within greenhouses, nethouses and other protected growing environments, particularly under challenging climatic conditions.', ['Greenhouse cooling and climate control', 'Energy-efficient growing systems', 'Environmental monitoring and automation', 'Ventilation, humidity and airflow management', 'Improved greenhouse or nethouse designs', 'Hydroponic and soilless production systems', 'Lighting and shading solutions', 'Improved crop management within protected environments'], 'How might a farm extend their seasonal production window without negatively impacting profitability through cost of production?'],
+      ['Strengthen soil, crop and resource health.', 'Ideas that improve the long-term sustainability of farm operations while supporting crop health, input efficiency and responsible resource use.', ['Soil-health improvement', 'Compost and organic soil amendments', 'Biological crop inputs', 'Integrated pest and disease management', 'Reduction of chemical inputs', 'Nutrient-use efficiency', 'Agricultural-waste reuse', 'Circular farming practices', 'Climate-resilient crops or production methods'], 'How might a farm improve soil quality and crop health while reducing dependency on conventional inputs?'],
+      ['Make farm operations more precise, connected and efficient.', 'Ideas that use data, sensing, automation or digital technologies to improve decisions, reduce labour requirements and strengthen operational control.', ['Sensors and remote monitoring', 'Farm-management platforms', 'Artificial intelligence and predictive analytics', 'Robotics and automation', 'Drones and imaging technologies', 'Early detection of crop stress, pests or disease', 'Digital traceability and record management', 'Yield forecasting', 'Equipment and resource monitoring'], 'How might a farm use real-time data to identify problems earlier and make better operational decisions?']];
+    var faImgs = $$('#faStage > img', view), faT, chips = $('#faChips', view), faK = 0;
+    // four examples show; the rest open from the last chip
+    function drawChips(k, all) {
+      var ex = AREA[k][2], show = all ? ex : ex.slice(0, 4);
+      chips.innerHTML = show.map(function (t) { return '<i>' + t + '</i>'; }).join('') + (all || ex.length <= 4 ? '' : '<button type="button" aria-expanded="false">+' + (ex.length - 4) + ' more examples</button>');
+      var more = $('button', chips); if (more) more.addEventListener('click', function () { drawChips(faK, true); var n = chips.children; if (G) gsap.from([].slice.call(n, 4), { y: 10, opacity: 0, duration: 0.5, stagger: 0.04, ease: 'power3.out' }); });
+    }
+    drawChips(0, false);
     tabsHover($('#areaTabs', view), null, function (k) {
+      faK = k;
       faImgs.forEach(function (x) { x.style.zIndex = x.classList.contains('on') ? 1 : 0; }); var im = faImgs[k]; im.classList.remove('on'); im.style.zIndex = 2; void im.offsetWidth; im.classList.add('on');
       clearTimeout(faT); faT = setTimeout(function () { faImgs.forEach(function (x, i) { if (i !== k) x.classList.remove('on'); }); }, 1000);
       $('#faStage', view).setAttribute('aria-labelledby', 'fa-' + k);
-      swap($('#faText', view), AREA[k][0]);
-      var chips = $('#faChips', view); chips.innerHTML = AREA[k][1].map(function (t) { return '<i>' + t + '</i>'; }).join('');
+      swap($('#faText', view), AREA[k][0]); swap($('#faDesc', view), AREA[k][1]); swap($('#faQ', view), AREA[k][3]);
+      drawChips(k, false);
       if (G) gsap.from(chips.children, { y: 12, opacity: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', delay: 0.2 });
     });
     // gates: the rail fills and each gate lights up as it reaches the middle of the screen
-    var gates = $$('.f_gate', view), fill = $('.f_gatesFill', view), gImgs = $$('#gateImgs > img', view), gNow = 0, gZ = 1;
+    var gates = $$('.f_gate', view), fill = $('.f_gatesFill', view), gImgs = $$('#gateImgs > img', view), gNow = 0, gZ = 1, gJ = $('#gateJ', view), gJk = 0;
+    // the caption under the photo names the journey the lit gate belongs to
+    function gateJourney(k) {
+      var j = gates[k] && gates[k].classList.contains('f_gateJ2') ? 1 : 0; if (j === gJk) return; gJk = j;
+      swap($('#gateJb', view), j ? 'Journey 2' : 'Journey 1'); swap($('#gateJs', view), j ? 'From selection to project implementation' : 'From application to selection');
+    }
     // the photo follows the furthest gate that is lit
     // it slides in the scroll direction and pushes the old photo out the other way
     function gateImg() {
       var k = 0; gates.forEach(function (g, i) { if (g.hasAttribute('data-on')) k = i; }); if (k === gNow) return;
+      gateJourney(k);
       var dir = k > gNow ? 1 : -1, prev = gImgs[gNow], im = gImgs[k]; gNow = k; im.style.zIndex = ++gZ;
       if (!G) { im.classList.remove('on'); void im.offsetWidth; im.classList.add('on'); return; }
       gsap.killTweensOf([im, prev], 'clipPath,xPercent,scale');
@@ -6295,61 +6964,120 @@ dispatchEvent(new Event('io3d'));
       var gSec = $('#fif-process', view), gSide = $('.f_gatesSide', view);
       gsap.to(fill, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: gSec, start: function () { measure(); return 'top+=' + parseFloat(getComputedStyle(gSec).paddingTop) + ' ' + parseFloat(getComputedStyle(gSide).top) + 'px'; }, endTrigger: '#gates', end: function () { return 'top+=' + dotY[dotY.length - 1] + ' 50%'; }, scrub: true, invalidateOnRefresh: true, onRefresh: function (s) { light(s.progress); }, onUpdate: function (s) { light(s.progress); } } });
     } else gates.forEach(function (g) { g.setAttribute('data-on', ''); });
-    // receive: stacked cards shrink a little as the next one arrives
-    if (G && !mobile()) $$('.f_card', view).forEach(function (c, i, all) {
-      if (i === all.length - 1) return;
-      gsap.to(c, { scale: 0.94, backgroundColor: '#e4e4e4', ease: 'none', scrollTrigger: { trigger: all[i + 1], start: 'top bottom', end: 'top ' + (110 + (i + 1) * 18) + 'px', scrub: true } });
+    // a gate's detail opens in place; everything below re-measures
+    $$('.f_gateMore', view).forEach(function (d) { d.addEventListener('toggle', refresh); });
+    // selected project support: the item crossing the middle of the screen is highlighted and its photo slides in (accelerator benefits list)
+    var items = $$('#fifList .a_item', view), aImgs = $$('#fifMedia img', view), aNow = 0, aZ = 1;
+    function accPick(k) {
+      if (k === aNow) return; var dir = k > aNow ? 1 : -1, prev = aImgs[aNow], im = aImgs[k]; aNow = k;
+      items.forEach(function (it, i) { i === k ? it.setAttribute('data-on', '') : it.removeAttribute('data-on'); });
+      im.style.zIndex = ++aZ;
+      if (!G) { aImgs.forEach(function (x, i) { x.classList.toggle('on', i === k); }); return; }
+      gsap.killTweensOf([im, prev], 'clipPath,xPercent,scale');
+      gsap.fromTo(im, { clipPath: dir > 0 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)', xPercent: 24 * dir, scale: 1.08 }, { clipPath: 'inset(0% 0% 0% 0%)', xPercent: 0, scale: 1, duration: 1.2, ease: 'expo.out' });
+      gsap.fromTo(prev, { xPercent: 0 }, { xPercent: -16 * dir, duration: 1.2, ease: 'expo.out', onComplete: function () { gsap.set(prev, { xPercent: 0 }); } });
+    }
+    if (G) {
+      aImgs.forEach(function (im, i) { im.style.transition = 'none'; gsap.set(im, { clipPath: i === 0 ? 'inset(0% 0% 0% 0%)' : 'inset(0% 0% 0% 100%)' }); });
+      items.forEach(function (it, i) { ScrollTrigger.create({ trigger: it, start: 'top 62%', end: 'bottom 62%', onToggle: function (s) { if (s.isActive) accPick(i); } }); });
+    }
+    // pathways: one outcome open at a time; branches run from "evidence generated" to each outcome
+    var pMain = $('#pathBox .x_cboxMain', view), pBox = $('#pathBox', view), pSvg = $('#pathBranch', view), pNode = $('#pathNode', view), pRows = $$('#pathList > li', view), NS = 'http://www.w3.org/2000/svg';
+    function branches() {
+      if (!pBox.offsetWidth || getComputedStyle(pSvg).display === 'none') return;
+      var b = pBox.getBoundingClientRect(), n = pNode.getBoundingClientRect(), x0 = n.right - b.left, y0 = n.top + n.height / 2 - b.top, d = '';
+      pSvg.setAttribute('viewBox', '0 0 ' + b.width + ' ' + b.height); pSvg.innerHTML = '';
+      // rev. 11 Nov (comment): one trunk to a single vertical spine, then a straight branch to each outcome (rounded corners)
+      var R = 22, xs = 0, ys = [], x1 = 0, on = -1;
+      pRows.forEach(function (li, k) {
+        var r = $('button', li).getBoundingClientRect();
+        x1 = r.left - b.left - 14; ys.push(r.top + r.height / 2 - b.top);
+        if (li.hasAttribute('data-open')) on = k;
+      });
+      xs = Math.max(x0 + 32, x1 - 56);
+      function route(y1) {
+        // trunk, a rounded turn onto the spine, then a rounded turn into the outcome row
+        var dy = y1 - y0, sg = dy > 0 ? 1 : -1, r = Math.min(R, Math.abs(dy) / 2);
+        if (Math.abs(dy) < 2) return 'M' + x0 + ' ' + y0 + 'H' + x1;
+        return 'M' + x0 + ' ' + y0 + 'H' + (xs - r) + 'Q' + xs + ' ' + y0 + ' ' + xs + ' ' + (y0 + sg * r) + 'V' + (y1 - sg * r) + 'Q' + xs + ' ' + y1 + ' ' + (xs + r) + ' ' + y1 + 'H' + x1;
+      }
+      function add(d, hot) { var p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); if (hot) p.setAttribute('data-on', ''); pSvg.appendChild(p); }
+      ys.forEach(function (y1) { add(route(y1)); });
+      if (on > -1) add(route(ys[on]), true);
+      ys.forEach(function (y1, k) {
+        var c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', x1); c.setAttribute('cy', y1); c.setAttribute('r', k === on ? 3.5 : 2.5); pSvg.appendChild(c);
+      });
+      var c0 = document.createElementNS(NS, 'circle'); c0.setAttribute('cx', x0); c0.setAttribute('cy', y0); c0.setAttribute('r', 3.5); pSvg.appendChild(c0);
+    }
+    // while a row opens or closes, the lines follow it
+    function follow() { var t0 = performance.now(); (function f() { branches(); if (performance.now() - t0 < 1300) requestAnimationFrame(f); })(); }
+    pRows.forEach(function (li) {
+      var b = $('button', li);
+      b.addEventListener('click', function () {
+        var o = li.hasAttribute('data-open');
+        pRows.forEach(function (x) { x.removeAttribute('data-open'); $('button', x).setAttribute('aria-expanded', 'false'); });
+        if (!o) { li.setAttribute('data-open', ''); b.setAttribute('aria-expanded', 'true'); }
+        follow(); refresh();
+      });
     });
-    // cohort: a field of 130 seeds in 10 furrows, drawn in perspective; seeds drop out stage by stage and the last 5 sprout
-    var field = $('#field'), STAGES = [[130, 'Applications submitted'], [68, 'Advanced to Phase 2'], [39, 'Valid Phase 2 proposals'], [10, 'Finalists'], [5, 'Pilots to fund']], stage = -1;
-    var ROWS = 10, COLS = 13, svg = '', seeds = [], pos = [];
-    for (var r = 0; r < ROWS; r++) {
-      var t = r / (ROWS - 1), y = 24 + 336 * Math.pow(t, 1.25), half = 150 + 140 * t, rad = 2.2 + 2.8 * t;
-      svg += '<path class="f_furrow" d="M' + (300 - half - 18) + ' ' + (y + rad + 3) + ' Q300 ' + (y + rad + 6) + ' ' + (300 + half + 18) + ' ' + (y + rad + 3) + '"/>';
-      for (var c = 0; c < COLS; c++) { var x = 300 - half + (2 * half) * c / (COLS - 1); pos.push([x, y, rad, r, c]); svg += '<circle class="f_seed" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + rad.toFixed(2) + '"/>'; }
+    branches(); addEventListener('resize', branches); if (document.fonts) document.fonts.ready.then(branches);
+    if (window.ResizeObserver) new ResizeObserver(branches).observe(pBox);
+    // accordions (measures, FAQs): same behaviour as the accelerator FAQ
+    $$('.a_faqItem', view).forEach(function (it) {
+      var b = it.querySelector('button');
+      b.addEventListener('click', function () { var o = it.hasAttribute('data-open'); o ? it.removeAttribute('data-open') : it.setAttribute('data-open', ''); b.setAttribute('aria-expanded', !o); refresh(); });
+    });
+    // partners: the description opens under each partner
+    $$('.f_pMore', view).forEach(function (b) {
+      var col = b.closest('.f_pCard');
+      b.addEventListener('click', function () { var o = col.hasAttribute('data-open'); o ? col.removeAttribute('data-open') : col.setAttribute('data-open', ''); b.setAttribute('aria-expanded', !o); refresh(); });
+    });
+    // who can participate: the photo follows the participation model being hovered, focused or tapped
+    var wStage = $('#whoStage', view), wRows = $$('#whoList li', view);
+    if (wStage) {
+      var wImgs = $$('img', wStage);
+      wRows.forEach(function (li, k) {
+        function on() { wRows.forEach(function (r, n) { r.toggleAttribute('data-on', n === k); }); wImgs.forEach(function (im, n) { im.classList.toggle('on', n === k); }); }
+        li.addEventListener('mouseenter', on); li.addEventListener('focus', on); li.addEventListener('click', on);
+      });
     }
-    // the five pilots sit spread across the front of the field; everything else drops out in a fixed shuffled order
-    var PILOTS = [[5, 2], [8, 5], [6, 8], [9, 10], [7, 12]], rank = [], rest = [], seed = 7;
-    function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
-    pos.forEach(function (p, i) { var k = -1; PILOTS.forEach(function (q, j) { if (q[0] === p[3] && q[1] === p[4]) k = j; }); if (k >= 0) rank[i] = k; else rest.push(i); });
-    for (var n = rest.length - 1; n > 0; n--) { var m = Math.floor(rnd() * (n + 1)), tmp = rest[n]; rest[n] = rest[m]; rest[m] = tmp; }
-    rest.forEach(function (i, k) { rank[i] = 5 + k; });
-    PILOTS.forEach(function (q, j) { var p = pos[q[0] * COLS + q[1]], h = 16 + 40 * (q[0] / 9), x = p[0], y = p[1] - p[2];
-      var d = 'M' + x + ' ' + y + ' C' + x + ' ' + (y - h * .4) + ' ' + (x - h * .08) + ' ' + (y - h * .7) + ' ' + x + ' ' + (y - h)
-        + ' M' + x + ' ' + (y - h * .5) + ' Q' + (x - h * .55) + ' ' + (y - h * .85) + ' ' + (x - h * .62) + ' ' + (y - h * .45) + ' Q' + (x - h * .3) + ' ' + (y - h * .36) + ' ' + x + ' ' + (y - h * .5)
-        + ' M' + x + ' ' + (y - h * .78) + ' Q' + (x + h * .55) + ' ' + (y - h * 1.12) + ' ' + (x + h * .64) + ' ' + (y - h * .72) + ' Q' + (x + h * .32) + ' ' + (y - h * .62) + ' ' + x + ' ' + (y - h * .78);
-      svg += '<g class="f_sprout" style="--d:' + (j * 0.12) + 's"><path pathLength="1" d="' + d + '"/></g>'; });
-    field.innerHTML = '<svg viewBox="0 0 600 380" aria-hidden="true">' + svg + '</svg><div class="x_gl" id="fieldGl" aria-hidden="true"></div>';
-    seeds = $$('.f_seed', field);
-    var cli = $$('#cohortList li', view), cRail = $('.f_cohortRail', view), cFill = $('.f_cohortFill', view), cY = [];
-    // timeline: the rail runs from the first bullet to the last; the blue line fills down with the scroll
-    function cMeasure() { cY = cli.map(function (li) { return li.offsetTop + li.offsetHeight / 2; }); if (!cY.length) return; [cRail, cFill].forEach(function (el) { el.style.top = cY[0] + 'px'; el.style.height = (cY[cY.length - 1] - cY[0]) + 'px'; }); }
-    cMeasure(); addEventListener('resize', cMeasure); if (document.fonts) document.fonts.ready.then(cMeasure);
-    function setStage(k) {
-      if (k === stage) return; stage = k; field.dataset.stage = k; if (f3) f3.setStage(k);
-      seeds.forEach(function (el, i) { rank[i] < STAGES[k][0] ? el.setAttribute('data-on', '') : el.removeAttribute('data-on'); });
-      cli.forEach(function (li, i) { li.toggleAttribute('data-on', i === k); li.toggleAttribute('data-past', i < k); });
-    }
-    // 3D field (clay, like the homepage) replaces the SVG when WebGL is there
-    var f3 = null;
-    function mountField() { if (f3 || !window.IO3D) return; f3 = IO3D.field($('#fieldGl', view)); if (f3) { field.classList.add('is3d'); f3.setStage(Math.max(0, stage)); } }
-    mountField(); addEventListener('io3d', mountField);
-    pinProgress($('#cohortPin'), function (p) { var k = Math.min(4, Math.floor(p * 5)); setStage(k); if (f3 && f3.setProgress) f3.setProgress(p); cFill.style.transform = 'scaleY(' + Math.min(1, Math.max(0, p * 5 - 0.5) / 4).toFixed(4) + ')'; });
-    setStage(0);
     // innovation day: vertical scroll moves the gallery sideways; photos drift inside their frames
     var pin = $('#dayPin'), track = $('#dayTrack'), figs = $$('.f_track .x_img img', view);
-    function size() { if (mobile() || !G) { pin.style.height = ''; return; } pin.style.height = (track.scrollWidth - innerWidth + innerHeight * 1.2) + 'px'; }
+    if (pin && track) {
+    function size() { if (mobile() || !G) { pin.style.height = ''; return; } pin.style.height = (track.scrollWidth - innerWidth + innerHeight) + 'px'; }
     size(); addEventListener('resize', size);
-    // the sideways move starts while the section is still rising (top 65%), eases in and out, and is
+    // rev. 11 Nov (comment): the sideways move starts only once the section is pinned under the header, so the first photos are whole on arrival; it eases in and out, and is
     // smoothed by quickTo, so the path from vertical to horizontal is a curve rather than an "L" corner
     if (G) {
       var toX = gsap.quickTo(track, 'x', { duration: 0.9, ease: 'power3.out' }), easeIO = gsap.parseEase('sine.inOut');
-      ScrollTrigger.create({ trigger: pin, start: 'top 65%', end: 'bottom bottom', invalidateOnRefresh: true, onRefresh: size, onUpdate: function (s) {
+      ScrollTrigger.create({ trigger: pin, start: function () { var h = document.querySelector('.s_header'); return 'top ' + (h ? h.offsetHeight : 0) + 'px'; }, end: 'bottom bottom', invalidateOnRefresh: true, onRefresh: size, onUpdate: function (s) {
         if (mobile()) return; var dist = track.scrollWidth - innerWidth + parseFloat(getComputedStyle(track).paddingLeft), e = easeIO(s.progress);
         toX(-dist * e);
         figs.forEach(function (im, k) { gsap.set(im, { xPercent: Math.max(-6, Math.min(6, (e * figs.length - k) * -3)) }); }); // ±6% stays inside the 8% bleed, so no edge shows
       } });
     }
+    }
+    // registration band: the homepage helix as on the incubation success band, loaded only when the band comes near
+    var sBand = $('.i_successSec', view), sHost = $('#succHelix', view), sHx = null, sP = 0, sE = 0;
+    function mountSucc() {
+      if (sHx || sHost.hidden || !window.IO3D || !IO3D.helix || !window.__HX_GLB) return;
+      sHx = IO3D.helix(sHost); if (!sHx) return; sHx.setScroll(sP); sHx.setEnter(sE); sHx.onReady = function () { sBand.classList.add('is3d'); };
+    }
+    var sBtn = $('#succBtn', view), sMark = $('.i_successMark', view);
+    function placeSucc() {
+      if (sHost.hidden) return;
+      var sr = sBand.getBoundingClientRect(), br = sBtn.getBoundingClientRect(); if (!sr.width) return;
+      var gap = 40, x0 = br.right - sr.left + gap, h = sHost.offsetHeight, hw = h * 0.3;
+      sHost.style.right = 'auto'; sHost.style.width = (hw * 2) + 'px'; sHost.style.left = Math.max(x0, sr.width - hw * 2 * 0.78) + 'px';
+      var mh = sMark.offsetHeight, mw = mh * 255 / 188; sMark.style.right = 'auto'; sMark.style.left = Math.max(x0 - mw * 0.28, sr.width - mw * 0.86) + 'px';
+    }
+    placeSucc(); addEventListener('resize', placeSucc); if (document.fonts) document.fonts.ready.then(placeSucc);
+    function loadSucc() { if (sHost.hidden) return; if (window.__HX_GLB) { mountSucc(); return; } var sc = document.createElement('script'); sc.src = sHost.dataset.src; sc.onload = mountSucc; document.head.appendChild(sc); }
+    addEventListener('io3d', mountSucc);
+    if ('IntersectionObserver' in window) { var sIo = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { loadSucc(); sIo.disconnect(); } }, { rootMargin: '900px' }); sIo.observe(sBand); }
+    if (G) { ScrollTrigger.create({ trigger: sBand, start: 'top bottom', end: 'bottom top', onUpdate: function (s) { sP = s.progress; if (sHx) sHx.setScroll(sP); } });
+      ScrollTrigger.create({ trigger: sBand, start: 'top 85%', once: true, onEnter: function () { sE = 1; if (sHx) sHx.setEnter(1); } }); }
+    else { sE = 1; }
   };
 
   INIT.incubation = function (view) {
@@ -6365,12 +7093,13 @@ dispatchEvent(new Event('io3d'));
     // success band: the homepage helix, loaded only when the band comes near; its levels turn with the scroll
     var sBand = $('.i_successSec', view), sHost = $('#succHelix', view), sHx = null, sP = 0, sE = 0;
     function mountSucc() {
-      if (sHx || !window.IO3D || !IO3D.helix || !window.__HX_GLB) return;
+      if (sHx || sHost.hidden || !window.IO3D || !IO3D.helix || !window.__HX_GLB) return;
       sHx = IO3D.helix(sHost); if (!sHx) return; sHx.setScroll(sP); sHx.setEnter(sE); sHx.onReady = function () { sBand.classList.add('is3d'); };
     }
     // the helix (and the flat fallback) always start to the right of the button, with a clear gap: measured, so it holds at every width
     var sBtn = $('#succBtn', view), sMark = $('.i_successMark', view);
     function placeSucc() {
+      if (sHost.hidden) return;
       var sr = sBand.getBoundingClientRect(), br = sBtn.getBoundingClientRect(); if (!sr.width) return;
       var gap = 40, x0 = br.right - sr.left + gap, h = sHost.offsetHeight, hw = h * 0.3; // the helix with its turning rungs is about 0.53 × its height wide
       // host is 0.6 × its height wide, cropped on the right by at least a fifth
@@ -6378,7 +7107,7 @@ dispatchEvent(new Event('io3d'));
       var mh = sMark.offsetHeight, mw = mh * 255 / 188; sMark.style.right = 'auto'; sMark.style.left = Math.max(x0 - mw * 0.28, sr.width - mw * 0.86) + 'px';
     }
     placeSucc(); addEventListener('resize', placeSucc); if (document.fonts) document.fonts.ready.then(placeSucc);
-    function loadSucc() { if (window.__HX_GLB) { mountSucc(); return; } var sc = document.createElement('script'); sc.src = sHost.dataset.src; sc.onload = mountSucc; document.head.appendChild(sc); }
+    function loadSucc() { if (sHost.hidden) return; if (window.__HX_GLB) { mountSucc(); return; } var sc = document.createElement('script'); sc.src = sHost.dataset.src; sc.onload = mountSucc; document.head.appendChild(sc); }
     addEventListener('io3d', mountSucc);
     if ('IntersectionObserver' in window) { var sIo = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { loadSucc(); sIo.disconnect(); } }, { rootMargin: '900px' }); sIo.observe(sBand); }
     if (G) { ScrollTrigger.create({ trigger: sBand, start: 'top bottom', end: 'bottom top', onUpdate: function (s) { sP = s.progress; if (sHx) sHx.setScroll(sP); } });
@@ -6472,7 +7201,7 @@ dispatchEvent(new Event('io3d'));
     var GS = [['Selection', 'Finding the right growth-stage innovators to tackle each challenge area.', 'Before the start'],
       ['Onboarding', 'Getting your team set up and oriented around the scope, the facilities, and the Silal business units and experts you’ll be working with.', 'Month 0 to 1'],
       ['Validation', 'Live pilots and proof-of-concept projects in real operating conditions, testing what matters with the people it matters to.', 'Month 1 to 4'],
-      ['Pathways Forward', 'Post-pilot support that leverages the Silal relationship, ecosystem network, and IO platform to convert a successful pilot into scaled commercial agreements.', 'Month 4 to 5 and beyond']];
+      ['Pathways Forward', 'Post-pilot support that leverages the Silal relationship, ecosystem network, and iO platform to convert a successful pilot into scaled commercial agreements.', 'Month 4 to 5 and beyond']];
     var gm = $('#gMonths', view); for (var m = 0; m <= 5; m++) gm.insertAdjacentHTML('beforeend', '<span style="left:' + (m * 20) + '%"><b>Month </b>' + m + '</span>');
     var gRows = $$('#gRows .a_gRow', view), gBars = gRows.map(function (r) { return r.querySelector('.a_gBar'); }), gHead = $('#gHead', view), gLbl = $('#gHeadLbl', view), gk = -1;
     function gantt(x) {
@@ -6611,7 +7340,7 @@ dispatchEvent(new Event('io3d'));
 <script>
 /* one site: menus built in script, mobile-menu "Overview" entries and the logo open their pages (site.py) */
 (function () {
-  var L = {"Home": "/full-site", "About IO": "/full-site/about", "Our Story": "/full-site/about", "Team & CEO Message": "/full-site/team", "Innovation & Venture Platforms": "/full-site/ivp-hub", "Farm Innovation Fund": "/full-site/ivp-farm-innovation-fund", "Incubation": "/full-site/ivp-incubation", "Accelerator": "/full-site/ivp-accelerator", "Agricultural Challenges": "/full-site/ivp-agricultural-challenges", "Talent & Training": "/full-site/io-academy", "IO Academy Training": "/full-site/io-academy", "Advanced Agritech Academy": "/full-site/io-academy", "Resources": "/full-site/news", "News & Media": "/full-site/news", "Content Library": "/full-site/news", "Press releases": "/full-site/news", "Press Releases": "/full-site/news", "Enquire": "/full-site/ivp-enquire", "Read the release": "/full-site/news-foodtech-challenge-winners", "FoodTech Challenge winners recognised at Innovation Oasis": "/full-site/news-foodtech-challenge-winners"}, HOME = "/full-site";
+  var L = {"Home": "/full-site", "About iO": "/full-site/about", "About iO": "/full-site/about", "Our Story": "/full-site/about", "Team & CEO Message": "/full-site/team", "Our Ecosystem": "/full-site/ecosystem", "Innovation & Venture Platforms": "/full-site/ivp-hub", "Farm Innovation Fund": "/full-site/ivp-farm-innovation-fund", "Incubation": "/full-site/ivp-incubation", "Accelerator": "/full-site/ivp-accelerator", "Agricultural Challenges": "/full-site/ivp-agricultural-challenges", "Talent & Training": "/full-site/io-academy", "iO Academy Training": "/full-site/io-academy", "iO Academy Training": "/full-site/io-academy", "Advanced Agritech Academy": "/full-site/io-academy", "Resources": "/full-site/news", "News & Media": "/full-site/news", "Content Library": "/full-site/news", "Press releases": "/full-site/news", "Press Releases": "/full-site/news", "Enquire": "/full-site/ivp-enquire", "Read the release": "/full-site/news-foodtech-challenge-winners", "FoodTech Challenge winners recognised at Innovation Oasis": "/full-site/news-foodtech-challenge-winners"}, HOME = "/full-site";
   function target(a) {
     var t = (a.textContent || '').replace(/\s+/g, ' ').replace(/[\u2192\u2197]/g, '').trim();
     if (L[t]) return L[t];
@@ -6626,6 +7355,46 @@ dispatchEvent(new Event('io3d'));
     var to = target(a); if (!to) return;
     e.preventDefault(); e.stopPropagation(); location.href = to;
   }, true);
+})();
+</script>
+<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script>
+<script>
+/* rev. 11 Nov (request): applicant documents, language choice and download feedback */
+(function () {
+  var box = document.getElementById('fifDocs'); if (!box) return;
+  var live = box.querySelector('.f_docsLive'), seg = [].slice.call(box.querySelectorAll('.f_seg button')), lang = 'en';
+  try { lang = localStorage.getItem('fifDocLang') === 'ar' ? 'ar' : 'en'; } catch (e) {}
+  var NAME = { en: 'English', ar: 'Arabic' };
+  function setLang(l, announce) {
+    lang = l; box.dataset.lang = l;
+    seg.forEach(function (b) { b.setAttribute('aria-checked', b.dataset.lang === l ? 'true' : 'false'); });
+    [].forEach.call(box.querySelectorAll('[data-en]'), function (el) { el.textContent = el.dataset[l]; });
+    [].forEach.call(box.querySelectorAll('.f_docList li'), function (li) {
+      var t = li.querySelector('b'), m = li.querySelector('small'), a = li.querySelector('.f_docDl');
+      t.lang = l; a.setAttribute('aria-label', 'Download ' + t.dataset.en + ' (' + NAME[l] + ', PDF, ' + m.textContent.split('· ')[1] + ')');
+    });
+    try { localStorage.setItem('fifDocLang', l); } catch (e) {}
+    if (announce) live.textContent = 'Documents will download in ' + NAME[l] + '.';
+  }
+  seg.forEach(function (b, i) {
+    b.addEventListener('click', function () { setLang(b.dataset.lang, true); });
+    b.addEventListener('keydown', function (e) { if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return; e.preventDefault(); var n = seg[(i + 1) % seg.length]; n.focus(); setLang(n.dataset.lang, true); });
+  });
+  // prototype: no files are hosted yet, so a download shows its progress and result without leaving the page
+  [].forEach.call(box.querySelectorAll('.f_docDl, .f_docsAll'), function (a) {
+    var txt = a.querySelector('.f_docDlTxt, .f_docsAllTxt'), base = txt.textContent;
+    a.addEventListener('click', function (e) {
+      e.preventDefault(); if (a.dataset.state === 'busy') return;
+      var li = a.closest('li'), name = li ? li.querySelector('b').textContent : 'All documents';
+      a.dataset.state = 'busy'; txt.textContent = 'Preparing…';
+      setTimeout(function () {
+        a.dataset.state = 'done'; txt.textContent = 'Downloaded';
+        live.textContent = name + ' (' + NAME[lang] + ') downloaded: ' + a.dataset.file + '-' + lang + (li ? '.pdf' : '.zip');
+        setTimeout(function () { a.dataset.state = ''; txt.textContent = base; }, 2600);
+      }, 900);
+    });
+  });
+  setLang(lang, false);
 })();
 </script>
 </body>

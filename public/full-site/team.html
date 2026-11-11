@@ -4978,7 +4978,7 @@ b[data-reveal] { font-weight: inherit; }
 @media (max-width:900px){.x_split{grid-template-columns:1fr;gap:32px}.x_depBtn{grid-template-columns:36px 1fr 16px}.x_stageGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}}
 @media (prefers-reduced-motion:reduce){.x_dep *,.x_dep::before,.x_stagePane,.x_stagePane li{transition:none!important}}
 </style>
-<style>.x_iO{text-transform:none!important}.s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}</style></head>
+<style>.x_iO{text-transform:none!important}.s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}</style><style id="navc">.navItem .dropdown,.navItem:nth-last-child(-n + 2) .dropdown,.s_navItem .s_dropdown,.s_navItem:nth-last-child(-n + 2) .s_dropdown{left:50%;right:auto;margin:0}</style></head>
 <body>
 <script>/* text is hidden only until its reveal runs; with reduced motion there is none, so everything shows at once. fd = the inner-page one-time fade */
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("rv","fd");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)}</script>
@@ -4987,7 +4987,7 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentEle
 <header class="s_header" id="hdr" data-scrolled="false" data-overlay="false">
   <div class="s_utility"><div class="s_wrap s_utilityInner">
     <span>Advancing Agri-food Systems</span>
-    <span class="s_utilityLinks"><a href="/full-site/news">Resources</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
+    <span class="s_utilityLinks"><a href="/full-site/news">News</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
   </div></div>
   <div class="s_headerMain"><div class="s_wrap s_headerInner">
     <a href="/full-site" class="s_logo" aria-label="Innovation Oasis — home">
@@ -5233,5 +5233,5 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentEle
 <script>(function(){var r=document.getElementById("x_split");if(!r)return;var ds=[].slice.call(r.querySelectorAll(".x_dep")),ps=[].slice.call(r.querySelectorAll(".x_stagePane")),hov=matchMedia("(hover:hover) and (min-width:901px)");
 function pick(i){ds.forEach(function(d,j){var on=i===j;d.classList.toggle("is-open",on);d.querySelector(".x_depBtn").setAttribute("aria-expanded",on);ps[j].classList.toggle("is-open",on)})}
 ds.forEach(function(d,i){var b=d.querySelector(".x_depBtn");b.addEventListener("click",function(){pick(i)});b.addEventListener("focus",function(){pick(i)});d.addEventListener("mouseenter",function(){if(hov.matches)pick(i)})})})();</script>
-</body>
+<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script></body>
 </html>

@@ -19,7 +19,7 @@ SHARED = ("photos", "V1", "new-homepage-v2", "innovation-venture-platforms")
 if OUT.exists():
     shutil.rmtree(OUT)
 OUT.mkdir(parents=True)
-for d in ("img", "brand"):
+for d in ("img", "brand", "logos"):
     shutil.copytree(B / d, OUT / d)
 for d in SHARED:  # every file the pages use must already be in public/
     for f in (B / d).rglob("*"):
@@ -28,7 +28,7 @@ for d in SHARED:  # every file the pages use must already be in public/
 
 PAGES = sorted(f.stem for f in B.glob("*.html"))
 page_ref = re.compile(r"""(?<=["'])(%s)\.html""" % "|".join(map(re.escape, PAGES)))
-own_ref = re.compile(r"""(?<=["'(\s,])(img|brand)/""")
+own_ref = re.compile(r"""(?<=["'(\s,])(img|brand|logos)/""")
 ref = re.compile(r"""(?<=["'(\s,])(%s)/""" % "|".join(SHARED))
 NOINDEX = '<meta name="robots" content="noindex">'
 for f in sorted(B.glob("*.html")):

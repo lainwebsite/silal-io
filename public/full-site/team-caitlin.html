@@ -377,7 +377,7 @@
   display: inline-flex;
 }
 
-/* on IO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
+/* on iO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
 .s_logoOnBlue {
   display: none;
   align-items: flex-start;
@@ -1398,7 +1398,7 @@ li[data-active="true"] .s_pillarArrow {
   flex: 0 1 auto;
 }
 
-/* connectors drawn like the helix rungs inside the IO mark: a line with a dot at each end */
+/* connectors drawn like the helix rungs inside the iO mark: a line with a dot at each end */
 .s_ecoCol i {
   flex: 1 1 auto;
   min-width: 40px;
@@ -4744,23 +4744,227 @@ b[data-reveal] { font-weight: inherit; }
 }
 .n3_media .s3_go { color: var(--io-ink); }
 .n3_media .s3_goText::after { content: "\2192"; margin-left: 10px; }
+/* ---- revision 6 November ---- */
+/* About: vision + mission side by side over the photo */
+.x_vm { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 96px); }
+.x_vm .c_eyebrow { margin-bottom: 18px; display: inline-flex; }
+.x_vmText { font-size: clamp(1.25rem, 2.1vw, 2rem) !important; line-height: 1.25 !important; }
+@media (max-width: 760px) { .x_vm { grid-template-columns: 1fr; gap: 36px; } }
+/* About + Ecosystem: teaser / CTA band */
+.x_ecoTeaser { padding-block: clamp(64px, 7vw, 120px); border-top: 1px solid var(--line); }
+.x_ecoTeaserIn { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px 64px; flex-wrap: wrap; }
+.x_ecoTeaserIn > div { max-width: 640px; }
+.x_ecoTeaserIn .c_eyebrow { display: inline-flex; margin-bottom: 16px; }
+.x_ecoTeaserTitle { font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 300; line-height: 1.12; letter-spacing: -.02em; color: var(--charcoal); margin: 0 0 14px; }
+.x_ecoTeaser .x_bioBtn { margin-top: 0; flex: none; }
+/* Team: vertical leads and teams */
+.x_secHead { grid-column: 1 / -1; display: grid; gap: 14px; margin: clamp(88px, 9vw, 150px) 0 clamp(32px, 3.5vw, 52px); max-width: 760px; }
+.x_secHead .c_eyebrow { display: inline-flex; }
+.x_leads, .x_teamsWrap { grid-column: 1 / -1; }
+.x_teamRole { font-size: .8125rem; color: var(--grey-ink, #6e7173); margin-top: -6px; }
+.x_teamBlocks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px var(--col-gap); }
+.x_teamBlock { border-top: 1px solid var(--line); padding-top: 18px; }
+.x_teamBlockTitle { font-size: 1.375rem; font-weight: 300; margin: 0 0 8px; color: var(--charcoal); }
+.x_teamBlockLead { font-size: .875rem; color: var(--grey-ink, #6e7173); margin: 0; }
+.x_teamBlockLead a { color: var(--io-ink); }
+.x_teamEmpty { margin: 18px 0 0; padding: 18px; border: 1px dashed var(--line); border-radius: 6px; font-size: .8125rem; color: var(--grey-ink, #6e7173); }
+.x_teamOpen { margin-top: clamp(48px, 5vw, 80px); }
+.x_teamOpen .x_teamBlockHead { margin-bottom: 28px; }
+@media (max-width: 900px) { .x_teamBlocks { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .x_teamBlocks { grid-template-columns: 1fr; } }
+/* Ecosystem page */
+.x_ecoHero { padding-top: calc(64px + clamp(40px, 6vh, 80px)); }
+.x_crumbs { display: flex; gap: 8px; font-size: 13px; color: var(--grey-ink, #6e7173); margin-bottom: 28px; }
+.x_crumbs a { color: inherit; } .x_crumbs [aria-current] { color: var(--charcoal); }
+.x_ecoTitle { font-size: clamp(2.25rem, 4.6vw, 4.25rem); font-weight: 300; line-height: 1.05; letter-spacing: -.03em; color: var(--charcoal); max-width: 15em; margin: 18px 0 22px; }
+.x_ecoLead { max-width: 40em; margin-bottom: clamp(48px, 6vw, 96px); }
+.x_ecoDiagram { max-width: 1100px; margin-inline: auto; }
+.x_ecoDiagram .s_ecoCore img { display: block; }
+.x_ecoPartners { background: var(--light, #f4f4f2); padding-block: clamp(32px, 4vw, 64px) clamp(80px, 8vw, 140px); }
+.x_ecoPartners .x_secHead { margin-top: clamp(48px, 5vw, 80px); }
+.x_ecoTabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.x_ecoTabs button { font: inherit; font-size: .875rem; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--charcoal); cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.x_ecoTabs button span { opacity: .55; margin-left: 4px; font-variant-numeric: tabular-nums; }
+.x_ecoTabs button[aria-pressed="true"] { background: var(--io-ink); border-color: var(--io-ink); color: #fff; }
+.x_ecoTabs button:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.x_ecoGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.x_ecoCard { background: #fff; border-radius: 8px; padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 0 rgba(0, 0, 0, .04); }
+.x_ecoCard[hidden] { display: none; }
+.x_ecoLogo { height: 72px; display: grid; place-items: center start; margin-bottom: 10px; border-bottom: 1px solid var(--line); }
+.x_ecoLogo span { font-size: 1.25rem; font-weight: 600; letter-spacing: .06em; color: var(--io-ink); }
+.x_ecoCat { margin: 0; font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--io); }
+.x_ecoName { margin: 0; font-size: 1.0625rem; font-weight: 400; line-height: 1.3; color: var(--charcoal); }
+.x_ecoLine { margin: 0; font-size: .8125rem; line-height: 1.55; color: var(--grey-ink, #6e7173); }
+.x_ecoNote { margin-top: 28px; font-size: .75rem; color: var(--grey-ink, #6e7173); max-width: 60em; }
+@media (max-width: 1100px) { .x_ecoGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .x_ecoGrid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .x_ecoGrid { grid-template-columns: 1fr; } }
+/* revision 9 November: profile = short description, long description, credentials */
+.x_bioShort { font-size: var(--t-lead, 22px); line-height: 1.35; font-weight: 300; color: var(--io-ink); margin: 0 0 1.2em; }
+.x_bioLong p { margin: 0 0 1em; }
+.x_bioTbc { color: #8a9399; font-style: italic; }
+.x_creds { margin-top: 2.4em; border-top: 1px solid var(--io); }
+.x_credRow { display: grid; grid-template-columns: minmax(130px, 200px) 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,.1); }
+.x_credH { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--io-ink); margin: 2px 0 0; }
+.x_credList { list-style: none; margin: 0; padding: 0; }
+.x_credList li { margin: 0 0 .4em; }
+@media (max-width: 560px) { .x_credRow { grid-template-columns: 1fr; gap: 6px; } }
+/* ==== inner-page motion: one quiet enter fade (data-fade), feedback on hover / click. Nothing moves on its own. ==== */
+.fd [data-fade] { opacity: 0; transform: translateY(14px); transition: opacity .5s ease-out, transform .5s ease-out; }
+.fd [data-fade].in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .tm_page *, .x_ecoPage * { transition: none !important; animation: none !important; } }
+
+/* ==== Team (round 5): the old Leadership section, a plain org chart, the team by vertical. One card style. ==== */
+.tm_head { display: grid; gap: 14px; max-width: 760px; }
+.tm_head .c_eyebrow { display: inline-flex; }
+/* the iO-blue monogram (Shameer: no photo yet): the ring of the iO "O" and his initial */
+.tm_mono { position: absolute; inset: 0; display: grid; place-items: center; background: var(--io); color: #fff; container-type: size; overflow: hidden; }
+.tm_mono svg { position: absolute; width: 78%; left: 11%; top: 50%; translate: 0 -50%; overflow: visible; }
+.tm_mono circle { fill: none; stroke: rgba(255, 255, 255, .55); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.tm_mono b { font-weight: 300; font-size: 44cqw; line-height: 1; letter-spacing: -.04em; translate: 0 -.04em; }
+.tm_mono small { position: absolute; bottom: 7%; left: 0; right: 0; text-align: center; font-size: max(8px, 4.6cqw); letter-spacing: .16em; text-transform: uppercase; opacity: .82; }
+/* the card: portrait 4:5, name over a hairline (it draws blue on hover), role, one small tag */
+.tm_card { display: flex; flex-direction: column; color: inherit; }
+.tm_pImg { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #e3e3e3; margin-bottom: 14px; }
+.tm_pImg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.tm_pName { position: relative; padding-top: 12px; border-top: 1px solid var(--line); font-size: 1.0625rem; color: var(--charcoal); }
+.tm_pName::after { content: ""; position: absolute; left: 0; top: -1px; height: 1px; width: 0; background: var(--io); transition: width .25s ease-out; }
+.tm_card:hover .tm_pName::after, .tm_card:focus-visible .tm_pName::after { width: 100%; }
+.tm_pRole { font-size: .8125rem; line-height: 1.4; color: var(--grey-ink); margin-top: 2px; }
+.tm_pTag { margin-top: 8px; font-size: .75rem; line-height: 1.3; color: var(--grey-ink); }
+/* org chart: Dr. Shamal at the top centre, straight 1px IO-blue lines down to the four Vertical Leads */
+.x_team .c_section.x_org { background: var(--light); padding-block: clamp(72px, 7vw, 112px); }
+.tm_chart { margin-top: clamp(40px, 4vw, 64px); }
+.tm_ceo { position: relative; width: calc((100% - 3 * var(--col-gap)) / 4); margin: 0 auto; }
+.tm_ceo::after { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 40px; background: var(--io); }
+.tm_leads { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--col-gap); margin-top: 40px; padding-top: 40px; }
+.tm_leads > li { position: relative; }
+.tm_leads > li::before { content: ""; position: absolute; left: 50%; top: -40px; width: 1px; height: 40px; background: var(--io); }
+.tm_leads > li::after { content: ""; position: absolute; top: -40px; left: calc(var(--col-gap) / -2); right: calc(var(--col-gap) / -2); height: 1px; background: var(--io); }
+.tm_leads > li:first-child::after { left: 50%; }
+.tm_leads > li:last-child::after { right: 50%; }
+/* the team by vertical */
+.x_team .c_section.tm_teams { background: #fff; padding-block: clamp(72px, 7vw, 112px); }
+.tm_teamsHead { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 28px 64px; margin-bottom: clamp(32px, 3.6vw, 56px); }
+.tm_grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(32px, 3vw, 44px) var(--col-gap); transition: opacity .25s ease-out; }
+.tm_grid.sw { opacity: 0; transition-duration: .12s; }
+.tm_p[hidden], .tm_vNote[hidden] { display: none; }
+.tm_vNote { grid-column: span 3; align-self: center; padding-left: var(--col-gap); }
+.tm_vNote p { font-size: .875rem; color: var(--grey-ink); max-width: 30em; }
+@media (max-width: 999px) {
+  .tm_grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tm_vNote { grid-column: span 2; }
+  .tm_ceo { width: calc((100% - var(--col-gap)) / 2); }
+  .tm_leads { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; padding-top: 0; }
+  .tm_leads > li::before, .tm_leads > li::after { display: none; }
+}
+@media (max-width: 640px) {
+  .tm_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 14px; }
+  .tm_vNote { grid-column: 1 / -1; padding: 0; }
+  .tm_pName { font-size: 1rem; }
+}
+
+/* ==== Our Ecosystem (round 5): hero diagram (kept), the statement, a logo wall of equal cards ==== */
+.x_ecoPage .x_ecoTitle { font-size: var(--fs-display); line-height: 1.08; letter-spacing: -.03em; max-width: 15em; margin: 18px 0 22px; }
+.x_ecoHero { padding-bottom: clamp(72px, 7vw, 112px); }
+.x_ecoStmt { padding-block: clamp(64px, 6vw, 96px); border-top: 1px solid var(--line); }
+.x_ecoStmt .c_eyebrow { display: inline-flex; margin-bottom: 16px; }
+.x_ecoStmt .c_h2 { margin-bottom: 18px; max-width: 18em; }
+.x_ecoPage .x_ecoTeaserTitle { font-size: var(--fs-h2); }
+.x_ecoPartners { background: var(--light); padding: 0 0 16px; }
+.x_ecoPartners:first-of-type { padding-top: 0; }
+.x_ecoPartners .x_ecoHead { display: grid; gap: 14px; max-width: 760px; padding-top: clamp(64px, 6vw, 96px); margin-bottom: 28px; }
+.x_ecoPartners .x_ecoHead .c_eyebrow { display: inline-flex; }
+.x_ecoPartners.x_ecoMore, .x_ecoPartners.x_end { padding-bottom: clamp(72px, 7vw, 112px); }
+.x_ecoPartners[hidden] { display: none; }
+.x_ecoTabs { margin-bottom: 24px; }
+.x_ecoGrid { gap: var(--col-gap); grid-template-columns: repeat(4, minmax(0, 1fr)); transition: opacity .25s ease-out; }
+.x_ecoGrid + .x_ecoNote { margin-top: 28px; }
+.x_ecoGrid[hidden] { display: none; }
+.x_ecoGrid.sw { opacity: 0; transition-duration: .12s; }
+.x_ecoCard { padding: 20px 20px 24px; box-shadow: none; }
+.x_ecoLogo { height: 108px; display: grid; place-items: center; margin-bottom: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.x_ecoLogo img { display: block; width: auto; max-width: 100%; object-fit: contain; }
+.x_ecoType { font-size: 1.125rem; font-weight: 400; line-height: 1.25; letter-spacing: -.01em; color: var(--charcoal); text-align: center; }
+.x_ecoCat { font-size: .75rem; letter-spacing: .1em; }
+.x_ecoName { font-size: 1rem; font-weight: 500; }
+@media (max-width: 1100px) { .x_ecoGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .x_ecoGrid { grid-template-columns: 1fr 1fr; gap: 12px; } .x_ecoCard { padding: 14px 14px 18px; } .x_ecoLogo { height: 84px; padding-bottom: 12px; } .x_ecoLogo img { max-height: 56px; } }
+@media (max-width: 480px) { .x_ecoGrid { grid-template-columns: 1fr 1fr; } }
+/* rev. 9 Nov (client comments on About): iO is part of Silal, which is part of L'IMAD. Three linked cards on a light band: logo,
+   one real figure from the supplied text, name, text; "part of" links between them; the iO mark as a pale supergraphic */
+.x_group { background: #f3f5f6; position: relative; overflow: hidden; }
+.x_group .s_wrap { position: relative; }
+.x_groupMark { position: absolute; right: -90px; top: -60px; height: 460px; width: auto; opacity: .07; pointer-events: none; }
+.x_group { padding-block: clamp(20px, 3.5vh, 44px) !important; }
+.x_group .c_headRow { margin-bottom: clamp(10px, 1.6vh, 18px); }
+.x_group .x_groupTitle { margin: 0 0 clamp(16px, 3vh, 32px); max-width: 24em; position: relative; }
+.x_groupBlue { color: var(--io); }
+.x_groupGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; position: relative; }
+.x_groupCol { position: relative; background: #fff; border: 1px solid var(--line, rgba(0,0,0,.1)); padding: clamp(18px, 2.2vh, 26px) clamp(20px, 1.8vw, 28px); }
+.x_groupCol::before { content: ""; position: absolute; left: -1px; top: -1px; width: 64px; height: 3px; background: var(--io); }
+.x_groupLogo { height: 34px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: clamp(12px, 2vh, 18px); }
+.x_groupRel { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--io-ink); white-space: nowrap; }
+.x_groupLogo img { height: 100%; width: auto; max-width: 150px; object-fit: contain; display: block; }
+.x_groupNum { display: flex; flex-direction: column; gap: 3px; margin: 0 0 clamp(10px, 1.6vh, 16px); padding: clamp(8px, 1.4vh, 12px) 0; border-top: 1px solid var(--line, rgba(0,0,0,.1)); border-bottom: 1px solid var(--line, rgba(0,0,0,.1)); }
+.x_groupNum b { font-size: clamp(1.5rem, 3.4vh, 1.9rem); font-weight: 300; line-height: 1; letter-spacing: -.03em; color: var(--io-ink); }
+.x_groupNum span { font-size: .75rem; color: var(--grey); }
+.x_groupName { font-size: 1rem; font-weight: 500; line-height: 1.3; margin: 0 0 8px; color: var(--io-ink); }
+.x_groupCol .c_body { margin: 0 0 .7em; font-size: .8125rem; line-height: 1.55; }
+@media (min-width: 901px) and (max-height: 820px) { .x_groupNum { display: none; } .x_groupCol .c_body { font-size: .78rem; line-height: 1.5; margin-bottom: .55em; } .x_group .x_groupTitle { font-size: 1.75rem; } }
+@media (min-width: 901px) and (max-height: 740px) { .x_groupLogo { margin-bottom: 8px; } .x_groupCol { padding-block: 14px; } .x_groupCol .c_body { font-size: .75rem; line-height: 1.45; } .x_group .c_headRow { display: none; } }
+.c_page > .x_groupStick { position: sticky; z-index: 0; display: flex; flex-direction: column; justify-content: center; }
+.x_groupStick > .s_wrap { width: 100%; }
+.x_about > .x_group ~ section:first-of-type, .x_about > .x_group + section { position: relative; z-index: 1; background: #fff; }
+@media (max-width: 900px) { .x_groupGrid { grid-template-columns: 1fr; gap: 44px; } .x_groupMark { height: 300px; right: -70px; } }
+/* rev. 9 Nov (client: split by teams "as in the examples shared"): one column per team with a coloured header (team + its lead) and the
+   team's people under it as image-first cards (name and title over the photo), so many teams still fit one screen width */
+.x_tcGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(176px, 1fr)); gap: 24px 16px; align-items: start; }
+.x_tcHead { border-radius: 10px; padding: 14px 16px; min-height: 79px; box-sizing: border-box; color: #fff; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.x_tcHead h4 { margin: 0; font-size: 1.0625rem; font-weight: 500; color: #fff; }
+.x_tcHead p { margin: 0; font-size: .8125rem; color: rgba(255,255,255,.85); }
+.x_tcHead a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.x_tcList { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 12px; }
+.x_tcCard { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: #dfe3e5; isolation: isolate; }
+.x_tcAv { position: absolute; inset: 0; display: block; }
+.x_tcAv img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; transition: transform .6s var(--ease, ease); }
+.x_tcCard:hover .x_tcAv img { transform: scale(1.04); }
+.x_tcCard::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; background: linear-gradient(to top, rgba(9, 30, 42, .82), rgba(9, 30, 42, 0)); z-index: 1; pointer-events: none; }
+.x_tcTag { position: absolute; z-index: 2; top: 12px; left: 12px; padding: 4px 10px; border-radius: 999px; color: #fff; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.x_tcTxt { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 2px; padding: 14px 16px 16px; color: #fff; }
+.x_tcTxt strong { font-size: 1.0625rem; font-weight: 500; color: #fff; }
+.x_tcTxt i { font-style: normal; font-size: .8125rem; color: rgba(255,255,255,.85); }
+.x_tcRest { margin-top: clamp(24px, 3vw, 40px); grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 12px 16px; }
+@media (max-width: 560px) { .x_tcGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .x_tcRest { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* rev. 9 Nov (client comment on Team: "the gaps are too far"): tighter rhythm between the Leadership block, the Vertical Leads and the teams */
+.x_team > .c_section { padding-block: clamp(48px, 7vh, 72px); }
+.x_team .c_grid { row-gap: clamp(32px, 5vh, 48px); }
+.x_team .c_headRow { margin-bottom: 0; }
+.x_team .x_leads, .x_team .x_teamsWrap { margin-top: 0; }
+.x_team .x_secHead { margin-bottom: clamp(20px, 3vh, 28px); }
+/* rev. 9 Nov (client comments on Team: "remove gap", "make the background white") */
+.c_page.x_team { background: #fff; }
+.x_team + .s3_root .n3_media { margin-top: 0; }
+/* rev. 9 Nov (client: "body text in 2 rows only"): the Our Teams intro runs on two lines */
+.x_team .x_teamsWrap .x_teamSub { max-width: none; width: 100%; }
 </style>
-</head>
+<style>.x_iO{text-transform:none!important}.s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}</style><style id="navc">.navItem .dropdown,.navItem:nth-last-child(-n + 2) .dropdown,.s_navItem .s_dropdown,.s_navItem:nth-last-child(-n + 2) .s_dropdown{left:50%;right:auto;margin:0}</style></head>
 <body>
-<script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
+<script>/* text is hidden only until its reveal runs; with reduced motion there is none, so everything shows at once. fd = the inner-page one-time fade */
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("rv","fd");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)}</script>
 
 <div class="s_root" data-wide data-blue="false">
 <header class="s_header" id="hdr" data-scrolled="false" data-overlay="false">
   <div class="s_utility"><div class="s_wrap s_utilityInner">
     <span>Advancing Agri-food Systems</span>
-    <span class="s_utilityLinks"><a href="/full-site/news">Resources</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
+    <span class="s_utilityLinks"><a href="/full-site/news">News</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
   </div></div>
   <div class="s_headerMain"><div class="s_wrap s_headerInner">
     <a href="/full-site" class="s_logo" aria-label="Innovation Oasis — home">
       <span class="s_logoFull"><span class="s_logoOnLight"><span style="display:inline-flex;align-items:flex-start;gap:9px"><img src="/full-site/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="110" height="50"><img src="/full-site/brand/io-mark.svg" alt="" height="39" width="53"></span></span><span class="s_logoOnDark"><span style="display:inline-flex;align-items:flex-start;gap:9px"><img src="/full-site/brand/io-wordmark-endorsed-reversed.svg" alt="Innovation Oasis — Part of Silal" width="110" height="50"><img src="/full-site/brand/io-mark.svg" alt="" height="39" width="53"></span></span></span>
       <span class="s_logoSmall"><img src="/full-site/brand/io-mark.svg" alt="Innovation Oasis" height="36" width="49"></span>
     </a>
-    <nav class="s_nav" aria-label="Main"><ul><li class="s_navItem"><a href="/full-site/about" data-active="true">About IO</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/about" class="s_textLink">About IO <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Silal&#x27;s R&amp;D and venture engine.</p><ul><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Research &amp; Science</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Research &amp; Science <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Plant science, soil, water and food technology, tested in real arid conditions.</p><ul><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/ivp-hub" data-active="false">Innovation &amp; Venture Platforms</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/ivp-hub" class="s_textLink">Innovation &amp; Venture Platforms <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Funding, incubation and acceleration for agri-food startups.</p><ul><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Technology &amp; Services</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Technology &amp; Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Sensing, desalination, analytics, trials and facilities for partners.</p><ul><li><a href="#">iO Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Centres of Excellence</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Centres of Excellence <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Specialist hubs for robotics, crop genomics and controlled-environment agriculture.</p><ul><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/io-academy" data-active="false">Talent &amp; Training</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/io-academy" class="s_textLink">Talent &amp; Training <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Building the next generation of agri-food talent in the UAE.</p><ul><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy">IO Academy Training</a></li></ul></div></div></li></ul></nav>
+    <nav class="s_nav" aria-label="Main"><ul><li class="s_navItem"><a href="/full-site/about" data-active="true">About&nbsp;<span class="x_iO">iO</span></a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/about" class="s_textLink">About&nbsp;<span class="x_iO">iO</span>&nbsp;<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Silal&#x27;s R&amp;D and venture engine.</p><ul><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="/full-site/ecosystem">Our Ecosystem</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Research &amp; Science</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Research &amp; Science <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Plant science, soil, water and food technology, tested in real arid conditions.</p><ul><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/ivp-hub" data-active="false">Innovation &amp; Venture Platforms</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/ivp-hub" class="s_textLink">Innovation &amp; Venture Platforms <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Funding, incubation and acceleration for agri-food startups.</p><ul><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Technology &amp; Services</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Technology &amp; Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Sensing, desalination, analytics, trials and facilities for partners.</p><ul><li><a href="#"><span class="x_iO">iO</span>&nbsp;Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Centres of Excellence</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Centres of Excellence <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Specialist hubs for robotics, crop genomics and controlled-environment agriculture.</p><ul><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/io-academy" data-active="false">Talent &amp; Training</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/io-academy" class="s_textLink">Talent &amp; Training <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Building the next generation of agri-food talent in the UAE.</p><ul><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy"><span class="x_iO">iO</span>&nbsp;Academy Training</a></li></ul></div></div></li></ul></nav>
     <div class="s_headerActions">
       <a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary s_btnSm">Enquire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <button class="s_menuToggle" id="menuOpen" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -4770,20 +4974,20 @@ b[data-reveal] { font-weight: inherit; }
     <div class="s_wrap s_mobileNavTop"><span style="display:inline-flex;align-items:flex-start;gap:8px"><img src="/full-site/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="93" height="42"><img src="/full-site/brand/io-mark.svg" alt="" height="33" width="45"></span>
       <button class="s_menuClose" id="menuClose" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M7 7l14 14M21 7 7 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
-    <div class="s_wrap"><details class="s_mobileGroup"><summary><span class="s_mobileNum">01</span>About IO</summary><ul><li><a href="/full-site/about">Overview</a></li><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">02</span>Research &amp; Science</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">03</span>Innovation &amp; Venture Platforms</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">04</span>Technology &amp; Services</summary><ul><li><a href="#">Overview</a></li><li><a href="#">iO Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">05</span>Centres of Excellence</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">06</span>Talent &amp; Training</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy">IO Academy Training</a></li></ul></details>
+    <div class="s_wrap"><details class="s_mobileGroup"><summary><span class="s_mobileNum">01</span>About&nbsp;<span class="x_iO">iO</span></summary><ul><li><a href="/full-site/about">Overview</a></li><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="/full-site/ecosystem">Our Ecosystem</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">02</span>Research &amp; Science</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">03</span>Innovation &amp; Venture Platforms</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">04</span>Technology &amp; Services</summary><ul><li><a href="#">Overview</a></li><li><a href="#"><span class="x_iO">iO</span>&nbsp;Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">05</span>Centres of Excellence</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">06</span>Talent &amp; Training</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy"><span class="x_iO">iO</span>&nbsp;Academy Training</a></li></ul></details>
       <div class="s_mobileFoot"><a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary">Enquire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#" class="s_btn s_btnGhostLight">Contact</a></div>
     </div>
   </div>
 </header>
 <main>
-<div class="s3_root n3_page"><article class="x_bio"><header class="n3_head"><div class="n3_wrap"><p class="s3_label"><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p><nav aria-label="Breadcrumb" class="n3_crumbs"><a href="/full-site/about">About IO</a><span aria-hidden="true">/</span><a href="/full-site/team">Team</a><span aria-hidden="true">/</span><span aria-current="page">Caitlin</span></nav><h1 class="n3_articleTitle" data-reveal>Caitlin</h1><p class="n3_articleLead">Role to be confirmed, Innovation Oasis</p></div></header><div class="n3_wrap"><div class="n3_articleGrid"><aside class="n3_aside"><div class="x_bioImg"><img alt="Caitlin" src="/photos/iO%20Team%20Headshot%20%26%20Bios/Caitlin/Caitlin-4-2.jpg"/></div><dl class="n3_metaCard"><div><dt>Role</dt><dd>Role to be confirmed</dd></div><div><dt>Team</dt><dd>Innovation Oasis</dd></div><div><dt>Location</dt><dd>Al Ain, UAE</dd></div></dl><p class="n3_shareLabel">Share</p><ul class="n3_share"><li><a aria-label="Share on LinkedIn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsilal-io.vercel.app%2Fteam%2Fcaitlin" rel="noreferrer" target="_blank" title="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3v-11zm6.5 0h3.8v1.6h.06c.53-1 1.82-2.06 3.75-2.06 4.01 0 4.75 2.64 4.75 6.07v6.39h-4v-5.67c0-1.35-.02-3.09-1.88-3.09-1.89 0-2.18 1.47-2.18 3v5.76h-4v-11z"></path></svg></a></li><li><a aria-label="Share on X" href="https://x.com/intent/post?url=https%3A%2F%2Fsilal-io.vercel.app%2Fteam%2Fcaitlin&amp;text=Caitlin%20%C2%B7%20Innovation%20Oasis" rel="noreferrer" target="_blank" title="X"><svg aria-hidden="true" fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78L17.75 3zm-1.08 16.16h1.7L7.4 4.74H5.58l11.09 14.42z"></path></svg></a></li><li><a aria-label="Share on Email" href="mailto:?subject=Caitlin%20%C2%B7%20Innovation%20Oasis&amp;body=https%3A%2F%2Fsilal-io.vercel.app%2Fteam%2Fcaitlin" rel="noreferrer" title="Email"><svg aria-hidden="true" fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h15A1.5 1.5 0 0 1 21 5.5v.2l-9 6.1-9-6.1v-.2zM3 8.1V18.5A1.5 1.5 0 0 0 4.5 20h15a1.5 1.5 0 0 0 1.5-1.5V8.1l-8.56 5.8a.8.8 0 0 1-.88 0L3 8.1z"></path></svg></a></li></ul></aside><div class="n3_article"><p>Caitlin is part of the small, hands-on team behind every laboratory, trial and partnership at Innovation Oasis.</p><div class="n3_boiler"><p class="n3_boilerH">About Innovation Oasis</p><p>Innovation Oasis was created on a simple belief: the conditions challenging agriculture in the UAE today will define agriculture for much of the world tomorrow.</p><p>In one of the planet’s most demanding growing environments, we bring together researchers, farmers, startups, industry leaders, investors, and policymakers to develop, validate, and scale the technologies needed for a more resilient food system.</p><p>Today, Innovation Oasis serves as Silal’s R&amp;D and venture engine, helping bridge the gap between breakthrough ideas and meaningful impact across agriculture and food systems.</p></div><p class="n3_note">Sample profile shown for layout. Role and bio to be supplied by Innovation Oasis.</p></div></div></div></article><section aria-labelledby="rel-h" class="n3_sec"><div class="n3_wrap"><p class="s3_label"><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p><div class="n3_relHead"><h2 class="n3_h2" data-reveal id="rel-h">More of the team</h2><a class="s3_go" href="/full-site/team"><span class="s3_goText">The whole team</span><span aria-hidden="true" class="s3_goO"><svg viewbox="0 0 16 16"><path d="M4 8h8M8.5 4.5L12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></span></a></div><ul class="n3_grid x_relTeam"><li><a class="n3_card" href="/full-site/team-francisco"><div class="n3_cardImg"><img alt="Francisco" decoding="async" loading="lazy" src="/photos/iO%20Team%20Headshot%20%26%20Bios/Francisco/Francisco-7.jpg" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 50%"/></div><p class="n3_cardDate">Innovation Oasis</p><h3 class="n3_cardTitle">Francisco</h3></a></li><li><a class="n3_card" href="/full-site/team-jude"><div class="n3_cardImg"><img alt="Jude" decoding="async" loading="lazy" src="/photos/iO%20Team%20Headshot%20%26%20Bios/Jude/Jude-1.jpg" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 50%"/></div><p class="n3_cardDate">Innovation Oasis</p><h3 class="n3_cardTitle">Jude</h3></a></li><li><a class="n3_card" href="/full-site/team-mohsin"><div class="n3_cardImg"><img alt="Mohsin" decoding="async" loading="lazy" src="/photos/iO%20Team%20Headshot%20%26%20Bios/Mohsin/Mohsin-4.jpg" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 50%"/></div><p class="n3_cardDate">Innovation Oasis</p><h3 class="n3_cardTitle">Mohsin</h3></a></li></ul></div></section><section aria-labelledby="media-h" class="n3_media"><div class="n3_wrap"><p class="s3_label"><span>Media enquiries</span><i aria-hidden="true" class="s3_labelRule"></i></p><div class="n3_mediaGrid"><h2 class="n3_h2" data-reveal id="media-h">For interviews, images and information about Innovation Oasis.</h2><div class="n3_mediaSide"><p class="n3_body">Reach the communications team through our contact page and we will route your request.</p><a class="s3_go" href="#"><span class="s3_goText">Contact us</span><span aria-hidden="true" class="s3_goO"><svg viewbox="0 0 16 16"><path d="M4 8h8M8.5 4.5L12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></span></a></div></div></div></section></div>
+<div class="s3_root n3_page"><article class="x_bio"><header class="n3_head"><div class="n3_wrap"><p class="s3_label"><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p><nav aria-label="Breadcrumb" class="n3_crumbs"><a href="/full-site/about">About&nbsp;<span class="x_iO">iO</span></a><span aria-hidden="true">/</span><a href="/full-site/team">Team</a><span aria-hidden="true">/</span><span aria-current="page">Caitlin</span></nav><h1 class="n3_articleTitle" data-reveal>Caitlin</h1><p class="n3_articleLead">Innovation Manager, Innovation Oasis</p></div></header><div class="n3_wrap"><div class="n3_articleGrid"><aside class="n3_aside"><div class="x_bioImg"><img alt="Caitlin" src="/photos/iO%20Team%20Headshot%20%26%20Bios/Caitlin/Caitlin-4-2.jpg"/></div><dl class="n3_metaCard"><div><dt>Role</dt><dd>Innovation Manager</dd></div><div><dt>Team</dt><dd>Innovation</dd></div></dl></aside><div class="n3_article"><p class="x_bioShort">Caitlin is part of the small, hands-on team behind every laboratory, trial and partnership at Innovation Oasis.</p><div class="x_bioLong"><p class="x_bioTbc">Long description: background, expertise and current focus at Innovation Oasis, in two or three short paragraphs.</p></div><section class="x_creds" aria-label="Credentials"><div class="x_credRow"><h2 class="x_credH">Education</h2><ul class="x_credList"><li class="x_bioTbc">Degree, institution, year</li></ul></div><div class="x_credRow"><h2 class="x_credH">Certifications</h2><ul class="x_credList"><li class="x_bioTbc">Certification, issuing body, year</li></ul></div><div class="x_credRow"><h2 class="x_credH">Awards</h2><ul class="x_credList"><li class="x_bioTbc">Award, organisation, year</li></ul></div><div class="x_credRow"><h2 class="x_credH">Publications</h2><ul class="x_credList"><li class="x_bioTbc">Title, journal or publisher, year</li></ul></div></section><p class="n3_note">Sample profile shown for layout. Role, bio and credentials to be supplied by Innovation Oasis.</p></div></div></div></article><section aria-labelledby="rel-h" class="n3_sec"><div class="n3_wrap"><p class="s3_label"><span>Our People</span><i aria-hidden="true" class="s3_labelRule"></i></p><div class="n3_relHead"><h2 class="n3_h2" data-reveal id="rel-h">More of the team</h2><a class="s3_go" href="/full-site/team"><span class="s3_goText">The whole team</span><span aria-hidden="true" class="s3_goO"><svg viewbox="0 0 16 16"><path d="M4 8h8M8.5 4.5L12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></span></a></div><ul class="n3_grid x_relTeam"><li><a class="n3_card" href="/full-site/team-francisco"><div class="n3_cardImg"><img alt="Francisco" decoding="async" loading="lazy" src="/photos/iO%20Team%20Headshot%20%26%20Bios/Francisco/Francisco-7.jpg" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 50%"/></div><p class="n3_cardDate">Head of Innovation</p><h3 class="n3_cardTitle">Francisco</h3></a></li><li><a class="n3_card" href="/full-site/team-jude"><div class="n3_cardImg"><img alt="Jude" decoding="async" loading="lazy" src="/photos/iO%20Team%20Headshot%20%26%20Bios/Jude/Jude-1.jpg" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 50%"/></div><p class="n3_cardDate">Director of Science & Research</p><h3 class="n3_cardTitle">Jude</h3></a></li><li><a class="n3_card" href="/full-site/team-mohsin"><div class="n3_cardImg"><img alt="Mohsin" decoding="async" loading="lazy" src="/photos/iO%20Team%20Headshot%20%26%20Bios/Mohsin/Mohsin-4.jpg" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;object-fit:cover;object-position:50% 50%"/></div><p class="n3_cardDate">Operations Manager</p><h3 class="n3_cardTitle">Mohsin</h3></a></li></ul></div></section><section aria-labelledby="media-h" class="n3_media"><div class="n3_wrap"><p class="s3_label"><span>Media enquiries</span><i aria-hidden="true" class="s3_labelRule"></i></p><div class="n3_mediaGrid"><h2 class="n3_h2" data-reveal id="media-h">For interviews, images and information about Innovation Oasis.</h2><div class="n3_mediaSide"><p class="n3_body">Reach the communications team through our contact page and we will route your request.</p><a class="s3_go" href="#"><span class="s3_goText">Contact us</span><span aria-hidden="true" class="s3_goO"><svg viewbox="0 0 16 16"><path d="M4 8h8M8.5 4.5L12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></span></a></div></div></div></section></div>
 </main>
 <footer class="s_footer">
   <div class="s_wrap s_footerGrid">
     <div class="s_footerCols">
       <div class="s_footerNews"><h4 data-reveal>Stay close to the work</h4><p data-reveal>Research, programmes and calls for innovators, a few times a year.</p>
         <form class="s_newsletter" id="nl" aria-label="Newsletter"><input type="email" id="nlEmail" placeholder="Email address" aria-label="Email address"><button type="submit" class="s_btn s_btnPrimary s_btnSm" aria-label="Subscribe"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form></div>
-      <div><h4 data-reveal>Explore</h4><ul><li><a href="/full-site/about"><span data-reveal>About IO</span></a></li><li><a href="#"><span data-reveal>Research &amp; Science</span></a></li><li><a href="/full-site/ivp-hub"><span data-reveal>Innovation &amp; Venture Platforms</span></a></li><li><a href="#"><span data-reveal>Technology &amp; Services</span></a></li><li><a href="#"><span data-reveal>Centres of Excellence</span></a></li><li><a href="/full-site/io-academy"><span data-reveal>Talent &amp; Training</span></a></li></ul></div>
+      <div><h4 data-reveal>Explore</h4><ul><li><a href="/full-site/about"><span data-reveal>About&nbsp;<span class="x_iO">iO</span></span></a></li><li><a href="#"><span data-reveal>Research &amp; Science</span></a></li><li><a href="/full-site/ivp-hub"><span data-reveal>Innovation &amp; Venture Platforms</span></a></li><li><a href="#"><span data-reveal>Technology &amp; Services</span></a></li><li><a href="#"><span data-reveal>Centres of Excellence</span></a></li><li><a href="/full-site/io-academy"><span data-reveal>Talent &amp; Training</span></a></li></ul></div>
       <div><h4 data-reveal>Resources</h4><ul><li><a href="/full-site/news"><span data-reveal>Content Library</span></a></li><li><a href="#"><span data-reveal>FAQs</span></a></li></ul>
         <h4 style="margin-top:32px" data-reveal>Connect</h4><ul><li><a href="#"><span data-reveal>Contact</span></a></li><li><a href="/full-site/ivp-enquire"><span data-reveal>Enquire</span></a></li><li><a href="#"><span data-reveal>LinkedIn</span><svg class="s_extIcon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect width="16" height="16" rx="2" fill="#7f8284"/><path d="M5 11l6-6M6.5 5H11v4.5" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></div>
     </div>
@@ -4811,6 +5015,14 @@ b[data-reveal] { font-weight: inherit; }
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var G = !!(window.gsap && window.ScrollTrigger && window.SplitText) && !reduce;
   $$('a[href="#"]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); }); });
+  /* inner-page enter reveal: a block fades in once, 14px, 500ms, when it scrolls into view */
+  (function () {
+    var f = $$('[data-fade]'); if (!f.length) return;
+    var all = function () { f.forEach(function (e) { e.classList.add('in'); }); };
+    if (reduce || !('IntersectionObserver' in window)) return all();
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -6% 0px' });
+    f.forEach(function (e) { io.observe(e); }); setTimeout(all, 8000);
+  })();
   if (G) gsap.registerPlugin(ScrollTrigger, SplitText);
 
   /* ---------- smooth scroll (homepage settings), on the GSAP ticker so ScrollTrigger and Lenis share one clock ---------- */
@@ -4941,9 +5153,37 @@ b[data-reveal] { font-weight: inherit; }
 })();
 </script>
 <script>
+/* filter tabs (Team: by vertical, Ecosystem: by category): a short fade out, swap, fade in (about 250 ms) */
+(function () {
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $$('.x_ecoTabs[data-scope]').forEach(function (box) {
+    var sc = box.dataset.scope, tabs = $$('button', box), items = $$('[data-fi="' + sc + '"]'), grids = $$('[data-fg="' + sc + '"]');
+    function swap(f) {
+      items.forEach(function (it) { it.hidden = !(f === 'all' ? !it.hasAttribute('data-note') : it.dataset.cat === f); });
+      grids.forEach(function (g) {
+        var none = !$$('[data-fi]', g).some(function (it) { return !it.hidden; }), sec = g.closest('section');
+        if (sec && sec.hasAttribute('data-follow')) { sec.hidden = none; var prev = sec.previousElementSibling; if (prev) prev.classList.toggle('x_end', none); } else g.hidden = none;
+      });
+    }
+    tabs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.getAttribute('aria-pressed') === 'true') return;
+        tabs.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        if (reduce) { swap(b.dataset.cat); return; }
+        grids.forEach(function (g) { g.classList.add('sw'); });
+        setTimeout(function () { swap(b.dataset.cat); grids.forEach(function (g) { g.classList.remove('sw'); }); }, 130);
+      });
+    });
+  });
+})();
+</script>
+<style>/* rev. 6 Nov: only the current page's menu item is underlined; hover/focus no longer looks "selected" */
+.s_navItem:hover > a:not([data-active="true"])::after, .s_navItem:focus-within > a:not([data-active="true"])::after { transform: scaleX(0); }</style>
+<script>
 /* one site: menus built in script, mobile-menu "Overview" entries and the logo open their pages (site.py) */
 (function () {
-  var L = {"Home": "/full-site", "About IO": "/full-site/about", "Our Story": "/full-site/about", "Team & CEO Message": "/full-site/team", "Innovation & Venture Platforms": "/full-site/ivp-hub", "Farm Innovation Fund": "/full-site/ivp-farm-innovation-fund", "Incubation": "/full-site/ivp-incubation", "Accelerator": "/full-site/ivp-accelerator", "Agricultural Challenges": "/full-site/ivp-agricultural-challenges", "Talent & Training": "/full-site/io-academy", "IO Academy Training": "/full-site/io-academy", "Advanced Agritech Academy": "/full-site/io-academy", "Resources": "/full-site/news", "News & Media": "/full-site/news", "Content Library": "/full-site/news", "Press releases": "/full-site/news", "Press Releases": "/full-site/news", "Enquire": "/full-site/ivp-enquire", "Read the release": "/full-site/news-foodtech-challenge-winners", "FoodTech Challenge winners recognised at Innovation Oasis": "/full-site/news-foodtech-challenge-winners"}, HOME = "/full-site";
+  var L = {"Home": "/full-site", "About iO": "/full-site/about", "Our Story": "/full-site/about", "Team & CEO Message": "/full-site/team", "Our Ecosystem": "/full-site/ecosystem", "Innovation & Venture Platforms": "/full-site/ivp-hub", "Farm Innovation Fund": "/full-site/ivp-farm-innovation-fund", "Incubation": "/full-site/ivp-incubation", "Accelerator": "/full-site/ivp-accelerator", "Agricultural Challenges": "/full-site/ivp-agricultural-challenges", "Talent & Training": "/full-site/io-academy", "iO Academy Training": "/full-site/io-academy", "Advanced Agritech Academy": "/full-site/io-academy", "Resources": "/full-site/news", "News & Media": "/full-site/news", "Content Library": "/full-site/news", "Press releases": "/full-site/news", "Press Releases": "/full-site/news", "Enquire": "/full-site/ivp-enquire", "Read the release": "/full-site/news-foodtech-challenge-winners", "FoodTech Challenge winners recognised at Innovation Oasis": "/full-site/news-foodtech-challenge-winners"}, HOME = "/full-site";
   function target(a) {
     var t = (a.textContent || '').replace(/\s+/g, ' ').replace(/[\u2192\u2197]/g, '').trim();
     if (L[t]) return L[t];
@@ -4960,5 +5200,5 @@ b[data-reveal] { font-weight: inherit; }
   }, true);
 })();
 </script>
-</body>
+<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script></body>
 </html>

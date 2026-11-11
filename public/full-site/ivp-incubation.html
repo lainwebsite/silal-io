@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Incubation · Innovation Oasis</title>
 <link rel="icon" href="/full-site/brand/io-mark.svg" type="image/svg+xml">
-</head>
+<style>.x_iO{text-transform:none!important}.s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}</style><style id="navc">.navItem .dropdown,.navItem:nth-last-child(-n + 2) .dropdown,.s_navItem .s_dropdown,.s_navItem:nth-last-child(-n + 2) .s_dropdown{left:50%;right:auto;margin:0}</style></head>
 <body>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -382,7 +382,7 @@
   display: inline-flex;
 }
 
-/* on IO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
+/* on iO Blue heroes the logo switches to the single-colour white version (guidelines p.7) */
 .s_logoOnBlue {
   display: none;
   align-items: flex-start;
@@ -1403,7 +1403,7 @@ li[data-active="true"] .s_pillarArrow {
   flex: 0 1 auto;
 }
 
-/* connectors drawn like the helix rungs inside the IO mark: a line with a dot at each end */
+/* connectors drawn like the helix rungs inside the iO mark: a line with a dot at each end */
 .s_ecoCol i {
   flex: 1 1 auto;
   min-width: 40px;
@@ -4857,7 +4857,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .i_kd li[data-s="now"] .tag { border-color: var(--io-ink); color: var(--io-ink); }
 .i_successSec { background: var(--io); overflow: hidden; }
 .i_successSec > .s_wrap { position: relative; }
-/* official mark file, untouched: on the IO blue its blue shapes vanish and only the white helix shows, cropped on the right */
+/* official mark file, untouched: on the iO blue its blue shapes vanish and only the white helix shows, cropped on the right */
 .i_successMark { position: absolute; right: -14%; top: 50%; height: 190%; translate: 0 -50%; opacity: .28; pointer-events: none; user-select: none; }
 @media (max-width: 900px) { .i_successMark { height: 130%; right: -40%; opacity: .22; } }
 /* 3D helix (homepage model) replaces the flat one once it has loaded */
@@ -5328,20 +5328,187 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
 </style>
+<style>
+/* =========================== INCUBATION · rev 9 Nov, round 5 (00_Incubation Overview.docx) ===========================
+   Silal section system. Every section = eyebrow -> H2 (35px) -> one lead (18px) -> content.
+   One pattern per content type, all from components already on the IVP pages:
+     short lists ........ hairline rows (i_rows)            groups of lists . columns with a hairline top rule (i_grp)
+     long lists ......... one expand per block (details)    sequence ........ the journey rail (one line, a dot per step)
+     facts .............. i_facts columns                    callouts ........ f_callout          who ... photo columns (i_why)
+   Kept from the original page: hero, nine-step staircase, helix band, Khalifa University cards, enquiry box, next banner. */
+[data-view="incubation"] { --sec: clamp(48px, 4vw, 58px); --head: clamp(28px, 2.6vw, 36px); }
+.x_iO { text-transform: none; }
+/* hero: longer copy, so the panel grows with its text instead of clipping it */
+.i_hero { height: auto; min-height: max(calc(100svh - var(--hdr)), 640px); }
+.i_heroMain .x_body { max-width: 34em; }
+.i_hero h1 { text-wrap: balance; }
+.i_heroCta { margin-top: calc(var(--blk) - var(--stack)); gap: 14px 28px; }
+/* head of every section: eyebrow + H2 left, lead (and at most one body paragraph) right */
+.x_head.i_headTop { align-items: start; }
+.x_head.i_headTop > .x_stack { grid-column: 8 / span 5; }
+.x_head.i_headTop > .x_stack .x_lead { max-width: 30em; }
+.x_head .c_blue { color: var(--io-ink); }
+.x_ink .x_head .x_lead { max-width: 30em; }
+/* our model: principles + callout (original i_facts) */
+.i_principlesWrap { display: flex; flex-direction: column; gap: var(--blk); }
+.i_factsLabel { color: var(--io-ink); }
+.i_principles { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.i_principles dt { color: var(--io-ink); }
+.i_principles dd.i_factText { font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); max-width: 30em; margin-top: 4px; }
+/* who it is for: four photo columns (original i_why), one aspect */
+.i_who { grid-template-columns: repeat(4, minmax(0,1fr)); row-gap: 32px; }
+.i_who .x_img { aspect-ratio: 3 / 2; }
+/* hairline rows: the one list treatment (entry profile, commitments, partner contributions, tab panels, step lists) */
+.i_rows { border-top: 1px solid var(--line); column-gap: var(--col-gap); }
+.i_rows li { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.55; color: var(--charcoal); break-inside: avoid; }
+.i_rows.i_cols2 { column-count: 2; }
+.i_listLabel { display: block; margin-bottom: 14px; color: var(--io-ink); }
+.i_rowsCont { border-top: 0; }
+/* the entry profile continues "who it is for" (same doc section): a hairline block, no heading of its own */
+.i_hair { padding-top: 0; }
+.i_hair > .s_wrap { border-top: 1px solid var(--line); padding-top: var(--sec); }
+.i_hairIn > .s_wrap { padding-top: var(--head); }
+.i_hairIn { padding-top: 0; }
+.i_entryHead { display: flex; flex-direction: column; gap: var(--stack); margin-bottom: var(--blk); }
+.i_entryHead .x_lead { max-width: none; }
+/* groups: columns with a hairline top rule — block title, optional question, hairline rows */
+.i_grps { display: grid; grid-template-columns: repeat(var(--n), minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--head); align-items: start; }
+.i_n4 { --n: 4; } .i_n3 { --n: 3; }
+.i_grp { display: flex; flex-direction: column; gap: 14px; padding-top: 18px; border-top: 2px solid var(--io); }
+.i_grp h3 { font-size: var(--t-h4); font-weight: 400; line-height: 1.3; color: var(--charcoal); }
+.i_grp .i_rows { margin-top: 0; }
+.i_grpsTall .i_grp h3 { min-height: 2.6em; }
+/* one expand for long lists (journey checklists, support groups) */
+.i_more summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.55; color: var(--io-ink); transition: color .3s; }
+.i_more summary::-webkit-details-marker { display: none; }
+.i_more summary:hover { color: var(--charcoal); }
+.i_more summary:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.i_more .i_pl { width: 14px; height: 14px; flex: none; transition: transform .3s var(--slow); }
+.i_more[open] .i_pl { transform: rotate(45deg); }
+.i_more .i_sClose, .i_more[open] .i_sOpen { display: none; }
+.i_more[open] .i_sClose { display: inline; }
+.i_grp .i_more summary { border-top: 0; }
+/* readiness staircase: the indicative note */
+.i_trlNote { margin-top: var(--blk); }
+/* validation pathway: TRL × ARL, drawn like the staircase (white tiles; blue top = incubation, charcoal top = acceleration) */
+.i_mx { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--head); align-items: start; }
+.i_mxViz { grid-column: 1 / span 6; grid-row: 1; display: flex; flex-direction: column; gap: 14px; }
+.i_mxSide { grid-column: 7 / span 6; grid-row: 1 / span 2; align-self: stretch; display: flex; flex-direction: column; gap: var(--stack); padding-left: 32px; }
+.i_mxSide > .x_label { color: var(--io-ink); }
+.i_mxAxisY, .i_mxAxisX { display: inline-flex; align-items: center; gap: 8px; color: var(--grey-ink); }
+.i_mxAxisY svg, .i_mxAxisX svg { width: 14px; height: 14px; flex: none; color: var(--io-ink); }
+.i_mxAxisX { align-self: flex-end; }
+.i_mxPlot { position: relative; display: grid; grid-template-columns: auto repeat(3, minmax(0,1fr)); grid-template-rows: repeat(3, clamp(96px, 9vw, 128px)) auto; gap: 6px; }
+.i_mxTick { font-size: var(--t-small); color: var(--grey); align-self: center; padding-right: 10px; }
+.i_mxPlot > .i_mxTick:nth-last-of-type(-n+3) { text-align: center; padding: 6px 0 0; }
+.i_mxCell { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; padding: 14px 12px; background: #fff; border-top: 2px solid #d4d5d6; transition: background .35s var(--slow), opacity .35s; }
+.i_mxCell b { font-size: clamp(1.5rem, 2.4vw, 2.5rem); font-weight: 300; line-height: 1; letter-spacing: -.03em; color: var(--grey); transition: color .35s; }
+.i_mxCell span { font-size: var(--t-small); line-height: 1.35; color: var(--grey-ink); transition: color .35s; }
+.i_mxCell em { display: block; font-style: normal; color: var(--grey); transition: color .35s; }
+.i_mxCell[data-z="poc"], .i_mxCell[data-z="pil"] { border-top-color: var(--io); }
+.i_mxCell[data-z="poc"] b, .i_mxCell[data-z="pil"] b { color: var(--io-ink); }
+.i_mxCell[data-z="opd"], .i_mxCell[data-z="com"] { border-top-color: var(--charcoal); }
+.i_mxPlot[data-sel] .i_mxCell:not([data-on]) { opacity: .6; }
+.i_mxCell[data-on] { background: var(--charcoal); }
+.i_mxCell[data-on] b, .i_mxCell[data-on] span, .i_mxCell[data-on] em { color: #fff; }
+.i_mxDot { position: absolute; left: 0; top: 0; z-index: 2; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--io); box-shadow: 0 0 0 6px rgba(60,167,210,.18); transition: transform .35s var(--slow); pointer-events: none; }
+.i_mxKey { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: var(--t-small); color: var(--grey); }
+.i_mxKey span { display: inline-flex; align-items: center; gap: 10px; }
+.i_mxKey span::before { content: ""; width: 22px; height: 2px; background: var(--io); }
+.i_mxKey span[data-k="acc"]::before { background: var(--charcoal); }
+.i_mxTabs .f_areaTab strong { font-size: var(--t-h4); line-height: 1.3; }
+.i_mxTabs .f_areaTab small { display: block; margin-top: 8px; font-size: var(--t-label); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); }
+.i_mxAfter { grid-column: 1 / span 6; grid-row: 2; display: flex; flex-direction: column; gap: var(--stack); padding-top: var(--blk); border-top: 1px solid var(--line); }
+/* connector: the result of the matrix runs down, in iO blue, into step 01 of the journey (same x as the journey rail) */
+.i_mxLink { position: relative; flex: 1 1 auto; min-height: 48px; width: 2px; margin-left: -29px; background: var(--io); }
+.i_mxLink::after { content: ""; position: absolute; left: 0; top: 100%; width: 2px; height: calc(var(--sec) + 1px); background: var(--io); }
+/* journey: all six steps, one rail; the dot of step 01 receives the matrix connector */
+.i_journey .a_faqSide { position: sticky; top: calc(var(--hh) + 32px); }
+.i_steps { grid-column: 7 / span 6; position: relative; display: flex; flex-direction: column; gap: 28px; padding-left: 32px; }
+.i_steps::after { content: ""; position: absolute; left: 3px; top: calc(-1 * var(--sec) - 1px); width: 2px; height: calc(var(--sec) + 8px); background: var(--io); }
+.i_jStep { position: relative; display: flex; flex-direction: column; gap: 8px; }
+.i_jDot { position: absolute; left: -32px; top: 8px; width: 9px; height: 9px; margin: -4px 0 0 0; border-radius: 50%; background: var(--io); box-shadow: 0 0 0 4px #fff; z-index: 1; }
+.i_jStep:first-child .i_jDot { box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--io); }
+.i_jStep h3 { font-size: var(--t-h4); font-weight: 400; line-height: 1.3; color: var(--charcoal); }
+.i_jStep h3 em { display: inline-block; width: 28px; margin-right: 12px; font-style: normal; font-size: var(--t-label); font-weight: 500; letter-spacing: .06em; color: var(--io-ink); vertical-align: .15em; font-variant-numeric: tabular-nums; }
+.i_jStep:not(:last-child)::before { content: ""; position: absolute; left: -29px; top: 8px; bottom: -28px; width: 2px; background: var(--io); }
+.i_out { display: grid; grid-template-columns: 5.5em minmax(0,1fr); gap: 12px; align-items: baseline; font-size: var(--fs-body); line-height: 1.55; color: var(--charcoal); }
+.i_out small { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); }
+.i_dec { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); }
+.i_dec > div { padding-top: 12px; border-top: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.55; }
+.i_dec dt { font-weight: 500; color: var(--charcoal); margin-bottom: 4px; }
+.i_dec dd { margin: 0; font-size: var(--t-small); line-height: 1.55; color: var(--grey-ink); }
+/* selection principles: all eight, two columns */
+.i_sel2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: var(--col-gap); }
+.i_sel2 li { display: grid; grid-template-columns: 2.6em minmax(0,1fr); gap: 0 8px; padding: 18px 0 22px; border-top: 1px solid var(--line); }
+.i_sel2 em { padding-top: .35em; font-style: normal; font-size: var(--t-label); font-weight: 500; letter-spacing: .06em; color: var(--io-ink); font-variant-numeric: tabular-nums; }
+.i_sel2 h3 { font-size: var(--t-h4); font-weight: 400; line-height: 1.3; color: var(--charcoal); }
+.i_sel2 p { margin-top: 6px; font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); max-width: 30em; }
+/* portfolio: the original Khalifa University cards, a little tighter */
+.i_portLabel { color: var(--io-on-dark); }
+.i_card { min-height: 0; }
+.i_col:last-child { margin-top: clamp(32px, 3.4vw, 48px); }
+.i_pmKu { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: center; margin-top: var(--head); padding-top: var(--blk); border-top: 1px solid var(--line); }
+.i_pmKu .i_partner { grid-column: 1 / span 5; padding-top: 0; border-top: 0; }
+.i_pmKu .x_stack { grid-column: 7 / span 6; }
+.i_pmKu .x_label { color: var(--io-ink); }
+/* expression of interest: the hub's enquiry box */
+.i_eoi .x_cboxMain { grid-row: 1; }
+.i_eoiSide { grid-column: 8 / span 5; grid-row: 1 / span 2; display: flex; flex-direction: column; gap: 10px; position: relative; }
+.i_eoiSide > .x_label { color: rgba(255,255,255,.75); }
+.i_eoiList p { display: block; padding: 10px 0; font-size: var(--fs-body); line-height: 1.5; color: #fff; max-width: none; }
+.i_eoiCta { grid-column: 1 / span 6; grid-row: 2; align-self: end; gap: 14px 28px; position: relative; }
+.i_eoi .s_textLink { color: #fff; background-image: linear-gradient(#fff, #fff); }
+@media (max-width: 1100px) {
+  .i_who { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .i_n4 { --n: 2; }
+  .i_n3 { --n: 2; }
+}
+@media (max-width: 900px) {
+  .x_head.i_headTop > .x_stack { grid-column: 1 / -1; }
+  .i_mxViz, .i_mxAfter, .i_mxSide { grid-column: 1 / -1; grid-row: auto; }
+  .i_mxAfter { order: 2; } .i_mxSide { order: 3; padding-left: 0; }
+  .i_mxLink, .i_steps::after { display: none; }
+  .i_steps { grid-column: 1 / -1; }
+  .i_journey .a_faqSide { position: static; }
+  .i_sel2 { grid-template-columns: minmax(0,1fr); }
+  .i_pmKu .i_partner, .i_pmKu .x_stack { grid-column: 1 / -1; }
+  .i_eoiSide, .i_eoiCta, .i_eoi .x_cboxMain { grid-column: 1 / -1; grid-row: auto; }
+  .i_col:last-child { margin-top: 0; }
+}
+@media (max-width: 700px) {
+  .i_rows.i_cols2 { column-count: 1; }
+  .i_dec { grid-template-columns: minmax(0,1fr); row-gap: 16px; }
+  .i_n4, .i_n3 { --n: 1; }
+}
+@media (max-width: 600px) {
+  .i_who { grid-template-columns: minmax(0,1fr); }
+  .i_principles { grid-template-columns: minmax(0,1fr); }
+  .i_bands { grid-template-columns: minmax(0,1fr); row-gap: 18px; }
+  .i_bands div:nth-child(1), .i_bands div:nth-child(2) { grid-column: 1 / -1; }
+  .i_bands div::before { right: auto; width: 28px; }
+  .i_mxPlot { grid-template-rows: repeat(3, 96px) auto; gap: 4px; }
+  .i_mxCell { padding: 10px 8px; }
+  .i_mxCell b { font-size: 1.25rem; }
+  .i_mxCell em { display: none; }
+  .i_mxCell span { font-size: .6875rem; }
+  .i_mxTick { font-size: .6875rem; padding-right: 6px; }
+}
+</style>
 <script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
 
 <div class="s_root" data-wide data-blue="false">
 <header class="s_header" id="hdr" data-scrolled="false" data-overlay="false">
   <div class="s_utility"><div class="s_wrap s_utilityInner">
     <span>Advancing Agri-food Systems</span>
-    <span class="s_utilityLinks"><a href="/full-site/news">Resources</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
+    <span class="s_utilityLinks"><a href="/full-site/news">News</a><a href="#">Contact</a><span lang="ar">عربي</span></span>
   </div></div>
   <div class="s_headerMain"><div class="s_wrap s_headerInner">
     <a href="#" class="s_logo" aria-label="Innovation Oasis — home">
       <span class="s_logoFull"><span class="s_logoOnLight"><span style="display:inline-flex;align-items:flex-start;gap:9px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="110" height="50"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="39" width="53"></span></span><span class="s_logoOnDark"><span style="display:inline-flex;align-items:flex-start;gap:9px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed-reversed.svg" alt="Innovation Oasis — Part of Silal" width="110" height="50"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="39" width="53"></span></span></span>
       <span class="s_logoSmall"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="Innovation Oasis" height="36" width="49"></span>
     </a>
-    <nav class="s_nav" aria-label="Main"><ul><li class="s_navItem"><a href="/full-site/about" data-active="false">About IO</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/about" class="s_textLink">About IO <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Silal&#x27;s R&amp;D and venture engine.</p><ul><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Research &amp; Science</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Research &amp; Science <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Plant science, soil, water and food technology, tested in real arid conditions.</p><ul><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/ivp-hub" data-active="true" aria-current="page">Innovation &amp; Venture Platforms</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/ivp-hub" class="s_textLink">Innovation &amp; Venture Platforms <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Funding, incubation and acceleration for agri-food startups.</p><ul><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Technology &amp; Services</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Technology &amp; Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Sensing, desalination, analytics, trials and facilities for partners.</p><ul><li><a href="#">iO Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Centres of Excellence</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Centres of Excellence <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Specialist hubs for robotics, crop genomics and controlled-environment agriculture.</p><ul><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/io-academy" data-active="false">Talent &amp; Training</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/io-academy" class="s_textLink">Talent &amp; Training <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Building the next generation of agri-food talent in the UAE.</p><ul><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy">IO Academy Training</a></li></ul></div></div></li></ul></nav>
+    <nav class="s_nav" aria-label="Main"><ul><li class="s_navItem"><a href="/full-site/about" data-active="false">About&nbsp;<span class="x_iO">iO</span></a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/about" class="s_textLink">About&nbsp;<span class="x_iO">iO</span>&nbsp;<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Silal&#x27;s R&amp;D and venture engine.</p><ul><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="/full-site/ecosystem">Our Ecosystem</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Research &amp; Science</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Research &amp; Science <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Plant science, soil, water and food technology, tested in real arid conditions.</p><ul><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/ivp-hub" data-active="true" aria-current="page">Innovation &amp; Venture Platforms</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/ivp-hub" class="s_textLink">Innovation &amp; Venture Platforms <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Funding, incubation and acceleration for agri-food startups.</p><ul><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Technology &amp; Services</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Technology &amp; Services <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Sensing, desalination, analytics, trials and facilities for partners.</p><ul><li><a href="#"><span class="x_iO">iO</span>&nbsp;Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></div></div></li><li class="s_navItem"><a href="#" data-active="false">Centres of Excellence</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="#" class="s_textLink">Centres of Excellence <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Specialist hubs for robotics, crop genomics and controlled-environment agriculture.</p><ul><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></div></div></li><li class="s_navItem"><a href="/full-site/io-academy" data-active="false">Talent &amp; Training</a><div class="s_dropdown"><div class="s_dropdownInner"><a href="/full-site/io-academy" class="s_textLink">Talent &amp; Training <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p>Building the next generation of agri-food talent in the UAE.</p><ul><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy"><span class="x_iO">iO</span>&nbsp;Academy Training</a></li></ul></div></div></li></ul></nav>
     <div class="s_headerActions">
       <a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary s_btnSm">Enquire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <button class="s_menuToggle" id="menuOpen" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -5351,7 +5518,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="s_wrap s_mobileNavTop"><span style="display:inline-flex;align-items:flex-start;gap:8px"><img src="/innovation-venture-platforms/brand/io-wordmark-endorsed.svg" alt="Innovation Oasis — Part of Silal" width="93" height="42"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="" height="33" width="45"></span>
       <button class="s_menuClose" id="menuClose" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M7 7l14 14M21 7 7 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
-    <div class="s_wrap"><details class="s_mobileGroup"><summary><span class="s_mobileNum">01</span>About IO</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">02</span>Research &amp; Science</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">03</span>Innovation &amp; Venture Platforms</summary><ul><li><a href="/full-site/ivp-hub">Overview</a></li><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">04</span>Technology &amp; Services</summary><ul><li><a href="#">Overview</a></li><li><a href="#">iO Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">05</span>Centres of Excellence</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">06</span>Talent &amp; Training</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy">IO Academy Training</a></li></ul></details>
+    <div class="s_wrap"><details class="s_mobileGroup"><summary><span class="s_mobileNum">01</span>About&nbsp;<span class="x_iO">iO</span></summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/team">Team &amp; CEO Message</a></li><li><a href="/full-site/ecosystem">Our Ecosystem</a></li><li><a href="#">Virtual Tour ↗</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">02</span>Research &amp; Science</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Precision Breeding &amp; Plant Health</a></li><li><a href="#">Crop Diversification Research</a></li><li><a href="#">Soil &amp; Water Research</a></li><li><a href="#">Food Technology</a></li><li><a href="#">R&amp;D Trialing</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">03</span>Innovation &amp; Venture Platforms</summary><ul><li><a href="/full-site/ivp-hub">Overview</a></li><li><a href="/full-site/ivp-farm-innovation-fund">Farm Innovation Fund</a></li><li><a href="/full-site/ivp-incubation">Incubation</a></li><li><a href="/full-site/ivp-accelerator">Accelerator</a></li><li><a href="/full-site/ivp-agricultural-challenges">Agricultural Challenges</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">04</span>Technology &amp; Services</summary><ul><li><a href="#">Overview</a></li><li><a href="#"><span class="x_iO">iO</span>&nbsp;Sense</a></li><li><a href="#">Solar Desalination</a></li><li><a href="#">Analytical Services</a></li><li><a href="#">Paid Trials</a></li><li><a href="#">Program Management as a Service</a></li><li><a href="#">Facilities as a Service</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">05</span>Centres of Excellence</summary><ul><li><a href="#">Overview</a></li><li><a href="#">Agri Robotics &amp; AI</a></li><li><a href="#">Abiotic Resilience &amp; Crop Genomics (ARC-GEN)</a></li><li><a href="#">Advanced Controlled Environment Ag (CEA)</a></li></ul></details><details class="s_mobileGroup"><summary><span class="s_mobileNum">06</span>Talent &amp; Training</summary><ul><li><a href="#">Overview</a></li><li><a href="/full-site/io-academy">Advanced Agritech Academy</a></li><li><a href="#">Student Sponsorship</a></li><li><a href="#">Mustadeem / School Programs</a></li><li><a href="/full-site/io-academy"><span class="x_iO">iO</span>&nbsp;Academy Training</a></li></ul></details>
       <div class="s_mobileFoot"><a href="/full-site/ivp-enquire" class="s_btn s_btnPrimary">Enquire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#" class="s_btn s_btnGhostLight">Contact</a></div>
     </div>
   </div>
@@ -5363,80 +5530,195 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="i_heroText">
       <div class="i_heroTop"><nav class="x_crumb" aria-label="Breadcrumb"><a href="/full-site/ivp-hub">Innovation &amp; Venture Platforms</a><i></i><span>Incubation</span></nav></div>
       <div class="i_heroMain">
-        <h1 data-reveal>Incubation</h1>
-        <p class="x_lead" data-reveal>From lab research to market-ready. A platform for early-stage ventures.</p>
-        <div class="i_partner"><img src="/innovation-venture-platforms/brand/silal.png" alt="Silal"><span aria-hidden="true">×</span><img src="/innovation-venture-platforms/brand/khalifa-university.png" alt="Khalifa University"></div>
+        <span class="c_eyebrow" data-reveal>Research translation and technology incubation</span>
+        <h1 data-reveal>Turning promising research into <span class="c_blue">pathways to value</span></h1>
+        <p class="x_body" data-reveal><span class="x_iO">iO</span>&nbsp;Incubation helps researchers, universities and technology teams translate promising research, intellectual property and early-stage technologies into solutions with practical and commercial potential.</p>
+        <p class="x_body" data-reveal>Through focused experimentation, real-world validation and customer discovery,&nbsp;<span class="x_iO">iO</span>&nbsp;helps teams resolve critical uncertainties, refine their solutions and determine the strongest route forward.</p>
+        <div class="x_row i_heroCta"><a href="/full-site/ivp-enquire?platform=inc" class="s_btn s_btnPrimary s_btnSm">Discuss an incubation opportunity <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#how-it-works" class="s_textLink">Explore how incubation works <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v11M3.5 9 8 13.5 12.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
       </div>
     </div>
     <div class="x_img i_heroImg" data-hero><img src="/innovation-venture-platforms/img/inc_robot.webp" alt="A researcher explaining an agri-robotics prototype"></div>
   </section>
 
-  <section class="x_sec"><div class="s_wrap i_intro">
-    <p class="x_statement" data-scrub>The IO Incubator’s first cohort, <b>Agri-Robotics 2026</b>, brings four agricultural technologies to commercial readiness with Khalifa University.</p>
-    <p class="x_body i_introBody" data-reveal>Teams refine prototypes with open access to greenhouses, open fields, labs and real farm operations, working directly with the farmers who will use them. The aim is to close the commercialisation gap between research and the market with solutions built for local conditions.</p>
-    <dl class="i_facts" data-inview>
-      <div style="--k:0"><dt class="x_label">Partner</dt><dd>Khalifa University</dd></div>
-      <div style="--k:1"><dt class="x_label">Cohort</dt><dd>Agri-Robotics 2026</dd></div>
-      <div style="--k:2"><dt class="x_label">Timeline</dt><dd>Nov 2025 – Nov 2026</dd></div>
-      <div style="--k:3"><dt class="x_label">Goal</dt><dd>Prototypes to market-ready</dd></div>
-    </dl>
+  <!-- 1 · our model: head, three principles (original i_facts), one callout -->
+  <section class="x_sec" id="model"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Our model</span><h2 class="x_h2" data-reveal>Not open-ended research. <span class="c_blue">Not a conventional accelerator.</span></h2></div><div class="x_stack"><p class="x_lead" data-reveal><span class="x_iO">iO</span>&nbsp;Incubation is a tech translation model for determining the fastest credible pathway from research or prototype to first user.</p><p class="x_body" data-reveal>Each project is structured as a sequence of focused experiments. Rather than committing immediately to a long development roadmap,&nbsp;<span class="x_iO">iO</span>&nbsp;and the project team identify the most consequential uncertainty, design the smallest credible test to resolve it and use the evidence to determine what happens next.</p></div></div>
+    <div class="i_principlesWrap"><span class="x_label i_factsLabel">Three defining principles</span>
+    <dl class="i_facts i_principles" data-inview>
+      <div style="--k:0"><dt class="x_label">01</dt><dd>Start with the problem</dd><dd class="i_factText">Projects must address an evidenced and strategically relevant need, with a defined user, customer or problem owner.</dd></div>
+      <div style="--k:1"><dt class="x_label">02</dt><dd>Invest in learning</dd><dd class="i_factText">Every activity should generate evidence that reduces uncertainty or unlocks a specific next decision.</dd></div>
+      <div style="--k:2"><dt class="x_label">03</dt><dd>Follow the evidence</dd><dd class="i_factText">Projects may continue, pivot or stop. Negative results are valuable when they prevent unnecessary development or reveal a stronger route forward.</dd></div>
+    </dl></div>
+    <p class="f_callout"><b>Success</b><span>Incubation is successful when it produces faster, data-driven decision making, not simply when a project completes its original roadmap.</span></p>
   </div></section>
 
-  <section class="x_sec x_grey"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Where incubation sits</span><h2 class="x_h2" data-reveal>Nine steps of technology readiness. Incubation climbs from 3 to 6.</h2></div><p class="x_body" data-reveal>Technology readiness levels (TRL) measure how close an idea is to real use.</p></div>
-    <div class="i_marker" id="trlMarker" aria-hidden="true"><i></i></div>
-    <div class="i_stairs" id="stairs" role="img" aria-label="Technology readiness levels 1 to 9. Incubation covers 3 to 6; the accelerator takes deployed technologies at 7 to 9.">
-      <div class="i_step" style="--n:1"><b>1</b><span>Basic principles observed</span></div>
-      <div class="i_step" style="--n:2"><b>2</b><span>Technology concept formulated</span></div>
-      <div class="i_step" style="--n:3" data-band="inc"><b>3</b><span>Experimental proof of concept</span></div>
-      <div class="i_step" style="--n:4" data-band="inc"><b>4</b><span>Validated in the lab</span></div>
-      <div class="i_step" style="--n:5" data-band="inc"><b>5</b><span>Validated in a relevant environment</span></div>
-      <div class="i_step" style="--n:6" data-band="inc"><b>6</b><span>Demonstrated in a relevant environment</span></div>
-      <div class="i_step" style="--n:7" data-band="acc"><b>7</b><span>Prototype in an operational environment</span></div>
-      <div class="i_step" style="--n:8" data-band="acc"><b>8</b><span>System complete and qualified</span></div>
-      <div class="i_step" style="--n:9" data-band="acc"><b>9</b><span>Proven in operational environment</span></div>
-    </div>
-    <div class="i_bands"><div><b>Incubation</b>Lab research towards validation in real conditions, e.g. TRL 6 / CRL 5</div><div><b>Accelerator</b>Deployed technologies, TRL 7–8+ · <a href="/full-site/ivp-accelerator" class="c_blue">Unbreakable Harvest</a></div></div>
-  </div></section>
-
-  <section class="x_sec x_ink"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Cohort 1</span><h2 class="x_h2" data-reveal>Four technologies, built with Khalifa University.</h2></div></div>
-    <div class="i_techs" id="techs">
-      <div class="i_col">
-        <article class="i_card"><svg class="i_icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" data-draw><circle cx="36" cy="38" r="14"/><path d="M36 24c0-6 3-9 8-10"/><path d="M10 28c4-2 8-2 12 0l5 4M8 36h13"/></svg><span class="x_label">Post-harvest</span><h3>TouchRIPE</h3><p>A wearable device that assesses fruit firmness without damaging it, using vision-based tactile sensors. It answers market demand for objective ripeness evaluation and better shelf-life forecasting.</p><dl><div><dt>Aim</dt><dd>Less food waste, higher marketable yields</dd></div><div><dt>Market</dt><dd>Fruit quality and post-harvest management</dd></div></dl></article>
-        <article class="i_card"><svg class="i_icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" data-draw><rect x="18" y="6" width="28" height="52" rx="4"/><path d="M32 44c-8-4-8-15 0-22 8 7 8 18 0 22zM32 44V28"/></svg><span class="x_label">Crop health</span><h3>PlantAI</h3><p>An AI-powered mobile app that detects leaf diseases across key UAE crops: tomatoes, cucumbers, capsicum and berries. The project validates accuracy across diverse field environments.</p><dl><div><dt>Aim</dt><dd>Earlier detection, timely intervention</dd></div><div><dt>Next</dt><dd>Readiness for commercial deployment</dd></div></dl></article>
-      </div>
-      <div class="i_col" data-lag>
-        <article class="i_card"><svg class="i_icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" data-draw><circle cx="32" cy="27" r="6"/><path d="M32 15V9M32 39v15M20 27h-6M50 27h-6M23.5 18.5l-4-4M44.5 18.5l4-4M23.5 35.5l-4 4M44.5 35.5l4 4"/><path d="M32 54c-8 0-12-4-12-10"/></svg><span class="x_label">Greenhouse</span><h3>PollenMatic</h3><p>A compact, versatile device for efficient pollination in greenhouse tomato cultivation. The project refines the prototype and validates its performance in real-world conditions.</p><dl><div><dt>Target</dt><dd>TRL 6 / CRL 5</dd></div><div><dt>Aim</dt><dd>Cost-effective, user-friendly artificial pollination</dd></div></dl></article>
-        <article class="i_card"><svg class="i_icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" data-draw><rect x="24" y="22" width="16" height="10" rx="2"/><path d="M24 24H10M40 24h14M10 20v8M54 20v8M32 32v6"/><circle cx="26" cy="50" r="4"/><circle cx="36" cy="52" r="4"/><circle cx="32" cy="44" r="3"/></svg><span class="x_label">Yield</span><h3>AerialYield</h3><p>An autonomous system for yield estimation and fruit ripeness analysis in blueberry cultivation, advanced through real-world data collection, field trials and end-user validation.</p><dl><div><dt>Aim</dt><dd>Better yield forecasts, less labour</dd></div><div><dt>Crop</dt><dd>Blueberries</dd></div></dl></article>
-      </div>
-    </div>
-  </div></section>
-
-  <section class="x_sec"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Why incubate at Innovation Oasis</span><h2 class="x_h2" data-reveal>Built around the people who will use it.</h2></div></div>
-    <ul class="i_why">
-      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/inc_chamber.webp" alt="A researcher at a plant growth chamber" loading="lazy"></div><h3>Real testbeds</h3><p>Open access to greenhouses, open fields, labs and real farm operations.</p></li>
-      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/inc_people.webp" alt="A researcher showing an agri-robotics prototype to a visitor" loading="lazy"></div><h3>Farmers in the loop</h3><p>Project teams work directly with end users, so solutions are practical as well as scientifically rigorous.</p></li>
-      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/fif_greenh.webp" alt="Greenhouses in the desert at Innovation Oasis" loading="lazy"></div><h3>Built for UAE conditions</h3><p>Designed around local regulatory, environmental and market realities, not adapted afterwards.</p></li>
+  <!-- 2 · who it is for: the page's photo columns -->
+  <section class="x_sec i_hair" id="who"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Who it is for</span><h2 class="x_h2" data-reveal>Promising opportunities that need focused validation.</h2></div><div class="x_stack"><p class="x_lead" data-reveal><span class="x_iO">iO</span>&nbsp;Incubation supports researchers, universities, scientific teams, technology developers and early-stage ventures with promising solutions that require further evidence before they can progress.</p><p class="x_body" data-reveal>Suitable opportunities may begin as research, intellectual property, an early prototype or an early-stage venture proposition. What matters is that the opportunity addresses a clearly defined agrifood need and can benefit from focused technical, user, operational or commercial validation.</p></div></div>
+    <ul class="i_why i_who">
+      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/inc_lab2.webp" alt="Researchers working in an Innovation Oasis laboratory" loading="lazy"></div><h3>Research teams and universities</h3><p>Translate scientific research, intellectual property or laboratory findings into a defined product, service, capability or commercial application.</p></li>
+      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/hero_chal.webp" alt="A founder presenting a venture on stage at Innovation Oasis" loading="lazy"></div><h3>Early-stage ventures</h3><p>Test the critical assumptions behind an emerging venture, strengthen the product and value proposition, and generate the evidence needed to identify a credible route toward customers, partnerships or further investment.</p></li>
+      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/inc_chamber.webp" alt="A researcher at a plant growth chamber" loading="lazy"></div><h3>Technology developers</h3><p>Validate an early prototype, adapt an existing solution for agrifood or UAE conditions, or resolve critical technical, operational and market uncertainties.</p></li>
+      <li><div class="x_img" data-img><img src="/innovation-venture-platforms/img/inc_people.webp" alt="A researcher showing an agri-robotics prototype to a visitor" loading="lazy"></div><h3>Collaborative teams</h3><p>Bring together research, engineering, agronomy, product, commercial and industry expertise to develop and validate a shared opportunity.</p></li>
     </ul>
-    <div class="i_time">
-      <div class="i_timeSide"><span class="c_eyebrow">Cohort 1 · Agri-Robotics 2026</span><h3>Where the first cohort stands.</h3><p>Four technologies, one year with Khalifa University. <b id="kdDays">33 days</b> until the cohort closes.</p></div>
-      <ol class="i_kd" id="kd">
-        <li data-s="done"><span class="n"><i></i></span><div><h4>November 2025<span class="tag">Started</span></h4><p>Four agri-robotics technologies join the incubator, with Khalifa University.</p></div></li>
-        <li data-s="now"><span class="n"><i></i></span><div><h4 id="kdToday">Today</h4><p>Teams refine their prototypes on real farms, greenhouses and labs at Innovation Oasis.</p></div></li>
-        <li data-s="next"><span class="n"><i></i></span><div><h4>November 2026<span class="tag">Closes</span></h4><p>Target: prototypes market-ready, for example TRL 6 / CRL 5.</p></div></li>
-        <li data-s="next"><span class="n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/></svg></span><div><h4>After the cohort<span class="tag">Result</span></h4><p>Results are measured against the cohort’s success goal, set out just below.</p></div></li>
-      </ol>
-      <div class="x_img x_corners i_timeImg" data-img><img src="/innovation-venture-platforms/img/inc_lab2.webp" alt="Researchers working in an Innovation Oasis laboratory" loading="lazy"></div>
+  </div></section>
+
+  <!-- 3 · entry profile: hairline list rows -->
+  <section class="x_sec i_hair i_hairIn" id="entry"><div class="s_wrap">
+    <div class="i_entryHead"><span class="c_eyebrow" data-reveal>Entry profile</span><p class="x_lead" data-reveal>Incubation is most relevant where:</p></div>
+    <ul class="i_rows i_cols2">
+      <li>The opportunity addresses a clearly evidenced agrifood problem</li>
+      <li>The intended user, customer or problem owner can be identified</li>
+      <li>An early solution, prototype, research output or technical asset already exists</li>
+      <li>Important technical, customer, operational or commercial assumptions remain unvalidated</li>
+      <li>A focused experiment could resolve a critical uncertainty or unlock a defined next step</li>
+      <li>The core team has the capability and commitment to participate in the validation process</li>
+      <li><span class="x_iO">iO</span>&nbsp;can provide meaningful access to expertise, facilities, data, users, operating environments or commercial relationships</li>
+      <li>There is an initial hypothesis for how the opportunity could ultimately create value</li>
+    </ul>
+    <p class="f_callout"><span>Incubation is very selective. Opportunities are assessed based on the importance of the problem, strength of existing evidence, team capability, potential value and fit with&nbsp;<span class="x_iO">iO</span>’s capabilities.</span></p>
+  </div></section>
+
+  <!-- 4 · where incubation sits: the nine-step staircase, kept -->
+  <section class="x_sec x_grey" id="trl"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Measuring readiness</span><h2 class="x_h2" data-reveal>From early proof of concept to real-world validation.</h2></div><div class="x_stack"><p class="x_lead" data-reveal>Technology Readiness Levels, or TRLs, show how far a technology has progressed from an initial idea toward proven operational use.</p><p class="x_body" data-reveal><span class="x_iO">iO</span>&nbsp;Incubation typically supports technologies between TRL 3 and TRL 6, helping teams move from experimental proof of concept toward validation in relevant conditions.</p></div></div>
+    <div class="i_marker" id="trlMarker" aria-hidden="true"><i></i></div>
+    <div class="i_stairs" id="stairs" role="img" aria-label="Technology readiness levels 1 to 9. iO Incubation typically covers TRL 3 to 6; Acceleration typically TRL 7 and above.">
+      <div class="i_step" style="--n:1"><b>1</b><span>Early research</span></div>
+      <div class="i_step" style="--n:2"><b>2</b><span>Technology concept</span></div>
+      <div class="i_step" style="--n:3" data-band="inc"><b>3</b><span>Experimental proof of concept</span></div>
+      <div class="i_step" style="--n:4" data-band="inc"><b>4</b><span>Technology validated in the laboratory</span></div>
+      <div class="i_step" style="--n:5" data-band="inc"><b>5</b><span>Technology validated in a relevant environment</span></div>
+      <div class="i_step" style="--n:6" data-band="inc"><b>6</b><span>Technology demonstrated in a relevant environment</span></div>
+      <div class="i_step" style="--n:7" data-band="acc"><b>7</b><span>Prototype demonstrated in an operational environment</span></div>
+      <div class="i_step" style="--n:8" data-band="acc"><b>8</b><span>Complete solution</span></div>
+      <div class="i_step" style="--n:9" data-band="acc"><b>9</b><span>Proven through operational use</span></div>
+    </div>
+    <div class="i_bands"><div><b><span class="x_iO">iO</span>&nbsp;Incubation · Typically TRL 3–6</b>For research, prototypes and early-stage ventures that still require focused technical, user or commercial validation.</div><div><b>Acceleration · Typically TRL 7 and above</b>For mature technologies ready for operational validation, localization and commercial engagement. <a href="/full-site/ivp-accelerator" class="c_blue">Unbreakable Harvest</a></div></div>
+    <p class="x_cap i_trlNote">These ranges are indicative. The right pathway also depends on the evidence available and the questions that still need to be answered.</p>
+  </div></section>
+
+  <!-- 5 · adoption readiness: tabs (one pattern for every grouped list on the page) -->
+  <section class="x_sec" id="arl"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Beyond the technology</span><h2 class="x_h2" data-reveal>Is the solution ready to be adopted?</h2></div><div class="x_stack"><p class="x_lead" data-reveal>Technical maturity alone does not determine whether a solution will succeed.&nbsp;<span class="x_iO">iO</span>&nbsp;also considers Adoption Readiness Level, or ARL, to understand whether a solution can create value and work in practice.</p></div></div>
+    <div class="i_grps i_n4"><div class="i_grp"><h3>Value Proposition</h3><p class="i_pLead">Does the solution offer a meaningful advantage?</p><ul class="i_rows"><li>Functional performance</li><li>Delivered cost</li><li>Ease of use</li></ul></div><div class="i_grp"><h3>Market Acceptance</h3><p class="i_pLead">Is there a clear customer need and a receptive market?</p><ul class="i_rows"><li>Strength of demand</li><li>Market opportunity</li><li>Position in the value chain</li></ul></div><div class="i_grp"><h3>Resource Maturity</h3><p class="i_pLead">Can the solution be produced, delivered and supported?</p><ul class="i_rows"><li>Infrastructure</li><li>Manufacturing and supply</li><li>Skills and workforce</li></ul></div><div class="i_grp"><h3>License to Operate</h3><p class="i_pLead">Can the solution navigate the requirements for implementation?</p><ul class="i_rows"><li>Regulation and approvals</li><li>Environmental and safety requirements</li><li>Policy and user acceptance</li></ul></div></div>
+  </div></section>
+
+  <!-- 6 · validation pathway: TRL × ARL matrix, kept -->
+  <section class="x_sec x_grey i_pathSec" id="pathway"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Validation pathway</span><h2 class="x_h2" data-reveal>TRL and ARL determine what should happen next.</h2></div><div class="x_stack"><p class="x_lead" data-reveal><span class="x_iO">iO</span>&nbsp;considers technology and adoption readiness together to determine the most appropriate validation activity.</p></div></div>
+    <div class="i_mx">
+      <div class="i_mxViz">
+        <span class="x_label i_mxAxisY"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14V3M3.5 7 8 2.5 12.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Adoption readiness · ARL</span>
+        <div class="i_mxPlot" id="mxPlot" role="img" aria-label="Readiness matrix. Low technology and low adoption readiness: research. Moderate to high technology but low adoption readiness, or low to moderate technology with moderate to high adoption readiness: proof of concept. Moderate on both: pilot. High technology, moderate adoption readiness: operational demonstration. High on both: commercial deployment.">
+          <span class="i_mxTick" style="grid-area:1/1">High</span><span class="i_mxTick" style="grid-area:2/1">Moderate</span><span class="i_mxTick" style="grid-area:3/1">Low</span>
+          <div class="i_mxCell" data-z="poc" data-c="LH" style="grid-area:1/2"><b>2</b><span>Proof of concept<em>Technical</em></span></div>
+          <div class="i_mxCell" data-z="poc" data-c="MH" style="grid-area:1/3"><b>2</b><span>Proof of concept<em>Technical</em></span></div>
+          <div class="i_mxCell" data-z="com" data-c="HH" style="grid-area:1/4"><b>5</b><span>Commercial deployment</span></div>
+          <div class="i_mxCell" data-z="poc" data-c="LM" style="grid-area:2/2"><b>2</b><span>Proof of concept<em>Technical</em></span></div>
+          <div class="i_mxCell" data-z="pil" data-c="MM" style="grid-area:2/3"><b>3</b><span>Pilot</span></div>
+          <div class="i_mxCell" data-z="opd" data-c="HM" style="grid-area:2/4"><b>4</b><span>Operational demonstration</span></div>
+          <div class="i_mxCell" data-z="res" data-c="LL" style="grid-area:3/2"><b>1</b><span>Research</span></div>
+          <div class="i_mxCell" data-z="poc" data-c="ML" style="grid-area:3/3"><b>2</b><span>Proof of concept<em>Customer need &amp; value</em></span></div>
+          <div class="i_mxCell" data-z="poc" data-c="HL" style="grid-area:3/4"><b>2</b><span>Proof of concept<em>Customer need &amp; value</em></span></div>
+          <span class="i_mxTick" style="grid-area:4/2">Low</span><span class="i_mxTick" style="grid-area:4/3">Moderate</span><span class="i_mxTick" style="grid-area:4/4">High</span>
+          <i class="i_mxDot" id="mxDot" aria-hidden="true"></i>
+        </div>
+        <span class="x_label i_mxAxisX">Technology readiness · TRL<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="i_mxKey" aria-hidden="true"><span data-k="inc">Incubation territory</span><span data-k="acc">Acceleration territory</span></div>
+      </div>
+      <div class="i_mxSide">
+        <span class="x_label">Likely next step</span>
+        <div class="f_areaTabs i_mxTabs" role="tablist" aria-label="Readiness and likely next step" id="mxTabs">
+          <button class="f_areaTab" role="tab" aria-selected="true" tabindex="0" data-cells="LL"><strong>Further research or laboratory testing<small>Technology low · Adoption low</small></strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="f_areaTab" role="tab" aria-selected="false" tabindex="-1" data-cells="ML HL"><strong>Proof of concept focused on customer need and value<small>Technology moderate to high · Adoption low</small></strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="f_areaTab" role="tab" aria-selected="false" tabindex="-1" data-cells="LM LH MH"><strong>Technical proof of concept<small>Technology low to moderate · Adoption moderate to high</small></strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="f_areaTab" role="tab" aria-selected="false" tabindex="-1" data-cells="MM"><strong>Pilot in a relevant environment<small>Technology moderate · Adoption moderate</small></strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="f_areaTab" role="tab" aria-selected="false" tabindex="-1" data-cells="HM"><strong>Operational pilot or demonstration<small>Technology high · Adoption moderate to high</small></strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="f_areaTab" role="tab" aria-selected="false" tabindex="-1" data-cells="HH"><strong>Commercial deployment or scaled rollout<small>Technology high · Adoption high</small></strong><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        </div>
+        <i class="i_mxLink" aria-hidden="true"></i>
+      </div>
+      <div class="i_mxAfter"><p class="x_lead">Projects do not all enter Incubation at the same point or follow the same route.</p><p class="x_body"><span class="x_iO">iO</span>&nbsp;identifies the most important technical or adoption question and designs the next experiment around it. The evidence then determines whether the project should continue, pivot, progress to a larger pilot or conclude.</p></div>
     </div>
   </div></section>
 
-  <section class="x_sec i_successSec"><img class="i_successMark" src="/innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true"><div class="i_successGl" id="succHelix" data-src="/innovation-venture-platforms/img/helix.js" aria-hidden="true"></div><div class="s_wrap i_success">
-    <p class="x_statement" data-scrub data-from="rgba(255,255,255,.4)">Success means at least one project becomes <b>jointly-owned IP, a commercial or scaled deployment, or further investment.</b></p>
-    <a href="#" class="s_btn s_btnPrimary s_btnSm" id="succBtn">Agri Robotics &amp; AI centre <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <!-- 7 · how incubation works: accordion, first step open (one pattern for every sequence / criteria list) -->
+  <section class="x_sec" id="how-it-works"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>The incubation journey</span><h2 class="x_h2" data-reveal>Evidence first. Investment follows.</h2></div><div class="x_stack"><p class="x_lead" data-reveal>Each incubation project follows a tailored sequence of learning cycles. The scope, timeline and support model depend on the opportunity, the evidence already available and the most consequential uncertainties.</p></div></div>
+    <div class="i_js" id="jSteps">
+      <ol class="i_jsTabs" role="tablist" aria-label="Incubation journey steps"><li><button type="button" role="tab" id="jsT0" aria-controls="jsP0" aria-selected="true" tabindex="0"><i aria-hidden="true"></i><em>01</em><span>Frame the opportunity</span></button></li><li><button type="button" role="tab" id="jsT1" aria-controls="jsP1" aria-selected="false" tabindex="-1"><i aria-hidden="true"></i><em>02</em><span>Assess the evidence</span></button></li><li><button type="button" role="tab" id="jsT2" aria-controls="jsP2" aria-selected="false" tabindex="-1"><i aria-hidden="true"></i><em>03</em><span>Prioritize the critical uncertainty</span></button></li><li><button type="button" role="tab" id="jsT3" aria-controls="jsP3" aria-selected="false" tabindex="-1"><i aria-hidden="true"></i><em>04</em><span>Design the experiment</span></button></li><li><button type="button" role="tab" id="jsT4" aria-controls="jsP4" aria-selected="false" tabindex="-1"><i aria-hidden="true"></i><em>05</em><span>Run the validation cycle</span></button></li><li><button type="button" role="tab" id="jsT5" aria-controls="jsP5" aria-selected="false" tabindex="-1"><i aria-hidden="true"></i><em>06</em><span>Review and decide</span></button></li></ol>
+      <div class="i_jsStage"><div class="i_jsPanel" role="tabpanel" id="jsP0" aria-labelledby="jsT0"><div class="i_jsMain"><span class="i_jsNum">01<i>/ 06</i></span><h3>Frame the opportunity</h3><p class="i_jsLead">Define:</p><p class="i_jsOut"><small>Output</small><span>A clearly framed opportunity and initial route-to-value hypothesis</span></p></div><div class="i_jsSide"><ul class="i_jsList"><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>The problem</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>The intended user or customer</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>The current baseline</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Existing alternatives</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>The strategic importance</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>The initial solution and value hypothesis</li></ul></div><div class="i_jsNav"><span></span><button type="button" class="i_jsNext" data-go="1">Next: Assess the evidence<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="i_jsPanel" role="tabpanel" id="jsP1" aria-labelledby="jsT1" hidden><div class="i_jsMain"><span class="i_jsNum">02<i>/ 06</i></span><h3>Assess the evidence</h3><p class="i_jsLead">Review:</p><p class="i_jsOut"><small>Output</small><span>A clear picture of what is known, unknown and assumed</span></p></div><div class="i_jsSide"><ul class="i_jsList"><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Existing technical results</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>User and customer evidence</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Prior art and competing solutions</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Intellectual-property position</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Team capability</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Market and adoption assumptions</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Regulatory and operational barriers</li></ul></div><div class="i_jsNav"><button type="button" class="i_jsPrev" data-go="0"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</button><button type="button" class="i_jsNext" data-go="2">Next: Prioritize the critical uncertainty<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="i_jsPanel" role="tabpanel" id="jsP2" aria-labelledby="jsT2" hidden><div class="i_jsMain"><span class="i_jsNum">03<i>/ 06</i></span><h3>Prioritize the critical uncertainty</h3><p class="i_jsLead">Identify the assumption most likely to determine whether the opportunity should progress. Examples include:</p><p class="i_jsOut"><small>Output</small><span>A prioritized validation question and decision gate</span></p></div><div class="i_jsSide"><ul class="i_jsList"><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Technical performance</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>User need</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Customer willingness to pay</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Unit economics</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Operational adoption</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Manufacturability</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Regulatory feasibility</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Intellectual-property freedom to operate</li></ul></div><div class="i_jsNav"><button type="button" class="i_jsPrev" data-go="1"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</button><button type="button" class="i_jsNext" data-go="3">Next: Design the experiment<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="i_jsPanel" role="tabpanel" id="jsP3" aria-labelledby="jsT3" hidden><div class="i_jsMain"><span class="i_jsNum">04<i>/ 06</i></span><h3>Design the experiment</h3><p class="i_jsLead">Develop the smallest credible experiment capable of resolving the priority uncertainty. This may involve:</p><p class="i_jsOut"><small>Output</small><span>An agreed experiment, evidence plan and success criteria</span></p></div><div class="i_jsSide"><ul class="i_jsList"><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Laboratory analysis</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Prototype iteration</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Greenhouse or field testing</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>User interviews</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Workflow testing</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Market testing</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Cost modelling</li><li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Prior-art or IP assessment</li></ul></div><div class="i_jsNav"><button type="button" class="i_jsPrev" data-go="2"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</button><button type="button" class="i_jsNext" data-go="4">Next: Run the validation cycle<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="i_jsPanel" role="tabpanel" id="jsP4" aria-labelledby="jsT4" hidden><div class="i_jsMain"><span class="i_jsNum">05<i>/ 06</i></span><h3>Run the validation cycle</h3><p class="i_jsLead">Implement the experiment with access to the required expertise, facilities, users, data and operating environments.</p><p class="i_jsOut"><small>Output</small><span>Technical, user, operational or commercial evidence</span></p></div><div class="i_jsSide"><p class="i_jsNote">Expertise · Facilities · Users · Data · Operating environments</p></div><div class="i_jsNav"><button type="button" class="i_jsPrev" data-go="3"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</button><button type="button" class="i_jsNext" data-go="5">Next: Review and decide<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div><div class="i_jsPanel" role="tabpanel" id="jsP5" aria-labelledby="jsT5" hidden><div class="i_jsMain"><span class="i_jsNum">06<i>/ 06</i></span><h3>Review and decide</h3><p class="i_jsLead">Assess the results against predefined criteria. Every cycle concludes with one of three decisions:</p><p class="i_jsOut"><small>Output</small><span>An evidence-based decision and next-step recommendation</span></p></div><div class="i_jsSide"><dl class="i_jsDec"><div data-d="go"><dt>Continue</dt><dd>The evidence supports another focused validation cycle.</dd></div><div data-d="pivot"><dt>Pivot</dt><dd>The evidence suggests that the use case, customer, product design, technical approach or value pathway should change.</dd></div><div data-d="stop"><dt>Stop</dt><dd>The evidence no longer justifies further investment, while useful data, know-how or intellectual property are documented and preserved.</dd></div></dl></div><div class="i_jsNav"><button type="button" class="i_jsPrev" data-go="4"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Previous</button><button type="button" class="i_jsNext" data-go="2">Back to 03: a new cycle<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.5-3.6M13 2.5V5h-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></div>
+    </div>
   </div></section>
-  <a class="x_next" href="/full-site/ivp-accelerator"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/acc_green.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Next platform · For Series A+</span><strong>Accelerator</strong><p>Unbreakable Harvest. Stop pitching, start piloting.</p><span class="s_btn s_btnPrimary s_btnSm">Go to Accelerator <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
+
+  <!-- 8 · what teams receive: tabs -->
+  <section class="x_sec x_grey" id="recGain"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Incubation support</span><h2 class="x_h2" data-reveal><span class="x_iO">iO</span>&nbsp;acts as a co-developer, not only a funder.</h2></div><div class="x_stack"><p class="x_lead" data-reveal>Selected projects receive a support package tailored to the opportunity and validation cycle.</p></div></div>
+    <div class="i_grps i_n3"><div class="i_grp"><h3>Opportunity and product development</h3><ul class="i_rows"><li>Problem and use-case definition</li><li>Product and value-proposition development</li></ul><details class="i_more"><summary><span class="i_sOpen">Show 3 more</span><span class="i_sClose">Show fewer</span><svg class="i_pl" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5"/></svg></summary><ul class="i_rows i_rowsCont"><li>Customer discovery</li><li>Commercial pathway assessment</li><li>Business-case development</li></ul></details></div><div class="i_grp"><h3>Scientific and technical validation</h3><ul class="i_rows"><li>Experimental design</li><li>Trial protocols</li></ul><details class="i_more"><summary><span class="i_sOpen">Show 4 more</span><span class="i_sClose">Show fewer</span><svg class="i_pl" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5"/></svg></summary><ul class="i_rows i_rowsCont"><li>Laboratory support</li><li>Greenhouse, nethouse and field access</li><li>Technical and agronomic expertise</li><li>Data review and interpretation</li></ul></details></div><div class="i_grp"><h3>Real-world access</h3><ul class="i_rows"><li>Farm and operational environments</li><li>Relevant users and customers</li></ul><details class="i_more"><summary><span class="i_sOpen">Show 3 more</span><span class="i_sClose">Show fewer</span><svg class="i_pl" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5"/></svg></summary><ul class="i_rows i_rowsCont"><li>Crop and production data</li><li>Supply-chain workflows</li><li>Industry and ecosystem stakeholders</li></ul></details></div><div class="i_grp"><h3>Commercial and strategic support</h3><ul class="i_rows"><li>Market and competitive assessment</li><li>Partnership development</li></ul><details class="i_more"><summary><span class="i_sOpen">Show 3 more</span><span class="i_sClose">Show fewer</span><svg class="i_pl" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5"/></svg></summary><ul class="i_rows i_rowsCont"><li>Internal sponsor engagement</li><li>Licensing and co-development pathways</li><li>Investor or customer introductions where appropriate</li></ul></details></div><div class="i_grp"><h3>Intellectual property and evidence</h3><ul class="i_rows"><li>Prior-art assessment</li><li>IP-position review</li></ul><details class="i_more"><summary><span class="i_sOpen">Show 3 more</span><span class="i_sClose">Show fewer</span><svg class="i_pl" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5"/></svg></summary><ul class="i_rows i_rowsCont"><li>Data and evidence planning</li><li>Identification of potentially protectable know-how</li><li>Documentation of results and learnings</li></ul></details></div><div class="i_grp"><h3>Potential project resources</h3><p class="i_pLead">Depending on the opportunity, support may include:</p><ul class="i_rows"><li>In-kind&nbsp;<span class="x_iO">iO</span>&nbsp;contributions</li><li>Access to facilities and expertise</li></ul><details class="i_more"><summary><span class="i_sOpen">Show 4 more</span><span class="i_sClose">Show fewer</span><svg class="i_pl" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5"/></svg></summary><ul class="i_rows i_rowsCont"><li>Partner contributions</li><li>Milestone-based project funding</li><li>Specialist services</li><li>Further funding recommendations</li></ul></details></div></div>
+  </div></section>
+
+  <!-- 9 · what teams commit: hairline list rows -->
+  <section class="x_sec" id="commit"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Accountable ownership</span><h2 class="x_h2" data-reveal>Strong projects need capable, committed teams.</h2></div><div class="x_stack"><p class="x_lead" data-reveal>Incubation is a collaborative development process. Project teams remain accountable for the technical work, project delivery and quality of evidence.</p></div></div>
+    <div class="i_cm"><div class="i_cmHead"><span class="x_label">Teams should be prepared to</span><b>10</b><small>commitments</small></div><ul class="i_cmGrid"><li><span class="i_cmNum">01</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Assign a capable and accountable project lead</p></li><li><span class="i_cmNum">02</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Commit the required scientific and technical contributors</p></li><li><span class="i_cmNum">03</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Participate in customer and user discovery</p></li><li><span class="i_cmNum">04</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Share relevant data, research and project information</p></li><li><span class="i_cmNum">05</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Respond to evidence, including changing the proposed approach</p></li><li><span class="i_cmNum">06</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Work against defined decision gates and deadlines</p></li><li><span class="i_cmNum">07</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Clarify ownership, background IP and new IP</p></li><li><span class="i_cmNum">08</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Support project reporting and governance</p></li><li><span class="i_cmNum">09</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Engage with relevant users, partners or sponsors</p></li><li><span class="i_cmNum">10</span><span class="i_cmChk"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Accept that incubation may recommend a pivot or stop decision</p></li></ul></div>
+  </div></section>
+
+  <!-- callout: the page's own blue band with the iO mark and the 3D helix, kept -->
+  <section class="x_sec i_successSec"><img class="i_successMark" src="/innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true"><div class="i_successGl" id="succHelix" data-src="/innovation-venture-platforms/img/helix.js" aria-hidden="true"></div><div class="s_wrap i_success">
+    <span class="c_eyebrow i_succEy">Our principle</span>
+    <p class="x_statement" data-scrub data-from="#c9c9c9">Incubation is not designed to protect the original idea. It is designed to find <b>the strongest evidence-supported pathway to value.</b></p>
+    <div class="i_succRule" aria-hidden="true"><span></span><img src="/innovation-venture-platforms/brand/io-mark.svg" alt=""></div>
+    <a href="/full-site/ivp-enquire?platform=inc" class="s_btn s_btnPrimary s_btnSm" id="succBtn">Discuss an incubation opportunity <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div></section>
+
+  <!-- 10 · selection principles: accordion, first open -->
+  <section class="x_sec" id="selection"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Selection principles</span><h2 class="x_h2" data-reveal>Where&nbsp;<span class="x_iO">iO</span>&nbsp;can make a meaningful difference.</h2></div><div class="x_stack"><p class="x_lead" data-reveal>Projects are not selected only because the technology is interesting.&nbsp;<span class="x_iO">iO</span>&nbsp;prioritizes opportunities where the problem matters, the potential value is credible and&nbsp;<span class="x_iO">iO</span>&nbsp;can provide a differentiated advantage.</p></div></div>
+    <ol class="i_sel2"><li><em>01</em><div><h3>Problem relevance</h3><p>Is the project addressing an evidenced and strategically important agrifood challenge?</p></div></li><li><em>02</em><div><h3>Clear user or customer</h3><p>Is there an identified problem owner, user, customer or operational sponsor?</p></div></li><li><em>03</em><div><h3>Strength of early evidence</h3><p>Is there sufficient technical or user evidence to justify further validation?</p></div></li><li><em>04</em><div><h3><span class="x_iO">iO</span>’s right to contribute</h3><p>Can&nbsp;<span class="x_iO">iO</span>&nbsp;provide important access to farms, facilities, data, expertise, customers, regulators or operating environments?</p></div></li><li><em>05</em><div><h3>Team capability</h3><p>Is the required scientific, technical, product and commercial capability available and accountable?</p></div></li><li><em>06</em><div><h3>Potential value</h3><p>Could the opportunity create meaningful operational, commercial, strategic or intellectual-property value more than will be invested to make it successful?</p></div></li><li><em>07</em><div><h3>Evidence gap</h3><p>Can a focused experiment resolve a defined uncertainty or unlock a specific next step?</p></div></li><li><em>08</em><div><h3>Route beyond incubation</h3><p>Is there an initial hypothesis for deployment, licensing, partnership, investment or another value pathway?</p></div></li></ol>
+  </div></section>
+
+  <!-- 11 · current portfolio: the original cohort cards, kept, presented as one example of the model -->
+  <section class="x_sec x_ink" id="portfolio"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Incubation in action</span><h2 class="x_h2" data-reveal>Projects translating research into practical opportunity.</h2></div><div class="x_stack"><span class="x_label i_portLabel">Khalifa University Research Translation Portfolio</span><p class="x_lead" data-reveal>The first incubation portfolio, developed with Khalifa University, is testing how emerging agricultural technologies can progress from university research toward practical, operational and commercial application.</p><p class="x_body" data-reveal>The portfolio currently includes technologies related to pollination, post-harvest quality, crop monitoring and plant health.</p></div></div>
+    <div class="i_pf" id="techs">
+      <ol class="i_pfList" role="tablist" aria-label="Portfolio projects"><li><button type="button" data-i="0" aria-selected="true"><em>01</em><span><b>TouchRIPE</b><small>Post-harvest</small></span><i aria-hidden="true"></i></button></li><li><button type="button" data-i="1" aria-selected="false"><em>02</em><span><b>PollenMatic</b><small>Greenhouse</small></span><i aria-hidden="true"></i></button></li><li><button type="button" data-i="2" aria-selected="false"><em>03</em><span><b>PlantAI</b><small>Crop health</small></span><i aria-hidden="true"></i></button></li><li><button type="button" data-i="3" aria-selected="false"><em>04</em><span><b>AerialYield</b><small>Yield</small></span><i aria-hidden="true"></i></button></li></ol>
+      <div class="i_pfStage"><article class="i_card i_pfCard" data-i="0" data-on><span class="i_pfNum">01 / 04</span><svg class="i_icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" data-draw><circle cx="36" cy="38" r="14"/><path d="M36 24c0-6 3-9 8-10"/><path d="M10 28c4-2 8-2 12 0l5 4M8 36h13"/></svg><span class="x_label">Post-harvest</span><h3>TouchRIPE</h3><p>A wearable device that assesses fruit firmness without damaging it, using vision-based tactile sensors. It answers market demand for objective ripeness evaluation and better shelf-life forecasting.</p><dl><div><dt>Aim</dt><dd>Less food waste, higher marketable yields</dd></div><div><dt>Market</dt><dd>Fruit quality and post-harvest management</dd></div></dl></article><article class="i_card i_pfCard" data-i="1"><span class="i_pfNum">02 / 04</span><svg class="i_icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" data-draw><circle cx="32" cy="27" r="6"/><path d="M32 15V9M32 39v15M20 27h-6M50 27h-6M23.5 18.5l-4-4M44.5 18.5l4-4M23.5 35.5l-4 4M44.5 35.5l4 4"/><path d="M32 54c-8 0-12-4-12-10"/></svg><span class="x_label">Greenhouse</span><h3>PollenMatic</h3><p>A compact, versatile device for efficient pollination in greenhouse tomato cultivation. The project refines the prototype and validates its performance in real-world conditions.</p><dl><div><dt>Target</dt><dd>TRL 6 / CRL 5</dd></div><div><dt>Aim</dt><dd>Cost-effective, user-friendly artificial pollination</dd></div></dl></article><article class="i_card i_pfCard" data-i="2"><span class="i_pfNum">03 / 04</span><svg class="i_icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" data-draw><rect x="18" y="6" width="28" height="52" rx="4"/><path d="M32 44c-8-4-8-15 0-22 8 7 8 18 0 22zM32 44V28"/></svg><span class="x_label">Crop health</span><h3>PlantAI</h3><p>An AI-powered mobile app that detects leaf diseases across key UAE crops: tomatoes, cucumbers, capsicum and berries. The project validates accuracy across diverse field environments.</p><dl><div><dt>Aim</dt><dd>Earlier detection, timely intervention</dd></div><div><dt>Next</dt><dd>Readiness for commercial deployment</dd></div></dl></article><article class="i_card i_pfCard" data-i="3"><span class="i_pfNum">04 / 04</span><svg class="i_icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" data-draw><rect x="24" y="22" width="16" height="10" rx="2"/><path d="M24 24H10M40 24h14M10 20v8M54 20v8M32 32v6"/><circle cx="26" cy="50" r="4"/><circle cx="36" cy="52" r="4"/><circle cx="32" cy="44" r="3"/></svg><span class="x_label">Yield</span><h3>AerialYield</h3><p>An autonomous system for yield estimation and fruit ripeness analysis in blueberry cultivation, advanced through real-world data collection, field trials and end-user validation.</p><dl><div><dt>Aim</dt><dd>Better yield forecasts, less labour</dd></div><div><dt>Crop</dt><dd>Blueberries</dd></div></dl></article></div>
+    </div>
+  </div></section>
+
+  <!-- 12 · what success looks like: tabs, then the success statement -->
+  <section class="x_sec" id="outcomes"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Incubation outcomes</span><h2 class="x_h2" data-reveal>Better evidence. Better decisions. Stronger pathways.</h2></div><div class="x_stack"><p class="x_lead" data-reveal>Success is not defined only by advancing a technology-readiness level or completing a planned list of deliverables.</p><p class="x_body" data-reveal><span class="x_iO">iO</span>&nbsp;measures incubation through the quality and speed of learning and the extent to which evidence unlocks a credible next step.</p></div></div>
+    <div class="i_grps i_n4"><div class="i_grp"><h3>Learning</h3><ul class="i_rows"><li>Critical assumptions tested</li><li>Validation cycles completed</li><li>Technical and commercial uncertainties resolved</li><li>Evidence-based pivots made</li><li>Resources redirected away from weak pathways</li></ul></div><div class="i_grp"><h3>Validation</h3><ul class="i_rows"><li>Performance demonstrated against a relevant baseline</li><li>User or customer need confirmed</li><li>Operational conditions understood</li><li>Unit economics or value case strengthened</li><li>Adoption barriers identified and addressed</li></ul></div><div class="i_grp"><h3>Assets created</h3><ul class="i_rows"><li>Locally relevant data</li><li>Validated protocols</li><li>Prototype improvements</li><li>Defensible know-how</li><li>Intellectual-property opportunities</li><li>Reusable technical or market insight</li></ul></div><div class="i_grp"><h3>Pathways unlocked</h3><ul class="i_rows"><li>Internal deployment</li><li>Licensing</li><li>Co-development</li><li>Procurement</li><li>Strategic partnership</li><li>Follow-on investment</li><li>Venture creation</li><li>Progression to later-stage validation</li></ul></div></div>
+    <p class="f_callout"><b>Success</b><span>Incubation succeeds when a project generates enough evidence to support a confident decision and a credible pathway forward, including when that decision is to pivot or stop.</span></p>
+  </div></section>
+
+  <!-- 13 · partner model: three hairline columns; the Silal × KU logos sit here with the explanation -->
+  <section class="x_sec x_grey" id="partners"><div class="s_wrap">
+    <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Research and industry partnerships</span><h2 class="x_h2" data-reveal>Combining research excellence with real-world access.</h2></div><div class="x_stack"><p class="x_lead" data-reveal><span class="x_iO">iO</span>&nbsp;works with research institutions, operating partners and technical specialists to translate emerging technologies into practical opportunities.</p></div></div>
+    <div class="i_grps i_n3 i_grpsTall">
+      <div class="i_grp"><h3>Research partners contribute</h3><ul class="i_rows"><li>Scientific expertise</li><li>Research teams</li><li>Background intellectual property</li><li>Laboratory and engineering capabilities</li><li>Technical development</li></ul></div>
+      <div class="i_grp"><h3><span class="x_iO">iO</span>&nbsp;contributes</h3><ul class="i_rows"><li>Problem and use-case definition</li><li>Agrifood and arid-environment expertise</li><li>Farm, greenhouse and operational access</li><li>Data and user insight</li><li>Experimental and pilot design</li><li>Product and commercialization support</li><li>Industry and ecosystem relationships</li></ul></div>
+      <div class="i_grp"><h3>Operating and commercial partners contribute</h3><ul class="i_rows"><li>Customer and user requirements</li><li>Operational environments</li><li>Adoption and implementation insight</li><li>Market access</li><li>Potential deployment, licensing or investment pathways</li></ul></div>
+    </div>
+    <div class="i_pmKu">
+      <div class="i_partner"><img src="/innovation-venture-platforms/brand/silal.png" alt="Silal"><span aria-hidden="true">×</span><img src="/innovation-venture-platforms/brand/khalifa-university.png" alt="Khalifa University"></div>
+      <div class="x_stack"><span class="x_label">Khalifa University example</span><p class="x_body" data-reveal>Khalifa University is the primary research partner for the current agricultural-technology portfolio, with project teams spanning robotics, artificial intelligence, sensing and engineering.</p></div>
+    </div>
+  </div></section>
+
+  <!-- 14 · expression of interest: the hub's blue enquiry box -->
+  <section class="x_sec" id="eoi"><div class="s_wrap">
+    <div class="x_cbox i_eoi">
+      <img class="x_cboxMark" src="/innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true">
+      <div class="x_cboxMain"><span class="x_label">Work with&nbsp;<span class="x_iO">iO</span></span><h2 data-reveal>Is your research ready for translation?</h2><p data-reveal><span class="x_iO">iO</span>&nbsp;is interested in opportunities that address an evidenced agrifood need and can benefit materially from our technical, operational, validation and commercial capabilities.</p></div>
+      <div class="i_eoiSide"><span class="x_label">Before contacting&nbsp;<span class="x_iO">iO</span>, be ready to describe</span>
+        <ul class="x_cboxList i_eoiList"><li><p>The problem</p></li><li><p>Intended user or customer</p></li><li><p>Current solution or research</p></li><li><p>Evidence generated to date</p></li><li><p>Technology and commercial readiness</p></li><li><p>Team and intellectual-property ownership</p></li><li><p>Critical uncertainties</p></li><li><p>Support required</p></li><li><p>Initial route-to-value hypothesis</p></li></ul></div>
+      <div class="x_row i_eoiCta"><a href="/full-site/ivp-enquire?platform=inc" class="s_btn s_btnPrimary s_btnSm">Submit an expression of interest <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="/full-site/ivp-enquire?platform=inc" class="s_textLink">Speak to the incubation team</a></div>
+    </div>
+  </div></section>
+  <a class="x_next" href="/full-site/ivp-accelerator"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/acc_green.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Ready for operational validation?</span><strong>Unbreakable Harvest</strong><p>If your technology has already been proven in a relevant operating environment and is ready for UAE validation, customer engagement and market entry, Unbreakable Harvest may be the better place to start.</p><span class="s_btn s_btnPrimary s_btnSm">Explore Unbreakable Harvest <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
 </div>
 
 </div></main>
@@ -5445,7 +5727,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="s_footerCols">
       <div class="s_footerNews"><h4 data-reveal>Stay close to the work</h4><p data-reveal>Research, programmes and calls for innovators, a few times a year.</p>
         <form class="s_newsletter" id="nl" aria-label="Newsletter"><input type="email" id="nlEmail" placeholder="Email address" aria-label="Email address"><button type="submit" class="s_btn s_btnPrimary s_btnSm" aria-label="Subscribe"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form></div>
-      <div><h4 data-reveal>Explore</h4><ul><li><a href="/full-site/about"><span data-reveal>About IO</span></a></li><li><a href="#"><span data-reveal>Research &amp; Science</span></a></li><li><a href="/full-site/ivp-hub"><span data-reveal>Innovation &amp; Venture Platforms</span></a></li><li><a href="#"><span data-reveal>Technology &amp; Services</span></a></li><li><a href="#"><span data-reveal>Centres of Excellence</span></a></li><li><a href="/full-site/io-academy"><span data-reveal>Talent &amp; Training</span></a></li></ul></div>
+      <div><h4 data-reveal>Explore</h4><ul><li><a href="/full-site/about"><span data-reveal>About&nbsp;<span class="x_iO">iO</span></span></a></li><li><a href="#"><span data-reveal>Research &amp; Science</span></a></li><li><a href="/full-site/ivp-hub"><span data-reveal>Innovation &amp; Venture Platforms</span></a></li><li><a href="#"><span data-reveal>Technology &amp; Services</span></a></li><li><a href="#"><span data-reveal>Centres of Excellence</span></a></li><li><a href="/full-site/io-academy"><span data-reveal>Talent &amp; Training</span></a></li></ul></div>
       <div><h4 data-reveal>Resources</h4><ul><li><a href="/full-site/news"><span data-reveal>Content Library</span></a></li><li><a href="#"><span data-reveal>FAQs</span></a></li></ul>
         <h4 style="margin-top:32px" data-reveal>Connect</h4><ul><li><a href="#"><span data-reveal>Contact</span></a></li><li><a href="/full-site/ivp-enquire"><span data-reveal>Enquire</span></a></li><li><a href="#"><span data-reveal>LinkedIn</span><svg class="s_extIcon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect width="16" height="16" rx="2" fill="#7f8284"/><path d="M5 11l6-6M6.5 5H11v4.5" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul></div>
     </div>
@@ -5688,7 +5970,7 @@ if (!renderer) return null;
   const sand = contourTex('#ddd3c5', 'rgba(140,118,92,.22)', 23); sand.repeat.set(5, 2.5);
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(140, 70), new THREE.MeshStandardMaterial({ map: sand, roughness: 1, metalness: 0 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -0.36; floor.receiveShadow = true; scene.add(floor);
 
-  // clay palette: base white, quiet grey details, IO blue for the active scene
+  // clay palette: base white, quiet grey details, iO blue for the active scene
   const C = { clay: 0xf6f5f2, soil: 0xd8ccbb, soil2: 0xc4b39c, grey: 0xd9dadb, dark: 0xb9bbbc, blue: 0x3ca7d2, ink: 0x1a6f96, glass: 0xeef6f9 };
   const mat = (c, o) => new THREE.MeshStandardMaterial(Object.assign({ color: c, roughness: 0.92, metalness: 0 }, o || {}));
   const rbox = (w, h, d, r, m) => { const g = new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2)); const me = new THREE.Mesh(g, m); me.castShadow = me.receiveShadow = true; return me; };
@@ -5895,7 +6177,7 @@ function soil(host, names) {
   return { setStage, setProgress(p) { prog = p; } };
 }
 
-/* ===== Incubation success band: the homepage IO helix (same model); its nine levels turn one after another with the scroll ===== */
+/* ===== Incubation success band: the homepage iO helix (same model); its nine levels turn one after another with the scroll ===== */
 function helix(host) {
   if (!host) return null;
   let r; try { r = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' }); } catch (e) { return null; }
@@ -6145,13 +6427,13 @@ dispatchEvent(new Event('io3d'));
     gsap.killTweensOf(inner);
     gsap.to(inner, { yPercent: -110, duration: 0.35, ease: 'power3.in', onComplete: function () { inner.textContent = text; gsap.fromTo(inner, { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: 'power3.out' }); } });
   }
-  function tabsHover(list, attr, onPick) {
+  function tabsHover(list, attr, onPick, still) {
     var bs = $$('[role="tab"]', list), idx = 0;
     function pick(k, focus) { if (k === idx && !focus) return; idx = k; bs.forEach(function (b, i) { b.setAttribute('aria-selected', i === k); b.tabIndex = i === k ? 0 : -1; }); onPick(k); if (focus) bs[k].focus(); }
     // idle: while on screen and not pointed at, the next item is picked every 5 s; the selected line fills as a timer
     var box = list.closest('section') || list, AUTO = 5000, aT = 0, inView = false, held = false;
     function stop() { clearTimeout(aT); list.removeAttribute('data-auto'); }
-    function run() { stop(); if (reduce || !inView || held) return; void list.offsetWidth; list.setAttribute('data-auto', ''); aT = setTimeout(function () { pick((idx + 1) % bs.length); run(); }, AUTO); }
+    function run() { stop(); if (reduce || still || !inView || held) return; void list.offsetWidth; list.setAttribute('data-auto', ''); aT = setTimeout(function () { pick((idx + 1) % bs.length); run(); }, AUTO); }
     box.addEventListener('mouseenter', function () { held = true; stop(); }); box.addEventListener('mouseleave', function () { held = false; run(); });
     box.addEventListener('focusin', function () { held = true; stop(); }); box.addEventListener('focusout', function () { held = false; run(); });
     if (window.IntersectionObserver) new IntersectionObserver(function (es) { inView = es[0].isIntersecting; inView ? run() : stop(); }, { threshold: 0.35 }).observe(list);
@@ -6329,6 +6611,11 @@ dispatchEvent(new Event('io3d'));
   };
 
   INIT.incubation = function (view) {
+    // scrubbed statements split into words once the web font is in (avoids splitting with the fallback font)
+    if (G && document.fonts && document.fonts.status !== 'loaded') {
+      var scs = $$('[data-scrub]', view); scs.forEach(function (el) { el.__sc = 1; });
+      document.fonts.ready.then(function () { scs.forEach(function (el) { el.__sc = 0; }); scrubs(view); ScrollTrigger.refresh(); });
+    }
     // readiness staircase grows, the marker climbs 3 → 6
     var steps = $$('.i_step', view), stairs = $('#stairs'), marker = $('#trlMarker i');
     if (G) {
@@ -6338,7 +6625,7 @@ dispatchEvent(new Event('io3d'));
         gsap.set(marker, { x: from + (to - from) * s.progress - 6 });
       } });
     }
-    // success band: the homepage helix, loaded only when the band comes near; its levels turn with the scroll
+    // callout band: the homepage helix, loaded only when the band comes near; its levels turn with the scroll
     var sBand = $('.i_successSec', view), sHost = $('#succHelix', view), sHx = null, sP = 0, sE = 0;
     function mountSucc() {
       if (sHx || !window.IO3D || !IO3D.helix || !window.__HX_GLB) return;
@@ -6348,8 +6635,7 @@ dispatchEvent(new Event('io3d'));
     var sBtn = $('#succBtn', view), sMark = $('.i_successMark', view);
     function placeSucc() {
       var sr = sBand.getBoundingClientRect(), br = sBtn.getBoundingClientRect(); if (!sr.width) return;
-      var gap = 40, x0 = br.right - sr.left + gap, h = sHost.offsetHeight, hw = h * 0.3; // the helix with its turning rungs is about 0.53 × its height wide
-      // host is 0.6 × its height wide, cropped on the right by at least a fifth
+      var gap = 40, x0 = br.right - sr.left + gap, h = sHost.offsetHeight, hw = h * 0.3;
       sHost.style.right = 'auto'; sHost.style.width = (hw * 2) + 'px'; sHost.style.left = Math.max(x0, sr.width - hw * 2 * 0.78) + 'px';
       var mh = sMark.offsetHeight, mw = mh * 255 / 188; sMark.style.right = 'auto'; sMark.style.left = Math.max(x0 - mw * 0.28, sr.width - mw * 0.86) + 'px';
     }
@@ -6362,18 +6648,21 @@ dispatchEvent(new Event('io3d'));
     else { sE = 1; }
     // technologies: the second column drifts at its own pace while the section passes
     if (G && !mobile()) gsap.fromTo($('#techs [data-lag]', view), { y: 80 }, { y: -80, ease: 'none', scrollTrigger: { trigger: '#techs', start: 'top bottom', end: 'bottom top', scrub: true } });
-    // cohort key dates: "today" and the days left come from today's date
-    var kEnd = Date.UTC(2026, 10, 30), kNow = Date.now(), kLeft = Math.max(0, Math.ceil((kEnd - kNow) / 864e5)), kd = $('#kd', view), dd = new Date(kNow);
-    $('#kdToday', view).innerHTML = 'Today, ' + dd.getUTCDate() + ' ' + ['January','February','March','April','May','June','July','August','September','October','November','December'][dd.getUTCMonth()] + '<span class="tag">Now</span>';
-    $('#kdDays', view).textContent = kLeft === 1 ? '1 day' : kLeft + ' days';
-    if (kNow >= kEnd) { $$('#kd li', view).forEach(function (li, i) { li.setAttribute('data-s', i < 3 ? 'done' : 'now'); }); $('#kdToday', view).closest('li').style.display = 'none'; $('#kdDays', view).parentNode.textContent = 'Four technologies, one year with Khalifa University. The cohort has closed.'; }
-    if (G) {
-      kd.style.setProperty('--d', 0); gsap.set($$('#kd li', view), { opacity: 0, y: 14 });
-      ScrollTrigger.create({ trigger: kd, start: 'top 80%', once: true, onEnter: function () {
-        var o = { v: 0 }; gsap.to(o, { v: 1, duration: 1.4, ease: 'power2.inOut', onUpdate: function () { kd.style.setProperty('--d', o.v); } });
-        gsap.to($$('#kd li', view), { opacity: 1, y: 0, duration: 0.8, stagger: 0.18, ease: 'power3.out', delay: 0.1 });
-      } });
+
+    // validation pathway: picking a row lights its zone on the matrix; the blue marker (the staircase's) moves to it
+    var mxPlot = $('#mxPlot', view), mxDot = $('#mxDot', view), mxTabs = $$('#mxTabs [role="tab"]', view), mxSel = 0;
+    function mxShow(k) {
+      mxSel = k; var keys = mxTabs[k].dataset.cells.split(' '), last = null;
+      $$('.i_mxCell', mxPlot).forEach(function (c) { var on = keys.indexOf(c.dataset.c) >= 0; on ? c.setAttribute('data-on', '') : c.removeAttribute('data-on'); if (on) last = c; });
+      mxPlot.setAttribute('data-sel', '');
+      if (last) mxDot.style.transform = 'translate(' + (last.offsetLeft + last.offsetWidth - 18) + 'px,' + (last.offsetTop + 18) + 'px)';
     }
+    tabsHover($('#mxTabs', view), null, mxShow, true); mxShow(0);
+    addEventListener('resize', function () { mxShow(mxSel); });
+    if (document.fonts) document.fonts.ready.then(function () { mxShow(mxSel); });
+    if (G) gsap.from($$('.i_mxCell', view), { scaleY: 0, transformOrigin: 'bottom', duration: 1.2, stagger: 0.05, ease: 'expo.out', scrollTrigger: { trigger: mxPlot, start: 'top 80%', once: true } });
+
+
   };
 
   INIT.accelerator = function (view) {
@@ -6448,7 +6737,7 @@ dispatchEvent(new Event('io3d'));
     var GS = [['Selection', 'Finding the right growth-stage innovators to tackle each challenge area.', 'Before the start'],
       ['Onboarding', 'Getting your team set up and oriented around the scope, the facilities, and the Silal business units and experts you’ll be working with.', 'Month 0 to 1'],
       ['Validation', 'Live pilots and proof-of-concept projects in real operating conditions, testing what matters with the people it matters to.', 'Month 1 to 4'],
-      ['Pathways Forward', 'Post-pilot support that leverages the Silal relationship, ecosystem network, and IO platform to convert a successful pilot into scaled commercial agreements.', 'Month 4 to 5 and beyond']];
+      ['Pathways Forward', 'Post-pilot support that leverages the Silal relationship, ecosystem network, and iO platform to convert a successful pilot into scaled commercial agreements.', 'Month 4 to 5 and beyond']];
     var gm = $('#gMonths', view); for (var m = 0; m <= 5; m++) gm.insertAdjacentHTML('beforeend', '<span style="left:' + (m * 20) + '%"><b>Month </b>' + m + '</span>');
     var gRows = $$('#gRows .a_gRow', view), gBars = gRows.map(function (r) { return r.querySelector('.a_gBar'); }), gHead = $('#gHead', view), gLbl = $('#gHeadLbl', view), gk = -1;
     function gantt(x) {
@@ -6587,7 +6876,7 @@ dispatchEvent(new Event('io3d'));
 <script>
 /* one site: menus built in script, mobile-menu "Overview" entries and the logo open their pages (site.py) */
 (function () {
-  var L = {"Home": "/full-site", "About IO": "/full-site/about", "Our Story": "/full-site/about", "Team & CEO Message": "/full-site/team", "Innovation & Venture Platforms": "/full-site/ivp-hub", "Farm Innovation Fund": "/full-site/ivp-farm-innovation-fund", "Incubation": "/full-site/ivp-incubation", "Accelerator": "/full-site/ivp-accelerator", "Agricultural Challenges": "/full-site/ivp-agricultural-challenges", "Talent & Training": "/full-site/io-academy", "IO Academy Training": "/full-site/io-academy", "Advanced Agritech Academy": "/full-site/io-academy", "Resources": "/full-site/news", "News & Media": "/full-site/news", "Content Library": "/full-site/news", "Press releases": "/full-site/news", "Press Releases": "/full-site/news", "Enquire": "/full-site/ivp-enquire", "Read the release": "/full-site/news-foodtech-challenge-winners", "FoodTech Challenge winners recognised at Innovation Oasis": "/full-site/news-foodtech-challenge-winners"}, HOME = "/full-site";
+  var L = {"Home": "/full-site", "About iO": "/full-site/about", "Our Story": "/full-site/about", "Team & CEO Message": "/full-site/team", "Our Ecosystem": "/full-site/ecosystem", "Innovation & Venture Platforms": "/full-site/ivp-hub", "Farm Innovation Fund": "/full-site/ivp-farm-innovation-fund", "Incubation": "/full-site/ivp-incubation", "Accelerator": "/full-site/ivp-accelerator", "Agricultural Challenges": "/full-site/ivp-agricultural-challenges", "Talent & Training": "/full-site/io-academy", "iO Academy Training": "/full-site/io-academy", "Advanced Agritech Academy": "/full-site/io-academy", "Resources": "/full-site/news", "News & Media": "/full-site/news", "Content Library": "/full-site/news", "Press releases": "/full-site/news", "Press Releases": "/full-site/news", "Enquire": "/full-site/ivp-enquire", "Read the release": "/full-site/news-foodtech-challenge-winners", "FoodTech Challenge winners recognised at Innovation Oasis": "/full-site/news-foodtech-challenge-winners"}, HOME = "/full-site";
   function target(a) {
     var t = (a.textContent || '').replace(/\s+/g, ' ').replace(/[\u2192\u2197]/g, '').trim();
     if (L[t]) return L[t];
@@ -6604,5 +6893,224 @@ dispatchEvent(new Event('io3d'));
   }, true);
 })();
 </script>
+<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script><style>/* rev. 11 Nov (client comments on Incubation): more white space, a cleaner journey, the principle as a quote, a project explorer, the Khalifa row spaced out */
+/* 1 · more space between sections */
+[data-view="incubation"] { --sec: clamp(96px, 8.4vw, 136px); --head: clamp(44px, 4.4vw, 68px); }
+/* the old matrix-to-journey connector ran past the section edges */
+.i_mxLink, .i_mxLink::after, .i_steps::after { display: none !important; }
+/* 2 · journey: six steps in a 3 x 2 grid, every list visible as tags, output aligned at the bottom */
+.i_jGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(40px, 4vw, 56px) var(--col-gap); counter-reset: j; }
+.i_jCard { display: flex; flex-direction: column; gap: 14px; padding-top: 22px; border-top: 1px solid var(--line); position: relative; }
+.i_jCard::before { content: ""; position: absolute; left: 0; top: -2px; width: 48px; height: 3px; background: var(--io); }
+.i_jTop { display: flex; flex-direction: column; gap: 10px; }
+.i_jNum { font-size: var(--t-num); font-weight: 300; line-height: 1; letter-spacing: -.03em; color: var(--io); font-variant-numeric: tabular-nums; }
+.i_jCard h3 { font-size: var(--t-h4); font-weight: 400; line-height: 1.3; color: var(--charcoal); }
+.i_jLead { font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); max-width: 30em; }
+.i_jChips { display: flex; flex-wrap: wrap; gap: 6px; }
+.i_jChips li { padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; font-size: var(--t-small); line-height: 1.35; color: var(--charcoal); background: #fff; }
+.i_jOut { margin-top: auto; display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px dashed rgba(89,84,83,.22); font-size: var(--fs-body); line-height: 1.55; color: var(--charcoal); }
+.i_jOut small { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); }
+.i_jDec { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.i_jDec > div { display: grid; grid-template-columns: 4.6em minmax(0, 1fr); gap: 10px; align-items: baseline; padding: 10px 12px; border-radius: 8px; background: var(--light); }
+.i_jDec dt { font-size: var(--t-small); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.i_jDec dd { margin: 0; font-size: var(--t-small); line-height: 1.5; color: var(--grey-ink); }
+.i_jDec [data-d="go"] dt { color: #00a16b; } .i_jDec [data-d="pivot"] dt { color: var(--io-ink); } .i_jDec [data-d="stop"] dt { color: var(--charcoal); }
+.i_jLoop { display: flex; align-items: center; gap: 10px; margin-top: clamp(32px, 3vw, 48px); padding-top: 18px; border-top: 1px solid var(--line); font-size: var(--fs-body); color: var(--grey-ink); }
+.i_jLoop svg { width: 16px; height: 16px; color: var(--io); flex: 0 0 auto; }
+@media (max-width: 1100px) { .i_jGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .i_jGrid { grid-template-columns: 1fr; } }
+/* 3 · the principle: a quote on light grey, in the site's quote pattern (iO rule ending in the mark) */
+.i_successSec { background: var(--light); }
+.i_successSec .i_successMark, .i_successSec .i_successGl { display: none !important; }
+.i_success { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: 24px; align-items: start; }
+.i_success .i_succEy { grid-column: 1 / -1; }
+.i_successSec .x_statement { grid-column: 1 / span 10; color: var(--charcoal); font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 300; line-height: 1.2; letter-spacing: -.02em; }
+.i_successSec .x_statement b { color: var(--io-ink); font-weight: 300; }
+.i_succRule { grid-column: 1 / -1; display: flex; align-items: flex-end; gap: 0; margin-top: 8px; }
+.i_succRule span { flex: 1; height: 1px; background: var(--io); margin-bottom: 2px; }
+.i_succRule img { height: 48px; width: auto; }
+.i_successSec .s_btn { grid-column: 1 / -1; justify-self: start; background: var(--io-ink); color: #fff !important; }
+.i_successSec .s_btn:hover { background: var(--charcoal); color: #fff !important; }
+@media (max-width: 900px) { .i_successSec .x_statement { grid-column: 1 / -1; } }
+/* 4 · portfolio: a project explorer, list on the left, the selected project on the right */
+.i_pf { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: stretch; }
+.i_pfList { grid-column: 1 / span 5; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,.2); }
+.i_pfList li { border-bottom: 1px solid rgba(255,255,255,.2); }
+.i_pfList button { position: relative; width: 100%; display: grid; grid-template-columns: 3em minmax(0, 1fr) 20px; align-items: center; gap: 12px; padding: 24px 0; border: 0; background: none; color: rgba(255,255,255,.62); font-family: var(--f-brand); text-align: left; cursor: pointer; transition: color .3s; }
+.i_pfList button::before { content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 0; background: #fff; transition: width .5s var(--ease); }
+.i_pfList button:hover, .i_pfList button[aria-selected="true"] { color: #fff; }
+.i_pfList button[aria-selected="true"]::before { width: 100%; }
+.i_pfList em { font-style: normal; font-size: var(--t-label); font-weight: 500; letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+.i_pfList span { display: flex; flex-direction: column; gap: 4px; }
+.i_pfList b { font-size: clamp(1.375rem, 2vw, 1.875rem); font-weight: 300; letter-spacing: -.02em; line-height: 1.15; }
+.i_pfList small { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+.i_pfList i { width: 20px; height: 1px; background: currentColor; opacity: 0; transition: opacity .3s, width .4s var(--ease); justify-self: end; }
+.i_pfList button[aria-selected="true"] i { opacity: 1; }
+.i_pfStage { grid-column: 7 / span 6; position: relative; display: grid; }
+.i_pfStage .i_pfCard { grid-area: 1 / 1; min-height: 0; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .45s ease, transform .6s var(--ease), visibility .45s; }
+.i_pfStage .i_pfCard[data-on] { opacity: 1; visibility: visible; transform: none; }
+.i_pfCard { border-top: 4px solid var(--io); }
+.i_pfNum { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; color: var(--grey); align-self: flex-end; margin-bottom: -40px; }
+.i_pfCard .i_icon { width: 64px; height: 64px; }
+.i_pfCard h3 { font-size: clamp(1.75rem, 2.6vw, 2.5rem); }
+@media (max-width: 900px) {
+  .i_pf { display: block; }
+  .i_pfList { display: none; }
+  .i_pfStage { display: flex; flex-direction: column; gap: var(--col-gap); }
+  .i_pfStage .i_pfCard { opacity: 1; visibility: visible; transform: none; }
+}
+/* 5 · Khalifa University example: logos and text pushed apart, the text hugs its content */
+.i_pmKu { display: flex; justify-content: space-between; align-items: center; gap: var(--blk) clamp(32px, 5vw, 96px); flex-wrap: wrap; }
+.i_pmKu .i_partner { flex: 0 0 auto; }
+.i_pmKu .x_stack { flex: 0 1 auto; width: auto; max-width: 34em; }
+</style>
+<script>
+/* project explorer: click or arrow keys pick a project */
+(function () {
+  var root = document.getElementById('techs'); if (!root) return;
+  var tabs = [].slice.call(root.querySelectorAll('.i_pfList button')), cards = [].slice.call(root.querySelectorAll('.i_pfCard'));
+  function pick(i) {
+    tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    cards.forEach(function (c, k) { if (k === i) c.setAttribute('data-on', ''); else c.removeAttribute('data-on'); });
+  }
+  tabs.forEach(function (t, k) {
+    t.addEventListener('click', function () { pick(k); });
+    t.addEventListener('mouseenter', function () { if (matchMedia('(hover: hover)').matches) pick(k); });
+    t.addEventListener('keydown', function (e) { if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return; e.preventDefault(); var j = (k + (e.key === 'ArrowDown' ? 1 : -1) + tabs.length) % tabs.length; pick(j); tabs[j].focus(); });
+  });
+})();
+</script>
+<style>/* rev. 11 Nov, round 2 (client comments on Incubation) */
+/* journey: a stepper. One step open at a time, the sequence always visible above it */
+.i_js { display: flex; flex-direction: column; gap: clamp(28px, 3vw, 44px); }
+.i_jsTabs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; }
+.i_jsTabs li { position: relative; }
+.i_jsTabs li::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: rgba(89,84,83,.16); }
+.i_jsTabs li:first-child::before { left: 8px; } .i_jsTabs li:last-child::before { right: auto; width: 8px; }
+.i_jsTabs li[data-done]::before { background: var(--io); }
+.i_jsTabs button { position: relative; width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 0 16px 0 0; border: 0; background: none; text-align: left; font-family: var(--f-brand); cursor: pointer; color: var(--grey); }
+.i_jsTabs button i { width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid rgba(89,84,83,.28); transition: background .3s, border-color .3s, box-shadow .3s; }
+.i_jsTabs li[data-done] button i { border-color: var(--io); background: var(--io); }
+.i_jsTabs button[aria-selected="true"] i { border-color: var(--io); background: #fff; box-shadow: 0 0 0 5px rgba(60,167,210,.18); }
+.i_jsTabs em { margin-top: 6px; font-style: normal; font-size: var(--t-label); font-weight: 500; letter-spacing: .12em; font-variant-numeric: tabular-nums; }
+.i_jsTabs span { font-size: var(--fs-body); line-height: 1.35; color: var(--grey-ink); transition: color .3s; }
+.i_jsTabs button:hover span { color: var(--charcoal); }
+.i_jsTabs button[aria-selected="true"] em { color: var(--io-ink); }
+.i_jsTabs button[aria-selected="true"] span { color: var(--charcoal); font-weight: 500; }
+.i_jsStage { background: var(--light); border-top: 3px solid var(--io); }
+.i_jsPanel { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); row-gap: 28px; padding: clamp(28px, 3.4vw, 52px); animation: cardIn .5s var(--ease) both; }
+.i_jsPanel[hidden] { display: none; }
+.i_jsMain { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 14px; }
+.i_jsNum { font-size: var(--t-num); font-weight: 300; line-height: 1; letter-spacing: -.03em; color: var(--io); font-variant-numeric: tabular-nums; }
+.i_jsNum i { margin-left: 8px; font-style: normal; font-size: var(--t-label); font-weight: 500; letter-spacing: .12em; color: var(--grey); vertical-align: .6em; }
+.i_jsMain h3 { font-size: var(--t-h3); font-weight: 400; line-height: 1.2; letter-spacing: -.015em; color: var(--charcoal); }
+.i_jsLead { font-size: var(--fs-body); line-height: 1.7; color: var(--grey-ink); max-width: 32em; }
+.i_jsOut { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; background: #fff; border-left: 3px solid var(--io); font-size: var(--fs-body); line-height: 1.55; color: var(--charcoal); }
+.i_jsOut small { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); }
+.i_jsSide { grid-column: 7 / span 6; align-self: start; }
+.i_jsList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--col-gap); border-top: 1px solid var(--line); }
+.i_jsList li { display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.45; color: var(--charcoal); }
+.i_jsList svg { flex: 0 0 16px; width: 16px; height: 16px; margin-top: 2px; color: var(--io); }
+.i_jsNote { padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: var(--fs-body); color: var(--charcoal); }
+.i_jsDec { display: flex; flex-direction: column; gap: 10px; margin: 0; }
+.i_jsDec > div { display: grid; grid-template-columns: 6em minmax(0, 1fr); gap: 14px; align-items: baseline; padding: 14px 16px; background: #fff; border-left: 3px solid var(--io); }
+.i_jsDec [data-d="go"] { border-left-color: #00a16b; } .i_jsDec [data-d="stop"] { border-left-color: var(--charcoal); }
+.i_jsDec dt { font-size: var(--t-small); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--charcoal); }
+.i_jsDec dd { margin: 0; font-size: var(--fs-body); line-height: 1.55; color: var(--grey-ink); }
+.i_jsNav { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid var(--line); }
+.i_jsNav button { display: inline-flex; align-items: center; gap: 10px; padding: 0; border: 0; background: none; font-family: var(--f-brand); font-size: var(--fs-body); font-weight: 500; color: var(--io-ink); cursor: pointer; }
+.i_jsNav button:hover { color: var(--charcoal); }
+.i_jsNav svg { width: 16px; height: 16px; }
+@media (max-width: 900px) {
+  .i_jsTabs { display: none; }
+  .i_jsStage { display: flex; flex-direction: column; gap: 12px; background: none; border-top: 0; }
+  .i_jsPanel, .i_jsPanel[hidden] { display: grid; background: var(--light); border-top: 3px solid var(--io); animation: none; }
+  .i_jsMain, .i_jsSide { grid-column: 1 / -1; }
+  .i_jsList { grid-template-columns: 1fr; }
+  .i_jsNav { display: none; }
+}
+/* validation pathway: a clearer "likely next step" list and a full-width closing row */
+.i_mxSide { grid-row: 1; padding-left: 0; }
+.i_mxTabs .f_areaTab { position: relative; display: grid !important; grid-template-columns: 36px minmax(0, 1fr) 16px; align-items: center; gap: 14px; padding: 14px 14px 14px 12px !important; border-left: 3px solid transparent; transition: background .3s, border-color .3s; }
+.i_mxTabs .f_areaTab[aria-selected="true"] { background: #fff; border-left-color: var(--io); }
+.i_mxTabs .f_areaTab .i_mxZ { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: .875rem; font-weight: 500; color: var(--io-ink); background: rgba(60,167,210,.12); }
+.i_mxTabs .f_areaTab .i_mxZ[data-acc] { color: var(--charcoal); background: rgba(89,84,83,.1); }
+.i_mxTabs .f_areaTab[aria-selected="true"] .i_mxZ { background: var(--io-ink); color: #fff; }
+.i_mxTabs .f_areaTab[aria-selected="true"] .i_mxZ[data-acc] { background: var(--charcoal); }
+.i_mxTabs .f_areaTab strong { font-size: 1rem !important; font-weight: 400; line-height: 1.35; color: var(--charcoal) !important; opacity: 1 !important; }
+.i_mxTabs .f_areaTab[aria-selected="true"] strong { font-weight: 500; }
+.i_mxTabs .f_areaTab small { display: none !important; }
+.i_mxChips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.i_mxChips span { display: inline-flex; gap: 5px; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); font-size: var(--t-small); line-height: 1.4; font-weight: 400; color: var(--grey-ink); background: #fff; }
+.i_mxChips span b { font-weight: 500; color: var(--charcoal); }
+.i_mxAfter { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); align-items: start; }
+.i_mxAfter .x_lead { grid-column: 1 / span 5; }
+.i_mxAfter .x_body { grid-column: 7 / span 6; max-width: none; }
+@media (max-width: 900px) { .i_mxAfter .x_lead, .i_mxAfter .x_body { grid-column: 1 / -1; } }
+/* accountable ownership: ten numbered commitments */
+.i_cm { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); row-gap: 28px; align-items: start; }
+.i_cmHead { grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 6px; padding-top: 20px; border-top: 3px solid var(--io); }
+.i_cmHead .x_label { color: var(--io-ink); }
+.i_cmHead b { margin-top: 12px; font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; line-height: .9; letter-spacing: -.04em; color: var(--io); }
+.i_cmHead small { font-size: var(--fs-body); color: var(--grey-ink); }
+.i_cmGrid { grid-column: 4 / span 9; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.i_cmGrid li { display: grid; grid-template-columns: 2.2em 24px minmax(0, 1fr); align-items: center; gap: 12px; padding: 16px 18px; background: var(--light); }
+.i_cmNum { font-size: var(--t-label); font-weight: 500; letter-spacing: .08em; color: var(--io-ink); font-variant-numeric: tabular-nums; }
+.i_cmChk { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--io); }
+.i_cmChk svg { width: 14px; height: 14px; }
+.i_cmGrid p { font-size: var(--fs-body); line-height: 1.45; color: var(--charcoal); }
+@media (max-width: 900px) { .i_cmHead, .i_cmGrid { grid-column: 1 / -1; } .i_cmGrid { grid-template-columns: 1fr; } }
+/* selection principles: heading on two lines, intro pushed to the right edge */
+#selection .x_head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--blk) clamp(32px, 5vw, 96px); flex-wrap: wrap; }
+#selection .x_head > div:first-child { flex: 0 1 auto; }
+#selection .x_head .x_stack { flex: 0 1 32em; max-width: 32em; margin-left: auto; }
+/* the principle statement scrubs from faded grey to Silal blue */
+.i_successSec .x_statement, .i_successSec .x_statement b { color: var(--io-ink); }
+</style>
+<script>
+/* journey stepper + clearer next-step list */
+(function () {
+  var root = document.getElementById('jSteps');
+  if (root) {
+    var tabs = [].slice.call(root.querySelectorAll('.i_jsTabs button')), panels = [].slice.call(root.querySelectorAll('.i_jsPanel'));
+    var pick = function (i, focus) {
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); t.tabIndex = k === i ? 0 : -1; if (k < i) t.parentNode.setAttribute('data-done', ''); else t.parentNode.removeAttribute('data-done'); });
+      panels.forEach(function (p, k) { p.hidden = k !== i; });
+      if (focus) tabs[i].focus();
+    };
+    tabs.forEach(function (t, k) {
+      t.addEventListener('click', function () { pick(k); });
+      t.addEventListener('keydown', function (e) { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; e.preventDefault(); pick((k + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length, true); });
+    });
+    [].forEach.call(root.querySelectorAll('[data-go]'), function (b) { b.addEventListener('click', function () { pick(+b.dataset.go); var r = root.getBoundingClientRect(); if (r.top < 0) window.scrollBy({ top: r.top - 120, behavior: 'smooth' }); }); });
+    pick(0);
+  }
+  // next-step rows: zone number (as in the matrix) + readiness chips
+  var zone = { LL: '1', ML: '2', HL: '2', LM: '2', LH: '2', MH: '2', MM: '3', HM: '4', HH: '5' };
+  [].forEach.call(document.querySelectorAll('#mxTabs .f_areaTab'), function (b) {
+    var first = (b.dataset.cells || '').split(' ')[0], z = zone[first] || '', st = b.querySelector('strong'), sm = st && st.querySelector('small');
+    var badge = document.createElement('span'); badge.className = 'i_mxZ'; badge.textContent = z; if (z === '4' || z === '5') badge.setAttribute('data-acc', ''); b.insertBefore(badge, b.firstChild);
+    if (sm) {
+      var chips = document.createElement('span'); chips.className = 'i_mxChips';
+      chips.innerHTML = sm.textContent.split('·').map(function (part) { part = part.trim(); var sp = part.indexOf(' '); return '<span>' + part.slice(0, sp) + ' <b>' + part.slice(sp + 1) + '</b></span>'; }).join('');
+      st.appendChild(chips);
+    }
+  });
+})();
+</script>
+<style>/* rev. 11 Nov, round 3: every section head = heading on two lines (wraps naturally) and the intro pushed to the right edge */
+[data-view="incubation"] .x_head.i_headTop { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--stack) clamp(32px, 5vw, 96px); flex-wrap: wrap; }
+[data-view="incubation"] .x_head.i_headTop > div:first-child { flex: 0 1 auto; }
+[data-view="incubation"] .x_head.i_headTop .x_h2 { max-width: 14.5em; text-wrap: balance; }
+[data-view="incubation"] .x_head.i_headTop > .x_stack { flex: 0 1 32em; max-width: 32em; margin-left: auto; }
+[data-view="incubation"] .x_head.i_headTop > .x_stack .x_lead { max-width: none; }
+/* matrix closing line on two lines */
+.i_mxAfter .x_lead { max-width: 23em; text-wrap: balance; }
+/* the expression-of-interest box sits closer to the Unbreakable Harvest link below it */
+#eoi { padding-bottom: 0 !important; }
+.x_next .x_nextIn { padding-top: clamp(48px, 4.4vw, 68px); }
+[data-view="incubation"] ~ * .x_nextText, .x_next .x_nextText { grid-column: 8 / span 5; }
+@media (max-width: 900px) { [data-view="incubation"] .x_head.i_headTop > .x_stack { flex-basis: 100%; max-width: none; margin-left: 0; } }
+</style>
 </body>
 </html>
