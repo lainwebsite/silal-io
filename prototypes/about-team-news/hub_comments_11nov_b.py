@@ -8,7 +8,7 @@
 import sys, os, re
 
 P = os.path.join(sys.argv[1], "ivp-hub.html")
-MARK = "/* hub comments 11 Nov b6 */"
+MARK = "/* hub comments 11 Nov b7 */"
 CSS = MARK + """
 body .h_panels { --h: min(clamp(440px, 63.5vh, 572px), 40vw); --hw: var(--h); }
 body .h_panel:hover, body .h_panel:focus-visible { flex: 0 0 var(--hw); }
@@ -20,6 +20,8 @@ body .hp_svc li { border-top: 1px solid var(--line); padding: 11px 0; font-size:
 @media (max-width: 640px) { body .hp_svc ul { grid-template-columns: 1fr; } }
 body .hp_route .x_lead, body .hp_route .x_body { font-size: var(--fs-lead); line-height: 1.5; }
 body .hp_ready .x_h2, body #areasWrap .x_head .x_h2 { max-width: 13em; text-wrap: balance; }
+body .gTag span { max-width: 300px; text-wrap: balance; }
+body .hp_adjMain .x_cap { max-width: 83.3%; font-size: var(--fs-body); line-height: 1.7; }
 #xJour .j_jour { max-width: none; }
 @media (min-width: 901px) {
   body .hp_caseImg { grid-column: 1 / span 6; }
