@@ -1,5 +1,5 @@
 """Hub (ivp-hub.html): owner comments of 11 Nov, second batch. Idempotent. usage: hub_comments_11nov_b.py <bundle dir>
- - platform cards back to the earlier Figma proportion (572 tall; the open card 0.69 of that, 396 wide)
+ - platform cards back to the earlier Figma proportion (572 tall; the open card as wide as it is tall: the original square hover animation)
  - partner-service list without rules
  - Localize / Build: one font size for both paragraphs
  - 'What we evaluate' and 'Our focus areas' headings on two lines
@@ -7,9 +7,9 @@
 import sys, os, re
 
 P = os.path.join(sys.argv[1], "ivp-hub.html")
-MARK = "/* hub comments 11 Nov b */"
+MARK = "/* hub comments 11 Nov b2 */"
 CSS = MARK + """
-body .h_panels { --h: min(clamp(440px, 63.5vh, 572px), 40vw); --hw: calc(var(--h) * .69); }
+body .h_panels { --h: min(clamp(440px, 63.5vh, 572px), 40vw); --hw: var(--h); }
 body .h_panel:hover, body .h_panel:focus-visible { flex: 0 0 var(--hw); }
 body .hp_svc { border-top: 0; margin-top: 36px; padding-top: 0; }
 body .hp_svc ul { border-bottom: 0; }
