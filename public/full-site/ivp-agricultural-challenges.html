@@ -5352,6 +5352,223 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
 </style>
+
+<style id="ac2">
+/* Agrifood Challenges, 12 Nov rev.: page rewritten to the client feedback doc; detailed Al Miyah material lives on its own case study page */
+.q_head1 { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--stack); align-items: start; margin-bottom: var(--head); }
+.q_head1 > div:first-child { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: var(--stack); }
+.q_head1 > :nth-child(2) { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 16px; }
+.q_head1:has(> :nth-child(2)) > div:first-child { grid-column: 1 / span 5; }
+.q_head1:has(> :nth-child(2)) > :nth-child(2) { grid-column: 9 / -1; }
+.q_head1:has(> :nth-child(2)) > :nth-child(2) :is(.x_body, .x_lead, .x_statement) { max-width: none; }
+.q_list { list-style: none; margin: 0; padding: 0; display: grid; }
+.q_list li { position: relative; padding: 14px 0 14px 22px; border-top: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.5; color: var(--grey-ink); }
+.q_list li::before { content: ""; position: absolute; left: 0; top: calc(14px + .75em); width: 10px; height: 1px; background: var(--io-ink); }
+.q_may { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); margin-top: 6px; }
+.q_group { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.q_group + .q_cards { margin-top: 0; }
+.q_cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--col-gap); }
+.q_card { background: #fff; padding: clamp(24px, 2.6vw, 40px); display: flex; flex-direction: column; gap: 14px; border-top: 2px solid var(--io-ink); }
+.q_card .x_label { color: var(--io-ink); }
+.q_card h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.15; color: var(--charcoal); }
+.q_card > p { font-size: var(--fs-body); line-height: 1.7; color: var(--grey-ink); max-width: 36em; }
+.q_after { margin-top: 24px; }
+.q_band { margin-top: clamp(40px, 5vw, 72px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 20px; align-items: center; padding: clamp(24px, 2.6vw, 40px); background: #fff; border-top: 2px solid var(--io-ink); }
+.q_band > div:first-child { grid-column: 1 / span 8; display: flex; flex-direction: column; gap: 12px; }
+.q_band > div:last-child { grid-column: 9 / span 4; justify-self: end; }
+.q_band h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.15; color: var(--charcoal); }
+.q_band p { font-size: var(--fs-body); line-height: 1.7; color: var(--grey-ink); max-width: 40em; }
+.q_mini { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.q_mini li { all: unset; display: inline-flex; align-items: center; min-height: 28px; padding: 3px 12px; border-radius: 999px; background: var(--light); font-size: var(--t-small); color: var(--charcoal); }
+#al-miyah .q_head1 > :nth-child(2) { grid-column: 6 / -1; justify-self: stretch; width: auto; align-items: flex-start; }
+#al-miyah .q_head1:has(> :nth-child(2)) > :nth-child(2) :is(.x_body) { max-width: none; }
+.x_ink .q_note, .x_ink .q_note a { color: rgba(255,255,255,.75); }
+.q_amBand { margin-top: clamp(28px, 3vw, 44px); aspect-ratio: 21 / 8; }
+.q_am3 { margin-top: clamp(36px, 4vw, 64px); display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: clamp(44px, 5vw, 72px); align-items: start; }
+.q_amCol3:last-child { grid-column: 1 / -1; }
+.q_amCol3 { border-top: 2px solid #fff; padding-top: 22px; display: flex; flex-direction: column; gap: 18px; }
+.q_amHead { display: flex; align-items: baseline; gap: 14px; }
+.q_amN { font-size: var(--t-num); font-weight: 300; line-height: 1; letter-spacing: -.03em; color: var(--io-on-dark); }
+.q_amHead h3 { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+.q_amCol3 .q_roleStmt { color: #fff; max-width: none; }
+.q_amCol3 .q_roleStmt b { color: #bfe6f6; }
+.q_amTech { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 28px; }
+.q_amTech li { display: flex; flex-direction: column; gap: 10px; padding: 14px 0 0; border-top: 1px solid rgba(255,255,255,.35); font-size: var(--fs-body); line-height: 1.6; color: rgba(255,255,255,.88); }
+.q_amTech b { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-on-dark); }
+.q_am .q_ftTxt { grid-column: 8 / -1; grid-row: 1; align-self: start; }
+.q_amSide { grid-column: 1 / span 6; grid-row: 1; display: flex; flex-direction: column; gap: clamp(28px, 3vw, 44px); }
+.q_amPh2 { aspect-ratio: 4 / 3; }
+.q_amSub { font-size: var(--fs-body) !important; font-weight: 400 !important; line-height: 1.65 !important; color: var(--grey-ink) !important; }
+.q_amTested > .x_label { display: block; color: var(--io-ink); padding-bottom: 14px; }
+.q_amTested ol { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+.q_amTested li { display: grid; grid-template-columns: 92px minmax(0,1fr); column-gap: 16px; padding: 13px 0; border-top: 1px solid var(--line); font-size: var(--fs-body); line-height: 1.55; color: var(--grey-ink); }
+.q_amTested b { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); padding-top: 3px; }
+#al-miyah .q_mini li { background: #fff; }
+.q_am + .q_amCta { margin-top: clamp(32px, 3vw, 48px); }
+.q_amObj { font-size: var(--fs-body); line-height: 1.7; color: rgba(255,255,255,.85); max-width: 40em; }
+.q_amList, .q_amTech { list-style: none; margin: 0; padding: 0; }
+.q_amList li { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.2); font-size: var(--fs-body); color: #fff; }
+.q_amCta { margin-top: clamp(32px, 3vw, 48px); }
+#proposition { padding-top: clamp(120px, 14vw, 220px); }
+.f_why { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: clamp(40px, 4.5vw, 72px); align-items: start; }
+.f_whyHead { grid-column: 1 / span 9; display: flex; flex-direction: column; gap: var(--stack); }
+.f_whyHead .x_statement { max-width: 22em; }
+.f_whyImg { grid-column: 1 / span 6; aspect-ratio: 4 / 3; }
+.f_whyBody { grid-column: 7 / -1; padding-left: clamp(24px, 3.4vw, 56px); align-self: center; display: flex; flex-direction: column; gap: 22px; }
+.f_whyBody .x_statement { margin-bottom: clamp(20px, 2.6vw, 40px); }
+.f_whyBody .x_body { max-width: none; }
+.f_whyBody .f_bridge { margin-top: 14px; padding-left: 18px; border-left: 2px solid var(--io); font-size: var(--fs-lead, 1.125rem); font-weight: 300; line-height: 1.45; color: var(--charcoal); }
+.q_sectors { margin-top: clamp(56px, 6vw, 96px); padding-top: clamp(40px, 4vw, 64px); border-top: 1px solid var(--line); }
+.q_sectors .q_head1 { margin-bottom: clamp(28px, 3vw, 44px); }
+.q_sectors .q_head1:has(> :nth-child(2)) > :nth-child(2) { grid-column: 10 / -1; text-align: left; }
+.q_sectors .q_head1 .x_body { text-wrap: balance; }
+.q_roles { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+.q_roles li { display: grid; grid-template-columns: minmax(0,3fr) minmax(0,4fr) minmax(0,5fr); column-gap: var(--col-gap); align-items: baseline; padding: 22px 0; border-top: 1px solid var(--line); }
+.q_roles strong { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.2; color: var(--charcoal); }
+.q_roles p { font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); }
+.q_roles li:last-child strong, .q_roles li:last-child .x_label { color: var(--io-ink); }
+.q_secWrap { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: stretch; }
+.q_secPh { grid-column: 1 / span 6; aspect-ratio: auto; min-height: 420px; }
+.q_secMain { grid-column: 8 / -1; display: flex; flex-direction: column; gap: clamp(28px, 3vw, 44px); }
+.q_idx { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.q_idx li { position: relative; display: grid; grid-template-columns: 44px minmax(0,1fr) 32px; align-items: center; column-gap: 16px; padding: clamp(16px, 1.9vh, 22px) 0; border-bottom: 1px solid var(--line); }
+.q_idx li::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--io-ink); transform: scaleX(0); transform-origin: left; transition: transform .9s var(--slow); }
+.q_idx li:hover::after { transform: scaleX(1); }
+.q_idx .x_label { color: var(--grey); }
+.q_idx strong { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.15; color: var(--charcoal); transition: transform .7s var(--slow), color .4s; }
+.q_idx li:hover strong { transform: translateX(10px); color: var(--io-ink); }
+.q_idx svg { width: 32px; height: 32px; color: #b3b5b6; transition: color .4s; }
+.q_idx li:hover svg { color: var(--io-ink); }
+.q_supp { padding-left: 18px; border-left: 2px solid var(--io); font-size: var(--fs-lead, 1.125rem); font-weight: 300; line-height: 1.45; color: var(--charcoal); max-width: 36em; }
+.q_ft { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: stretch; }
+.q_ftTxt { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: clamp(36px, 4vw, 56px); align-items: flex-start; align-self: center; }
+.q_ftGrp { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.q_ft > .k_slides { grid-column: 7 / -1; aspect-ratio: auto; min-height: clamp(440px, 40vw, 620px); }
+.q_note { font-size: var(--t-small); line-height: 1.5; color: var(--grey); }
+.q_ftContrib { width: 100%; display: flex; flex-direction: column; gap: 14px; padding-top: 28px; border-top: 1px solid var(--line); }
+.q_ftContrib .x_label { color: var(--io-ink); }
+.q_ftRole { margin-top: 0; padding-left: 18px; border-left: 2px solid var(--io); display: flex; flex-direction: column; gap: 8px; }
+.q_ftRole .x_label { color: var(--io-ink); }
+.q_ftRole p { font-size: var(--fs-lead, 1.125rem); font-weight: 300; line-height: 1.45; color: var(--charcoal); }
+[data-view="agricultural-challenges"] .k_side { grid-column: 9 / -1; justify-self: end; width: fit-content; max-width: 100%; }
+[data-view="agricultural-challenges"] .k_side .x_lead, [data-view="agricultural-challenges"] .k_side .x_body { max-width: none; }
+[data-view="agricultural-challenges"] .k_side .x_lead + .x_body { margin-top: calc(var(--blk) * -1 + 6px); }
+.q_amAcc { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: start; }
+.q_amAccL { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: clamp(24px, 2.4vw, 36px); position: sticky; top: calc(var(--hh) + 24px); }
+.q_amAccR { grid-column: 6 / -1; }
+.q_acc { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.q_accItem { position: relative; border-bottom: 1px solid var(--line); }
+.q_accItem::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--io-ink); transform: scaleX(0); transform-origin: left; transition: transform .9s var(--slow); }
+.q_accItem[data-open]::after { transform: scaleX(1); }
+.q_accBtn { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: grid; grid-template-columns: 48px minmax(0,1fr) 28px; align-items: center; column-gap: 16px; padding: clamp(22px, 2.6vw, 32px) 0; }
+.q_accBtn:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.q_accBtn .x_label { color: var(--grey-ink); }
+.q_accBtn strong { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.15; color: #6e7173; transition: color .4s; }
+.q_accBtn:hover strong { color: var(--charcoal); }
+.q_accBtn::after { content: "+"; justify-self: end; font-size: 1.6rem; font-weight: 300; line-height: 1; color: var(--io-ink); }
+.q_accItem[data-open] .q_accBtn strong { color: var(--charcoal); }
+.q_accItem[data-open] .q_accBtn .x_label { color: var(--io-ink); }
+.q_accItem[data-open] .q_accBtn::after { content: "–"; }
+.q_accPanel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--slow); }
+.q_accItem[data-open] .q_accPanel { grid-template-rows: 1fr; }
+.q_accPanel > div { overflow: hidden; min-height: 0; }
+.q_accBody { padding: 0 48px clamp(26px, 2.8vw, 40px) 64px; display: flex; flex-direction: column; gap: 14px; }
+.q_accLead { font-size: var(--fs-lead, 1.125rem); font-weight: 300; line-height: 1.45; color: var(--charcoal); }
+.q_accLead b { font-weight: 300; color: var(--io-ink); }
+.q_accCols { grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: var(--col-gap); }
+.q_accBody.q_amTested ol { border-bottom: 0; }
+.q_accBody.q_amTested li:first-child { border-top: 0; padding-top: 0; }
+.q_chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.q_chips li { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: var(--t-small); color: var(--charcoal); }
+/* six-stage journey (DEFINE → … → PROGRESS) */
+.q_journey { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 48px; }
+.q_journey li { position: relative; display: grid; grid-template-rows: subgrid; grid-row: span 5; row-gap: 12px; align-content: start; }
+.q_stage { font-size: var(--t-label); font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--io-ink); }
+.q_rail { position: relative; display: block; height: 11px; margin: 2px 0 6px; }
+.q_rail::before { content: ""; position: absolute; left: 0; right: calc(var(--col-gap) * -1); top: 5px; height: 1px; background: var(--io-ink); opacity: .35; }
+.q_journey li:last-child .q_rail::before { right: 0; }
+.q_rail::after { content: ""; position: absolute; left: 0; top: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--io-ink); }
+.q_journey li:not(:last-child) .q_rail i { position: absolute; right: calc(var(--col-gap) * -1); top: 2px; width: 7px; height: 7px; border-top: 1px solid var(--io-ink); border-right: 1px solid var(--io-ink); transform: rotate(45deg); opacity: .6; }
+.q_journey h3 { font-size: var(--t-h4); font-weight: 400; line-height: 1.25; color: var(--charcoal); }
+.q_journey h3 b { display: block; font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; color: var(--grey); margin-bottom: 6px; }
+.q_journey p { font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); }
+.q_out { align-self: start; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); font-size: var(--t-small); line-height: 1.5; color: var(--charcoal); }
+.q_out b { display: block; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; font-size: var(--t-label); color: var(--io-ink); margin-bottom: 4px; }
+/* definition lists (Al Miyah summary, FoodTech panel, XPRIZE card) */
+.q_feat { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: start; }
+.q_featPh { grid-column: 1 / span 5; aspect-ratio: 4 / 5; position: sticky; top: calc(var(--hh) + 24px); }
+.q_featMain { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: var(--blk); }
+.q_dl { margin: 0; border-top: 1px solid var(--line); }
+.q_dl > div { display: grid; grid-template-columns: minmax(0,150px) minmax(0,1fr); column-gap: 16px; row-gap: 6px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.q_dl dt { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); padding-top: 3px; }
+.q_dl dd { margin: 0; font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); }
+.q_dl dd a { color: var(--io-ink); text-decoration: underline; text-underline-offset: 3px; }
+.q_cols { grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: var(--col-gap); }
+.q_xp { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: start; padding: clamp(28px, 3.5vw, 56px); background: var(--light); border-top: 2px solid var(--io-ink); }
+.q_xp > div:first-child { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: 16px; }
+.q_xp > .q_dl { grid-column: 8 / span 5; }
+.q_xp h3 { font-size: var(--fs-h2); font-weight: 300; line-height: 1.1; letter-spacing: -.025em; color: var(--charcoal); text-wrap: balance; }
+.q_xp p { font-size: var(--fs-body); line-height: 1.75; color: var(--grey-ink); max-width: 36em; }
+/* technology cards (case study) */
+.q_tech { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--col-gap); }
+.q_tc { border-top: 2px solid var(--io-ink); background: var(--light); padding: clamp(20px, 2.2vw, 32px); display: flex; flex-direction: column; gap: 14px; }
+.q_tc h3 { font-size: var(--t-h4); font-weight: 400; color: var(--charcoal); line-height: 1.25; }
+.q_tc h3 small { display: block; font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); margin-bottom: 6px; }
+.q_tc > p { font-size: var(--fs-body); line-height: 1.65; color: var(--grey-ink); }
+.q_tc dl { margin: 0; border-top: 1px solid var(--line); }
+.q_tc dl div { padding: 10px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
+.q_tc dt { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.q_tc dd { margin: 0; font-size: var(--t-small); line-height: 1.5; color: var(--charcoal); }
+.q_tc dd[data-tbc] { color: var(--grey); font-style: italic; }
+.q_swap { margin-top: 8px; font-size: var(--t-small); color: var(--grey); line-height: 1.5; }
+.q_roleStmt { font-size: var(--fs-statement); font-weight: 300; line-height: 1.3; letter-spacing: -.025em; color: var(--charcoal); text-wrap: balance; max-width: 30em; }
+.q_roleStmt b { font-weight: 300; color: var(--io-ink); }
+.q_cbtns { grid-column: 1 / span 6; display: flex; flex-wrap: wrap; gap: 12px; }
+.x_cbox .q_cbtns .s_btn.s_btnGhostLight { background: transparent; color: #fff !important; border-color: rgba(255,255,255,.5); }
+.x_cbox .q_cbtns .s_btn.s_btnGhostLight:hover { background: #fff; color: var(--io-ink) !important; border-color: #fff; }
+.q_cboxSide { grid-column: 8 / span 5; grid-row: 1 / span 2; display: flex; flex-direction: column; gap: 12px; position: relative; }
+.q_cboxSide .x_label { color: rgba(255,255,255,.75); }
+#work-with-io .x_cboxList { grid-column: auto; }
+#work-with-io .x_cboxList li { padding: 13px 0; font-size: var(--fs-body); }
+@media (max-width: 1100px) {
+  .q_amTech { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .q_journey { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .q_journey li:not(:last-child) .q_rail i { display: none; }
+  .q_journey li:nth-child(3) .q_rail::before { right: 0; }
+  .q_tech { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .q_cols { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 900px) {
+  .f_whyHead, .f_whyImg, .f_whyBody { grid-column: 1 / -1; }
+  .f_whyBody { padding-left: 0; }
+  #al-miyah .q_head1 > :nth-child(2) { grid-column: 1 / -1; }
+  .q_am3 { grid-template-columns: minmax(0,1fr); }
+  .q_amTech { grid-template-columns: minmax(0,1fr); }
+  .q_amBand { aspect-ratio: 4 / 3; }
+  .q_sectors .q_head1:has(> :nth-child(2)) > :nth-child(2) { grid-column: 1 / -1; }
+  .q_am .q_ftTxt, .q_am .q_amSide { grid-row: auto; }
+  .q_amAccL, .q_amAccR { grid-column: 1 / -1; position: static; padding-top: 0; }
+  .q_accBody { padding-left: 0; padding-right: 0; }
+  .q_accCols { grid-template-columns: minmax(0,1fr); }
+  .q_secPh, .q_secMain { grid-column: 1 / -1; }
+  .q_secPh { min-height: 0; aspect-ratio: 4 / 3; }
+  .q_head1:has(> :nth-child(2)) > div:first-child, .q_head1:has(> :nth-child(2)) > :nth-child(2) { grid-column: 1 / -1; }
+  .q_head1 > div:first-child, .q_head1 > :nth-child(2), .q_band > div:first-child, .q_band > div:last-child, .q_sectors > div:first-child, .q_sectors > div:last-child, .q_featPh, .q_featMain,
+  .q_ftTxt, .q_ft > .k_slides, .q_amSide, .q_am .q_ftTxt, .q_am .q_amSide, .q_xp > div:first-child, .q_xp > .q_dl, .q_cbtns, .q_cboxSide { grid-column: 1 / -1; }
+  .q_band > div:last-child { justify-self: start; }
+  .q_cards { grid-template-columns: minmax(0,1fr); }
+  .q_featPh { position: static; aspect-ratio: 4 / 3; }
+  .q_cboxSide { grid-row: auto; }
+}
+@media (max-width: 640px) {
+  .q_journey { grid-template-columns: minmax(0,1fr); row-gap: 28px; }
+  .q_journey li { padding-top: 20px; border-top: 1px solid var(--line); }
+  .q_rail { display: none; }
+  .q_tech, .q_cols { grid-template-columns: minmax(0,1fr); }
+  .q_roles li { grid-template-columns: minmax(0,1fr); row-gap: 6px; }
+  .q_dl > div { grid-template-columns: minmax(0,1fr); }
+}
+</style>
 <script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
 
 <div class="s_root" data-wide data-blue="false">
@@ -5381,152 +5598,165 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   </div>
 </header>
 <main><div class="c_page">
-<!-- =========================================================== AGRICULTURAL CHALLENGES · sub page (unique) =========================================================== -->
+<!-- =========================================================== AGRIFOOD CHALLENGES · sub page (rewritten 12 Nov to the client feedback doc "Agrifood Challenges Page").
+     Section numbers follow the doc; the doc skips 5 and 9 (to confirm with the client). =========================================================== -->
 <div data-view="agricultural-challenges">
+
+  <!-- 1. Hero -->
   <section class="s_wrap k_top">
     <div class="k_topBar"><nav class="x_crumb" aria-label="Breadcrumb"><a href="/full-site/ivp-hub">Innovation &amp; Venture Platforms</a><i></i><span>Agricultural Challenges</span></nav></div>
-    <div class="k_title"><h1 data-reveal>Agricultural Challenges <span>Proven on Silal ground.</span></h1></div>
+    <div class="k_title"><span class="c_eyebrow" data-reveal>Agrifood Challenges</span><h1 data-reveal style="margin-top:24px">Identify solutions to agri-food’s<br>most pressing challenges.</h1></div>
     <div class="k_side">
-      <p class="x_lead" data-reveal>Open calls run with partners. Innovation Oasis tests the shortlisted solutions under UAE conditions, so the jury decides on evidence.</p>
-      <a href="#program-management" class="s_btn s_btnPrimary s_btnSm">Run your challenge with us <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <p class="x_lead" data-reveal>IO works with government and industry partners to design challenge-led innovation programs, source relevant technologies and generate the evidence needed to identify the strongest solutions.</p>
+      <p class="x_body" data-reveal>Engage IO for complete program delivery or for specialist support in scouting, expert evaluation, pilot design and real-world validation.</p>
+      <div class="x_row"><a href="#work-with-io" class="s_btn s_btnPrimary s_btnSm">Discuss a challenge <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#method" class="s_btn s_btnGhost s_btnSm">Explore our approach</a></div>
     </div>
   </section>
   <div class="x_img k_pano" data-band data-img><img src="/innovation-venture-platforms/img/chal_pitch.webp" alt="A finalist presenting to the jury at a challenge final"></div>
 
-  <section class="x_sec"><div class="s_wrap k_case">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Featured challenge · winners December 2026</span><h2 class="x_h2" data-reveal>Al Miyah Challenge for Agriculture</h2></div><p class="x_body" data-reveal>Agriculture uses nearly 70% of all water consumed globally. The challenge rewards solutions that cut water use while maintaining or improving yield.</p></div>
-    <div class="k_facts"><div><strong>AED 8M</strong><span>prize pool, about AED 4 million for first place</span></div><div><strong data-count="846">846</strong><span>teams from 54 countries registered</span></div><div><strong class="k_factLogo"><img src="/innovation-venture-platforms/brand/silal.png" alt="Silal"></strong><span>technical partner: hosts and runs the testing at Innovation Oasis, Al Ain</span></div></div>
-    <div class="k_doors">
-      <a class="k_door" href="#fieldPilots"><div class="x_img"><img src="/innovation-venture-platforms/img/chal_seed.webp" alt="" loading="lazy"></div><span class="x_label">Problem statement A</span><div><h3>Sustainable irrigation</h3><p>Solutions for improving sustainable irrigation practices and reducing overall water consumption in agriculture.</p><span class="s_btn s_btnPrimary s_btnSm">See the five field pilots <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
-      <a class="k_door" href="#cretaSec"><div class="x_img"><img src="/innovation-venture-platforms/img/area_protected.webp" alt="" loading="lazy"></div><span class="x_label">Problem statement B</span><div><h3>Controlled environment agriculture</h3><p>Solutions for optimizing controlled environment agriculture designs for greenhouses and net houses, including water use for cooling.</p><span class="s_btn s_btnPrimary s_btnSm">See the case study <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
-    </div>
-    <p class="x_cap k_src">Problem statements as published by the Mohamed bin Zayed Water Initiative for the Al Miyah Challenge for Agriculture.</p>
-  </div></section>
-
-  <section class="x_sec x_grey k_funSec"><div class="k_fPin" id="funPin"><div class="k_fStick"><div class="s_wrap" style="width:100%">
-    <div class="k_funnel">
-      <div class="k_funnelViz" id="funnelViz">
-        <div class="k_funDial"><svg viewBox="0 0 600 600" role="img" aria-label="846 teams registered; 21 qualified; field testing at Innovation Oasis; 6 finalists selected from testing; winners announced December 2026. At each count the dark wedge is the share that went on to the next count.">
-          <circle cx="300" cy="300" r="262" fill="none" stroke="rgba(26,111,150,.18)"/>
-          <path class="k_fArc" id="funArc" fill="none" stroke="#1a6f96" stroke-width="2.4" stroke-linecap="round"/>
-          <circle cx="300" cy="300" r="240" fill="#fff"/>
-          <g id="funSegs"></g>
-          <circle cx="300" cy="300" r="104" fill="#fff"/>
-          <g class="k_hub"><path d="M300 192a108 108 0 1 1 -108 108" fill="none" stroke="#1a6f96" stroke-width="1.4"/><circle cx="300" cy="192" r="3.5" fill="#1a6f96"/></g>
-        </svg>
-        <div class="k_funCenter"><strong class="k_funNum" id="funNum"><span>846</span></strong><p class="k_funLab" id="funLab"><span>teams registered</span></p></div></div>
-        <ol class="k_funSteps" id="funSteps"><li data-on><b>846</b>registered</li><li><b>21</b>qualified</li><li>field testing</li><li><b>6</b>finalists</li><li>winners</li></ol>
-        <div class="k_funKey"><span><i style="background:#1a6f96"></i>Went on to the next count</span><span><i style="background:#dfeef5;box-shadow:inset 0 0 0 1px rgba(26,111,150,.2)"></i>Did not</span></div>
-      </div>
-      <div class="k_funnelText">
-        <span class="c_eyebrow" data-reveal>From open call to winners</span>
-        <h2 class="x_h2" data-reveal>Each stage narrows the field on evidence.</h2>
-        <div class="k_funnelNums"><div><strong data-count="54">54</strong><span>countries represented</span></div><div><strong data-count="13">13</strong><span>countries among qualifiers</span></div><div><strong>AED 8M</strong><span>total prize pool</span></div><div><strong data-count="12">12</strong><span>months of testing in the UAE</span></div></div>
-        <p class="x_cap" style="margin:0">Finalists are selected from the field testing, not after it. At each count the dark wedge is the share that went on to the next count. The six finalists: two from the UAE and one each from Egypt, Brazil, Argentina and India.</p>
-      </div>
-    </div></div></div></div>
-    <div class="s_wrap k_funnelAfter">
-    <ol class="k_road" id="road" style="--now:0%" data-inview>
-      <span class="k_roadLine" aria-hidden="true"><i></i></span><span class="k_now" aria-hidden="true">Now</span>
-      <li data-done data-t="2025-04-01"><time>Apr – Jun 2025</time><h3>Open call</h3><p>846 teams from 54 countries registered before the 30 June 2025 deadline.</p></li>
-      <li data-done data-t="2025-09-01"><time>Sep 2025</time><h3>Qualifying</h3><p>21 teams from 13 countries; pitches and site visits in the UAE and abroad.</p></li>
-      <li data-done data-silal data-test data-t="2025-11-01"><time>From Nov 2025</time><h3>Field testing</h3><p>Indoor and outdoor trials begin at Innovation Oasis, Al Ain, for up to 12 months.</p></li>
-      <li data-done data-test data-t="2026-04-01"><time>Apr 2026</time><h3>Finalists</h3><p>Six selected from the testing: two from the UAE and one each from Egypt, Brazil, Argentina and India.</p></li>
-      <li data-t="2026-12-01"><time>Dec 2026</time><h3>Winners</h3><p>Winner and runners-up announced. First place includes further testing and deployment in the UAE.</p></li>
-    </ol>
-    <p class="x_cap k_roadKey"><i aria-hidden="true"></i>Field testing at Innovation Oasis. Finalists are selected from it, and their trials continue there.</p>
-  </div></section>
-
-  <section class="x_sec" id="fieldPilots"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Problem statement A</span><h2 class="x_h2" data-reveal>Five field pilots, one protocol.</h2></div><p class="x_body" data-reveal>The same crops, sites and irrigation baselines, so water savings and yield are compared like for like.</p></div>
-    <div class="k_tableWrap"><table class="k_pilots" id="pilots">
-      <thead><tr><th scope="col" style="padding-left:12px">Pilot</th><th scope="col">Startup</th><th scope="col">Solution under test</th></tr></thead>
-      <tbody>
-        <tr><td>Pilot 1</td><td>Startup A</td><td>A material placed beneath the root zone absorbs irrigation water and releases it back to roots, cutting evaporation and deep-drainage losses.</td></tr>
-        <tr><td>Pilot 2</td><td>Startup B</td><td>A biodegradable superabsorbent polymer is mixed into the soil to hold water and nutrients between irrigations.</td></tr>
-        <tr><td>Pilot 3</td><td>Startup C</td><td>Microbes help soil retain water and release it gradually, supporting crops under drought and salinity.</td></tr>
-        <tr><td>Pilot 4</td><td>Startup D</td><td>A natural bio-stimulant supports plant water-use efficiency.</td></tr>
-        <tr><td>Pilot 5</td><td>Startup E</td><td>A foliar biostimulant strengthens plant resilience to heat and salinity, supporting stable yields with less irrigation water.</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-  <div class="k_bPin" id="b1Pin"><div class="k_bStick"><div class="s_wrap k_bGrid"><div class="k_bViz"><div class="k_bStage" id="b1Gl" aria-hidden="true"></div><p class="k_bNote">Each startup is tested in its own plot. Shown together here to compare where each solution works. Startup names are withheld until disclosure is confirmed.</p></div><ol class="k_bList" id="b1List"></ol></div></div></div>
-  </section>
-
-  <!-- Case study (rev. 9 Nov: swap-friendly; unconfirmed figures removed). To feature another case, replace eyebrow, title, visual, photo, text and link. -->
-<section class="x_sec x_grey" id="cretaSec"><div class="s_wrap k_creta">
-    <div class="k_cretaHead x_stack"><span class="c_eyebrow" data-reveal>Case study · Problem statement B · CRETA Group, UAE</span><h2 class="x_h2" data-reveal>A greenhouse cooled by the ground.</h2></div>
-    <figure class="k_cretaViz" id="creta">
-      <div class="x_gl" id="cretaGl" aria-hidden="true"></div>
-      <svg viewBox="0 0 680 420" role="img" aria-label="Schematic: hot desert air is drawn through underground channels, pre-conditioned by stable soil temperatures, and enters a dual-shell greenhouse that uses no water for cooling">
-        <defs>
-          <linearGradient id="kAir" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f08104"/><stop offset=".55" stop-color="#7fb7cf"/><stop offset="1" stop-color="#1a6f96"/></linearGradient>
-          <pattern id="kSoil" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".9" fill="#c9b9a3"/><circle cx="7" cy="8" r=".7" fill="#d7c9b6"/></pattern>
-        </defs>
-        <rect x="0" y="0" width="680" height="230" fill="#fff"/>
-        <rect x="0" y="230" width="680" height="190" fill="#efe7dc"/><rect x="0" y="230" width="680" height="190" fill="url(#kSoil)"/>
-        <path d="M0 230h680" stroke="#c9b9a3"/>
-        <g class="k_sun"><circle cx="70" cy="62" r="18" fill="none" stroke="#f08104" stroke-width="1.2"/><path d="M70 30v-10M70 104v-10M38 62H28M112 62h-10M47 39l-7-7M100 92l-7-7M47 85l-7 7M100 32l-7 7" stroke="#f08104" stroke-width="1.2" stroke-linecap="round"/></g>
-        <path class="k_draw" d="M300 230V128l100-56 100 56v102" fill="none" stroke="#595453" stroke-width="1.5"/>
-        <path class="k_draw" d="M320 230V140l80-45 80 45v90" fill="none" stroke="#3ca7d2" stroke-width="1.5" stroke-dasharray="5 4"/>
-        <path d="M110 170v140h300v-90" fill="none" stroke="url(#kAir)" stroke-width="16" stroke-opacity=".22" stroke-linejoin="round"/>
-        <path class="k_flow" d="M110 170v140h300v-90" fill="none" stroke="url(#kAir)" stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M104 182l6-12 6 12M404 232l6-12 6 12" fill="none" stroke="#595453" stroke-width="1.4"/>
-        <g font-family="Readex Pro, Arial, sans-serif" font-size="13" fill="#595453">
-          <text x="110" y="150" text-anchor="middle">Hot desert air in</text>
-          <text x="260" y="342" text-anchor="middle">Underground channels: stable soil temperature</text>
-          <text x="260" y="360" text-anchor="middle">pre-conditions the air</text>
-          <text x="400" y="182" text-anchor="middle" fill="#1a6f96">Growing space</text>
-          <text x="530" y="98">Dual-shell</text><text x="530" y="116">“Mother Greenhouse”</text>
-          <text x="530" y="270">No water spent</text><text x="530" y="288">on cooling</text>
-        </g>
-        <path d="M526 108h-50" stroke="#7f8284"/>
-      </svg>
-      <figcaption class="x_cap"><b>Schematic</b>Simplified, not to scale. Based on the finalist’s published concept.</figcaption>
-    </figure>
-    <div class="k_cretaText">
-      <p class="x_body" data-reveal>Hot desert air is drawn through underground channels, where stable soil temperatures pre-condition it before it enters the growing space. The dual-shell structure reduces the heat load with minimal energy demand.</p>
-      <figure class="k_cretaPh"><div class="x_img" data-img><img src="/photos/General%20MarCom%20Photos%20(1)/DSC04723%20(1).jpg" alt="Crop rows inside a greenhouse at Innovation Oasis, Al Ain" loading="lazy"></div><figcaption class="x_cap"><b>Photo</b>A greenhouse at Innovation Oasis, Al Ain. To be replaced with the CRETA greenhouse.</figcaption></figure>
-      <p class="x_body" data-reveal>Silal builds and commissions it at Innovation Oasis, runs a full crop cycle benchmarked against a conventional evaporative-cooled greenhouse, and shares the operating data with ADAFSA.</p>
-      <div class="k_cretaCta"><a href="/full-site/news-agricultural-challenges-call" class="s_btn s_btnPrimary s_btnSm">Read the case study <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <!-- 2. The proposition: client copy exactly (doc section 2); layout = the "Why the fund" pattern of the Farm Innovation Fund page -->
+  <section class="x_sec" id="proposition"><div class="s_wrap f_why">
+    <div class="x_img x_corners f_whyImg" data-img><img src="/innovation-venture-platforms/img/chal_line.webp" alt="Finalists and partners lined up on stage at the FoodTech Challenge" loading="lazy"></div>
+    <div class="f_whyBody">
+      <span class="c_eyebrow">Why work with IO</span>
+      <h2 class="x_statement" data-scrub>Challenges designed for <b>implementation</b></h2>
+      <p class="x_body" data-reveal>Many innovation challenges generate attention and applications, but stop at a pitch, prize or shortlist.</p>
+      <p class="x_body f_bridge" data-reveal>IO helps partners go further by connecting challenge design with agrifood expertise, technology sourcing, structured evaluation and real-world validation.</p>
     </div>
   </div></section>
 
-  <section class="x_sec"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>What the testing phase measures</span><h2 class="x_h2" data-reveal>Less water, same or better yield, ready to scale.</h2></div></div>
-    <div class="k_meas" id="kMeas">
-      <div class="x_img x_corners k_measPh" id="measImgs" data-img><img src="/innovation-venture-platforms/img/inc_pots.webp" alt="Young plants in instrumented pots at Innovation Oasis" class="on" loading="lazy"><img src="/innovation-venture-platforms/img/fif_greenh.webp" alt="Greenhouses in the desert at Innovation Oasis" loading="lazy"></div>
-      <div class="k_measR">
-    <ul class="k_measure">
-        <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" data-draw><path d="M24 6c8 11 13 18 13 25a13 13 0 0 1-26 0c0-7 5-14 13-25z"/><path d="M17 31a7 7 0 0 0 7 7"/></svg><h3>Water use</h3><p>Irrigation volume per crop cycle and per kilogram of produce, against an untreated control.</p></li>
-        <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" data-draw><path d="M24 42V20M24 26c-8 0-12-6-12-12 8 0 12 5 12 12zM24 22c0-7 4-12 12-12 0 7-4 12-12 12z"/><path d="M10 42h28"/></svg><h3>Yield and quality</h3><p>Harvested weight, marketable grade and crop health under heat and salinity.</p></li>
-        <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" data-draw><circle cx="24" cy="26" r="15"/><path d="M24 26l7-7M24 8V5M18 5h12"/></svg><h3>Operating performance</h3><p>Energy demand, labour and input cost; for the greenhouse, conditions through the summer peak.</p></li>
-        <li><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" data-draw><path d="M6 40h36M10 40V30h7v10M21 40V22h7v18M32 40V12h7v28"/></svg><h3>Scalability</h3><p>Cost per hectare, ease of adoption on UAE farms and transfer to similar climates.</p></li>
-      </ul>
+  <!-- 3. Ways to work with IO: four cards (design guidance), then technology teams, then adjacent sectors -->
+  <section class="x_sec x_grey" id="ways"><div class="s_wrap">
+    <div class="q_head1"><div><span class="c_eyebrow" data-reveal>Flexible engagement</span><h2 class="x_h2" data-reveal>The complete program or the expertise you need</h2></div></div>
+    <div class="q_group"><span class="x_label">For Challenge Owners</span></div>
+    <div class="q_cards" data-stagger><article class="q_card"><span class="x_label">01</span><h3 data-reveal>End-to-End Challenge Delivery</h3><p>IO can design and manage the full journey from challenge definition through sourcing, evaluation, validation and recommendations for next steps.</p><span class="q_may">May include</span><ul class="q_list"><li>Challenge discovery and stakeholder engagement</li><li>Program and open-call design</li><li>Eligibility and evaluation criteria</li><li>Outreach and technology sourcing</li><li>Application management</li><li>Expert evaluation</li><li>Finalist selection</li><li>Pilot and validation delivery</li><li>Results analysis</li><li>Commercialization or implementation planning</li></ul></article><article class="q_card"><span class="x_label">02</span><h3 data-reveal>Technology Scouting and Evaluation</h3><p>IO can identify and assess relevant startups, technologies, research teams and solution providers from the UAE and global innovation ecosystem.</p><span class="q_may">May include</span><ul class="q_list"><li>Technology landscaping</li><li>Targeted scouting</li><li>Applicant screening</li><li>Scientific and technical review</li><li>Commercial and adoption assessment</li><li>Independent expert panels</li><li>Finalist recommendations</li></ul></article><article class="q_card"><span class="x_label">03</span><h3 data-reveal>Real-World Validation</h3><p>IO can design and execute testing to determine how promising technologies perform under relevant agricultural and operating conditions.</p><span class="q_may">May include</span><ul class="q_list"><li>Validation strategy</li><li>Experimental protocols</li><li>Laboratory analysis</li><li>Greenhouse, nethouse or field testing</li><li>On-farm pilots</li><li>Performance measurement</li><li>Operational and user feedback</li><li>Evidence for winner selection or adoption</li></ul></article><article class="q_card"><span class="x_label">04</span><h3 data-reveal>Specialist Partnership</h3><p>IO may also participate in a defined role, including:</p><span class="q_may">Roles</span><ul class="q_list"><li>Program sponsor</li><li>Industry partner</li><li>Agrifood knowledge partner</li><li>Expert evaluator</li><li>Jury or selection-panel participant</li><li>Validation partner</li><li>Pilot-delivery partner</li></ul></article></div>
+    <p class="q_after"><a class="s_textLink" href="#">Explore Program Management as a Service <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+
+    <div class="q_band">
+      <div><span class="x_label">For Technology Teams</span><h3 data-reveal>Competition and Demonstration Support</h3><p>Provide the testing environment, infrastructure and operational expertise needed to generate real-world proof against competition requirements.</p></div>
+      <div><a class="s_btn s_btnPrimary s_btnSm" href="#">Explore Paid Trials <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+
+    <div class="q_sectors">
+      <div class="q_head1"><div><span class="c_eyebrow" data-reveal>Adjacent sectors</span><h3 class="x_h2" data-reveal>Technologies from connected industries</h3></div>
+        <div><p class="x_body" data-reveal>IO also supports technologies from connected industries where there is a clear agricultural or food-system application, including:</p></div></div>
+      <div class="q_secWrap">
+        <figure class="x_img x_corners q_secPh" data-img><img src="/photos/Professional%20Facility%20Photos%20(1)/PA__1464.jpg" alt="A scientist working at a phenotyping chamber at Innovation Oasis" style="object-position:62% 50%" loading="lazy"></figure>
+        <div class="q_secMain">
+          <ol class="q_idx" data-stagger><li><span class="x_label">01</span><strong>Water treatment and reuse</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6c8 11 13 18 13 25a13 13 0 0 1-26 0c0-7 5-14 13-25z"/><path d="M17 31a7 7 0 0 0 7 7"/></svg></li><li><span class="x_label">02</span><strong>Energy and climate control</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M27 5 13 27h10l-2 16 14-22H25z"/></svg></li><li><span class="x_label">03</span><strong>Advanced materials</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6 39 15v18L24 42 9 33V15z"/><path d="M9 15l15 9 15-9M24 24v18"/></svg></li><li><span class="x_label">04</span><strong>Environmental monitoring</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="2"/><path d="M24 7v6M24 35v6M7 24h6M35 24h6"/></svg></li><li><span class="x_label">05</span><strong>Artificial intelligence and data</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><circle cx="36" cy="12" r="4"/><circle cx="24" cy="36" r="4"/><circle cx="24" cy="22" r="3"/><path d="M15 15l7 5M33 15l-7 5M24 25v7"/></svg></li><li><span class="x_label">06</span><strong>Logistics and infrastructure</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14h26v18H4zM30 21h8l6 6v5H30z"/><circle cx="13" cy="34" r="3.5"/><circle cx="36" cy="34" r="3.5"/></svg></li><li><span class="x_label">07</span><strong>Waste-to-resource technologies</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M34 12a15 15 0 0 0-24 6M10 12v6h6"/><path d="M14 36a15 15 0 0 0 24-6M38 36v-6h-6"/></svg></li></ol>
+          <p class="q_supp" data-reveal>The focus is not limited to technologies originally developed for agriculture. IO can help identify solutions from adjacent industries and test whether they create practical value in agrifood environments.</p>
+        </div>
       </div>
     </div>
   </div></section>
 
-  <section class="x_sec x_grey" id="foodtech"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Also on stage</span><h2 class="x_h2" data-reveal>FoodTech Challenge.</h2><p class="x_lead" data-reveal>A challenge for startups building technology for arid-climate agriculture, with its winners recognised at Innovation Oasis.</p></div><div class="x_stack"><p class="x_body" data-reveal>The programme connects founders with the testbeds, research teams and farmer networks they need to validate their solutions under real conditions. After a final round of pitches to a panel of partners and investors, the winners were recognised on the main stage.</p><a class="s_textLink" href="/full-site/news-foodtech-challenge-winners">Read the news <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
-    <div class="k_slides x_corners" id="slider">
+  <!-- 4. IO's Challenge Method: horizontal six-stage journey. The Al Miyah timeline sits in the case study, not here. -->
+  <section class="x_sec" id="method"><div class="s_wrap">
+    <div class="q_head1"><div><span class="c_eyebrow" data-reveal>Our approach</span><h2 class="x_h2" data-reveal>From sector need to evidence-based decision</h2></div></div>
+    <ol class="q_journey" data-stagger aria-label="IO’s Challenge Method: Define, Design, Source, Evaluate, Test, Progress"><li><span class="q_stage">Define</span><i class="q_rail" aria-hidden="true"><i></i></i><h3><b>01</b>Define the Challenge</h3><p>Work with stakeholders to understand the underlying need, current baseline, affected users and desired outcome.</p><span class="q_out"><b>Output</b>Validated challenge statement</span></li><li><span class="q_stage">Design</span><i class="q_rail" aria-hidden="true"><i></i></i><h3><b>02</b>Design the Program</h3><p>Establish the format, eligibility, incentives, evaluation criteria, governance and pathway beyond selection.</p><span class="q_out"><b>Output</b>Program and open-call model</span></li><li><span class="q_stage">Source</span><i class="q_rail" aria-hidden="true"><i></i></i><h3><b>03</b>Source Solutions</h3><p>Activate targeted startup, research, industry and technology networks to find relevant solutions.</p><span class="q_out"><b>Output</b>Qualified technology pipeline</span></li><li><span class="q_stage">Evaluate</span><i class="q_rail" aria-hidden="true"><i></i></i><h3><b>04</b>Evaluate the Opportunity</h3><p>Assess technical quality, differentiation, commercial potential, operational fit and adoption readiness.</p><span class="q_out"><b>Output</b>Evidence-based shortlist</span></li><li><span class="q_stage">Test</span><i class="q_rail" aria-hidden="true"><i></i></i><h3><b>05</b>Test Promising Technologies</h3><p>Design laboratory studies, proofs of concept or operational pilots around the most important performance questions.</p><span class="q_out"><b>Output</b>Comparable validation evidence</span></li><li><span class="q_stage">Progress</span><i class="q_rail" aria-hidden="true"></i><h3><b>06</b>Recommend the Next Step</h3><p>Use the evidence to support winner selection, further testing, adoption, procurement, partnership or commercialization.</p><span class="q_out"><b>Output</b>Selection and implementation recommendation</span></li></ol>
+  </div></section>
+
+  <!-- 6. Featured challenge: Al Miyah. Main page shows only: Challenge, IO role, Approach, Technologies tested, Evidence generated, How findings supported selection.
+       Detail (funnel, timeline, field pilots, technology cards, CRETA, measures) lives on ivp-case-al-miyah.html.
+       TO FEATURE ANOTHER CHALLENGE: replace the eyebrow, title, intro, photo, the six rows and the case study link; copy ivp-case-al-miyah.html for its page. -->
+  <section class="x_sec x_grey" id="al-miyah"><div class="s_wrap">
+    <div class="q_head1"><div><span class="c_eyebrow" data-reveal>Validation in action</span><h2 class="x_h2" data-reveal>Testing water technologies under real-world conditions</h2></div>
+      <div><p class="x_body" data-reveal>The Al Miyah Challenge is a program of the Mohamed bin Zayed Water Initiative designed to accelerate practical, scalable innovations for water security in the UAE and other water-stressed markets. Finalist technologies are expected to be ready for UAE piloting and capable of progressing toward commercialization.</p>
+        <a class="s_textLink" href="https://www.mohamedbinzayedwi.ae/al-miyah-challenge" rel="noopener" target="_blank">mohamedbinzayedwi.ae ↗</a></div></div>
+    <div class="q_amAcc">
+      <div class="q_amAccL">
+        <figure class="x_img x_corners q_amPh2" data-img><img src="/photos/Professional%20Facility%20Photos%20(1)/PA__1483.jpg" alt="Young tomato plants in instrumented trial pots at Innovation Oasis" loading="lazy"></figure>
+      </div>
+      <div class="q_amAccR">
+        <ul class="q_acc">
+          <li class="q_accItem" data-open>
+            <button class="q_accBtn" type="button" aria-expanded="true" aria-controls="acc1"><span class="x_label">01</span><strong>IO’s Role</strong></button>
+            <div class="q_accPanel" id="acc1" role="region"><div><div class="q_accBody">
+              <p class="q_accLead"><b>IO was the real-world validation partner for the agriculture challenge.</b></p>
+              <p class="q_amSub">IO supported the final evaluation and winner-selection process by testing finalist technologies under real-world agricultural conditions.</p>
+              <p class="q_amSub">The objective was to generate comparable technical and operational evidence that could help assess which solutions were best suited to address the Challenge’s requirements.</p>
+            </div></div></div>
+          </li>
+          <li class="q_accItem">
+            <button class="q_accBtn" type="button" aria-expanded="false" aria-controls="acc2"><span class="x_label">02</span><strong>What IO Contributed</strong></button>
+            <div class="q_accPanel" id="acc2" role="region"><div><div class="q_accBody">
+              <ul class="q_list q_accCols"><li>Validation planning</li><li>Agricultural testing environments</li><li>Pilot and experimental protocols</li><li>Technology installation coordination</li><li>Performance-data collection</li><li>Technical execution and monitoring</li><li>Comparable evidence for finalist assessment</li><li>Expert input into evaluation and selection</li></ul>
+            </div></div></div>
+          </li>
+          <li class="q_accItem">
+            <button class="q_accBtn" type="button" aria-expanded="false" aria-controls="acc3"><span class="x_label">03</span><strong>What Was Tested</strong></button>
+            <div class="q_accPanel" id="acc3" role="region"><div><div class="q_accBody q_amTested">
+              <ol><li><b>Startup A</b><span>A material placed beneath the root zone absorbs irrigation water and releases it back to roots, cutting evaporation and deep-drainage losses.</span></li><li><b>Startup B</b><span>A biodegradable superabsorbent polymer is mixed into the soil to hold water and nutrients between irrigations.</span></li><li><b>Startup C</b><span>Microbes help soil retain water and release it gradually, supporting crops under drought and salinity.</span></li><li><b>Startup D</b><span>A natural bio-stimulant supports plant water-use efficiency.</span></li><li><b>Startup E</b><span>A foliar biostimulant strengthens plant resilience to heat and salinity, supporting stable yields with less irrigation water.</span></li></ol>
+            </div></div></div>
+          </li>
+        </ul>
+        <div class="q_amCta"><a href="/full-site/ivp-case-al-miyah" class="s_btn s_btnPrimary s_btnSm">Read the full case study <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- 7. Featured partnership: FoodTech Challenge. Compact case-study panel, lighter than Al Miyah on purpose (IO had a lighter role). -->
+  <section class="x_sec" id="foodtech"><div class="s_wrap">
+    <div class="q_ft">
+      <div class="q_ftTxt">
+        <div class="q_ftGrp">
+        <span class="c_eyebrow" data-reveal>Program partnership</span>
+        <h2 class="x_h2" data-reveal>Supporting the search for food-security innovation</h2>
+        <p class="x_body" data-reveal>The FoodTech Challenge is a global competition that identifies and supports early-stage, technology-driven solutions for food production and food loss and waste in hot, arid and challenging environments. Its current edition offers a US$2 million prize structure supporting solution development in the UAE and the Global South.</p>
+        <a class="s_textLink" href="https://www.foodtechchallenge.com/the-competition/" rel="noopener" target="_blank">foodtechchallenge.com ↗</a>
+        </div>
+        <div class="q_ftRole"><span class="x_label">IO’s Role</span><p>IO participated as a program sponsor and industry partner, contributing agrifood expertise and supporting the assessment and advancement of relevant technologies.</p></div>
+        <div class="q_ftContrib"><span class="x_label">Contribution</span><p class="q_note" style="margin:0">Final copy to confirm: the exact activities should be confirmed before publication. Select only the roles IO performed.</p>
+          <ul class="q_mini"><li>Challenge priority development</li><li>Technology scouting</li><li>Technical screening</li><li>Expert evaluation</li><li>Jury participation</li><li>Startup mentoring</li><li>Validation planning</li><li>Facility or ecosystem access</li><li>Support for post-challenge UAE rollout</li></ul></div>
+      </div>
+      <div class="k_slides x_corners" id="slider">
         <img src="/innovation-venture-platforms/img/chal_winners.webp" alt="FoodTech Challenge winners on stage" data-on>
         <img src="/innovation-venture-platforms/img/chal_pitch.webp" alt="A finalist pitching to the jury" loading="lazy">
         <img src="/innovation-venture-platforms/img/chal_stage.webp" alt="The FoodTech Challenge main stage" loading="lazy">
         <img src="/innovation-venture-platforms/img/chal_line.webp" alt="The winners line-up in front of the FoodTech Challenge backdrop" loading="lazy">
       <div class="k_slideUI"><p class="k_capt" id="slideCap">Winners recognised on the main stage</p><div class="k_nav"><button class="s_btn s_btnPrimary s_btnSm x_round" id="slidePrev" aria-label="Previous photo"><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="s_btn s_btnPrimary s_btnSm x_round" id="slideNext" aria-label="Next photo"><svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="k_dots" id="slideDots"><i data-on></i><i></i><i></i><i></i></div></div>
     </div>
+    </div>
   </div></section>
 
-  <section class="x_sec" id="program-management"><div class="s_wrap">
+  <!-- 8. Support for technology teams + featured example -->
+  <section class="x_sec x_grey" id="tech-teams"><div class="s_wrap">
+    <div class="q_head1"><div><span class="c_eyebrow" data-reveal>Competing in a global challenge?</span><h2 class="x_h2" data-reveal>Turn your technology into real-world evidence</h2></div>
+      <div><p class="x_body" data-reveal>Innovation competitions increasingly require more than a strong application or laboratory result. Technology teams may need to demonstrate performance at scale, in specified conditions and against independently defined criteria.</p><p class="x_body" data-reveal>IO can help participating teams design and execute the real-world testing required to progress through challenge and competition stages.</p></div></div>
+    <span class="q_may" style="display:block;margin-bottom:14px">Support may include</span>
+    <ul class="q_list q_cols"><li>Identifying the appropriate testing environment</li><li>Trial and demonstration design</li><li>Experiment-ready fields, greenhouses, laboratories and pilot infrastructure</li><li>Site preparation and operational integration</li><li>Equipment installation and commissioning</li><li>Access to feedstocks, crops, utilities or relevant operating conditions</li><li>Technical and project-management support</li><li>Data collection and performance monitoring</li><li>Documentation against competition criteria</li><li>Onsite hosting of judges, assessors or technical reviewers</li><li>Evidence and reporting packages</li><li>Planning for the next stage of scale-up</li></ul>
+  </div></section>
+
+  <!-- Featured example: Desolenator and XPRIZE Water Scarcity (concise card; full version on ivp-case-desolenator.html) -->
+  <section class="x_sec" id="xprize"><div class="s_wrap">
+    <div class="q_xp">
+      <div>
+        <span class="c_eyebrow" data-reveal>XPRIZE Water Scarcity</span>
+        <h3 data-reveal>Supporting Desolenator through real-world qualification testing</h3>
+        <p>Innovation Oasis provided the site, operational support and regional expertise required for Desolenator to complete Phase 2 qualification testing under relevant desert conditions.</p>
+        <p>The physical demonstration contributed to the company’s progression into the semifinal stage of the global competition.</p>
+        <div class="x_row"><a href="/full-site/ivp-case-desolenator" class="s_btn s_btnPrimary s_btnSm">Explore the case study <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+      <dl class="q_dl">
+        <div><dt>IO role</dt><dd>Strategic and testing partner</dd></div>
+        <div><dt>Support</dt><dd>Pilot site, operational delivery and regional expertise</dd></div>
+        <div><dt>Outcome</dt><dd>Progression to the semifinals</dd></div>
+        <div><dt>Next stage</dt><dd>Scale-up toward a 100 m³-per-day demonstration</dd></div>
+      </dl>
+    </div>
+  </div></section>
+
+  <!-- 10. Work with IO (blue CTA section kept as it was). Enquiry form hosting is still to be confirmed with the client (on the website or linked out); this links to the enquiry page of the site. -->
+  <section class="x_sec" id="work-with-io" style="padding-top:0"><div class="s_wrap">
     <div class="x_cbox">
       <img class="x_cboxMark" src="/innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true">
-      <div class="x_cboxMain"><span class="x_label">Link to · Technology &amp; Services</span><h2 data-reveal>Running a challenge of your own?</h2><p data-reveal>Innovation Oasis can design, run and measure the trials end to end, as it does for the Al Miyah Challenge.</p></div>
-      <ul class="x_cboxList"><li><a>Trial design and protocols</a></li><li><a>Crop management and instrumentation</a></li><li><a>Data capture and evidence for the jury</a></li></ul>
-      <a href="#" class="s_btn s_btnPrimary s_btnSm">Program Management as a Service <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="x_cboxMain"><span class="x_label">Partner with us</span><h2 data-reveal>Running a challenge of your own?</h2><p data-reveal>IO can deliver the full program or provide the specific expertise required to strengthen an existing challenge.</p></div>
+      <div class="q_cboxSide"><span class="x_label">Choose the support you need</span><ul class="x_cboxList"><li>Challenge and program design</li><li>Technology scouting</li><li>Expert evaluation</li><li>Pilot and validation design</li><li>Real-world testing</li><li>Program management</li><li>Commercialization and implementation planning</li></ul></div>
+      <div class="q_cbtns"><a href="/full-site/ivp-enquire?platform=chal" class="s_btn s_btnPrimary s_btnSm" data-platform="chal">Enquire <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#" class="s_btn s_btnGhostLight s_btnSm">Explore Program Management as a Service <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
   </div></section>
   <a class="x_next" href="/full-site/ivp-hub"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/hero_fif.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Back to all four platforms</span><strong>Innovation &amp; Venture Platforms</strong><p>Fund a farmer’s idea, incubate a lab prototype, accelerate a proven technology, or prove it in an open challenge.</p><span class="s_btn s_btnPrimary s_btnSm">Back to the overview <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
+
 </div>
 
 </div></main>
@@ -6178,7 +6408,7 @@ dispatchEvent(new Event('io3d'));
   }
 
   /* ---------- pages ---------- */
-  var TITLES = { 'overview': 'Innovation & Venture Platforms', 'farm-innovation-fund': 'Farm Innovation Fund', 'incubation': 'Incubation', 'accelerator': 'Accelerator · Unbreakable Harvest', 'agricultural-challenges': 'Agricultural Challenges', 'enquire': 'Enquire · Innovation & Venture Platforms' };
+  var TITLES = { 'overview': 'Innovation & Venture Platforms', 'farm-innovation-fund': 'Farm Innovation Fund', 'incubation': 'Incubation', 'accelerator': 'Accelerator · Unbreakable Harvest', 'agricultural-challenges': 'Agricultural Challenges', 'case-al-miyah': 'Al Miyah Challenge · Case study', 'case-desolenator': 'Desolenator · XPRIZE case study', 'enquire': 'Enquire · Innovation & Venture Platforms' };
   var views = $$('[data-view]'), cur = null, inited = {};
   function wanted() { var h = location.hash.slice(1).toLowerCase(); return TITLES[h] ? h : null; }
   function show(v) {
@@ -6556,88 +6786,19 @@ dispatchEvent(new Event('io3d'));
   };
 
   INIT['agricultural-challenges'] = function (view) {
-    // case study (CRETA): 3D cutaway replaces the schematic when WebGL is there; the visual is optional, so a swapped-in case study without it still works
-    var cr3 = null, crEl = $('#creta', view), crGl = $('#cretaGl', view);
-    function mountCreta() { if (cr3 || !crEl || !crGl || !window.IO3D) return; cr3 = IO3D.creta(crGl); if (cr3) crEl.classList.add('is3d'); }
-    mountCreta(); addEventListener('io3d', mountCreta);
-    if (G) {
-      gsap.from($$('#pilots tbody tr', view), { yPercent: 60, opacity: 0, duration: 0.9, stagger: 0.08, ease: 'expo.out', scrollTrigger: { trigger: '#pilots', start: 'top 85%', once: true } });
-      // CRETA: outlines draw in
-      $$('.k_draw', view).forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = p.getAttribute('stroke-dasharray') ? p.getAttribute('stroke-dasharray') : L; if (!p.getAttribute('stroke-dasharray')) gsap.fromTo(p, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut', scrollTrigger: { trigger: '#creta', start: 'top 75%', once: true } }); });
-      if ($('.k_sun', view)) gsap.to($('.k_sun', view), { rotate: 360, transformOrigin: '70px 62px', duration: 40, repeat: -1, ease: 'none' });
-    }
-    // measures: the sticky photo changes to the greenhouses when the list reaches operating performance
-    var mImgs = $$('#measImgs > img', view), mTurn = $$('.k_measure li', view)[2];
-    if (G && !mobile() && mTurn && mImgs[1]) ScrollTrigger.create({ trigger: mTurn, start: 'top 62%', onEnter: function () { mImgs[1].classList.add('on'); }, onLeaveBack: function () { mImgs[1].classList.remove('on'); } });
-    // five field pilots: the list is built from the table (one source); B1 soil profile in 3D, the table stays when there is no WebGL
-    var fp = $('#fieldPilots', view), ZONE = ['Below the root zone', 'Mixed into the soil', 'Microbes in the soil', 'The whole plant', 'On the leaves'];
-    var pRows = $$('#pilots tbody tr', view).map(function (tr, i) { var td = tr.children; return { c: td[0].textContent, n: td[1].textContent, t: td[2].textContent, z: ZONE[i] }; });
-    $('#b1List', view).innerHTML = [4, 3, 2, 1, 0].map(function (i) { var p = pRows[i]; return '<li data-k="' + i + '"><em>' + p.c + '</em><b>' + p.n + '</b><span><small>' + p.z + '</small>' + p.t + '</span></li>'; }).join('');
-    var bli = $$('#b1List li', view), b1 = null, bk = -1, bP = 0;
-    function bStage(k) { if (k === bk) return; bk = k; bli.forEach(function (li) { li.toggleAttribute('data-on', +li.dataset.k === k); }); if (b1) b1.setStage(k); }
-    function bProg(p) { bP = p; if (b1) b1.setProgress(p); bStage(4 - Math.min(4, Math.floor(p * 5))); }
-    function mountSoil() { if (b1 || !window.IO3D || !IO3D.soil) return; b1 = IO3D.soil($('#b1Gl', view), pRows.map(function (p) { return p.n; })); if (!b1) return; fp.classList.add('is3d'); bk = -1; bProg(bP); if (window.ScrollTrigger) ScrollTrigger.refresh(); }
-    mountSoil(); addEventListener('io3d', mountSoil);
-    if (mobile()) { if (G) ScrollTrigger.create({ trigger: '#b1Gl', start: 'top 80%', end: 'bottom 20%', scrub: true, onUpdate: function (s) { bProg(s.progress); } }); else bProg(0.5); }
-    else pinProgress($('#b1Pin', view), bProg);
-    // funnel: one dial; at each stage the dark wedge is the share that went on; wedges sweep in one after another
-    var NS = 'http://www.w3.org/2000/svg', segG = $('#funSegs', view), fArc = $('#funArc', view), fNum = $('#funNum', view), fLab = $('#funLab', view), fSt = $$('#funSteps li', view);
-    // five key states of the same seven wedges (six for those who went on, one for the rest); scrolling blends between them.
-    // registered -> qualified -> field testing -> finalists (selected from the testing) -> winners. Stages without a figure show a word, never a number.
-    var SH = ['#1a6f96', '#22799f', '#2a86b0', '#3796bf', '#46a3cb', '#5bb0d4'], DK = ['#1a6f96', '#1a6f96', '#1a6f96', '#1a6f96', '#1a6f96', '#1a6f96'];
-    var KS = [
-      { on: 21 / 846, rest: '#dfeef5', cols: DK, rad: [1, 1, 1, 1, 1, 1], gap: 0, n: 846, l: 'teams registered' },
-      { on: 6 / 21, rest: '#8fd3f0', cols: DK, rad: [1, 1, 1, 1, 1, 1], gap: 0, n: 21, l: 'qualified' },
-      { on: 6 / 21, rest: '#8fd3f0', cols: DK, rad: [1, 1, 1, 1, 1, 1], gap: 0, t: 'Testing', l: 'at Innovation Oasis' },
-      { on: 1, rest: '#8fd3f0', cols: SH, rad: [1, 0.9, 1, 0.9, 1, 0.9], gap: 2, n: 6, l: 'finalists, from testing' },
-      { on: 1, rest: '#8fd3f0', cols: SH, rad: [1, 0.9, 1, 0.9, 1, 0.9], gap: 2, t: 'Winners', l: 'December 2026' }], LAST = KS.length - 1;
-    var R0 = 112, R1 = 236, intro = { q: 0 }, fpos = 0, fLabK = 0, lerp = function (a, b, f) { return a + (b - a) * f; }, mix = gsap.utils ? gsap.utils.interpolate : null;
-    // a ring wedge from angle a0 to a1 (clockwise from 12 o'clock), inner radius R0, outer radius ro
-    function ringW(a0, a1, ro) {
-      if (a1 - a0 < 1e-4) return '';
-      a1 = Math.min(a1, a0 + Math.PI * 2 - 1e-3);
-      var p = function (r, a) { return (300 + r * Math.sin(a)).toFixed(2) + ' ' + (300 - r * Math.cos(a)).toFixed(2); }, lg = a1 - a0 > Math.PI ? 1 : 0;
-      return 'M' + p(ro, a0) + 'A' + ro + ' ' + ro + ' 0 ' + lg + ' 1 ' + p(ro, a1) + 'L' + p(R0, a1) + 'A' + R0 + ' ' + R0 + ' 0 ' + lg + ' 0 ' + p(R0, a0) + 'Z';
-    }
-    function arcD(a) { a = Math.min(a, Math.PI * 2 - 1e-3); if (a < 1e-3) return ''; var x = 300 + 262 * Math.sin(a), y = 300 - 262 * Math.cos(a); return 'M300 38A262 262 0 ' + (a > Math.PI ? 1 : 0) + ' 1 ' + x.toFixed(2) + ' ' + y.toFixed(2); }
-    var wp = []; for (var w = 0; w < 7; w++) { var pe = document.createElementNS(NS, 'path'); pe.setAttribute('class', 'k_seg'); segG.appendChild(pe); wp.push(pe); }
-    var ease = function (x) { return x * x * (3 - 2 * x); };
-    // where the scroll is: hold each stage, then blend to the next one (four blends between five stages)
-    var BS = [0.08, 0.29, 0.5, 0.71], BL = 0.14;
-    function at(p) { for (var i = BS.length - 1; i >= 0; i--) { if (p >= BS[i] + BL) return [i + 1, 0]; if (p >= BS[i]) return [i, ease((p - BS[i]) / BL)]; } return [0, 0]; }
-    // the centre shows the count, or a word for a stage without one
-    var fNumV = null;
-    function setNum(v) { if (v === fNumV) return; var wasTxt = typeof fNumV === 'string', isTxt = typeof v === 'string'; fNumV = v; var sp = fNum.firstElementChild; sp.textContent = v; fNum.classList.toggle('is-txt', isTxt); if (G && (isTxt || wasTxt)) gsap.fromTo(sp, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', overwrite: true }); }
-    function render() {
-      var s = at(fpos), A = KS[s[0]], B = KS[Math.min(LAST, s[0] + 1)], f = s[1], q = intro.q, TAU = Math.PI * 2;
-      var on = lerp(A.on, B.on, f), a = 0, gap = lerp(A.gap, B.gap, f);
-      for (var k = 0; k < 6; k++) { var sw = on / 6 * TAU * q, ro = R0 + (R1 - R0) * lerp(A.rad[k], B.rad[k], f); wp[k].setAttribute('d', ringW(a, a + sw + (gap < 0.3 && k < 5 && sw > 0 ? 0.004 : 0), ro)); /* a hair of overlap while they read as one wedge: no seams */ wp[k].setAttribute('fill', mix ? mix(A.cols[k], B.cols[k], f) : A.cols[k]); wp[k].style.strokeWidth = gap; a += sw; }
-      wp[6].setAttribute('d', ringW(a, a + (1 - on) * TAU * q, R0 + (R1 - R0) * 0.9)); wp[6].setAttribute('fill', mix ? mix(A.rest, B.rest, f) : A.rest); wp[6].style.strokeWidth = 2;
-      fArc.setAttribute('d', arcD(on * TAU * q));
-      // the count glides between the stages (in proportion, so 846 → 21 does not rush), the label changes halfway
-      var lk = f < 0.5 ? s[0] : Math.min(LAST, s[0] + 1);
-      if (A.n && B.n) setNum(q < 1 ? Math.round(A.n * q) : Math.round(Math.exp(lerp(Math.log(A.n), Math.log(B.n), f))));
-      else { var K = KS[lk]; setNum(K.n ? (q < 1 ? Math.round(K.n * q) : K.n) : K.t); }
-      if (lk !== fLabK) { fLabK = lk; var sp = fLab.firstElementChild; sp.textContent = KS[lk].l; if (G) gsap.fromTo(sp, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', overwrite: true }); }
-      fSt.forEach(function (li, i) { li.toggleAttribute('data-on', i === lk); li.toggleAttribute('data-done', i < lk); });
-    }
-    if (!G) { intro.q = 1; fpos = 0; render(); }
-    else {
-      render();
-      // entrance: the wedges sweep open once, the arc runs round, the count climbs to 846
-      ScrollTrigger.create({ trigger: '#funnelViz', start: 'top 75%', once: true, onEnter: function () { gsap.to(intro, { q: 1, duration: 1.8, ease: 'power2.inOut', onUpdate: render }); } });
-      if (mobile()) { $('#funPin', view).style.height = 'auto'; ScrollTrigger.create({ trigger: '#funnelViz', start: 'top 55%', end: 'bottom 25%', scrub: 0.6, onUpdate: function (st) { fpos = st.progress; render(); } }); }
-      // the scroll is smoothed a little so the blend glides, never snaps
-      else { var fpT = { v: 0 }; pinProgress($('#funPin', view), function (p) { gsap.to(fpT, { v: p, duration: 0.6, ease: 'power2.out', overwrite: true, onUpdate: function () { fpos = fpT.v; render(); } }); }); }
-    }
-    // timeline: "now" sits at today's date between the stops around it; stops after today stay open
-    var road = $('#road', view), rli = $$('#road li', view);
-    function roadNow() {
-      var now = Date.now(), W = road.clientWidth, x = 0;
-      rli.forEach(function (li, i) { var t = Date.parse(li.dataset.t); li.toggleAttribute('data-done', t <= now); if (t <= now) { var nx = rli[i + 1]; if (nx) { var t2 = Date.parse(nx.dataset.t), f = Math.min(1, (now - t) / (t2 - t)); x = 6 + li.offsetLeft + (nx.offsetLeft - li.offsetLeft) * f; } else x = 6 + li.offsetLeft; } });
-      road.style.setProperty('--now', (x / W * 100).toFixed(2) + '%');
-    }
-    roadNow(); addEventListener('resize', roadNow);
+    // Al Miyah accordion: one panel open at a time; clicking the open one closes it
+    $$('.q_acc', view).forEach(function (acc) {
+      var items = $$('.q_accItem', acc);
+      function setOpen(it, on) { it.toggleAttribute('data-open', on); it.querySelector('.q_accBtn').setAttribute('aria-expanded', on); }
+      items.forEach(function (it) {
+        it.querySelector('.q_accBtn').addEventListener('click', function () {
+          var was = it.hasAttribute('data-open');
+          items.forEach(function (x) { setOpen(x, false); });
+          if (!was) setOpen(it, true);
+          if (window.ScrollTrigger) setTimeout(function () { ScrollTrigger.refresh(); }, 700);
+        });
+      });
+    });
     // FoodTech slider
     var slides = $$('.k_slides img', view), dots = $$('#slideDots i'), caps = ['Winners recognised on the main stage', 'A finalist presenting to the jury', 'The FoodTech Challenge main stage', 'The winners line-up'], si = 0, timer;
     function to(k) {
