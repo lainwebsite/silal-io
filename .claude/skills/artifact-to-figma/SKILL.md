@@ -1,5 +1,5 @@
 ---
-name: figma-page-import
+name: artifact-to-figma
 description: Move a web page (a Claude artifact, an HTML file, or a URL) into a frame in a Figma file, using the design system that already exists in that file. Use when the user gives a Figma frame URL and a page to move into it, or asks to "move/convert/port this page to Figma".
 argument-hint: "[page name] [source: artifact path | URL | file] [target Figma frame URL]"
 ---
