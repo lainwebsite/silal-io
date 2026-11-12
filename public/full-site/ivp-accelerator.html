@@ -4525,7 +4525,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .x_nextPh { grid-column: 1 / span 6; aspect-ratio: 16 / 9; }
 .x_nextPh img { scale: 1.1; transition: scale 1.4s var(--slow); }
 .x_next:hover .x_nextPh img { scale: 1; }
-.x_nextText { grid-column: 9 / span 4; display: flex; flex-direction: column; align-items: flex-start; gap: var(--stack); }
+.x_nextText { grid-column: 8 / span 5; display: flex; flex-direction: column; align-items: flex-start; gap: var(--stack); }
 .x_nextText strong { font-size: var(--fs-display); font-weight: 300; line-height: 1.04; letter-spacing: -.035em; transition: color .5s, transform .9s var(--slow); }
 .x_nextText p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); }
 .x_nextText .s_btn { margin-top: calc(var(--blk) - var(--stack)); }
@@ -5020,7 +5020,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a_powerCol { display: flex; flex-direction: column; gap: var(--stack); padding-top: var(--blk); border-top: 1px solid var(--line); }
 .a_powerCol:nth-of-type(2) { grid-column: 1 / span 5; } .a_powerCol:nth-of-type(3) { grid-column: 7 / span 6; }
 .a_powerCol img { height: 52px; width: auto; align-self: flex-start; }
-.a_quote { grid-column: 1 / -1; margin: var(--head) 0 0; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: end; padding-top: var(--blk); border-top: 1px solid var(--line); }
+.a_quote { grid-column: 1 / -1; margin: var(--head) 0 0; display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: var(--blk); align-items: center; padding-top: var(--blk); border-top: 1px solid var(--line); }
 .a_quote .x_img { grid-column: 7 / span 6; grid-row: 1; aspect-ratio: 4 / 3; background: #eee; }
 .a_quote .x_img img { object-position: 50% 46%; }
 .a_quote > div:last-child { grid-column: 1 / span 5; grid-row: 1; display: flex; flex-direction: column; gap: var(--stack); }
@@ -5354,6 +5354,102 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a_gSteps .a_gTrack::before { background: repeating-linear-gradient(90deg, transparent 0 calc(100% / 7 - 1px), var(--line) calc(100% / 7 - 1px) calc(100% / 7)); }
 .a_gSteps .a_gTrack::after { content: ""; position: absolute; top: 0; bottom: 0; left: calc(300% / 7); width: 1px; background: var(--io-ink); opacity: .45; }
 .a_gSteps .a_gMonths span, .a_gSteps .a_gMonths span:last-child { transform: none; padding-left: 12px; color: var(--io-ink); font-weight: 500; letter-spacing: .08em; }
+/* accelerator hero (rev 12 Nov, Figma frame 6241:15014 as reference): old composition on a full-bleed photo.
+   Overlay = one long eased scrim (like the Farm Innovation Fund hero), no solid block. The two figures sit on the same
+   two columns as the title and the copy above them. */
+.a_heroPh > .x_img img { object-position: 50% 40%; }
+.a_heroPh::after { inset: 0; background:
+  linear-gradient(180deg, rgba(20,19,18,.5) 0%, rgba(20,19,18,.22) 12%, rgba(20,19,18,0) 26%),
+  linear-gradient(0deg, rgba(20,19,18,.9) 0%, rgba(20,19,18,.86) 14%, rgba(20,19,18,.78) 28%, rgba(20,19,18,.66) 42%, rgba(20,19,18,.5) 54%, rgba(20,19,18,.32) 66%, rgba(20,19,18,.15) 78%, rgba(20,19,18,.04) 90%, rgba(20,19,18,0) 100%); } }
+/* hug: both hero blocks are as wide as their content, no stretching to the grid columns */
+.a_heroPh .a_heroMain, .a_heroPh .a_heroSide { width: fit-content; max-width: 100%; }
+.a_heroPh .a_heroSide .x_body { max-width: 30em; }
+.a_heroPh .a_figs { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); border-top-color: rgba(255,255,255,.28); }
+.a_heroPh .a_figs li, .a_heroPh .a_figs li + li { grid-column: span 6; padding: 28px 0 0; border-left: 0; gap: 10px; }
+.a_heroPh .a_figs strong { font-size: clamp(2.75rem, 4.4vw, 4.25rem); }
+.a_heroPh .a_figs li > span { font-size: var(--fs-body); color: rgba(255,255,255,.82); }
+@media (max-width: 900px) {
+  .a_heroPh { min-height: 0; max-height: none; padding-top: 0; background: #262423; }
+  .a_heroPh > .x_img { position: relative; inset: auto; height: calc(var(--hdr) + 62vw); }
+  .a_heroPh::after { display: none; }
+  .a_heroPh .a_heroTop { margin-bottom: 24px; padding-top: 20px; }
+  .a_heroPh .a_figs { column-gap: 16px; }
+  .a_heroPh .a_figs li, .a_heroPh .a_figs li + li { grid-column: span 6; }
+}
+/* quote: statement left (centred against the portrait), portrait right; the cite is two rows: name, then title (owner comment) */
+.a_quote { align-items: center; }
+.a_quote > div:last-child { grid-column: 1 / span 5; grid-row: 1; justify-content: center; }
+.a_quote .x_img { grid-column: 7 / span 6; grid-row: 1; aspect-ratio: 4 / 3; }
+.a_quote .x_img img { object-position: 50% 46%; }
+.a_quote cite { display: flex; flex-direction: column; gap: 2px; }
+.a_quote cite span { color: var(--grey); }
+@media (max-width: 900px) { .a_quote .x_img { grid-column: 1 / -1; grid-row: 1; max-width: none; } .a_quote > div:last-child { grid-column: 1 / -1; grid-row: 2; } }
+/* why: the text block on the right is as wide as one card below and starts on the third card's left edge */
+@media (min-width: 901px) { #acc-why .x_head > :nth-child(2) { flex: 0 0 calc((100% - 2 * var(--col-gap)) / 3) !important; } }
+/* routes, cohort and model: the right-hand text block is exactly one card wide (4 cards per row) and starts on the last card's left edge */
+@media (min-width: 901px) { #acc-routes .x_head > :nth-child(2), #acc-model .x_head > :nth-child(2) { flex: 0 0 calc((100% - 3 * var(--col-gap)) / 4) !important; } #acc-cohort .x_head > :nth-child(2) { flex: 0 0 calc((100% - 3 * 6px) / 4) !important; } }
+/* three objectives: Silal blue line under each photo, blue title (owner comment) */
+#acc-why .f_who .x_img { margin-bottom: 0; }
+#acc-why .f_who h3 { margin-top: 0; padding-top: 18px; border-top: 3px solid var(--io); color: var(--io-ink); }
+/* hero: same structure and rules as the Farm Innovation Fund hero (photo, scrim, left block, right block with facts) */
+.f_heroEy { color: rgba(255,255,255,.92); } .f_heroEy::before { background: rgba(255,255,255,.7); }
+.f_heroSide { grid-column: 8 / span 5; grid-row: 3; align-self: end; display: flex; flex-direction: column; gap: 28px; }
+.f_heroSide .f_heroFacts { grid-template-columns: auto auto; justify-content: start; column-gap: clamp(32px, 3.6vw, 80px); grid-column: auto; grid-row: auto; align-self: stretch; }
+.f_heroIntro { display: flex; flex-direction: column; gap: 12px; max-width: none; }
+.f_heroIntro p { font-size: var(--fs-body); line-height: 1.65; color: rgba(255,255,255,.88); }
+.f_heroFacts strong, .f_heroSide .f_heroFacts dd { white-space: nowrap; }
+.f_hero .x_row { align-items: center; }
+@media (max-width: 900px) {
+  .f_heroSide { grid-column: 1 / -1; grid-row: 4; }
+  .f_hero { height: auto; max-height: none; }
+  .f_heroIn { height: auto; min-height: max(100svh, 640px); box-sizing: border-box; }
+}
+.f_hero::after { background: linear-gradient(180deg, rgba(14,16,15,.5) 0%, rgba(14,16,15,.2) 14%, rgba(14,16,15,0) 28%), linear-gradient(0deg, rgba(14,16,15,.84) 0%, rgba(14,16,15,.72) 18%, rgba(14,16,15,.5) 36%, rgba(14,16,15,.26) 54%, rgba(14,16,15,.1) 72%, rgba(14,16,15,0) 90%); }
+/* hero right block (owner comment): shorter, so the intro reads as two rows without a forced break; the two facts sit space-between, flush to both edges of the block */
+.f_hero .f_heroSide { justify-self: end; width: min(100%, 30em); }
+.f_hero .f_heroIntro p { text-wrap: balance; }
+.f_hero .f_heroSide .f_heroFacts { grid-template-columns: auto auto; justify-content: space-between; column-gap: 24px; }
+@media (max-width: 900px) { .f_hero .f_heroSide { justify-self: start; } }
+.f_hero h1 .a_l2 { color: var(--io-on-dark, #8fd3ee); }
+/* (old a_heroPh rules below are unused since the hero follows the other IVP pages) */
+/* hero: no loose gaps (owner comment) */
+.a_heroPh { padding-bottom: clamp(28px, 3vw, 40px); }
+.a_heroPh .a_figs { margin-top: clamp(28px, 4vh, 44px); }
+.a_heroPh .a_figs li, .a_heroPh .a_figs li + li { padding-top: 22px; }
+.a_heroPh .a_heroMain { gap: 18px; }
+.a_heroPh .a_heroTop { margin-bottom: 0; }
+/* the model (rev 12 Nov): two panels, one photo each, steps 1-7 as a numbered list. No timeline. Part 1 white, Part 2 charcoal. */
+.a_stp { display: flex; flex-direction: column; gap: clamp(20px, 2.4vw, 32px); }
+.a_stpPart { display: flex; flex-direction: column; gap: clamp(24px, 2.8vw, 40px); padding: clamp(24px, 3vw, 48px); background: #fff; }
+.a_stpDark { background: var(--ink-bg); color: #fff; }
+.a_stpHead { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.a_stpHead small { display: block; font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--io-ink); }
+.a_stpDark .a_stpHead small { color: rgba(255,255,255,.85); }
+.a_stpHead h3 { margin-top: 8px; font-size: var(--t-h3); font-weight: 300; letter-spacing: -.025em; line-height: 1.12; color: var(--charcoal); }
+.a_stpDark .a_stpHead h3 { color: #fff; }
+.a_stpHead > span { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); white-space: nowrap; }
+.a_stpDark .a_stpHead > span { color: rgba(255,255,255,.7); }
+.a_stpBody { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 5vw, 80px); align-items: stretch; }
+.a_stpFlip .a_stpBody { grid-template-columns: 7fr 5fr; }
+.a_stpFlip .a_stpPhoto { order: 2; }
+.a_stpPhoto { position: relative; min-height: 340px; }
+.a_stpPhoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.a_stpList { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: flex-start; }
+.a_stpList li { display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: 20px; padding-block: 22px; border-top: 1px solid rgba(89,84,83,.28); }
+.a_stpList li:first-child { margin-top: 0; }
+.a_stpDark .a_stpList li { border-top-color: rgba(255,255,255,.28); }
+.a_stpN { padding-top: 6px; font-size: 0.75rem; font-weight: 500; color: var(--io); letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }
+.a_stpDark .a_stpN { color: rgba(255,255,255,.9); }
+.a_stpList h4 { font-size: var(--fs-h3); font-weight: 400; line-height: 1.22; letter-spacing: -0.015em; color: var(--charcoal); }
+.a_stpDark .a_stpList h4 { color: #fff; }
+.a_stpList p { margin-top: 8px; max-width: 36em; font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); text-align: left; }
+.a_stpDark .a_stpList p { color: rgba(255,255,255,.78); }
+@media (max-width: 900px) {
+  .a_stpBody, .a_stpFlip .a_stpBody { grid-template-columns: minmax(0, 1fr); }
+  .a_stpFlip .a_stpPhoto { order: 0; }
+  .a_stpPhoto { min-height: 0; aspect-ratio: 16 / 10; }
+  .a_stpHead > span { display: none; }
+}
 .n1Ctl em { white-space: nowrap; }
 /* the offer: the original challenge-statement tabs, eight of them */
 .a_csTabs8 button { padding: 16px 0; }
@@ -5410,12 +5506,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .a_vcard .x_img { position: absolute; inset: 0; background: #1f1f1e; }
 .a_vcard .x_img img { top: 0; height: 100%; transition: scale .35s ease; }
 .a_vcard:hover .x_img img, .a_vcard:focus-visible .x_img img { scale: 1.04; }
-.a_vcard::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; z-index: 1; background: linear-gradient(0deg, rgba(14,16,15,.78) 0%, rgba(14,16,15,.4) 60%, rgba(14,16,15,0) 100%); }
+.a_vcard::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 52%; z-index: 1; background: linear-gradient(0deg, rgba(14,16,15,.84) 0%, rgba(14,16,15,.4) 60%, rgba(14,16,15,0) 100%); }
 .a_vcard:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
 .a_vcard .a_vLogo { position: absolute; z-index: 2; left: 24px; top: 24px; }
 .a_vcard .a_vIn { position: absolute; z-index: 2; left: 24px; right: 24px; bottom: 24px; display: flex; flex-direction: column; gap: 6px; }
 .a_vcard .h_for { font-size: var(--t-label); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.78); }
 .a_vcard h3 { font-size: clamp(1.25rem, 1.6vw, 1.625rem); font-weight: 300; line-height: 1.12; letter-spacing: -.02em; }
+/* cohort logo pill = the IO Academy pill: white, thin warm-grey border, full radius, logo at 22px */
+.a_vcard .a_vLogo { height: auto; min-width: 0; padding: 7px 15px 7px 13px; border: 1px solid #e3dce0; border-radius: 999px; background: #fff; box-shadow: none; }
+.a_vcard .a_vLogo img { height: 24px; max-height: none; width: auto; }
+.a_vcard .a_vLogo:not(:has(img)) { min-width: 0; width: 40px; height: 40px; padding: 0; border-radius: 50%; }
+.a_vLogo b { font-size: 1.125rem; font-weight: 500; letter-spacing: 0; color: var(--io-ink); }
+.a_vcard .a_vTech { font-size: var(--t-small); line-height: 1.4; color: rgba(255,255,255,.82); }
 .a_vcard .a_vGo { margin-top: 6px; font-size: var(--t-small); font-weight: 500; color: #fff; }
 .a_vLogo { display: inline-flex; align-items: center; justify-content: center; min-width: 64px; height: 34px; padding: 0 12px; border-radius: 6px; background: rgba(255,255,255,.92); color: var(--grey); font-size: var(--t-label); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
 .a_vLogo img { display: block; max-height: 22px; width: auto; }
@@ -5443,6 +5545,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .a_vcard { flex: 0 0 min(82%, 420px); scroll-snap-align: start; }
   .a_cbox .x_cboxMain { grid-column: 1 / -1; }
 }
+/* heading block + body block (Figma 6138:4449): eyebrow + heading flush left, body flush right (32% of the container),
+   space-between, tops aligned, body text left-aligned. One rule for every section head on every page. */
+.x_head { display: flex !important; flex-wrap: wrap; justify-content: space-between !important; align-items: flex-start !important; gap: var(--stack) var(--col-gap) !important; }
+.x_head > div:first-child { flex: 0 1 auto !important; max-width: 62% !important; }
+.x_head > :nth-child(2) { flex: 0 1 clamp(300px, 32%, 560px) !important; max-width: none !important; margin-left: auto !important; align-self: flex-start !important; justify-self: auto !important; text-align: left !important; }
+@media (max-width: 900px) { .x_head > div:first-child { max-width: none !important; } .x_head > :nth-child(2) { flex-basis: 100% !important; margin-left: 0 !important; } }
 </style>
 <script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
 
@@ -5475,25 +5583,23 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 <main><div class="c_page">
 <!-- =========================================================== ACCELERATOR · sub page (rev9 redo: original sections kept, doc sections built from existing components) =========================================================== -->
 <div data-view="accelerator">
-  <section class="a_hero a_heroPh x_onPhoto" data-overlay-hero>
+  <section class="f_hero x_onPhoto" data-overlay-hero>
     <div class="x_img" data-hero><img src="/photos/General%20MarCom%20Photos%20%281%29/Screenshot%202026-02-20%20at%2011.01.41%E2%80%AFAM%20copy.jpg" alt="Visitors inspecting a tomato crop in a greenhouse at Innovation Oasis"></div>
-    <div class="s_wrap a_heroTop"><nav class="x_crumb" aria-label="Breadcrumb"><a href="/full-site/ivp-hub">Innovation &amp; Venture Platforms</a><i></i><span>Accelerator</span></nav></div>
-    <div class="s_wrap">
-      <div class="a_heroGrid">
-        <div class="a_heroMain">
-          <h1 id="uhTitle" aria-label="Unbreakable Harvest"><span class="a_l1">Unbreakable</span> <span class="a_l2">Harvest</span></h1>
-          <p class="x_lead" data-reveal>Fast-track the future of food security.</p>
-        </div>
-        <div class="a_heroSide">
-          <p class="x_lead" data-reveal>This is not a curriculum-based accelerator.</p>
-          <p class="x_body" data-reveal>It is a market-access and commercialization platform for mature agrifood ventures. Companies validate proven technologies in UAE conditions, work directly with prospective customers and partners, and build a route from pilot evidence to commercial deployment.</p>
-          <div class="x_row"><a href="/full-site/ivp-enquire?platform=acc" class="s_btn s_btnPrimary s_btnSm" data-platform="acc">Register your interest <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#acc-model" class="s_textLink">How acceleration works <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-        </div>
+    <div class="s_wrap f_heroIn">
+      <div class="f_heroTop"><nav class="x_crumb" aria-label="Breadcrumb"><a href="/full-site/ivp-hub">Innovation &amp; Venture Platforms</a><i></i><span>Accelerator</span></nav></div>
+      <div class="f_heroMain">
+        <span class="c_eyebrow f_heroEy" data-reveal>Innovation &amp; Venture Platforms – Accelerator</span>
+        <h1 id="uhTitle" aria-label="Unbreakable Harvest">Unbreakable <span class="a_l2">Harvest</span></h1>
+        <p class="x_lead" data-reveal>Fast-track the future of food security.</p>
+        <div class="x_row"><a href="/full-site/ivp-enquire?platform=acc" class="s_btn s_btnPrimary s_btnSm" data-platform="acc">Register interest <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#acc-model" class="s_textLink">How acceleration works <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
       </div>
-      <ul class="a_figs">
-        <li><strong><span data-roll>3–5</span></strong><span>months per validation project</span></li>
-        <li><strong><span data-roll>0</span>%</strong><span>equity taken</span></li>
-      </ul>
+      <div class="f_heroSide">
+        <div class="f_heroIntro"><p>The high-velocity growth engine for Series A+ innovators solving the future of food security and resilience.</p></div>
+        <dl class="f_heroFacts">
+          <div><dt>Per project</dt><dd><strong>3–5</strong>months per validation project</dd></div>
+          <div><dt>Equity</dt><dd><strong>0%</strong>equity taken</dd></div>
+        </dl>
+      </div>
     </div>
   </section>
 
@@ -5546,23 +5652,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
   </div></section>
 
-  <section class="x_grey" id="acc-model"><div class="a_gPin a_gSteps" id="gPin"><div class="a_gStick"><div class="s_wrap" style="width:100%">
-    <div class="x_head" style="margin-bottom:clamp(32px,5vh,56px)"><div><span class="c_eyebrow">The model</span><h2 class="x_h2">From global pipeline to commercial pathway.</h2></div><p class="x_body">Two distinct parts: find and select the right ventures, then pilot and commercialize.</p></div>
-    <div class="a_gChart">
-      <div class="a_gAxis"><span></span><div class="a_gMonths" id="gMonths"></div></div>
-      <div id="gRows">
-        <div class="a_gRow" data-on><h3>Source</h3><div class="a_gTrack"><div class="a_gBar" style="left:0.0000%;width:14.2857%"><i></i></div></div></div>
-        <div class="a_gRow"><h3>Evaluate</h3><div class="a_gTrack"><div class="a_gBar" style="left:14.2857%;width:14.2857%"><i></i></div></div></div>
-        <div class="a_gRow"><h3>Match</h3><div class="a_gTrack"><div class="a_gBar" style="left:28.5714%;width:14.2857%"><i></i></div></div></div>
-        <div class="a_gRow"><h3>Plan</h3><div class="a_gTrack"><div class="a_gBar" style="left:42.8571%;width:14.2857%"><i></i></div></div></div>
-        <div class="a_gRow"><h3>Pilot</h3><div class="a_gTrack"><div class="a_gBar" style="left:57.1429%;width:14.2857%"><i></i></div></div></div>
-        <div class="a_gRow"><h3>Build the case</h3><div class="a_gTrack"><div class="a_gBar" style="left:71.4286%;width:14.2857%"><i></i></div></div></div>
-        <div class="a_gRow"><h3>Commercialize</h3><div class="a_gTrack"><div class="a_gBar" style="left:85.7143%;width:14.2857%"><i></i></div></div></div>
-      </div>
-      <div class="a_gHead" id="gHead" aria-hidden="true"><em id="gHeadLbl">Step 1</em></div>
+  <section class="x_sec x_grey" id="acc-model"><div class="s_wrap">
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>The model</span><h2 class="x_h2" data-reveal>From global pipeline to commercial pathway.</h2></div><p class="x_body" data-reveal>Two distinct parts: find and select the right ventures, then pilot and commercialize.</p></div>
+    <div class="a_stp">
+      <div class="a_stpPart"><div class="a_stpHead"><div><small>Part 1</small><h3>Find and select</h3></div><span>Steps 1–4</span></div>
+        <div class="a_stpBody"><div class="x_img x_corners a_stpPhoto" data-img><img src="/innovation-venture-platforms/img/fif_table.webp" alt="A working session around a table at Innovation Oasis" loading="lazy"></div><ol class="a_stpList" start="1"><li><span class="a_stpN" aria-hidden="true">01</span><div><h4>Source</h4><p>Identify high-potential technologies through global scouting, applications and partner networks.</p></div></li><li><span class="a_stpN" aria-hidden="true">02</span><div><h4>Evaluate</h4><p>Assess maturity, differentiation, evidence, UAE relevance, team capability and commercial potential.</p></div></li><li><span class="a_stpN" aria-hidden="true">03</span><div><h4>Match</h4><p>Connect shortlisted ventures with a relevant problem owner, business sponsor/customer or commercial partner.</p></div></li><li><span class="a_stpN" aria-hidden="true">04</span><div><h4>Plan</h4><p>Develop a clear testing plan, success measures and commercial hypothesis.</p></div></li></ol></div></div>
+      <div class="a_stpPart a_stpDark a_stpFlip"><div class="a_stpHead"><div><small>Part 2</small><h3>Pilot and commercialize</h3></div><span>Steps 5–7</span></div>
+        <div class="a_stpBody"><div class="x_img x_corners a_stpPhoto" data-img><img src="/innovation-venture-platforms/img/area_protected.webp" alt="Rows of crops inside a protected greenhouse" loading="lazy"></div><ol class="a_stpList" start="5"><li><span class="a_stpN" aria-hidden="true">05</span><div><h4>Pilot</h4><p>Deploy the technology and test technical, operational and economic performance.</p></div></li><li><span class="a_stpN" aria-hidden="true">06</span><div><h4>Build the case</h4><p>Translate pilot results and stakeholder feedback into a clear business and adoption case.</p></div></li><li><span class="a_stpN" aria-hidden="true">07</span><div><h4>Commercialize</h4><p>Progress the strongest opportunity through the right customer, channel, technology or investment pathway.</p></div></li></ol></div></div>
     </div>
-    <div class="a_gDetail" aria-live="polite"><small id="gWhen">Part 1 · Find and select</small><h3 id="gTitle">Source</h3><p id="gText">Identify high-potential technologies through global scouting, applications and partner networks.</p></div>
-  </div></div></div></section>
+  </div></section>
 
   <section class="x_sec x_ink" id="acc-offer"><div class="s_wrap">
     <div class="a_cs">
@@ -5578,7 +5676,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <button role="tab" aria-selected="false" tabindex="-1" data-c="7"><span>Ecosystem connections</span></button>
       </div></div>
       <div class="a_csStage" role="tabpanel" aria-live="polite">
-        <div class="a_csImgs x_corners"><img src="/innovation-venture-platforms/img/chal_jury.webp" alt="A jury of partners reviewing pitches" data-on><img src="/photos/General%20MarCom%20Photos%20%281%29/SAM_9200.jpg" alt="Rows of crops inside a greenhouse at Innovation Oasis" loading="lazy"><img src="/photos/Professional%20Facility%20Photos%20%281%29/PA__1405.jpg" alt="Scientists at work in an Innovation Oasis laboratory" loading="lazy"><img src="/innovation-venture-platforms/img/fif_tour.webp" alt="A team on a field visit beside the greenhouses" loading="lazy"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="A working session around a table at Innovation Oasis" loading="lazy"><img src="/innovation-venture-platforms/img/cs_supply.webp" alt="The Abu Dhabi skyline across the water" loading="lazy"><img src="/innovation-venture-platforms/img/fif_talk.webp" alt="Two colleagues discussing results" loading="lazy"><img src="/innovation-venture-platforms/img/fif_group.webp" alt="Partners gathered in the Innovation Oasis atrium" loading="lazy"></div>
+        <div class="a_csImgs x_corners"><img src="/innovation-venture-platforms/img/chal_jury.webp" alt="A jury of partners reviewing pitches" data-on><img src="/photos/General%20MarCom%20Photos%20(1)/SAM_9200.jpg" alt="Rows of crops inside a greenhouse at Innovation Oasis" loading="lazy"><img src="/photos/Professional%20Facility%20Photos%20%281%29/PA__1405.jpg" alt="Scientists at work in an Innovation Oasis laboratory" loading="lazy"><img src="/innovation-venture-platforms/img/fif_tour.webp" alt="A team on a field visit beside the greenhouses" loading="lazy"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="A working session around a table at Innovation Oasis" loading="lazy"><img src="/innovation-venture-platforms/img/cs_supply.webp" alt="The Abu Dhabi skyline across the water" loading="lazy"><img src="/innovation-venture-platforms/img/fif_talk.webp" alt="Two colleagues discussing results" loading="lazy"><img src="/innovation-venture-platforms/img/fif_group.webp" alt="Partners gathered in the Innovation Oasis atrium" loading="lazy"></div>
         <p class="a_hmw" id="csText"><span>Pilot funding</span> Potential milestone-based, non-dilutive support for approved pilot costs.</p>
       </div>
     </div>
@@ -5601,7 +5699,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <section class="x_sec" id="acc-cohort"><div class="s_wrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>Acceleration in action</span><h2 class="x_h2" data-reveal>Meet the current cohort.</h2></div><p class="x_body" data-reveal>The current portfolio includes eight selected startups spanning agricultural inputs, sensing and supply-chain technologies.</p></div>
     <div class="a_vgrid" id="cohort" aria-label="Current cohort"></div>
-    <p class="a_gKey a_cohortKey">Placeholder cards. Select a venture to open its story. Venture names, logos, countries, technologies, challenges and pilot questions will follow from&nbsp;<span class="x_iO">iO</span>, and the photos stand in for real pilot imagery.</p>
     <div class="a_story" id="story" aria-hidden="true">
       <div class="a_storyScrim" data-close></div>
       <aside class="a_storyPanel" role="dialog" aria-modal="true" aria-labelledby="storyName" tabindex="-1">
@@ -5616,14 +5713,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
             <div><dt>Challenge addressed</dt><dd id="storyChallenge"></dd></div>
             <div><dt>Pilot question</dt><dd id="storyQuestion"></dd></div>
           </dl>
-          <p class="a_gKey">Placeholder content until the venture is confirmed.</p>
         </div>
       </aside>
     </div>
   </div></section>
 
   <section class="x_sec a_powersSec"><div class="s_wrap a_powers">
-    <figure class="a_quote"><div class="x_img" data-img><img src="/innovation-venture-platforms/img/ceo.webp" alt="Dr. Shamal Mohammed" loading="lazy"></div><div><blockquote data-scrub>“Innovation Oasis is where we turn <b>the scarcity of our landscape into the abundance of our future</b>. We are inviting the world’s best innovators to prove it with us.”</blockquote><cite><b>Dr. Shamal Mohammed</b> · Chief Executive Officer, Innovation Oasis</cite></div></figure>
+    <figure class="a_quote"><div class="x_img" data-img><img src="/innovation-venture-platforms/img/ceo.webp" alt="Dr. Shamal Mohammed" loading="lazy"></div><div><blockquote data-scrub>“Innovation Oasis is where we turn <b>the scarcity of our landscape into the abundance of our future</b>. We are inviting the world’s best innovators to prove it with us.”</blockquote><cite><b>Dr. Shamal Mohammed</b><span>Chief Executive Officer, Innovation Oasis</span></cite></div></figure>
   </div></section>
 
   <section class="x_sec x_ink" id="acc-faq"><div class="s_wrap a_faq">
@@ -6688,43 +6784,24 @@ dispatchEvent(new Event('io3d'));
       gsap.from($('.a_line', view), { scaleX: 0, transformOrigin: 'left', duration: 1.4, ease: 'expo.out' });
       auto = setInterval(function () { pickArea((sel + 1) % NA); }, 4000);
     } });
-    // the model: a playhead walks the seven steps of the two parts; bars fill as it passes, the stage below follows it
-    var GS = [['Source', 'Identify high-potential technologies through global scouting, applications and partner networks.', 'Part 1 · Find and select'],
-      ['Evaluate', 'Assess maturity, differentiation, evidence, UAE relevance, team capability and commercial potential.', 'Part 1 · Find and select'],
-      ['Match', 'Connect shortlisted ventures with a relevant problem owner, business sponsor/customer or commercial partner.', 'Part 1 · Find and select'],
-      ['Plan', 'Develop a clear testing plan, success measures and commercial hypothesis.', 'Part 2 · Pilot and commercialize'],
-      ['Pilot', 'Deploy the technology and test technical, operational and economic performance.', 'Part 2 · Pilot and commercialize'],
-      ['Build the case', 'Translate pilot results and stakeholder feedback into a clear business and adoption case.', 'Part 2 · Pilot and commercialize'],
-      ['Commercialize', 'Progress the strongest opportunity through the right customer, channel, technology or investment pathway.', 'Part 2 · Pilot and commercialize']];
-    var NS = GS.length, P1 = 3;
-    var gm = $('#gMonths', view);
-    gm.insertAdjacentHTML('beforeend', '<span style="left:0">Part 1<b> · Find and select</b></span><span style="left:' + (P1 / NS * 100) + '%">Part 2<b> · Pilot and commercialize</b></span>');
-    var gRows = $$('#gRows .a_gRow', view), gBars = gRows.map(function (r) { return r.querySelector('.a_gBar'); }), gHead = $('#gHead', view), gLbl = $('#gHeadLbl', view), gk = -1;
-    function gantt(x) {
-      var w = gRows[0].querySelector('.a_gTrack').clientWidth, k = 0;
-      gHead.style.transform = 'translateX(' + (x * w) + 'px)';
-      gBars.forEach(function (b, i) { var l = parseFloat(b.style.left) / 100, wd = parseFloat(b.style.width) / 100; b.firstChild.style.setProperty('--f', Math.max(0, Math.min(1, (x - l) / wd))); if (x >= l) k = i; });
-      if (k !== gk) { gk = k; gLbl.textContent = 'Step ' + (k + 1); gRows.forEach(function (r, i) { i === k ? r.setAttribute('data-on', '') : r.removeAttribute('data-on'); }); swap($('#gWhen', view), GS[k][2]); swap($('#gTitle', view), GS[k][0]); swap($('#gText', view), GS[k][1]); }
-    }
-    pinProgress($('#gPin', view), gantt);
-    // current cohort: configurable. Edit the eight ventures here (logo = image path, or '' for the placeholder; story = link to the venture's story page, or '').
-    // PLACEHOLDER content until iO supplies the real ventures, logos, countries, technologies, challenges, pilot questions and pilot photos.
+    // current cohort: configurable. Edit the eight ventures here (logo = image path, or '' to show the first letter; story = link to the venture's story page, or '').
+    // DUMMY DATA (fictional ventures) until iO confirms the real ones: names, countries, technologies, challenges, pilot questions and pilot photos.
     var COHORT = [
-      { name: '[Venture name]', logo: '', country: '[Country]', tech: '[Technology]', challenge: '[Challenge addressed]', question: '[Pilot question]', img: '/innovation-venture-platforms/img/inc_pots.webp', story: '' },
-      { name: '[Venture name]', logo: '', country: '[Country]', tech: '[Technology]', challenge: '[Challenge addressed]', question: '[Pilot question]', img: '/innovation-venture-platforms/img/area_water.webp', story: '' },
-      { name: '[Venture name]', logo: '', country: '[Country]', tech: '[Technology]', challenge: '[Challenge addressed]', question: '[Pilot question]', img: '/innovation-venture-platforms/img/chal_seed.webp', story: '' },
-      { name: '[Venture name]', logo: '', country: '[Country]', tech: '[Technology]', challenge: '[Challenge addressed]', question: '[Pilot question]', img: '/innovation-venture-platforms/img/inc_chamber.webp', story: '' },
-      { name: '[Venture name]', logo: '', country: '[Country]', tech: '[Technology]', challenge: '[Challenge addressed]', question: '[Pilot question]', img: '/innovation-venture-platforms/img/acc_green.webp', story: '' },
-      { name: '[Venture name]', logo: '', country: '[Country]', tech: '[Technology]', challenge: '[Challenge addressed]', question: '[Pilot question]', img: '/innovation-venture-platforms/img/fif_lettuce.webp', story: '' },
-      { name: '[Venture name]', logo: '', country: '[Country]', tech: '[Technology]', challenge: '[Challenge addressed]', question: '[Pilot question]', img: '/innovation-venture-platforms/img/cs_post.webp', story: '' },
-      { name: '[Venture name]', logo: '', country: '[Country]', tech: '[Technology]', challenge: '[Challenge addressed]', question: '[Pilot question]', img: '/innovation-venture-platforms/img/area_smart.webp', story: '' }];
+      { name: 'Aridra Irrigation', logo: 'innovation-venture-platforms/dummy-logos/aridra.svg', country: 'Spain', tech: 'Soil-moisture sensing and automated drip control', challenge: 'Open-field resource optimization', question: 'Can sensor-driven irrigation reduce water use in UAE open fields without lowering yield?', img: '/innovation-venture-platforms/img/inc_pots.webp', story: '' },
+      { name: 'Terra Nutri', logo: 'innovation-venture-platforms/dummy-logos/terra-nutri.svg', country: 'Netherlands', tech: 'Biological soil amendments', challenge: 'Open-field resource optimization', question: 'Do biological amendments improve crop resilience in saline UAE soils?', img: '/innovation-venture-platforms/img/area_water.webp', story: '' },
+      { name: 'Hydronia', logo: 'innovation-venture-platforms/dummy-logos/hydronia.svg', country: 'Italy', tech: 'Closed-loop hydroponic nutrient dosing', challenge: 'Protected-agriculture resource optimization', question: 'Can closed-loop dosing lower water and fertilizer use in year-round greenhouse production?', img: '/innovation-venture-platforms/img/chal_seed.webp', story: '' },
+      { name: 'Kelvara Cooling', logo: 'innovation-venture-platforms/dummy-logos/kelvara.svg', country: 'India', tech: 'Solar-assisted greenhouse cooling', challenge: 'Protected-agriculture resource optimization', question: 'Can solar-assisted cooling reduce energy demand in summer greenhouse production?', img: '/innovation-venture-platforms/img/inc_chamber.webp', story: '' },
+      { name: 'Freshlock', logo: 'innovation-venture-platforms/dummy-logos/freshlock.svg', country: 'Singapore', tech: 'Edible coatings for fresh produce', challenge: 'Post-harvest quality and shelf life', question: 'Does an edible coating extend the shelf life of leafy greens through UAE cold chains?', img: '/innovation-venture-platforms/img/acc_green.webp', story: '' },
+      { name: 'Ripesense', logo: 'innovation-venture-platforms/dummy-logos/ripesense.svg', country: 'Germany', tech: 'In-line ripeness sensing', challenge: 'Post-harvest quality and shelf life', question: 'Can in-line ripeness sensing reduce quality loss before dispatch?', img: '/innovation-venture-platforms/img/fif_lettuce.webp', story: '' },
+      { name: 'Tracelane', logo: 'innovation-venture-platforms/dummy-logos/tracelane.svg', country: 'United States', tech: 'Farm-to-shelf traceability platform', challenge: 'Supply-chain visibility and resilience', question: 'Can batch-level traceability speed up dispatch and recall decisions across UAE distribution?', img: '/innovation-venture-platforms/img/cs_post.webp', story: '' },
+      { name: 'Oasara Forecast', logo: 'innovation-venture-platforms/dummy-logos/oasara.svg', country: 'Kenya', tech: 'Demand forecasting for fresh produce', challenge: 'Supply-chain visibility and resilience', question: 'Can demand forecasting reduce unsold produce across regional retail channels?', img: '/innovation-venture-platforms/img/area_smart.webp', story: '' }];
     var cohort = $('#cohort', view), esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
     cohort.innerHTML = COHORT.map(function (v, i) {
       var n = (i < 9 ? '0' : '') + (i + 1);
       return '<button class="a_vcard" type="button" data-i="' + i + '" aria-haspopup="dialog" aria-label="' + esc(v.name) + ', ' + esc(v.country) + ': open story">' +
         '<div class="x_img"><img src="' + esc(v.img) + '" alt="" loading="lazy"></div>' +
-        '<span class="a_vLogo">' + (v.logo ? '<img src="' + esc(v.logo) + '" alt="">' : 'Logo') + '</span>' +
-        '<div class="a_vIn"><span class="h_for">' + n + ' · ' + esc(v.country) + '</span><h3>' + esc(v.name) + '</h3><span class="a_vGo">View story</span></div></button>';
+        '<span class="a_vLogo">' + (v.logo ? '<img src="' + esc(v.logo) + '" alt="">' : '<b>' + esc(v.name.charAt(0)) + '</b>') + '</span>' +
+        '<div class="a_vIn"><span class="h_for">' + n + ' · ' + esc(v.country) + '</span><h3>' + esc(v.name) + '</h3><span class="a_vTech">' + esc(v.tech) + '</span><span class="a_vGo">View story</span></div></button>';
     }).join('');
     // story panel: a card opens it, the close button, the scrim or Esc closes it, focus returns to the card
     var story = $('#story', view), sPanel = story.querySelector('.a_storyPanel'), sFrom = null;
@@ -6886,5 +6963,34 @@ dispatchEvent(new Event('io3d'));
   }, true);
 })();
 </script>
-<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script></body>
+<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script><script>
+/* Heading 2 rule: more than five words = exactly two lines (desktop). Phones wrap naturally. */
+(function () {
+  var SEL = 'main h2, [data-view] h2';
+  function words(t) { return t.replace(/\u00a0/g, ' ').trim().split(/\s+/).filter(Boolean).length; }
+  function textLines(h) {
+    var w = document.createTreeWalker(h, NodeFilter.SHOW_TEXT), tops = [], n, r, rg = document.createRange();
+    while ((n = w.nextNode())) { if (!n.nodeValue.trim()) continue; rg.selectNodeContents(n); Array.prototype.forEach.call(rg.getClientRects(), function (q) { if (q.width > 1) tops.push(Math.round(q.top / 6)); }); }
+    return tops.filter(function (v, i) { return tops.indexOf(v) === i; }).length;
+  }
+  function natural(h) {
+    var cs = getComputedStyle(h), s = document.createElement('span');
+    s.textContent = h.textContent.replace(/\s+/g, ' ').trim();
+    s.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:0;font-size:' + cs.fontSize + ';font-weight:' + cs.fontWeight + ';font-family:' + cs.fontFamily + ';letter-spacing:' + cs.letterSpacing + ';font-variation-settings:' + cs.fontVariationSettings;
+    document.body.appendChild(s); var W = s.getBoundingClientRect().width; s.remove(); return W;
+  }
+  function fit(h) {
+    h.style.maxWidth = '';
+    if (innerWidth <= 900 || !h.offsetParent || words(h.textContent) <= 5) return;
+    var wrap = h.closest('.s_wrap') || document.body, cw = wrap.clientWidth - parseFloat(getComputedStyle(wrap).paddingLeft) - parseFloat(getComputedStyle(wrap).paddingRight);
+    var avail = h.closest('.x_head') ? cw * 0.62 : cw, W = natural(h), f = 0.56, n = 0;
+    do { h.style.maxWidth = Math.min(avail, Math.ceil(W * f)) + 'px'; f += 0.04; n++; } while (textLines(h) > 2 && n < 12 && W * (f - 0.04) < avail);
+  }
+  function run() { Array.prototype.forEach.call(document.querySelectorAll(SEL), fit); }
+  run(); addEventListener('load', run);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(run, 150); });
+})();
+</script>
+</body>
 </html>

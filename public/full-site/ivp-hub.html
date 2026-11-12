@@ -4640,7 +4640,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .x_nextPh { grid-column: 1 / span 6; aspect-ratio: 16 / 9; }
 .x_nextPh img { scale: 1.1; transition: scale 1.4s var(--slow); }
 .x_next:hover .x_nextPh img { scale: 1; }
-.x_nextText { grid-column: 9 / span 4; display: flex; flex-direction: column; align-items: flex-start; gap: var(--stack); }
+.x_nextText { grid-column: 8 / span 5; display: flex; flex-direction: column; align-items: flex-start; gap: var(--stack); }
 .x_nextText strong { font-size: var(--fs-display); font-weight: 300; line-height: 1.04; letter-spacing: -.035em; transition: color .5s, transform .9s var(--slow); }
 .x_nextText p { font-size: var(--fs-body); line-height: 1.6; color: var(--grey-ink); }
 .x_nextText .s_btn { margin-top: calc(var(--blk) - var(--stack)); }
@@ -5621,6 +5621,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* exact doc category names are long: the island tags wrap instead of overflowing the stage */
 .gTag span { white-space: normal; width: max-content; max-width: 200px; line-height: 1.35; border-radius: 16px; align-items: flex-start; }
 .gTag span::before { flex: none; margin-top: .35em; } .gTag em { white-space: nowrap; }
+/* heading block + body block (Figma 6138:4449): eyebrow + heading flush left, body flush right (32% of the container),
+   space-between, tops aligned, body text left-aligned. One rule for every section head on every page. */
+.x_head { display: flex !important; flex-wrap: wrap; justify-content: space-between !important; align-items: flex-start !important; gap: var(--stack) var(--col-gap) !important; }
+.x_head > div:first-child { flex: 0 1 auto !important; max-width: 62% !important; }
+.x_head > :nth-child(2) { flex: 0 1 clamp(300px, 32%, 560px) !important; max-width: none !important; margin-left: auto !important; align-self: flex-start !important; justify-self: auto !important; text-align: left !important; }
+@media (max-width: 900px) { .x_head > div:first-child { max-width: none !important; } .x_head > :nth-child(2) { flex-basis: 100% !important; margin-left: 0 !important; } }
 </style>
 <script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
 
@@ -7200,5 +7206,34 @@ dispatchEvent(new Event('io3d'));
   }, true);
 })();
 </script>
-<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script></body>
+<script id="navcj">(function(){var Q=".navItem,.s_navItem";function fit(li){var d=li.querySelector(".dropdown,.s_dropdown");if(!d)return;d.style.right="auto";d.style.left="50%";d.style.marginLeft=(-d.offsetWidth/2)+"px";var r=d.getBoundingClientRect(),vw=document.documentElement.clientWidth,m=16,s=0;if(r.left<m)s=m-r.left;else if(r.right>vw-m)s=vw-m-r.right;if(s)d.style.marginLeft=(-d.offsetWidth/2+s)+"px"}function all(){document.querySelectorAll(Q).forEach(fit)}document.addEventListener("mouseover",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});document.addEventListener("focusin",function(e){var l=e.target.closest&&e.target.closest(Q);if(l)fit(l)});window.addEventListener("resize",all);window.addEventListener("load",all)})()</script><script>
+/* Heading 2 rule: more than five words = exactly two lines (desktop). Phones wrap naturally. */
+(function () {
+  var SEL = 'main h2, [data-view] h2';
+  function words(t) { return t.replace(/\u00a0/g, ' ').trim().split(/\s+/).filter(Boolean).length; }
+  function textLines(h) {
+    var w = document.createTreeWalker(h, NodeFilter.SHOW_TEXT), tops = [], n, r, rg = document.createRange();
+    while ((n = w.nextNode())) { if (!n.nodeValue.trim()) continue; rg.selectNodeContents(n); Array.prototype.forEach.call(rg.getClientRects(), function (q) { if (q.width > 1) tops.push(Math.round(q.top / 6)); }); }
+    return tops.filter(function (v, i) { return tops.indexOf(v) === i; }).length;
+  }
+  function natural(h) {
+    var cs = getComputedStyle(h), s = document.createElement('span');
+    s.textContent = h.textContent.replace(/\s+/g, ' ').trim();
+    s.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:0;font-size:' + cs.fontSize + ';font-weight:' + cs.fontWeight + ';font-family:' + cs.fontFamily + ';letter-spacing:' + cs.letterSpacing + ';font-variation-settings:' + cs.fontVariationSettings;
+    document.body.appendChild(s); var W = s.getBoundingClientRect().width; s.remove(); return W;
+  }
+  function fit(h) {
+    h.style.maxWidth = '';
+    if (innerWidth <= 900 || !h.offsetParent || words(h.textContent) <= 5) return;
+    var wrap = h.closest('.s_wrap') || document.body, cw = wrap.clientWidth - parseFloat(getComputedStyle(wrap).paddingLeft) - parseFloat(getComputedStyle(wrap).paddingRight);
+    var avail = h.closest('.x_head') ? cw * 0.62 : cw, W = natural(h), f = 0.56, n = 0;
+    do { h.style.maxWidth = Math.min(avail, Math.ceil(W * f)) + 'px'; f += 0.04; n++; } while (textLines(h) > 2 && n < 12 && W * (f - 0.04) < avail);
+  }
+  function run() { Array.prototype.forEach.call(document.querySelectorAll(SEL), fit); }
+  run(); addEventListener('load', run);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(run, 150); });
+})();
+</script>
+</body>
 </html>
