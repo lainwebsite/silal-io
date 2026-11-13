@@ -126,7 +126,7 @@ def build_images():
 # page body
 # ----------------------------------------------------------------------------------------------------------------
 def li_obj(n, word, text):
-    return '<li><em>Objective %02d</em><strong>%s</strong><span>%s</span></li>' % (n, word, T(text))
+    return '<li><strong>%s</strong><span>%s</span></li>' % (word, T(text))
 
 
 STAGES = [
@@ -159,9 +159,9 @@ STAGES = [
 def gate(i, s):
     title, img, short, text, plabel, progs = s
     chips = ''.join(('<li><a href="%s">%s</a></li>' % (h, T(p))) if h else '<li>%s</li>' % T(p) for p, h in progs)
-    return ('<li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">%02d · %s</span>'
+    return ('<li class="f_gate"><span class="f_gateN" aria-hidden="true"></span><div><span class="x_label">%02d</span>'
             '<h3>%s</h3><p>%s</p><div class="lt_progs"><span class="x_label">%s</span><ul>%s</ul></div></div></li>'
-            % (i + 1, short, title, T(text), plabel, chips))
+            % (i + 1, title, T(text), plabel, chips))
 
 
 EXPERIENCE = [
@@ -204,15 +204,15 @@ GAIN = ['Practical experience in real research environments', 'Exposure to labor
 COHORT = [
     ('The Cohort', 'Include verified information on:',
      ['Number of interns', 'Universities represented', 'Academic disciplines', 'Placement duration', 'IO departments or research areas']),
-    ('The Experience', 'Practical activities such as:',
+    ('The Experience', 'Show practical activities such as:',
      ['Laboratory analysis', 'Soil and water testing', 'Crop-health assessment', 'Field or greenhouse trials', 'Molecular work',
       'Data collection', 'Research presentations']),
     ('The Outputs', 'Potential outputs could include:',
      ['Technical presentations', 'Research summaries', 'Laboratory or field datasets', 'Project reports', 'Learning portfolios',
       'Recommendations for future work']),
-    ('Recognition', 'Approved photographs from:',
+    ('Recognition', 'Use approved photographs from:',
      ['Graduation or completion ceremony', 'Certificate presentation', 'Intern project presentations', 'Laboratory or field activity']),
-    ('Participant Perspectives', 'Short approved quotes answering:',
+    ('Participant Perspectives', 'Include short approved quotes answering:',
      ['What did the participant work on?', 'What new capability did the participant develop?',
       'How did the placement influence future study or career plans?']),
 ]
@@ -264,6 +264,7 @@ STORIES = [
      'Advanced Agritech Academy welcomes its first cohort',
      'A new generation of agri-food talent begins hands-on training in laboratories, greenhouses and the field.'),
 ]
+STORY_FORMAT = ['Program', 'Participant or team', 'Practical activity', 'Skills developed', 'Output or achievement', 'Next step']
 STORY_TYPES = ['Intern profiles', 'Cohort graduations', 'Student project highlights', 'MUSTADEEM activities', 'School visits',
                'Training milestones', 'Researcher profiles', 'University partnerships', 'New course or placement announcements']
 
@@ -279,32 +280,29 @@ def main_html():
     <div class="s_wrap f_heroIn">
       <div class="f_heroTop"><nav class="x_crumb" aria-label="Breadcrumb"><a href="ivp-hub.html">Innovation &amp; Venture Platforms</a><i></i><span>%(name)s</span></nav></div>
       <div class="f_heroMain">
-        <span class="c_eyebrow f_heroEy" data-reveal>Innovation &amp; Venture Platforms – %(name)s</span>
+        <span class="c_eyebrow f_heroEy" data-reveal>Local Talent Development</span>
         <h1 data-reveal>%(name)s</h1>
-        <p class="x_lead" data-reveal>Building the next generation of agrifood talent.</p>
-        <div class="x_row">%(btn)s<a href="#lt-pathway" class="s_textLink">See the Pathway %(arr)s</a></div>
+        <p class="x_lead" data-reveal>Building the next generation of agrifood talent</p>
+        <div class="x_row">%(btn)s</div>
       </div>
       <div class="f_heroSide">
         <div class="f_heroIntro"><p>%(p1)s</p><p>%(p2)s</p></div>
-        <dl class="f_heroFacts">
-          <div><dt>School visits</dt><dd><strong>Ages 11+</strong>School Discovery Programme</dd></div>
-          <div><dt>Youth programme</dt><dd><strong>Ages 13–16</strong>MUSTADEEM</dd></div>
-        </dl>
       </div>
     </div>
   </section>
-''' % dict(hero=im('lt_hero'), name=NAME, btn=enq('Enquire'), arr=ARR,
+''' % dict(hero=im('lt_hero'), name=NAME, btn=enq('Enquire'),
            p1=T('IO creates practical learning and research opportunities that help young people develop the knowledge, skills and experience needed to contribute to the UAE’s future food system.'),
            p2=T('From school discovery visits and youth programs to internships, professional training and advanced research pathways, participants learn in an environment where science, technology and agriculture come together.')))
 
     # 2 purpose
     a('''  <section class="x_sec" id="lt-why"><div class="s_wrap f_why">
-    <div class="f_whyHead"><span class="c_eyebrow">Our purpose</span><p class="x_statement" data-scrub>Developing the people behind <b>resilient food systems</b>.</p></div>
+    <div class="f_whyHead"><span class="c_eyebrow">Our purpose</span><p class="x_statement" data-scrub>Developing the people behind <b>resilient food systems</b></p></div>
     <div class="x_img x_corners f_whyImg" data-img><img src="%s" alt="An iO scientist preparing a laboratory sample" loading="lazy"></div>
     <div class="f_whyBody">
       <p class="x_body" data-reveal>The future of agriculture requires more than new technologies and facilities. It requires people who can understand complex food, resource and environmental challenges and turn scientific knowledge into practical solutions.</p>
       <p class="x_body f_bridge" data-reveal>%s</p>
     </div>
+    <span class="x_label lt_fourLabel">Four Objectives</span>
     <ul class="f_tenets f_pillars">%s</ul>
   </div></section>
 ''' % (im('lt_why'),
@@ -319,9 +317,8 @@ def main_html():
     a('''  <section class="x_sec" id="lt-pathway"><div class="s_wrap f_gates">
     <div class="f_gatesSide">
       <span class="c_eyebrow" data-reveal>From discovery to expertise</span>
-      <h2 class="x_h2" data-reveal>A pathway for every stage of learning.</h2>
+      <h2 class="x_h2" data-reveal>A pathway for every stage of learning</h2>
       <div class="x_img x_corners f_gateImgs" id="gateImgs" data-img>%s</div>
-      <p class="x_cap f_gateJ" id="gateJ"><b id="gateJb">Stage 1</b><span id="gateJs">School students</span></p>
     </div>
     <ol class="f_gatesList" id="gates">
       <i class="f_gatesRail" aria-hidden="true"></i><i class="f_gatesFill" aria-hidden="true"></i>
@@ -337,7 +334,7 @@ def main_html():
         '<li%s tabindex="0"><span class="f_whoNum">%02d</span><div class="f_whoTxt"><h3>%s</h3><p>%s</p></div><div class="x_img f_whoThumb"><img src="%s" alt="" loading="lazy"></div></li>'
         % (' data-on' if k == 0 else '', k + 1, e[0], T(e[2]), im('lt_' + e[1])) for k, e in enumerate(EXPERIENCE))
     a('''  <section class="x_sec x_grey" id="lt-school"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Discover agriculture</span><h2 class="x_h2" data-reveal>See how food moves from farm to market.</h2></div><div class="x_stack"><p class="x_body" data-reveal>The School Discovery Programme is a guided educational experience for students, generally aged 11 and above, introducing farming, food, technology and sustainability through visits to Silal facilities in Al Ain.</p></div></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Discover agriculture</span><h2 class="x_h2" data-reveal>See how food moves from farm to market</h2></div><div class="x_stack"><p class="x_body" data-reveal>The School Discovery Programme is a guided educational experience for students, generally aged 11 and above, introducing farming, food, technology and sustainability through visits to Silal facilities in Al Ain.</p></div></div>
     <div class="f_whoGrid">
       <div class="x_img x_corners f_whoStage" id="whoStage">%s</div>
       <div class="f_whoSide"><span class="x_label">The Experience</span><ol class="f_whoList" id="whoList">%s</ol></div>
@@ -349,12 +346,12 @@ def main_html():
 
     # 5 MUSTADEEM
     a('''  <section class="x_sec" id="lt-mustadeem"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Hands-on youth learning</span><h2 class="x_h2" data-reveal>Developing skills for environmental and food challenges.</h2></div><div class="x_stack"><p class="x_body" data-reveal>MUSTADEEM is a UAE youth-training program focused on sustainability, agriculture and environmental science. It gives teenagers aged 13 to 16 practical experience in addressing environmental and food-system challenges through science and technology.</p><p class="x_body" data-reveal>The program was launched by the Ministry of Climate Change and Environment with participating partners including Silal in 2025.</p></div></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Hands-on youth learning</span><h2 class="x_h2" data-reveal>Developing skills for environmental and food challenges</h2></div><div class="x_stack"><p class="x_body" data-reveal>MUSTADEEM is a UAE youth-training program focused on sustainability, agriculture and environmental science. It gives teenagers aged 13 to 16 practical experience in addressing environmental and food-system challenges through science and technology.</p><p class="x_body" data-reveal>The program was launched by the Ministry of Climate Change and Environment with participating partners including Silal in 2025.</p></div></div>
+    <span class="x_label lt_skillsLabel">Skills Developed</span>
     <ol class="c_principles f_capSteps">%s</ol>
-    <p class="f_callout"><b>Program Purpose</b><span>MUSTADEEM aims to prepare young people for future opportunities in sustainability and agriculture while building awareness of the scientific and technical work behind food security.</span></p>
     <div class="x_row lt_cta">%s</div>
   </div></section>
-''' % (''.join('<li><span>Skill %02d</span><h3 data-reveal>%s</h3><p data-reveal>%s</p></li>' % (k + 1, s[0], s[1]) for k, s in enumerate(SKILLS)),
+''' % (''.join('<li><h3 data-reveal>%s</h3><p data-reveal>%s</p></li>' % (s[0], s[1]) for k, s in enumerate(SKILLS)),
        btn(ENQ, 'Explore youth programs', ' data-platform="talent"')))
 
     # 6 internships (tabs + stage)
@@ -364,9 +361,9 @@ def main_html():
     stage = ''.join('<img src="%s" alt="%s"%s>' % (im(ar[1] if ar[1].startswith('lt_') else 'lt_' + ar[1]), ar[0], ' loading="lazy" class="on"' if k == 0 else ' loading="lazy"') for k, ar in enumerate(AREAS))
     a('''  <section class="x_sec x_grey" id="lt-interns"><div class="s_wrap">
     <div class="f_areas">
-      <div class="f_areaSide"><div class="f_areaHead"><span class="c_eyebrow" data-reveal>Learn by doing</span><h2 class="x_h2" data-reveal>Turn academic learning into practical experience.</h2><p class="x_body" data-reveal>Internships give university students and recent graduates direct exposure to agricultural science, laboratory operations, field research and innovation projects.</p><p class="x_body" data-reveal>Participants can work alongside %s specialists and contribute to real activities rather than observing from a distance.</p></div>
+      <div class="f_areaSide"><div class="f_areaHead"><span class="c_eyebrow" data-reveal>Learn by doing</span><h2 class="x_h2" data-reveal>Turn academic learning into practical experience</h2><p class="x_body" data-reveal>Internships give university students and recent graduates direct exposure to agricultural science, laboratory operations, field research and innovation projects.</p><p class="x_body" data-reveal>Participants can work alongside %s specialists and contribute to real activities rather than observing from a distance.</p></div>
       <div class="f_areaTabs" role="tablist" aria-label="Potential placement areas" id="areaTabs">%s</div></div>
-      <div class="x_img f_areaStage" id="faStage" role="tabpanel" aria-labelledby="fa-0" data-img>%s<div class="f_areaCap"><span>Potential placement area</span><p id="faText">%s</p><p class="f_areaDesc" id="faDesc">%s</p><div class="f_areaChips" id="faChips"></div></div></div>
+      <div class="x_img f_areaStage" id="faStage" role="tabpanel" aria-labelledby="fa-0" data-img>%s<div class="f_areaCap"><span>Potential Placement Areas</span><p id="faText">%s</p><p class="f_areaDesc" id="faDesc">%s</p><div class="f_areaChips" id="faChips"></div></div></div>
     </div>
     <div class="lt_split lt_gain"><div><span class="x_label">What Participants Gain</span></div>%s</div>
   </div></section>
@@ -377,18 +374,17 @@ def main_html():
     for k, (title, intro, items) in enumerate(COHORT):
         cards += '<li><span class="x_label">%02d</span><h3>%s</h3><p>%s</p>%s</li>' % (k + 1, title, intro, dots(items))
     a('''  <section class="x_sec" id="lt-cohort"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Our future innovators</span><h2 class="x_h2" data-reveal>First intern cohort.</h2></div><div class="x_stack"><p class="x_body" data-reveal>The first intern cohort is the leading proof point for %s’s internship model.</p></div></div>
+    <div class="x_head"><div><h2 class="x_h2" data-reveal>Our Future Innovators</h2></div></div>
     <ol class="lt_story">%s</ol>
-    <p class="f_callout"><b>Status</b><span>Cohort figures, photographs and participant quotes are added here once they have been verified and approved.</span></p>
   </div></section>
-''' % (IO, cards))
+''' % (cards,))
 
     # 8 training
     a('''  <section class="x_sec x_grey" id="lt-training"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Technical and professional development</span><h2 class="x_h2" data-reveal>Skills for the future of agriculture.</h2></div><div class="x_stack"><p class="x_body" data-reveal>The %s Academy is intended to help people develop practical capabilities in modern agricultural technologies and production systems.</p><p class="x_body" data-reveal>The Academy was launched in 2025 as part of the UAE’s wider food-security and sustainability ambitions and focuses on developing Emirati talent for emerging agricultural careers.</p></div></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Technical and professional development</span><h2 class="x_h2" data-reveal>Skills for the future of agriculture</h2></div><div class="x_stack"><p class="x_body" data-reveal>The %s Academy is intended to help people develop practical capabilities in modern agricultural technologies and production systems.</p><p class="x_body" data-reveal>The Academy was launched in 2025 as part of the UAE’s wider food-security and sustainability ambitions and focuses on developing Emirati talent for emerging agricultural careers.</p></div></div>
     <div class="f_share">
       <div class="f_shareIO"><span class="x_label">Potential Learning Areas</span><ol class="f_shareList">%s</ol></div>
-      <div class="f_shareYou"><span class="x_label">Target Audiences</span><p class="x_body lt_note">Subject to the approved operating model.</p>%s</div>
+      <div class="f_shareYou"><span class="x_label">Target Audiences</span><p class="x_body lt_note">Subject to the approved operating model:</p>%s</div>
     </div>
     <div class="x_row lt_cta">%s</div>
   </div></section>
@@ -402,9 +398,8 @@ def main_html():
                 '<div><span class="x_label">%s</span>%s</div><div><span class="x_label">Potential Benefits</span>%s</div></article>'
                 % (title, T(model), tl, checks(topics), checks(ben)))
     a('''  <section class="x_sec" id="lt-research"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Advanced research pathways</span><h2 class="x_h2" data-reveal>Developing specialist scientific capability.</h2></div><div class="x_stack"><p class="x_body" data-reveal>%s</p></div></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Advanced research pathways</span><h2 class="x_h2" data-reveal>Developing specialist scientific capability</h2></div><div class="x_stack"><p class="x_body" data-reveal>%s</p></div></div>
     <div class="lt_pair">%s%s</div>
-    <p class="f_callout"><b>Future pathway</b><span>Doctoral and postdoctoral programs are being developed with prospective academic and research partners. Opportunities will be published once funding, supervision and program terms are confirmed.</span></p>
     <div class="x_row lt_cta">%s</div>
   </div></section>
 ''' % (T('IO’s science strategy proposes longer-term pathways for doctoral and postdoctoral researchers to contribute to applied research addressing UAE agricultural priorities.'),
@@ -415,7 +410,7 @@ def main_html():
                    % (im(i), c, c) for c, i in ENVS)
     a('''  <section class="x_grey" id="lt-learning"><div class="f_dayPin" id="dayPin"><div class="f_dayStick">
     <div class="s_wrap f_dayHead">
-      <div><span class="c_eyebrow" data-reveal>A living learning environment</span><h2 class="x_h2" data-reveal>Education connected to real agricultural work.</h2><p class="x_body" data-reveal>%s</p></div>
+      <div><span class="c_eyebrow" data-reveal>A living learning environment</span><h2 class="x_h2" data-reveal>Education connected to real agricultural work</h2><p class="x_body" data-reveal>%s</p></div>
     </div>
     <div class="f_track" id="dayTrack">%s</div>
   </div></div></section>
@@ -425,30 +420,26 @@ def main_html():
     groups = ''.join('<div class="f_pGroup"><div class="f_pGroupHead"><span class="x_label">%02d</span><h3>%s</h3></div>%s</div>'
                      % (k + 1, t, dots(items)) for k, (t, items) in enumerate(PARTNERS))
     a('''  <section class="x_sec" id="lt-partners"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Developing talent together</span><h2 class="x_h2" data-reveal>Stronger pathways between education and industry.</h2></div><div class="x_stack"><p class="x_body" data-reveal>%s</p></div></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Developing talent together</span><h2 class="x_h2" data-reveal>Stronger pathways between education and industry</h2></div><div class="x_stack"><p class="x_body" data-reveal>%s</p></div></div>
     <div class="f_pGrid lt_pGrid">%s</div>
     <div class="x_row lt_cta">%s</div>
   </div></section>
 ''' % (T('IO can work with schools, universities, government organizations and industry partners to develop relevant learning and research opportunities.'),
        groups, enq('Develop a learning program with IO'.replace('IO', 'iO'))))
 
-    # 12 stories
-    cards = ''.join(
-        '<a class="lt_card" href="%s"><div class="x_img x_corners lt_cardImg"><img src="%s" alt="%s" loading="lazy"></div><div class="lt_cardTxt"><span class="x_label">%s</span><h3>%s</h3><p>%s</p><span class="s_textLink">Read the story %s</span></div></a>'
-        % (u, i, al, lab, t, p, ARR) for u, i, al, lab, t, p in STORIES)
+    # 12 stories (the brief gives the story types and the story format, no stories)
     a('''  <section class="x_sec x_grey" id="lt-stories"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Talent in action</span><h2 class="x_h2" data-reveal>Learning, research and achievement at iO.</h2></div></div>
-    <div class="lt_news">%s</div>
-    <div class="lt_types"><span class="x_label">Stories we share</span><ul>%s</ul></div>
-    <div class="x_row lt_cta">%s</div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Talent in action</span><h2 class="x_h2" data-reveal>Learning, research and achievement at iO</h2></div></div>
+    <div class="lt_types"><ul>%s</ul></div>
+    <div class="lt_types"><span class="x_label">Story Format</span><ul>%s</ul></div>
   </div></section>
-''' % (cards, ''.join('<li>%s</li>' % s for s in STORY_TYPES), tlink('news.html', 'All news and stories')))
+''' % (''.join('<li>%s</li>' % x for x in STORY_TYPES), ''.join('<li>%s</li>' % x for x in STORY_FORMAT)))
 
     # 13 final CTA (same band as the other IVP pages, incl. the helix hook)
     a('''  <section class="x_sec i_successSec f_reg" id="lt-register"><img class="i_successMark" src="innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true"><div class="i_successGl" id="succHelix" hidden aria-hidden="true"></div><div class="s_wrap f_regGrid">
     <div class="f_regMain">
       <span class="f_regStatus"><span>Build the future with iO</span></span>
-      <p class="x_statement" id="ctaTitle" data-scrub data-from="rgba(255,255,255,.4)">Start a learning journey <b>in agrifood.</b></p>
+      <p class="x_statement" id="ctaTitle" data-scrub data-from="rgba(255,255,255,.4)">Start a learning journey <b>in agrifood</b></p>
       <p id="ctaBody">%s</p>
       <div class="x_row f_regBtns" id="succBtn">%s<a href="io-academy.html" class="s_textLink" id="ctaSecondary"><span>Explore trainings</span> %s</a></div>
     </div>
@@ -457,11 +448,10 @@ def main_html():
 ''' % (T('Whether you are a student exploring agriculture, a graduate looking for practical experience, a researcher developing specialist expertise or an institution seeking an industry-connected program, IO can help identify the right opportunity.'),
        btn(ENQ, '<span>Enquire</span>', ' id="ctaPrimary" data-platform="talent"'), ARR, im('fif_workshop')))
 
-    # next
-    a('''  <a class="x_next" href="ivp-hub.html"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="innovation-venture-platforms/img/hero_fif.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Back to all platforms</span><strong>Innovation &amp; Venture Platforms</strong><p>Fund a farmer’s idea, incubate a lab prototype, accelerate a proven technology, or prove it in an open challenge.</p><span class="s_btn s_btnPrimary s_btnSm">Back to the overview %s</span></div></div></a>
-</div>
+    # (no next-page block: not in the brief)
+    a('''</div>
 
-</div></main>''' % ARR)
+</div></main>''')
     return '\n'.join(h)
 
 
@@ -518,6 +508,9 @@ EXTRA_CSS = '''
 .lt_split > .f_check { grid-column: 7 / span 6; }
 .lt_split .x_label { color: var(--io-ink); }
 .lt_cta { margin-top: var(--head); }
+.lt_fourLabel, .lt_skillsLabel { color: var(--io-ink); }
+.lt_fourLabel { grid-column: 1 / -1; margin-bottom: -24px; }
+.lt_skillsLabel { display: block; margin-bottom: 20px; }
 .lt_note { color: var(--grey-ink); margin-top: -4px; }
 .lt_checks { margin-top: 4px; }
 .f_shareYou .lt_checks { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -596,12 +589,8 @@ def init_js(fif_script):
     g0 = gates.index("    // the caption under the photo names the journey")
     g1 = gates.index("    // the photo follows the furthest gate")
     gates = gates[:g0] + '''    // the caption under the photo names the stage of the lit gate
-    var STAGES = %s;
-    function gateJourney(k) {
-      if (k === gJk) return; gJk = k;
-      swap($('#gateJb', view), 'Stage ' + (k + 1)); swap($('#gateJs', view), STAGES[k]);
-    }
-''' % json.dumps([s[0] for s in STAGES], ensure_ascii=False) + gates[g1:]
+    function gateJourney(k) {}
+''' + gates[g1:]
     gates = gates.replace("$('#fif-process', view)", "$('#lt-pathway', view)")
     who = between("    // who can participate", "    // innovation day")
     tail = between("    // innovation day", None)   # day pin + registration band + closing "};"
