@@ -286,13 +286,12 @@ def main_html():
         <div class="x_row">%(btn)s</div>
       </div>
       <div class="f_heroSide">
-        <div class="f_heroIntro"><p>%(p1)s</p><p>%(p2)s</p></div>
+        <div class="f_heroIntro"><p>%(p1)s</p></div>
       </div>
     </div>
   </section>
 ''' % dict(hero=im('lt_hero'), name=NAME, btn=enq('Enquire'),
-           p1=T('IO creates practical learning and research opportunities that help young people develop the knowledge, skills and experience needed to contribute to the UAE’s future food system.'),
-           p2=T('From school discovery visits and youth programs to internships, professional training and advanced research pathways, participants learn in an environment where science, technology and agriculture come together.')))
+           p1=T('IO creates practical learning and research opportunities that help young people develop the knowledge, skills and experience needed to contribute to the UAE’s future food system.'),))
 
     # 2 purpose
     a('''  <section class="x_sec" id="lt-why"><div class="s_wrap f_why">
@@ -545,6 +544,7 @@ EXTRA_CSS = '''
 /* the hero photo is a bright laboratory: a deeper shade keeps the white text readable */
 .lt_hero::after { background: linear-gradient(180deg, rgba(14,16,15,.5) 0%, rgba(14,16,15,.12) 24%), linear-gradient(0deg, rgba(14,16,15,.82) 0%, rgba(14,16,15,.58) 42%, rgba(14,16,15,.18) 72%), linear-gradient(90deg, rgba(14,16,15,.32) 0%, rgba(14,16,15,0) 62%); }
 .lt_hero > .x_img img { object-position: 50% 45%; }
+@media (min-width: 1101px) { .lt_hero .f_heroMain { grid-column: 1 / span 7; } .lt_hero h1 { white-space: nowrap; } }
 #lt-mustadeem .x_head, #lt-training .x_head, #lt-research .x_head, #lt-partners .x_head, #lt-cohort .x_head { align-items: start; }
 #lt-cohort .x_head > :nth-child(2) { align-self: start; justify-self: stretch; }
 .f_dayHead { align-items: start; }
