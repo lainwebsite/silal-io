@@ -5345,7 +5345,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .f_heroSide .f_heroFacts { grid-template-columns: auto auto; justify-content: start; column-gap: clamp(32px, 3.6vw, 80px); }
 .f_heroSide .f_heroFacts { grid-column: auto; grid-row: auto; align-self: stretch; }
 .f_heroIntro { display: flex; flex-direction: column; gap: 12px; max-width: none; }
-.lt_hero .f_heroIntro { max-width: 27em; }
+.lt_hero .f_heroIntro { max-width: 30em; margin-left: auto; }
+@media (min-width: 901px) { .lt_hero .f_heroSide { justify-self: end; } }
 .f_heroIntro p { font-size: var(--fs-body); line-height: 1.65; color: rgba(255,255,255,.88); }
 .f_heroNote { font-size: var(--t-small); color: rgba(255,255,255,.66); margin-top: -14px; }
 
