@@ -102,7 +102,7 @@ mapsec = f"""
       <div class="hm_side">
         <svg class="hm_svg" viewBox="0 0 {W:.0f} {H:.0f}" role="img" aria-label="Dot map of the world with arid and semi-arid regions highlighted around the UAE">{"".join(circles)}</svg>
         <div class="hm_legend"><span class="hm_k hm_kU">UAE</span><span class="hm_k hm_kA">Arid and semi-arid regions</span><em>Illustrative</em></div>
-        <ul class="hm_chips">{"".join(f"<li>{x}</li>" for x in ["Heat", "Water scarcity", "Salinity", "Resource constraints", "Operational complexity"])}</ul>
+        <ul class="hm_chips">{"".join(f"<li>{x}</li>" for x in ["Heat", "Water scarcity", "Salinity", "Soil quality", "Operational complexity"])}</ul>
       </div>
     </div>
   </div>
@@ -450,6 +450,9 @@ assert 'var p = Math.max(0, Math.min(1, (-cw.getBoundingClientRect().top - sh())
 # journey progress starts as soon as its panel starts to uncover (no dead scroll while the helix lifts off)
 a_js = a_js.replace('var p = Math.max(0, Math.min(1, (-cw.getBoundingClientRect().top - sh()) / len));', 'var p = Math.max(0, Math.min(1, -cw.getBoundingClientRect().top / (len + sh())));')
 why = A.why.replace('<span class="c_eyebrowNum">01</span>Why Here?', 'Why Here?')
+# client comment: the five pressures list repeats the chips of the map section above -> removed here
+why = _re.sub(r'\s*<ol class="c_pressures">.*?</ol>', '', why, flags=_re.S)
+assert 'c_pressures' not in why
 princ = A.princ.replace('<span class="c_eyebrowNum">02</span>The Principles', 'The Principles')
 jour = A.jour.replace('<span><b>03</b>Our Journey</span>', '<span class="c_eyebrow">Our Journey</span>')
 footer = A.footer.replace("News &amp; Media", "Content Library").replace('<li><a href="#">Publications &amp; Case Studies</a></li>', "")
@@ -462,7 +465,7 @@ why = tag(why, ["c_eyebrow", "c_h2", "c_statement", "c_body", "c_lead", "c_quote
 why = _re.sub(r'(<li><span>\d+</span>)([^<]+)(</li>)', r'\1<b data-reveal>\2</b>\3', why)
 princ = tag(princ, ["c_eyebrow"]).replace('<h3>', '<h3 data-reveal>').replace('<p>', '<p data-reveal>')
 mapsec = tag(mapsec, ["hm_stmt"])
-mapsec = _re.sub(r'(<li>)(Heat|Water scarcity|Salinity|Resource constraints|Operational complexity)(</li>)', r'\1<span data-reveal>\2</span>\3', mapsec)
+mapsec = _re.sub(r'(<li>)(Heat|Water scarcity|Salinity|Soil quality|Operational complexity)(</li>)', r'\1<span data-reveal>\2</span>\3', mapsec)
 site = tag(site, ["c_eyebrow", "c_mapHint", "c_mapNote"], "data-reveal data-rvg=\"site\"")
 helix = helix.replace('<p class="hx_title">', '<p class="hx_title" data-reveal data-rvg="helix">', 1)
 helix = _re.sub(r'(<figcaption>)<b>', r'\1<b data-reveal data-rvg="hxc">', helix)
