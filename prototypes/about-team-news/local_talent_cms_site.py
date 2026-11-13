@@ -125,9 +125,11 @@ for m in re.finditer(r'<li class="f_projCard">.*?</li>', sec[ga:gb], re.S):
     title = re.search(r'<h3>([^<]+)</h3>', c).group(1)
     cards += '<li class="f_projCard"><div class="x_img f_projImg"><img src="%s" alt="" loading="lazy"></div><div class="f_projBody"><h3>%s</h3></div></li>' % (img, title)
 fmt = ''.join('<li>%s</li>' % x for x in ['Program', 'Participant or team', 'Practical activity', 'Skills developed', 'Output or achievement', 'Next step'])
-grid = '<ol class="f_projGrid lt_projGrid">%s</ol>\n    <div class="lt_split lt_format"><div><span class="x_label">Story Format</span><p class="x_body">Every story should include:</p></div><ul class="lt_chips">%s</ul></div>' % (cards, fmt)
+# the legend row of the Farm Innovation Fund cards (Project status + pills) carries the Story Format of the brief
+grid = '<ol class="f_projGrid lt_projGrid">%s</ol>\n    <div class="f_projLegend lt_legend"><span class="x_label">Story Format</span><span class="lt_legendNote">Every story should include:</span><ol>%s</ol></div>' % (cards, fmt.replace('<li>', '<li data-on>'))
 sec = sec[:ga] + grid + sec[gb:]
 new = new[:sa] + sec + new[sb:]
+new = new.replace('.lt_projGrid { align-items: start; }', '.lt_projGrid { align-items: start; }\n.lt_legend .lt_legendNote { font-size: var(--t-small); color: var(--grey-ink); }', 1)
 # the dock marks the page it is on
 open(os.path.join(D, 'ivp-local-talent-cms.html'), 'w', encoding='utf-8').write(new)
 print('built ivp-local-talent-cms.html', len(new) // 1024, 'KB')
