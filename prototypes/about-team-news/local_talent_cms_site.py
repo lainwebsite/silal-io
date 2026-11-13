@@ -91,20 +91,8 @@ for sid in parts:
 rest = rest.replace(hero, '')
 assert not rest.strip(), rest.strip()[:200]
 
-# hero as on the Farm Innovation Fund page: tagline under the heading, intro and two facts beside it
-BODY1 = '<span class="x_iO">iO</span> creates practical learning and research opportunities that help young people develop the knowledge, skills and experience needed to contribute to the UAE’s future food system.'
-BODY2 = 'From school discovery visits and youth programs to internships, professional training and advanced research pathways, participants learn in an environment where science, technology and agriculture come together.'
-h = hero
-h = re.sub(r'<span>Local Talent Development</span></nav>', '<span>%s</span></nav>' % CMS, h)
-h = h.replace('<span class="c_eyebrow f_heroEy" data-reveal>Local Talent Development</span>', '<span class="c_eyebrow f_heroEy" data-reveal>Innovation &amp; Venture Platforms – Local Talent Development</span>')
-h = re.sub(r'<h1 data-reveal>.*?</h1>', '<h1 data-reveal>Local Talent Development</h1>', h, flags=re.S)
-h = re.sub(r'\s*<p class="lt_heroBody" data-reveal>.*?</p>', '', h, flags=re.S)
-h = h.replace('<div class="x_row">', '<p class="x_lead" data-reveal>Building the next generation of agrifood talent</p>\n        <div class="x_row">', 1)
-facts = ('<dl class="f_heroFacts">'
-         '<div><dt>School visits</dt><dd><strong>Ages 11+</strong>School Discovery Programme</dd></div>'
-         '<div><dt>Youth programme</dt><dd><strong>Ages 13–16</strong>MUSTADEEM</dd></div></dl>')
-h = re.sub(r'<div class="f_heroIntro">.*?</div>', '<div class="f_heroIntro"><p>%s</p><p>%s</p></div>\n        %s' % (BODY1, BODY2, facts), h, count=1, flags=re.S)
-
+# hero: the heading and the two bodies of the brief, as on the Local Talent page (body 1 under the heading, body 2 beside it)
+h = re.sub(r'<span>Local Talent Development</span></nav>', '<span>%s</span></nav>' % CMS, hero)
 new = src[:ha] + h + '\n\n  ' + '\n\n  '.join(order) + src[parts['lt-register'][1]:]
 
 # page identity
@@ -115,6 +103,31 @@ new = new.replace("'local-talent': '%s'" % NEW, "'local-talent': '%s', 'local-ta
 k = '  INIT.incubation = function'
 assert new.count(k) == 1
 new = new.replace(k, "  INIT['local-talent-cms'] = INIT['local-talent'];\n" + k, 1)
+# ---- docs only: nothing on this page that is not in the client brief (Google Doc "Local Talent Development")
+# hero: the eyebrow of the brief, no extra facts
+new = new.replace('Innovation &amp; Venture Platforms – Local Talent Development</span>', 'Local Talent Development</span>', 1)
+new = re.sub(r'\s*<dl class="f_heroFacts">.*?</dl>', '', new, count=1, flags=re.S)
+# What Participants Gain: the brief's sentence is the item (no extra titles)
+new = re.sub(r'(<li class="a_item"[^>]*><span class="x_label">\d+</span>)<h3>[^<]*</h3><p class="f_supLead">([^<]*)</p></li>', r'\1<h3>\2</h3></li>', new)
+# partner hub: the brief's capitalisation
+new = new.replace('<span class="f_ecoRole">Government and youth organizations</span><span class="f_ecoRole">Industry partners</span>', '<span class="f_ecoRole">Government and Youth Organizations</span><span class="f_ecoRole">Industry Partners</span>')
+# stories: editorial cards for the nine types (photo + type), then the story format of the brief
+sa = new.index('id="lt-stories"')
+sa = new.rindex('<section', 0, sa)
+sb = new.index('</section>', sa)
+sec = new[sa:sb]
+ga = sec.index('<ol class="f_projGrid lt_projGrid">')
+gb = sec.index('</ol>', ga) + len('</ol>')
+cards = ''
+for m in re.finditer(r'<li class="f_projCard">.*?</li>', sec[ga:gb], re.S):
+    c = m.group(0)
+    img = re.search(r'<img src="([^"]+)"', c).group(1)
+    title = re.search(r'<h3>([^<]+)</h3>', c).group(1)
+    cards += '<li class="f_projCard"><div class="x_img f_projImg"><img src="%s" alt="" loading="lazy"></div><div class="f_projBody"><h3>%s</h3></div></li>' % (img, title)
+fmt = ''.join('<li>%s</li>' % x for x in ['Program', 'Participant or team', 'Practical activity', 'Skills developed', 'Output or achievement', 'Next step'])
+grid = '<ol class="f_projGrid lt_projGrid">%s</ol>\n    <div class="lt_split lt_format"><div><span class="x_label">Story Format</span><p class="x_body">Every story should include:</p></div><ul class="lt_chips">%s</ul></div>' % (cards, fmt)
+sec = sec[:ga] + grid + sec[gb:]
+new = new[:sa] + sec + new[sb:]
 # the dock marks the page it is on
 open(os.path.join(D, 'ivp-local-talent-cms.html'), 'w', encoding='utf-8').write(new)
 print('built ivp-local-talent-cms.html', len(new) // 1024, 'KB')
