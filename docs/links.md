@@ -30,6 +30,7 @@ Design routes live under random folder names so they cannot be guessed. There is
   - https://silal-io.vercel.app/innovation&venture-v2/agricultural-challenges
   - https://silal-io.vercel.app/innovation&venture-v2/enquire
 - https://silal-io.vercel.app/full-site (2026-10-30): the whole review site as one website: homepage (Method helix boxes), About IO, Team + profile pages, News + releases, IVP, IO Academy, Training Detail. Since 2026-11-11 also `/full-site/ecosystem` and `/full-site/team-shameer`. Clean addresses: `/full-site/about`, `/full-site/team`, `/full-site/news`, … (old `.html` addresses redirect). Static files `public/full-site/` (noindex), built by `prototypes/about-team-news/` (`build.py`, `homepage.py`, `site.py`, then `publish.py`).
+- https://silal-io.vercel.app/full-site/ivp-local-talent (Local Talent Development, renamed 2026-11-13 from "Developing Local Talent") and https://silal-io.vercel.app/full-site/ivp-local-talent-cms (Local Talent (CMS): the same content in the order of the Farm Innovation Fund page; both in the Innovation & Venture Platforms menu and dock)
 - `/Team/V1`: not built yet, not published.
 
 Rewrites live in `next.config.ts`. The older `/V1`, `/V2`, `/V3` links below keep working.
