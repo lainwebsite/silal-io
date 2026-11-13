@@ -390,19 +390,25 @@ def main_html():
 ''' % (IO, ''.join('<li><b>%02d</b>%s</li>' % (k + 1, x) for k, x in enumerate(LEARN_AREAS)), checks(AUDIENCES),
        btn('io-academy.html', 'Explore Trainings')))
 
-    # 9 doctoral / postdoctoral
-    def col(c):
+    # 9 doctoral / postdoctoral: the dark box with openable rows used on the Farm Innovation Fund page
+    def row(c, first):
         title, model, tl, topics, ben = c
-        return ('<article class="lt_col"><h3>%s</h3><div><span class="x_label">Proposed model</span><p class="x_body">%s</p></div>'
-                '<div><span class="x_label">%s</span>%s</div><div><span class="x_label">Potential Benefits</span>%s</div></article>'
-                % (title, T(model), tl, checks(topics), checks(ben)))
+        body = ('<div class="lt_pathBody"><div><span class="x_label">Proposed model</span><p>%s</p></div>'
+                '<div><span class="x_label">%s</span>%s</div><div><span class="x_label">Potential Benefits</span>%s</div></div>'
+                % (T(model), tl, dots(topics).replace('f_measDots', 'lt_dots'), dots(ben).replace('f_measDots', 'lt_dots')))
+        return ('<li%s><button aria-expanded="%s"><strong>%s</strong></button><div class="f_pathA"><div>%s</div></div></li>'
+                % (' data-open' if first else '', 'true' if first else 'false', title, body))
     a('''  <section class="x_sec" id="lt-research"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Advanced research pathways</span><h2 class="x_h2" data-reveal>Developing specialist scientific capability</h2></div><div class="x_stack"><p class="x_body" data-reveal>%s</p></div></div>
-    <div class="lt_pair">%s%s</div>
+    <div class="x_cbox f_paths" id="pathBox">
+      <img class="x_cboxMark" src="innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true">
+      <svg class="f_branch" id="pathBranch" aria-hidden="true"></svg>
+      <div class="x_cboxMain"><span class="x_label">Advanced research pathways</span><h2 data-reveal>Developing specialist scientific capability</h2><p data-reveal>%s</p><i class="lt_node" id="pathNode" aria-hidden="true"></i></div>
+      <ul class="x_cboxList f_pathList" id="pathList">%s%s</ul>
+    </div>
     <div class="x_row lt_cta">%s</div>
   </div></section>
 ''' % (T('IO’s science strategy proposes longer-term pathways for doctoral and postdoctoral researchers to contribute to applied research addressing UAE agricultural priorities.'),
-       col(DOC), col(POST), btn(ENQ, 'Register interest in research opportunities', ' data-platform="talent"')))
+       row(DOC, True), row(POST, False), btn(ENQ, 'Register interest in research opportunities', ' data-platform="talent"')))
 
     # 10 learning at IO (pinned horizontal gallery)
     figs = ''.join('<figure><div class="x_img x_corners"><img src="%s" alt="%s" loading="lazy"></div><figcaption class="x_cap">%s</figcaption></figure>'
@@ -507,6 +513,14 @@ EXTRA_CSS = '''
 .lt_split > .f_check { grid-column: 7 / span 6; }
 .lt_split .x_label { color: var(--io-ink); }
 .lt_cta { margin-top: var(--head); }
+.lt_node { display: block; width: 8px; height: 8px; border-radius: 50%; background: #fff; margin-top: 32px; }
+.lt_pathBody { display: flex; flex-direction: column; gap: 20px; padding: 4px 0 8px; }
+.lt_pathBody > div { display: flex; flex-direction: column; gap: 8px; }
+.lt_pathBody .x_label { color: rgba(255,255,255,.7); }
+.f_pathA .lt_pathBody p { font-size: var(--fs-body); line-height: 1.65; color: #fff; max-width: 40em; padding: 0; margin: 0; }
+.lt_pathBody .x_iO { font: inherit; letter-spacing: 0; text-transform: none; color: inherit; padding: 0; margin: 0; background: none; border: 0; display: inline; opacity: 1; }
+.lt_dots li { position: relative; padding: 3px 0 3px 18px; font-size: var(--fs-body); line-height: 1.5; color: #fff; }
+.lt_dots li::before { content: ""; position: absolute; left: 2px; top: .85em; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.75); }
 .lt_fourLabel, .lt_skillsLabel { color: var(--io-ink); }
 .lt_fourLabel { grid-column: 1 / -1; margin-bottom: -24px; }
 .lt_skillsLabel { display: block; margin-bottom: 20px; }
@@ -616,7 +630,8 @@ def init_js(fif_script):
     // narrow screens: the dock scrolls sideways, so start with this page's tab in view
     var dc = $('#dock a[aria-current="page"]'); if (dc && dockIn) dockIn.scrollLeft = dc.offsetLeft - 40;
 '''
-    return head + areas + gates + who + tail + '\n'
+    paths = between("    // pathways: one outcome open at a time", "    // accordions (measures, FAQs)")
+    return head + areas + gates + paths + who + tail + '\n'
 
 
 # ----------------------------------------------------------------------------------------------------------------
