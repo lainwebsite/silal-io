@@ -286,12 +286,13 @@ def main_html():
         <div class="x_row">%(btn)s</div>
       </div>
       <div class="f_heroSide">
-        <div class="f_heroIntro"><p>%(p1)s</p></div>
+        <div class="f_heroIntro"><p>%(p1)s</p><p>%(p2)s</p></div>
       </div>
     </div>
   </section>
 ''' % dict(hero=im('lt_hero'), name=NAME, btn=enq('Enquire'),
-           p1=T('IO creates practical learning and research opportunities that help young people develop the knowledge, skills and experience needed to contribute to the UAE’s future food system.'),))
+           p1=T('IO creates practical learning and research opportunities that help young people develop the knowledge, skills and experience needed to contribute to the UAE’s future food system.'),
+           p2=T('From school discovery visits and youth programs to internships, professional training and advanced research pathways, participants learn in an environment where science, technology and agriculture come together.')))
 
     # 2 purpose
     a('''  <section class="x_sec" id="lt-why"><div class="s_wrap f_why">
