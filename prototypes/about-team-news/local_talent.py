@@ -432,13 +432,13 @@ def main_html():
 ''' % (T('IO can work with schools, universities, government organizations and industry partners to develop relevant learning and research opportunities.'),
        groups, enq('Develop a learning program with IO'.replace('IO', 'iO'))))
 
-    # 12 stories (the brief gives the story types and the story format, no stories)
+    # 12 stories (the brief gives the story types and the story format, no stories): numbered grid as on the Farm Innovation Fund page
     a('''  <section class="x_sec x_grey" id="lt-stories"><div class="s_wrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>Talent in action</span><h2 class="x_h2" data-reveal>Learning, research and achievement at iO</h2></div></div>
-    <div class="lt_types"><ul>%s</ul></div>
-    <div class="lt_types"><span class="x_label">Story Format</span><ul>%s</ul></div>
+    <ol class="f_tenets f_criteria lt_types9" data-stagger>%s</ol>
+    <div class="lt_split lt_gain"><div><span class="x_label">Story Format</span></div>%s</div>
   </div></section>
-''' % (''.join('<li>%s</li>' % x for x in STORY_TYPES), ''.join('<li>%s</li>' % x for x in STORY_FORMAT)))
+''' % (''.join('<li><span>%02d</span><h3>%s</h3></li>' % (k + 1, x) for k, x in enumerate(STORY_TYPES)), checks(STORY_FORMAT)))
 
     # 13 final CTA (same band as the other IVP pages, incl. the helix hook)
     a('''  <section class="x_sec i_successSec f_reg" id="lt-register"><img class="i_successMark" src="innovation-venture-platforms/brand/io-mark.svg" alt="" aria-hidden="true"><div class="i_successGl" id="succHelix" hidden aria-hidden="true"></div><div class="s_wrap f_regGrid">
@@ -519,7 +519,9 @@ EXTRA_CSS = '''
 .lt_pathBody .x_label { color: rgba(255,255,255,.7); }
 .f_pathA .lt_pathBody p { font-size: var(--fs-body); line-height: 1.65; color: #fff; max-width: 40em; padding: 0; margin: 0; }
 .lt_pathBody .x_iO { font: inherit; letter-spacing: 0; text-transform: none; color: inherit; padding: 0; margin: 0; background: none; border: 0; display: inline; opacity: 1; }
-.lt_dots li { position: relative; padding: 3px 0 3px 18px; font-size: var(--fs-body); line-height: 1.5; color: #fff; }
+.x_cboxList .lt_pathBody li, .lt_dots li { position: relative; padding: 3px 0 3px 18px; font-size: var(--fs-body); line-height: 1.5; color: #fff; border: 0 !important; background: none; }
+.lt_pathBody ul { border: 0 !important; display: flex; flex-direction: column; gap: 2px; }
+.lt_pathBody ul::before, .lt_pathBody ul::after, .x_cboxList .lt_pathBody li::after { display: none; }
 .lt_dots li::before { content: ""; position: absolute; left: 2px; top: .85em; width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.75); }
 .lt_fourLabel, .lt_skillsLabel { color: var(--io-ink); }
 .lt_fourLabel { grid-column: 1 / -1; margin-bottom: -24px; }
@@ -555,6 +557,12 @@ EXTRA_CSS = '''
 .lt_types ul { display: flex; flex-wrap: wrap; gap: 8px; }
 .lt_types li { font-size: var(--t-small); padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; color: var(--charcoal); }
 .f_areaDesc:empty { display: none; }
+.lt_types9 li { padding: 20px 0 28px; }
+.lt_types9 li > span { margin-bottom: 6px; }
+/* School Discovery: tighter vertical rhythm (review comment "remove gap") */
+#lt-school .x_head { margin-bottom: clamp(28px, 2.6vw, 40px); }
+#lt-school .lt_split { margin-top: clamp(28px, 2.6vw, 40px); padding-top: 0; border-top: 0; }
+#lt-school .lt_cta { margin-top: clamp(28px, 2.6vw, 40px); }
 /* the hero photo is a bright laboratory: a deeper shade keeps the white text readable */
 .lt_hero::after { background: linear-gradient(180deg, rgba(14,16,15,.5) 0%, rgba(14,16,15,.12) 24%), linear-gradient(0deg, rgba(14,16,15,.82) 0%, rgba(14,16,15,.58) 42%, rgba(14,16,15,.18) 72%), linear-gradient(90deg, rgba(14,16,15,.32) 0%, rgba(14,16,15,0) 62%); }
 .lt_hero > .x_img img { object-position: 50% 45%; }
