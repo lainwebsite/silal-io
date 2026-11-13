@@ -687,7 +687,7 @@ def build_page():
 # ----------------------------------------------------------------------------------------------------------------
 NAV_LI = '<li><a href="ivp-agricultural-challenges.html">Agricultural Challenges</a></li>'
 NAV_NEW = '<li><a href="%s">%s</a></li>' % (PAGE, NAME)
-DOCK_RE = re.compile(r'(<a href="ivp-agricultural-challenges\.html" data-route="agricultural-challenges">.*?</a>)', re.S)
+DOCK_RE = re.compile(r'(<a href="ivp-agricultural-challenges\.html" data-route="[^"]*">.*?</a>)', re.S)
 DOCK_NEW = '\n  <a href="%s" data-route="local-talent"><span><i class="x_long">Developing Local </i>Talent</span></a>' % PAGE
 
 
