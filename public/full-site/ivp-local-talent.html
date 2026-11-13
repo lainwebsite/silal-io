@@ -5345,6 +5345,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .f_heroSide .f_heroFacts { grid-template-columns: auto auto; justify-content: start; column-gap: clamp(32px, 3.6vw, 80px); }
 .f_heroSide .f_heroFacts { grid-column: auto; grid-row: auto; align-self: stretch; }
 .f_heroIntro { display: flex; flex-direction: column; gap: 12px; max-width: none; }
+.lt_hero .f_heroIntro { max-width: 27em; }
 .f_heroIntro p { font-size: var(--fs-body); line-height: 1.65; color: rgba(255,255,255,.88); }
 .f_heroNote { font-size: var(--t-small); color: rgba(255,255,255,.66); margin-top: -14px; }
 
@@ -5899,12 +5900,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #lt-school .f_callout { margin-top: 36px; margin-left: calc((100% + var(--col-gap)) / 2); max-width: calc((100% - var(--col-gap)) / 2); }
 @media (max-width: 900px) { #lt-school .x_head > div:first-child, #lt-school .x_head > :nth-child(2) { grid-column: 1 / -1; } #lt-school .f_callout { margin-left: 0; max-width: none; }}
 /* ===== Developing Local Talent: only what the new sections need on top of the Farm Innovation Fund layout ===== */
+/* FIF layout: the body text sits flush right, space-between with the heading */
+@media (min-width: 901px) { #lt-school .x_head > :nth-child(2), #lt-mustadeem .x_head > :nth-child(2), #lt-training .x_head > :nth-child(2), #lt-partners .x_head > :nth-child(2) { grid-column: 7 / -1; justify-self: end; width: fit-content; max-width: 34em; } }
 .lt_progs { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
 .lt_progs .x_label { color: var(--io-ink); }
 .lt_progs ul { display: flex; flex-wrap: wrap; gap: 8px; }
 .lt_progs li { font-size: var(--t-small); line-height: 1.3; padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; color: var(--charcoal); }
-.lt_progs a { color: var(--io-ink); transition: color .3s var(--slow); }
-.lt_progs li:has(a) { border-color: var(--io); }
+.lt_progs a { color: inherit; transition: color .3s var(--slow); }
+.lt_progs li { transition: background .3s var(--slow), border-color .3s var(--slow), color .3s var(--slow); }
 .lt_progs li:has(a):hover { background: var(--io); border-color: var(--io); }
 .lt_progs li:has(a):hover a { color: #fff; }
 .lt_split { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); align-items: start; margin-top: var(--head); padding-top: 28px; border-top: 1px solid var(--line); }
