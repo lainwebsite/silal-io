@@ -27,12 +27,12 @@
     var n = cards.length, active = -1, model = null;
 
     /* cards: drop empty photos and empty lists (CMS fields left blank).
-       An empty image field shows the component's placeholder image, the same file in every such card: a photo URL used by
-       more than one place is treated as that placeholder. */
-    var used = {};
-    cards.forEach(function (c) { var seen = {}; $$('img[data-f="photo"]', c).forEach(function (im) { var s = im.getAttribute('src') || ''; if (!seen[s]) { seen[s] = 1; used[s] = (used[s] || 0) + 1; } }); });
+       An empty image field shows the component's placeholder image (a site asset); CMS images all live in one folder
+       on the Webflow CDN, so a photo outside the folder most photos use is the placeholder. */
+    var dir = function (s) { return (s || '').replace(/[^/]*$/, ''); }, dirs = {}, cms = '';
+    cards.forEach(function (c) { $$('img[data-f="photo"]', c).forEach(function (im) { var d = dir(im.getAttribute('src')); dirs[d] = (dirs[d] || 0) + 1; if (!cms || dirs[d] > dirs[cms]) cms = d; }); });
     var places = cards.map(function (c, i) {
-      $$('img[data-f="photo"]', c).forEach(function (im) { var s = im.getAttribute('src'); if (im.classList.contains('w-dyn-bind-empty') || !s || used[s] > 1) im.remove(); });
+      $$('img[data-f="photo"]', c).forEach(function (im) { var s = im.getAttribute('src'); if (im.classList.contains('w-dyn-bind-empty') || !s || dir(s) !== cms) im.remove(); });
       ['facts', 'related', 'cta'].forEach(function (f) { var b = $('[data-site-block="' + f + '"]', c); if (b && !text($('[data-f="' + f + '"]', c))) b.hidden = true; });
       var name = text($('[data-f="name"]', c));
       return { key: text($('[data-f="key"]', c)) || 'overview', title: name, tab: text($('[data-f="tab"]', c)) || name, card: c, photos: $$('img[data-f="photo"]', c), k: 0, timer: null };
