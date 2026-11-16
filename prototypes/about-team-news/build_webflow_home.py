@@ -131,7 +131,7 @@ for old, var in (('fill: #dcdcdc;', 'fill: var(--map--no-data, #dcdcdc);'), ('fi
     assert old in scoped, old
     scoped = scoped.replace(old, var)
 # the block sits above the pinned helix and lifts off it, like the sections of the artifact
-scoped = (P + '{position:relative;z-index:1;display:block;background:#fff}\n' + P + '.io-home-site{z-index:0}\n' + '.io-data{display:none!important}\n' + P + ' .s_root{min-height:0!important}\n'
+scoped = (P + '{position:relative;z-index:1;display:block;background:#fff}\n' + P + '.io-home-site{z-index:0}\n' + '.io-data{display:none!important}\n' + P + ' .s_root{min-height:0!important}\n' + '.io-mapdots,.io-mapdots .c_page{background:transparent!important}\n'
           + 'html.x_galLock{overflow:hidden}\n' + scoped)
 
 
