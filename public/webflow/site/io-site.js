@@ -44,9 +44,10 @@
     places.forEach(function (p, i) {
       var box = $('[data-site-photos]', p.card) || $('.io-site-photos', p.card);
       if (!box || !p.photos.length) return;
-      var cap = el('div', 'io-site-count', '<b>' + String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0') + '</b><span>Real photography · Innovation Oasis, Al Ain</span>');
-      var ttl = $('[data-f="name"]', box), bar = $('[data-site-bar]', box);
-      if (ttl) box.insertBefore(cap, ttl); else box.appendChild(cap);
+      // "01 / 07" + pill: a native element in the card (Designer); only the number is set here
+      var num = String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0'), ttl = $('[data-f="name"]', box), bar = $('[data-site-bar]', box), cnt = $('[data-site-num]', p.card);
+      if (cnt) cnt.textContent = num;
+      else { var cap = el('div', 'io-site-count', '<b>' + num + '</b><span>Real photography · Innovation Oasis, Al Ain</span>'); if (ttl) box.insertBefore(cap, ttl); else box.appendChild(cap); }
       if (p.photos.length > 1) {
         [-1, 1].forEach(function (d) { var b = el('button', 'io-site-nav', ''); b.type = 'button'; b.dataset.d = d; b.setAttribute('aria-label', d < 0 ? 'Previous photo' : 'Next photo'); b.addEventListener('click', function () { show(p, p.k + d); }); box.appendChild(b); });
         var th = el('div', 'io-site-thumbs');
@@ -63,7 +64,8 @@
       clearTimeout(p.timer); if (m > 1 && !reduce) p.timer = setTimeout(function () { show(p, p.k + 1); }, 6000);
     }
 
-    /* tabs 01-07 */
+    /* tabs 01-07 (the static tabs in Webflow are only a Designer preview: replaced here) */
+    if (tabsEl) tabsEl.innerHTML = '';
     var tabs = places.map(function (p, i) {
       var b = el('button', 'io-site-tab', '<span>' + String(i + 1).padStart(2, '0') + '</span><b>' + esc(p.tab) + '</b>'); b.type = 'button';
       b.addEventListener('click', function () { jump(i); }); if (tabsEl) tabsEl.appendChild(b); return b;

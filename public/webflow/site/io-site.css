@@ -33,12 +33,12 @@
 [data-site] .io-site-lines:has(.io-site-rel) { white-space: normal; }
 
 /* tabs 01-07 (buttons made by the script inside the Webflow tab bar) */
-.io-site-tab { display: flex; align-items: center; gap: 0; height: 2.5rem; padding: 0 1rem; border: 0; border-radius: 2rem; background: transparent; color: var(--ios-grey); font-family: inherit; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: background 0.5s cubic-bezier(0.22, 0.8, 0.2, 1), color 0.5s, gap 0.5s cubic-bezier(0.22, 0.8, 0.2, 1); }
-.io-site-tab span { font-weight: 500; }
-.io-site-tab b { display: block; max-width: 0; overflow: hidden; font-weight: 400; opacity: 0; transition: max-width 0.6s cubic-bezier(0.22, 0.8, 0.2, 1), opacity 0.4s; }
-.io-site-tab:hover { color: var(--ios-black); }
-.io-site-tab[data-on="true"] { gap: 0.5rem; background: var(--ios-blue); color: var(--ios-white); }
-.io-site-tab[data-on="true"] b { max-width: 16rem; opacity: 1; transition-delay: 0s, 0.15s; }
+[data-site] .io-site-tab { display: flex; align-items: center; gap: 0; height: 2.5rem; padding: 0 1rem; border: 0; border-radius: 2rem; background: transparent; color: var(--ios-grey); font-family: inherit; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: background 0.5s cubic-bezier(0.22, 0.8, 0.2, 1), color 0.5s, gap 0.5s cubic-bezier(0.22, 0.8, 0.2, 1); }
+[data-site] .io-site-tab span { font-weight: 500; }
+[data-site] .io-site-tab b { display: block; max-width: 0; overflow: hidden; font-weight: 400; opacity: 0; transition: max-width 0.6s cubic-bezier(0.22, 0.8, 0.2, 1), opacity 0.4s; }
+[data-site] .io-site-tab:hover { color: var(--ios-black); }
+[data-site] .io-site-tab[data-on="true"] { gap: 0.5rem; background: var(--ios-blue); color: var(--ios-white); }
+[data-site] .io-site-tab[data-on="true"] b { max-width: 16rem; opacity: 1; transition-delay: 0s, 0.15s; }
 
 /* 3D model canvas + place labels (from three-helix.js mountSite) */
 .io-site-stage canvas { display: block; width: 100% !important; height: 100% !important; }
@@ -65,7 +65,7 @@
 html.io-gal-lock { overflow: hidden; }
 
 @media (max-width: 991px) {
-  .io-site-tab { height: 2rem; padding: 0 0.75rem; }
+  [data-site] .io-site-tab { height: 2rem; padding: 0 0.75rem; }
   .io-site-thumbs button { width: 3rem; height: 2rem; }
 }
 @media (max-width: 767px) {
