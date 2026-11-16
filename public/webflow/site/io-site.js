@@ -20,6 +20,10 @@
     var cards = $$('[data-site-card]', root);
     if (!cards.length) cards = $$('.io-site-card', root);
     if (!cards.length) return;
+    /* CMS order: each Collection item carries data-order (bound to the Order field); sort the items in the DOM by it */
+    var ord = function (c) { var it = c.closest('[data-order]'); var v = it ? parseFloat(it.getAttribute('data-order')) : NaN; return isNaN(v) ? 1e9 : v; };
+    cards = cards.map(function (c, i) { return { c: c, o: ord(c), i: i }; }).sort(function (a, b) { return a.o - b.o || a.i - b.i; }).map(function (x) { return x.c; });
+    cards.forEach(function (c) { var it = c.closest('.w-dyn-item'); if (it && it.parentNode) it.parentNode.appendChild(it); });
     var n = cards.length, active = -1, model = null;
 
     /* cards: drop empty photos and empty lists (CMS fields left blank) */
