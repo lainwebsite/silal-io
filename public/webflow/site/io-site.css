@@ -12,8 +12,8 @@
 [data-site].is-live [data-site-block][hidden] { display: none; }
 
 /* photo slideshow */
-[data-site].is-live .io-site-photo { opacity: 0; transition: opacity 0.8s ease; }
-[data-site].is-live .io-site-photo[data-on="true"] { opacity: 1; }
+[data-site].is-live .io-site-photo { z-index: 0; opacity: 0; transition: opacity 0.8s ease; }
+[data-site].is-live .io-site-photo[data-on="true"] { z-index: 1; opacity: 1; }
 .io-site-count { position: relative; z-index: 2; display: flex; align-items: center; gap: 0.75rem; color: var(--ios-white); font-size: 0.75rem; line-height: 1.65; white-space: nowrap; }
 .io-site-count b { font-weight: 500; }
 .io-site-count span { padding: 0.3125rem 0.75rem; border-radius: 999px; background: rgba(20, 23, 20, 0.45); }
