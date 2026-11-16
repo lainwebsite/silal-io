@@ -4,7 +4,11 @@
 [data-site] { --ios-blue: var(--blue, #1a6f96); --ios-black: var(--black, #121212); --ios-grey: var(--text-black-secondary, #6e7173); --ios-line: var(--white-smoke, #eaeaea); --ios-white: var(--white, #fff); }
 
 /* one place at a time */
-[data-site].is-live .io-site-list > .w-dyn-item[data-on="false"] { display: none; }
+[data-site].is-live .io-site-list { position: relative; }
+[data-site].is-live .io-site-list > .w-dyn-item { position: absolute; inset: 0; opacity: 0; visibility: hidden; transform: translateY(1.5rem); transition: opacity 0.7s cubic-bezier(0.22, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.22, 0.8, 0.2, 1), visibility 0s linear 0.7s; }
+[data-site].is-live .io-site-list > .w-dyn-item[data-on="true"] { opacity: 1; visibility: visible; transform: none; transition-delay: 0.08s, 0.08s, 0s; z-index: 1; }
+[data-site].is-live .io-site-list > .w-dyn-item[data-on="true"] .io-site-photo[data-on="true"] { animation: io-site-zoom 6s ease-out both; }
+@keyframes io-site-zoom { from { transform: scale(1.06); } to { transform: scale(1); } }
 [data-site].is-live [data-site-block][hidden] { display: none; }
 
 /* photo slideshow */
@@ -29,12 +33,12 @@
 [data-site] .io-site-lines:has(.io-site-rel) { white-space: normal; }
 
 /* tabs 01-07 (buttons made by the script inside the Webflow tab bar) */
-.io-site-tab { display: flex; align-items: center; gap: 0.5rem; height: 2.5rem; padding: 0 1rem; border: 0; border-radius: 2rem; background: transparent; color: var(--ios-grey); font-family: inherit; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: background 0.3s, color 0.3s; }
+.io-site-tab { display: flex; align-items: center; gap: 0; height: 2.5rem; padding: 0 1rem; border: 0; border-radius: 2rem; background: transparent; color: var(--ios-grey); font-family: inherit; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: background 0.5s cubic-bezier(0.22, 0.8, 0.2, 1), color 0.5s, gap 0.5s cubic-bezier(0.22, 0.8, 0.2, 1); }
 .io-site-tab span { font-weight: 500; }
-.io-site-tab b { font-weight: 400; }
+.io-site-tab b { display: block; max-width: 0; overflow: hidden; font-weight: 400; opacity: 0; transition: max-width 0.6s cubic-bezier(0.22, 0.8, 0.2, 1), opacity 0.4s; }
 .io-site-tab:hover { color: var(--ios-black); }
-.io-site-tab[data-on="true"] { background: var(--ios-blue); color: var(--ios-white); }
-.io-site-tab:not([data-on="true"]) b { display: none; }
+.io-site-tab[data-on="true"] { gap: 0.5rem; background: var(--ios-blue); color: var(--ios-white); }
+.io-site-tab[data-on="true"] b { max-width: 16rem; opacity: 1; transition-delay: 0s, 0.15s; }
 
 /* 3D model canvas + place labels (from three-helix.js mountSite) */
 .io-site-stage canvas { display: block; width: 100% !important; height: 100% !important; }
