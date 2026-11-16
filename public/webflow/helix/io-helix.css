@@ -22,6 +22,8 @@
 .c_curtain[data-on="true"] { height: calc(var(--len, 0px) + 2 * var(--sh)); margin: calc(-1 * var(--sh)) 0 0; }
 /* the section above lifts off the pinned helix (as .c_intro in the artifact: position relative, z-index 1) */
 section:has(~ section .io-hx) { position: relative; z-index: 1; }
+/* the sections after it slide over the pinned helix; The Site stays below The Arid Advantage (its curtain starts under it) */
+section:has(.io-hx) ~ section:not(:has(.io-home-site)) { position: relative; z-index: 1; }
 .c_curtain[data-on="true"] > .c_curtainStick { position: sticky; top: 0; height: var(--sh); min-height: 0; }
 
 /* buttons */

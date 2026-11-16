@@ -31,7 +31,8 @@ d = S.index('<section class="c_section c_white hm_press"')
 g0 = S.index('<div class="x_gal" id="siteGal"')
 g1 = S.index('</main>', g0)
 # The Arid Advantage (between the map and the site) is a native Webflow section now, so the markup is split in two:
-# fragment-map.html (world map) and fragment-site.html (The Site, the hidden journey and the photo gallery).
+# map-dots.html (only the world map's dot SVG; the map section around it is native Webflow) and
+# fragment-site.html (The Site, the hidden journey and the photo gallery).
 # .s_root and .c_page carry the artifact's variables (fonts, colours, --max, --hdr, --wrap) and its section stacking
 why0 = S.index('<section class="c_why c_chapter"')
 site0 = S.index('<div class="c_curtain" id="siteCurtain"')
@@ -45,7 +46,11 @@ def wrap(t):
     return t
 
 
-frag_map = wrap(S[a:why0])
+# the map section itself is native Webflow now; only the dot map (SVG) is loaded, into #ioMapDots
+svg0 = S.index('<svg', a)
+svg1 = S.index('</svg>', svg0) + len('</svg>')
+assert svg1 < why0
+frag_dots = '<div class="s_root"><div class="c_page">' + S[svg0:svg1] + '</div></div>'
 frag_site = wrap(S[site0:b] + S[c:d] + S[g0:g1])
 
 
@@ -119,6 +124,12 @@ def scope(t):
 
 scoped = scope(css)
 scoped = absolute(scoped)
+# map dot colours come from the Webflow design system variables (Map / No data, Low, Medium, High, UAE)
+for old, var in (('fill: #dcdcdc;', 'fill: var(--map--no-data, #dcdcdc);'), ('fill: #a9d6ea;', 'fill: var(--map--low, #a9d6ea);'),
+                 ('fill: #4fb0da;', 'fill: var(--map--medium, #4fb0da);'), ('fill: #156a96;', 'fill: var(--map--high, #156a96);'),
+                 ('fill: #e0582f;', 'fill: var(--map--uae, #e0582f);'), ('stroke: #e0582f;', 'stroke: var(--map--uae, #e0582f);')):
+    assert old in scoped, old
+    scoped = scoped.replace(old, var)
 # the block sits above the pinned helix and lifts off it, like the sections of the artifact
 scoped = (P + '{position:relative;z-index:1;display:block;background:#fff}\n' + P + '.io-home-site{z-index:0}\n' + '.io-data{display:none!important}\n' + P + ' .s_root{min-height:0!important}\n'
           + 'html.x_galLock{overflow:hidden}\n' + scoped)
@@ -157,6 +168,10 @@ s8 = re.sub(r"\n\s*at\(\$\('#helixCurtain'\).*?\n", '\n', s8, count=1)
 s8 = cut(s8, '    // helix: progress runs', '  }\n  hxScale();')
 s8 = rep(s8, '  hxScale(); setHx(0);\n', '')
 s8 = rep(s8, "addEventListener('resize', function () { hxScale(); onScroll(); });", "addEventListener('resize', onScroll);")
+# native filter chips are Webflow buttons (<a>): find them by data-layer, and mark the off state with the is-off combo class
+s8 = rep(s8, "$$('#mapSec .hm_chips button')", "$$('#mapSec [data-layer]')")
+s8 = rep(s8, "b.setAttribute('aria-pressed', hmOn[k] ? 'true' : 'false');", "b.setAttribute('aria-pressed', hmOn[k] ? 'true' : 'false'); b.classList.toggle('is-off', !hmOn[k]);")
+s8 = rep(s8, "b.addEventListener('click', function () { var k = +b.dataset.layer;", "b.addEventListener('click', function (ev) { ev.preventDefault(); var k = +b.dataset.layer;")
 s8 = absolute(s8)
 assert 'hxGL' not in s8.split('function hxCardText')[0].split('Text reveal')[1] or True
 
@@ -200,7 +215,7 @@ js = """/* Webflow homepage: world map and The Site (option B); The Arid Advanta
   }
   function run() {
     readPlaces();
-    Promise.all([load('ioMap', 'fragment-map.html'), load('ioSite', 'fragment-site.html')]).then(function () {
+    Promise.all([load('ioMapDots', 'map-dots.html'), load('ioSite', 'fragment-site.html')]).then(function () {
       buildIndex();
       var wait = function (n) { if (window.mountSite || n > 100) go(); else setTimeout(function () { wait(n + 1); }, 50); };
       wait(0);
@@ -214,10 +229,8 @@ js = """/* Webflow homepage: world map and The Site (option B); The Arid Advanta
 """
 
 OUT.mkdir(parents=True, exist_ok=True)
-(OUT / 'fragment-map.html').write_text(frag_map, encoding='utf-8')
+(OUT / 'map-dots.html').write_text(frag_dots, encoding='utf-8')
 (OUT / 'fragment-site.html').write_text(frag_site, encoding='utf-8')
-old = OUT / 'fragment.html'
-if old.exists(): old.unlink()
 (OUT / 'io-home.css').write_text(scoped, encoding='utf-8')
 (OUT / 'io-home.js').write_text(js, encoding='utf-8')
-print('map', len(frag_map), 'site', len(frag_site), 'css', len(scoped), 'js', len(js))
+print('dots', len(frag_dots), 'site', len(frag_site), 'css', len(scoped), 'js', len(js))

@@ -3762,12 +3762,12 @@ html.lenis .io-home,html.lenis .io-home body{ height: auto; }
 .io-home .x_mPanel p{ font-size: .8125rem; margin-bottom: 6px; }
 .io-home .x_mPanel .x_mOut{ margin: 8px 0 12px; }}
 .io-home .s_navItem:hover > a:not([data-active="true"])::after,.io-home .s_navItem:focus-within > a:not([data-active="true"])::after{ transform: scaleX(0); }
-.io-home .hm_d{ fill: #dcdcdc; transition: fill .5s ease; }
-.io-home .hm_d[data-lv="1"]{ fill: #a9d6ea; }
-.io-home .hm_d[data-lv="2"]{ fill: #4fb0da; }
-.io-home .hm_d[data-lv="3"]{ fill: #156a96; }
-.io-home .hm_u{ fill: #e0582f; }
-.io-home .hm_ring{ fill: none; stroke: #e0582f; stroke-width: 1.2; opacity: .7; transform-origin: 447.5px 120px; animation: hmPulse 2.4s ease-out infinite; }
+.io-home .hm_d{ fill: var(--map--no-data, #dcdcdc); transition: fill .5s ease; }
+.io-home .hm_d[data-lv="1"]{ fill: var(--map--low, #a9d6ea); }
+.io-home .hm_d[data-lv="2"]{ fill: var(--map--medium, #4fb0da); }
+.io-home .hm_d[data-lv="3"]{ fill: var(--map--high, #156a96); }
+.io-home .hm_u{ fill: var(--map--uae, #e0582f); }
+.io-home .hm_ring{ fill: none; stroke: var(--map--uae, #e0582f); stroke-width: 1.2; opacity: .7; transform-origin: 447.5px 120px; animation: hmPulse 2.4s ease-out infinite; }
 @keyframes hmPulse{ from { transform: scale(.4); opacity: .9; } to { transform: scale(1.8); opacity: 0; } }
 @media (prefers-reduced-motion: reduce){.io-home .hm_ring{ animation: none; }}
 .io-home .hm_kU::before{ background: #e0582f; }

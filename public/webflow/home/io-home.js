@@ -32,7 +32,7 @@
   }
   function run() {
     readPlaces();
-    Promise.all([load('ioMap', 'fragment-map.html'), load('ioSite', 'fragment-site.html')]).then(function () {
+    Promise.all([load('ioMapDots', 'map-dots.html'), load('ioSite', 'fragment-site.html')]).then(function () {
       buildIndex();
       var wait = function (n) { if (window.mountSite || n > 100) go(); else setTimeout(function () { wait(n + 1); }, 50); };
       wait(0);
@@ -216,8 +216,8 @@
       if (lv !== o.lv || force) { o.lv = lv; o.el.setAttribute('data-lv', lv); }
     });
   }
-  $$('#mapSec .hm_chips button').forEach(function (b) {
-    b.addEventListener('click', function () { var k = +b.dataset.layer; hmOn[k] = hmOn[k] ? 0 : 1; b.setAttribute('aria-pressed', hmOn[k] ? 'true' : 'false'); hmPaint(true); });
+  $$('#mapSec [data-layer]').forEach(function (b) {
+    b.addEventListener('click', function (ev) { ev.preventDefault(); var k = +b.dataset.layer; hmOn[k] = hmOn[k] ? 0 : 1; b.setAttribute('aria-pressed', hmOn[k] ? 'true' : 'false'); b.classList.toggle('is-off', !hmOn[k]); hmPaint(true); });
   });
   function mapProgress() {
     var r = mapSec.getBoundingClientRect(), vh = innerHeight;
