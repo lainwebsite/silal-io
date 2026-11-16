@@ -1,6 +1,7 @@
 .io-home{position:relative;z-index:1;display:block;background:#fff}
 .io-home.io-home-site{z-index:0}
 .io-data{display:none!important}
+.io-home .s_root{min-height:0!important}
 html.x_galLock{overflow:hidden}
 .io-home{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 .io-home{scroll-padding-top:env(safe-area-inset-top,0px)}
