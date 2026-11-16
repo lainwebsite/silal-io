@@ -26,9 +26,13 @@
     cards.forEach(function (c) { var it = c.closest('.w-dyn-item'); if (it && it.parentNode) it.parentNode.appendChild(it); });
     var n = cards.length, active = -1, model = null;
 
-    /* cards: drop empty photos and empty lists (CMS fields left blank) */
+    /* cards: drop empty photos and empty lists (CMS fields left blank).
+       An empty image field shows the component's placeholder image, the same file in every such card: a photo URL used by
+       more than one place is treated as that placeholder. */
+    var used = {};
+    cards.forEach(function (c) { var seen = {}; $$('img[data-f="photo"]', c).forEach(function (im) { var s = im.getAttribute('src') || ''; if (!seen[s]) { seen[s] = 1; used[s] = (used[s] || 0) + 1; } }); });
     var places = cards.map(function (c, i) {
-      $$('img[data-f="photo"]', c).forEach(function (im) { if (im.classList.contains('w-dyn-bind-empty') || !im.getAttribute('src')) im.remove(); });
+      $$('img[data-f="photo"]', c).forEach(function (im) { var s = im.getAttribute('src'); if (im.classList.contains('w-dyn-bind-empty') || !s || used[s] > 1) im.remove(); });
       ['facts', 'related', 'cta'].forEach(function (f) { var b = $('[data-site-block="' + f + '"]', c); if (b && !text($('[data-f="' + f + '"]', c))) b.hidden = true; });
       var name = text($('[data-f="name"]', c));
       return { key: text($('[data-f="key"]', c)) || 'overview', title: name, tab: text($('[data-f="tab"]', c)) || name, card: c, photos: $$('img[data-f="photo"]', c), k: 0, timer: null };
