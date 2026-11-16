@@ -32,6 +32,8 @@
   }
   function run() {
     readPlaces();
+    // Webflow does not render the hidden attribute: the gallery and the 3D fallback start closed
+    ['siteGal', 'siteFallback'].forEach(function (id) { var el = document.getElementById(id); if (el) el.hidden = true; });
     Promise.all([load('ioMapDots', 'map-dots.html'), load('ioSite', 'fragment-site.html')]).then(function () {
       buildIndex();
       var wait = function (n) { if (window.mountSite || n > 100) go(); else setTimeout(function () { wait(n + 1); }, 50); };
