@@ -51,7 +51,6 @@ svg0 = S.index('<svg', a)
 svg1 = S.index('</svg>', svg0) + len('</svg>')
 assert svg1 < why0
 frag_dots = '<div class="s_root"><div class="c_page">' + S[svg0:svg1] + '</div></div>'
-frag_site = wrap(S[site0:b] + S[c:d] + S[g0:g1])
 
 
 # ---------------- CSS, scoped under .io-home ----------------
@@ -180,57 +179,26 @@ s8 = rep(s8, "b.addEventListener('click', function () { var k = +b.dataset.layer
 s8 = absolute(s8)
 assert 'hxGL' not in s8.split('function hxCardText')[0].split('Text reveal')[1] or True
 
-# The Site reads its places from the Webflow "Site Place" components when the page has them (window.__ioTour / __ioG, set by the loader)
-s8 = rep(s8, 'var TOUR = window.__siteTour = [', 'var TOUR = window.__siteTour = window.__ioTour || [')
+# The Site is native Webflow (CMS Collection List + "Site Place Card" component), run by /webflow/site/io-site.js:
+# its part of the page script is left out, with stubs for the names the rest still reads
+s8 = cut(s8, '  /* ---------- The Site:', '  /* ---------- World map')
+s8 = rep(s8, '  /* ---------- World map', "  var sBody = document.createElement('div'), model = null, sCurtain = null, SITE_F = 0, sPlayed = {}, sCurStop = 0;\n\n  /* ---------- World map")
+s8 = rep(s8, "    at($('#siteCurtain'), 0.6,", "    if ($('#siteCurtain')) at($('#siteCurtain'), 0.6,")
 s8 = rep(s8, "    at($('#jCurtain'), 0.7,", "    if ($('#jCurtain')) at($('#jCurtain'), 0.7,")
-s9 = absolute(find("the site model's places open a slideshow"))
-s9 = rep(s9, 'var G = [[', 'var G = window.__ioG || [[')
-s12 = absolute(find('the site card is enlarged to about half the screen'))
 
-js = """/* Webflow homepage: world map and The Site (option B); The Arid Advantage between them is native Webflow.
-   Built by prototypes/about-team-news/build_webflow_home.py from public/full-site/index.html. Do not edit by hand.
-   Content: The Site's places come from the "Site Place" components on the page ([data-site-place], one per place, in order);
-   without them the artifact's own data is used. */
+js = """/* Webflow homepage: world map (dot SVG + filters), parallax, counters and text reveal from the artifact's page script.
+   The Arid Advantage and The Site are native Webflow; The Site runs from /webflow/site/io-site.js.
+   Built by prototypes/about-team-news/build_webflow_home.py from public/full-site/index.html. Do not edit by hand. */
 (function () {
   var BASE = (document.currentScript && document.currentScript.src || '').replace(/[^/]*$/, '');
-  function field(el, f) { var n = el.querySelector('[data-f="' + f + '"]'); return n ? n.textContent.trim() : ''; }
-  function lines(t) { return t ? t.split(/\\s*[|\\n]+\\s*/).map(function (x) { return x.trim(); }).filter(Boolean) : null; }
-  function readPlaces() {
-    var els = [].slice.call(document.querySelectorAll('[data-site-place]'));
-    if (!els.length) return;
-    var tour = [], g = [];
-    els.forEach(function (el) {
-      var facts = lines(field(el, 'facts')), rel = lines(field(el, 'related'));
-      tour.push({ key: field(el, 'key'), title: field(el, 'title'), text: field(el, 'text'), facts: facts && facts.length ? facts : null,
-        related: rel && rel.length ? rel : null, cta: field(el, 'cta') || null, pill: field(el, 'pill') || null });
-      g.push(lines(field(el, 'photos')) || []);
-    });
-    window.__ioTour = tour; window.__ioG = g;
-  }
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-  function buildIndex() {
-    var T = window.__ioTour, nav = document.getElementById('siteIndex');
-    if (!T || !nav) return;
-    nav.innerHTML = T.map(function (t, i) { return '<button type="button" data-i="' + i + '" data-on="' + (i === 0) + '"><span>' + String(i + 1).padStart(2, '0') + '</span><b>' + esc(t.pill || t.title) + '</b></button>'; }).join('');
-    var cnt = document.getElementById('siteCount'); if (cnt) cnt.innerHTML = '01 <i>/ ' + String(T.length).padStart(2, '0') + '</i>';
-  }
   function load(id, file) {
     var host = document.getElementById(id);
     if (!host || host.dataset.ready) return Promise.resolve();
     return fetch(BASE + file).then(function (r) { return r.text(); }).then(function (html) { host.innerHTML = html; host.dataset.ready = '1'; });
   }
-  function run() {
-    readPlaces();
-    // Webflow does not render the hidden attribute: the gallery and the 3D fallback start closed
-    ['siteGal', 'siteFallback'].forEach(function (id) { var el = document.getElementById(id); if (el) el.hidden = true; });
-    Promise.all([load('ioMapDots', 'map-dots.html'), load('ioSite', 'fragment-site.html')]).then(function () {
-      buildIndex();
-      var wait = function (n) { if (window.mountSite || n > 100) go(); else setTimeout(function () { wait(n + 1); }, 50); };
-      wait(0);
-    });
-  }
+  function run() { load('ioMapDots', 'map-dots.html').then(go); }
   function go() {
-""" + '\n    // ---- page script (journey, parallax, counters)\n' + s7 + '\n    // ---- page script (the site, world map, text reveal)\n' + s8 + '\n    // ---- the site: real photography\n' + s9 + '\n    // ---- the site, option B (half-screen card with a slideshow)\n' + s12 + """
+""" + '\n    // ---- page script (journey, parallax, counters)\n' + s7 + '\n    // ---- page script (the site, world map, text reveal)\n' + s8 + """
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
 })();
@@ -238,7 +206,6 @@ js = """/* Webflow homepage: world map and The Site (option B); The Arid Advanta
 
 OUT.mkdir(parents=True, exist_ok=True)
 (OUT / 'map-dots.html').write_text(frag_dots, encoding='utf-8')
-(OUT / 'fragment-site.html').write_text(frag_site, encoding='utf-8')
 (OUT / 'io-home.css').write_text(scoped, encoding='utf-8')
 (OUT / 'io-home.js').write_text(js, encoding='utf-8')
-print('dots', len(frag_dots), 'site', len(frag_site), 'css', len(scoped), 'js', len(js))
+print('dots', len(frag_dots), 'css', len(scoped), 'js', len(js))

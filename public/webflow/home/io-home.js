@@ -1,45 +1,14 @@
-/* Webflow homepage: world map and The Site (option B); The Arid Advantage between them is native Webflow.
-   Built by prototypes/about-team-news/build_webflow_home.py from public/full-site/index.html. Do not edit by hand.
-   Content: The Site's places come from the "Site Place" components on the page ([data-site-place], one per place, in order);
-   without them the artifact's own data is used. */
+/* Webflow homepage: world map (dot SVG + filters), parallax, counters and text reveal from the artifact's page script.
+   The Arid Advantage and The Site are native Webflow; The Site runs from /webflow/site/io-site.js.
+   Built by prototypes/about-team-news/build_webflow_home.py from public/full-site/index.html. Do not edit by hand. */
 (function () {
   var BASE = (document.currentScript && document.currentScript.src || '').replace(/[^/]*$/, '');
-  function field(el, f) { var n = el.querySelector('[data-f="' + f + '"]'); return n ? n.textContent.trim() : ''; }
-  function lines(t) { return t ? t.split(/\s*[|\n]+\s*/).map(function (x) { return x.trim(); }).filter(Boolean) : null; }
-  function readPlaces() {
-    var els = [].slice.call(document.querySelectorAll('[data-site-place]'));
-    if (!els.length) return;
-    var tour = [], g = [];
-    els.forEach(function (el) {
-      var facts = lines(field(el, 'facts')), rel = lines(field(el, 'related'));
-      tour.push({ key: field(el, 'key'), title: field(el, 'title'), text: field(el, 'text'), facts: facts && facts.length ? facts : null,
-        related: rel && rel.length ? rel : null, cta: field(el, 'cta') || null, pill: field(el, 'pill') || null });
-      g.push(lines(field(el, 'photos')) || []);
-    });
-    window.__ioTour = tour; window.__ioG = g;
-  }
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-  function buildIndex() {
-    var T = window.__ioTour, nav = document.getElementById('siteIndex');
-    if (!T || !nav) return;
-    nav.innerHTML = T.map(function (t, i) { return '<button type="button" data-i="' + i + '" data-on="' + (i === 0) + '"><span>' + String(i + 1).padStart(2, '0') + '</span><b>' + esc(t.pill || t.title) + '</b></button>'; }).join('');
-    var cnt = document.getElementById('siteCount'); if (cnt) cnt.innerHTML = '01 <i>/ ' + String(T.length).padStart(2, '0') + '</i>';
-  }
   function load(id, file) {
     var host = document.getElementById(id);
     if (!host || host.dataset.ready) return Promise.resolve();
     return fetch(BASE + file).then(function (r) { return r.text(); }).then(function (html) { host.innerHTML = html; host.dataset.ready = '1'; });
   }
-  function run() {
-    readPlaces();
-    // Webflow does not render the hidden attribute: the gallery and the 3D fallback start closed
-    ['siteGal', 'siteFallback'].forEach(function (id) { var el = document.getElementById(id); if (el) el.hidden = true; });
-    Promise.all([load('ioMapDots', 'map-dots.html'), load('ioSite', 'fragment-site.html')]).then(function () {
-      buildIndex();
-      var wait = function (n) { if (window.mountSite || n > 100) go(); else setTimeout(function () { wait(n + 1); }, 50); };
-      wait(0);
-    });
-  }
+  function run() { load('ioMapDots', 'map-dots.html').then(go); }
   function go() {
 
     // ---- page script (journey, parallax, counters)
@@ -164,49 +133,7 @@
     if (window.__lenis) window.__lenis.scrollTo(y, { duration: 1.6 }); else window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
   }
 
-  /* ---------- The Site: V1's 3D model, driven by scroll ---------- */
-  var TOUR = window.__siteTour = window.__ioTour || [{"key": "overview", "title": "An Opportunity in the Desert", "text": "An overlooked 34-hectare parcel of land adjacent to Al Foah Farm is identified as a potential home for a new agricultural innovation ecosystem. The vision for Innovation Oasis is born.", "facts": ["34 hectares", "Al Foah Farm, Al Ain"], "related": null, "cta": null, "pill": "The parcel"}, {"key": "collab", "title": "Collaboration spaces", "text": "Shared spaces where researchers, farmers, startups and partners work side-by-side.", "facts": null, "related": ["Incubation", "Accelerator", "Facilities as a Service"], "cta": null, "pill": null}, {"key": "labs", "title": "Laboratories", "text": "Specialised laboratories where research teams analyse plants, soil, water and food, close to the fields where solutions are tested.", "facts": null, "related": ["Analytical Services", "Food Technology", "Precision Breeding & Plant Health"], "cta": null, "pill": null}, {"key": "cea", "title": "Controlled-environment facilities", "text": "Growth chambers and phenotyping rooms where heat, light and humidity can be set precisely, so crops can be screened before they reach the field.", "facts": null, "related": ["Advanced Controlled Environment Ag (CEA)", "Abiotic Resilience & Crop Genomics (ARC-GEN)"], "cta": null, "pill": null}, {"key": "fields", "title": "Field-testing areas", "text": "Open-field trial plots where solutions face the pressures that define tomorrow’s food system: heat, water scarcity and salinity.", "facts": null, "related": ["R&D Trialing", "Soil & Water Research", "Agri Robotics & AI"], "cta": null, "pill": null}, {"key": "greenhouses", "title": "Greenhouses", "text": "Greenhouses where crops and growing technologies are validated in real production conditions.", "facts": null, "related": ["Paid Trials", "Crop Diversification Research"], "cta": null, "pill": null}, {"key": "masterplan", "title": "Building the Blueprint", "text": "A comprehensive masterplan is developed with global research and infrastructure partners. Laboratories, controlled-environment facilities, field-testing areas, greenhouses, and collaboration spaces are designed around one goal: accelerating innovation.", "facts": null, "related": null, "cta": "Virtual Tour", "pill": "The masterplan"}], SITE_F = (TOUR.length - 1) * 0.95;
-  var sCurtain = $('#siteCurtain'), sBody = $('#siteBody'), sImgs = $$('.c_mapImg img'), sPills = $$('#siteIndex button'), sCount = $('#siteCount'), model = null, sActive = 0, sPlayed = {}, sCurStop = 0;
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-  function renderStop(i) {
-    var t = TOUR[i];
-    sImgs.forEach(function (im, k) { im.dataset.on = k === i; });
-    sPills.forEach(function (b, k) { b.dataset.on = k === i; });
-    sCount.innerHTML = String(i + 1).padStart(2, '0') + ' <i>/ ' + String(TOUR.length).padStart(2, '0') + '</i>';
-    var h = '<h3>' + esc(t.title) + '</h3><p>' + esc(t.text) + '</p>';
-    if (t.facts) h += '<ul class="c_mapFacts">' + t.facts.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul>';
-    if (t.related) h += '<div class="c_mapRelated"><span>Related</span><ul>' + t.related.map(function (r) { return '<li><a href="#">' + esc(r) + ' <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a></li>'; }).join('') + '</ul></div>';
-    if (t.cta) h += '<a href="#" class="c_mapCta">' + esc(t.cta) + ' ↗</a>';
-    sBody.innerHTML = h;
-    $$('a[href="#"]', sBody).forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); }); });
-    sCurStop = i;
-    if (typeof RV !== 'undefined' && RV.ok && typeof siteArmed !== 'undefined') { var pre = !!sPlayed[i]; $$('h3, p, .c_mapFacts li, .c_mapRelated a, .c_mapCta', sBody).forEach(function (e) { makeRv(e, pre); }); if (siteArmed && !pre) siteCardText(); }
-  }
-  renderStop(0);
-  sPills.forEach(function (b) { b.addEventListener('click', function () { scrollToPin(sCurtain, +b.dataset.i / (TOUR.length - 1), SITE_F); }); });
-  /* three.js bundle: inlined in the preview, a separate deferred file on the site (loaded when idle or when a 3D section gets near) */
-  var bundleQ = [], bundleLoading = false;
-  function withBundle(cb) {
-    if (window.mountSite) return cb();
-    bundleQ.push(cb);
-    if (bundleLoading || !(window.__IO && window.__IO.bundle)) return;
-    bundleLoading = true;
-    var sc = document.createElement('script'); sc.src = window.__IO.bundle; sc.async = true;
-    sc.onload = function () { var q = bundleQ; bundleQ = []; q.forEach(function (f) { f(); }); };
-    document.head.appendChild(sc);
-  }
-  if (window.__IO && window.__IO.bundle) { var idleLoad = function () { withBundle(function () {}); }; if (document.readyState === 'complete') setTimeout(idleLoad, 1200); else addEventListener('load', function () { setTimeout(idleLoad, 1200); }); }
-  function mountSite() {
-    if (model || !window.mountSite) return;
-    model = window.mountSite({
-      stage: $('#siteStage'), tour: TOUR,
-      onActive: function (i) { sActive = i; renderStop(i); },
-      onFail: function () { var f = $('#siteFallback'); f.hidden = false; f.style.cssText = 'background:url(https://silal-io.vercel.app/full-site/img/card_plots.jpg) center/cover'; },
-      onJump: function (i) { scrollToPin(sCurtain, i / (TOUR.length - 1), SITE_F); }
-    });
-    if (model) onScroll();
-  }
-  if ('IntersectionObserver' in window) { var mo = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { withBundle(mountSite); mo.disconnect(); } }, { rootMargin: '900px' }); mo.observe(sCurtain); } else withBundle(mountSite);
+  var sBody = document.createElement('div'), model = null, sCurtain = null, SITE_F = 0, sPlayed = {}, sCurStop = 0;
 
   /* ---------- World map: arid dots light up outward from the UAE as the section scrolls in ---------- */
   // heat map (rev. 6 Nov): each pressure is a filter; the active ones are averaged per dot, spreading out from the UAE as it scrolls in
@@ -256,7 +183,7 @@
     heroEls.forEach(function (el, k) { makeRv(el).play(0.3 + k * 0.12); });
     var at = function (wrap, f, fn) { ScrollTrigger.create({ trigger: wrap, start: function () { return 'top+=' + Math.round(sh() * f) + ' top'; }, once: true, onEnter: fn }); };
     // pinned panels: their text plays when the panel has lifted into view
-    at($('#siteCurtain'), 0.6, function () { playAll(rvGroups.site || []); playAll($$('h3, p, .c_mapFacts li, .c_mapRelated a, .c_mapCta', sBody).map(function (e) { return e; }), 0.1); siteArmed = true; });
+    if ($('#siteCurtain')) at($('#siteCurtain'), 0.6, function () { playAll(rvGroups.site || []); playAll($$('h3, p, .c_mapFacts li, .c_mapRelated a, .c_mapCta', sBody).map(function (e) { return e; }), 0.1); siteArmed = true; });
     if ($('#jCurtain')) at($('#jCurtain'), 0.7, function () { playAll((rvGroups.jour || []).filter(function (e) { return !e.closest('.j_jourStep') || e.closest('.j_jourStep').hasAttribute('data-on'); })); jrArmed = true; });
     // journey: a step's text plays when that step becomes the active one
     $$('.j_jourStep').forEach(function (st) {
@@ -278,78 +205,6 @@
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);
   onScroll();
-})();
-
-    // ---- the site: real photography
-
-/* rev. 6 Nov: the site model's places open a slideshow of the real space */
-(function () {
-  var G = window.__ioG || [["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 164012.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163505.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163545.jpg"], ["https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1211-Edit-Edit.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1065.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/SAM_8874.jpg"], ["https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1405.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1410.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1281.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1285.jpg"], ["https://silal-io.vercel.app/photos/General MarCom Photos (1)/PA__1490.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/PA__1526.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1464.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1488.jpg"], ["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163612.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163836.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163545.jpg"], ["https://silal-io.vercel.app/photos/General MarCom Photos (1)/SAM_9200.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/SMJ_2763.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/DSC04723 (1).jpg"], ["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163505.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163812.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 164012.jpg"]], gal = document.getElementById('siteGal'), img = document.getElementById('siteGalImg'), th = document.getElementById('siteGalThumbs'),
-      title = document.getElementById('siteGalTitle'), count = document.getElementById('siteGalCount'), open = document.getElementById('siteGalOpen'), set = [], k = 0, last = null;
-  window.__siteG = G;
-  if (!gal || !open) return;
-  function cur() { var on = document.querySelector('#siteIndex button[data-on="true"]'); return on ? +on.dataset.i : 0; }
-  function show(i) { k = (i + set.length) % set.length; img.src = set[k]; count.textContent = (k + 1) + ' / ' + set.length;
-    [].forEach.call(th.children, function (b, j) { b.setAttribute('aria-current', j === k ? 'true' : 'false'); }); }
-  function openGal(i) { var s = i == null ? cur() : i; set = G[s] || []; if (!set.length) return; last = document.activeElement;
-    var lab = document.querySelector('#siteIndex button[data-i="' + s + '"] b'); title.textContent = lab ? lab.textContent : '';
-    th.innerHTML = set.map(function (p, j) { return '<button type="button" aria-label="Photo ' + (j + 1) + '"><img src="' + p.replace(/"/g, '&quot;') + '" alt=""></button>'; }).join('');
-    [].forEach.call(th.children, function (b, j) { b.addEventListener('click', function () { show(j); }); });
-    gal.hidden = false; document.documentElement.classList.add('x_galLock'); show(0); gal.querySelector('.x_galClose').focus(); }
-  function closeGal() { gal.hidden = true; document.documentElement.classList.remove('x_galLock'); if (last) last.focus(); }
-  open.addEventListener('click', function () { openGal(); });
-  document.querySelector('.c_mapImg').addEventListener('click', function (e) { if (e.target.closest('button')) return; openGal(); });
-  gal.querySelector('.x_galClose').addEventListener('click', closeGal);
-  [].forEach.call(gal.querySelectorAll('.x_galNav'), function (b) { b.addEventListener('click', function () { show(k + +b.dataset.d); }); });
-  gal.addEventListener('click', function (e) { if (e.target === gal) closeGal(); });
-  document.addEventListener('keydown', function (e) { if (gal.hidden) return; if (e.key === 'Escape') closeGal(); else if (e.key === 'ArrowRight') show(k + 1); else if (e.key === 'ArrowLeft') show(k - 1); });
-})();
-
-    // ---- the site, option B (half-screen card with a slideshow)
-
-/* rev. 11 Nov (v3): the site card is enlarged to about half the screen and shows a slideshow of the real facility photos of the selected place */
-(function () {
-  var sec = document.getElementById('siteSec'); if (!sec) return;
-  var G = window.__siteG || [], box = sec.querySelector('.c_mapImg'), idx = document.getElementById('siteIndex'), galBtn = document.getElementById('siteGalOpen'), sBodyEl = document.getElementById('siteBody');
-  function el(tag, cls) { var e = document.createElement(tag); if (cls) e.className = cls; return e; }
-  var wrap = el('div', 'x_slides'); box.insertBefore(wrap, box.firstChild);
-  var cap = el('div', 'x_cap'); box.appendChild(cap);
-  var thumbs = el('div', 'x_thumbs'); box.appendChild(thumbs);
-  [-1, 1].forEach(function (d) { var b = el('button', 'x_sNav'); b.type = 'button'; b.dataset.d = d; b.setAttribute('aria-label', d < 0 ? 'Previous photo' : 'Next photo'); b.innerHTML = d < 0 ? '&larr;' : '&rarr;'; b.addEventListener('click', function (e) { e.stopPropagation(); show(k + d); }); box.appendChild(b); });
-  var place = -1, k = 0, set = [], timer = null;
-  function q(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
-  function cur() { var on = idx && idx.querySelector('button[data-on="true"]'); return on ? +on.dataset.i : 0; }
-  function label(p) { var b = idx && idx.querySelector('button[data-i="' + p + '"] b'); return b ? b.textContent : ''; }
-  // every place card gets the same structure: title, text, then one side column (label + rows) for facts, related links or the CTA
-  var busy = false;
-  function same() {
-    if (!sBodyEl || busy || sBodyEl.querySelector('.x_meta')) return; busy = true;
-    var meta = el('div', 'x_meta'), facts = sBodyEl.querySelector('.c_mapFacts'), rel = sBodyEl.querySelector('.c_mapRelated'), cta = sBodyEl.querySelector('.c_mapCta');
-    if (facts) { meta.innerHTML = '<span>At a glance</span>'; [].forEach.call(facts.children, function (li) { li.classList.add('x_fact'); }); meta.appendChild(facts); }
-    else if (rel) { meta.innerHTML = '<span>Related</span>'; meta.appendChild(rel); }
-    else if (cta) { meta.innerHTML = '<span>Explore</span>'; var ul = el('ul'), li = el('li'); ul.appendChild(li); li.appendChild(cta); cta.className = 'x_ctaLink'; meta.appendChild(ul); }
-    if (meta.children.length) sBodyEl.appendChild(meta);
-    busy = false;
-  }
-  if (sBodyEl && 'MutationObserver' in window) new MutationObserver(same).observe(sBodyEl, { childList: true });
-  function build(p) {
-    place = p; set = G[p] || []; var name = label(p), n = idx ? idx.querySelectorAll('button').length : G.length;
-    wrap.innerHTML = set.map(function (s, j) { return '<img src="' + q(s) + '" alt="' + q(name + ', photo ' + (j + 1)) + '" decoding="async">'; }).join('');
-    cap.innerHTML = '<span class="x_capTop"><span><i>' + String(p + 1).padStart(2, '0') + '</i> / ' + String(n).padStart(2, '0') + '</span><span class="x_capReal">Real photography · Innovation Oasis, Al Ain</span></span><b>' + q(name) + '</b>';
-    thumbs.innerHTML = set.length > 1 ? set.map(function (s, j) { return '<button type="button" aria-label="Photo ' + (j + 1) + '"><img src="' + q(s) + '" alt="" loading="lazy"><i><b></b></i></button>'; }).join('') : '';
-    [].forEach.call(thumbs.children, function (b, j) { b.addEventListener('click', function (e) { e.stopPropagation(); show(j); }); });
-    if (galBtn) thumbs.appendChild(galBtn);
-    same(); show(0);
-  }
-  function show(j) {
-    var n = set.length; if (!n) return; k = (j + n) % n;
-    [].forEach.call(wrap.children, function (im, i) { im.dataset.on = i === k; });
-    [].forEach.call(thumbs.querySelectorAll('button[aria-label^="Photo"]'), function (b, i) { b.setAttribute('aria-current', 'false'); if (i === k) { void b.offsetWidth; b.setAttribute('aria-current', 'true'); } });
-    clearTimeout(timer); if (n > 1) timer = setTimeout(function () { show(k + 1); }, 6000);
-  }
-  if (idx && 'MutationObserver' in window) new MutationObserver(function () { var p = cur(); if (p !== place) build(p); }).observe(idx, { subtree: true, attributes: true, attributeFilter: ['data-on'] });
-  sec.dataset.view = 'photo';
-  build(cur());
 })();
 
   }
