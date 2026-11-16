@@ -33,6 +33,8 @@
     cards.forEach(function (c) { $$('img[data-f="photo"]', c).forEach(function (im) { var d = dir(im.getAttribute('src')); dirs[d] = (dirs[d] || 0) + 1; if (!cms || dirs[d] > dirs[cms]) cms = d; }); });
     var places = cards.map(function (c, i) {
       $$('img[data-f="photo"]', c).forEach(function (im) { var s = im.getAttribute('src'); if (im.classList.contains('w-dyn-bind-empty') || !s || dir(s) !== cms) im.remove(); });
+      var rel = $('[data-f="related"]', c);
+      if (rel && text(rel)) rel.innerHTML = lines(text(rel)).map(function (t) { return '<span class="io-site-rel">' + esc(t) + '<i aria-hidden="true"></i></span>'; }).join('');
       ['facts', 'related', 'cta'].forEach(function (f) { var b = $('[data-site-block="' + f + '"]', c); if (b && !text($('[data-f="' + f + '"]', c))) b.hidden = true; });
       var name = text($('[data-f="name"]', c));
       return { key: text($('[data-f="key"]', c)) || 'overview', title: name, tab: text($('[data-f="tab"]', c)) || name, card: c, photos: $$('img[data-f="photo"]', c), k: 0, timer: null };
@@ -42,13 +44,14 @@
     places.forEach(function (p, i) {
       var box = $('[data-site-photos]', p.card) || $('.io-site-photos', p.card);
       if (!box || !p.photos.length) return;
-      var cap = el('div', 'io-site-count', '<b>' + String(i + 1).padStart(2, '0') + '</b> / ' + String(n).padStart(2, '0') + '<span>Real photography · Innovation Oasis, Al Ain</span>');
-      box.appendChild(cap);
+      var cap = el('div', 'io-site-count', '<b>' + String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0') + '</b><span>Real photography · Innovation Oasis, Al Ain</span>');
+      var ttl = $('[data-f="name"]', box), bar = $('[data-site-bar]', box);
+      if (ttl) box.insertBefore(cap, ttl); else box.appendChild(cap);
       if (p.photos.length > 1) {
-        [-1, 1].forEach(function (d) { var b = el('button', 'io-site-nav', d < 0 ? '&larr;' : '&rarr;'); b.type = 'button'; b.dataset.d = d; b.setAttribute('aria-label', d < 0 ? 'Previous photo' : 'Next photo'); b.addEventListener('click', function () { show(p, p.k + d); }); box.appendChild(b); });
+        [-1, 1].forEach(function (d) { var b = el('button', 'io-site-nav', ''); b.type = 'button'; b.dataset.d = d; b.setAttribute('aria-label', d < 0 ? 'Previous photo' : 'Next photo'); b.addEventListener('click', function () { show(p, p.k + d); }); box.appendChild(b); });
         var th = el('div', 'io-site-thumbs');
         p.photos.forEach(function (im, j) { var b = el('button', '', '<img src="' + esc(im.currentSrc || im.src) + '" alt="">'); b.type = 'button'; b.setAttribute('aria-label', 'Photo ' + (j + 1)); b.addEventListener('click', function () { show(p, j); }); th.appendChild(b); });
-        box.appendChild(th); p.thumbs = th;
+        if (bar) bar.insertBefore(th, bar.firstChild); else box.appendChild(th); p.thumbs = th;
       }
       var gal = $('[data-site-gal]', p.card);
       if (gal) gal.addEventListener('click', function (e) { e.preventDefault(); openGallery(p); });

@@ -10,17 +10,23 @@
 /* photo slideshow */
 [data-site].is-live .io-site-photo { opacity: 0; transition: opacity 0.8s ease; }
 [data-site].is-live .io-site-photo[data-on="true"] { opacity: 1; }
-.io-site-count { position: absolute; left: 1rem; top: 1rem; z-index: 3; display: flex; align-items: baseline; gap: 0.5rem; padding: 0.25rem 0.75rem; border-radius: 2rem; background: rgba(18, 18, 18, 0.55); color: var(--ios-white); font-size: 0.75rem; letter-spacing: 0.04em; }
+.io-site-count { position: relative; z-index: 2; display: flex; align-items: center; gap: 0.75rem; color: var(--ios-white); font-size: 0.75rem; line-height: 1.65; white-space: nowrap; }
 .io-site-count b { font-weight: 500; }
-.io-site-count span { opacity: 0.75; }
-.io-site-nav { position: absolute; top: 50%; z-index: 3; width: 2.5rem; height: 2.5rem; margin-top: -1.25rem; border: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.9); color: var(--ios-black); font-size: 1rem; cursor: pointer; transition: background 0.2s; }
-.io-site-nav[data-d="-1"] { left: 1rem; }
-.io-site-nav[data-d="1"] { right: 1rem; }
-.io-site-nav:hover { background: var(--ios-white); }
-.io-site-thumbs { position: absolute; left: 1rem; bottom: 1rem; z-index: 3; display: flex; gap: 0.25rem; }
-.io-site-thumbs button { width: 3rem; height: 2rem; padding: 0; border: 0.125rem solid transparent; border-radius: 0.25rem; overflow: hidden; background: none; cursor: pointer; opacity: 0.7; transition: opacity 0.2s, border-color 0.2s; }
-.io-site-thumbs button[aria-current="true"] { border-color: var(--ios-white); opacity: 1; }
+.io-site-count span { padding: 0.3125rem 0.75rem; border-radius: 999px; background: rgba(20, 23, 20, 0.45); }
+.io-site-nav { position: absolute; top: 50%; z-index: 3; width: 2.5rem; height: 2.5rem; margin-top: -1.25rem; padding: 0; border: 0; border-radius: 50%; background: url("https://silal-io.vercel.app/webflow/site/nav-next.svg") center / 100% 100% no-repeat; cursor: pointer; transition: opacity 0.2s; }
+.io-site-nav[data-d="-1"] { left: 0.875rem; background-image: url("https://silal-io.vercel.app/webflow/site/nav-prev.svg"); }
+.io-site-nav[data-d="1"] { right: 0.875rem; }
+.io-site-nav:hover { opacity: 0.85; }
+.io-site-thumbs { display: flex; gap: 0.5rem; }
+.io-site-thumbs button { width: 4.5rem; height: 3rem; padding: 0; border: 0; border-radius: 0; overflow: hidden; background: none; cursor: pointer; opacity: 0.6; transition: opacity 0.2s; }
+.io-site-thumbs button[aria-current="true"], .io-site-thumbs button:hover { opacity: 1; }
 .io-site-thumbs img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* related: one row per line, with the arrow from the design */
+[data-site] .io-site-lines .io-site-rel { display: flex; align-items: center; gap: 0.375rem; white-space: normal; }
+[data-site] .io-site-lines .io-site-rel + .io-site-rel { margin-top: 0.5rem; }
+[data-site] .io-site-rel i { flex: 0 0 auto; width: 0.75rem; height: 0.625rem; background: url("https://silal-io.vercel.app/webflow/site/arrow-link.svg") center / contain no-repeat; }
+[data-site] .io-site-lines:has(.io-site-rel) { white-space: normal; }
 
 /* tabs 01-07 (buttons made by the script inside the Webflow tab bar) */
 .io-site-tab { display: flex; align-items: center; gap: 0.5rem; height: 2.5rem; padding: 0 1rem; border: 0; border-radius: 2rem; background: transparent; color: var(--ios-grey); font-family: inherit; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: background 0.3s, color 0.3s; }
@@ -56,7 +62,7 @@ html.io-gal-lock { overflow: hidden; }
 
 @media (max-width: 991px) {
   .io-site-tab { height: 2rem; padding: 0 0.75rem; }
-  .io-site-thumbs { display: none; }
+  .io-site-thumbs button { width: 3rem; height: 2rem; }
 }
 @media (max-width: 767px) {
   .io-gal { padding: 1rem; }
