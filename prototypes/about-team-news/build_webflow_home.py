@@ -132,6 +132,8 @@ for old, var in (('fill: #dcdcdc;', 'fill: var(--map--no-data, #dcdcdc);'), ('fi
     scoped = scoped.replace(old, var)
 # the block sits above the pinned helix and lifts off it, like the sections of the artifact
 scoped = (P + '{position:relative;z-index:1;display:block;background:#fff}\n' + P + '.io-home-site{z-index:0}\n' + '.io-data{display:none!important}\n' + P + ' .s_root{min-height:0!important}\n' + '.io-mapdots,.io-mapdots .c_page{background:transparent!important}\n'
+          # native Webflow links stand in for the artifact's <button>s: centre their glyphs like buttons
+          + P + ' a.x_galClose,' + P + ' a.x_galNav,' + P + ' a.x_galOpen{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}\n'
           + 'html.x_galLock{overflow:hidden}\n' + scoped)
 
 

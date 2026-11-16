@@ -3,6 +3,7 @@
 .io-data{display:none!important}
 .io-home .s_root{min-height:0!important}
 .io-mapdots,.io-mapdots .c_page{background:transparent!important}
+.io-home a.x_galClose,.io-home a.x_galNav,.io-home a.x_galOpen{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
 html.x_galLock{overflow:hidden}
 .io-home{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 .io-home{scroll-padding-top:env(safe-area-inset-top,0px)}
