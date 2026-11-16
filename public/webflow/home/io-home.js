@@ -71,6 +71,7 @@
   var cw = $('#jCurtain'), jsec = $('#journey'), jlist = $('#jList'), pinMQ = matchMedia('(min-width: 1000px) and (min-height: 700px)');
   function sh() { return Math.max(innerHeight, 680); }
   function setPin() {
+    if (!cw) return;
     var on = !reduce && pinMQ.matches;
     cw.dataset.on = on; var sr_ = $('.s_root'); if (sr_) sr_.dataset.pin = on;
     cw.style.setProperty('--len', on ? Math.round(steps.length * 0.6 * innerHeight) + 'px' : '0px');
@@ -91,6 +92,7 @@
   }
   function onScroll() {
     parallax();
+    if (!cw) return;
     var vh = innerHeight;
     if (cw.dataset.on === 'true') {
       // pinned: scroll progress through the curtain drives the milestone
@@ -253,7 +255,7 @@
     var at = function (wrap, f, fn) { ScrollTrigger.create({ trigger: wrap, start: function () { return 'top+=' + Math.round(sh() * f) + ' top'; }, once: true, onEnter: fn }); };
     // pinned panels: their text plays when the panel has lifted into view
     at($('#siteCurtain'), 0.6, function () { playAll(rvGroups.site || []); playAll($$('h3, p, .c_mapFacts li, .c_mapRelated a, .c_mapCta', sBody).map(function (e) { return e; }), 0.1); siteArmed = true; });
-    at($('#jCurtain'), 0.7, function () { playAll((rvGroups.jour || []).filter(function (e) { return !e.closest('.j_jourStep') || e.closest('.j_jourStep').hasAttribute('data-on'); })); jrArmed = true; });
+    if ($('#jCurtain')) at($('#jCurtain'), 0.7, function () { playAll((rvGroups.jour || []).filter(function (e) { return !e.closest('.j_jourStep') || e.closest('.j_jourStep').hasAttribute('data-on'); })); jrArmed = true; });
     // journey: a step's text plays when that step becomes the active one
     $$('.j_jourStep').forEach(function (st) {
       new MutationObserver(function () { if (jrArmed && st.hasAttribute('data-on')) { playAll($$('[data-reveal]', st), 0.05); } }).observe(st, { attributes: true, attributeFilter: ['data-on'] });

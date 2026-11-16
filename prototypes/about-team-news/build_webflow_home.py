@@ -160,6 +160,9 @@ s7 = find('inertial smooth scroll')
 s7 = rep(s7, 'if (!reduce && window.Lenis) {', 'if (false) {')
 s7 = cut(s7, '  // header: transparent', '  // stat counters')
 s7 = rep(s7, "$('.s_root').dataset.pin = on;", "var sr_ = $('.s_root'); if (sr_) sr_.dataset.pin = on;")
+# Our Journey is hidden on the artifact and left out of the native Webflow page: run without it
+s7 = rep(s7, "  function setPin() {\n", "  function setPin() {\n    if (!cw) return;\n")
+s7 = rep(s7, "  function onScroll() {\n    parallax();\n", "  function onScroll() {\n    parallax();\n    if (!cw) return;\n")
 s7 = rep(s7, 'var hr = hero.getBoundingClientRect(); if (hr.bottom > 0)', 'var hr = hero ? hero.getBoundingClientRect() : { bottom: 0 }; if (hero && heroM && hr.bottom > 0)')
 
 s8 = find("id === undefined" if False else 'Helix: 3D helix turns with the scroll')
@@ -177,6 +180,7 @@ assert 'hxGL' not in s8.split('function hxCardText')[0].split('Text reveal')[1] 
 
 # The Site reads its places from the Webflow "Site Place" components when the page has them (window.__ioTour / __ioG, set by the loader)
 s8 = rep(s8, 'var TOUR = window.__siteTour = [', 'var TOUR = window.__siteTour = window.__ioTour || [')
+s8 = rep(s8, "    at($('#jCurtain'), 0.7,", "    if ($('#jCurtain')) at($('#jCurtain'), 0.7,")
 s9 = absolute(find("the site model's places open a slideshow"))
 s9 = rep(s9, 'var G = [[', 'var G = window.__ioG || [[')
 s12 = absolute(find('the site card is enlarged to about half the screen'))
