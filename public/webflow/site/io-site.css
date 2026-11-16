@@ -4,7 +4,7 @@
 [data-site] { --ios-blue: var(--blue, #1a6f96); --ios-black: var(--black, #121212); --ios-grey: var(--text-black-secondary, #6e7173); --ios-line: var(--white-smoke, #eaeaea); --ios-white: var(--white, #fff); }
 
 /* one place at a time */
-[data-site].is-live .io-site-list { position: relative; }
+[data-site].is-live .io-site-list { position: relative; display: block; width: 100%; height: 100%; }
 [data-site].is-live .io-site-list > .w-dyn-item { position: absolute; inset: 0; opacity: 0; visibility: hidden; transform: translateY(1.5rem); transition: opacity 0.7s cubic-bezier(0.22, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.22, 0.8, 0.2, 1), visibility 0s linear 0.7s; }
 [data-site].is-live .io-site-list > .w-dyn-item[data-on="true"] { opacity: 1; visibility: visible; transform: none; transition-delay: 0.08s, 0.08s, 0s; z-index: 1; }
 [data-site].is-live .io-site-list > .w-dyn-item[data-on="true"] .io-site-photo[data-on="true"] { animation: io-site-zoom 6s ease-out both; }
