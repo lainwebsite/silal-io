@@ -9,9 +9,31 @@
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
   function sh() { return Math.max(innerHeight, 680); }
 
+  /* Content: the steps come from the "Method Step" components on the page ([data-method-step], one per step, in order).
+     Each holds [data-f] fields: title, body (paragraphs separated by |), question, outcome, cta, link, side (left/right),
+     rung (1-7), image (card photo URL) and background (section photo URL). Without them the markup in the embed is used. */
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+  function field(el, f) { var n = el.querySelector('[data-f="' + f + '"]'); return n ? n.textContent.trim() : ''; }
+  function buildSteps() {
+    var els = $$('[data-method-step]'), host = $('#hxBgs');
+    if (!els.length || !host) return;
+    var R = ' data-reveal data-rvg="hxc"';
+    host.innerHTML = els.map(function (el, k) {
+      var t = esc(field(el, 'title')), img = esc(field(el, 'image')), bg = esc(field(el, 'background')), side = field(el, 'side') === 'right' ? 'right' : 'left';
+      var body = field(el, 'body').split(/\s*\|\s*/).filter(Boolean).map(function (p) { return '<p' + R + '>' + esc(p) + '</p>'; }).join('');
+      var q = field(el, 'question'), out = field(el, 'outcome'), cta = field(el, 'cta'), link = field(el, 'link') || '#';
+      return '<div class="hx_bgimg" data-i="' + k + '"><i class="hx_bgin" style="background-image:url(&quot;' + bg + '&quot;)"></i><div class="hx_tint"></div>' +
+        '<div class="hx_stage"><figure class="hx_card" data-i="' + k + '" data-rung="' + (parseInt(field(el, 'rung'), 10) || k + 1) + '"><span class="hx_img"><img src="' + img + '" alt=""></span><figcaption><b' + R + '>' + t + '</b></figcaption></figure></div>' +
+        '<div class="x_mPanel" data-side="' + side + '"><span class="x_mImg"><img src="' + img + '" alt="" loading="lazy"></span><div class="x_mBody"><h3' + R + '>' + t + '</h3>' + body +
+        (q ? '<p class="x_mQ"' + R + '>' + esc(q) + '</p>' : '') + (out ? '<p class="x_mOut"' + R + '>' + esc(out) + '</p>' : '') +
+        (cta ? '<p class="x_mCta"><a class="s_btn s_btnPrimary s_btnSm x_mBtn" href="' + esc(link) + '">' + esc(cta) + '</a></p>' : '') + '</div></div></div>';
+    }).join('');
+  }
+
   function start() {
     var hCurtain = $('#helixCurtain'), hSec = $('#helixSec');
     if (!hCurtain || !hSec) return;
+    buildSteps();
     var cardsEl = $$('.hx_card', hSec), bgsEl = $$('.hx_bgimg', hSec), HX_F = 1.0 * (cardsEl.length + 1), hCur = -2, hxGL = null, hxLoading = false, hxRot = 0;
 
     function hxScale() {

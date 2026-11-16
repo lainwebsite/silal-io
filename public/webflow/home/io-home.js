@@ -1,12 +1,39 @@
-/* Webflow homepage: world map, The Arid Advantage, The Site (option B) and Our Journey.
-   Built by prototypes/about-team-news/build_webflow_home.py from public/full-site/index.html. Do not edit by hand. */
+/* Webflow homepage: world map and The Site (option B); The Arid Advantage between them is native Webflow.
+   Built by prototypes/about-team-news/build_webflow_home.py from public/full-site/index.html. Do not edit by hand.
+   Content: The Site's places come from the "Site Place" components on the page ([data-site-place], one per place, in order);
+   without them the artifact's own data is used. */
 (function () {
   var BASE = (document.currentScript && document.currentScript.src || '').replace(/[^/]*$/, '');
+  function field(el, f) { var n = el.querySelector('[data-f="' + f + '"]'); return n ? n.textContent.trim() : ''; }
+  function lines(t) { return t ? t.split(/\s*[|\n]+\s*/).map(function (x) { return x.trim(); }).filter(Boolean) : null; }
+  function readPlaces() {
+    var els = [].slice.call(document.querySelectorAll('[data-site-place]'));
+    if (!els.length) return;
+    var tour = [], g = [];
+    els.forEach(function (el) {
+      var facts = lines(field(el, 'facts')), rel = lines(field(el, 'related'));
+      tour.push({ key: field(el, 'key'), title: field(el, 'title'), text: field(el, 'text'), facts: facts && facts.length ? facts : null,
+        related: rel && rel.length ? rel : null, cta: field(el, 'cta') || null, pill: field(el, 'pill') || null });
+      g.push(lines(field(el, 'photos')) || []);
+    });
+    window.__ioTour = tour; window.__ioG = g;
+  }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function buildIndex() {
+    var T = window.__ioTour, nav = document.getElementById('siteIndex');
+    if (!T || !nav) return;
+    nav.innerHTML = T.map(function (t, i) { return '<button type="button" data-i="' + i + '" data-on="' + (i === 0) + '"><span>' + String(i + 1).padStart(2, '0') + '</span><b>' + esc(t.pill || t.title) + '</b></button>'; }).join('');
+    var cnt = document.getElementById('siteCount'); if (cnt) cnt.innerHTML = '01 <i>/ ' + String(T.length).padStart(2, '0') + '</i>';
+  }
+  function load(id, file) {
+    var host = document.getElementById(id);
+    if (!host || host.dataset.ready) return Promise.resolve();
+    return fetch(BASE + file).then(function (r) { return r.text(); }).then(function (html) { host.innerHTML = html; host.dataset.ready = '1'; });
+  }
   function run() {
-    var host = document.getElementById('ioHome');
-    if (!host || host.dataset.ready) return;
-    fetch(BASE + 'fragment.html').then(function (r) { return r.text(); }).then(function (html) {
-      host.innerHTML = html; host.dataset.ready = '1';
+    readPlaces();
+    Promise.all([load('ioMap', 'fragment-map.html'), load('ioSite', 'fragment-site.html')]).then(function () {
+      buildIndex();
       var wait = function (n) { if (window.mountSite || n > 100) go(); else setTimeout(function () { wait(n + 1); }, 50); };
       wait(0);
     });
@@ -134,7 +161,7 @@
   }
 
   /* ---------- The Site: V1's 3D model, driven by scroll ---------- */
-  var TOUR = window.__siteTour = [{"key": "overview", "title": "An Opportunity in the Desert", "text": "An overlooked 34-hectare parcel of land adjacent to Al Foah Farm is identified as a potential home for a new agricultural innovation ecosystem. The vision for Innovation Oasis is born.", "facts": ["34 hectares", "Al Foah Farm, Al Ain"], "related": null, "cta": null, "pill": "The parcel"}, {"key": "collab", "title": "Collaboration spaces", "text": "Shared spaces where researchers, farmers, startups and partners work side-by-side.", "facts": null, "related": ["Incubation", "Accelerator", "Facilities as a Service"], "cta": null, "pill": null}, {"key": "labs", "title": "Laboratories", "text": "Specialised laboratories where research teams analyse plants, soil, water and food, close to the fields where solutions are tested.", "facts": null, "related": ["Analytical Services", "Food Technology", "Precision Breeding & Plant Health"], "cta": null, "pill": null}, {"key": "cea", "title": "Controlled-environment facilities", "text": "Growth chambers and phenotyping rooms where heat, light and humidity can be set precisely, so crops can be screened before they reach the field.", "facts": null, "related": ["Advanced Controlled Environment Ag (CEA)", "Abiotic Resilience & Crop Genomics (ARC-GEN)"], "cta": null, "pill": null}, {"key": "fields", "title": "Field-testing areas", "text": "Open-field trial plots where solutions face the pressures that define tomorrow’s food system: heat, water scarcity and salinity.", "facts": null, "related": ["R&D Trialing", "Soil & Water Research", "Agri Robotics & AI"], "cta": null, "pill": null}, {"key": "greenhouses", "title": "Greenhouses", "text": "Greenhouses where crops and growing technologies are validated in real production conditions.", "facts": null, "related": ["Paid Trials", "Crop Diversification Research"], "cta": null, "pill": null}, {"key": "masterplan", "title": "Building the Blueprint", "text": "A comprehensive masterplan is developed with global research and infrastructure partners. Laboratories, controlled-environment facilities, field-testing areas, greenhouses, and collaboration spaces are designed around one goal: accelerating innovation.", "facts": null, "related": null, "cta": "Virtual Tour", "pill": "The masterplan"}], SITE_F = (TOUR.length - 1) * 0.95;
+  var TOUR = window.__siteTour = window.__ioTour || [{"key": "overview", "title": "An Opportunity in the Desert", "text": "An overlooked 34-hectare parcel of land adjacent to Al Foah Farm is identified as a potential home for a new agricultural innovation ecosystem. The vision for Innovation Oasis is born.", "facts": ["34 hectares", "Al Foah Farm, Al Ain"], "related": null, "cta": null, "pill": "The parcel"}, {"key": "collab", "title": "Collaboration spaces", "text": "Shared spaces where researchers, farmers, startups and partners work side-by-side.", "facts": null, "related": ["Incubation", "Accelerator", "Facilities as a Service"], "cta": null, "pill": null}, {"key": "labs", "title": "Laboratories", "text": "Specialised laboratories where research teams analyse plants, soil, water and food, close to the fields where solutions are tested.", "facts": null, "related": ["Analytical Services", "Food Technology", "Precision Breeding & Plant Health"], "cta": null, "pill": null}, {"key": "cea", "title": "Controlled-environment facilities", "text": "Growth chambers and phenotyping rooms where heat, light and humidity can be set precisely, so crops can be screened before they reach the field.", "facts": null, "related": ["Advanced Controlled Environment Ag (CEA)", "Abiotic Resilience & Crop Genomics (ARC-GEN)"], "cta": null, "pill": null}, {"key": "fields", "title": "Field-testing areas", "text": "Open-field trial plots where solutions face the pressures that define tomorrow’s food system: heat, water scarcity and salinity.", "facts": null, "related": ["R&D Trialing", "Soil & Water Research", "Agri Robotics & AI"], "cta": null, "pill": null}, {"key": "greenhouses", "title": "Greenhouses", "text": "Greenhouses where crops and growing technologies are validated in real production conditions.", "facts": null, "related": ["Paid Trials", "Crop Diversification Research"], "cta": null, "pill": null}, {"key": "masterplan", "title": "Building the Blueprint", "text": "A comprehensive masterplan is developed with global research and infrastructure partners. Laboratories, controlled-environment facilities, field-testing areas, greenhouses, and collaboration spaces are designed around one goal: accelerating innovation.", "facts": null, "related": null, "cta": "Virtual Tour", "pill": "The masterplan"}], SITE_F = (TOUR.length - 1) * 0.95;
   var sCurtain = $('#siteCurtain'), sBody = $('#siteBody'), sImgs = $$('.c_mapImg img'), sPills = $$('#siteIndex button'), sCount = $('#siteCount'), model = null, sActive = 0, sPlayed = {}, sCurStop = 0;
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
   function renderStop(i) {
@@ -253,7 +280,7 @@
 
 /* rev. 6 Nov: the site model's places open a slideshow of the real space */
 (function () {
-  var G = [["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 164012.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163505.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163545.jpg"], ["https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1211-Edit-Edit.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1065.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/SAM_8874.jpg"], ["https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1405.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1410.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1281.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1285.jpg"], ["https://silal-io.vercel.app/photos/General MarCom Photos (1)/PA__1490.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/PA__1526.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1464.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1488.jpg"], ["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163612.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163836.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163545.jpg"], ["https://silal-io.vercel.app/photos/General MarCom Photos (1)/SAM_9200.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/SMJ_2763.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/DSC04723 (1).jpg"], ["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163505.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163812.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 164012.jpg"]], gal = document.getElementById('siteGal'), img = document.getElementById('siteGalImg'), th = document.getElementById('siteGalThumbs'),
+  var G = window.__ioG || [["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 164012.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163505.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163545.jpg"], ["https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1211-Edit-Edit.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1065.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/SAM_8874.jpg"], ["https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1405.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1410.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1281.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1285.jpg"], ["https://silal-io.vercel.app/photos/General MarCom Photos (1)/PA__1490.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/PA__1526.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1464.jpg", "https://silal-io.vercel.app/photos/Professional Facility Photos (1)/PA__1488.jpg"], ["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163612.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163836.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163545.jpg"], ["https://silal-io.vercel.app/photos/General MarCom Photos (1)/SAM_9200.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/SMJ_2763.jpg", "https://silal-io.vercel.app/photos/General MarCom Photos (1)/DSC04723 (1).jpg"], ["https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163505.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 163812.jpg", "https://silal-io.vercel.app/photos/Archive/Screenshot 2026-09-24 164012.jpg"]], gal = document.getElementById('siteGal'), img = document.getElementById('siteGalImg'), th = document.getElementById('siteGalThumbs'),
       title = document.getElementById('siteGalTitle'), count = document.getElementById('siteGalCount'), open = document.getElementById('siteGalOpen'), set = [], k = 0, last = null;
   window.__siteG = G;
   if (!gal || !open) return;

@@ -30,11 +30,23 @@ c = S.index('<div class="c_curtain" id="jCurtain"')
 d = S.index('<section class="c_section c_white hm_press"')
 g0 = S.index('<div class="x_gal" id="siteGal"')
 g1 = S.index('</main>', g0)
+# The Arid Advantage (between the map and the site) is a native Webflow section now, so the markup is split in two:
+# fragment-map.html (world map) and fragment-site.html (The Site, the hidden journey and the photo gallery).
 # .s_root and .c_page carry the artifact's variables (fonts, colours, --max, --hdr, --wrap) and its section stacking
-frag = '<div class="s_root"><div class="c_page">' + S[a:b] + S[c:d] + S[g0:g1] + '</div></div>'
-frag = re.sub(r'href="/full-site/[^"]*"', 'href="#"', frag)
-frag = absolute(frag)
-assert '="/full-site' not in frag and "url(/full-site" not in frag, 'relative path left'
+why0 = S.index('<section class="c_why c_chapter"')
+site0 = S.index('<div class="c_curtain" id="siteCurtain"')
+
+
+def wrap(t):
+    t = '<div class="s_root"><div class="c_page">' + t + '</div></div>'
+    t = re.sub(r'href="/full-site/[^"]*"', 'href="#"', t)
+    t = absolute(t)
+    assert '="/full-site' not in t and "url(/full-site" not in t, 'relative path left'
+    return t
+
+
+frag_map = wrap(S[a:why0])
+frag_site = wrap(S[site0:b] + S[c:d] + S[g0:g1])
 
 
 # ---------------- CSS, scoped under .io-home ----------------
@@ -108,7 +120,7 @@ def scope(t):
 scoped = scope(css)
 scoped = absolute(scoped)
 # the block sits above the pinned helix and lifts off it, like the sections of the artifact
-scoped = (P + '{position:relative;z-index:1;display:block;background:#fff}\n'
+scoped = (P + '{position:relative;z-index:1;display:block;background:#fff}\n' + P + '.io-home-site{z-index:0}\n' + '.io-data{display:none!important}\n'
           + 'html.x_galLock{overflow:hidden}\n' + scoped)
 
 
@@ -148,18 +160,48 @@ s8 = rep(s8, "addEventListener('resize', function () { hxScale(); onScroll(); })
 s8 = absolute(s8)
 assert 'hxGL' not in s8.split('function hxCardText')[0].split('Text reveal')[1] or True
 
+# The Site reads its places from the Webflow "Site Place" components when the page has them (window.__ioTour / __ioG, set by the loader)
+s8 = rep(s8, 'var TOUR = window.__siteTour = [', 'var TOUR = window.__siteTour = window.__ioTour || [')
 s9 = absolute(find("the site model's places open a slideshow"))
+s9 = rep(s9, 'var G = [[', 'var G = window.__ioG || [[')
 s12 = absolute(find('the site card is enlarged to about half the screen'))
 
-js = """/* Webflow homepage: world map, The Arid Advantage, The Site (option B) and Our Journey.
-   Built by prototypes/about-team-news/build_webflow_home.py from public/full-site/index.html. Do not edit by hand. */
+js = """/* Webflow homepage: world map and The Site (option B); The Arid Advantage between them is native Webflow.
+   Built by prototypes/about-team-news/build_webflow_home.py from public/full-site/index.html. Do not edit by hand.
+   Content: The Site's places come from the "Site Place" components on the page ([data-site-place], one per place, in order);
+   without them the artifact's own data is used. */
 (function () {
   var BASE = (document.currentScript && document.currentScript.src || '').replace(/[^/]*$/, '');
+  function field(el, f) { var n = el.querySelector('[data-f="' + f + '"]'); return n ? n.textContent.trim() : ''; }
+  function lines(t) { return t ? t.split(/\\s*[|\\n]+\\s*/).map(function (x) { return x.trim(); }).filter(Boolean) : null; }
+  function readPlaces() {
+    var els = [].slice.call(document.querySelectorAll('[data-site-place]'));
+    if (!els.length) return;
+    var tour = [], g = [];
+    els.forEach(function (el) {
+      var facts = lines(field(el, 'facts')), rel = lines(field(el, 'related'));
+      tour.push({ key: field(el, 'key'), title: field(el, 'title'), text: field(el, 'text'), facts: facts && facts.length ? facts : null,
+        related: rel && rel.length ? rel : null, cta: field(el, 'cta') || null, pill: field(el, 'pill') || null });
+      g.push(lines(field(el, 'photos')) || []);
+    });
+    window.__ioTour = tour; window.__ioG = g;
+  }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function buildIndex() {
+    var T = window.__ioTour, nav = document.getElementById('siteIndex');
+    if (!T || !nav) return;
+    nav.innerHTML = T.map(function (t, i) { return '<button type="button" data-i="' + i + '" data-on="' + (i === 0) + '"><span>' + String(i + 1).padStart(2, '0') + '</span><b>' + esc(t.pill || t.title) + '</b></button>'; }).join('');
+    var cnt = document.getElementById('siteCount'); if (cnt) cnt.innerHTML = '01 <i>/ ' + String(T.length).padStart(2, '0') + '</i>';
+  }
+  function load(id, file) {
+    var host = document.getElementById(id);
+    if (!host || host.dataset.ready) return Promise.resolve();
+    return fetch(BASE + file).then(function (r) { return r.text(); }).then(function (html) { host.innerHTML = html; host.dataset.ready = '1'; });
+  }
   function run() {
-    var host = document.getElementById('ioHome');
-    if (!host || host.dataset.ready) return;
-    fetch(BASE + 'fragment.html').then(function (r) { return r.text(); }).then(function (html) {
-      host.innerHTML = html; host.dataset.ready = '1';
+    readPlaces();
+    Promise.all([load('ioMap', 'fragment-map.html'), load('ioSite', 'fragment-site.html')]).then(function () {
+      buildIndex();
       var wait = function (n) { if (window.mountSite || n > 100) go(); else setTimeout(function () { wait(n + 1); }, 50); };
       wait(0);
     });
@@ -172,7 +214,10 @@ js = """/* Webflow homepage: world map, The Arid Advantage, The Site (option B) 
 """
 
 OUT.mkdir(parents=True, exist_ok=True)
-(OUT / 'fragment.html').write_text(frag, encoding='utf-8')
+(OUT / 'fragment-map.html').write_text(frag_map, encoding='utf-8')
+(OUT / 'fragment-site.html').write_text(frag_site, encoding='utf-8')
+old = OUT / 'fragment.html'
+if old.exists(): old.unlink()
 (OUT / 'io-home.css').write_text(scoped, encoding='utf-8')
 (OUT / 'io-home.js').write_text(js, encoding='utf-8')
-print('fragment', len(frag), 'css', len(scoped), 'js', len(js))
+print('map', len(frag_map), 'site', len(frag_site), 'css', len(scoped), 'js', len(js))
