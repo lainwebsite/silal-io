@@ -121,7 +121,26 @@ body .hp_adjMain .x_cap { max-width: 83.3%; font-size: var(--fs-body); line-heig
   #xJour .j_odo { display: none; }
   #xJour .j_jourFrames { height: max(300px, calc(100svh - 360px)); }
 }
-</style><style id="lt-dock">/* five pages in the dock: it scrolls sideways on narrow screens instead of clipping */@media (max-width: 600px) { .x_dockIn { overflow-x: auto; scrollbar-width: none; max-width: calc(100vw - 32px); } .x_dockIn::-webkit-scrollbar { display: none; } .x_dock a { padding: 0 9px; } .x_dockHome { padding: 0 8px 0 6px !important; } }</style></head>
+</style><style id="lt-dock">/* five pages in the dock: it scrolls sideways on narrow screens instead of clipping */@media (max-width: 600px) { .x_dockIn { overflow-x: auto; scrollbar-width: none; max-width: calc(100vw - 32px); } .x_dockIn::-webkit-scrollbar { display: none; } .x_dock a { padding: 0 9px; } .x_dockHome { padding: 0 8px 0 6px !important; } }</style><style id="hubedit">/* hubedit rev16 (review comments, 16 Nov) */
+.hp_vis{display:block;width:100%;max-width:320px;height:auto;margin:4px 0 2px}
+.hp_ready .hp_badge img{width:44px;height:auto;display:block;margin:auto}
+</style><style id="hubedit2">/* hubedit2 rev16 (comments: hero text scattered; make Agri-food Challenges distinct) */
+.h_aside{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+.h_aside .hp_pathLine{margin:0;max-width:34em}
+.h_title{align-self:start}
+@media (min-width:901px){.h_topGrid > .h_aside{margin-top:0}}
+/* partner service panel: same photo treatment as the others, only a solid brand-blue tag and a thin blue top bar */
+.h_panels .hp_partner .hp_tag.hp_tagSvc{background:var(--io-ink,#1a6f96);color:#fff;border-color:var(--io-ink,#1a6f96);-webkit-backdrop-filter:none;backdrop-filter:none;font-weight:500}
+.h_panels .hp_partner::after{content:"";position:absolute;z-index:3;left:0;right:0;top:0;height:3px;background:var(--io,#3ca7d2)}
+</style><style id="hubpic">.hp_pic{aspect-ratio:16/9;overflow:hidden;background:#dcdcdc;margin:6px 0 4px}.hp_pic img{display:block;width:100%;height:100%;object-fit:cover}</style><style id="puzcss">/* puzzle v3 (rev16): original white box, no colour fill; the four cards are jigsaw pieces drawn only with hairlines */
+@media (min-width:901px){
+.hp_ready .hp_dims.hp_puzOn{border:0!important;position:relative}
+.hp_ready .hp_dims.hp_puzOn .hp_cell{border:0!important;position:relative;z-index:1}
+.hp_ready .hp_dims.hp_puzOn .hp_cell:nth-of-type(even){padding-left:clamp(64px,5vw,80px)!important}
+.hp_ready .hp_dims.hp_puzOn .hp_badge{z-index:4}
+}
+.hp_puz{position:absolute;left:0;top:0;z-index:0;pointer-events:none;overflow:visible}
+</style></head>
 <body>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -5049,7 +5068,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .n1Stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .n1Hots { position: absolute; inset: 0; pointer-events: none; }
 /* names: small fixed pills, never move or grow; hover/click works on the 3D objects themselves */
-.n1Stage { height: clamp(440px, 40vw, 600px); }
+.n1Stage { height: clamp(500px, 46vw, 700px); }
 .n1Stage.onObj { cursor: pointer; }
 .nm { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
 .nm span { position: absolute; left: 0; bottom: 6px; transform: translateX(-50%); white-space: nowrap; font-size: var(--t-label); font-weight: 500; color: var(--grey-ink); background: rgba(255,255,255,.92); border-radius: 999px; padding: 4px 10px; box-shadow: 0 1px 4px rgba(38,36,35,.06); transition: color .35s, background .35s, opacity .35s; }
@@ -5536,6 +5555,26 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hp_ex ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; border-top: 1px solid var(--line); }
 .hp_ex li { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: var(--t-small); line-height: 1.4; color: var(--charcoal); }
 .a_n1 .n1Card { width: min(440px, calc(100% - 32px)); }
+.n1Ovb { all: unset; box-sizing: border-box; position: absolute; z-index: 3; top: 14px; right: 16px; cursor: pointer; font-size: var(--t-label); font-weight: 500; letter-spacing: .08em; color: var(--io-ink); padding: 4px 10px; border-radius: 999px; border: .5px solid rgba(26,111,150,.4); }
+.n1Ovb:hover { background: var(--io-ink); color: #fff; } .n1Ovb:focus-visible { outline: 2px solid var(--io); outline-offset: 2px; }
+.n1Stage.ov .n1Ovb { display: none; }
+.n1Stage.ov .hp_ex { grid-template-rows: 1fr; } .n1Stage.ov .hp_ex > div { opacity: 1; transition-delay: .2s; }
+.n1Stage.ov .n1Card { left: 16px; right: 16px; width: auto; display: grid; grid-template-columns: minmax(0,5fr) minmax(0,6fr); column-gap: clamp(24px,4vw,64px); align-items: start; padding: 22px 26px 20px; }
+.n1Stage.ov .n1Card > small, .n1Stage.ov .n1Card > h3, .n1Stage.ov .n1Card > p, .n1Stage.ov .n1Card > .n1Ctl { grid-column: 1; }
+.n1Stage.ov .n1Card { grid-template-rows: auto auto auto 1fr; }
+.n1Stage.ov .n1Card > .hp_ex { grid-column: 2; grid-row: 1 / span 4; }
+.n1Stage.ov .gTag { opacity: 0; }
+.n1Stage.ov .hp_ex .x_label { margin-top: 0; }
+.n1Stage.ov .hp_ex ul { grid-template-columns: 1fr 1fr; gap: 8px 20px; border-top: 0; margin-top: 4px; }
+.n1Stage.ov .hp_ex li { display: flex; align-items: center; gap: 12px; padding: 0; border: 0; line-height: 1.3; }
+.n1Si { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--io, #3ca7d2); color: #fff; box-shadow: 0 0 0 4px rgba(60,167,210,.14); }
+.n1Si svg { width: 58%; height: 58%; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.n1Stage.ov .n1OvNote { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); }
+.n1Stage.ov .n1Card > .n1Ctl { align-self: end; }
+@media (max-width: 900px) { .n1Stage.ov .n1Card { display: block; } .n1Stage.ov .n1Card > .hp_ex { margin-top: 0; } .n1Stage.ov { height: 1000px; } .n1Stage.ov .hp_ex ul { grid-template-columns: 1fr; } .n1Stage.ov .hp_ex .x_label { margin-top: 18px; } }
+.n1OvNote { display: none; margin-top: 10px; font-size: var(--t-small); line-height: 1.5; color: var(--grey-ink); }
+.n1Stage.ov .n1OvNote { display: block; }
+.a_n1 .hp_adj { display: none; }
 .a_n1 .n1Stage:focus-visible { outline: 2px solid var(--io); outline-offset: 3px; }
 @media (max-width: 600px) { .hp_ex ul { grid-template-columns: 1fr; } .hp_ex li { padding: 4px 0; } }
 /* adjacent sectors, light: heading + copy left, the eight sectors as a hairline list right */
@@ -5627,6 +5666,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .x_head > div:first-child { flex: 0 1 auto !important; max-width: 62% !important; }
 .x_head > :nth-child(2) { flex: 0 1 clamp(300px, 32%, 560px) !important; max-width: none !important; margin-left: auto !important; align-self: flex-start !important; justify-self: auto !important; text-align: left !important; }
 @media (max-width: 900px) { .x_head > div:first-child { max-width: none !important; } .x_head > :nth-child(2) { flex-basis: 100% !important; margin-left: 0 !important; } }
+/* rev. 16 Nov (comment): "From problem to scale" heading removed (too close to the hero copy). The approach intro stays as eyebrow + text, left-aligned under it. */
+.hp_jourHead .x_head{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:var(--stack)!important}
+.hp_jourHead .x_head > div:first-child{max-width:none!important}
+.hp_jourHead .x_head > .x_stack{flex:0 0 auto!important;margin-left:0!important;max-width:44em!important}
 </style>
 <script>document.documentElement.classList.add("rv");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)</script>
 
@@ -5667,21 +5710,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
     <div class="h_aside">
       <p class="x_lead" data-reveal><span class="x_iO">iO</span>&nbsp;connects ideas, research and proven technologies with the expertise, environments and commercial pathways needed to move them forward.</p>
-      <p class="x_body" data-reveal>Whether you are a farmer solving an operational problem, a researcher translating an emerging technology, a startup seeking real-world validation, or an organization addressing a strategic challenge,&nbsp;<span class="x_iO">iO</span>&nbsp;can help identify the right pathway.</p>
-      <a href="#pathway" class="s_btn s_btnPrimary s_btnSm hp_toPath" style="align-self:flex-start">Find your pathway <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      
+      <p class="x_body hp_pathLine" data-reveal><span class="x_iO">iO</span>&nbsp;provides distinct pathways for farmer-led ideas, emerging research, deployment-ready technologies and partner-led innovation challenges.</p> <a href="#pathway" class="s_btn s_btnPrimary s_btnSm hp_toPath" style="align-self:flex-start">Find your pathway <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div></section>
 
-  <div class="s_wrap hp_plIntro">
-    <p class="x_lead" data-reveal><span class="x_iO">iO</span>&nbsp;provides distinct pathways for farmer-led ideas, emerging research, deployment-ready technologies and partner-led innovation challenges.</p>
-    <p class="x_lead" style="margin-top:18px" data-reveal>Each route is designed for a different starting point, but all share the same objective: to generate the evidence, partnerships and implementation pathways required to create real-world impact.</p>
-  </div>
+  
 
   <div class="s_wrap"><div class="h_panels" id="hubPanels">
     <a class="h_panel" href="/full-site/ivp-farm-innovation-fund"><div class="x_img"><img src="/innovation-venture-platforms/img/hero_fif.webp" alt="Farmers on the Innovation Day field tour beside the greenhouses"></div><span class="hp_tag">TRL 1–8</span><div class="h_panelIn"><h2>Farm Innovation Fund</h2><div class="h_more"><div><span class="h_for">For UAE farmers &amp; entrepreneurs</span><p>Develop and test practical solutions to challenges identified on UAE farms, supported by funding, expert input and structured project delivery.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
     <a class="h_panel" href="/full-site/ivp-incubation"><div class="x_img"><img src="/innovation-venture-platforms/img/hero_inc.webp" alt="Researchers with an agri-robotics prototype" loading="lazy"></div><span class="hp_tag">TRL 4–7</span><div class="h_panelIn"><h2>Incubation</h2><div class="h_more"><div><span class="h_for">For researchers and early-stage ventures</span><p>Translate promising research and early-stage technologies through focused technical, user, adoption and commercial validation.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
     <a class="h_panel" href="/full-site/ivp-accelerator"><div class="x_img"><img src="/innovation-venture-platforms/img/acc_green.webp" alt="Misting inside a high-tech greenhouse" loading="lazy"></div><span class="hp_tag">TRL 7+</span><div class="h_panelIn"><h2>Acceleration</h2><div class="h_more"><div><span class="h_for">For later-stage ventures</span><p>Validate, localize and commercialize deployment-ready technologies in demanding operational conditions and build a route into the UAE and wider region.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
-    <a class="h_panel" href="/full-site/ivp-agricultural-challenges"><div class="x_img"><img src="/innovation-venture-platforms/img/chal_seed.webp" alt="A seedling growing in open-field soil" loading="lazy"></div><span class="hp_tag">Partner service</span><div class="h_panelIn"><h2>Agri-food Challenges</h2><div class="h_more"><div><span class="h_for">For government and industry partners</span><p>Design and support innovation programs that identify, evaluate, and test promising technologies against priority challenges across agrifood and related sectors such as water, energy and circularity.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
+    <a class="h_panel hp_partner" href="/full-site/ivp-agricultural-challenges"><div class="x_img"><img src="/innovation-venture-platforms/img/chal_seed.webp" alt="A seedling growing in open-field soil" loading="lazy"></div><span class="hp_tag hp_tagSvc">Partner service</span><div class="h_panelIn"><h2>Agri-food Challenges</h2><div class="h_more"><div><span class="h_for">For government and industry partners</span><p>Design and support innovation programs that identify, evaluate, and test promising technologies against priority challenges across agrifood and related sectors such as water, energy and circularity.</p><span class="h_go">Explore <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></div></a>
   </div></div>
 
   
@@ -5711,7 +5751,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <!-- 4 · How iO moves innovation forward: the About journey (horizontal, pinned, scroll-led), six stages; evidence fills as you go -->
   <section class="x_sec x_grey hp_jourHead"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Our approach</span><h2 class="x_h2" data-reveal>From problem to scale</h2></div><div class="x_stack"><p class="x_body" data-reveal>Every&nbsp;<span class="x_iO">iO</span>&nbsp;platform and program is supported by a structured process that reduces uncertainty and builds the evidence required for a clear next decision.</p><p class="x_body" data-reveal>The precise journey varies according to the maturity of the idea or technology, but the underlying method remains consistent.</p></div></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>Our approach</span></div><div class="x_stack"><p class="x_body" data-reveal>Every&nbsp;<span class="x_iO">iO</span>&nbsp;platform and program is supported by a structured process that reduces uncertainty and builds the evidence required for a clear next decision.</p><p class="x_body" data-reveal>The precise journey varies according to the maturity of the idea or technology, but the underlying method remains consistent.</p></div></div>
   </div></section>
   <div class="x_jour hp_jour" id="xJour" data-on="false"><section class="j_journey" id="journey" aria-label="How iO moves innovation forward">
   <div class="j_jour">
@@ -5739,20 +5779,20 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <section class="x_sec hp_routes"><div class="s_wrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>Two routes to innovation</span><h2 class="x_h2" data-reveal>Localize the best. <span>Build what is missing.</span></h2></div></div>
     <div class="hp_routeCols" data-inview>
-      <div class="hp_route" style="--k:0"><span class="x_label">Localize</span><p class="x_lead">We identify strong solutions from the UAE and around the world, bring them into relevant operating environments and adapt them to local conditions and market requirements.</p><p class="x_body">This path is appropriate when a solution already has strong problem-solution fit and localization provides a faster or more efficient route than developing a new solution.</p></div>
-      <div class="hp_route" style="--k:1"><span class="x_label">Build</span><p class="x_lead">When the market does not offer an adequate solution, we work with researchers, technical teams and partners to develop and validate new approaches.</p><p class="x_body">This path is appropriate where there is a demonstrated market or capability gap, the right team is available and the potential value justifies the higher time, cost and technical risk.</p></div>
+      <div class="hp_route" style="--k:0"><span class="x_label">Localize</span><div class="hp_pic"><img src="/full-site/img/card_fields.jpg" alt="Field trial site at Innovation Oasis" loading="lazy"></div><p class="x_lead">We identify strong solutions from the UAE and around the world, bring them into relevant operating environments and adapt them to local conditions and market requirements.</p></div>
+      <div class="hp_route" style="--k:1"><span class="x_label">Build</span><div class="hp_pic"><img src="/full-site/img/card_labs.jpg" alt="Laboratory work at Innovation Oasis" loading="lazy"></div><p class="x_lead">When the market does not offer an adequate solution, we work with researchers, technical teams and partners to develop and validate new approaches.</p></div>
     </div>
   </div></section>
 
   <!-- 5 · Readiness model: four dimensions side by side in the page's column pattern (hairline rule, name, key question, "iO considers" list), all visible -->
   <section class="x_sec x_grey hp_ready"><div class="s_wrap">
-    <div class="x_head"><div><span class="c_eyebrow" data-reveal>What we evaluate</span><h2 class="x_h2" data-reveal>Technology readiness is only part of the picture</h2></div><div class="x_stack"><p class="x_body" data-reveal>A solution can perform successfully in a controlled environment and still fail to achieve adoption.</p><p class="x_body" data-reveal><span class="x_iO">iO</span>&nbsp;evaluates opportunities across four connected dimensions to understand whether a solution is technically credible, commercially relevant, operationally feasible and ready for implementation.</p></div></div>
+    <div class="x_head"><div><span class="c_eyebrow" data-reveal>What we evaluate</span><h2 class="x_h2" data-reveal>Technology readiness is only part of the picture</h2></div><div class="x_stack"><p class="x_body" data-reveal>A solution can perform successfully in a controlled environment and still fail to achieve adoption.</p></div></div>
     <div class="hp_dims">
       <div class="hp_cell"><span class="x_label">Technical readiness</span><p class="x_lead">Can the solution perform reliably in the intended environment?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Core functionality</li><li>Supporting scientific evidence</li><li>Reliability and repeatability</li><li>Performance against the baseline</li><li>Suitability for local environmental conditions</li><li>Safety and technical risks</li></ul></div></div>
       <div class="hp_cell"><span class="x_label">Commercial readiness</span><p class="x_lead">Does the solution address a meaningful need and offer a credible path to economic value?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Customer and user need</li><li>Value proposition</li><li>Market potential</li><li>Competitive differentiation</li><li>Business model</li><li>Cost and return on investment</li><li>Willingness to pay</li></ul></div></div>
       <div class="hp_cell"><span class="x_label">Operational readiness</span><p class="x_lead">Can the solution be deployed, operated and supported at the required scale?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Manufacturing and supply</li><li>Installation and integration</li><li>Infrastructure requirements</li><li>Day-to-day operation</li><li>Maintenance and after-sales support</li><li>Skills and training requirements</li><li>Ability to scale delivery</li></ul></div></div>
       <div class="hp_cell"><span class="x_label">Adoption readiness</span><p class="x_lead">Can the solution overcome the practical barriers to implementation?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Regulation and permitting</li><li>User acceptance</li><li>Procurement processes</li><li>Data and system integration</li><li>Policy alignment</li><li>Infrastructure dependencies</li><li>Organizational change requirements</li></ul></div></div>
-      <span class="hp_badge x_label" aria-hidden="false"><span class="x_iO">iO</span>&nbsp;readiness</span>
+      <span class="hp_badge" aria-label="iO readiness"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt="iO"></span>
     </div>
     <p class="x_body hp_rdClose" data-reveal>By assessing all four dimensions together,&nbsp;<span class="x_iO">iO</span>&nbsp;can identify the most important barriers, design more relevant validation activities and help partners make better-informed investment and implementation decisions.</p>
   </div></section>
@@ -5764,10 +5804,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="n1Hots" id="n1Hots"></div>
     <div class="n1Groups" id="n1Groups" aria-hidden="true"><span data-on>Production</span><span>Waste and Circularity</span><span>Supply-Chain Visibility and Intelligence</span></div>
     <div class="n1Card" id="n1Card" aria-live="polite">
+      <button class="n1Ovb" id="n1Ov" type="button">&larr; Adjacent sectors</button>
       <small class="mask"><span id="n1Group">Production</span></small>
       <h3 class="mask"><span id="n1Title">Soil and plant health</span></h3>
       <p class="mask"><span id="n1Text">Solutions that improve soil quality, nutrient and water retention, crop health, stress tolerance and productive capacity.</span></p>
-      <div class="hp_ex"><div><span class="x_label">Example areas</span><ul id="n1Ex"></ul></div></div>
+      <div class="hp_ex"><div><span class="x_label" id="n1ExL">Example areas</span><ul id="n1Ex"></ul><p class="n1OvNote">This enables iO to bring relevant innovations from other industries into agricultural environments and validate whether they can create meaningful operational or commercial value.</p></div></div>
       <div class="n1Ctl"><button class="s_btn s_btnPrimary s_btnSm x_round" id="n1Prev" type="button" aria-label="Previous area"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="s_btn s_btnPrimary s_btnSm x_round" id="n1Next" type="button" aria-label="Next area"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="s_btn s_btnPrimary s_btnSm" id="n1Zoom" type="button" aria-expanded="false">Take a closer look</button><em id="n1Count">1 / 9</em></div>
     </div>
       </div>
@@ -6121,21 +6162,30 @@ const forklift = (add, x, y, z) => {
 };
 const anim = []; // small things that move: drone, tracking pin, ring
 
-// 1 · soil & plant health: a soil profile cut open in layers, crop rows on top, a moisture probe and sacks of amendments
+// 1 · soil & plant health: a soil profile cut open (topsoil, subsoil, clay, parent rock) with roots, a worm, moisture and nutrient granules, a monitoring probe and bags of amendments
 make(0, add => {
   add(box(4.0, 0.12, 3.4, P.sand, 0, 0, 0, 0.05));
-  const y0 = 0.12;
-  add(box(3.2, 0.42, 2.3, P.soilL, -0.2, y0, -0.35, 0.05));
-  add(box(3.2, 0.32, 2.3, P.soil, -0.2, y0 + 0.42, -0.35, 0.05));
-  add(box(3.2, 0.14, 2.3, P.soilD, -0.2, y0 + 0.74, -0.35, 0.04));
-  for (let k = 0; k < 9; k++) { const s = ball(0.05, k % 3 ? 0xe9dfcf : P.white); s.position.set(-1.6 + k * 0.36, y0 + 0.16 + (k % 3) * 0.14, 0.81); add(s); } // stones and granules on the cut face
-  for (let r = 0; r < 3; r++) for (let c = 0; c < 6; c++) bush(add, -1.5 + c * 0.52, y0 + 0.88, -1.15 + r * 0.6, 1.0 + ((r + c) % 3) * 0.15);
-  for (let k = 0; k < 4; k++) { const root = cyl(0.012, 0.02, 0.5, 0xd7c1a0, 5); root.position.set(-1.25 + k * 0.85, y0 + 0.6, 0.81); root.rotation.z = (k % 2 ? 0.3 : -0.3); add(root); }
-  const probe = cyl(0.02, 0.02, 0.9, P.steelD, 6); probe.position.set(1.15, y0 + 0.9, 0.2); add(probe);
-  add(box(0.18, 0.13, 0.09, P.white, 1.15, y0 + 1.3, 0.2, 0.02)); add(box(0.1, 0.04, 0.01, P.blue, 1.15, y0 + 1.36, 0.25, 0.005));
-  [[1.3, 1.25, 0], [0.82, 1.25, 0], [1.06, 1.25, 1]].forEach(([x, z, l]) => { add(box(0.44, 0.22, 0.32, P.white, x, y0 + l * 0.22, z, 0.06)); add(box(0.445, 0.05, 0.325, P.leafD, x, y0 + l * 0.22 + 0.1, z, 0.01)); });
+  const y0 = 0.12, cx = -0.25, cz = -0.3, W = 3.1, D = 2.2, zf = cz + D / 2 + 0.015;
+  const strata = [[0.24, 0xa59a8b, 0.04], [0.36, P.soilL, 0.04], [0.32, P.soil, 0.04], [0.22, P.soilD, 0.04]];
+  let y = y0; strata.forEach(([h, c, r]) => { add(box(W, h, D, c, cx, y, cz, r)); y += h; });
+  const top = y; // 1.26
+  for (let k = 0; k < 7; k++) { const st = ball(0.06 + (k % 3) * 0.015, k % 2 ? 0xd8cfc0 : 0x8f8678, true); st.position.set(cx - 1.35 + k * 0.45, y0 + 0.1 + (k % 3) * 0.06, zf); st.scale.z = 0.5; add(st); } // rock fragments
+  for (let k = 0; k < 10; k++) { const g = ball(0.028, k % 3 ? 0xe9dfcf : P.orange); g.position.set(cx - 1.4 + k * 0.31, y0 + 0.62 + ((k * 5) % 7) * 0.05, zf); add(g); } // nutrient granules
+  for (let k = 0; k < 8; k++) { const d = ball(0.032, P.blue); d.scale.y = 1.25; d.position.set(cx - 1.2 + k * 0.34 + (k % 2) * 0.08, y0 + 0.78 + ((k * 3) % 5) * 0.05, zf + 0.005); add(d); } // soil moisture
+  // three seedlings with roots reaching down the cut face
+  [-1.1, -0.2, 0.75].forEach((x, i) => {
+    const px = cx + x * 0.9 + 0.2; const hh = 0.42 + i * 0.07;
+    const stem = cyl(0.014, 0.018, hh, P.leafD, 6); stem.position.set(px, top + hh / 2, zf - 0.12); add(stem);
+    [-1, 1].forEach(sd => { const l = ball(0.12, sd > 0 ? P.leaf : P.leafL, true); l.scale.set(1, 0.28, 0.62); l.position.set(px + sd * 0.1, top + hh - 0.02, zf - 0.12); l.rotation.z = sd * 0.5; add(l); });
+    const tap = cyl(0.012, 0.024, 0.62, 0xe8d8b6, 6); tap.position.set(px, top - 0.31, zf); add(tap);
+    [[-0.5, 0.18], [0.5, 0.26], [-0.7, 0.42], [0.65, 0.5]].forEach(([rot, dy]) => { const r = cyl(0.007, 0.014, 0.3, 0xe8d8b6, 5); r.rotation.z = rot; r.position.set(px + Math.sin(rot) * -0.12, top - dy - 0.12, zf); add(r); });
+  });
+  for (let k = 0; k < 7; k++) { const w = ball(0.034, 0xd98f8a); w.position.set(cx + 0.2 + k * 0.06, y0 + 0.62 + Math.sin(k * 0.9) * 0.05, zf + 0.01); w.scale.set(1.1, 1, 1); add(w); } // earthworm
+  const probe = cyl(0.02, 0.02, 1.0, P.steelD, 6); probe.position.set(1.38, y0 + 0.82, 0.55); add(probe);
+  add(box(0.2, 0.14, 0.1, P.white, 1.38, top + 0.05, 0.55, 0.02)); add(box(0.11, 0.045, 0.01, P.blue, 1.38, top + 0.11, 0.605, 0.005));
+  [[1.5, 1.2, 0], [1.03, 1.2, 0], [1.26, 1.2, 1]].forEach(([x, z, l]) => { add(box(0.44, 0.22, 0.32, P.white, x, y0 + l * 0.22, z, 0.06)); add(box(0.445, 0.05, 0.325, P.leafD, x, y0 + l * 0.22 + 0.1, z, 0.01)); });
 });
-// 2 · precision agriculture: raised beds with drip lines, a sensor mast with its own small panel, a drone over the crop
+// 2 · precision agriculture: raised beds with drip lines, a sensor mast with its own small panel, a field robot driving the rows and a drone over the crop
 make(1, add => {
   add(box(4.0, 0.22, 3.4, P.sand, 0, 0, 0, 0.06));
   for (let r = 0; r < 5; r++) {
@@ -6148,6 +6198,12 @@ make(1, add => {
   const mast = cyl(0.035, 0.04, 1.4, P.steelD, 8); mast.position.set(1.75, 0.92, 1.35); add(mast);
   const pv = box(0.42, 0.03, 0.3, P.pv, 1.75, 1.55, 1.35, 0.01); pv.rotation.x = -0.5; add(pv);
   add(box(0.16, 0.2, 0.12, P.white, 1.75, 1.05, 1.42, 0.03));
+  const rover = new THREE.Group();
+  rover.add(box(0.56, 0.12, 0.7, P.white, 0, 0.6, 0, 0.05)); rover.add(box(0.4, 0.05, 0.4, P.pv, 0, 0.72, 0, 0.01));
+  [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([a2, b2]) => { rover.add(box(0.035, 0.44, 0.035, P.steelD, a2 * 0.2, 0.2, b2 * 0.3, 0.01)); const w = cyl(0.1, 0.1, 0.09, P.black, 18); w.rotation.x = Math.PI / 2; w.position.set(a2 * 0.2, 0.12, b2 * 0.3); rover.add(w); });
+  rover.add(box(0.14, 0.1, 0.2, P.black, 0, 0.5, 0, 0.03)); const led = ball(0.025, P.red); led.position.set(0.04, 0.5, 0.11); rover.add(led);
+  const ant = cyl(0.01, 0.01, 0.3, P.steelD, 5); ant.position.set(-0.2, 0.88, 0.2); rover.add(ant);
+  rover.position.set(-0.9, 0.22, 0.6); add(rover); anim.push(t => { rover.position.x = -0.5 + Math.sin(t * 0.5) * 1.1; });
   const drone = new THREE.Group();
   drone.add(box(0.36, 0.1, 0.36, P.white, 0, 0, 0, 0.04));
   [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(([a, b]) => { const arm = box(0.42, 0.03, 0.04, P.black, a * 0.15, 0.04, b * 0.15, 0.01); arm.rotation.y = a * b > 0 ? -Math.PI / 4 : Math.PI / 4; drone.add(arm);
@@ -6192,7 +6248,7 @@ make(3, add => {
     for (let k = 0; k < 5; k++) { const rib = mesh(new THREE.TorusGeometry(W / 4, 0.016, 6, 28, Math.PI), M(P.steel)); rib.scale.set(1, 0.62, 1); rib.position.set(cx, y0 + E, -D / 2 + k * D / 4); add(rib); }
   });
 });
-// 5 · crop innovation: a variety trial, nine small plots of different lines with white plot markers, a date palm at the edge
+// 5 · crop innovation: a variety trial, nine small plots of different lines with white plot markers, a date palm and a slowly turning DNA double helix on a plinth
 make(4, add => {
   add(box(4.0, 0.16, 3.4, P.sand, 0, 0, 0, 0.05));
   const lines = [[P.leaf, 0.8], [P.leafD, 1.15], [P.leafL, 0.95], [P.leafD, 0.7], [P.leaf, 1.3], [0x9cb04a, 1.0], [P.leafL, 1.2], [P.leaf, 0.85], [0x6f9e3c, 1.05]];
@@ -6203,7 +6259,15 @@ make(4, add => {
     const stake = cyl(0.012, 0.012, 0.36, P.steelD, 5); stake.position.set(x + 0.38, 0.38, z + 0.34); add(stake);
     add(box(0.14, 0.09, 0.015, P.white, x + 0.38, 0.52, z + 0.35, 0.005));
   }
-  palm(add, 1.72, 0.16, -1.35, 1.5);
+  palm(add, -1.75, 0.16, -1.4, 1.5);
+  const hx = new THREE.Group(); hx.position.set(1.75, 0.16 + 0.14, 0.9);
+  add(box(0.8, 0.14, 0.8, P.concrete, 1.75, 0.16, 0.9, 0.04));
+  const NS = 44, HH = 2.0, RR = 0.3;
+  for (let i = 0; i <= NS; i++) { const u = i / NS, ang = u * Math.PI * 5, yy = u * HH;
+    [0, Math.PI].forEach((ph, sI) => { const bb = ball(0.068, sI ? P.leaf : P.cab); bb.position.set(Math.cos(ang + ph) * RR, yy, Math.sin(ang + ph) * RR); hx.add(bb); });
+    if (i % 2 === 0) { const rung = cyl(0.016, 0.016, RR * 2, P.white, 5); rung.position.set(0, yy, 0); rung.rotation.z = Math.PI / 2; rung.rotation.y = -ang; hx.add(rung); } }
+  add(hx); anim.push(t => { hx.rotation.y = t * 0.6; });
+
 });
 // 6 · waste prevention: an insulated cold store with roof condensers and dock doors; pallets of produce and a forklift
 make(5, add => {
@@ -6302,7 +6366,7 @@ const hitList = []; scenes.forEach((s, i) => s.g.traverse(o => { if (o.isMesh) {
 let sel = -1, hov = -1, camX = 0, camTX = 0, drag = 0, dragT = 0, focus = false, zoom = 0, zoomK = 0;
 const card = $('#n1Card'), zoomBtn = $('#n1Zoom'), on = new THREE.Color(TILE_ON);
 function show(i) {
-  if (i === sel) return; sel = i;
+  if (i === sel) return; sel = i; const wasOv = stage.classList.contains('ov'); stage.classList.remove('ov'); if (wasOv) resize(); $('#n1ExL').textContent = 'Example areas'; zoomBtn.textContent = zoom ? '← All nine areas' : 'Take a closer look';
   tags.forEach((t, k) => k === i ? t.setAttribute('data-on', '') : t.removeAttribute('data-on'));
   groupsEl.forEach((g, k) => k === grpOf(i) ? g.setAttribute('data-on', '') : g.removeAttribute('data-on'));
   scenes.forEach((s, k) => {
@@ -6317,10 +6381,24 @@ function show(i) {
   $('#n1Count').textContent = (i + 1) + ' / ' + N;
   if (zoom || focus) camTX = X(i);
 }
+const OVL = [["Agricultural water and wastewater", "<path d=\"M24 7c6 8 10 13 10 18a10 10 0 0 1-20 0c0-5 4-10 10-18Z\"/><path d=\"M8 40c4-3 8-3 12 0s8 3 12 0 8-3 8-1\"/>"], ["Energy use and renewable integration", "<circle cx=\"24\" cy=\"24\" r=\"7\"/><path d=\"M24 7v5M24 36v5M7 24h5M36 24h5M12 12l3.5 3.5M32.5 32.5L36 36M12 36l3.5-3.5M32.5 15.5L36 12\"/>"], ["Advanced materials", "<path d=\"M24 6l15 8.5v17L24 40 9 31.5v-17Z\"/><path d=\"M9 14.5L24 23l15-8.5M24 23v17\"/>"], ["Environmental monitoring", "<circle cx=\"24\" cy=\"24\" r=\"16\"/><circle cx=\"24\" cy=\"24\" r=\"8\" stroke-dasharray=\"2 3\"/><path d=\"M24 24L35 13\"/><circle cx=\"24\" cy=\"24\" r=\"2\" fill=\"currentColor\" stroke=\"none\"/>"], ["Logistics and mobility", "<path d=\"M5 15h22v17H5zM27 21h8l6 6v5H27z\"/><circle cx=\"13\" cy=\"35\" r=\"3.5\"/><circle cx=\"34\" cy=\"35\" r=\"3.5\"/>"], ["Climate adaptation", "<path d=\"M20 9a4 4 0 0 1 8 0v18a8 8 0 1 1-8 0Z\"/><path d=\"M24 17v14\"/><circle cx=\"24\" cy=\"33\" r=\"3\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M36 12l4-3M37 20h5\"/>"], ["Resource recovery", "<path d=\"M38 20A15 15 0 0 0 11 15\"/><path d=\"M10 7v8h8\"/><path d=\"M10 28a15 15 0 0 0 27 5\"/><path d=\"M38 41v-8h-8\"/>"], ["Circular production systems", "<path d=\"M24 24c-4-6-8-9-12-9a9 9 0 0 0 0 18c4 0 8-3 12-9s8-9 12-9a9 9 0 0 1 0 18c-4 0-8-3-12-9Z\"/>"]];
+function overview() {
+  if (stage.classList.contains('ov')) return; sel = -1; hov = -1; zoom = 0; stage.classList.remove('zoomed'); stage.classList.add('ov');
+  tags.forEach(t => t.removeAttribute('data-on')); groupsEl.forEach(g => g.removeAttribute('data-on'));
+  scenes.forEach(s => { if (G) { gsap.to(s.lift.position, { y: 0, duration: 0.7, ease: 'power3.out' }); gsap.to(s.tileM.color, { r: s.c0.r, g: s.c0.g, b: s.c0.b, duration: 0.5 }); } else { s.lift.position.y = 0; s.tileM.color.copy(s.c0); } });
+  card.style.setProperty('--gd', '#1a6f96'); const h0 = card.offsetHeight;
+  swap($('#n1Group'), 'Beyond agrifood'); swap($('#n1Title'), 'Agrifood specialization with adjacent-sector reach');
+  swap($('#n1Text'), 'iO’s core focus is agrifood innovation. However, many of agriculture’s most important challenges intersect with other sectors. We therefore consider adjacent technologies where there is a clear application to:');
+  $('#n1ExL').textContent = 'Adjacent sectors'; $('#n1Ex').innerHTML = OVL.map(x => '<li><i class="n1Si"><svg viewBox="0 0 48 48" aria-hidden="true">' + x[1] + '</svg></i><span>' + x[0] + '</span></li>').join('');
+  zoomBtn.textContent = 'Explore the nine areas'; zoomBtn.setAttribute('aria-expanded', 'false'); $('#n1Count').textContent = '';
+  resize();
+  if (G) { gsap.set(card, { height: h0 }); clearTimeout(card.__ht); card.__ht = setTimeout(() => { card.style.height = 'auto'; const h1 = card.offsetHeight; gsap.fromTo(card, { height: h0 }, { height: h1, duration: 0.65, ease: 'power3.inOut', clearProps: 'height' }); }, 380); }
+}
 function zoomTo(i) { show(i); camTX = X(i); zoom = 1; stage.classList.add('zoomed'); zoomBtn.textContent = '← All nine areas'; zoomBtn.setAttribute('aria-expanded', 'true'); }
 function zoomOut() { zoom = 0; stage.classList.remove('zoomed'); zoomBtn.textContent = 'Take a closer look'; zoomBtn.setAttribute('aria-expanded', 'false'); }
-zoomBtn.addEventListener('click', () => zoom ? zoomOut() : zoomTo(sel));
-$('#n1Prev').addEventListener('click', () => (zoom ? zoomTo : show)((sel + N - 1) % N));
+zoomBtn.addEventListener('click', () => sel < 0 ? show(0) : zoom ? zoomOut() : zoomTo(sel));
+$('#n1Ov').addEventListener('click', overview);
+$('#n1Prev').addEventListener('click', () => (zoom ? zoomTo : show)(sel < 0 ? N - 1 : (sel + N - 1) % N));
 $('#n1Next').addEventListener('click', () => (zoom ? zoomTo : show)((sel + 1) % N));
 stage.addEventListener('keydown', e => { if (e.key === 'ArrowRight') $('#n1Next').click(); if (e.key === 'ArrowLeft') $('#n1Prev').click(); if (e.key === 'Escape' && zoom) zoomOut(); });
 const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
@@ -6358,10 +6436,10 @@ function frame() {
   if (!reduce) anim.forEach(f => f(tm));
   renderer.render(scene, camera);
   const w = stage.clientWidth, h = stage.clientHeight;
-  ISL.forEach(o => { v.copy(o.pos).project(camera); o.lab.style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * h) + 'px)'; o.lab.toggleAttribute('data-on', grpOf(sel) === +o.lab.dataset.g); });
+  ISL.forEach(o => { v.copy(o.pos).project(camera); o.lab.style.transform = 'translate(' + ((v.x + 1) / 2 * w) + 'px,' + ((1 - v.y) / 2 * h) + 'px)'; o.lab.toggleAttribute('data-on', sel >= 0 && grpOf(sel) === +o.lab.dataset.g); });
   scenes.forEach((s, i) => { v.copy(s.top); v.y += s.lift.position.y; v.project(camera); const x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h; tags[i].style.transform = 'translate(' + x + 'px,' + y + 'px)'; tags[i].style.visibility = x < 30 || x > w - 30 ? 'hidden' : 'visible'; zoom && i !== sel ? tags[i].setAttribute('data-dim', '') : tags[i].removeAttribute('data-dim'); });
 }
-show(0); if (focus) camX = camTX; frame();
+overview(); if (focus) camX = camTX; frame();
 scenes.forEach(s => s.g.scale.setScalar(G ? 0.001 : 1));
 const enter = () => { if (G) { scenes.forEach((s, k) => gsap.to(s.g.scale, { x: 1, y: 1, z: 1, duration: 1, delay: 0.08 * k, ease: 'back.out(1.7)' })); gsap.to(intro, { k: 1, duration: 2.4, ease: 'expo.out' }); } };
 if (window.ScrollTrigger && G) ScrollTrigger.create({ trigger: stage, start: 'top 75%', once: true, onEnter: enter }); else enter();
@@ -7237,5 +7315,38 @@ dispatchEvent(new Event('io3d'));
   var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(run, 150); });
 })();
 </script>
-</body>
+<!-- hubedit rev16 --><script id="puzjs">(function(){
+var D=document.querySelector(".hp_ready .hp_dims");if(!D)return;
+var NS="http://www.w3.org/2000/svg",svg=document.createElementNS(NS,"svg");svg.setAttribute("class","hp_puz");svg.setAttribute("aria-hidden","true");D.insertBefore(svg,D.firstChild);
+/* edges per piece: top,right,bottom,left (0 flat, 1 tab out, -1 socket). 1->2 right, 3->1 up, 2->4 down, 3->4 right */
+var EDGES=[[0,1,-1,0],[0,0,1,-1],[1,1,0,0],[-1,0,0,-1]];
+var CRS=[[0,2,2,0],[0,0,2,2],[2,2,0,0],[2,0,0,2]];
+var NW=9,NL=8,R=17;
+function f(n){return Math.round(n*10)/10}
+function piece(x,y,w,h,e,cr){
+  var C=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],Dv=[[1,0],[0,1],[-1,0],[0,-1]],N=[[0,-1],[1,0],[0,1],[-1,0]],d="";
+  for(var i=0;i<4;i++){
+    var a=C[i],b=C[(i+1)%4],dv=Dv[i],nv=N[i],nd=Dv[(i+1)%4],r0=cr[i],r1=cr[(i+1)%4];
+    if(i===0)d+="M"+f(a[0]+dv[0]*r0)+" "+f(a[1]+dv[1]*r0);
+    var mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,t=e[i];
+    if(t){
+      var bx=nv[0]*t,by=nv[1]*t,Q=function(u,v){return f(mx+dv[0]*u+bx*v)+" "+f(my+dv[1]*u+by*v)};
+      var sw=(dv[0]*by-dv[1]*bx)<0?1:0;
+      d+=" L"+Q(-NW,0)+" L"+Q(-NW,NL)+" A"+R+" "+R+" 0 1 "+sw+" "+Q(NW,NL)+" L"+Q(NW,0);
+    }
+    d+=" L"+f(b[0]-dv[0]*r1)+" "+f(b[1]-dv[1]*r1)+" Q"+f(b[0])+" "+f(b[1])+" "+f(b[0]+nd[0]*r1)+" "+f(b[1]+nd[1]*r1);
+  }
+  return d+"Z";
+}
+function draw(){
+  var cells=D.querySelectorAll(".hp_cell");
+  if(window.innerWidth<=900||cells.length!==4){D.classList.remove("hp_puzOn");svg.innerHTML="";return}
+  var r0=D.getBoundingClientRect(),html="";svg.setAttribute("width",r0.width);svg.setAttribute("height",r0.height);svg.setAttribute("viewBox","0 0 "+r0.width+" "+r0.height);
+  for(var i=0;i<4;i++){var r=cells[i].getBoundingClientRect();
+    html+='<path d="'+piece(r.left-r0.left,r.top-r0.top,r.width,r.height,EDGES[i],CRS[i])+'" fill="none" stroke="rgba(89,84,83,.2)" stroke-width="0.5" stroke-linejoin="round"/>';}
+  svg.innerHTML=html;D.classList.add("hp_puzOn");
+}
+draw();addEventListener("load",draw);addEventListener("resize",draw);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
+if(window.ResizeObserver)new ResizeObserver(draw).observe(D);
+})();</script></body>
 </html>

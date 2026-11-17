@@ -4738,7 +4738,11 @@ b[data-reveal] { font-weight: inherit; }
 /* rev. 9 Nov (client: "body text in 2 rows only"): the Our Teams intro runs on two lines */
 .x_team .x_teamsWrap .x_teamSub { max-width: none; width: 100%; }
 </style>
-<style>.x_iO{text-transform:none!important}.s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}</style><style id="navc">.navItem .dropdown,.navItem:nth-last-child(-n + 2) .dropdown,.s_navItem .s_dropdown,.s_navItem:nth-last-child(-n + 2) .s_dropdown{left:50%;right:auto;margin:0}</style></head>
+<style>.x_iO{text-transform:none!important}.s_btn:has(.x_iO){gap:0!important}.s_btn:has(.x_iO) svg{margin-left:8px}</style><style id="navc">.navItem .dropdown,.navItem:nth-last-child(-n + 2) .dropdown,.s_navItem .s_dropdown,.s_navItem:nth-last-child(-n + 2) .s_dropdown{left:50%;right:auto;margin:0}</style><style>/* rev. 16 Nov (comment): Vision and Mission text stays readable on the greenhouse photo. Whole photo gets a dark tint, stronger toward the text, plus a soft text shadow. */
+.c_mission .c_missionShade{background:linear-gradient(0deg,rgba(14,16,15,.9) 0%,rgba(14,16,15,.78) 40%,rgba(14,16,15,.55) 100%)}
+.c_mission .c_missionText,.c_mission .c_eyebrow{text-shadow:0 1px 18px rgba(14,16,15,.55)}
+</style>
+</head>
 <body>
 <script>/* text is hidden only until its reveal runs; with reduced motion there is none, so everything shows at once. fd = the inner-page one-time fade */
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("rv","fd");setTimeout(function(){document.documentElement.classList.remove("rv")},4000)}</script>
