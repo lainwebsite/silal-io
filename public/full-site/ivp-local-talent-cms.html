@@ -7653,5 +7653,45 @@ dispatchEvent(new Event('io3d'));
   setLang(lang, false);
 })();
 </script>
+<style id="iobtn">
+/* iO Button component (Figma "Button" set 6418:1182). Types: Primary, Secondary, Ghost, Ghost Light, Tertiary, Tertiary Light.
+   States: Default, Hover, Disabled, Active (pressed/focus), Loading. Sizes: Desktop 40px, Mobile 36px (<=768px).
+   Class map: .s_btn.s_btnPrimary=Primary, .s_btn=Secondary, .s_btnGhost=Ghost, .s_btnGhostLight=Ghost Light, .io-btn-t=Tertiary, .io-btn-t.io-btn-tl=Tertiary Light. */
+html body .s_btn{--b-bg:#fff;--b-fg:#1a6f96;--b-bd:transparent;--b-bw:0px;--b-bgh:#f1f1f1;--b-fgh:#1a6f96;--b-bdh:transparent;
+ box-sizing:border-box;align-items:center;justify-content:center;gap:10px;height:40px;min-height:40px;padding:0 20px;border-radius:999px;
+ font:500 14px/1 'Readex Pro',system-ui,sans-serif;letter-spacing:0;text-transform:none;text-decoration:none;white-space:nowrap;cursor:pointer;
+ background:var(--b-bg);color:var(--b-fg)!important;border:var(--b-bw) solid var(--b-bd);box-shadow:none;transition:background .2s,color .2s,border-color .2s,box-shadow .2s,opacity .2s}
+html body .s_btn.s_btnSm{height:40px;min-height:40px;padding:0 20px;font-size:14px}
+html body .s_btn.x_round{width:40px;padding:0}
+html body .s_btn svg{width:16px;height:16px;flex:none;margin:0;stroke:currentColor}
+html body .s_btn:hover{background:var(--b-bgh);color:var(--b-fgh)!important;border-color:var(--b-bdh)}
+html body .s_btn:active,html body .s_btn:focus-visible,html body .s_btn.is-active{outline:0;box-shadow:inset 0 0 0 2px #3ca7d2;border-color:transparent}
+html body .s_btn:disabled,html body .s_btn[aria-disabled=true],html body .s_btn.is-disabled{opacity:.4;pointer-events:none}
+html body .s_btn.is-loading{pointer-events:none}
+html body .s_btn.is-loading svg,html body .s_btn.is-loading .x_iO{display:none}
+html body .s_btn.is-loading::after{content:"";width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:iobtnspin .8s linear infinite}
+@keyframes iobtnspin{to{transform:rotate(360deg)}}
+/* Primary */
+html body .s_btn.s_btnPrimary{--b-bg:#1a6f96;--b-fg:#fff;--b-bgh:#0f3f57;--b-fgh:#fff}
+html body .s_btn.s_btnPrimary:active,html body .s_btn.s_btnPrimary:focus-visible,html body .s_btn.s_btnPrimary.is-active{background:#0f3f57}
+/* Ghost */
+html body .s_btn.s_btnGhost{--b-bg:transparent;--b-fg:#595453;--b-bd:rgba(89,84,83,.16);--b-bw:1px;--b-bgh:rgba(60,167,210,.12);--b-fgh:#595453;--b-bdh:#3ca7d2}
+html body .s_btn.s_btnGhost:active,html body .s_btn.s_btnGhost:focus-visible,html body .s_btn.s_btnGhost.is-active{background:rgba(60,167,210,.12);border-color:#3ca7d2;box-shadow:inset 0 0 0 1px #3ca7d2}
+/* Ghost Light (on blue / dark) */
+html body .s_btn.s_btnGhostLight{--b-bg:transparent;--b-fg:#fff;--b-bd:rgba(255,255,255,.45);--b-bw:1px;--b-bgh:rgba(255,255,255,.24);--b-fgh:#fff;--b-bdh:rgba(255,255,255,.45)}
+html body .s_btn.s_btnGhostLight:active,html body .s_btn.s_btnGhostLight:focus-visible,html body .s_btn.s_btnGhostLight.is-active{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.45);box-shadow:inset 0 0 0 1px rgba(255,255,255,.45)}
+/* Tertiary (text link with underline) */
+html body .io-btn-t{display:inline-flex;align-items:center;gap:10px;padding:0 0 5px;height:auto;border:0;border-bottom:1px solid #3ca7d2;border-radius:0;background:none;color:#1a6f96;font:500 16px/1.2 'Readex Pro',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:color .2s,opacity .2s}
+html body .io-btn-t svg{width:16px;height:16px;stroke:currentColor}
+html body .io-btn-t:hover,html body .io-btn-t:active,html body .io-btn-t:focus-visible{color:#0f3f57;outline:0}
+html body .io-btn-t.io-btn-tl{color:#fff}
+html body .io-btn-t.io-btn-tl:hover,html body .io-btn-t.io-btn-tl:active,html body .io-btn-t.io-btn-tl:focus-visible{color:rgba(255,255,255,.85)}
+html body .io-btn-t:disabled,html body .io-btn-t[aria-disabled=true]{opacity:.4;pointer-events:none}
+@media(max-width:768px){
+ html body .s_btn,html body .s_btn.s_btnSm{height:36px;min-height:36px}
+ html body .s_btn.x_round{width:36px}
+ html body .io-btn-t{font-size:14px}
+}
+</style>
 </body>
 </html>

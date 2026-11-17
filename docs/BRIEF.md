@@ -136,6 +136,7 @@ Full sitemap and which real pages use each template: `docs/sitemap.md`.
 - [ ] Decide: IO Academy Training (internal page vs external link), Silal Careers Centre (in/out of scope).
 
 ## Decisions log
+- 2026-11-17: **Figma Button component in `/full-site`**, at the owner's request. Figma set `6418:1182` (file `LzMPMHjE8ACvMMazS8Qofp`): Primary, Secondary, Ghost, Ghost Light, Tertiary, Tertiary Light; states Default/Hover/Active/Disabled/Loading; 40px desktop, 36px mobile. Added as one `<style id="iobtn">` block at the end of the 44 `public/full-site/*.html` pages that use `.s_btn` (mapping: `s_btnPrimary`=Primary, plain `s_btn`=Secondary, `s_btnGhost`, `s_btnGhostLight`; new `io-btn-t` / `io-btn-tl` for Tertiary; `.is-loading`, `.is-disabled`). Page content untouched, except `ivp-hub.html`: the closing sentence "By assessing all four dimensions together…" under "What we evaluate" removed (owner: not in the source docs). Not regenerated through `publish.py`; re-add the block if the folder is rebuilt. The review-artifact-only Hub options A/B/C, card smoothing and Icons arrows were not pushed.
 - 2026-10-01: Assets kept as untouched originals with original filenames.
 - 2026-10-01: Build as Next.js on Vercel; `main` = production.
 - 2026-10-01: Two DESIGNER chats each build their own versions under `/4fe86354b2` and `/390b3d94a5`; BRAIN handles content, assets and the shared shell.
