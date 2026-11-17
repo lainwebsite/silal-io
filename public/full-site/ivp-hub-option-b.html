@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><script id="jokeep0">try{var j=JSON.parse(sessionStorage.getItem("joScroll")||"null");if(j&&Date.now()-j.t<8000){document.documentElement.style.opacity="0"}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Innovation &amp; Venture Platforms · Innovation Oasis</title>
@@ -5841,6 +5841,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <!-- 5 · Readiness model: four dimensions side by side in the page's column pattern (hairline rule, name, key question, "iO considers" list), all visible -->
   <section class="x_sec x_grey hp_ready"><div class="s_wrap">
     <div class="x_head"><div><span class="c_eyebrow" data-reveal>What we evaluate</span><h2 class="x_h2" data-reveal>Technology readiness is only part of the picture</h2></div><div class="x_stack"><p class="x_body" data-reveal>A solution can perform successfully in a controlled environment and still fail to achieve adoption.</p></div></div>
+    <div class="pz_tg" role="group" aria-label="Puzzle layout"><span>Puzzle layout</span><button type="button" data-v="a" aria-pressed="true">A · Original</button><button type="button" data-v="b" aria-pressed="false">B · Blue outline</button></div>
     <div class="hp_dims">
       <div class="hp_cell"><span class="x_label">Technical readiness</span><p class="x_lead">Can the solution perform reliably in the intended environment?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Core functionality</li><li>Supporting scientific evidence</li><li>Reliability and repeatability</li><li>Performance against the baseline</li><li>Suitability for local environmental conditions</li><li>Safety and technical risks</li></ul></div></div>
       <div class="hp_cell"><span class="x_label">Commercial readiness</span><p class="x_lead">Does the solution address a meaningful need and offer a credible path to economic value?</p><div class="hp_rdList"><span class="x_label"><span class="x_iO">iO</span>&nbsp;considers</span><ul class="f_tenets"><li>Customer and user need</li><li>Value proposition</li><li>Market potential</li><li>Competitive differentiation</li><li>Business model</li><li>Cost and return on investment</li><li>Willingness to pay</li></ul></div></div>
@@ -6301,7 +6302,7 @@ make(3, add => {
     for (let k = 0; k < 5; k++) { const rib = mesh(new THREE.TorusGeometry(W / 4, 0.016, 6, 28, Math.PI), M(P.steel)); rib.scale.set(1, 0.62, 1); rib.position.set(cx, y0 + E, -D / 2 + k * D / 4); add(rib); }
   });
 });
-// 5 · crop innovation: a variety trial, nine small plots of different lines with white plot markers, a date palm and a slowly turning DNA double helix on a plinth
+// 5 · crop innovation: a variety trial, nine small plots of different lines with white plot markers, a date palm and two pollination hives
 make(4, add => {
   add(box(4.0, 0.16, 3.4, P.sand, 0, 0, 0, 0.05));
   const lines = [[P.leaf, 0.8], [P.leafD, 1.15], [P.leafL, 0.95], [P.leafD, 0.7], [P.leaf, 1.3], [0x9cb04a, 1.0], [P.leafL, 1.2], [P.leaf, 0.85], [0x6f9e3c, 1.05]];
@@ -6313,13 +6314,14 @@ make(4, add => {
     add(box(0.14, 0.09, 0.015, P.white, x + 0.38, 0.52, z + 0.35, 0.005));
   }
   palm(add, -1.75, 0.16, -1.4, 1.5);
-  const hx = new THREE.Group(); hx.position.set(1.75, 0.16 + 0.14, 0.9);
-  add(box(0.8, 0.14, 0.8, P.concrete, 1.75, 0.16, 0.9, 0.04));
-  const NS = 44, HH = 2.0, RR = 0.3;
-  for (let i = 0; i <= NS; i++) { const u = i / NS, ang = u * Math.PI * 5, yy = u * HH;
-    [0, Math.PI].forEach((ph, sI) => { const bb = ball(0.068, sI ? P.leaf : P.cab); bb.position.set(Math.cos(ang + ph) * RR, yy, Math.sin(ang + ph) * RR); hx.add(bb); });
-    if (i % 2 === 0) { const rung = cyl(0.016, 0.016, RR * 2, P.white, 5); rung.position.set(0, yy, 0); rung.rotation.z = Math.PI / 2; rung.rotation.y = -ang; hx.add(rung); } }
-  add(hx); anim.push(t => { hx.rotation.y = t * 0.6; });
+  // v2: pollination hives instead of the DNA helix (owner feedback: less plant-breeding, more field case)
+  [[1.45, 0.75], [2.15, 1.05]].forEach(([hx0, hz0]) => {
+    add(box(0.56, 0.12, 0.56, P.wood, hx0, 0.16, hz0, 0.03));
+    add(box(0.5, 0.24, 0.5, P.white, hx0, 0.28, hz0, 0.03));
+    add(box(0.5, 0.24, 0.5, 0xf2c14e, hx0, 0.52, hz0, 0.03));
+    add(box(0.56, 0.06, 0.56, P.steelD, hx0, 0.76, hz0, 0.02));
+    add(box(0.2, 0.03, 0.02, P.black, hx0, 0.3, hz0 + 0.26, 0.005));
+  });
 
 });
 // 6 · waste prevention: an insulated cold store with roof condensers and dock doors; pallets of produce and a forklift
@@ -7372,14 +7374,21 @@ dispatchEvent(new Event('io3d'));
 })();
 </script>
 <!-- hubedit rev16 --><script id="puzjs">(function(){
-var D=document.querySelector(".hp_ready .hp_dims");if(!D)return;
+var sec=document.querySelector(".hp_ready"),D=sec&&sec.querySelector(".hp_dims");if(!D)return;
 var NS="http://www.w3.org/2000/svg",svg=document.createElementNS(NS,"svg");svg.setAttribute("class","hp_puz");svg.setAttribute("aria-hidden","true");D.insertBefore(svg,D.firstChild);
-/* edges per piece: top,right,bottom,left (0 flat, 1 tab out, -1 socket). 1->2 right, 3->1 up, 2->4 down, 3->4 right */
-var EDGES=[[0,1,-1,0],[0,0,1,-1],[1,1,0,0],[-1,0,0,-1]];
-var CRS=[[0,2,2,0],[0,0,2,2],[2,2,0,0],[2,0,0,2]];
-var NW=9,NL=8,R=17;
+/* knob shapes (u along the edge, v out of it) */
+var KS_={s:[[-12,0],[-8,0,-7,6,-8,12],[-10,18,-18,20,-18,29],[-18,38,-10,42,0,42],[10,42,18,38,18,29],[18,20,10,18,8,12],[7,6,8,0,12,0]],
+         r:[[-9,0],[-6,0,-5,5,-6,10],[-9,15,-17,17,-17,28],[-17,38,-9,42,0,42],[9,42,17,38,17,28],[17,17,9,15,6,10],[5,5,6,0,9,0]]};
+/* top,right,bottom,left: 0 flat, 1 tab out, -1 socket */
+var MODES={
+ /* A: the Figma design (6716:9459): white pieces, hairline edges, small knobs */
+ a:{E:[[0,1,-1,0],[0,0,1,-1],[1,1,0,0],[-1,0,0,-1]],K:"s",ks:.9,CR:[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],stroke:"#d9d9d9",w:1},
+ /* B: blue outline, classic jigsaw pinwheel with round knobs */
+ b:{E:[[0,-1,1,0],[0,0,-1,1],[-1,1,0,0],[1,0,0,-1]],K:"r",ks:1.5,CR:[[28,0,0,0],[0,28,0,0],[0,0,0,28].map(function(){return 0}),[0,0,28,0]],stroke:"#7cb0c8",w:1}
+};
+MODES.b.CR=[[28,0,0,0],[0,28,0,0],[0,0,0,28],[0,0,28,0]];
 function f(n){return Math.round(n*10)/10}
-function piece(x,y,w,h,e,cr){
+function piece(x,y,w,h,e,cr,K,ks){
   var C=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],Dv=[[1,0],[0,1],[-1,0],[0,-1]],N=[[0,-1],[1,0],[0,1],[-1,0]],d="";
   for(var i=0;i<4;i++){
     var a=C[i],b=C[(i+1)%4],dv=Dv[i],nv=N[i],nd=Dv[(i+1)%4],r0=cr[i],r1=cr[(i+1)%4];
@@ -7387,24 +7396,47 @@ function piece(x,y,w,h,e,cr){
     var mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,t=e[i];
     if(t){
       var bx=nv[0]*t,by=nv[1]*t,Q=function(u,v){return f(mx+dv[0]*u+bx*v)+" "+f(my+dv[1]*u+by*v)};
-      var sw=(dv[0]*by-dv[1]*bx)<0?1:0;
-      d+=" L"+Q(-NW,0)+" L"+Q(-NW,NL)+" A"+R+" "+R+" 0 1 "+sw+" "+Q(NW,NL)+" L"+Q(NW,0);
+      d+=" L"+Q(K[0][0]*ks,0);
+      for(var c=1;c<K.length;c++){var p=K[c];d+=" C"+Q(p[0]*ks,p[1]*ks)+" "+Q(p[2]*ks,p[3]*ks)+" "+Q(p[4]*ks,p[5]*ks)}
     }
-    d+=" L"+f(b[0]-dv[0]*r1)+" "+f(b[1]-dv[1]*r1)+" Q"+f(b[0])+" "+f(b[1])+" "+f(b[0]+nd[0]*r1)+" "+f(b[1]+nd[1]*r1);
+    d+=" L"+f(b[0]-dv[0]*r1)+" "+f(b[1]-dv[1]*r1)+(r1?" Q"+f(b[0])+" "+f(b[1])+" "+f(b[0]+nd[0]*r1)+" "+f(b[1]+nd[1]*r1):"");
   }
   return d+"Z";
 }
 function draw(){
-  var cells=D.querySelectorAll(".hp_cell");
+  var cells=D.querySelectorAll(".hp_cell"),m=MODES[sec.getAttribute("data-puz")||"a"];
   if(window.innerWidth<=900||cells.length!==4){D.classList.remove("hp_puzOn");svg.innerHTML="";return}
-  var r0=D.getBoundingClientRect(),html="";svg.setAttribute("width",r0.width);svg.setAttribute("height",r0.height);svg.setAttribute("viewBox","0 0 "+r0.width+" "+r0.height);
+  var r0=D.getBoundingClientRect(),html="";
+  svg.setAttribute("width",r0.width);svg.setAttribute("height",r0.height);svg.setAttribute("viewBox","0 0 "+r0.width+" "+r0.height);
   for(var i=0;i<4;i++){var r=cells[i].getBoundingClientRect();
-    html+='<path d="'+piece(r.left-r0.left,r.top-r0.top,r.width,r.height,EDGES[i],CRS[i])+'" fill="none" stroke="rgba(89,84,83,.2)" stroke-width="0.5" stroke-linejoin="round"/>';}
+    html+='<path d="'+piece(r.left-r0.left,r.top-r0.top,r.width,r.height,m.E[i],m.CR[i],KS_[m.K],m.ks)+'" fill="'+(m.fill||"none")+'" stroke="'+m.stroke+'" stroke-width="'+m.w+'" stroke-linejoin="round"/>';}
   svg.innerHTML=html;D.classList.add("hp_puzOn");
 }
+var tg=sec.querySelector(".pz_tg");
+if(tg)tg.addEventListener("click",function(e){var b=e.target.closest("button[data-v]");if(!b)return;sec.setAttribute("data-puz",b.getAttribute("data-v"));[].forEach.call(tg.querySelectorAll("button"),function(x){x.setAttribute("aria-pressed",x===b)});draw()});
 draw();addEventListener("load",draw);addEventListener("resize",draw);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
 if(window.ResizeObserver)new ResizeObserver(draw).observe(D);
-})();</script><script>(function(){var r=document.getElementById("journey");if(!r)return;var li=r.querySelectorAll(".jo_t li"),bt=r.querySelectorAll(".jo_tb"),dp=r.querySelectorAll(".jo_dp"),dt=r.querySelector(".jo_dt");function go(i){for(var k=0;k<li.length;k++){var on=k===i;li[k].toggleAttribute("data-on",on);dp[k].toggleAttribute("data-on",on);bt[k].setAttribute("aria-expanded",on?"true":"false")}dt.style.setProperty("--jo-i",i)}Array.prototype.forEach.call(bt,function(b){b.addEventListener("click",function(){go(+b.getAttribute("data-i"))})});go(0)})();</script><nav class="jo_sw" aria-label="Journey layout options"><span>Journey layout</span><a href="/full-site/ivp-hub">Original</a><a href="/full-site/ivp-hub-option-a">Option A</a><a href="/full-site/ivp-hub-option-b" aria-current="page">Option B</a><a href="/full-site/ivp-hub-option-c">Option C</a></nav><script>(function(){var nav=document.querySelector('.jo_sw[data-k=areas]'),el=document.getElementById('areasWrap');if(!nav||!el||!('IntersectionObserver' in window))return;
+})();</script><style id="pzv">/* puzzle: A = Figma design (white pieces, hairline edges); B = blue outline, classic jigsaw. Logo badge sits on top of the centre, no gap */
+.pz_tg{position:fixed;right:16px;bottom:84px;z-index:60;display:flex;gap:6px;align-items:center;margin:0;padding:5px 6px 5px 14px;border-radius:999px;background:#fff;box-shadow:0 4px 24px rgba(0,0,0,.18);font-size:12px;color:#595453;font-family:"Readex Pro",Arial,sans-serif}
+.pz_tg span{letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:#7f8284;margin-right:4px}
+.pz_tg button{font:inherit;font-weight:500;padding:6px 12px;border-radius:999px;border:.5px solid rgba(26,111,150,.4);background:transparent;color:#1a6f96;cursor:pointer}
+.pz_tg button[aria-pressed=true]{background:#1a6f96;color:#fff}
+.hp_ready .hp_dims.hp_puzOn .hp_badge{box-shadow:none!important;z-index:4;background:#f1f1f1;border:1px solid #d9d9d9}
+.hp_ready .hp_dims.hp_puzOn .hp_cell .f_tenets,.hp_ready .hp_dims.hp_puzOn .hp_cell .f_tenets li{border-color:#d9d9d9!important}
+.hp_ready[data-puz=b] .hp_dims.hp_puzOn{border-radius:28px}
+.hp_ready[data-puz=b] .hp_dims.hp_puzOn .hp_badge{background:#fff;border-color:#7cb0c8}
+.hp_ready[data-puz=b] .hp_dims.hp_puzOn .hp_cell:nth-of-type(n){padding:clamp(24px,2.8vw,44px)!important}
+.hp_ready[data-puz=b] .hp_dims.hp_puzOn .hp_cell:nth-of-type(1){padding-right:clamp(84px,7vw,108px)!important}
+.hp_ready[data-puz=b] .hp_dims.hp_puzOn .hp_cell:nth-of-type(2){padding-bottom:clamp(76px,6vw,96px)!important}
+.hp_ready[data-puz=b] .hp_dims.hp_puzOn .hp_cell:nth-of-type(3){padding-top:clamp(84px,7vw,108px)!important}
+.hp_ready[data-puz=b] .hp_dims.hp_puzOn .hp_cell:nth-of-type(4){padding-left:clamp(84px,7vw,108px)!important}
+.hp_ready[data-puz=b] .hp_dims.hp_puzOn .hp_cell .f_tenets,.hp_ready[data-puz=b] .hp_dims.hp_puzOn .hp_cell .f_tenets li{border-color:#7cb0c8!important}
+@media(max-width:900px){.pz_tg{display:none}}
+</style>
+<script id="pzfloat">(function(){var nav=document.querySelector('.pz_tg'),el=document.querySelector('.hp_ready');if(!nav||!el||!('IntersectionObserver' in window))return;
+nav.style.transition='opacity .3s ease';function set(on){nav.style.opacity=on?'1':'0';nav.style.pointerEvents=on?'auto':'none'}set(false);
+new IntersectionObserver(function(es){set(es[0].isIntersecting)},{threshold:.08}).observe(el);})();</script>
+<script>(function(){var r=document.getElementById("journey");if(!r)return;var li=r.querySelectorAll(".jo_t li"),bt=r.querySelectorAll(".jo_tb"),dp=r.querySelectorAll(".jo_dp"),dt=r.querySelector(".jo_dt");function go(i){for(var k=0;k<li.length;k++){var on=k===i;li[k].toggleAttribute("data-on",on);dp[k].toggleAttribute("data-on",on);bt[k].setAttribute("aria-expanded",on?"true":"false")}dt.style.setProperty("--jo-i",i)}Array.prototype.forEach.call(bt,function(b){b.addEventListener("click",function(){go(+b.getAttribute("data-i"))})});go(0)})();</script><nav class="jo_sw" aria-label="Journey layout options"><span>Journey layout</span><a href="/full-site/ivp-hub">Original</a><a href="/full-site/ivp-hub-option-a">Option A</a><a href="/full-site/ivp-hub-option-b" aria-current="page">Option B</a><a href="/full-site/ivp-hub-option-c">Option C</a></nav><script>(function(){var nav=document.querySelector('.jo_sw[data-k=areas]'),el=document.getElementById('areasWrap');if(!nav||!el||!('IntersectionObserver' in window))return;
 nav.style.transition='opacity .3s ease';function set(on){nav.style.opacity=on?'1':'0';nav.style.pointerEvents=on?'auto':'none'}set(false);
 new IntersectionObserver(function(es){set(es[0].isIntersecting)},{threshold:.08}).observe(el);})();</script>
 <script>(function(){var nav=document.querySelector('.jo_sw:not([data-k])'),el=document.getElementById('journey');if(!nav||!el||!('IntersectionObserver' in window))return;
@@ -7450,5 +7482,16 @@ html body .io-btn-t:disabled,html body .io-btn-t[aria-disabled=true]{opacity:.4;
  html body .io-btn-t{font-size:14px}
 }
 </style>
+<style id="jobot">/* switches sit at the bottom (above the page dock) so they never cover content */
+@media(min-width:769px){.jo_sw,.jo_sw[data-k=areas]{top:auto!important;bottom:84px!important}}
+</style>
+<script id="jokeep">(function(){var KEY="joScroll";if("scrollRestoration" in history)history.scrollRestoration="manual";
+function sec(k){return document.getElementById(k==="areas"?"areasWrap":"journey")}
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest(".jo_sw a");if(!a||a.hasAttribute("aria-current"))return;var nav=a.closest(".jo_sw"),k=nav.getAttribute("data-k")||"journey",s=sec(k);if(!s)return;try{sessionStorage.setItem(KEY,JSON.stringify({k:k,off:s.getBoundingClientRect().top,t:Date.now()}))}catch(_){}},true);
+var j=null;try{j=JSON.parse(sessionStorage.getItem(KEY)||"null");sessionStorage.removeItem(KEY)}catch(_){}
+function reveal(){var h=document.documentElement;h.style.transition="opacity .3s ease";h.style.opacity=""}
+if(!j||Date.now()-j.t>8000){reveal();return}
+function place(){var s=sec(j.k);if(!s)return;var d=s.getBoundingClientRect().top-j.off;if(Math.abs(d)<2)return;if(window.__lenis&&window.__lenis.scrollTo)window.__lenis.scrollTo(scrollY+d,{immediate:true,force:true});else scrollBy(0,d)}
+place();addEventListener("DOMContentLoaded",place);addEventListener("load",function(){place();setTimeout(place,250);setTimeout(function(){place();reveal()},600)});setTimeout(place,500);setTimeout(place,1100);setTimeout(reveal,2200);})();</script>
 </body>
 </html>
