@@ -5382,6 +5382,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .q_band { margin-top: clamp(40px, 5vw, 72px); display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); row-gap: 20px; align-items: center; padding: clamp(24px, 2.6vw, 40px); background: #fff; border-top: 2px solid var(--io-ink); }
 .q_band > div:first-child { grid-column: 1 / span 8; display: flex; flex-direction: column; gap: 12px; }
 .q_band > div:last-child { grid-column: 9 / span 4; justify-self: end; }
+.q_bandBtns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
 .q_band h3 { font-size: var(--t-h3); font-weight: 300; letter-spacing: -.02em; line-height: 1.15; color: var(--charcoal); }
 .q_band p { font-size: var(--fs-body); line-height: 1.7; color: var(--grey-ink); max-width: 40em; }
 .q_mini { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
@@ -5615,7 +5616,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="k_side">
       <p class="x_lead" data-reveal>IO works with government and industry partners to design challenge-led innovation programs, source relevant technologies and generate the evidence needed to identify the strongest solutions.</p>
       <p class="x_body" data-reveal>Engage IO for complete program delivery or for specialist support in scouting, expert evaluation, pilot design and real-world validation.</p>
-      <div class="x_row"><a href="#work-with-io" class="s_btn s_btnPrimary s_btnSm">Discuss a challenge <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#method" class="s_btn s_btnGhost s_btnSm">Explore our approach</a></div>
+      <div class="x_row"><a href="#work-with-io" class="s_btn s_btnPrimary s_btnSm">Discuss a challenge <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
   </section>
   <div class="x_img k_pano" data-band data-img><img src="/innovation-venture-platforms/img/chal_pitch.webp" alt="A finalist presenting to the jury at a challenge final"></div>
@@ -5634,20 +5635,20 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <!-- 3. Ways to work with IO: four cards (design guidance), then technology teams, then adjacent sectors -->
   <section class="x_sec x_grey" id="ways"><div class="s_wrap">
     <div class="q_head1"><div><span class="c_eyebrow" data-reveal>Flexible engagement</span><h2 class="x_h2" data-reveal>The complete program or the expertise you need</h2></div></div>
-    <div class="q_group"><span class="x_label">For Challenge Owners</span></div>
-    <div class="q_cards" data-stagger><article class="q_card"><span class="x_label">01</span><h3 data-reveal>End-to-End Challenge Delivery</h3><p>IO can design and manage the full journey from challenge definition through sourcing, evaluation, validation and recommendations for next steps.</p><span class="q_may">May include</span><ul class="q_list"><li>Challenge discovery and stakeholder engagement</li><li>Program and open-call design</li><li>Eligibility and evaluation criteria</li><li>Outreach and technology sourcing</li><li>Application management</li><li>Expert evaluation</li><li>Finalist selection</li><li>Pilot and validation delivery</li><li>Results analysis</li><li>Commercialization or implementation planning</li></ul></article><article class="q_card"><span class="x_label">02</span><h3 data-reveal>Technology Scouting and Evaluation</h3><p>IO can identify and assess relevant startups, technologies, research teams and solution providers from the UAE and global innovation ecosystem.</p><span class="q_may">May include</span><ul class="q_list"><li>Technology landscaping</li><li>Targeted scouting</li><li>Applicant screening</li><li>Scientific and technical review</li><li>Commercial and adoption assessment</li><li>Independent expert panels</li><li>Finalist recommendations</li></ul></article><article class="q_card"><span class="x_label">03</span><h3 data-reveal>Real-World Validation</h3><p>IO can design and execute testing to determine how promising technologies perform under relevant agricultural and operating conditions.</p><span class="q_may">May include</span><ul class="q_list"><li>Validation strategy</li><li>Experimental protocols</li><li>Laboratory analysis</li><li>Greenhouse, nethouse or field testing</li><li>On-farm pilots</li><li>Performance measurement</li><li>Operational and user feedback</li><li>Evidence for winner selection or adoption</li></ul></article><article class="q_card"><span class="x_label">04</span><h3 data-reveal>Specialist Partnership</h3><p>IO may also participate in a defined role, including:</p><span class="q_may">Roles</span><ul class="q_list"><li>Program sponsor</li><li>Industry partner</li><li>Agrifood knowledge partner</li><li>Expert evaluator</li><li>Jury or selection-panel participant</li><li>Validation partner</li><li>Pilot-delivery partner</li></ul></article></div>
+    <div class="q_group q_groupCar"><span class="x_label">For Challenge Owners</span><div class="q_carNav" role="group" aria-label="Browse challenge-owner services"><button type="button" class="q_carBtn" data-d="-1" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M14 8H3M7 3.5 2.5 8 7 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="q_carBtn" data-d="1" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+    <div class="q_cards q_carousel" id="waysCar" data-stagger><article class="q_card"><span class="x_label">01</span><h3 data-reveal>End-to-End Challenge Delivery</h3><p>IO can design and manage the full journey from challenge definition through sourcing, evaluation, validation and recommendations for next steps.</p><span class="q_may">May include</span><ul class="q_list"><li>Challenge discovery and stakeholder engagement</li><li>Program and open-call design</li><li>Eligibility and evaluation criteria</li><li>Outreach and technology sourcing</li><li>Application management</li><li>Expert evaluation</li><li>Finalist selection</li><li>Pilot and validation delivery</li><li>Results analysis</li><li>Commercialization or implementation planning</li></ul></article><article class="q_card"><span class="x_label">02</span><h3 data-reveal>Technology Scouting and Evaluation</h3><p>IO can identify and assess relevant startups, technologies, research teams and solution providers from the UAE and global innovation ecosystem.</p><span class="q_may">May include</span><ul class="q_list"><li>Technology landscaping</li><li>Targeted scouting</li><li>Applicant screening</li><li>Scientific and technical review</li><li>Commercial and adoption assessment</li><li>Independent expert panels</li><li>Finalist recommendations</li></ul></article><article class="q_card"><span class="x_label">03</span><h3 data-reveal>Real-World Validation</h3><p>IO can design and execute testing to determine how promising technologies perform under relevant agricultural and operating conditions.</p><span class="q_may">May include</span><ul class="q_list"><li>Validation strategy</li><li>Experimental protocols</li><li>Laboratory analysis</li><li>Greenhouse, nethouse or field testing</li><li>On-farm pilots</li><li>Performance measurement</li><li>Operational and user feedback</li><li>Evidence for winner selection or adoption</li></ul></article><article class="q_card"><span class="x_label">04</span><h3 data-reveal>Specialist Partnership</h3><p>IO may also participate in a defined role, including:</p><span class="q_may">Roles</span><ul class="q_list"><li>Program sponsor</li><li>Industry partner</li><li>Agrifood knowledge partner</li><li>Expert evaluator</li><li>Jury or selection-panel participant</li><li>Validation partner</li><li>Pilot-delivery partner</li></ul></article></div>
     <p class="q_after"><a class="s_textLink" href="#">Explore Program Management as a Service <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
 
     <div class="q_band">
-      <div><span class="x_label">For Technology Teams</span><h3 data-reveal>Competition and Demonstration Support</h3><p>Provide the testing environment, infrastructure and operational expertise needed to generate real-world proof against competition requirements.</p></div>
-      <div><a class="s_btn s_btnPrimary s_btnSm" href="#">Explore Paid Trials <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      <div><span class="x_label">For Technology Teams</span><h3 data-reveal>Competition and Demonstration Support</h3><p>IO can provide the testing environment, infrastructure and operational expertise needed to generate real-world proof against competition requirements.</p></div>
+      <div class="q_bandBtns"><a class="s_btn s_btnPrimary s_btnSm" href="/full-site/ivp-enquire?platform=chal">Enquire <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="s_btn s_btnGhost s_btnSm" href="/full-site/ivp-case-desolenator">Explore case study</a></div>
     </div>
 
     <div class="q_sectors">
       <div class="q_head1"><div><span class="c_eyebrow" data-reveal>Adjacent sectors</span><h3 class="x_h2" data-reveal>Technologies from connected industries</h3></div>
-        <div><p class="x_body" data-reveal>IO also supports technologies from connected industries where there is a clear agricultural or food-system application, including:</p></div></div>
+        </div>
       <div class="q_secWrap">
-        <figure class="x_img x_corners q_secPh" data-img><img src="/photos/Professional%20Facility%20Photos%20(1)/PA__1464.jpg" alt="A scientist working at a phenotyping chamber at Innovation Oasis" style="object-position:62% 50%" loading="lazy"></figure>
+        <figure class="x_img x_corners q_secPh" data-img><img src="/photos/Professional%20Facility%20Photos%20%281%29/PA__1464.jpg" alt="A scientist working at a phenotyping chamber at Innovation Oasis" style="object-position:62% 50%" loading="lazy"></figure>
         <div class="q_secMain">
           <ol class="q_idx" data-stagger><li><span class="x_label">01</span><strong>Water treatment and reuse</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6c8 11 13 18 13 25a13 13 0 0 1-26 0c0-7 5-14 13-25z"/><path d="M17 31a7 7 0 0 0 7 7"/></svg></li><li><span class="x_label">02</span><strong>Energy and climate control</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M27 5 13 27h10l-2 16 14-22H25z"/></svg></li><li><span class="x_label">03</span><strong>Advanced materials</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6 39 15v18L24 42 9 33V15z"/><path d="M9 15l15 9 15-9M24 24v18"/></svg></li><li><span class="x_label">04</span><strong>Environmental monitoring</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="2"/><path d="M24 7v6M24 35v6M7 24h6M35 24h6"/></svg></li><li><span class="x_label">05</span><strong>Artificial intelligence and data</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><circle cx="36" cy="12" r="4"/><circle cx="24" cy="36" r="4"/><circle cx="24" cy="22" r="3"/><path d="M15 15l7 5M33 15l-7 5M24 25v7"/></svg></li><li><span class="x_label">06</span><strong>Logistics and infrastructure</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14h26v18H4zM30 21h8l6 6v5H30z"/><circle cx="13" cy="34" r="3.5"/><circle cx="36" cy="34" r="3.5"/></svg></li><li><span class="x_label">07</span><strong>Waste-to-resource technologies</strong><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M34 12a15 15 0 0 0-24 6M10 12v6h6"/><path d="M14 36a15 15 0 0 0 24-6M38 36v-6h-6"/></svg></li></ol>
           <p class="q_supp" data-reveal>The focus is not limited to technologies originally developed for agriculture. IO can help identify solutions from adjacent industries and test whether they create practical value in agrifood environments.</p>
@@ -5655,6 +5656,28 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       </div>
     </div>
   </div></section>
+<style>/* rev. 17 Nov: the four "For Challenge Owners" cards become a carousel (was a 2 x 2 stack, too long below the fold) */
+.q_groupCar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.q_carNav{display:flex;gap:8px}
+.q_carBtn{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--charcoal);cursor:pointer;transition:background .3s,color .3s,border-color .3s,opacity .3s}
+.q_carBtn:hover:not(:disabled){background:var(--io-ink);border-color:var(--io-ink);color:#fff}
+.q_carBtn:disabled{opacity:.35;cursor:default}
+.q_carBtn:focus-visible{outline:2px solid var(--io);outline-offset:2px}
+.q_carousel{display:flex!important;gap:var(--col-gap);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;padding-bottom:4px}
+.q_carousel::-webkit-scrollbar{display:none}
+.q_carousel > .q_card{flex:0 0 calc((100% - var(--col-gap)) / 2.15);scroll-snap-align:start}
+.q_carousel .q_list{display:block;column-count:2;column-gap:28px}
+.q_carousel .q_list li{break-inside:avoid}
+@media (max-width:1000px){.q_carousel > .q_card{flex-basis:calc((100% - var(--col-gap)) / 1.25)}}
+@media (max-width:640px){.q_carousel > .q_card{flex-basis:88%}.q_carousel .q_list{column-count:1}}
+@media (prefers-reduced-motion:reduce){.q_carousel{scroll-behavior:auto}}
+</style>
+<script>(function(){var c=document.getElementById('waysCar');if(!c)return;var b=[].slice.call(document.querySelectorAll('.q_carBtn'));
+function step(){var k=c.querySelector('.q_card');return k?k.getBoundingClientRect().width+parseFloat(getComputedStyle(c).columnGap||16):300}
+function upd(){var max=c.scrollWidth-c.clientWidth-2;b[0].disabled=c.scrollLeft<=2;b[1].disabled=c.scrollLeft>=max}
+b.forEach(function(x){x.addEventListener('click',function(){c.scrollBy({left:(+x.dataset.d)*step(),behavior:'smooth'})})});
+c.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();})();</script>
+
 
   <!-- 4. IO's Challenge Method: horizontal six-stage journey. The Al Miyah timeline sits in the case study, not here. -->
   <section class="x_sec" id="method"><div class="s_wrap">
@@ -5666,53 +5689,43 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
        Detail (funnel, timeline, field pilots, technology cards, CRETA, measures) lives on ivp-case-al-miyah.html.
        TO FEATURE ANOTHER CHALLENGE: replace the eyebrow, title, intro, photo, the six rows and the case study link; copy ivp-case-al-miyah.html for its page. -->
   <section class="x_sec x_grey" id="al-miyah"><div class="s_wrap">
-    <div class="q_head1"><div><span class="c_eyebrow" data-reveal>Validation in action</span><h2 class="x_h2" data-reveal>Testing water technologies under real-world conditions</h2></div>
-      <div><p class="x_body" data-reveal>The Al Miyah Challenge is a program of the Mohamed bin Zayed Water Initiative designed to accelerate practical, scalable innovations for water security in the UAE and other water-stressed markets. Finalist technologies are expected to be ready for UAE piloting and capable of progressing toward commercialization.</p>
-        <a class="s_textLink" href="https://www.mohamedbinzayedwi.ae/al-miyah-challenge" rel="noopener" target="_blank">mohamedbinzayedwi.ae ↗</a></div></div>
-    <div class="q_amAcc">
-      <div class="q_amAccL">
-        <figure class="x_img x_corners q_amPh2" data-img><img src="/photos/Professional%20Facility%20Photos%20(1)/PA__1483.jpg" alt="Young tomato plants in instrumented trial pots at Innovation Oasis" loading="lazy"></figure>
+    <div class="q_ft">
+      <div class="q_ftTxt">
+        <div class="q_ftGrp">
+        <span class="c_eyebrow" data-reveal>Al Miyah Challenge</span>
+        <h2 class="x_h2" data-reveal>Testing water technologies under real-world conditions</h2>
+        <p class="x_body" data-reveal>The Al Miyah Challenge is a program of the Mohamed bin Zayed Water Initiative designed to accelerate practical, scalable innovations for water security in the UAE and other water-stressed markets. Finalist technologies are expected to be ready for UAE piloting and capable of progressing toward commercialization.</p>
+        <a class="s_textLink" href="https://www.mohamedbinzayedwi.ae/al-miyah-challenge" rel="noopener" target="_blank">mohamedbinzayedwi.ae ↗</a>
+        </div>
+        <div class="q_ftRole"><span class="x_label">IO’s Role</span><p>IO was the real-world validation partner for the agriculture challenge, testing finalist technologies under real-world agricultural conditions to generate comparable technical and operational evidence for the final evaluation and winner selection.</p></div>
+        <div class="q_ftContrib"><span class="x_label">Contribution</span>
+          <ul class="q_mini"><li>Validation planning</li><li>Agricultural testing environments</li><li>Pilot and experimental protocols</li><li>Technology installation coordination</li><li>Performance-data collection</li><li>Technical execution and monitoring</li><li>Comparable evidence for finalist assessment</li><li>Expert input into evaluation and selection</li></ul>
+          <p class="q_after" style="margin:0"><a href="/full-site/ivp-case-al-miyah" class="s_btn s_btnPrimary s_btnSm">Read the full case study <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div>
       </div>
-      <div class="q_amAccR">
-        <ul class="q_acc">
-          <li class="q_accItem" data-open>
-            <button class="q_accBtn" type="button" aria-expanded="true" aria-controls="acc1"><span class="x_label">01</span><strong>IO’s Role</strong></button>
-            <div class="q_accPanel" id="acc1" role="region"><div><div class="q_accBody">
-              <p class="q_accLead"><b>IO was the real-world validation partner for the agriculture challenge.</b></p>
-              <p class="q_amSub">IO supported the final evaluation and winner-selection process by testing finalist technologies under real-world agricultural conditions.</p>
-              <p class="q_amSub">The objective was to generate comparable technical and operational evidence that could help assess which solutions were best suited to address the Challenge’s requirements.</p>
-            </div></div></div>
-          </li>
-          <li class="q_accItem">
-            <button class="q_accBtn" type="button" aria-expanded="false" aria-controls="acc2"><span class="x_label">02</span><strong>What IO Contributed</strong></button>
-            <div class="q_accPanel" id="acc2" role="region"><div><div class="q_accBody">
-              <ul class="q_list q_accCols"><li>Validation planning</li><li>Agricultural testing environments</li><li>Pilot and experimental protocols</li><li>Technology installation coordination</li><li>Performance-data collection</li><li>Technical execution and monitoring</li><li>Comparable evidence for finalist assessment</li><li>Expert input into evaluation and selection</li></ul>
-            </div></div></div>
-          </li>
-          <li class="q_accItem">
-            <button class="q_accBtn" type="button" aria-expanded="false" aria-controls="acc3"><span class="x_label">03</span><strong>What Was Tested</strong></button>
-            <div class="q_accPanel" id="acc3" role="region"><div><div class="q_accBody q_amTested">
-              <ol><li><b>Startup A</b><span>A material placed beneath the root zone absorbs irrigation water and releases it back to roots, cutting evaporation and deep-drainage losses.</span></li><li><b>Startup B</b><span>A biodegradable superabsorbent polymer is mixed into the soil to hold water and nutrients between irrigations.</span></li><li><b>Startup C</b><span>Microbes help soil retain water and release it gradually, supporting crops under drought and salinity.</span></li><li><b>Startup D</b><span>A natural bio-stimulant supports plant water-use efficiency.</span></li><li><b>Startup E</b><span>A foliar biostimulant strengthens plant resilience to heat and salinity, supporting stable yields with less irrigation water.</span></li></ol>
-            </div></div></div>
-          </li>
-        </ul>
-        <div class="q_amCta"><a href="/full-site/ivp-case-al-miyah" class="s_btn s_btnPrimary s_btnSm">Read the full case study <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-      </div>
+      <div class="k_slides x_corners"><img src="/photos/Professional%20Facility%20Photos%20%281%29/PA__1483.jpg" alt="Young tomato plants in instrumented trial pots at Innovation Oasis" data-on></div>
     </div>
   </div></section>
+<style>/* Al Miyah: the contribution items are a plain list (not pills), so the only button on the block is the case-study button */
+#al-miyah .q_mini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:0;margin:0;padding:0;list-style:none}
+#al-miyah .q_mini li{all:unset;display:block;position:relative;padding:11px 0 11px 20px;border-top:1px solid var(--line);font-size:var(--fs-body);line-height:1.45;color:var(--charcoal)}
+#al-miyah .q_mini li::before{content:"";position:absolute;left:0;top:calc(11px + .72em);width:10px;height:1px;background:var(--io-ink)}
+#al-miyah .q_ftContrib .q_after{margin-top:20px!important}
+@media (max-width:640px){#al-miyah .q_mini{grid-template-columns:minmax(0,1fr)}}
+</style>
+
 
   <!-- 7. Featured partnership: FoodTech Challenge. Compact case-study panel, lighter than Al Miyah on purpose (IO had a lighter role). -->
   <section class="x_sec" id="foodtech"><div class="s_wrap">
     <div class="q_ft">
       <div class="q_ftTxt">
         <div class="q_ftGrp">
-        <span class="c_eyebrow" data-reveal>Program partnership</span>
+        <span class="c_eyebrow" data-reveal>FoodTech Challenge</span>
         <h2 class="x_h2" data-reveal>Supporting the search for food-security innovation</h2>
         <p class="x_body" data-reveal>The FoodTech Challenge is a global competition that identifies and supports early-stage, technology-driven solutions for food production and food loss and waste in hot, arid and challenging environments. Its current edition offers a US$2 million prize structure supporting solution development in the UAE and the Global South.</p>
         <a class="s_textLink" href="https://www.foodtechchallenge.com/the-competition/" rel="noopener" target="_blank">foodtechchallenge.com ↗</a>
         </div>
         <div class="q_ftRole"><span class="x_label">IO’s Role</span><p>IO participated as a program sponsor and industry partner, contributing agrifood expertise and supporting the assessment and advancement of relevant technologies.</p></div>
-        <div class="q_ftContrib"><span class="x_label">Contribution</span><p class="q_note" style="margin:0">Final copy to confirm: the exact activities should be confirmed before publication. Select only the roles IO performed.</p>
+        <div class="q_ftContrib"><span class="x_label">Contribution</span>
           <ul class="q_mini"><li>Challenge priority development</li><li>Technology scouting</li><li>Technical screening</li><li>Expert evaluation</li><li>Jury participation</li><li>Startup mentoring</li><li>Validation planning</li><li>Facility or ecosystem access</li><li>Support for post-challenge UAE rollout</li></ul></div>
       </div>
       <div class="k_slides x_corners" id="slider">
@@ -5761,7 +5774,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <div class="q_cbtns"><a href="/full-site/ivp-enquire?platform=chal" class="s_btn s_btnPrimary s_btnSm" data-platform="chal">Enquire <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#" class="s_btn s_btnGhostLight s_btnSm">Explore Program Management as a Service <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
   </div></section>
-  <a class="x_next" href="/full-site/ivp-hub"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/hero_fif.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Back to all four platforms</span><strong>Innovation &amp; Venture Platforms</strong><p>Fund a farmer’s idea, incubate a lab prototype, accelerate a proven technology, or prove it in an open challenge.</p><span class="s_btn s_btnPrimary s_btnSm">Back to the overview <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
+  <style>/* rev. 17 Nov: next-platform block spacing = Figma (6716:26121): 50 px vertical padding, 80 px between photo and text, 20 px between text lines, 30 px before the button, text column 512 px */
+@media (min-width:901px){.x_nextIn{display:flex;align-items:center;gap:80px;padding-block:50px}.x_nextIn .x_nextPh{flex:0 0 49%;grid-column:auto}.x_nextIn .x_nextText{flex:0 1 512px;grid-column:auto;gap:20px}.x_nextIn .x_nextText .s_btn{margin-top:10px}}
+.x_next:hover .x_nextText .s_btnPrimary{background:#145a7a}
+</style>
+<a class="x_next" href="/full-site/ivp-hub"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/hero_fif.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Back to all four platforms</span><strong>Innovation &amp; Venture Platforms</strong><p>Fund a farmer’s idea, incubate a lab prototype, accelerate a proven technology, or prove it in an open challenge.</p><span class="s_btn s_btnPrimary s_btnSm">Back to the overview <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
 
 </div>
 

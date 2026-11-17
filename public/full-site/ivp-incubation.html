@@ -5595,9 +5595,23 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <li>The core team has the capability and commitment to participate in the validation process</li>
       <li><span class="x_iO">iO</span>&nbsp;can provide meaningful access to expertise, facilities, data, users, operating environments or commercial relationships</li>
       <li>There is an initial hypothesis for how the opportunity could ultimately create value</li>
-    </ul></div>
-    <p class="f_callout i_entryNote"><span>Incubation is very selective. Opportunities are assessed based on the importance of the problem, strength of existing evidence, team capability, potential value and fit with&nbsp;<span class="x_iO">iO</span>’s capabilities.</span></p>
+    </ul>
+    <p class="f_callout i_entryNote"><span>Incubation is very selective. Opportunities are assessed based on the importance of the problem, strength of existing evidence, team capability, potential value and fit with&nbsp;<span class="x_iO">iO</span>’s capabilities.</span></p></div>
+    
   </div></section>
+<style>/* rev. 17 Nov: entry profile = Figma 6775:2084: list reads down each column (1-4 | 5-8), items 85 px, note inside the right column (1008 px wide), 30 px gaps */
+@media (min-width:901px){
+#entry .i_entryHead{grid-row:1 / span 2}
+#entry .i_rows.i_entryList{grid-column:1 / -1;margin-left:auto;width:63%;grid-auto-flow:column;grid-template-rows:repeat(4,auto);column-gap:30px}
+#entry .i_entryList li{padding:20px 0 20px 30px;border-bottom:0}
+#entry .i_entryList li::before{top:21px}
+#entry .i_entryList li:nth-last-child(-n+2){border-bottom:0}
+#entry .i_entryList li:nth-child(4n){border-bottom:1px solid var(--line)}
+#entry .i_entryNote{grid-column:1 / -1;margin:30px 0 0 auto;width:63%;padding:20px 30px}
+#entry .i_entryNote > span{max-width:none;font-size:1.25rem;line-height:1.4}
+}
+</style>
+
 
   <!-- 4 · where incubation sits: the nine-step staircase, kept -->
   <section class="x_sec x_grey" id="trl"><div class="s_wrap">
@@ -5677,6 +5691,46 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #pathway .i_mxPlot{gap:4px}
 }
 </style>
+<style>/* rev. 16 Nov (owner comment): three layout options for the readiness matrix; A = current, B = step bar on top, C = matrix + one answer panel. Switcher is for review only. */
+.i_optBar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 28px;padding:10px 12px;background:#fff;border:1px dashed rgba(53,164,212,.6);border-radius:999px;width:fit-content;max-width:100%;font-size:.8125rem;color:var(--grey-ink)}
+.i_optBar span{padding:0 8px 0 6px;letter-spacing:.08em;text-transform:uppercase;font-size:.6875rem;color:var(--io-ink)}
+.i_optBar button{font:inherit;color:var(--charcoal);background:transparent;border:1px solid var(--line,#dcdcdc);border-radius:999px;padding:6px 14px;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.i_optBar button b{font-weight:600;margin-right:4px}
+.i_optBar button:hover{border-color:var(--charcoal)}
+.i_optBar button[aria-pressed="true"]{background:var(--charcoal);color:#fff;border-color:var(--charcoal)}
+.i_mxAns{display:none}
+
+/* ---------- Option B: the six next steps become a step bar above a full-width matrix ---------- */
+#pathway[data-opt="b"] .i_mx{display:flex;flex-direction:column;gap:36px}
+#pathway[data-opt="b"] .i_mxSide{order:1;grid-column:auto!important;grid-row:auto!important;padding:0;gap:14px}
+#pathway[data-opt="b"] .i_mxViz{order:2;grid-column:auto!important;grid-row:auto!important}
+#pathway[data-opt="b"] .i_mxTabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:none;gap:8px;flex:none}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab{height:auto;min-height:92px;align-items:flex-start;padding:18px 16px 14px;border:0!important;border-top:4px solid rgba(53,164,212,.45)!important;border-left:0!important}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab:nth-child(n+5){border-top-color:rgba(89,84,83,.45)!important}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab:nth-child(1){border-top-color:var(--grey)!important}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab[aria-selected="true"]{background:var(--charcoal);border-top-color:var(--charcoal)!important}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab strong{font-size:.9375rem!important;line-height:1.3;transform:none!important}
+#pathway[data-opt="b"] .i_mxKey{order:3}
+#pathway[data-opt="b"] .i_mxPlot{grid-template-rows:repeat(3,clamp(88px,8vw,112px)) auto}
+#pathway[data-opt="b"] .i_mxCell{flex-direction:row;align-items:flex-end;justify-content:space-between}
+@media (max-width:1100px){#pathway[data-opt="b"] .i_mxTabs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){#pathway[data-opt="b"] .i_mxTabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- Option C: the matrix is the interface; one answer panel below it, no list ---------- */
+#pathway[data-opt="c"] .i_mx{display:flex;flex-direction:column;gap:28px}
+#pathway[data-opt="c"] .i_mxViz{grid-column:auto!important;grid-row:auto!important;gap:18px}
+#pathway[data-opt="c"] .i_mxSide{display:none}
+#pathway[data-opt="c"] .i_mxPlot{grid-template-rows:repeat(3,clamp(110px,11vw,150px)) auto;gap:8px}
+#pathway[data-opt="c"] .i_mxCell{padding:20px}
+#pathway[data-opt="c"] .i_mxCell span{font-size:1.0625rem}
+#pathway[data-opt="c"] .i_mxAns{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:32px;row-gap:6px;align-items:end;padding:28px 32px;background:var(--charcoal);color:#fff;border-radius:2px}
+#pathway[data-opt="c"] .i_mxAns .x_label{grid-column:1/-1;color:rgba(255,255,255,.7)}
+#pathway[data-opt="c"] .i_mxAns strong{grid-column:1;font-size:clamp(1.375rem,2.2vw,1.875rem);font-weight:400;line-height:1.2;color:#fff}
+#pathway[data-opt="c"] .i_mxAns small{grid-column:1;font-size:.875rem;color:rgba(255,255,255,.75)}
+#pathway[data-opt="c"] .i_mxAns em{grid-column:2;grid-row:2 / span 2;font-style:normal;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;border:1px solid rgba(255,255,255,.5);border-radius:999px;white-space:nowrap;align-self:center}
+#pathway[data-opt="c"] .i_mxAns em:empty{display:none}
+@media (max-width:700px){#pathway[data-opt="c"] .i_mxAns{grid-template-columns:1fr;padding:22px 20px}#pathway[data-opt="c"] .i_mxAns em{grid-column:1;grid-row:auto;justify-self:start;margin-top:8px}#pathway[data-opt="c"] .i_mxPlot{grid-template-rows:repeat(3,96px) auto}#pathway[data-opt="c"] .i_mxCell{padding:10px 8px}#pathway[data-opt="c"] .i_mxCell span{font-size:.75rem}}
+</style>
 <style>/* rev. 16 Nov (owner comment): no brown/black in the readiness matrix. Selected = brand deep blue, Incubation territory = brand blue, Acceleration territory = brand green */
 #pathway .i_mxCell[data-z="opd"],#pathway .i_mxCell[data-z="com"]{border-top-color:var(--green)}
 #pathway .i_mxCell[data-on],#pathway .i_mxCell[data-on]:hover{background:var(--io-ink)}
@@ -5688,9 +5742,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #pathway .i_mxTabs .f_areaTab[aria-selected="true"]:nth-child(1){border-left-color:var(--io-on-dark)!important}
 #pathway .i_mxTabs .f_areaTab[aria-selected="true"]:nth-child(-n+4):not(:nth-child(1)){border-left-color:var(--io)!important}
 #pathway .i_mxTabs .f_areaTab[aria-selected="true"]:nth-child(n+5){border-left-color:var(--green)!important}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab:nth-child(n+5){border-top-color:rgba(0,161,107,.55)!important}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab[aria-selected="true"]{background:var(--io-ink)}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab[aria-selected="true"]:nth-child(-n+4){border-top-color:var(--io)!important}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab[aria-selected="true"]:nth-child(1){border-top-color:var(--io-on-dark)!important}
+#pathway[data-opt="b"] .i_mxTabs .f_areaTab[aria-selected="true"]:nth-child(n+5){border-top-color:var(--green)!important}
+#pathway[data-opt="c"] .i_mxAns{background:var(--io-ink)}
+#pathway[data-opt="c"] .i_mxAns em{border-color:rgba(255,255,255,.55)}
+.i_optBar button[aria-pressed="true"]{background:var(--io-ink);border-color:var(--io-ink)}
 </style>
 <section class="x_sec x_grey i_pathSec" id="pathway"><div class="s_wrap">
     <div class="x_head i_headTop"><div><span class="c_eyebrow" data-reveal>Validation pathway</span><h2 class="x_h2" data-reveal>TRL and ARL determine what should happen next.</h2></div><div class="x_stack"><p class="x_body" data-reveal><span class="x_iO">iO</span>&nbsp;identifies the most important technical or adoption question and designs the next experiment around it. The evidence then determines whether the project should continue, pivot, progress to a larger pilot or conclude.</p></div></div>
+    <div class="i_optBar" role="group" aria-label="Design option, for review only"><span>Design option &middot; for review</span><button type="button" data-o="a" aria-pressed="true"><b>A</b> Side by side</button><button type="button" data-o="b" aria-pressed="false"><b>B</b> Step bar on top</button><button type="button" data-o="c" aria-pressed="false"><b>C</b> Matrix + answer</button></div>
     <div class="i_mx">
       <div class="i_mxViz">
         <span class="x_label i_mxAxisY"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14V3M3.5 7 8 2.5 12.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Adoption readiness · ARL</span>
@@ -5709,6 +5772,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           <i class="i_mxDot" id="mxDot" aria-hidden="true"></i>
         </div>
         <span class="x_label i_mxAxisX">Technology readiness · TRL<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="i_mxAns" id="mxAns" aria-live="polite"><span class="x_label">Likely next step</span><strong id="mxAnsT"></strong><small id="mxAnsS"></small><em id="mxAnsB"></em></div>
       </div>
       <div class="i_mxSide">
         <span class="x_label">Likely next step</span>
@@ -5725,6 +5789,28 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       </div>
           </div>
   </div></section>
+<script>/* rev. 16 Nov: option switcher for the readiness matrix (review only) + answer panel text for option C */
+(function(){
+  var sec=document.getElementById('pathway'); if(!sec) return;
+  sec.setAttribute('data-opt','a');
+  var tabs=[].slice.call(document.querySelectorAll('#mxTabs .f_areaTab'));
+  var T=document.getElementById('mxAnsT'),S=document.getElementById('mxAnsS'),B=document.getElementById('mxAnsB');
+  function ans(){
+    var i=-1; tabs.forEach(function(t,k){ if(t.getAttribute('aria-selected')==='true') i=k; }); if(i<0) return;
+    var st=tabs[i].querySelector('strong'); var sm=st.querySelector('small');
+    T.textContent=st.firstChild.textContent; S.textContent=sm?sm.textContent:'';
+    B.textContent=i===0?'':(i<4?'Incubation territory':'Acceleration territory');
+  }
+  var mo=new MutationObserver(ans); tabs.forEach(function(t){ mo.observe(t,{attributes:true,attributeFilter:['aria-selected']}); }); ans();
+  [].forEach.call(sec.querySelectorAll('.i_optBar button'),function(b){
+    b.addEventListener('click',function(){
+      sec.setAttribute('data-opt',b.getAttribute('data-o'));
+      [].forEach.call(sec.querySelectorAll('.i_optBar button'),function(x){ x.setAttribute('aria-pressed',x===b?'true':'false'); });
+      ans(); setTimeout(function(){ window.dispatchEvent(new Event('resize')); },60);
+    });
+  });
+})();
+</script>
 <script>/* rev. 16 Nov: a block in the readiness matrix selects its next step in the list */
 (function(){var tabs=[].slice.call(document.querySelectorAll('#mxTabs .f_areaTab'));[].forEach.call(document.querySelectorAll('#mxPlot .i_mxCell'),function(c){c.addEventListener('click',function(){var k=c.getAttribute('data-c');var t=tabs.filter(function(b){return (b.getAttribute('data-cells')||'').split(' ').indexOf(k)>-1})[0];if(t)t.click();});});})();
 </script>
@@ -5793,7 +5879,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <div class="x_row i_eoiCta"><a href="/full-site/ivp-enquire?platform=inc" class="s_btn s_btnPrimary s_btnSm">Submit an expression of interest <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
   </div></section>
-  <a class="x_next" href="/full-site/ivp-accelerator"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/acc_green.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Ready for operational validation?</span><strong>Unbreakable Harvest</strong><p>If your technology has already been proven in a relevant operating environment and is ready for UAE validation, customer engagement and market entry, Unbreakable Harvest may be the better place to start.</p><span class="s_btn s_btnPrimary s_btnSm">Explore Unbreakable Harvest <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
+  <style>/* rev. 17 Nov: next-platform block spacing = Figma (6716:26121): 50 px vertical padding, 80 px between photo and text, 20 px between text lines, 30 px before the button, text column 512 px */
+@media (min-width:901px){.x_nextIn{display:flex;align-items:center;gap:80px;padding-block:50px}.x_nextIn .x_nextPh{flex:0 0 49%;grid-column:auto}.x_nextIn .x_nextText{flex:0 1 512px;grid-column:auto;gap:20px}.x_nextIn .x_nextText .s_btn{margin-top:10px}}
+.x_next:hover .x_nextText .s_btnPrimary{background:#145a7a}
+</style>
+<a class="x_next" href="/full-site/ivp-accelerator"><div class="s_wrap x_nextIn"><div class="x_img x_nextPh"><img src="/innovation-venture-platforms/img/acc_green.webp" alt="" loading="lazy"></div><div class="x_nextText"><span class="x_label">Ready for operational validation?</span><strong>Unbreakable Harvest</strong><p>If your technology has already been proven in a relevant operating environment and is ready for UAE validation, customer engagement and market entry, Unbreakable Harvest may be the better place to start.</p><span class="s_btn s_btnPrimary s_btnSm">Explore Unbreakable Harvest <svg class="x_arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div></a>
 </div>
 
 </div></main>

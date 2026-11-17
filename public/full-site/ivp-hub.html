@@ -140,7 +140,110 @@ body .hp_adjMain .x_cap { max-width: 83.3%; font-size: var(--fs-body); line-heig
 .hp_ready .hp_dims.hp_puzOn .hp_badge{z-index:4}
 }
 .hp_puz{position:absolute;left:0;top:0;z-index:0;pointer-events:none;overflow:visible}
-</style></head>
+</style><style id="jo-css">
+/* Journey layouts v2 (rev. 16 Nov). Same language as the rest of the page: hairlines, light type, blue numbers, square photos with corner marks. */
+.jo{--joInk:#1a6f96}
+.jo .jo_top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(32px,4vw,56px)}
+.jo .jo_tag{font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.jo img{display:block;width:100%;height:100%;object-fit:cover}
+.jo button{font:inherit}
+.jo :focus-visible{outline:2px solid var(--io);outline-offset:3px}
+.jo_chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.jo_chips li{padding:7px 14px;border:0.5px solid rgba(26,111,150,.45);border-radius:999px;font-size:.8125rem;line-height:1.3;color:var(--charcoal);background:#fff}
+.jo .jo_cap{font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--joInk)}
+/* ---------- Option A: list left, one big photo right, activities in a clean panel on the photo ---------- */
+.jo_a{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:stretch}
+.jo_list{list-style:none;margin:0;padding:0;border-top:0.5px solid rgba(89,84,83,.35);align-self:start}
+.jo_list li{position:relative;border-bottom:0.5px solid rgba(89,84,83,.35)}
+.jo_list li::before{content:"";position:absolute;left:0;top:-0.5px;height:1.5px;width:100%;background:var(--io);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+.jo_list li[data-on]::before{transform:scaleX(1)}
+.jo_list button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:48px minmax(0,1fr);gap:0 12px;align-items:baseline;padding:22px 0;cursor:pointer}
+.jo_list .n{font-size:.75rem;font-weight:500;letter-spacing:.08em;color:var(--io)}
+.jo_list .t{font-size:clamp(1.25rem,1.7vw,1.625rem);font-weight:300;letter-spacing:-.02em;line-height:1.2;color:var(--grey);transition:color .3s}
+.jo_list .d{grid-column:2;display:none;margin:12px 0 0;max-width:28em;font-size:.9375rem;line-height:1.6;color:var(--grey-ink)}
+.jo_list li[data-on] .t{color:var(--charcoal)}
+.jo_list li[data-on] .d{display:block}
+.jo_list button:hover .t{color:var(--charcoal)}
+.jo_stage{position:relative;min-height:clamp(420px,42vw,620px)}
+.jo_stage .ph{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity .5s ease}
+.jo_stage .ph[data-on]{opacity:1}
+.jo_panel_a{position:absolute;z-index:1;left:0;right:0;bottom:0;display:none;flex-direction:column;gap:14px;padding:clamp(80px,9vw,130px) clamp(20px,2.4vw,32px) clamp(20px,2.4vw,32px);color:#fff;background:linear-gradient(0deg,rgba(14,16,15,.82) 0%,rgba(14,16,15,.55) 50%,rgba(14,16,15,0) 100%)}
+.jo_panel_a[data-on]{display:flex}
+.jo_panel_a .jo_cap{color:rgba(255,255,255,.85)}
+.jo_panel_a .jo_chips li{background:rgba(255,255,255,.14);border:0.5px solid rgba(255,255,255,.6);color:#fff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+/* ---------- Option B: pick a step (six photo tiles, one word each), the detail opens underneath. Minimal text on first view. ---------- */
+.jo_t{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--col-gap)}
+.jo_t li{position:relative}
+.jo_tb{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;width:100%;cursor:pointer}
+.jo_tb .x_img{aspect-ratio:1/1;transition:opacity .35s,filter .35s}
+.jo_t li:not([data-on]) .x_img{opacity:.55;filter:grayscale(.4)}
+.jo_t li:not([data-on]) .jo_tb:hover .x_img{opacity:.85;filter:none}
+.jo_tn{position:absolute;z-index:3;left:12px;top:12px;display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--joInk);font-size:.75rem;font-weight:500;letter-spacing:.06em;pointer-events:none}
+.jo_t li[data-on] .jo_tn{background:var(--joInk);color:#fff}
+.jo_rl{position:relative;display:block;height:11px}
+.jo_rl::before{content:"";position:absolute;left:0;right:calc(var(--col-gap)*-1);top:5px;height:1px;background:var(--io-ink);opacity:.35}
+.jo_t li:last-child .jo_rl::before{right:0}
+.jo_rl::after{content:"";position:absolute;left:0;top:0;width:11px;height:11px;border-radius:50%;box-sizing:border-box;border:1px solid var(--io-ink);background:var(--grey-bg,#f1f1f1);transition:background .3s,transform .3s}
+.jo_t li[data-on] .jo_rl::after{background:var(--io-ink);transform:scale(1.25)}
+.jo_tw{font-size:clamp(1.125rem,1.5vw,1.5rem);font-weight:300;letter-spacing:-.015em;line-height:1.1;color:var(--grey);transition:color .3s}
+.jo_t li[data-on] .jo_tw,.jo_tb:hover .jo_tw{color:var(--charcoal)}
+.jo_dt{position:relative;margin-top:clamp(28px,3vw,44px);background:#fff;border:0.5px solid var(--line);padding:clamp(24px,3vw,44px)}
+.jo_dt::before{content:"";position:absolute;top:-7px;width:12px;height:12px;background:#fff;border-left:0.5px solid var(--line);border-top:0.5px solid var(--line);transform:rotate(45deg);left:calc((100% - 5*var(--col-gap))/6/2 + var(--jo-i,0)*((100% - 5*var(--col-gap))/6 + var(--col-gap)) - 6px + 0px);transition:left .5s cubic-bezier(.22,.8,.2,1)}
+.jo_dp{display:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center}
+.jo_dp[data-on]{display:grid;animation:joIn .45s ease both}
+@keyframes joIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.jo_dp h3{margin:10px 0 12px;font-size:clamp(1.5rem,2.2vw,2.25rem);font-weight:300;letter-spacing:-.02em;line-height:1.15;color:var(--charcoal)}
+.jo_dp p{margin:0;font-size:var(--fs-body);line-height:1.6;color:var(--grey-ink);max-width:32em}
+.jo_dp .jo_cap{display:block;margin-bottom:14px}
+@media (prefers-reduced-motion:reduce){.jo_dp[data-on]{animation:none}}
+@media (max-width:900px){.jo_a{grid-template-columns:minmax(0,1fr)}.jo_stage{order:-1;min-height:300px}}
+@media (max-width:760px){.jo_t{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:20px;column-gap:12px}.jo_rl{display:none}.jo_tb{gap:10px}.jo_tw{font-size:1rem}.jo_dt::before{display:none}.jo_dp[data-on]{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.jo_panel_a{padding-top:70px}}
+/* review switcher */
+.jo_sw[data-k=areas]{top:140px}
+.jo_sw{position:fixed;right:16px;top:92px;z-index:60;display:flex;gap:6px;align-items:center;padding:6px 8px 6px 14px;border-radius:999px;background:#fff;box-shadow:0 4px 24px rgba(0,0,0,.18);font-size:12px;color:#595453;font-family:"Readex Pro",Arial,sans-serif}
+.jo_sw span{letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:#7f8284;margin-right:4px}
+.jo_sw a{padding:6px 12px;border-radius:999px;color:#1a6f96;text-decoration:none;font-weight:500;border:0.5px solid rgba(26,111,150,.4)}
+.jo_sw a[aria-current]{background:#1a6f96;color:#fff}
+@media (max-width:640px){.jo_sw[data-k=areas]{top:auto!important;bottom:136px!important}.jo_sw{top:auto;bottom:84px;padding:5px 6px}.jo_sw span{display:none}.jo_sw a{padding:5px 10px;white-space:nowrap}}
+</style><style id="jhide">/* Original journey: steps that are not active are hidden (client comment), only the current step shows */
+#xJour .j_jourStep:not([data-on]){opacity:0!important;visibility:hidden;pointer-events:none}
+#xJour .j_jourStep[data-on]{opacity:1!important;visibility:visible}
+#xJour .j_jourStep{transition:opacity .45s ease,visibility 0s linear .45s}
+#xJour .j_jourStep[data-on]{transition:opacity .45s ease .1s,visibility 0s}
+</style>
+<style id="jwide">/* Original journey: the active step fills the whole right column (no empty space beside it) */
+@media (min-width:901px){
+#xJour .j_jourSteps{container-type:inline-size}
+#xJour .j_jourStep{flex:0 0 100cqw;box-sizing:border-box;padding-right:0}
+#xJour .j_jourStep .j_jourText,#xJour .j_jourStep .j_jourTitle{max-width:none}
+#xJour .j_jourStep .j_jourTitle{font-size:clamp(2rem,3vw,3rem)}
+#xJour .j_jourStep .hp_acts{width:100%}
+#xJour .j_jourStep .hp_acts ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+}
+</style>
+<style id="jacts">/* Original journey: "Typical activities" as a tidy checklist (same style as the Incubation checklist) */
+@media (min-width:901px){
+#xJour .j_jourStep .hp_acts{gap:14px;margin-top:8px}
+#xJour .j_jourStep .hp_acts ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px;row-gap:0;margin:0;padding:0;list-style:none;border-bottom:1px solid var(--line)}
+#xJour .j_jourStep .hp_acts li{position:relative;display:flex;align-items:center;min-height:56px;padding:14px 0 14px 34px;border-top:1px solid var(--line);font-size:var(--fs-body);line-height:1.45;color:var(--charcoal)}
+#xJour .j_jourStep .hp_acts li::before{content:"";position:absolute;left:0;top:50%;width:20px;height:20px;margin-top:-10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Ccircle cx='10' cy='10' r='9.25' stroke='%233ca7d2' stroke-width='1.2'/%3E%3Cpath d='M6 10.3l2.8 2.8L14 7.6' stroke='%231a6f96' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+#xJour .j_jourStep .hp_acts ul:has(li:last-child:nth-child(odd)) li:last-child{grid-column:1 / -1}
+}
+@media (max-width:900px){
+#xJour .j_jourStep .hp_acts li{position:relative;padding:12px 0 12px 32px;border-top:1px solid var(--line);font-size:var(--fs-body);line-height:1.45}
+#xJour .j_jourStep .hp_acts li::before{content:"";position:absolute;left:0;top:50%;width:20px;height:20px;margin-top:-10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Ccircle cx='10' cy='10' r='9.25' stroke='%233ca7d2' stroke-width='1.2'/%3E%3Cpath d='M6 10.3l2.8 2.8L14 7.6' stroke='%231a6f96' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+}
+</style>
+<style id="n1btn">/* focus-areas card: fewer filled buttons (client comment): arrows are quiet outline buttons, "Take a closer look" is a text link */
+#n1Card #n1Prev,#n1Card #n1Next{background:transparent!important;color:var(--io-ink)!important;border:1px solid var(--line)}
+#n1Card #n1Prev:hover,#n1Card #n1Next:hover{background:var(--io-ink);border-color:var(--io-ink);color:#fff!important}
+#n1Card #n1Zoom{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;font-size:.875rem;font-weight:500;color:var(--io-ink)!important;background:none!important;padding:2px 0;border-bottom:1px solid var(--io);transition:color .3s,border-color .3s}
+#n1Card #n1Zoom:hover{color:var(--charcoal)!important;border-color:var(--charcoal)}
+#n1Card #n1Zoom:focus-visible{outline:2px solid var(--io);outline-offset:3px}
+#n1Card .n1Ctl{gap:14px}
+</style>
+</head>
 <body>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -5761,14 +5864,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <p class="j_jourTag" aria-hidden="true"><span id="jTag">Stage</span><span id="jCount">01 / 06</span></p>
         <p class="j_odo" aria-hidden="true"><span>0</span>
           <span class="j_odoDigit"><span class="j_odoStrip" id="odoO"><span data-d="0"></span><span data-d="1"></span><span data-d="2"></span><span data-d="3"></span><span data-d="4"></span><span data-d="5"></span><span data-d="6"></span><span data-d="7"></span><span data-d="8"></span><span data-d="9"></span></span></span></p>
-        <div class="j_jourFrames"><div class="j_jourFrame" style="z-index:0" data-on><img src="/innovation-venture-platforms/img/fif_talk.webp" alt=""></div><div class="j_jourFrame" style="z-index:1"><img src="/innovation-venture-platforms/img/chal_pitch.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:2"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:3"><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:4"><img src="/photos/General%20MarCom%20Photos%20(1)/SAM_9200.jpg" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:5"><img src="/full-site/img/card_plots.jpg" alt="" loading=lazy></div></div>
+        <div class="j_jourFrames"><div class="j_jourFrame" style="z-index:0" data-on><img src="/innovation-venture-platforms/img/fif_talk.webp" alt=""></div><div class="j_jourFrame" style="z-index:1"><img src="/innovation-venture-platforms/img/chal_pitch.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:2"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:3"><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:4"><img src="/photos/General%20MarCom%20Photos%20%281%29/SAM_9200.jpg" alt="" loading=lazy></div><div class="j_jourFrame" style="z-index:5"><img src="/full-site/img/card_plots.jpg" alt="" loading=lazy></div></div>
       </div></div>
       <div class="j_jourSteps" id="jSteps"><div id="jList"><i class="j_jourLine" aria-hidden="true"><i id="jLine"></i></i><ol>
         <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Define" data-on><p class="j_jourWhen">Step 1</p><h3 class="j_jourTitle">Define the problem</h3><p class="j_jourText">Establish the operational need, intended user, current baseline and strategic importance of the challenge.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Stakeholder discovery</li><li>User and customer interviews</li><li>Baseline definition</li><li>Constraint mapping</li><li>Success-measure development</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/innovation-venture-platforms/img/fif_talk.webp" alt="" loading="lazy"></div></li>
         <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Source"><p class="j_jourWhen">Step 2</p><h3 class="j_jourTitle">Source the right ideas and technologies</h3><p class="j_jourText">Identify relevant ideas, research, technical teams and market-ready technologies through targeted outreach and ecosystem engagement.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Technology landscaping</li><li>Startup sourcing</li><li>Research and university engagement</li><li>Open calls</li><li>Farmer engagement</li><li>Partner referrals</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/innovation-venture-platforms/img/chal_pitch.webp" alt="" loading="lazy"></div></li>
         <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Evaluate"><p class="j_jourWhen">Step 3</p><h3 class="j_jourTitle">Evaluate the opportunity</h3><p class="j_jourText">Assess strategic relevance, technical potential, differentiation, commercial viability, operational feasibility, adoption barriers and team capability.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Scientific and technical review</li><li>Market assessment</li><li>Prior-art and IP review</li><li>Commercial analysis</li><li>Team assessment</li><li>Adoption-risk review</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/innovation-venture-platforms/img/fif_table.webp" alt="" loading="lazy"></div></li>
         <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Design"><p class="j_jourWhen">Step 4</p><h3 class="j_jourTitle">Design the validation pathway</h3><p class="j_jourText">Determine the most important uncertainties and develop the smallest credible experiment, proof of concept or pilot required to resolve them.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Experimental design</li><li>Pilot scoping</li><li>Protocol development</li><li>Site selection</li><li>KPI definition</li><li>Go, no-go and pivot criteria</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/innovation-venture-platforms/img/fif_idea.webp" alt="" loading="lazy"></div></li>
-        <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Test"><p class="j_jourWhen">Step 5</p><h3 class="j_jourTitle">Test in real conditions</h3><p class="j_jourText">Generate reliable evidence in environments that reflect how the technology or solution will ultimately be used.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Laboratory analysis</li><li>Greenhouse or nethouse trials</li><li>Field validation</li><li>User testing</li><li>Operational deployment</li><li>Performance and economic measurement</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/photos/General%20MarCom%20Photos%20(1)/SAM_9200.jpg" alt="" loading="lazy"></div></li>
+        <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Test"><p class="j_jourWhen">Step 5</p><h3 class="j_jourTitle">Test in real conditions</h3><p class="j_jourText">Generate reliable evidence in environments that reflect how the technology or solution will ultimately be used.</p><div class="hp_acts"><span class="x_label">Typical activities</span><ul><li>Laboratory analysis</li><li>Greenhouse or nethouse trials</li><li>Field validation</li><li>User testing</li><li>Operational deployment</li><li>Performance and economic measurement</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/photos/General%20MarCom%20Photos%20%281%29/SAM_9200.jpg" alt="" loading="lazy"></div></li>
         <li class="j_jourStep" tabindex="0" role="button" data-step data-tag="Scale"><p class="j_jourWhen">Step 6</p><h3 class="j_jourTitle">Build the pathway to adoption and scale</h3><p class="j_jourText">Use the evidence generated to define the most appropriate next step.</p><div class="hp_acts"><span class="x_label">Potential pathways</span><ul><li>Venture clienting</li><li>Licensing</li><li>Co-development</li><li>Strategic partnership</li><li>Investment</li><li>Joint venture</li><li>Venture creation</li><li>Further research, validation or replications</li></ul></div><div class="j_jourMobileImg" style="position:relative"><img src="/full-site/img/card_plots.jpg" alt="" loading="lazy"></div></li>
       </ol></div></div>
     </div>
@@ -7350,7 +7453,13 @@ function draw(){
 }
 draw();addEventListener("load",draw);addEventListener("resize",draw);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
 if(window.ResizeObserver)new ResizeObserver(draw).observe(D);
-})();</script><style id="iobtn">
+})();</script><nav class="jo_sw" aria-label="Journey layout options"><span>Journey layout</span><a href="/full-site/ivp-hub" aria-current="page">Original</a><a href="/full-site/ivp-hub-option-a">Option A</a><a href="/full-site/ivp-hub-option-b">Option B</a><a href="/full-site/ivp-hub-option-c">Option C</a></nav><nav class="jo_sw" data-k="areas" aria-label="Focus areas layout options"><span>Focus areas</span><a href="/full-site/ivp-hub" aria-current="page">3D blocks</a><a href="/full-site/ivp-hub-areas-icons">Icons</a></nav><script>(function(){var nav=document.querySelector('.jo_sw[data-k=areas]'),el=document.getElementById('areasWrap');if(!nav||!el||!('IntersectionObserver' in window))return;
+nav.style.transition='opacity .3s ease';function set(on){nav.style.opacity=on?'1':'0';nav.style.pointerEvents=on?'auto':'none'}set(false);
+new IntersectionObserver(function(es){set(es[0].isIntersecting)},{threshold:.08}).observe(el);})();</script>
+<script>(function(){var nav=document.querySelector('.jo_sw:not([data-k])'),el=document.getElementById('journey');if(!nav||!el||!('IntersectionObserver' in window))return;
+nav.style.transition='opacity .3s ease';function set(on){nav.style.opacity=on?'1':'0';nav.style.pointerEvents=on?'auto':'none'}set(false);
+new IntersectionObserver(function(es){set(es[0].isIntersecting)},{threshold:.08}).observe(el);})();</script>
+<style id="iobtn">
 /* iO Button component (Figma "Button" set 6418:1182). Types: Primary, Secondary, Ghost, Ghost Light, Tertiary, Tertiary Light.
    States: Default, Hover, Disabled, Active (pressed/focus), Loading. Sizes: Desktop 40px, Mobile 36px (<=768px).
    Class map: .s_btn.s_btnPrimary=Primary, .s_btn=Secondary, .s_btnGhost=Ghost, .s_btnGhostLight=Ghost Light, .io-btn-t=Tertiary, .io-btn-t.io-btn-tl=Tertiary Light. */
