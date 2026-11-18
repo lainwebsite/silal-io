@@ -5922,7 +5922,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <section class="x_sec" id="fif-why"><div class="s_wrap f_why">
     <div class="f_whyHead"><span class="c_eyebrow">Why the fund</span><h2 class="x_h2" data-reveal>Supporting local farmers to turn practical ideas into tested, validated solutions.</h2></div>
-    <div class="x_img x_corners f_whyImg" data-img><img src="/innovation-venture-platforms/img/fif_listen.webp" alt="A farmer listening at a Farm Innovation Fund workshop" loading="lazy"></div>
+    <div class="x_img x_corners f_whyImg" data-img><img src="/innovation-venture-platforms/img/fif_launch.webp" alt="Group photo at an event at Innovation Oasis, in front of the iO Advance Agri Academy screen" loading="lazy"></div>
     <div class="f_whyBody">
       <p class="x_body" data-reveal>Farmers understand their operational challenges better than anyone. They often also have practical ideas for improving how farms use water, manage crops, reduce costs, increase yields or adapt to changing conditions.</p>
       <p class="x_body" data-reveal>However, turning an idea into a credible solution can require funding, specialist expertise and a structured way to test and validate whether the solution works.</p>
@@ -6113,9 +6113,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <a href="/full-site/ivp-farm-innovation-fund" data-route="farm-innovation-fund"><span><i class="x_long">Farm Innovation </i>Fund</span></a>
   <a href="/full-site/ivp-incubation" data-route="incubation"><span>Incubation</span></a>
   <a href="/full-site/ivp-accelerator" data-route="accelerator"><span>Accelerator</span></a>
-  <a href="/full-site/ivp-agricultural-challenges" data-route="agricultural-challenges"><span>Challenges</span></a>
-  <a href="/full-site/ivp-local-talent" data-route="local-talent"><span>Local Talent<i class="x_long"> Development</i></span></a>
-  <a href="/full-site/ivp-local-talent-cms" data-route="local-talent-cms"><span>Local Talent<i class="x_long"> (CMS)</i></span></a>
+  <a href="/full-site/ivp-agricultural-challenges" data-route="agricultural-challenges"><span><i class="x_long">Agricultural </i>Challenges</span></a>
+  <a href="/full-site/ivp-local-talent-cms" data-route="local-talent-cms"><span>Local Talent<i class="x_long"> Development</i></span></a>
 </div></nav>
 <div class="x_curtain" id="curtain" aria-hidden="true"><img src="/innovation-venture-platforms/brand/io-mark.svg" alt=""><span id="curtainLabel"></span></div>
 </div>
@@ -7708,5 +7707,50 @@ body .hp_jourHead{padding-bottom: 0;}
 })();
 </script>
 <style id="fifkick2">#xJour[data-on="false"] .j_jourStep:not([data-on]){opacity:1!important;visibility:visible!important;pointer-events:auto}#xJour[data-on="false"] .j_jourStep{flex:none!important}</style>
+<style id="fifkh">
+/* photo fills the full height of the right-hand content; the area title and 01 / 04 counter sit on the bottom edge, level with the end of the examples */
+@media(min-width:1000px){
+#xJour .j_jourGrid{align-items:stretch!important}
+#xJour .j_jourStage{display:flex!important}
+#xJour .j_jourStick{display:flex!important;flex-direction:column;height:auto!important;flex:1;min-height:0}
+#xJour .j_jourFrames{flex:1 1 auto!important;height:auto!important;min-height:240px}
+}
+</style>
+<script id="fifkh2">
+/* the row is exactly as tall as the active area's content, so the photo, its title and the 01 / 04 counter end level with the last example */
+(function () {
+  var st = document.getElementById('jSteps'), jl = document.getElementById('jList'); if (!st || !jl) return;
+  st.style.transition = 'height .5s cubic-bezier(.22,1,.36,1)';
+  var raf = 0;
+  function sync() {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function () {
+      var a = jl.querySelector('.j_jourStep[data-on]');
+      if (a && innerWidth >= 1000 && document.getElementById('xJour').dataset.on === 'true') { var ac = a.querySelector('.hp_acts'); st.style.height = Math.ceil(ac.getBoundingClientRect().bottom - a.getBoundingClientRect().top) + 'px'; } else st.style.height = '';
+    });
+  }
+  new MutationObserver(sync).observe(jl, { attributes: true, subtree: true, attributeFilter: ['data-on'] });
+  addEventListener('resize', sync); addEventListener('load', sync);
+  [300, 900, 2200, 3500].forEach(function (t) { setTimeout(sync, t); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+  var jx = document.getElementById('xJour'), jr = document.getElementById('journey');
+  function fit() {
+    if (!jx || !jr || innerWidth < 1000 || jx.dataset.on !== 'true') { if (jx) jx.style.removeProperty('--sh'); return; }
+    var jour = jr.querySelector('.j_jour'), steps = jl.querySelectorAll('.j_jourStep'), maxH = 0;
+    steps.forEach(function (s2) { var ac = s2.querySelector('.hp_acts'); if (ac) maxH = Math.max(maxH, ac.getBoundingClientRect().bottom - s2.getBoundingClientRect().top); });
+    var cs = getComputedStyle(jr), need = jour.offsetHeight - st.offsetHeight + maxH + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    jx.style.setProperty('--sh', Math.ceil(Math.max(innerHeight, 680, need)) + 'px');
+    window.dispatchEvent(new Event('resize'));
+  }
+  var fitT = 0, fitOn = false;
+  function fitSoon() { if (fitOn) return; clearTimeout(fitT); fitT = setTimeout(function () { fitOn = true; fit(); setTimeout(function () { fitOn = false; }, 150); }, 120); }
+  addEventListener('load', fitSoon); [400, 1200, 2600].forEach(function (t) { setTimeout(fitSoon, t); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSoon);
+  sync();
+})();
+</script>
+<style id="fifkpad">
+@media(min-width:1000px){#xJour[data-on="true"] > .j_journey{padding-bottom:clamp(56px,6vw,88px)!important}}
+</style>
 </body>
 </html>
