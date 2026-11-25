@@ -6956,5 +6956,21 @@ html body .io-btn-t:disabled,html body .io-btn-t[aria-disabled=true]{opacity:.4;
  html body .io-btn-t{font-size:14px}
 }
 </style>
-</body>
+<script id="heroFullJs">(function(){
+function init(){var hdr=document.getElementById('hdr'),main=document.querySelector('main')||document.body;if(!hdr||!main||main.__hf)return;main.__hf=1;
+var preOv=hdr.getAttribute('data-overlay')==='true',H=hdr.offsetHeight;
+var c=[].slice.call(main.querySelectorAll('[data-overlay-hero],section,header,.dHero,[class*="hero"],[class*="Hero"]')).filter(function(s){return s.id!=='hdr'&&!s.closest('[hidden]')&&getComputedStyle(s).display!=='none'&&s.offsetHeight>60});
+var hero=null;for(var i=0;i<c.length;i++){if(c[i].getBoundingClientRect().top+scrollY<=H+8){hero=c[i];break}}if(!hero)return;
+var R=hero.getBoundingClientRect(),A=R.width*R.height;
+var media=[].slice.call(hero.querySelectorAll('img,video,canvas,picture')).some(function(m){var q=m.getBoundingClientRect();return q.width>=R.width*0.9&&q.height>=R.height*0.75});
+var isImg=media||/url\(/.test(getComputedStyle(hero).backgroundImage),under=R.top+scrollY<4;
+hero.classList.add('hf_hero');if(isImg)hero.classList.add('hf_img');if(isImg&&!/x_onPhoto|c_hero|mhero/.test(hero.className)){var big=[].slice.call(hero.querySelectorAll('img,video,canvas,picture')).filter(function(m){var q=m.getBoundingClientRect();return q.width>=R.width*0.9})[0];if(big){var top=big;while(top.parentElement&&top.parentElement!==hero)top=top.parentElement;var sc=document.createElement('div');sc.className='hf_scrim';sc.setAttribute('aria-hidden','true');sc.style.cssText='position:absolute;left:0;right:0;top:0;height:260px;background:linear-gradient(180deg,rgba(14,16,15,.55) 0%,rgba(14,16,15,.22) 55%,rgba(14,16,15,0) 100%);pointer-events:none';if(getComputedStyle(hero).position==='static')hero.style.position='relative';top.parentElement===hero?hero.insertBefore(sc,top.nextSibling):hero.insertBefore(sc,hero.firstChild)}}
+if(isImg&&!under){hero.style.marginTop=(-H)+'px';hero.style.paddingTop=((parseFloat(getComputedStyle(hero).paddingTop)||0)+H)+'px'}
+hero.style.minHeight=(isImg||under)?'100svh':'calc(100svh - '+H+'px)';
+if(hero.offsetHeight<=innerHeight+2){var d=getComputedStyle(hero).display;if(d==='block'){hero.style.display='flex';hero.style.flexDirection='column';hero.style.justifyContent='center'}else if(d==='grid'){hero.style.alignContent='center'}}
+if(isImg&&!preOv){var lock=false;var want=function(){var m=document.getElementById('menuOpen');return String(scrollY<=40&&!(m&&m.getAttribute('aria-expanded')==='true'))};
+var apply=function(){var w=want();if(hdr.getAttribute('data-overlay')!==w){lock=true;hdr.setAttribute('data-overlay',w);lock=false}};
+new MutationObserver(function(){if(!lock)apply()}).observe(hdr,{attributes:true,attributeFilter:['data-overlay']});addEventListener('scroll',apply,{passive:true});apply()}
+if(window.ScrollTrigger)setTimeout(function(){ScrollTrigger.refresh()},300)}
+if(document.readyState==='complete')init();else addEventListener('load',init)})();</script></body>
 </html>

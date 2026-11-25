@@ -4579,7 +4579,7 @@ html.x_galLock { overflow: hidden; }
     <p class="c_body" data-reveal>In one of the planet’s most demanding growing environments, we bring together researchers, farmers, startups, industry leaders, investors, and policymakers to develop, validate, and scale the technologies needed for a more resilient food system.</p>
     <div class="c_introRight"><p class="c_lead" data-reveal>What it lacked was implementation.</p><a href="/full-site/about" class="s_btn s_btnPrimary s_btnSm c_introBtn">About&nbsp;<span class="x_iO">iO</span>&nbsp;<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   </div>
-  <ul class="c_stats"><li><span class="c_statNum" data-count="2020">2020</span><span class="c_statLabel" data-reveal>Silal was established</span></li><li><span class="c_statNum" data-count="2024">2024</span><span class="c_statLabel" data-reveal><span class="x_iO">iO</span>&nbsp;Official Inauguration</span></li><li><span class="c_statNum" data-count="34">34</span><span class="c_statLabel" data-reveal>hectare parcel of land<br>adjacent to Al Foah Farm</span></li><li><span class="c_statNum"><span data-count="37">37</span>+</span><span class="c_statLabel" data-reveal>strategic partners</span></li></ul>
+  <ul class="c_stats"><li><span class="c_statNum" data-count="2020">2020</span><span class="c_statLabel" data-reveal>Silal was established</span></li><li><span class="c_statNum" data-count="2025">2025</span><span class="c_statLabel" data-reveal><span class="x_iO">iO</span>&nbsp;Official Inauguration</span></li><li><span class="c_statNum" data-count="34">34</span><span class="c_statLabel" data-reveal>hectare parcel of land<br>adjacent to Al Foah Farm</span></li><li><span class="c_statNum"><span data-count="37">37</span>+</span><span class="c_statLabel" data-reveal>strategic partners</span></li></ul>
 </div></section>
 <div class="c_curtain" id="helixCurtain" data-on="true">
 <section class="hx c_curtainStick" id="helixSec" aria-label="The Innovation Oasis Method" data-hxstep="0">
@@ -10189,5 +10189,22 @@ html body .io-btn-t:disabled,html body .io-btn-t[aria-disabled=true]{opacity:.4;
 #siteV2 .x_v2Body{animation:none!important}
 #siteV2 .x_v2Body > *{animation:cardIn .6s var(--ease) both}
 </style>
+<script id="heroFullJs">(function(){
+function init(){var hdr=document.getElementById('hdr'),main=document.querySelector('main')||document.body;if(!hdr||!main||main.__hf)return;main.__hf=1;
+var preOv=hdr.getAttribute('data-overlay')==='true',H=hdr.offsetHeight;
+var c=[].slice.call(main.querySelectorAll('[data-overlay-hero],section,header,.dHero,[class*="hero"],[class*="Hero"]')).filter(function(s){return s.id!=='hdr'&&!s.closest('[hidden]')&&getComputedStyle(s).display!=='none'&&s.offsetHeight>60});
+var hero=null;for(var i=0;i<c.length;i++){if(c[i].getBoundingClientRect().top+scrollY<=H+8){hero=c[i];break}}if(!hero)return;
+var R=hero.getBoundingClientRect(),A=R.width*R.height;
+var media=[].slice.call(hero.querySelectorAll('img,video,canvas,picture')).some(function(m){var q=m.getBoundingClientRect();return q.width>=R.width*0.9&&q.height>=R.height*0.75});
+var isImg=media||/url\(/.test(getComputedStyle(hero).backgroundImage),under=R.top+scrollY<4;
+hero.classList.add('hf_hero');if(isImg)hero.classList.add('hf_img');if(isImg&&!/x_onPhoto|c_hero|mhero/.test(hero.className)){var big=[].slice.call(hero.querySelectorAll('img,video,canvas,picture')).filter(function(m){var q=m.getBoundingClientRect();return q.width>=R.width*0.9})[0];if(big){var top=big;while(top.parentElement&&top.parentElement!==hero)top=top.parentElement;var sc=document.createElement('div');sc.className='hf_scrim';sc.setAttribute('aria-hidden','true');sc.style.cssText='position:absolute;left:0;right:0;top:0;height:260px;background:linear-gradient(180deg,rgba(14,16,15,.55) 0%,rgba(14,16,15,.22) 55%,rgba(14,16,15,0) 100%);pointer-events:none';if(getComputedStyle(hero).position==='static')hero.style.position='relative';top.parentElement===hero?hero.insertBefore(sc,top.nextSibling):hero.insertBefore(sc,hero.firstChild)}}
+if(isImg&&!under){hero.style.marginTop=(-H)+'px';hero.style.paddingTop=((parseFloat(getComputedStyle(hero).paddingTop)||0)+H)+'px'}
+hero.style.minHeight=(isImg||under)?'100svh':'calc(100svh - '+H+'px)';
+if(hero.offsetHeight<=innerHeight+2){var d=getComputedStyle(hero).display;if(d==='block'){hero.style.display='flex';hero.style.flexDirection='column';hero.style.justifyContent='center'}else if(d==='grid'){hero.style.alignContent='center'}}
+if(isImg&&!preOv){var lock=false;var want=function(){var m=document.getElementById('menuOpen');return String(scrollY<=40&&!(m&&m.getAttribute('aria-expanded')==='true'))};
+var apply=function(){var w=want();if(hdr.getAttribute('data-overlay')!==w){lock=true;hdr.setAttribute('data-overlay',w);lock=false}};
+new MutationObserver(function(){if(!lock)apply()}).observe(hdr,{attributes:true,attributeFilter:['data-overlay']});addEventListener('scroll',apply,{passive:true});apply()}
+if(window.ScrollTrigger)setTimeout(function(){ScrollTrigger.refresh()},300)}
+if(document.readyState==='complete')init();else addEventListener('load',init)})();</script>
 <style id="fsNoReview">.icz_fab,.abt_fab,.eco_fab,.hmp_fab{display:none!important}</style>
 </html>
